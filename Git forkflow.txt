@@ -16,3 +16,14 @@ git push (odešle váš aktuální, již spojený main na GitHub).
 
 6. Úklid u vás:
 git branch -d jmeno-ukolu (smažete nepotřebnou větev).
+
+
+======= Ostatní příkazy =======
+
+7. Zahození neuložených změn (Discard):
+git restore jmeno-souboru.txt (zahodí změny v jednom konkrétním souboru a vrátí ho do původního stavu).
+git restore . (zahodí úplně všechny neuložené změny ve složce).
+
+8. Prohlížení změn (Diff):
+git diff (zobrazí detailní výpis všech vašich úprav, které jste udělali od posledního uložení - co se přidalo a co smazalo).
+git diff jmeno-souboru.txt (zobrazí změny pouze v jednom konkrétním souboru).
