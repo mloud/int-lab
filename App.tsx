@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { getScreenFromHash } from './routing';
+import { getScreenFromHash, getHashFromScreen } from './routing';
 import SubjectSelection from './components/common/SubjectSelection';
 import OperacniSystemyMenu from './components/specializovana/operacni-systemy/OperacniSystemyMenu';
 import FileSystemsMenu from './components/specializovana/operacni-systemy/FileSystemsMenu';
@@ -393,9 +393,19 @@ const App: React.FC = () => {
     }
   };
 
+  const currentHash = getHashFromScreen(currentScreen);
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc]">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc] relative">
       {renderScreen()}
+      {currentHash && (
+        <div 
+          className="fixed bottom-2 right-2 text-xs font-mono text-gray-400 bg-white/50 px-2 py-1 rounded-md border border-gray-200/50 shadow-sm opacity-60 hover:opacity-100 transition-opacity z-50"
+          title="Routovací kód (přidat za # do URL)"
+        >
+          #{currentHash}
+        </div>
+      )}
     </div>
   );
 };

@@ -48,7 +48,7 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
               <Monitor className="w-8 h-8 text-slate-600" />
             </div>
             <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Kdo je kdo?<br/><span className="text-sm text-slate-400">Přehled systémů</span></span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mat</div></button>
 
           <button
             onClick={onStartBootSequence}
@@ -58,7 +58,7 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
               <Power className="w-8 h-8 text-slate-600" />
             </div>
             <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Start Počítače<br/><span className="text-sm text-slate-400">Bootovací sekvence</span></span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#boo</div></button>
 
           <button
             onClick={onStartFileExtension}
@@ -68,7 +68,7 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
               <FileText className="w-8 h-8 text-slate-600" />
             </div>
             <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Detektiv Přípona<br/><span className="text-sm text-slate-400">Jak se otevírají soubory?</span></span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ext</div></button>
 
           <button
             onClick={onStartRamManager}
@@ -78,7 +78,7 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
               <Activity className="w-8 h-8 text-slate-600" />
             </div>
             <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Krotitel RAMky<br/><span className="text-sm text-slate-400">Správce úloh a paměť</span></span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ram</div></button>
 
           <button
             onClick={onStartShortcutNinja}
@@ -88,7 +88,7 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
               <Zap className="w-8 h-8 text-slate-600" />
             </div>
             <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Zkratkový Ninja<br/><span className="text-sm text-slate-400">Mistr klávesnice</span></span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#nin</div></button>
         </div>
       </div>
     </div>

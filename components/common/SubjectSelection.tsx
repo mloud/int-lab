@@ -59,7 +59,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
                 Vstoupit <ArrowRight className="w-4 h-4" />
               </span>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#inf</div></button>
 
           {/* Specializovaná informatika Card */}
           <button
@@ -83,7 +83,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
                 Vstoupit <ArrowRight className="w-4 h-4" />
               </span>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#spe</div></button>
         </div>
       </div>
       

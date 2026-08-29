@@ -51,7 +51,7 @@ const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartT
               Slovníková metoda
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#txc</div></button>
 
         <button
           onClick={onStartGame}
@@ -66,7 +66,7 @@ const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartT
               Slučování pixelů
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpg</div></button>
 
         <button
           onClick={onStartChecksum}
@@ -81,7 +81,7 @@ const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartT
               Kontrolní součet
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#chk</div></button>
       </div>
     </div>
   );

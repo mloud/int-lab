@@ -63,7 +63,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-blue-700">Kódování barev</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-blue-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#rgb</div></button>
 
           <button
             onClick={onStartLines}
@@ -77,7 +77,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-indigo-700">Obrázek z čar</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-indigo-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#lin</div></button>
 
           <button
             onClick={onStartCompression}
@@ -91,7 +91,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese a kontrola</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
 
           <button
             onClick={onStartCompressionFormats}
@@ -105,7 +105,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Komprese a formáty souborů</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
 
           <button
             onClick={onStartModels}
@@ -119,7 +119,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Modely</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mod</div></button>
 
           <button
             onClick={onStartBinary}
@@ -133,7 +133,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-amber-700">Binární čísla</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-amber-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bin</div></button>
 
           <button
             onClick={onStartDataUnits}
@@ -147,7 +147,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-fuchsia-700">Jednotky dat</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-fuchsia-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dum</div></button>
 
           <button
             onClick={onStartHardware}
@@ -161,7 +161,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-sky-700">Součásti počítače</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-sky-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#hwm</div></button>
 
           <button
             onClick={onStartOs}
@@ -175,7 +175,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <span className="text-lg sm:text-xl uppercase tracking-widest text-slate-700">Operační systémy</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-slate-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#osm</div></button>
         </div>
       </div>
 

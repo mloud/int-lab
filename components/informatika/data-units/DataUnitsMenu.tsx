@@ -47,7 +47,7 @@ const DataUnitsMenu: React.FC<DataUnitsMenuProps> = ({ onStartTheory, onStartPra
             <span className="text-2xl uppercase tracking-widest text-fuchsia-700 block mb-2">1. Teorie</span>
             <span className="text-sm font-medium text-gray-500 normal-case tracking-normal">Bity, bajty, KB, MB, GB a TB. Kde se s nimi setkáme?</span>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dut</div></button>
 
         <button
           onClick={onStartPractice}
@@ -61,7 +61,7 @@ const DataUnitsMenu: React.FC<DataUnitsMenuProps> = ({ onStartTheory, onStartPra
             <span className="text-2xl uppercase tracking-widest text-blue-700 block mb-2">2. Praxe</span>
             <span className="text-sm font-medium text-gray-500 normal-case tracking-normal">Počítej reálné příklady! Kapacita disku, fotek a videí.</span>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dup</div></button>
       </div>
     </div>
   );

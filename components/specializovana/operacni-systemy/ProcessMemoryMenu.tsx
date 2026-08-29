@@ -52,7 +52,7 @@ const ProcessMemoryMenu: React.FC<ProcessMemoryMenuProps> = ({
               className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
             >
               Spustit krokovač
-            </button>
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#stp</div></button>
           </div>
 
           {/* Idea 2: Memory Allocator */}
@@ -69,7 +69,7 @@ const ProcessMemoryMenu: React.FC<ProcessMemoryMenuProps> = ({
               className="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
             >
               Spustit hru
-            </button>
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mal</div></button>
           </div>
 
           {/* Idea 3: CPU Cycle */}
@@ -86,7 +86,7 @@ const ProcessMemoryMenu: React.FC<ProcessMemoryMenuProps> = ({
               className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
             >
               Spustit simulátor
-            </button>
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpu</div></button>
           </div>
 
         </div>

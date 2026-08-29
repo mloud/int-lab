@@ -56,7 +56,7 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
               Pixely a bity
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#img</div></button>
 
         <button
           onClick={onStartRle}
@@ -71,7 +71,7 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
               Bezeztrátová komprese
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#rle</div></button>
 
         <button
           onClick={onStartSize}
@@ -86,7 +86,7 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
               Kolik místa zabere?
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ims</div></button>
 
         <button
           onClick={onStartJpeg}
@@ -101,7 +101,7 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
               Ztrátová komprese
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#jpg</div></button>
       </div>
     </div>
   );

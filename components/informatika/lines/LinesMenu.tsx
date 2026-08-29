@@ -49,7 +49,7 @@ const LinesMenu: React.FC<LinesMenuProps> = ({ onShapePuzzle, onVectorDrawing, o
             <h3 className="text-xl font-black uppercase tracking-tight">Skládání tvarů</h3>
             <p className="text-orange-500/60 font-bold text-[10px] uppercase tracking-widest mt-1">Skládání obrazců z prvků</p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#shp</div></button>
 
         <button
           onClick={onVectorDrawing}
@@ -62,7 +62,7 @@ const LinesMenu: React.FC<LinesMenuProps> = ({ onShapePuzzle, onVectorDrawing, o
             <h3 className="text-xl font-black uppercase tracking-tight">Kreslení bodů</h3>
             <p className="text-indigo-500/60 font-bold text-[10px] uppercase tracking-widest mt-1">Zadávání samostatných bodů</p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#vec</div></button>
 
         <button
           onClick={onLineDrawing}
@@ -75,7 +75,7 @@ const LinesMenu: React.FC<LinesMenuProps> = ({ onShapePuzzle, onVectorDrawing, o
             <h3 className="text-xl font-black uppercase tracking-tight">Kreslení úseček</h3>
             <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-1">Body spojené do úseček</p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#lnd</div></button>
       </div>
     </div>
   );

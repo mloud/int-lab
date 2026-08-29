@@ -65,6 +65,24 @@ export const ROUTE_MAP: Record<string, Screen> = {
   
   // 2. Specializovaná - Instalace Windows
   'win': 'windows-install-game',
+  
+  // Další chybějící kódy
+  'ops': 'operacni-systemy-menu',
+  'hwm': 'hardware-menu',
+  'pcb': 'pc-builder-game',
+  'dtj': 'data-journey-game',
+  'hws': 'hw-sw-sorter-game',
+  'pcc': 'pc-configurator-game',
+  'cfm': 'compression-formats-menu',
+  'rle': 'rle-compression-chapter',
+  'ims': 'image-size-chapter',
+  'jpg': 'jpeg-sim-chapter',
+  'dum': 'data-units-menu',
+  'dut': 'data-units-theory',
+  'dup': 'data-units-practice',
+  'cpg': 'compression-game',
+  'cst': 'custom-compression',
+  'drw': 'drawing',
 };
 
 /**
@@ -77,4 +95,17 @@ export const getScreenFromHash = (hash: string): Screen | null => {
   
   // Vrátíme obrazovku ze slovníku, nebo null
   return ROUTE_MAP[cleanHash] || null;
+};
+
+/**
+ * Pomocná funkce, která pro danou obrazovku vrátí její 3-místný kód,
+ * nebo null, pokud kód neexistuje.
+ */
+export const getHashFromScreen = (screen: Screen): string | null => {
+  for (const [hash, screenName] of Object.entries(ROUTE_MAP)) {
+    if (screenName === screen) {
+      return hash;
+    }
+  }
+  return null;
 };

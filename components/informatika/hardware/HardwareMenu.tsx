@@ -59,7 +59,7 @@ const HardwareMenu: React.FC<HardwareMenuProps> = ({
               <h3 className="text-xl uppercase tracking-widest text-sky-800">1. Stavba počítače</h3>
               <p className="text-sm text-gray-500 font-medium mt-1 normal-case tracking-normal">Procesor, RAM, Disky a Grafická karta. Kde mají své místo a co dělají?</p>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#pcb</div></button>
 
           <button
             onClick={onStartDataJourney}
@@ -72,7 +72,7 @@ const HardwareMenu: React.FC<HardwareMenuProps> = ({
               <h3 className="text-xl uppercase tracking-widest text-amber-700">2. Cesta dat (Výpadek proudu)</h3>
               <p className="text-sm text-gray-500 font-medium mt-1 normal-case tracking-normal">Jaký je rozdíl mezi dočasnou (RAM) a trvalou (Pevný disk) pamětí počítače?</p>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dtj</div></button>
 
           <button
             onClick={onStartHwSwSorter}
@@ -85,7 +85,7 @@ const HardwareMenu: React.FC<HardwareMenuProps> = ({
               <h3 className="text-xl uppercase tracking-widest text-teal-800">3. HW vs. SW Třídička</h3>
               <p className="text-sm text-gray-500 font-medium mt-1 normal-case tracking-normal">Které díly jdou vzít do ruky, a které jsou jen jedničky a nuly na disku?</p>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#hws</div></button>
 
           <button
             onClick={onStartCustomPcBuilder}
@@ -98,7 +98,7 @@ const HardwareMenu: React.FC<HardwareMenuProps> = ({
               <h3 className="text-xl uppercase tracking-widest text-rose-800">4. Stavba na zakázku</h3>
               <p className="text-sm text-gray-500 font-medium mt-1 normal-case tracking-normal">Postav PC podle požadavků zákazníka a rozpočtu.</p>
             </div>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#pcc</div></button>
         </div>
       </div>
     </div>

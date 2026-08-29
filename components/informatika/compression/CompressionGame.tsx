@@ -229,7 +229,7 @@ const CompressionGame: React.FC<CompressionGameProps> = ({ onBack, onStartCustom
           >
             Vlastní
             <span className="block text-[8px] opacity-60 mt-1">18x18</span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cst</div></button>
         </div>
 
         <div className="text-right hidden md:block">

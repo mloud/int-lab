@@ -60,7 +60,7 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
               Signalizace přítomnosti
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tea</div></button>
 
         <button
           onClick={onStartCounting}
@@ -75,7 +75,7 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
               Nastav žáky dle čísla
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#stc</div></button>
 
         <button
           onClick={onStartBinaryToDecimal}
@@ -90,7 +90,7 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
               Vypočítej číslo dle žáků
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bin</div></button>
 
         <button
           onClick={onStartTruthTable}
@@ -105,7 +105,7 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
               Logické podmínky
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tru</div></button>
 
         <button
           onClick={onStartAddition}
@@ -120,7 +120,7 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
               Binární aritmetika
             </p>
           </div>
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#add</div></button>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ const SpecializovanaMenu: React.FC<SpecializovanaMenuProps> = ({ onBack, onStart
               <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Operační systémy</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ops</div></button>
           
           {/* Prostor pro další předměty v budoucnu */}
           <div className="px-8 py-6 bg-gray-50 border-4 border-gray-100 rounded-[2.5rem] flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider opacity-50 border-dashed">

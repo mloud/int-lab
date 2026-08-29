@@ -43,7 +43,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onQuiz, onBack }) 
               Malování podle RGB
               <Play className="ml-3 w-5 h-5 fill-current" />
             </span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#rgm</div></button>
 
           <button
             onClick={onQuiz}
@@ -53,7 +53,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onQuiz, onBack }) 
               Hádání barev
               <BrainCircuit className="ml-3 w-5 h-5" />
             </span>
-          </button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#rgq</div></button>
         </div>
       </div>
     </div>

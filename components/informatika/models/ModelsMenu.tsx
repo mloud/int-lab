@@ -54,7 +54,7 @@ const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFindi
             </p>
           </div>
           <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tim</div></button>
 
         <button
           onClick={onStartPathFinding}
@@ -70,7 +70,7 @@ const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFindi
             </p>
           </div>
           <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#pat</div></button>
 
         <button
           onClick={onStartBlatov}
@@ -86,7 +86,7 @@ const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFindi
             </p>
           </div>
           <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bla</div></button>
 
         <button
           onClick={onStartMST}
@@ -102,7 +102,7 @@ const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFindi
             </p>
           </div>
           <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mst</div></button>
 
         <button
           onClick={onStartParallel}
@@ -118,7 +118,7 @@ const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFindi
             </p>
           </div>
           <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#par</div></button>
       </div>
     </div>
   );
