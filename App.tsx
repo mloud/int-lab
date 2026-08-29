@@ -29,6 +29,10 @@ import VectorDrawing from './components/informatika/lines/VectorDrawing';
 import ShapePuzzle from './components/informatika/lines/ShapePuzzle';
 import CompressionMenu from './components/informatika/compression/CompressionMenu';
 import CompressionFormatsMenu from './components/informatika/compression/CompressionFormatsMenu';
+import ImageCompressionGame from './components/informatika/compression/ImageCompressionGame';
+import RleCompressionGame from './components/informatika/compression/RleCompressionGame';
+import ImageSizeGame from './components/informatika/compression/ImageSizeGame';
+import JpegSimGame from './components/informatika/compression/JpegSimGame';
 import CompressionGame from './components/informatika/compression/CompressionGame';
 import CustomCompression from './components/informatika/compression/CustomCompression';
 import TextCompression from './components/informatika/compression/TextCompression';
@@ -91,9 +95,9 @@ const App: React.FC = () => {
         );
       case 'informatika-menu':
         return (
-          <LandingPage 
-            onStartColors={() => setCurrentScreen('splash')} 
-            onStartLines={() => setCurrentScreen('lines-menu')} 
+          <LandingPage
+            onStartColors={() => setCurrentScreen('splash')}
+            onStartLines={() => setCurrentScreen('lines-menu')}
             onStartCompression={() => setCurrentScreen('compression-menu')}
             onStartCompressionFormats={() => setCurrentScreen('compression-formats-menu')}
             onStartBinary={() => setCurrentScreen('binary-menu')}
@@ -106,8 +110,8 @@ const App: React.FC = () => {
         );
       case 'informatika-os-menu':
         return (
-          <OsMenu 
-            onBack={() => setCurrentScreen('informatika-menu')} 
+          <OsMenu
+            onBack={() => setCurrentScreen('informatika-menu')}
             onStartMatchGame={() => setCurrentScreen('os-match-game')}
             onStartBootSequence={() => setCurrentScreen('boot-sequence-game')}
             onStartFileExtension={() => setCurrentScreen('file-extension-game')}
@@ -134,8 +138,8 @@ const App: React.FC = () => {
         );
       case 'hardware-menu':
         return (
-          <HardwareMenu 
-            onBack={() => setCurrentScreen('informatika-menu')} 
+          <HardwareMenu
+            onBack={() => setCurrentScreen('informatika-menu')}
             onStartPcBuilder={() => setCurrentScreen('pc-builder-game')}
             onStartDataJourney={() => setCurrentScreen('data-journey-game')}
             onStartHwSwSorter={() => setCurrentScreen('hw-sw-sorter-game')}
@@ -152,8 +156,8 @@ const App: React.FC = () => {
         return <PcConfiguratorGame onBack={() => setCurrentScreen('hardware-menu')} />;
       case 'operacni-systemy-menu':
         return (
-          <OperacniSystemyMenu 
-            onBack={() => setCurrentScreen('specializovana-menu')} 
+          <OperacniSystemyMenu
+            onBack={() => setCurrentScreen('specializovana-menu')}
             onStartFileSystemsMenu={() => setCurrentScreen('file-systems-menu')}
             onStartWindowsInstall={() => setCurrentScreen('windows-install-game')}
             onStartProcessMemory={() => setCurrentScreen('process-memory-menu')}
@@ -211,7 +215,7 @@ const App: React.FC = () => {
         return <CpuCycleGame onBack={() => setCurrentScreen('process-memory-menu')} />;
       case 'binary-menu':
         return (
-          <BinaryMenu 
+          <BinaryMenu
             onStartTeachers={() => setCurrentScreen('teachers-office')}
             onStartCounting={() => setCurrentScreen('student-counting')}
             onStartBinaryToDecimal={() => setCurrentScreen('binary-to-decimal')}
@@ -232,7 +236,7 @@ const App: React.FC = () => {
         return <BinaryAddition onBack={() => setCurrentScreen('binary-menu')} />;
       case 'models-menu':
         return (
-          <ModelsMenu 
+          <ModelsMenu
             onStartGraphs={() => setCurrentScreen('timetable-graph')}
             onStartPathFinding={() => setCurrentScreen('path-finding')}
             onStartBlatov={() => setCurrentScreen('blatov-task')}
@@ -253,7 +257,7 @@ const App: React.FC = () => {
         return <ParallelProcesses onBack={() => setCurrentScreen('models-menu')} />;
       case 'compression-menu':
         return (
-          <CompressionMenu 
+          <CompressionMenu
             onStartGame={() => setCurrentScreen('compression-game')}
             onStartText={() => setCurrentScreen('text-compression')}
             onStartChecksum={() => setCurrentScreen('checksum-game')}
@@ -262,11 +266,33 @@ const App: React.FC = () => {
         );
       case 'compression-formats-menu':
         return (
-          <CompressionFormatsMenu onBack={() => setCurrentScreen('informatika-menu')} />
+          <CompressionFormatsMenu 
+            onStartImageCompression={() => setCurrentScreen('image-compression-chapter')}
+            onStartRle={() => setCurrentScreen('rle-compression-chapter')}
+            onStartSize={() => setCurrentScreen('image-size-chapter')}
+            onStartJpeg={() => setCurrentScreen('jpeg-sim-chapter')}
+            onBack={() => setCurrentScreen('informatika-menu')} 
+          />
+        );
+      case 'image-compression-chapter':
+        return (
+          <ImageCompressionGame onBack={() => setCurrentScreen('compression-formats-menu')} />
+        );
+      case 'rle-compression-chapter':
+        return (
+          <RleCompressionGame onBack={() => setCurrentScreen('compression-formats-menu')} />
+        );
+      case 'image-size-chapter':
+        return (
+          <ImageSizeGame onBack={() => setCurrentScreen('compression-formats-menu')} />
+        );
+      case 'jpeg-sim-chapter':
+        return (
+          <JpegSimGame onBack={() => setCurrentScreen('compression-formats-menu')} />
         );
       case 'data-units-menu':
         return (
-          <DataUnitsMenu 
+          <DataUnitsMenu
             onStartTheory={() => setCurrentScreen('data-units-theory')}
             onStartPractice={() => setCurrentScreen('data-units-practice')}
             onBack={() => setCurrentScreen('informatika-menu')}
@@ -278,8 +304,8 @@ const App: React.FC = () => {
         return <DataUnitsPractice onBack={() => setCurrentScreen('data-units-menu')} />;
       case 'compression-game':
         return (
-          <CompressionGame 
-            onBack={() => setCurrentScreen('compression-menu')} 
+          <CompressionGame
+            onBack={() => setCurrentScreen('compression-menu')}
             onStartCustom={() => setCurrentScreen('custom-compression')}
           />
         );
@@ -297,7 +323,7 @@ const App: React.FC = () => {
         );
       case 'lines-menu':
         return (
-          <LinesMenu 
+          <LinesMenu
             onShapePuzzle={() => setCurrentScreen('shape-puzzle')}
             onVectorDrawing={() => setCurrentScreen('vector-drawing')}
             onLineDrawing={() => setCurrentScreen('line-drawing')}
@@ -310,22 +336,22 @@ const App: React.FC = () => {
         );
       case 'vector-drawing':
         return (
-          <VectorDrawing 
+          <VectorDrawing
             mode="points"
             onBack={() => setCurrentScreen('lines-menu')}
           />
         );
       case 'line-drawing':
         return (
-          <VectorDrawing 
+          <VectorDrawing
             mode="lines"
             onBack={() => setCurrentScreen('lines-menu')}
           />
         );
       case 'splash':
         return (
-          <SplashScreen 
-            onEnter={() => setCurrentScreen('menu')} 
+          <SplashScreen
+            onEnter={() => setCurrentScreen('menu')}
             onQuiz={() => setCurrentScreen('quiz')}
             onBack={() => setCurrentScreen('informatika-menu')}
           />
@@ -334,8 +360,8 @@ const App: React.FC = () => {
         return <Menu onStart={handleStartLevel} onBack={() => setCurrentScreen('splash')} />;
       case 'drawing':
         return (
-          <RGBDrawing 
-            onBack={() => setCurrentScreen('menu')} 
+          <RGBDrawing
+            onBack={() => setCurrentScreen('menu')}
             initialSegments={selectedData}
             title={levelName}
           />

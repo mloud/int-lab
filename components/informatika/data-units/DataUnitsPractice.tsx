@@ -74,7 +74,7 @@ const MISSIONS: Mission[] = [
     id: 'mission_disk',
     title: 'Kapacita flash disku',
     icon: <HardDrive className="w-10 h-10 text-slate-500" />,
-    context: 'Chceš nahrát kamarádovi nějaké nové počítačové hry. Každá instalace hry zabere přesně 15 GB místa. Vzal jsi si s sebou starší USB flash disk s celkovou kapacitou 64 GB.',
+    context: 'Chceš nahrát kamarádovi nějaké nové počítačové hry. Každá instalace hry zabere přesně 15 000 MB místa. Vzal jsi si s sebou starší USB flash disk s celkovou kapacitou 64 GB.',
     questions: [
       { id: 'q1', text: 'Vypočítej, kolik celých (nezkrácených) her se ti na tento flash disk naráz vejde?', answer: 4, unit: 'her' }
     ]
