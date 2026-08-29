@@ -27,3 +27,7 @@ git restore . (zahodí úplně všechny neuložené změny ve složce).
 8. Prohlížení změn (Diff):
 git diff (zobrazí detailní výpis všech vašich úprav, které jste udělali od posledního uložení - co se přidalo a co smazalo).
 git diff jmeno-souboru.txt (zobrazí změny pouze v jednom konkrétním souboru).
+
+9. Připojení lokálního repozitáře na GitHub:
+git remote add origin <URL-ADRESA-REPOZITARE> (propojí váš lokální projekt s repozitářem na GitHubu).
+git push -u origin main (odešle váš kód na GitHub a nastaví výchozí větev pro budoucí pushnutí).
