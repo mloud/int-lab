@@ -1,0 +1,18 @@
+1. Aktualizace: 
+git checkout main a následně git pull.
+
+2. Nová větev pro úkol: 
+git checkout -b jmeno-ukolu.
+
+3. Práce a commitování:
+Změníte soubory, git add ., git commit -m "Popis zmen".
+
+4. Sloučení rovnou u sebe (Merge):
+git checkout main (přepnete se zpět na hlavní).
+git merge jmeno-ukolu (vcucne změny z vaší úkolové větve rovnou do main).
+
+5. Odeslání hotového na server:
+git push (odešle váš aktuální, již spojený main na GitHub).
+
+6. Úklid u vás:
+git branch -d jmeno-ukolu (smažete nepotřebnou větev).
