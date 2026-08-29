@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getScreenFromHash } from './routing';
 import SubjectSelection from './components/common/SubjectSelection';
 import OperacniSystemyMenu from './components/specializovana/operacni-systemy/OperacniSystemyMenu';
 import FileSystemsMenu from './components/specializovana/operacni-systemy/FileSystemsMenu';
@@ -65,6 +66,20 @@ const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing');
   const [selectedData, setSelectedData] = useState<Segment[]>([]);
   const [levelName, setLevelName] = useState<string>('');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const screenToLoad = getScreenFromHash(window.location.hash);
+      if (screenToLoad) {
+        setCurrentScreen(screenToLoad);
+      }
+    };
+
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const handleStartLevel = (difficulty: Difficulty) => {
     switch (difficulty) {
