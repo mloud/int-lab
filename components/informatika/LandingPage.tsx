@@ -12,10 +12,11 @@ interface LandingPageProps {
   onStartModels: () => void;
   onStartHardware: () => void;
   onStartOs: () => void;
+  onStartCodes: () => void;
   onBack: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onBack }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onBack }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
       <div className="flex justify-start mb-6">
@@ -176,6 +177,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-slate-400" />
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#osm</div></button>
+
+          <button
+            onClick={onStartCodes}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-rose-100"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
+                <Binary className="w-6 h-6 text-rose-600" />
+              </div>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-rose-700">Kódy kolem nás</span>
+            </div>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-rose-400" />
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cod</div></button>
         </div>
       </div>
 

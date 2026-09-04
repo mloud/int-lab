@@ -83,6 +83,10 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'cpg': 'compression-game',
   'cst': 'custom-compression',
   'drw': 'drawing',
+  'cod': 'codes-menu',
+  'lau': 'laundry-game',
+  'emo': 'emoji-game',
+  'sta': 'country-codes-game',
 };
 
 /**

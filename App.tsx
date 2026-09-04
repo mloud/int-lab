@@ -59,6 +59,10 @@ import PcConfiguratorGame from './components/informatika/hardware/PcConfigurator
 import DataUnitsMenu from './components/informatika/data-units/DataUnitsMenu';
 import DataUnitsTheory from './components/informatika/data-units/DataUnitsTheory';
 import DataUnitsPractice from './components/informatika/data-units/DataUnitsPractice';
+import CodesMenu from './components/informatika/codes/CodesMenu';
+import LaundryGame from './components/informatika/codes/LaundryGame';
+import EmojiGame from './components/informatika/codes/EmojiGame';
+import CountryCodesGame from './components/informatika/codes/CountryCodesGame';
 import { Screen, Difficulty, Segment } from './types';
 import { ROCKET_DATA, CAT_DATA, COMPUTER_DATA } from './constants';
 
@@ -120,6 +124,7 @@ const App: React.FC = () => {
             onStartModels={() => setCurrentScreen('models-menu')}
             onStartHardware={() => setCurrentScreen('hardware-menu')}
             onStartOs={() => setCurrentScreen('informatika-os-menu')}
+            onStartCodes={() => setCurrentScreen('codes-menu')}
             onBack={() => setCurrentScreen('landing')}
           />
         );
@@ -383,6 +388,21 @@ const App: React.FC = () => {
         );
       case 'quiz':
         return <Quiz onBack={() => setCurrentScreen('splash')} />;
+      case 'codes-menu':
+        return (
+          <CodesMenu
+            onStartLaundryGame={() => setCurrentScreen('laundry-game')}
+            onStartEmojiGame={() => setCurrentScreen('emoji-game')}
+            onStartCountryCodesGame={() => setCurrentScreen('country-codes-game')}
+            onBack={() => setCurrentScreen('informatika-menu')}
+          />
+        );
+      case 'laundry-game':
+        return <LaundryGame onBack={() => setCurrentScreen('codes-menu')} />;
+      case 'emoji-game':
+        return <EmojiGame onBack={() => setCurrentScreen('codes-menu')} />;
+      case 'country-codes-game':
+        return <CountryCodesGame onBack={() => setCurrentScreen('codes-menu')} />;
       default:
         return (
           <SubjectSelection
