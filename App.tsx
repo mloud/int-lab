@@ -21,6 +21,7 @@ import BootSequenceGame from './components/informatika/operacni-systemy/BootSequ
 import FileExtensionGame from './components/informatika/operacni-systemy/FileExtensionGame';
 import RamManagerGame from './components/informatika/operacni-systemy/RamManagerGame';
 import ShortcutNinjaGame from './components/informatika/operacni-systemy/ShortcutNinjaGame';
+import OsHardwareChapter from './components/specializovana/operacni-systemy/OsHardwareChapter';
 import SplashScreen from './components/informatika/colors/SplashScreen';
 import Menu from './components/informatika/colors/Menu';
 import RGBDrawing from './components/informatika/colors/RGBDrawing';
@@ -149,6 +150,8 @@ const App: React.FC = () => {
         return <RamManagerGame onBack={() => setCurrentScreen('informatika-os-menu')} />;
       case 'shortcut-ninja-game':
         return <ShortcutNinjaGame onBack={() => setCurrentScreen('informatika-os-menu')} />;
+      case 'os-hardware-chapter':
+        return <OsHardwareChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
       case 'specializovana-menu':
         return (
           <SpecializovanaMenu
@@ -181,6 +184,7 @@ const App: React.FC = () => {
             onStartFileSystemsMenu={() => setCurrentScreen('file-systems-menu')}
             onStartWindowsInstall={() => setCurrentScreen('windows-install-game')}
             onStartProcessMemory={() => setCurrentScreen('process-memory-menu')}
+            onStartHardware={() => setCurrentScreen('os-hardware-chapter')}
           />
         );
       case 'file-systems-menu':

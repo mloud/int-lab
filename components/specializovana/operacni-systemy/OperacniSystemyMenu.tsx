@@ -6,9 +6,10 @@ interface OperacniSystemyMenuProps {
   onStartFileSystemsMenu: () => void;
   onStartWindowsInstall: () => void;
   onStartProcessMemory: () => void;
+  onStartHardware: () => void;
 }
 
-const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory }) => {
+const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory, onStartHardware }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
       <div className="flex justify-start mb-6">
@@ -90,6 +91,22 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
               <p className="text-xs text-gray-500">Správa uživatelů a zabezpečení přístupu k souborům.</p>
             </div>
             <span className="text-[10px] uppercase font-bold tracking-widest text-purple-400 bg-purple-50 px-2.5 py-1 rounded-full mt-4">Připravuje se</span>
+          </div>
+          
+          <div className="p-6 bg-purple-50/30 rounded-3xl border-2 border-purple-100/50 flex flex-col items-center text-center justify-between min-h-[220px]">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                <Cpu className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="font-bold text-gray-800 mb-1 uppercase tracking-wider text-sm">Hardware</h3>
+              <p className="text-xs text-gray-500">Hardware z pohledu operačního systému.</p>
+            </div>
+            <button
+              onClick={onStartHardware}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+            >
+              Otevřít kapitolu
+            </button>
           </div>
         </div>
       </div>
