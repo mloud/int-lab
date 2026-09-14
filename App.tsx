@@ -22,6 +22,9 @@ import FileExtensionGame from './components/informatika/operacni-systemy/FileExt
 import RamManagerGame from './components/informatika/operacni-systemy/RamManagerGame';
 import ShortcutNinjaGame from './components/informatika/operacni-systemy/ShortcutNinjaGame';
 import OsHardwareChapter from './components/specializovana/operacni-systemy/OsHardwareChapter';
+import VonNeumannGame from './components/specializovana/operacni-systemy/VonNeumannGame';
+import RamSimulatorChapter from './components/specializovana/operacni-systemy/RamSimulatorChapter';
+import OsIntroChapter from './components/specializovana/operacni-systemy/OsIntroChapter';
 import SplashScreen from './components/informatika/colors/SplashScreen';
 import Menu from './components/informatika/colors/Menu';
 import RGBDrawing from './components/informatika/colors/RGBDrawing';
@@ -151,7 +154,17 @@ const App: React.FC = () => {
       case 'shortcut-ninja-game':
         return <ShortcutNinjaGame onBack={() => setCurrentScreen('informatika-os-menu')} />;
       case 'os-hardware-chapter':
-        return <OsHardwareChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
+        return (
+          <OsHardwareChapter 
+            onBack={() => setCurrentScreen('operacni-systemy-menu')} 
+            onStartVonNeumann={() => setCurrentScreen('von-neumann-game')}
+            onStartRamSimulator={() => setCurrentScreen('ram-simulator')}
+          />
+        );
+      case 'von-neumann-game':
+        return <VonNeumannGame onBack={() => setCurrentScreen('os-hardware-chapter')} />;
+      case 'ram-simulator':
+        return <RamSimulatorChapter onBack={() => setCurrentScreen('os-hardware-chapter')} />;
       case 'specializovana-menu':
         return (
           <SpecializovanaMenu
@@ -181,12 +194,15 @@ const App: React.FC = () => {
         return (
           <OperacniSystemyMenu
             onBack={() => setCurrentScreen('specializovana-menu')}
+            onStartOsIntro={() => setCurrentScreen('os-intro')}
             onStartFileSystemsMenu={() => setCurrentScreen('file-systems-menu')}
             onStartWindowsInstall={() => setCurrentScreen('windows-install-game')}
             onStartProcessMemory={() => setCurrentScreen('process-memory-menu')}
             onStartHardware={() => setCurrentScreen('os-hardware-chapter')}
           />
         );
+      case 'os-intro':
+        return <OsIntroChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
       case 'file-systems-menu':
         return (
           <FileSystemsMenu
