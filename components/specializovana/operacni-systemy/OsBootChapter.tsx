@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Cpu, Activity, Clock, ShieldCheck, HardDrive, LogOut, CheckCircle2, AlertTriangle, MonitorPlay, Zap, Settings } from 'lucide-react';
+import { ArrowLeft, Cpu, Activity, Clock, ShieldCheck, HardDrive, LogOut, CheckCircle2, AlertTriangle, MonitorPlay, Zap, Settings, Database, MemoryStick, LayoutTemplate } from 'lucide-react';
 
 interface OsBootChapterProps {
   onBack: () => void;
@@ -15,6 +15,15 @@ const BOOT_SEQUENCE_TASKS = [
   { id: 'step-4', text: 'Čtení GPT tabulky', detail: 'UEFI prohledává systémový disk a jeho tabulku GPT, aby našlo malý skrytý EFI oddíl.' },
   { id: 'step-5', text: 'Spuštění Boot Manageru', detail: 'UEFI najde a spustí správce spouštění (např. Windows Boot Manager nebo GRUB) z EFI oddílu.' },
   { id: 'step-6', text: 'Načtení Jádra OS', detail: 'Boot Manager předává řízení do rukou hlavního jádra operačního systému (Kernelu). Systém nabíhá.' },
+];
+
+const BOOT_COMPONENTS = [
+  { id: 'comp-1', text: 'Základní deska', detail: '(Zdroj a obvody rozvádějící proud)', icon: LayoutTemplate, color: 'text-orange-500', bg: 'bg-orange-50' },
+  { id: 'comp-2', text: 'Flash čip na desce', detail: '(Fyzický čip, kde je nahrán UEFI kód)', icon: MemoryStick, color: 'text-emerald-500', bg: 'bg-emerald-50' },
+  { id: 'comp-3', text: 'RAM, CPU a zbytek HW', detail: '(Komponenty, které se během testu ověřují)', icon: Cpu, color: 'text-purple-500', bg: 'bg-purple-50' },
+  { id: 'comp-4', text: 'Pevný disk (Fyzický)', detail: '(Obsahuje úplně na začátku GPT strukturu)', icon: HardDrive, color: 'text-slate-500', bg: 'bg-slate-50' },
+  { id: 'comp-5', text: 'Skrytý EFI oddíl', detail: '(FAT32 oddíl a soubor bootmgfw.efi)', icon: ShieldCheck, color: 'text-sky-500', bg: 'bg-sky-50' },
+  { id: 'comp-6', text: 'Systémový oddíl (C:)', detail: '(Samotný obří adresář Windows s Kernelem)', icon: Database, color: 'text-blue-500', bg: 'bg-blue-50' },
 ];
 
 const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
@@ -47,9 +56,13 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
   // Phase Post
   const [postLines, setPostLines] = useState<string[]>([]);
 
-  // Phase 2: Sequence Builder
+  // Phase 2a: Sequence Builder (Process)
   const [placedSteps, setPlacedSteps] = useState<(string | null)[]>(Array(6).fill(null));
   const [selectedBlock, setSelectedBlock] = useState<string | null>(null);
+
+  // Phase 2b: Component Builder
+  const [placedComponents, setPlacedComponents] = useState<(string | null)[]>(Array(6).fill(null));
+  const [selectedComponentBlock, setSelectedComponentBlock] = useState<string | null>(null);
 
   // Keyboard listener for DEL / F2
   useEffect(() => {
@@ -147,11 +160,35 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
     }
   };
 
+  const handleCompSlotClick = (index: number) => {
+    if (selectedComponentBlock !== null) {
+      if (placedComponents[index] !== null) return;
+      const newPlaced = [...placedComponents];
+      newPlaced[index] = selectedComponentBlock;
+      setPlacedComponents(newPlaced);
+      setSelectedComponentBlock(null);
+    } else {
+      if (placedComponents[index] !== null) {
+        const newPlaced = [...placedComponents];
+        newPlaced[index] = null;
+        setPlacedComponents(newPlaced);
+      }
+    }
+  };
+
   const availableBlocks = BOOT_SEQUENCE_TASKS.map(t => t.id).filter(id => !placedSteps.includes(id));
   const displayBlocks = [...availableBlocks].sort();
 
   const isSequenceCorrect = placedSteps.every((step, i) => step === BOOT_SEQUENCE_TASKS[i].id);
   const isSequenceFull = placedSteps.every(step => step !== null);
+
+  const isPhase2bUnlocked = isSequenceFull && isSequenceCorrect;
+
+  const availableCompBlocks = BOOT_COMPONENTS.map(t => t.id).filter(id => !placedComponents.includes(id));
+  const displayCompBlocks = [...availableCompBlocks].sort();
+
+  const isCompSequenceCorrect = placedComponents.every((comp, i) => comp === BOOT_COMPONENTS[i].id);
+  const isCompSequenceFull = placedComponents.every(comp => comp !== null);
 
   const restartMachine = () => {
     setMissedUefi(false);
@@ -160,7 +197,7 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
+    <div className="min-h-screen bg-slate-900 text-white font-sans overflow-hidden">
       
       {/* PHASE 0: Splash / Boot Menu */}
       {phase === 0 && (
@@ -470,7 +507,7 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
       {/* PHASE 2 */}
       {phase === 2 && (
         <div className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 sm:p-8 relative">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <button
               onClick={onBack}
               className="mb-6 flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-100 text-slate-700 font-bold rounded-2xl shadow-sm border border-slate-200 uppercase tracking-wider text-xs"
@@ -478,72 +515,128 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
               <ArrowLeft className="w-4 h-4" /> Zpět do menu
             </button>
 
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 mb-8 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                <CheckCircle2 className="w-8 h-8 text-green-600" />
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 mb-8 text-center animate-in fade-in duration-500">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                <CheckCircle2 className="w-8 h-8 text-blue-600" />
               </div>
-              <h1 className="text-3xl font-black text-slate-800 mb-4">Výborně, systém nastartoval!</h1>
-              <p className="text-slate-600 max-w-2xl mx-auto font-medium">
-                Viděl jsi, že než naběhne plocha Windows, musí hardware a firmware udělat spoustu práce. Tvým posledním úkolem je seřadit tyto děje přesně tak, jak jdou chronologicky za sebou.
+              <h1 className="text-3xl font-black text-slate-800 mb-4">Systém nastartoval! Jak k tomu došlo?</h1>
+              <p className="text-slate-600 max-w-3xl mx-auto font-medium">
+                Před naběhnutím samotných Windows proběhne spousta událostí na pozadí.
+                <strong>1. krok:</strong> Seřaď logické děje chronologicky za sebou.
+                {!isPhase2bUnlocked ? '' : ' 2. krok: Přiřaď k nim správnou HW/SW komponentu, která za ně zodpovídá.'}
               </p>
             </div>
 
-            {/* Zóna úspěchu */}
-            {isSequenceFull && isSequenceCorrect && (
-              <div className="bg-green-600 text-white p-6 rounded-2xl shadow-xl mb-8 animate-in slide-in-from-top flex items-center gap-4">
-                <CheckCircle2 className="w-10 h-10 flex-shrink-0" />
-                <div>
-                  <h3 className="font-black text-xl">Dokonalé pochopení!</h3>
-                  <p className="text-green-100 font-medium">Přesně takto funguje start moderního operačního systému. Už přesně víš, co je to UEFI, POST, GPT i Boot Manager.</p>
-                </div>
-              </div>
-            )}
+            {/* Zóna úspěchu (Krok 1 - chybí seřadit) */}
             {isSequenceFull && !isSequenceCorrect && (
               <div className="bg-red-100 text-red-800 p-6 rounded-2xl shadow-md mb-8 border border-red-200 animate-in slide-in-from-top flex items-center gap-4">
                 <AlertTriangle className="w-8 h-8 flex-shrink-0" />
                 <div>
                   <h3 className="font-bold">Něco je špatně.</h3>
-                  <p className="text-sm">Bloky nejsou ve správném pořadí. Pamatuj: Deska -&gt; Firmware -&gt; Kontrola HW -&gt; Tabulka na disku -&gt; Spouštěč OS -&gt; Jádro OS. Kliknutím na umístěný blok ho vrátíš zpět.</p>
+                  <p className="text-sm">Logické kroky nejsou ve správném pořadí. Pamatuj: Deska -&gt; Firmware -&gt; Kontrola HW -&gt; Tabulka na disku -&gt; Spouštěč OS -&gt; Jádro OS. Kliknutím na umístěný blok ho vrátíš zpět.</p>
+                </div>
+              </div>
+            )}
+            
+            {/* Zóna úspěchu (Krok 2 - finále) */}
+            {isPhase2bUnlocked && isCompSequenceFull && isCompSequenceCorrect && (
+              <div className="bg-green-600 text-white p-6 rounded-2xl shadow-xl mb-8 animate-in slide-in-from-top flex items-center gap-4">
+                <CheckCircle2 className="w-10 h-10 flex-shrink-0" />
+                <div>
+                  <h3 className="font-black text-xl">Naprosto dokonalé pochopení!</h3>
+                  <p className="text-green-100 font-medium">Přesně takto funguje start moderního operačního systému. Už víš, co se děje softwarově, a přesně znáš i fyzické a datové komponenty, které to dělají.</p>
+                </div>
+              </div>
+            )}
+            {isPhase2bUnlocked && isCompSequenceFull && !isCompSequenceCorrect && (
+              <div className="bg-red-100 text-red-800 p-6 rounded-2xl shadow-md mb-8 border border-red-200 animate-in slide-in-from-top flex items-center gap-4">
+                <AlertTriangle className="w-8 h-8 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold">Komponenty nejsou přiřazené správně.</h3>
+                  <p className="text-sm">Některé komponenty nesedí ke svému logickému kroku. Kliknutím na komponentu (spodní slot) ji vrátíš zpět a zkus to znovu.</p>
                 </div>
               </div>
             )}
 
-            {/* Sloty */}
+            {/* FÁZE 2A a 2B Hrací pole */}
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-12 justify-center items-stretch relative">
               {placedSteps.map((placedId, index) => {
                 const stepData = placedId ? BOOT_SEQUENCE_TASKS.find(t => t.id === placedId) : null;
                 const isTargetCorrect = placedId === BOOT_SEQUENCE_TASKS[index].id;
                 
+                // Comp data for phase 2b
+                const compPlacedId = placedComponents[index];
+                const compData = compPlacedId ? BOOT_COMPONENTS.find(c => c.id === compPlacedId) : null;
+                const isCompTargetCorrect = compPlacedId === BOOT_COMPONENTS[index].id;
+                
                 return (
                   <React.Fragment key={`slot-${index}`}>
-                    <div 
-                      onClick={() => handleSlotClick(index)}
-                      className={`flex-1 min-w-[200px] min-h-[140px] rounded-2xl p-4 flex flex-col justify-center items-center text-center cursor-pointer transition-all border-4 relative
-                        ${!placedId && selectedBlock ? 'border-dashed border-indigo-400 bg-indigo-50 animate-pulse' : ''}
-                        ${!placedId && !selectedBlock ? 'border-dashed border-slate-300 bg-slate-100 hover:bg-slate-200 hover:border-slate-400' : ''}
-                        ${placedId ? 'border-solid border-slate-800 bg-slate-800 text-white shadow-lg hover:bg-slate-700' : ''}
-                        ${isSequenceFull && isTargetCorrect ? '!border-green-500 !bg-green-700' : ''}
-                        ${isSequenceFull && !isTargetCorrect && placedId ? '!border-red-500 !bg-red-700' : ''}
-                      `}
-                    >
-                      <div className="absolute top-2 left-3 text-xs font-black opacity-30">Krok {index + 1}</div>
+                    <div className="flex flex-col gap-3 flex-1 min-w-[200px] relative">
                       
-                      {!placedId && <span className="font-bold text-slate-400">Prázdné místo</span>}
-                      
-                      {stepData && (
-                        <>
-                          <div className="font-black text-lg mb-2 mt-4">{stepData.text}</div>
-                          <div className={`text-xs opacity-70 leading-tight ${isSequenceFull && isTargetCorrect ? 'block' : 'hidden md:block'}`}>
-                            {stepData.detail}
-                          </div>
-                        </>
+                      {/* Horní slot (Logické kroky) */}
+                      <div 
+                        onClick={() => !isPhase2bUnlocked && handleSlotClick(index)}
+                        className={`h-[160px] rounded-2xl p-4 flex flex-col justify-center items-center text-center transition-all border-4 relative
+                          ${!placedId && selectedBlock ? 'border-dashed border-indigo-400 bg-indigo-50 animate-pulse cursor-pointer' : ''}
+                          ${!placedId && !selectedBlock ? 'border-dashed border-slate-300 bg-slate-100 hover:bg-slate-200 cursor-pointer' : ''}
+                          ${placedId && !isPhase2bUnlocked ? 'border-solid border-slate-800 bg-slate-800 text-white shadow-lg cursor-pointer hover:bg-slate-700' : ''}
+                          ${placedId && isPhase2bUnlocked ? 'border-solid border-slate-800 bg-slate-800 text-white opacity-80 cursor-default' : ''}
+                          ${isSequenceFull && isTargetCorrect && !isPhase2bUnlocked ? '!border-green-500 !bg-green-700' : ''}
+                          ${isSequenceFull && !isTargetCorrect && placedId ? '!border-red-500 !bg-red-700' : ''}
+                        `}
+                      >
+                        <div className="absolute top-2 left-3 text-xs font-black opacity-30">Krok {index + 1}</div>
+                        {!placedId && <span className="font-bold text-slate-400">Prázdné místo</span>}
+                        {stepData && (
+                          <>
+                            <div className="font-black text-lg mb-2 mt-4">{stepData.text}</div>
+                            <div className={`text-xs opacity-70 leading-tight ${isPhase2bUnlocked ? 'hidden xl:block' : ''}`}>
+                              {stepData.detail}
+                            </div>
+                          </>
+                        )}
+                        {/* Zámeček když je fáze 2b aktivní */}
+                        {isPhase2bUnlocked && <div className="absolute -bottom-2 right-2 text-green-400 bg-slate-800 rounded-full border border-green-500"><CheckCircle2 className="w-5 h-5"/></div>}
+                      </div>
+
+                      {/* Spodní slot (Komponenty - Fáze 2b) */}
+                      {isPhase2bUnlocked && (
+                        <div 
+                          onClick={() => handleCompSlotClick(index)}
+                          className={`h-[150px] rounded-2xl p-4 flex flex-col justify-center items-center text-center transition-all border-4 relative animate-in fade-in slide-in-from-top-4 duration-500 delay-${index * 100}
+                            ${!compPlacedId && selectedComponentBlock ? 'border-dashed border-blue-400 bg-blue-50 animate-pulse cursor-pointer' : ''}
+                            ${!compPlacedId && !selectedComponentBlock ? 'border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 hover:border-slate-400 cursor-pointer' : ''}
+                            ${compPlacedId ? `border-solid border-blue-600 ${compData?.bg} shadow-md cursor-pointer hover:brightness-95` : ''}
+                            ${isCompSequenceFull && isCompTargetCorrect ? '!border-green-500 !bg-green-50' : ''}
+                            ${isCompSequenceFull && !isCompTargetCorrect && compPlacedId ? '!border-red-500 !bg-red-50' : ''}
+                          `}
+                        >
+                          <div className="absolute top-2 left-3 text-xs font-black opacity-30 text-blue-800">Komponenta</div>
+                          
+                          {!compPlacedId && (
+                            <div className="text-slate-400 flex flex-col items-center">
+                              <LayoutTemplate className="w-8 h-8 opacity-20 mb-2" />
+                              <span className="font-bold text-sm">Přiřaď HW/SW</span>
+                            </div>
+                          )}
+
+                          {compData && (
+                            <>
+                              {compData.icon && <compData.icon className={`w-8 h-8 mb-2 ${isCompSequenceFull && isCompTargetCorrect ? 'text-green-600' : compData.color}`} />}
+                              <div className="font-bold text-slate-800 mb-1 text-sm">{compData.text}</div>
+                              <div className="text-[10px] text-slate-500 font-medium leading-tight">
+                                {compData.detail}
+                              </div>
+                            </>
+                          )}
+                        </div>
                       )}
                     </div>
 
                     {/* Šipka mezi bloky */}
                     {index < 5 && (
-                      <div className="hidden lg:flex items-center justify-center text-slate-400">
-                        <ArrowLeft className="w-6 h-6 rotate-180" />
+                      <div className="hidden lg:flex flex-col justify-center text-slate-300">
+                        <ArrowLeft className="w-8 h-8 rotate-180" />
                       </div>
                     )}
                   </React.Fragment>
@@ -551,10 +644,10 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
               })}
             </div>
 
-            {/* Zásobník */}
-            {!isSequenceFull && (
-              <div className="bg-slate-200 p-6 rounded-3xl border-2 border-slate-300">
-                <h3 className="font-black text-slate-500 uppercase tracking-widest text-sm mb-4 text-center">Zbývající kroky k umístění (klikni pro výběr)</h3>
+            {/* Zásobník (Fáze 2a) */}
+            {!isSequenceFull && !isPhase2bUnlocked && (
+              <div className="bg-slate-200 p-6 rounded-3xl border-2 border-slate-300 animate-in fade-in slide-in-from-bottom">
+                <h3 className="font-black text-slate-500 uppercase tracking-widest text-sm mb-4 text-center">Vyber logický děj k umístění</h3>
                 <div className="flex flex-wrap gap-4 justify-center">
                   {displayBlocks.map(id => {
                     const stepData = BOOT_SEQUENCE_TASKS.find(t => t.id === id)!;
@@ -574,6 +667,34 @@ const OsBootChapter: React.FC<OsBootChapterProps> = ({ onBack }) => {
                 </div>
               </div>
             )}
+
+            {/* Zásobník (Fáze 2b) */}
+            {isPhase2bUnlocked && !isCompSequenceFull && (
+              <div className="bg-blue-100 p-6 rounded-3xl border-2 border-blue-200 shadow-inner animate-in fade-in slide-in-from-bottom">
+                <h3 className="font-black text-blue-600 uppercase tracking-widest text-sm mb-4 text-center">Vyber HW/SW komponentu pro každý krok</h3>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  {displayCompBlocks.map(id => {
+                    const compData = BOOT_COMPONENTS.find(c => c.id === id)!;
+                    const isSelected = selectedComponentBlock === id;
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => setSelectedComponentBlock(isSelected ? null : id)}
+                        className={`px-4 py-3 rounded-xl font-bold shadow-sm transition-all border-2 w-full sm:w-auto text-sm flex items-center gap-3
+                          ${isSelected ? 'bg-blue-600 text-white border-blue-800 scale-105 shadow-lg' : 'bg-white text-slate-800 border-blue-200 hover:border-blue-400'}
+                        `}
+                      >
+                        <compData.icon className={`w-5 h-5 ${isSelected ? 'text-white' : compData.color}`} />
+                        <div className="text-left">
+                          <div>{compData.text}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       )}
