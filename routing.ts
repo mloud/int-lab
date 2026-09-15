@@ -92,6 +92,7 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'vng': 'von-neumann-game',
   'rms': 'ram-simulator',
   'osi': 'os-intro',
+  'osa': 'os-architecture-chapter',
   'osb': 'os-boot-chapter',
 };
 
