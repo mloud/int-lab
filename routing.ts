@@ -87,6 +87,12 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'lau': 'laundry-game',
   'emo': 'emoji-game',
   'sta': 'country-codes-game',
+  'lan': 'landing',
+  'osh': 'os-hardware-chapter',
+  'vng': 'von-neumann-game',
+  'rms': 'ram-simulator',
+  'osi': 'os-intro',
+  'osb': 'os-boot-chapter',
 };
 
 /**
