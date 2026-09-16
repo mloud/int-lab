@@ -17,6 +17,49 @@ const THEORY_CONTENT = (
       <div className="bg-sky-50 text-sky-900 p-4 rounded-xl font-bold italic border-l-4 border-sky-400">
         Je to první software, který se načítá po zapnutí zařízení, a zůstává aktivní až do jeho vypnutí.
       </div>
+
+      {/* Vrstvený model počítače */}
+      <div className="mt-10 flex flex-col items-center gap-1 max-w-2xl mx-auto">
+        <h3 className="font-black text-slate-400 uppercase tracking-widest text-xs mb-4">Vrstvený model počítače</h3>
+        
+        {/* Vrstva 1: Uživatel a Aplikace */}
+        <div className="w-full bg-blue-50 border-2 border-blue-200 hover:border-blue-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
+          <div className="flex gap-3 mb-3">
+            <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Monitor className="w-5 h-5" /></div>
+            <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Smartphone className="w-5 h-5" /></div>
+          </div>
+          <span className="font-black text-blue-900 uppercase tracking-wider">Uživatel a Aplikace (User Space)</span>
+          <span className="text-sm text-blue-700/80 font-medium mt-1">Webový prohlížeč, Hry, Textový editor, Uživatel</span>
+        </div>
+
+        {/* Spojka */}
+        <div className="w-1.5 h-8 bg-slate-200"></div>
+
+        {/* Vrstva 2: OS a Jádro */}
+        <div className="w-full bg-emerald-50 border-2 border-emerald-200 hover:border-emerald-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
+          <div className="flex gap-3 mb-3">
+            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Shield className="w-5 h-5" /></div>
+          </div>
+          <span className="font-black text-emerald-900 uppercase tracking-wider">Operační systém (Kernel Space)</span>
+          <div className="flex gap-3 mt-3 w-full justify-center text-sm text-emerald-800 font-bold">
+            <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Jádro (Kernel)</div>
+            <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Ovladače (Drivers)</div>
+          </div>
+        </div>
+
+        {/* Spojka */}
+        <div className="w-1.5 h-8 bg-slate-200"></div>
+
+        {/* Vrstva 3: Hardware */}
+        <div className="w-full bg-slate-100 border-2 border-slate-300 hover:border-slate-400 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
+          <div className="flex gap-3 mb-3">
+            <div className="w-10 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white shadow-sm"><Cpu className="w-5 h-5" /></div>
+            <div className="w-10 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white shadow-sm"><HardDrive className="w-5 h-5" /></div>
+          </div>
+          <span className="font-black text-slate-800 uppercase tracking-wider">Hardware</span>
+          <span className="text-sm text-slate-600/80 font-medium mt-1">Procesor (CPU), Paměť (RAM), Disky, Grafická karta</span>
+        </div>
+      </div>
     </div>
 
     <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
