@@ -63,7 +63,7 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
               <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
                 <Cpu className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-bold text-gray-800 mb-1 uppercase tracking-wider text-sm">Hardware</h3>
+              <h3 className="font-bold text-gray-800 mb-1 uppercase tracking-wider text-sm">Základy hardwaru pro OS</h3>
               <p className="text-xs text-gray-500">Hardware z pohledu operačního systému.</p>
             </div>
             <button
