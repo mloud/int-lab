@@ -29,6 +29,9 @@ const OS_TASKS_DATA = [
 ];
 
 const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => {
+  // Stav pro záložky
+  const [activeTab, setActiveTab] = useState<'capacity' | 'anatomy' | 'load' | 'program'>('capacity');
+
   // Stav Fáze 1
   const [runningApps, setRunningApps] = useState<{ id: string, app: typeof APPS[0] }[]>([]);
   const [oomError, setOomError] = useState(false);
@@ -154,15 +157,62 @@ const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => 
         <div className="w-[120px]"></div>
       </div>
 
-      <p className="text-lg text-slate-600 font-medium text-center max-w-3xl mx-auto">
-        Tato kapitola vás provede třemi úrovněmi pohledu na paměť RAM. Od kapacity v operačním systému, přes rozložení běžícího programu, až po hardwarové skládání instrukcí do buněk.
+      <p className="text-lg text-slate-600 font-medium text-center max-w-3xl mx-auto mb-2">
+        Tato kapitola vás provede čtyřmi úrovněmi pohledu na paměť RAM. Od kapacity v operačním systému, přes rozložení běžícího programu, až po hardwarové skládání instrukcí do buněk.
       </p>
 
+      {/* Záložky navigace */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <button
+          onClick={() => setActiveTab('capacity')}
+          className={`px-6 py-3 font-black text-sm uppercase tracking-widest rounded-2xl transition-all border-2 flex items-center gap-2 ${
+            activeTab === 'capacity' 
+              ? 'bg-emerald-500 text-white border-emerald-600 shadow-lg shadow-emerald-500/30 scale-105' 
+              : 'bg-white text-emerald-700 border-emerald-100 hover:bg-emerald-50 hover:border-emerald-200'
+          }`}
+        >
+          <HardDrive className="w-5 h-5" /> Kapacita
+        </button>
+        
+        <button
+          onClick={() => setActiveTab('anatomy')}
+          className={`px-6 py-3 font-black text-sm uppercase tracking-widest rounded-2xl transition-all border-2 flex items-center gap-2 ${
+            activeTab === 'anatomy' 
+              ? 'bg-indigo-500 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105' 
+              : 'bg-white text-indigo-700 border-indigo-100 hover:bg-indigo-50 hover:border-indigo-200'
+          }`}
+        >
+          <Database className="w-5 h-5" /> Segmenty
+        </button>
+
+        <button
+          onClick={() => setActiveTab('load')}
+          className={`px-6 py-3 font-black text-sm uppercase tracking-widest rounded-2xl transition-all border-2 flex items-center gap-2 ${
+            activeTab === 'load' 
+              ? 'bg-yellow-500 text-white border-yellow-600 shadow-lg shadow-yellow-500/30 scale-105' 
+              : 'bg-white text-yellow-700 border-yellow-100 hover:bg-yellow-50 hover:border-yellow-200'
+          }`}
+        >
+          <Monitor className="w-5 h-5" /> Zavádění
+        </button>
+
+        <button
+          onClick={() => setActiveTab('program')}
+          className={`px-6 py-3 font-black text-sm uppercase tracking-widest rounded-2xl transition-all border-2 flex items-center gap-2 ${
+            activeTab === 'program' 
+              ? 'bg-orange-500 text-white border-orange-600 shadow-lg shadow-orange-500/30 scale-105' 
+              : 'bg-white text-orange-700 border-orange-100 hover:bg-orange-50 hover:border-orange-200'
+          }`}
+        >
+          <Cpu className="w-5 h-5" /> Kódování
+        </button>
+      </div>
+
       {/* Fáze 1: Kapacita */}
-      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden">
+      {activeTab === 'capacity' && (
+      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4">
         <div className="absolute top-0 left-0 w-full h-2 bg-emerald-500"></div>
         <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase flex items-center gap-2">
-          <span className="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span> 
           Kapacita a alokace RAM
         </h2>
         <p className="text-slate-600 mb-8 font-medium">Operační systém přiděluje běžícím programům bloky paměti. Pokud paměť dojde, musíš některý program ukončit. Klikni na ikony pro spuštění aplikací.</p>
@@ -207,12 +257,13 @@ const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => 
           )}
         </div>
       </section>
+      )}
 
       {/* Fáze 2: Anatomie programu */}
-      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden">
+      {activeTab === 'anatomy' && (
+      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4">
         <div className="absolute top-0 left-0 w-full h-2 bg-indigo-500"></div>
         <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase flex items-center gap-2">
-          <span className="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span> 
           Anatomie běžícího programu
         </h2>
         <p className="text-slate-600 mb-8 font-medium">Když procesor alokuje blok paměti pro aplikaci (např. Textový editor), rozdělí ho do segmentů. Zde vidíš obsah izolovaného bloku paměti jedné aplikace.</p>
@@ -265,12 +316,13 @@ const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => 
            </div>
         </div>
       </section>
+      )}
 
       {/* Fáze 3: Zavedení programu OS */}
-      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden">
+      {activeTab === 'load' && (
+      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4">
         <div className="absolute top-0 left-0 w-full h-2 bg-yellow-500"></div>
         <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase flex items-center gap-2">
-          <span className="bg-yellow-100 text-yellow-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span> 
           Zavedení programu (Práce OS)
         </h2>
         <p className="text-slate-600 mb-8 font-medium">Než může procesor něco počítat, musí operační systém z disku nahrát program do RAM na správné adresy. Tuto práci si teď zkusíš ty. Klikni na blok v zásobníku dole a pak ho umísti do správné buňky v paměti.</p>
@@ -403,12 +455,13 @@ const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => 
            )}
         </div>
       </section>
+      )}
 
       {/* Fáze 4: Interaktivní Editor RAM */}
-      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden mb-16">
+      {activeTab === 'program' && (
+      <section className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border-4 border-slate-100 relative overflow-hidden mb-16 animate-in fade-in slide-in-from-bottom-4">
         <div className="absolute top-0 left-0 w-full h-2 bg-orange-500"></div>
         <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase flex items-center gap-2">
-          <span className="bg-orange-100 text-orange-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span> 
           Naprogramuj paměť sám (Strojový kód)
         </h2>
         <p className="text-slate-600 mb-6 font-medium">
@@ -500,6 +553,7 @@ const RamSimulatorChapter: React.FC<RamSimulatorChapterProps> = ({ onBack }) => 
           )}
         </div>
       </section>
+      )}
 
     </div>
   );

@@ -590,7 +590,7 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
 
               {/* Write CPU -> MEM (Data) */}
               <g className={`transition-all duration-500 ${activeSArrow === 'cpu-mem-write' ? 'opacity-100' : 'opacity-20'}`}>
-                <line x1="56%" y1="50%" x2="56%" y2="30%" stroke="#16a34a" strokeWidth="6" strokeDasharray="8 8" className={activeSArrow === 'cpu-mem-write' ? 'animate-[dash-reverse_1s_linear_infinite]' : ''} />
+                <line x1="56%" y1="50%" x2="56%" y2="30%" stroke="#16a34a" strokeWidth="6" strokeDasharray="8 8" className={activeSArrow === 'cpu-mem-write' ? 'animate-[dash_1s_linear_infinite]' : ''} />
                 <polygon points="56%,30% 54%,33% 58%,33%" fill="#16a34a" />
                 {activeSArrow === 'cpu-mem-write' && (
                   <text x="58%" y="40%" fill="#16a34a" fontSize="14" fontWeight="bold" textAnchor="start">{currentSStep.arrowText}</text>
