@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard } from 'lucide-react';
+import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard, BookOpen } from 'lucide-react';
 
 interface OsArchitectureChapterProps {
   onBack: () => void;
 }
 
-type Phase = 'theory' | 'builder' | 'crash-test' | 'communication';
+type Phase = 'builder' | 'crash-test' | 'communication';
 type ArchitectureTarget = 'monolithic' | 'microkernel';
 
 interface OsModule {
@@ -27,7 +27,8 @@ const MODULES: OsModule[] = [
 ];
 
 const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack }) => {
-  const [phase, setPhase] = useState<Phase>('theory');
+  const [activeTab, setActiveTab] = useState<'theory' | 'practice'>('theory');
+  const [phase, setPhase] = useState<Phase>('builder');
 
   // Builder State
   const [builderTarget, setBuilderTarget] = useState<ArchitectureTarget>('monolithic');
@@ -162,17 +163,26 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         >
           <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
-        <div className="flex gap-2">
-          <button onClick={() => setPhase('theory')} className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'theory' ? 'bg-purple-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>Teorie</button>
-          <button onClick={() => setPhase('builder')} className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'builder' ? 'bg-blue-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>Skládačka</button>
-          <button onClick={() => setPhase('crash-test')} className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'crash-test' ? 'bg-red-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>Crash Test</button>
-          <button onClick={() => setPhase('communication')} className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'communication' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>Komunikace a Paměť</button>
-        </div>
+      </div>
+
+      <div className="w-full max-w-4xl bg-white p-2 rounded-2xl flex shadow-sm border border-slate-200 mb-6 sticky top-4 z-50">
+        <button
+          onClick={() => setActiveTab('theory')}
+          className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'theory' ? 'bg-purple-50 text-purple-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+        >
+          <BookOpen className="w-5 h-5" /> Teorie
+        </button>
+        <button
+          onClick={() => setActiveTab('practice')}
+          className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'practice' ? 'bg-blue-50 text-blue-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+        >
+          <Cpu className="w-5 h-5" /> Jdeme si to postavit
+        </button>
       </div>
 
       <div className="bg-white/80 backdrop-blur-xl w-full rounded-[3rem] shadow-2xl border-4 border-white p-8 sm:p-12 overflow-hidden relative min-h-[600px]">
         
-        {phase === 'theory' && (
+        {activeTab === 'theory' && (
           <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="text-center mb-10">
               <h1 className="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Architektura Jádra OS</h1>
@@ -269,7 +279,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
 
             <div className="mt-12 text-center">
               <button 
-                onClick={() => setPhase('builder')}
+                onClick={() => setActiveTab('practice')}
                 className="px-8 py-4 bg-gray-900 hover:bg-black text-white font-black uppercase tracking-widest rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all"
               >
                 Jdeme si to postavit!
@@ -278,8 +288,16 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
           </div>
         )}
 
-        {phase === 'builder' && (
-          <div className="animate-in fade-in zoom-in-95 duration-500">
+        {activeTab === 'practice' && (
+          <div className="animate-in fade-in duration-500 flex flex-col items-center">
+            <div className="flex flex-wrap justify-center gap-2 mb-10 bg-slate-50 p-2 rounded-2xl border border-slate-200">
+              <button onClick={() => setPhase('builder')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'builder' ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>1. Skládačka</button>
+              <button onClick={() => setPhase('crash-test')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'crash-test' ? 'bg-red-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>2. Crash Test</button>
+              <button onClick={() => setPhase('communication')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'communication' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>3. Paměť</button>
+            </div>
+
+            {phase === 'builder' && (
+              <div className="animate-in fade-in zoom-in-95 duration-500 w-full">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter">Stavba OS: <span className={builderTarget === 'monolithic' ? 'text-slate-600' : 'text-blue-600'}>{builderTarget === 'monolithic' ? 'Monolitické Jádro' : 'Mikrojádro'}</span></h1>
               <p className="text-gray-600 font-medium bg-yellow-50 inline-block px-4 py-2 rounded-xl border border-yellow-200">
@@ -343,7 +361,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         )}
 
         {phase === 'crash-test' && (
-          <div className="animate-in fade-in zoom-in-95 duration-500 text-center">
+          <div className="animate-in fade-in zoom-in-95 duration-500 text-center w-full">
             <h1 className="text-3xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Crash Test Simulátor</h1>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
               Co se stane, když se v ovladači vyskytne fatální chyba (např. dělení nulou)? Vyberte modul a způsobněte chybu!
@@ -435,7 +453,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         )}
 
         {phase === 'communication' && (
-          <div className="animate-in fade-in zoom-in-95 duration-500 text-center">
+          <div className="animate-in fade-in zoom-in-95 duration-500 text-center w-full">
             <h1 className="text-3xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Paměť a Komunikace</h1>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
               Operační paměť (RAM) je přísně rozdělena. Aplikace mají zakázáno přistupovat do prostoru jádra, aby nemohly poškodit systém. Jediná cesta je přes <strong>System Call</strong> (Systémové volání).
@@ -570,6 +588,9 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
             </div>
           </div>
         )}
+        
+        {/* Uzavření activeTab === 'practice' */}
+        </div>)}
 
       </div>
     </div>
