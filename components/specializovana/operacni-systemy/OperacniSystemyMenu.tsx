@@ -38,40 +38,7 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
 
         {/* Preview of future topics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osi</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Úvod do OS</h3>
-              <p className="text-xs text-gray-600">Základní teorie, funkce, licence a typy operačních systémů s interaktivním kvízem.</p>
-            </div>
-            <button
-              onClick={onStartOsIntro}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
-
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osa</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <ShieldCheck className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Architektura OS</h3>
-              <p className="text-xs text-gray-600">Jak funguje monolitické a mikrojádro. Hravý simulátor výpadků služeb.</p>
-            </div>
-            <button
-              onClick={onStartOsArchitecture}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
-
+          {/* Karta 1: #win (Instalace OS) */}
           <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#win</div>
             <div className="flex flex-col items-center mt-4">
@@ -89,23 +56,7 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
             </button>
           </div>
 
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osb</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Start OS (Boot)</h3>
-              <p className="text-xs text-gray-600">Simulátor UEFI a pochopení přesné sekvence bootování systému.</p>
-            </div>
-            <button
-              onClick={onStartOsBoot}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Spustit simulátor
-            </button>
-          </div>
-
+          {/* Karta 2: #osh (Hardware) */}
           <div className="relative group p-6 bg-purple-50/30 rounded-3xl border-2 border-purple-100/50 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osh</div>
             <div className="flex flex-col items-center mt-4">
@@ -122,7 +73,62 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
               Otevřít kapitolu
             </button>
           </div>
+
+          {/* Karta 3: #osi (Úvod do OS) */}
+          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osi</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                <Cpu className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Úvod do OS</h3>
+              <p className="text-xs text-gray-600">Základní teorie, funkce, licence a typy operačních systémů s interaktivním kvízem.</p>
+            </div>
+            <button
+              onClick={onStartOsIntro}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+            >
+              Otevřít kapitolu
+            </button>
+          </div>
+
+          {/* Karta 4: #osa (Architektura OS) */}
+          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osa</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                <ShieldCheck className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Architektura OS</h3>
+              <p className="text-xs text-gray-600">Jak funguje monolitické a mikrojádro. Hravý simulátor výpadků služeb.</p>
+            </div>
+            <button
+              onClick={onStartOsArchitecture}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+            >
+              Otevřít kapitolu
+            </button>
+          </div>
+
+          {/* Karta 5: #osb (Start OS Boot) */}
+          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osb</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                <Cpu className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Start OS (Boot)</h3>
+              <p className="text-xs text-gray-600">Simulátor UEFI a pochopení přesné sekvence bootování systému.</p>
+            </div>
+            <button
+              onClick={onStartOsBoot}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+            >
+              Spustit simulátor
+            </button>
+          </div>
           
+          {/* Karta 6: #pmm (Běh programu) */}
           <div className="relative group p-6 bg-indigo-50/50 rounded-3xl border-2 border-indigo-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-indigo-50">
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-indigo-50 transition-colors">#pmm</div>
             <div className="flex flex-col items-center mt-4">
@@ -140,6 +146,7 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
             </button>
           </div>
 
+          {/* Karta 7: #fsm (Souborové systémy) */}
           <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#fsm</div>
             <div className="flex flex-col items-center mt-4">
@@ -157,6 +164,7 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
             </button>
           </div>
 
+          {/* Karta 8: Práva a bezpečnost */}
           <div className="relative group p-6 bg-purple-50/30 rounded-3xl border-2 border-purple-100/50 flex flex-col items-center text-center justify-between min-h-[220px]">
             <div className="flex flex-col items-center mt-4">
               <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-sm">
