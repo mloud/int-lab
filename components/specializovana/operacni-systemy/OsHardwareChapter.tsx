@@ -34,7 +34,8 @@ const OsHardwareChapter: React.FC<OsHardwareChapterProps> = ({ onBack, onStartVo
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Von Neumann */}
-          <div className="bg-indigo-50 border-2 border-indigo-100 p-8 rounded-3xl flex flex-col items-center text-center justify-between min-h-[300px] shadow-lg shadow-indigo-100/50 hover:shadow-indigo-200/50 transition-all hover:-translate-y-1">
+          <div className="bg-indigo-50 border-2 border-indigo-100 p-8 rounded-3xl flex flex-col items-center text-center justify-between min-h-[300px] shadow-lg shadow-indigo-100/50 hover:shadow-indigo-200/50 transition-all hover:-translate-y-1 relative group">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-indigo-50 transition-colors">#vng</div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mb-6 shadow-md text-white font-black text-2xl">
                 CPU
@@ -51,7 +52,8 @@ const OsHardwareChapter: React.FC<OsHardwareChapterProps> = ({ onBack, onStartVo
           </div>
 
           {/* Paměť RAM */}
-          <div className="bg-emerald-50 border-2 border-emerald-100 p-8 rounded-3xl flex flex-col items-center text-center justify-between min-h-[300px] shadow-lg shadow-emerald-100/50 hover:shadow-emerald-200/50 transition-all hover:-translate-y-1">
+          <div className="bg-emerald-50 border-2 border-emerald-100 p-8 rounded-3xl flex flex-col items-center text-center justify-between min-h-[300px] shadow-lg shadow-emerald-100/50 hover:shadow-emerald-200/50 transition-all hover:-translate-y-1 relative group">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-emerald-50 transition-colors">#rms</div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-md text-white font-black text-2xl">
                 RAM
