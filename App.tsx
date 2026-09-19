@@ -307,7 +307,6 @@ const App: React.FC = () => {
         return (
           <CompressionMenu
             onStartGame={() => setCurrentScreen('compression-game')}
-            onStartText={() => setCurrentScreen('text-compression')}
             onStartChecksum={() => setCurrentScreen('checksum-game')}
             onBack={() => setCurrentScreen('informatika-menu')}
           />
