@@ -132,13 +132,25 @@ const ImageCompressionGame: React.FC<ImageCompressionGameProps> = ({ onBack }) =
 
   return (
     <div className="max-w-5xl w-full mx-auto animate-in fade-in duration-500 pb-20">
-      <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+      <div className="flex justify-between items-center mb-6 bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
         <button
           onClick={onBack}
           className="flex items-center gap-2 px-6 py-3 hover:bg-gray-50 text-gray-700 font-bold rounded-2xl transition-all uppercase tracking-wider text-xs"
         >
           <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
+      </div>
+
+      <div className="w-full flex bg-white p-2 rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-x-auto gap-2">
+        {(['sandbox', 'task1', 'task2', 'task3', 'task4', 'task5'] as Task0Phase[]).map((p) => (
+          <button
+            key={p}
+            onClick={() => setTask0Phase(p)}
+            className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-xs uppercase tracking-wide whitespace-nowrap ${task0Phase === p ? 'bg-blue-50 text-blue-700 shadow-sm border border-blue-200' : 'text-slate-500 hover:bg-slate-50 border border-transparent'}`}
+          >
+            {p === 'sandbox' ? 'Pískoviště' : p === 'task1' ? 'Úloha 1' : p === 'task2' ? 'Úloha 2' : p === 'task3' ? 'Úloha 3' : p === 'task4' ? 'Úloha 4' : 'Úloha 5'}
+          </button>
+        ))}
       </div>
 
       {currentTask0 && (

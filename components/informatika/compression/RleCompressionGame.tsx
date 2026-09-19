@@ -17,7 +17,7 @@ const RleCompressionGame: React.FC<RleCompressionGameProps> = ({ onBack }) => {
   const configs = {
     intro: {
       title: 'Co je to RLE komprese?',
-      description: 'Run-Length Encoding (RLE) je způsob, jak zkrátit zápis opakujících se hodnot. Místo abychom psali "00000", napíšeme jednoduše "5x0". Tím ušetříme spoustu místa!',
+      description: 'Run-Length Encoding (RLE) je způsob, jak zkrátit zápis opakujících se hodnot. Místo abychom psali "00000", napíšeme jednoduše "5x0". Tím ušetříme spoustu místa! RLE se historicky používá u jednoduché grafiky s velkými jednobarevnými plochami – například u faxových přenosů, starých počítačových ikon, nebo ve formátech jako BMP a PCX.',
       mode: 'read',
       gridSize: 5
     },
@@ -133,13 +133,25 @@ const RleCompressionGame: React.FC<RleCompressionGameProps> = ({ onBack }) => {
 
   return (
     <div className="max-w-5xl w-full mx-auto animate-in fade-in duration-500 pb-20">
-      <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+      <div className="flex justify-between items-center mb-6 bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
         <button
           onClick={onBack}
           className="flex items-center gap-2 px-6 py-3 hover:bg-gray-50 text-gray-700 font-bold rounded-2xl transition-all uppercase tracking-wider text-xs"
         >
           <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
+      </div>
+
+      <div className="w-full flex bg-white p-2 rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-x-auto gap-2">
+        {(['intro', 'task1', 'task2', 'task3', 'task4'] as RlePhase[]).map((p) => (
+          <button
+            key={p}
+            onClick={() => setPhase(p)}
+            className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-xs uppercase tracking-wide whitespace-nowrap ${phase === p ? 'bg-emerald-50 text-emerald-700 shadow-sm border border-emerald-200' : 'text-slate-500 hover:bg-slate-50 border border-transparent'}`}
+          >
+            {p === 'intro' ? 'Úvod' : p === 'task1' ? 'Úloha 1' : p === 'task2' ? 'Úloha 2' : p === 'task3' ? 'Úloha 3' : 'Úloha 4'}
+          </button>
+        ))}
       </div>
 
       {currentTask && (
