@@ -136,12 +136,12 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
                 <FileText className="w-12 h-12 text-blue-600" />
               </div>
               <div className="text-center">
-                <h3 className="text-2xl font-black uppercase tracking-tight">Slovníková metoda</h3>
+                <h3 className="text-2xl font-black uppercase tracking-tight">Krokovaná komprese</h3>
                 <p className="text-blue-500/60 font-bold text-xs uppercase tracking-widest mt-2 leading-relaxed max-w-xs mx-auto">
-                  Vyzkoušejte si, jak lze text zkrátit nahrazením opakujících se slov pomocí kódů.
+                  Podívejte se krok za krokem, jak se z textu stane binární kód a jak se zmenší.
                 </p>
               </div>
-            <div className="absolute top-4 right-4 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#txc</div></button>
+            <div className="absolute top-4 right-4 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#txs</div></button>
           </div>
         </div>
 
