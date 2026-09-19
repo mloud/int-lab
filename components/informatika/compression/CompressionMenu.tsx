@@ -30,7 +30,7 @@ const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartT
         </div>
 
         <h1 className="text-5xl font-black text-gray-800 mb-4 tracking-tight uppercase">
-          Komprese a kontrola
+          Komprese (jednoduše)
         </h1>
         <p className="text-gray-500 mb-0 text-xl font-medium">
           Zjisti, jak počítače šetří místo a ověřují správnost dat.

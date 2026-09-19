@@ -319,6 +319,7 @@ const App: React.FC = () => {
             onStartRle={() => setCurrentScreen('rle-compression-chapter')}
             onStartSize={() => setCurrentScreen('image-size-chapter')}
             onStartJpeg={() => setCurrentScreen('jpeg-sim-chapter')}
+            onStartText={() => setCurrentScreen('text-compression')}
             onBack={() => setCurrentScreen('informatika-menu')} 
           />
         );
@@ -363,7 +364,7 @@ const App: React.FC = () => {
         );
       case 'text-compression':
         return (
-          <TextCompression onBack={() => setCurrentScreen('compression-menu')} />
+          <TextCompression onBack={() => setCurrentScreen('compression-formats-menu')} />
         );
       case 'checksum-game':
         return (

@@ -89,7 +89,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
                 <BoxSelect className="w-6 h-6 text-emerald-600" />
               </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese a kontrola</span>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese (jednoduše)</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
@@ -103,10 +103,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
               <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
                 <BoxSelect className="w-6 h-6 text-orange-600" />
               </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Komprese a formáty souborů</span>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Komprese (pokročilejší)</span>
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ko2</div></button>
 
           <button
             onClick={onStartModels}

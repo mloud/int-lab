@@ -73,7 +73,7 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'dtj': 'data-journey-game',
   'hws': 'hw-sw-sorter-game',
   'pcc': 'pc-configurator-game',
-  'cfm': 'compression-formats-menu',
+  'ko2': 'compression-formats-menu',
   'rle': 'rle-compression-chapter',
   'ims': 'image-size-chapter',
   'jpg': 'jpeg-sim-chapter',
