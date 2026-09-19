@@ -936,7 +936,16 @@ export default function WindowsInstallGame({ onBack }: WindowsInstallGameProps) 
             </div>
 
             <div className="flex gap-6 mb-4 text-sm text-[#0078D7]">
-              <span className="flex items-center gap-1 opacity-50"><RefreshCcw className="w-4 h-4" /> Aktualizovat</span>
+              <button 
+                onClick={() => {
+                  setPartitions([{ id: 'unalloc', name: 'Jednotka 0 Nepřiřazené místo', totalMB: 1000000, freeMB: 1000000, type: 'Nepřiřazené místo' }]);
+                  setSelectedPartitionId('unalloc');
+                  setIsCreatingPartition(false);
+                }}
+                className="flex items-center gap-1 hover:underline cursor-pointer"
+              >
+                <RefreshCcw className="w-4 h-4" /> Reset
+              </button>
               <button 
                 onClick={() => {
                   const toDelete = partitions.find(p => p.id === selectedPartitionId);
@@ -999,13 +1008,13 @@ export default function WindowsInstallGame({ onBack }: WindowsInstallGameProps) 
                     
                     if (!hasSystem) {
                       showFeedback('error', 'Aby bylo zajištěno správné fungování (zavádění systému), Windows automaticky vytvoří 100MB EFI oddíl pro Boot Manager.');
-                      newParts.push({ id: `part-${idCounter++}`, name: `Jednotka 0 Oddíl 1`, totalMB: 100, freeMB: 70, type: 'Systémový EFI' });
+                      newParts.push({ id: `part-${Math.random().toString(36).substring(7)}`, name: `Jednotka 0 Oddíl 1`, totalMB: 100, freeMB: 70, type: 'Systémový EFI' });
                       const primarySize = size - 100;
                       if (primarySize > 0) {
-                         newParts.push({ id: `part-${idCounter++}`, name: `Jednotka 0 Oddíl 2`, totalMB: primarySize, freeMB: primarySize, type: 'Hlavní' });
+                         newParts.push({ id: `part-${Math.random().toString(36).substring(7)}`, name: `Jednotka 0 Oddíl 2`, totalMB: primarySize, freeMB: primarySize, type: 'Hlavní' });
                       }
                     } else {
-                      newParts.push({ id: `part-${idCounter++}`, name: `Jednotka 0 Oddíl ${idCounter}`, totalMB: size, freeMB: size, type: 'Hlavní' });
+                      newParts.push({ id: `part-${Math.random().toString(36).substring(7)}`, name: `Jednotka 0 Oddíl ${idCounter}`, totalMB: size, freeMB: size, type: 'Hlavní' });
                     }
 
                     const remaining = unalloc.totalMB - size;
