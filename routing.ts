@@ -46,6 +46,7 @@ export const ROUTE_MAP: Record<string, Screen> = {
   // 1. Informatika - Komprese
   'com': 'compression-menu',
   'txc': 'text-compression',
+  'txs': 'text-compression-step',
   'chk': 'checksum-game', // Hra s kontrolním součtem
   'img': 'image-compression-chapter', // Komprese obrázků
 
@@ -75,6 +76,7 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'pcc': 'pc-configurator-game',
   'ko2': 'compression-formats-menu',
   'rle': 'rle-compression-chapter',
+
   'ims': 'image-size-chapter',
   'jpg': 'jpeg-sim-chapter',
   'dum': 'data-units-menu',

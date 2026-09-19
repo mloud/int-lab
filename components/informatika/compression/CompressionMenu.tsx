@@ -4,11 +4,12 @@ import { ArrowLeft, BoxSelect, Image as ImageIcon, CheckCircle, FileText, Shield
 
 interface CompressionMenuProps {
   onStartGame: () => void;
+  onStartText: () => void;
   onStartChecksum: () => void;
   onBack: () => void;
 }
 
-const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartChecksum, onBack }) => {
+const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartText, onStartChecksum, onBack }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
       <div className="flex justify-start mb-6">
@@ -36,7 +37,21 @@ const CompressionMenu: React.FC<CompressionMenuProps> = ({ onStartGame, onStartC
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <button
+          onClick={onStartText}
+          className="group relative px-6 py-10 bg-white hover:bg-blue-50 text-blue-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-blue-200"
+        >
+          <div className="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center group-hover:rotate-6 transition-transform">
+            <FileText className="w-10 h-10 text-blue-600" />
+          </div>
+          <div className="text-center">
+            <h3 className="text-xl font-black uppercase tracking-tight">Komprese textu</h3>
+            <p className="text-blue-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
+              Slovníková metoda
+            </p>
+          </div>
+        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#txc</div></button>
 
         <button
           onClick={onStartGame}

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useMemo, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Hash, FileText, Zap, Trophy, PlusCircle, AlertCircle, Sparkles, Lock } from 'lucide-react';
 
@@ -11,68 +11,68 @@ interface TextLevel {
 const LEVELS: TextLevel[] = [
   {
     id: 1,
-    title: "Modrý svět",
+    title: "Modr├Ż sv─Ťt",
     lines: [
-      "MODRÉ MOŘE, MODRÝ LES,",
-      "MODRÉ NEBE, MODRÝ PES.",
-      "MODRÉ MOŘE, MODRÝ LES,",
-      "BĚŽÍ TUDY MODRÝ PES."
+      "MODR├ë MO┼śE, MODR├Ł LES,",
+      "MODR├ë NEBE, MODR├Ł PES.",
+      "MODR├ë MO┼śE, MODR├Ł LES,",
+      "B─Ü┼Ż├Ź TUDY MODR├Ł PES."
     ]
   },
   {
     id: 2,
-    title: "Prší, prší",
+    title: "Pr┼í├ş, pr┼í├ş",
     lines: [
-      "PRŠÍ, PRŠÍ, JEN SE LEJE.",
-      "KAM KONÍČKY POJEDEME?",
+      "PR┼á├Ź, PR┼á├Ź, JEN SE LEJE.",
+      "KAM KON├Ź─îKY POJEDEME?",
       "POJEDEME NA LUKA,",
-      "AŽ KUKAČKA ZAKUKÁ.",
+      "A┼Ż KUKA─îKA ZAKUK├ü.",
       "POJEDEME NA LUKA,",
-      "AŽ KUKAČKA ZAKUKÁ."
+      "A┼Ż KUKA─îKA ZAKUK├ü."
     ]
   },
   {
     id: 3,
-    title: "Pec nám spadla",
+    title: "Pec n├ím spadla",
     lines: [
-      "PEC NÁM SPADLA, PEC NÁM SPADLA,",
-      "KDOŽE NÁM JI OPRAVÍ?",
-      "STAREJ PECAŘ NENÍ DOMA,",
-      "NEMÁ DOMA KLADIVO.",
-      "STAREJ PECAŘ NENÍ DOMA,",
-      "NEMÁ DOMA KLADIVO."
+      "PEC N├üM SPADLA, PEC N├üM SPADLA,",
+      "KDO┼ŻE N├üM JI OPRAV├Ź?",
+      "STAREJ PECA┼ś NEN├Ź DOMA,",
+      "NEM├ü DOMA KLADIVO.",
+      "STAREJ PECA┼ś NEN├Ź DOMA,",
+      "NEM├ü DOMA KLADIVO."
     ]
   },
   {
     id: 4,
-    title: "Datová smršť",
+    title: "Datov├í smr┼í┼ą",
     lines: [
-      "DATA, DATA, VŠUDE DATA,",
-      "ZAZIPUJ JE, BUDOU HBITÁ!",
-      "DATA, DATA, VŠUDE DATA,",
-      "PAK JE POŠLI, NEŽ JSI TÁTA.",
+      "DATA, DATA, V┼áUDE DATA,",
+      "ZAZIPUJ JE, BUDOU HBIT├ü!",
+      "DATA, DATA, V┼áUDE DATA,",
+      "PAK JE PO┼áLI, NE┼Ż JSI T├üTA.",
       "ZAZIPUJ JE, ZAZIPUJ,",
-      "PAK JIM VOLNO ZARUČUJ."
+      "PAK JIM VOLNO ZARU─îUJ."
     ]
   },
   {
     id: 5,
-    title: "Robotí pochod",
+    title: "Robot├ş pochod",
     lines: [
-      "ROBOT KRÁČÍ, ROBOT JDE,",
-      "ROBOT PÍŠE, ROBOT VÍ.",
-      "KDYŽ ON KRÁČÍ, TAK ON JDE,",
-      "KDYŽ ON PÍŠE, TAK ON VÍ.",
-      "ROBOT KRÁČÍ, ROBOT JDE,",
-      "ROBOT PÍŠE, ROBOT VÍ."
+      "ROBOT KR├ü─î├Ź, ROBOT JDE,",
+      "ROBOT P├Ź┼áE, ROBOT V├Ź.",
+      "KDY┼Ż ON KR├ü─î├Ź, TAK ON JDE,",
+      "KDY┼Ż ON P├Ź┼áE, TAK ON V├Ź.",
+      "ROBOT KR├ü─î├Ź, ROBOT JDE,",
+      "ROBOT P├Ź┼áE, ROBOT V├Ź."
     ]
   },
   {
     id: 6,
-    title: "Binární tanec",
+    title: "Bin├írn├ş tanec",
     lines: [
       "JEDNA, NULA, JEDNA, NULA,",
-      "TO JE NAŠE STARÁ ŠKOLA.",
+      "TO JE NA┼áE STAR├ü ┼áKOLA.",
       "NULA, JEDNA, NULA, JEDNA,",
       "TO JE BITA, TO JE BEDNA.",
       "JEDNA, NULA, JEDNA, NULA,",
@@ -81,14 +81,14 @@ const LEVELS: TextLevel[] = [
   },
   {
     id: 7,
-    title: "Kódovací kaskáda",
+    title: "K├│dovac├ş kask├ída",
     lines: [
-      "KÓD JE TADY, KÓD JE TAM,",
-      "KÓD JE VŠUDE, KÓD JÁ MÁM.",
-      "POKUD KÓD MÁM, KÓD JE TAM,",
-      "POKUD KÓD MÁM, KÓD JE TADY.",
-      "KÓD JE TADY, KÓD JE TAM,",
-      "KÓD JE VŠUDE, KÓD JÁ MÁM."
+      "K├ôD JE TADY, K├ôD JE TAM,",
+      "K├ôD JE V┼áUDE, K├ôD J├ü M├üM.",
+      "POKUD K├ôD M├üM, K├ôD JE TAM,",
+      "POKUD K├ôD M├üM, K├ôD JE TADY.",
+      "K├ôD JE TADY, K├ôD JE TAM,",
+      "K├ôD JE V┼áUDE, K├ôD J├ü M├üM."
     ]
   }
 ];
@@ -114,7 +114,7 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     return level.lines.map((line, lIdx) => {
       const parts = line.split(/(\s+)/);
       return parts.map((part, pIdx) => {
-        const isWord = /[A-ZČŠŽŘĎŤŇŮÚ]+/.test(part.toUpperCase());
+        const isWord = /[A-Z─î┼á┼Ż┼ś─Ä┼Ą┼ç┼«├Ü]+/.test(part.toUpperCase());
         const cleanWord = part.trim().replace(/[,.?!]/g, '').toUpperCase();
         return { id: `${lIdx}-${pIdx}`, text: part, cleanWord, isWord };
       });
@@ -191,33 +191,33 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     const word = selectedTokens[0].cleanWord;
     
     if (!selectedTokens.every(t => t.cleanWord === word)) {
-      setFeedback({ type: 'error', message: 'Vyber výskyty pouze jednoho stejného slova!' });
+      setFeedback({ type: 'error', message: 'Vyber v├Żskyty pouze jednoho stejn├ęho slova!' });
       return;
     }
 
     const totalOccurrences = allWords.filter(t => t.cleanWord === word).length;
     if (selectedIndices.size !== totalOccurrences) {
-      setFeedback({ type: 'error', message: `Slovo ${word} se v textu vyskytuje ${totalOccurrences}x, označ všechny!` });
+      setFeedback({ type: 'error', message: `Slovo ${word} se v textu vyskytuje ${totalOccurrences}x, ozna─Ź v┼íechny!` });
       return;
     }
 
     if (totalOccurrences < 2) {
-      setFeedback({ type: 'error', message: 'Slovo se neopakuje, nepatří do slovníku.' });
+      setFeedback({ type: 'error', message: 'Slovo se neopakuje, nepat┼Ö├ş do slovn├şku.' });
       return;
     }
 
     const nextTargetWord = targetDictionaryWords[dictionary.length];
     if (word !== nextTargetWord) {
-      setFeedback({ type: 'error', message: `Postupuj podle pořadí! Další slovo k uložení je: ${nextTargetWord}` });
+      setFeedback({ type: 'error', message: `Postupuj podle po┼Öad├ş! Dal┼í├ş slovo k ulo┼żen├ş je: ${nextTargetWord}` });
       return;
     }
 
     setDictionary(prev => [...prev, { word, code: prev.length + 1 }]);
     setSelectedIndices(new Set());
-    setFeedback({ type: 'success', message: `Slovo ${word} uloženo jako kód #${dictionary.length + 1}.` });
+    setFeedback({ type: 'success', message: `Slovo ${word} ulo┼żeno jako k├│d #${dictionary.length + 1}.` });
 
     if (dictionary.length + 1 === targetDictionaryWords.length) {
-      setFeedback({ type: 'success', message: 'Slovník je kompletní! Teď doplň zbytek textu vpravo.' });
+      setFeedback({ type: 'success', message: 'Slovn├şk je kompletn├ş! Te─Ć dopl┼ł zbytek textu vpravo.' });
     }
   };
 
@@ -250,15 +250,15 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     });
 
     if (missing > 0) {
-        setFeedback({ type: 'error', message: `Doplň všechna prázdná pole v pravém sloupci!` });
+        setFeedback({ type: 'error', message: `Dopl┼ł v┼íechna pr├ízdn├í pole v prav├ęm sloupci!` });
         return;
     }
 
     if (errors === 0) {
-      setFeedback({ type: 'success', message: `Skvěle! Komprese hotova na ${stats.ratio}%.` });
+      setFeedback({ type: 'success', message: `Skv─Ťle! Komprese hotova na ${stats.ratio}%.` });
       setIsFinalCorrect(true);
     } else {
-      setFeedback({ type: 'error', message: `Máš tam ${errors} chyb. Zkontroluj hlavně kódy.` });
+      setFeedback({ type: 'error', message: `M├í┼í tam ${errors} chyb. Zkontroluj hlavn─Ť k├│dy.` });
     }
   };
 
@@ -267,7 +267,7 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       {/* Header */}
       <div className="w-full bg-white p-5 rounded-[2rem] shadow-lg border border-gray-100 flex items-center justify-between gap-4">
         <button onClick={onBack} className="flex items-center text-gray-400 hover:text-blue-600 transition-colors font-black uppercase text-xs tracking-widest shrink-0">
-          <ArrowLeft className="w-5 h-5 mr-2" /> Zpět
+          <ArrowLeft className="w-5 h-5 mr-2" /> Zp─Ťt
         </button>
 
         <div className="flex flex-wrap justify-center gap-2">
@@ -295,11 +295,11 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       {/* Main Grid: 3 Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full h-full items-stretch">
         
-        {/* COL 1: PŮVODNÍ TEXT */}
+        {/* COL 1: P┼«VODN├Ź TEXT */}
         <div className="bg-white p-6 rounded-[2.5rem] shadow-xl border border-gray-100 flex flex-col">
             <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 flex items-center gap-2">
                 <div className="w-2 h-5 bg-blue-500 rounded-full"></div>
-                1. Původní text
+                1. P┼»vodn├ş text
             </h3>
             <div className="flex-1 space-y-4 font-mono text-lg bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
                 {tokensMatrix.map((line, lIdx) => (
@@ -331,24 +331,24 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 disabled={isFinalCorrect || selectedIndices.size === 0 || isDictionaryComplete}
                 className="w-full mt-6 py-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-30 text-white font-black rounded-2xl shadow-lg flex items-center justify-center gap-3 uppercase tracking-widest text-xs transition-all"
             >
-                <PlusCircle className="w-5 h-5" /> Přidat do slovníku
+                <PlusCircle className="w-5 h-5" /> P┼Öidat do slovn├şku
             </button>
         </div>
 
-        {/* COL 2: SLOVNÍK A PRVKY (PALETA) */}
+        {/* COL 2: SLOVN├ŹK A PRVKY (PALETA) */}
         <div className="bg-indigo-900 p-6 rounded-[2.5rem] shadow-xl text-white flex flex-col gap-6">
             <h3 className="text-sm font-black text-indigo-300 uppercase tracking-widest flex items-center gap-2">
                 <Hash className="w-5 h-5" />
-                2. Slovník a prvky
+                2. Slovn├şk a prvky
             </h3>
             
             <div className="flex-1 space-y-6">
                 {/* Dictionary Items */}
                 <div className="space-y-3">
-                    <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-2">Kódy ze slovníku</p>
+                    <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-2">K├│dy ze slovn├şku</p>
                     {dictionary.length === 0 ? (
                         <div className="py-10 text-center text-indigo-400/50 font-bold border-2 border-dashed border-indigo-700 rounded-3xl text-[10px] uppercase">
-                            Slovník je zatím prázdný
+                            Slovn├şk je zat├şm pr├ízdn├Ż
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 gap-2">
@@ -370,7 +370,7 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 {/* Unique Words - Visible only after dictionary is complete */}
                 {isDictionaryComplete && (
                     <div className="space-y-3 animate-in fade-in slide-in-from-bottom duration-500">
-                        <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-2">Unikátní slova</p>
+                        <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-2">Unik├ítn├ş slova</p>
                         <div className="flex flex-wrap gap-2">
                             {nonEncodableWords.map(word => (
                                 <div 
@@ -389,17 +389,17 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
             <div className="p-4 bg-indigo-950/50 rounded-2xl border border-indigo-800">
                 <p className="text-[9px] text-indigo-300 font-bold uppercase italic leading-relaxed">
-                    {isDictionaryComplete ? "NÁPOVĚDA: Teď přetahuj kódy a slova do pravého sloupce." : "NÁPOVĚDA: Nejdřív vytvoř kompletní slovník klikáním na slova vlevo."}
+                    {isDictionaryComplete ? "N├üPOV─ÜDA: Te─Ć p┼Öetahuj k├│dy a slova do prav├ęho sloupce." : "N├üPOV─ÜDA: Nejd┼Ö├şv vytvo┼Ö kompletn├ş slovn├şk klik├ín├şm na slova vlevo."}
                 </p>
             </div>
         </div>
 
-        {/* COL 3: KOMPRIMOVANÝ ZÁPIS */}
+        {/* COL 3: KOMPRIMOVAN├Ł Z├üPIS */}
         <div className={`bg-white p-6 rounded-[2.5rem] shadow-xl border-4 transition-all flex flex-col ${isFinalCorrect ? 'border-emerald-500' : 'border-emerald-50'}`}>
             <div className="flex justify-between items-center mb-6">
                 <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                     <div className="w-2 h-5 bg-emerald-500 rounded-full"></div>
-                    3. Komprimovaný zápis
+                    3. Komprimovan├Ż z├ípis
                 </h3>
                 {isFinalCorrect && <span className="bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black text-white">{stats.ratio}% VELIKOSTI</span>}
             </div>
@@ -409,7 +409,7 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                     <div className="text-center p-8 border-2 border-dashed border-gray-100 rounded-[2rem] bg-gray-50/50 flex flex-col items-center gap-4 w-full">
                         <Lock className="w-12 h-12 text-gray-200" />
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-relaxed">
-                            Pravý sloupec se odemkne<br/>po dokončení slovníku
+                            Prav├Ż sloupec se odemkne<br/>po dokon─Źen├ş slovn├şku
                         </p>
                     </div>
                 ) : (
@@ -462,15 +462,15 @@ const TextCompression: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                         <div className="space-y-4 animate-in zoom-in duration-500">
                             <div className="p-4 bg-emerald-600 rounded-2xl text-white text-center">
                                 <Trophy className="w-6 h-6 mx-auto mb-2" />
-                                <p className="font-black uppercase tracking-widest text-[10px]">Paráda! Ušetřeno {100 - stats.ratio}% místa.</p>
+                                <p className="font-black uppercase tracking-widest text-[10px]">Par├ída! U┼íet┼Öeno {100 - stats.ratio}% m├şsta.</p>
                             </div>
                             <button onClick={() => setLevelIdx((levelIdx + 1) % LEVELS.length)} className="w-full py-4 bg-gray-900 text-white font-black rounded-2xl uppercase tracking-widest text-xs hover:bg-black transition-all">
-                                Další básnička
+                                Dal┼í├ş b├ísni─Źka
                             </button>
                         </div>
                     ) : (
                         <button onClick={checkFinal} className="w-full py-5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-2xl shadow-xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm transition-all">
-                            Ověřit správnost
+                            Ov─Ť┼Öit spr├ívnost
                         </button>
                     )}
                 </>

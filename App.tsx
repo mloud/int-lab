@@ -43,6 +43,7 @@ import JpegSimGame from './components/informatika/compression/JpegSimGame';
 import CompressionGame from './components/informatika/compression/CompressionGame';
 import CustomCompression from './components/informatika/compression/CustomCompression';
 import TextCompression from './components/informatika/compression/TextCompression';
+import TextCompressionStepByStep from './components/informatika/compression/TextCompressionStepByStep';
 import ChecksumGame from './components/informatika/compression/ChecksumGame';
 import BinaryMenu from './components/informatika/binary/BinaryMenu';
 import TeachersOffice from './components/informatika/binary/TeachersOffice';
@@ -307,6 +308,7 @@ const App: React.FC = () => {
         return (
           <CompressionMenu
             onStartGame={() => setCurrentScreen('compression-game')}
+            onStartText={() => setCurrentScreen('text-compression')}
             onStartChecksum={() => setCurrentScreen('checksum-game')}
             onBack={() => setCurrentScreen('informatika-menu')}
           />
@@ -318,7 +320,7 @@ const App: React.FC = () => {
             onStartRle={() => setCurrentScreen('rle-compression-chapter')}
             onStartSize={() => setCurrentScreen('image-size-chapter')}
             onStartJpeg={() => setCurrentScreen('jpeg-sim-chapter')}
-            onStartText={() => setCurrentScreen('text-compression')}
+            onStartText={() => setCurrentScreen('text-compression-step')}
             onBack={() => setCurrentScreen('informatika-menu')} 
           />
         );
@@ -363,7 +365,11 @@ const App: React.FC = () => {
         );
       case 'text-compression':
         return (
-          <TextCompression onBack={() => setCurrentScreen('compression-formats-menu')} />
+          <TextCompression onBack={() => setCurrentScreen('compression-menu')} />
+        );
+      case 'text-compression-step':
+        return (
+          <TextCompressionStepByStep onBack={() => setCurrentScreen('compression-formats-menu')} />
         );
       case 'checksum-game':
         return (
