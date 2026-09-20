@@ -114,7 +114,7 @@ const CompressionFormatsMenu: React.FC<CompressionFormatsMenuProps> = ({
                   Ztrátová vs. Bezeztrátová
                 </p>
               </div>
-            <div className="absolute top-2 right-2 text-[10px] font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#comp</div></button>
+            <div className="absolute top-2 right-2 text-[10px] font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#jpg</div></button>
           </div>
         </div>
 
