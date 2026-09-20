@@ -7,6 +7,7 @@ interface LandingPageProps {
   onStartLines: () => void;
   onStartCompression: () => void;
   onStartCompressionFormats: () => void;
+  onStartCompressionAlgos: () => void;
   onStartBinary: () => void;
   onStartDataUnits: () => void;
   onStartModels: () => void;
@@ -16,7 +17,7 @@ interface LandingPageProps {
   onBack: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onBack }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onBack }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
       <div className="flex justify-start mb-6">
@@ -51,7 +52,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
           Interaktivní úlohy
         </p>
 
+        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">6. Třída</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
+          <button
+            onClick={onStartCodes}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-rose-100"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
+                <Binary className="w-6 h-6 text-rose-600" />
+              </div>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-rose-700">Kódy kolem nás</span>
+            </div>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-rose-400" />
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cod</div></button>
+
           <button
             onClick={onStartColors}
             className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-blue-100"
@@ -95,20 +111,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
 
           <button
-            onClick={onStartCompressionFormats}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-orange-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                <BoxSelect className="w-6 h-6 text-orange-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Komprese (pokročilejší)</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ko2</div></button>
-
-          <button
             onClick={onStartModels}
             className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100"
           >
@@ -135,7 +137,27 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-amber-400" />
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bin</div></button>
+        </div>
 
+        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">7. Třída</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
+          <button
+            onClick={onStartModels}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Shapes className="w-6 h-6 text-purple-600" />
+              </div>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Modely</span>
+            </div>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mod</div></button>
+        </div>
+
+        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">8. Třída</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
           <button
             onClick={onStartDataUnits}
             className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-fuchsia-100"
@@ -149,7 +171,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-fuchsia-400" />
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dum</div></button>
+        </div>
 
+        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">9. Třída</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
           <button
             onClick={onStartHardware}
             className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-sky-100"
@@ -179,18 +204,35 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#osm</div></button>
 
           <button
-            onClick={onStartCodes}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-rose-100"
+            onClick={onStartCompressionFormats}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-orange-100"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
-                <Binary className="w-6 h-6 text-rose-600" />
+              <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                <BoxSelect className="w-6 h-6 text-orange-600" />
               </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-rose-700">Kódy kolem nás</span>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Komprese (pokročilejší)</span>
             </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-rose-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cod</div></button>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ko2</div></button>
+        </div>
+
+        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">Střední škola</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
+          <button
+            onClick={onStartCompressionAlgos}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                <BoxSelect className="w-6 h-6 text-emerald-600" />
+              </div>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese algoritmy</span>
+            </div>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
+          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpa</div></button>
         </div>
       </div>
 

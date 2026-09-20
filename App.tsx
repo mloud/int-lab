@@ -36,6 +36,8 @@ import VectorDrawing from './components/informatika/lines/VectorDrawing';
 import ShapePuzzle from './components/informatika/lines/ShapePuzzle';
 import CompressionMenu from './components/informatika/compression/CompressionMenu';
 import CompressionFormatsMenu from './components/informatika/compression/CompressionFormatsMenu';
+import CompressionAlgosMenu from './components/informatika/compression/CompressionAlgosMenu';
+import HuffmanGame from './components/informatika/compression/HuffmanGame';
 import ImageCompressionGame from './components/informatika/compression/ImageCompressionGame';
 import RleCompressionGame from './components/informatika/compression/RleCompressionGame';
 import ImageSizeGame from './components/informatika/compression/ImageSizeGame';
@@ -126,6 +128,7 @@ const App: React.FC = () => {
             onStartLines={() => setCurrentScreen('lines-menu')}
             onStartCompression={() => setCurrentScreen('compression-menu')}
             onStartCompressionFormats={() => setCurrentScreen('compression-formats-menu')}
+            onStartCompressionAlgos={() => setCurrentScreen('compression-algos-menu')}
             onStartBinary={() => setCurrentScreen('binary-menu')}
             onStartDataUnits={() => setCurrentScreen('data-units-menu')}
             onStartModels={() => setCurrentScreen('models-menu')}
@@ -135,6 +138,15 @@ const App: React.FC = () => {
             onBack={() => setCurrentScreen('landing')}
           />
         );
+      case 'compression-algos-menu':
+        return (
+          <CompressionAlgosMenu
+            onBack={() => setCurrentScreen('informatika-menu')}
+            onStartHuffman={() => setCurrentScreen('huffman-game')}
+          />
+        );
+      case 'huffman-game':
+        return <HuffmanGame onBack={() => setCurrentScreen('compression-algos-menu')} />;
       case 'informatika-os-menu':
         return (
           <OsMenu

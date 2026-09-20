@@ -96,6 +96,8 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'osi': 'os-intro',
   'osa': 'os-architecture-chapter',
   'osb': 'os-boot-chapter',
+  'cpa': 'compression-algos-menu',
+  'huf': 'huffman-game',
 };
 
 /**
