@@ -42,9 +42,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
           </div>
         </div>
 
-        <h1 className="text-6xl sm:text-8xl font-black text-gray-900 mb-6 tracking-tighter leading-none uppercase">
+        <h1 className="text-5xl sm:text-7xl font-black text-gray-900 mb-6 tracking-tighter leading-none uppercase">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-            Informatika
+            Obecná informatika
           </span>
         </h1>
 

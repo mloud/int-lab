@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu, Laptop } from 'lucide-react';
+import { Sparkles, ArrowRight, Binary, Cpu } from 'lucide-react';
 
 interface SubjectSelectionProps {
   onSelectInformatika: () => void;
@@ -11,91 +11,86 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   onSelectSpecializovana,
 }) => {
   return (
-    <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
-      <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-20 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-purple-100/50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+    <div className="relative w-full max-w-6xl mx-auto px-4 py-12 flex flex-col items-center justify-center animate-in fade-in duration-1000">
+      
+      {/* Decorative Light Background Orbs */}
+      <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-blue-400/20 rounded-full blur-[100px] pointer-events-none -translate-x-1/4 -translate-y-1/4"></div>
+      <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-purple-400/20 rounded-full blur-[100px] pointer-events-none translate-x-1/4 translate-y-1/4"></div>
+      
+      <div className="relative z-10 w-full flex flex-col items-center">
         
-        <div className="relative mb-10">
-          <div className="w-32 h-32 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-indigo-200 animate-bounce-subtle">
-            <Laptop className="w-16 h-16 text-white" />
+        <div className="mb-16 flex flex-col items-center text-center animate-in slide-in-from-top-8 duration-1000">
+          <div className="inline-flex items-center justify-center p-4 bg-white/60 rounded-3xl border border-white/80 backdrop-blur-xl mb-8 shadow-xl">
+            <Sparkles className="w-10 h-10 text-blue-500" />
           </div>
-          <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-lg rotate-12">
-            <Sparkles className="w-6 h-6 text-white" />
-          </div>
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600 mb-6 tracking-tighter uppercase drop-shadow-sm">
+            Interaktivní Lab
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-500 font-black tracking-[0.3em] uppercase">
+            Vyberte studijní obor
+          </p>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-            Výukový portál
-          </span>
-        </h1>
-        
-        <p className="text-xl sm:text-2xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
-          Vyberte si předmět
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Informatika Card */}
           <button
             onClick={onSelectInformatika}
-            className="group relative p-8 bg-white hover:bg-gray-50 text-left rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col justify-between overflow-hidden border-4 border-gray-50 hover:border-blue-100 min-h-[220px]"
+            className="group relative text-left outline-none animate-in slide-in-from-bottom-8 duration-1000 delay-100"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div>
-              <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform mb-6">
-                <Binary className="w-8 h-8 text-blue-600" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-400 to-blue-600 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="relative h-full w-full bg-white/80 backdrop-blur-2xl p-10 sm:p-12 rounded-[3rem] overflow-hidden border-2 border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_60px_rgb(59,130,246,0.15)] transition-all duration-500 hover:-translate-y-2 flex flex-col">
+              
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none">
+                <Binary className="w-64 h-64 text-blue-600" />
               </div>
-              <h2 className="text-2xl font-black text-blue-700 uppercase tracking-wider mb-2">
+              
+              <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-sm border border-blue-100">
+                <Binary className="w-10 h-10" />
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-800 mb-6 uppercase tracking-wide">
                 Obecná informatika
               </h2>
-              <p className="text-gray-500 text-sm font-medium leading-relaxed">
+              <p className="text-gray-500 font-medium text-lg leading-relaxed mb-12 relative z-10 flex-1">
                 Kódování barev, vektorové kreslení, komprese dat, binární čísla a grafové modely.
               </p>
+              
+              <div className="flex items-center gap-3 text-blue-600 font-bold uppercase tracking-widest text-sm group-hover:text-blue-500 transition-colors">
+                Vstoupit do laboratoře <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
+              </div>
             </div>
-            <div className="flex justify-end w-full mt-4">
-              <span className="text-blue-500 font-bold flex items-center gap-1 text-sm uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-                Vstoupit <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#inf</div></button>
+          </button>
 
-          {/* Specializovaná informatika Card */}
+          {/* Specializovana Card */}
           <button
             onClick={onSelectSpecializovana}
-            className="group relative p-8 bg-white hover:bg-gray-50 text-left rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100 min-h-[220px]"
+            className="group relative text-left outline-none animate-in slide-in-from-bottom-8 duration-1000 delay-200"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div>
-              <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform mb-6">
-                <Cpu className="w-8 h-8 text-purple-600" />
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-400 to-purple-600 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="relative h-full w-full bg-white/80 backdrop-blur-2xl p-10 sm:p-12 rounded-[3rem] overflow-hidden border-2 border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_60px_rgb(168,85,247,0.15)] transition-all duration-500 hover:-translate-y-2 flex flex-col">
+              
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none">
+                <Cpu className="w-64 h-64 text-purple-600" />
               </div>
-              <h2 className="text-2xl font-black text-purple-700 uppercase tracking-wider mb-2">
+              
+              <div className="w-20 h-20 bg-purple-50 text-purple-600 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 shadow-sm border border-purple-100">
+                <Cpu className="w-10 h-10" />
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-800 mb-6 uppercase tracking-wide">
                 Specializovaná IT
               </h2>
-              <p className="text-gray-500 text-sm font-medium leading-relaxed">
-                Operační systémy, struktury na disku, simulátory paměti, vnitřní architektura procesoru a další.
+              <p className="text-gray-500 font-medium text-lg leading-relaxed mb-12 relative z-10 flex-1">
+                Operační systémy, struktury na disku, simulátory paměti a vnitřní architektura procesoru.
               </p>
+              
+              <div className="flex items-center gap-3 text-purple-600 font-bold uppercase tracking-widest text-sm group-hover:text-purple-500 transition-colors">
+                Vstoupit do laboratoře <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
+              </div>
             </div>
-            <div className="flex justify-end w-full mt-4">
-              <span className="text-purple-500 font-bold flex items-center gap-1 text-sm uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-                Vstoupit <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#spe</div></button>
+          </button>
         </div>
       </div>
-      
-      <style>{`
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0) rotate(0); }
-          50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        .animate-bounce-subtle {
-          animation: bounce-subtle 4s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 };
