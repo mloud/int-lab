@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowLeft, BookOpen, PlayCircle, Edit3, ChevronRight, RefreshCw } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { ArrowLeft, BookOpen, PlayCircle, Edit3, ChevronRight, RefreshCw, ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 
 const HuffmanDemo = () => {
   const [step, setStep] = useState(0);
@@ -28,10 +28,10 @@ const HuffmanDemo = () => {
   // Hrany: 0=D->DK, 1=K->DK, 2=B->BR, 3=R->BR, 4=DK->DKBR, 5=BR->DKBR, 6=A->ROOT, 7=DKBR->ROOT
   const CHAR_PATHS: Record<string, { edgeIndices: number[], nodeIds: string[], code: string, count: number }> = {
     'A': { edgeIndices: [6],       nodeIds: ['ROOT', 'A'],               code: '0',   count: 5 },
-    'D': { edgeIndices: [7, 4, 0], nodeIds: ['ROOT', 'DKBR', 'DK', 'D'], code: '100', count: 1 },
-    'K': { edgeIndices: [7, 4, 1], nodeIds: ['ROOT', 'DKBR', 'DK', 'K'], code: '101', count: 1 },
-    'B': { edgeIndices: [7, 5, 2], nodeIds: ['ROOT', 'DKBR', 'BR', 'B'], code: '110', count: 2 },
-    'R': { edgeIndices: [7, 5, 3], nodeIds: ['ROOT', 'DKBR', 'BR', 'R'], code: '111', count: 2 },
+    'B': { edgeIndices: [7, 5, 2], nodeIds: ['ROOT', 'DKBR', 'BR', 'B'], code: '100', count: 2 },
+    'R': { edgeIndices: [7, 5, 3], nodeIds: ['ROOT', 'DKBR', 'BR', 'R'], code: '101', count: 2 },
+    'D': { edgeIndices: [7, 4, 0], nodeIds: ['ROOT', 'DKBR', 'DK', 'D'], code: '110', count: 1 },
+    'K': { edgeIndices: [7, 4, 1], nodeIds: ['ROOT', 'DKBR', 'DK', 'K'], code: '111', count: 1 },
   };
 
   const handleLeafClick = (char: string) => {
@@ -62,8 +62,8 @@ const HuffmanDemo = () => {
     { from: nodes.K,    to: nodes.DK,   label: '1', visible: step >= 2, appearsAtStep: 2, animOrder: 1 },  // 1
     { from: nodes.B,    to: nodes.BR,   label: '0', visible: step >= 3, appearsAtStep: 3, animOrder: 0 },  // 2
     { from: nodes.R,    to: nodes.BR,   label: '1', visible: step >= 3, appearsAtStep: 3, animOrder: 1 },  // 3
-    { from: nodes.DK,   to: nodes.DKBR, label: '0', visible: step >= 4, appearsAtStep: 4, animOrder: 0 },  // 4
-    { from: nodes.BR,   to: nodes.DKBR, label: '1', visible: step >= 4, appearsAtStep: 4, animOrder: 1 },  // 5
+    { from: nodes.DK,   to: nodes.DKBR, label: '1', visible: step >= 4, appearsAtStep: 4, animOrder: 1 },  // 4
+    { from: nodes.BR,   to: nodes.DKBR, label: '0', visible: step >= 4, appearsAtStep: 4, animOrder: 0 },  // 5
     { from: nodes.A,    to: nodes.ROOT, label: '0', visible: step >= 5, appearsAtStep: 5, animOrder: 0 },  // 6
     { from: nodes.DKBR, to: nodes.ROOT, label: '1', visible: step >= 5, appearsAtStep: 5, animOrder: 1 },  // 7
   ];
@@ -74,8 +74,8 @@ const HuffmanDemo = () => {
   const renderNode = (node: any, id: string) => {
     if (!node.visible) return null;
     const isLeaf = node.type === 'leaf';
-    const labelFontSize = node.label.length > 3 ? 9 : node.label.length > 2 ? 11 : 15;
-    const r = isLeaf ? 22 : Math.max(22, node.label.length * 8);
+    const labelFontSize = node.label.length > 3 ? 12 : node.label.length > 2 ? 15 : 20;
+    const r = isLeaf ? 30 : Math.max(30, node.label.length * 10);
     const isOnPath = highlightedNodes.has(id);
     const isClickable = step === 7 && isLeaf;
     const alreadyRevealed = revealedChars.includes(node.label);
@@ -113,18 +113,18 @@ const HuffmanDemo = () => {
             animation: `nodeAppear 0.45s ease-out ${nodeDelay} both`
           } : {}}
         />
-        <text x={node.x} y={node.y + 5} textAnchor="middle" fontSize={labelFontSize} fontWeight="bold" fill={isOnPath ? '#92400e' : '#1e293b'}
+        <text x={node.x} y={node.y + 6} textAnchor="middle" fontSize={labelFontSize} fontWeight="bold" fill={isOnPath ? '#92400e' : '#1e293b'}
           style={isNew ? {
-            transformOrigin: `${node.x}px ${node.y + 5}px`,
+            transformOrigin: `${node.x}px ${node.y + 6}px`,
             transformBox: 'fill-box',
             animation: `nodeAppear 0.45s ease-out ${nodeDelay} both`
           } : {}}
         >
           {node.label}
         </text>
-        <text x={node.x + r + 2} y={node.y + 20} textAnchor="start" fontSize={13} fontWeight="800" fill={isOnPath ? '#b45309' : '#475569'}
+        <text x={node.x + r + 3} y={node.y + 22} textAnchor="start" fontSize={16} fontWeight="800" fill={isOnPath ? '#b45309' : '#475569'}
           style={isNew ? {
-            transformOrigin: `${node.x + r + 2}px ${node.y + 20}px`,
+            transformOrigin: `${node.x + r + 3}px ${node.y + 22}px`,
             transformBox: 'fill-box',
             animation: `nodeAppear 0.45s ease-out ${nodeDelay} both`
           } : {}}
@@ -231,7 +231,7 @@ const HuffmanDemo = () => {
                <h3 className="text-xl font-bold text-gray-600 mb-6 uppercase tracking-wider">Výsledek komprese</h3>
                <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-2xl">
                  {Array.from("ABRAKADABRA").map((char, i) => {
-                   const code = char === 'A' ? '0' : char === 'B' ? '110' : char === 'R' ? '111' : char === 'K' ? '101' : '100';
+                   const code = char === 'A' ? '0' : char === 'B' ? '100' : char === 'R' ? '101' : char === 'K' ? '111' : '110';
                    return (
                      <div key={i} className="flex flex-col items-center group">
                        <span className="text-xl font-black text-gray-800 bg-gray-100 w-10 h-10 rounded-lg flex items-center justify-center mb-1 group-hover:bg-blue-100 transition-colors">{char}</span>
@@ -256,7 +256,7 @@ const HuffmanDemo = () => {
                </div>
             </div>
           ) : (
-            <svg viewBox="0 0 850 420" className="w-full h-full max-h-[420px]">
+            <svg viewBox="0 20 900 380" className="w-full h-full max-h-[430px]">
               {/* Edges */}
               {edges.map((edge, i) => {
                 if (!edge.visible) return null;
@@ -366,7 +366,410 @@ interface HuffmanGameProps {
   onBack: () => void;
 }
 
-type TabType = 'theory' | 'demo' | 'practice';
+type TabType = 'theory' | 'encoding' | 'decoding' | 'practice';
+
+// ─── Ukázka dekódování ────────────────────────────────────────────────────────
+const ENCODED_STR = "01001010111011001001010";
+const TREE_NAV: Record<string, [string, string]> = {
+  ROOT: ['A', 'DKBR'], DKBR: ['BR', 'DK'], DK: ['D', 'K'], BR: ['B', 'R'],
+};
+const LEAF_CHAR: Record<string, string> = { A:'A', B:'B', R:'R', D:'D', K:'K' };
+const DEC_EDGE: Record<string, number> = {
+  'ROOT-A':6,'ROOT-DKBR':7,'DKBR-BR':5,'DKBR-DK':4,'DK-D':0,'DK-K':1,'BR-B':2,'BR-R':3
+};
+const DEC_CODES: Record<string, string> = { A:'0', B:'100', R:'101', K:'111', D:'110' };
+
+const DecodingDemo: React.FC = () => {
+  const [bitPos, setBitPos] = useState(0);
+  const [curNode, setCurNode] = useState('ROOT');
+  const [decoded, setDecoded] = useState<string[]>([]);
+  const [path, setPath] = useState<string[]>(['ROOT']);
+  const [flash, setFlash] = useState<string | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const isDone = bitPos >= ENCODED_STR.length;
+
+  const advance = () => {
+    if (isDone || flash !== null) return;
+    const bit = parseInt(ENCODED_STR[bitPos]) as 0 | 1;
+    const next = TREE_NAV[curNode]?.[bit];
+    if (!next) return;
+    
+    if (LEAF_CHAR[next]) {
+      const ch = LEAF_CHAR[next];
+      setCurNode(next);
+      setPath(prev => [...prev, next]);
+      setFlash(ch);
+      
+      timeoutRef.current = setTimeout(() => {
+        setDecoded(prev => [...prev, ch]);
+        setCurNode('ROOT');
+        setPath(['ROOT']);
+        timeoutRef.current = setTimeout(() => setFlash(null), 300);
+      }, 700);
+    } else {
+      setCurNode(next);
+      setPath(prev => [...prev, next]);
+    }
+    setBitPos(p => p + 1);
+  };
+
+  const doReset = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setBitPos(0); setCurNode('ROOT'); setDecoded([]); setPath(['ROOT']); setFlash(null);
+  };
+
+  const pathNodes = new Set(path);
+  const pathEdges = new Set<number>();
+  for (let i = 0; i < path.length - 1; i++) {
+    const key = `${path[i]}-${path[i+1]}`;
+    if (DEC_EDGE[key] !== undefined) pathEdges.add(DEC_EDGE[key]);
+  }
+
+  // Uzly a hrany (stejné pozice jako v HuffmanDemo)
+  const NODES: Record<string, { x:number, y:number, label:string, val:number, type:string }> = {
+    A:    { x:150, y:350, label:'A',     val:5,  type:'leaf'  },
+    B:    { x:300, y:350, label:'B',     val:2,  type:'leaf'  },
+    R:    { x:450, y:350, label:'R',     val:2,  type:'leaf'  },
+    D:    { x:600, y:350, label:'D',     val:1,  type:'leaf'  },
+    K:    { x:750, y:350, label:'K',     val:1,  type:'leaf'  },
+    DK:   { x:675, y:250, label:'DK',   val:2,  type:'inner' },
+    BR:   { x:375, y:250, label:'BR',   val:4,  type:'inner' },
+    DKBR: { x:525, y:150, label:'DKBR', val:6,  type:'inner' },
+    ROOT: { x:337, y:50,  label:'ADKBR',val:11, type:'inner' },
+  };
+  const EDGES = [
+    { from:NODES.D,    to:NODES.DK,   label:'0' }, // 0
+    { from:NODES.K,    to:NODES.DK,   label:'1' }, // 1
+    { from:NODES.B,    to:NODES.BR,   label:'0' }, // 2
+    { from:NODES.R,    to:NODES.BR,   label:'1' }, // 3
+    { from:NODES.DK,   to:NODES.DKBR, label:'0' }, // 4
+    { from:NODES.BR,   to:NODES.DKBR, label:'1' }, // 5
+    { from:NODES.A,    to:NODES.ROOT, label:'0' }, // 6
+    { from:NODES.DKBR, to:NODES.ROOT, label:'1' }, // 7
+  ];
+
+  return (
+    <div className="w-full flex flex-col gap-6 animate-in slide-in-from-bottom-4 duration-500">
+      {/* Horní panel */}
+      <div className="flex justify-between items-center bg-purple-50 p-5 rounded-2xl border-2 border-purple-100">
+        <div className="flex-1">
+          <h3 className="font-black text-purple-900 text-lg uppercase tracking-tight mb-1">Ukázka dekódování ABRAKADABRA</h3>
+          <p className="text-purple-700/80 font-medium text-sm m-0">
+            {isDone ? '✓ Dekódování dokončeno! Dostali jsme zpět původní slovo.' :
+              `Čtu bit č. ${bitPos+1}: `+
+              <span className="font-mono font-black">'{ENCODED_STR[bitPos]}'</span>+
+              ` → jdu ${ENCODED_STR[bitPos]==='0'?'vlevo (0)':'vpravo (1)'} ve stromě. Aktuální uzel: ${curNode}`
+            }
+          </p>
+        </div>
+        <div className="flex gap-3 ml-4">
+          <button onClick={doReset} className="p-3 bg-white hover:bg-gray-50 text-gray-400 hover:text-gray-600 rounded-xl shadow-sm transition-colors" title="Začít znovu">
+            <RefreshCw className="w-5 h-5" />
+          </button>
+          <button onClick={advance} disabled={isDone || flash !== null}
+            className="flex items-center gap-2 px-5 py-3 bg-purple-600 hover:bg-purple-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold uppercase tracking-wider rounded-xl shadow-md transition-all text-sm">
+            Další bit <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Strom */}
+        <div className="lg:col-span-2 bg-white rounded-3xl shadow-md border-2 border-gray-100 p-4">
+          {/* Bitový řetězec */}
+          <div className="flex flex-wrap gap-0.5 justify-center mb-4 font-mono text-lg font-black">
+            {ENCODED_STR.split('').map((b, i) => (
+              <span key={i} className={`w-7 h-8 flex items-center justify-center rounded transition-all ${
+                i < bitPos ? 'bg-emerald-100 text-emerald-600' :
+                i === bitPos ? 'bg-purple-500 text-white scale-110 shadow-md' :
+                'bg-gray-100 text-gray-400'
+              }`}>{b}</span>
+            ))}
+          </div>
+          {/* SVG strom */}
+          <svg viewBox="0 20 900 380" className="w-full max-h-[340px]">
+            {EDGES.map((edge, i) => {
+              const hi = pathEdges.has(i);
+              return (
+                <g key={i}>
+                  <line x1={edge.from.x} y1={edge.from.y} x2={edge.to.x} y2={edge.to.y}
+                    stroke={hi ? '#9333ea' : '#d1d5db'} strokeWidth={hi ? 4 : 2} />
+                  <text x={(edge.from.x+edge.to.x)/2+(edge.from.x<edge.to.x?-14:14)}
+                    y={(edge.from.y+edge.to.y)/2}
+                    textAnchor="middle" fontSize={14} fontWeight="900"
+                    fill={hi ? '#7e22ce' : '#f97316'}>{edge.label}</text>
+                </g>
+              );
+            })}
+            {Object.entries(NODES).map(([id, node]) => {
+              const isLeaf = node.type==='leaf';
+              const r = isLeaf ? 30 : Math.max(30, node.label.length*10);
+              const onPath = pathNodes.has(id);
+              const isCurrent = id === curNode && id !== 'ROOT';
+              const fill = isCurrent ? '#f3e8ff' : onPath ? '#ede9fe' : isLeaf ? '#dbeafe' : '#d1fae5';
+              const stroke = isCurrent ? '#9333ea' : onPath ? '#a855f7' : isLeaf ? '#3b82f6' : '#10b981';
+              const sw = (isCurrent || onPath) ? 3.5 : 2.5;
+              return (
+                <g key={id}>
+                  {isCurrent && <ellipse cx={node.x} cy={node.y} rx={r+10} ry={32}
+                    fill="none" stroke="#9333ea" strokeWidth={2} opacity={0.5}
+                    style={{animation:'pulse 1s ease-in-out infinite'}} />}
+                  <ellipse cx={node.x} cy={node.y} rx={r} ry={22} fill={fill} stroke={stroke} strokeWidth={sw} />
+                  <text x={node.x} y={node.y+6} textAnchor="middle"
+                    fontSize={isLeaf?20:node.label.length>3?12:15} fontWeight="bold" fill={onPath?'#581c87':'#1e293b'}>{node.label}</text>
+                  <text x={node.x+r+3} y={node.y+22} textAnchor="start" fontSize={16} fontWeight="800" fill={onPath?'#7e22ce':'#475569'}>{node.val}</text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+
+        {/* Pravý panel – slovník + dekódovaný text */}
+        <div className="flex flex-col gap-4">
+          {/* Slovník */}
+          <div className="bg-white rounded-3xl shadow-md border-2 border-gray-100 p-5">
+            <h4 className="font-black text-gray-700 uppercase tracking-tight text-sm mb-3 border-b border-gray-100 pb-2">Huffmanův slovník</h4>
+            <div className="flex flex-col gap-2">
+              {Object.entries(DEC_CODES).map(([ch, code]) => (
+                <div key={ch} className={`flex items-center justify-between px-3 py-2 rounded-xl border-2 transition-all ${
+                  path[path.length-1]===ch||curNode===ch?'border-purple-300 bg-purple-50':'border-gray-100 bg-gray-50'
+                }`}>
+                  <span className="font-black text-blue-600 text-lg">{ch}</span>
+                  <span className="font-mono font-black text-emerald-600 bg-white px-2 py-0.5 rounded-lg border border-emerald-100">{code}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Dekódovaný text */}
+          <div className="bg-white rounded-3xl shadow-md border-2 border-gray-100 p-5 flex-1">
+            <h4 className="font-black text-gray-700 uppercase tracking-tight text-sm mb-3 border-b border-gray-100 pb-2">Dekódovaný text</h4>
+            <div className="flex flex-wrap gap-2 min-h-[60px] items-center">
+              {decoded.length === 0 && <span className="text-gray-300 font-bold text-sm">zatím prázdný...</span>}
+              {decoded.map((ch, i) => (
+                <span key={i} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-xl transition-all ${
+                  i === decoded.length-1 && flash ? 'bg-purple-200 text-purple-700 scale-125' : 'bg-blue-50 text-blue-700'
+                }`}>{ch}</span>
+              ))}
+            </div>
+            {isDone && (
+              <div className="mt-4 bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 text-center">
+                <p className="font-black text-emerald-700 text-sm m-0">✓ {decoded.join('')} = původní slovo!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Zkoušení ─────────────────────────────────────────────────────────────────
+const EXERCISES = [
+  {
+    id: 1,
+    type: 'encode',
+    word: 'KOKOS',
+    question: 'Na zahřátí: Sestav strom pro slovo KOKOS. Zapiš sem výsledný binární kód.',
+    hint: 'Mělo by ti vyjít velmi krátké kódování. Nezapomeň, že konkrétní nuly a jedničky závisí na tom, kam dáš levé/pravé větve.',
+  },
+  {
+    id: 2,
+    type: 'encode',
+    word: 'KAMARADKA',
+    question: 'Tady už bude strom hlubší! Sestav strom pro slovo KAMARADKA a napiš zakódovaný tvar.',
+    hint: 'Znak A má největší frekvenci (4x), takže by měl být úplně nejvýše u kořene (mít nejkratší kód). Ostatní znaky propadnou mnohem hlouběji.',
+  },
+  {
+    id: 3,
+    type: 'size',
+    word: 'MATEMATIKA',
+    question: 'Pro slovo MATEMATIKA spočítej: Kolik bitů celkem zabere výsledný zakódovaný text?',
+    hint: 'Tento strom už se hodně větví. Sečti délky kódů pro každé písmeno pronásobené jeho četností.',
+  },
+  {
+    id: 4,
+    type: 'savings',
+    word: 'POPOCATEPETL',
+    question: 'Sopka POPOCATEPETL má 12 znaků. Kolik bitů ušetříme použitím naší Huffmanovy komprese oproti klasickému ASCII (kde 1 znak = 8 bitů)?',
+    hint: 'V ASCII zabere 96 bitů (12×8). Spočítej si celkovou délku Huffmanova kódu a odečti ji od 96.',
+  },
+  {
+    id: 5,
+    type: 'size',
+    word: 'NEJNEOBHOSPODAROVAVATELNEJSI',
+    question: 'Finální boss! Slovo NEJNEOBHOSPODAROVAVATELNEJSI má 28 znaků a plno unikátních písmen (frekvence 1). Jak velký bude výsledný zakódovaný text v bitech?',
+    hint: 'Udělej si opravdu hodně místa na papíře. Máš tu spoustu znaků s četností 1, které vytvoří masivní, hluboký strom. Buď při spojování uzlů velmi pečlivý!',
+  }
+];
+
+function getOptimalHuffmanLength(text: string): number {
+  const counts: Record<string, number> = {};
+  for (const char of text) {
+    counts[char] = (counts[char] || 0) + 1;
+  }
+  const pq = Object.values(counts).sort((a, b) => a - b);
+  if (pq.length === 0) return 0;
+  if (pq.length === 1) return text.length; 
+  
+  let totalBits = 0;
+  while (pq.length > 1) {
+    pq.sort((a, b) => a - b);
+    const a = pq.shift()!;
+    const b = pq.shift()!;
+    totalBits += a + b;
+    pq.push(a + b);
+  }
+  return totalBits;
+}
+
+const PracticeSection: React.FC = () => {
+  const [answers, setAnswers] = useState<Record<number,string>>({});
+  const [checked, setChecked] = useState<Record<number,boolean|null>>({});
+  const [showHint, setShowHint] = useState<Record<number,boolean>>({});
+  const [openId, setOpenId] = useState<number | null>(1);
+
+  const check = (id: number, type: string, word: string) => {
+    const userAns = (answers[id] || '').trim().replace(/\s+/g, '');
+    const optimal = getOptimalHuffmanLength(word);
+    
+    let isCorrect = false;
+    
+    if (type === 'encode') {
+      if (/^[01]+$/.test(userAns) && userAns.length === optimal) {
+        isCorrect = true;
+      }
+    } else if (type === 'size') {
+      if (parseInt(userAns, 10) === optimal) {
+        isCorrect = true;
+      }
+    } else if (type === 'savings') {
+      const asciiLength = word.length * 8;
+      if (parseInt(userAns, 10) === (asciiLength - optimal)) {
+        isCorrect = true;
+      }
+    }
+    
+    setChecked(prev => ({ ...prev, [id]: isCorrect }));
+  };
+
+  const typeColor: Record<string,string> = {
+    encode: 'bg-amber-50 border-amber-200 text-amber-700',
+    size: 'bg-emerald-50 border-emerald-200 text-emerald-700',
+    savings: 'bg-blue-50 border-blue-200 text-blue-700',
+  };
+  const typeLabel: Record<string,string> = {
+    encode: 'Vlastní kódování', size: 'Počet bitů', savings: 'Úspora',
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto animate-in slide-in-from-bottom-4 duration-500">
+      <h2 className="text-2xl font-black text-gray-800 mb-4 uppercase tracking-tight">Zkoušení (papír a tužka)</h2>
+      <p className="text-gray-500 mb-8 leading-relaxed">
+        Nyní si vyzkoušíš kompresi v praxi. Připrav si papír a tužku! Ke každému zadanému slovu si 
+        **sestav vlastní Huffmanův strom**. Nemusíš ho nikam obkreslovat – pro ověření nám stačí 
+        jen zkontrolovat celkovou délku kódu (případně počet ušetřených bitů), protože to je při bezchybném 
+        postupu vždy stejné, i když každý může postavit strom trochu jinak.
+      </p>
+      
+      <div className="flex flex-col gap-4">
+        {EXERCISES.map((ex) => {
+          const result = checked[ex.id];
+          const isOpen = openId === ex.id;
+          
+          return (
+            <div key={ex.id} className={`bg-white rounded-2xl border-2 transition-all overflow-hidden ${
+              result === true ? 'border-emerald-300 shadow-sm' : 'border-gray-100 shadow-sm hover:border-gray-200'
+            }`}>
+              <button 
+                onClick={() => setOpenId(isOpen ? null : ex.id)}
+                className={`w-full flex items-center gap-4 p-5 text-left transition-colors ${
+                  isOpen ? 'bg-gray-50 border-b border-gray-100' : 'bg-white'
+                }`}
+              >
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-600 font-black border-2 border-gray-200">
+                  {ex.id}
+                </div>
+                <div className="flex-shrink-0">
+                  <span className={`text-xs font-black px-3 py-1 rounded-lg border-2 ${typeColor[ex.type]}`}>
+                    {typeLabel[ex.type]}
+                  </span>
+                </div>
+                <div className={`flex-1 font-bold text-base md:text-lg ${result === true ? 'text-emerald-800' : 'text-gray-800'}`}>
+                  {ex.question}
+                </div>
+                {result === true && <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 ml-2" />}
+                <div className="flex-shrink-0 ml-2">
+                  {isOpen ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+                </div>
+              </button>
+
+              {isOpen && (
+                <div className="p-6 bg-white animate-in fade-in duration-300">
+                  <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+                    <input
+                      type="text"
+                      value={answers[ex.id] || ''}
+                      onChange={e => {
+                        setAnswers(prev => ({ ...prev, [ex.id]: e.target.value }));
+                        setChecked(prev => ({ ...prev, [ex.id]: null }));
+                      }}
+                      onKeyDown={e => e.key==='Enter' && check(ex.id, ex.type, ex.word)}
+                      placeholder={ex.type === 'encode' ? 'Zadej kód (např. 1010...)' : 'Zadej číslo...'}
+                      className={`flex-1 px-4 py-3 rounded-xl border-2 font-mono font-bold text-lg outline-none transition-all ${
+                        result === true ? 'border-emerald-400 bg-emerald-50 text-emerald-700' :
+                        result === false ? 'border-red-400 bg-red-50 text-red-700' :
+                        'border-gray-200 focus:border-blue-400 bg-gray-50'
+                      }`}
+                    />
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => check(ex.id, ex.type, ex.word)}
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-sm transition-all uppercase tracking-wide text-sm flex-1 sm:flex-none"
+                      >
+                        Ověřit
+                      </button>
+                      <button
+                        onClick={() => setShowHint(prev => ({ ...prev, [ex.id]: !prev[ex.id] }))}
+                        className="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-500 font-bold rounded-xl transition-all text-sm"
+                        title="Zobrazit nápovědu"
+                      >
+                        💡
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {result === true && (
+                    <div className="mt-4 flex flex-col gap-1 text-emerald-700 bg-emerald-50 px-5 py-4 rounded-xl border border-emerald-100 shadow-sm">
+                      <div className="flex items-center gap-2 font-black text-lg">
+                        <CheckCircle className="w-5 h-5" /> Správně! Výborně!
+                      </div>
+                      {ex.type === 'encode' && (
+                        <p className="text-sm font-medium mt-1">
+                          Tento kód má optimální délku ({getOptimalHuffmanLength(ex.word)} bitů). Zkontroluj si ještě pro jistotu zpětně sám, zda jej dokážeš dekódovat zpět.
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  {result === false && (
+                    <div className="mt-4 text-red-600 font-bold text-sm bg-red-50 px-4 py-3 rounded-xl border border-red-100 flex items-center gap-2">
+                      <span>✗</span> Odpověď zatím není správná, zkus to znovu.
+                    </div>
+                  )}
+                  {showHint[ex.id] && (
+                    <div className="mt-4 bg-amber-50 border-l-4 border-amber-400 px-4 py-3 rounded-r-xl text-amber-800 font-medium text-sm animate-in fade-in">
+                      💡 {ex.hint}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 const HuffmanGame: React.FC<HuffmanGameProps> = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState<TabType>('theory');
@@ -390,29 +793,39 @@ const HuffmanGame: React.FC<HuffmanGameProps> = ({ onBack }) => {
         <div className="bg-white p-2 rounded-2xl shadow-md flex gap-2 border border-gray-100">
           <button
             onClick={() => setActiveTab('theory')}
-            className={`px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
-              activeTab === 'theory' 
-                ? 'bg-emerald-100 text-emerald-800 shadow-sm' 
+            className={`px-5 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
+              activeTab === 'theory'
+                ? 'bg-emerald-100 text-emerald-800 shadow-sm'
                 : 'text-gray-500 hover:bg-gray-50'
             }`}
           >
             <BookOpen className="w-4 h-4" /> Teorie
           </button>
           <button
-            onClick={() => setActiveTab('demo')}
-            className={`px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
-              activeTab === 'demo' 
-                ? 'bg-blue-100 text-blue-800 shadow-sm' 
+            onClick={() => setActiveTab('encoding')}
+            className={`px-5 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
+              activeTab === 'encoding'
+                ? 'bg-blue-100 text-blue-800 shadow-sm'
                 : 'text-gray-500 hover:bg-gray-50'
             }`}
           >
-            <PlayCircle className="w-4 h-4" /> Ukázka
+            <PlayCircle className="w-4 h-4" /> Ukázka kódování
+          </button>
+          <button
+            onClick={() => setActiveTab('decoding')}
+            className={`px-5 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
+              activeTab === 'decoding'
+                ? 'bg-purple-100 text-purple-800 shadow-sm'
+                : 'text-gray-500 hover:bg-gray-50'
+            }`}
+          >
+            <PlayCircle className="w-4 h-4" /> Ukázka dekódování
           </button>
           <button
             onClick={() => setActiveTab('practice')}
-            className={`px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
-              activeTab === 'practice' 
-                ? 'bg-purple-100 text-purple-800 shadow-sm' 
+            className={`px-5 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all flex items-center gap-2 ${
+              activeTab === 'practice'
+                ? 'bg-amber-100 text-amber-800 shadow-sm'
                 : 'text-gray-500 hover:bg-gray-50'
             }`}
           >
@@ -591,20 +1004,16 @@ const HuffmanGame: React.FC<HuffmanGameProps> = ({ onBack }) => {
           </div>
         )}
 
-        {activeTab === 'demo' && (
+        {activeTab === 'encoding' && (
           <HuffmanDemo />
         )}
 
+        {activeTab === 'decoding' && (
+          <DecodingDemo />
+        )}
+
         {activeTab === 'practice' && (
-          <div className="w-full h-full flex flex-col items-center justify-center animate-in slide-in-from-bottom-4 duration-500">
-            <div className="w-24 h-24 bg-purple-50 rounded-full flex items-center justify-center mb-6">
-              <Edit3 className="w-12 h-12 text-purple-300" />
-            </div>
-            <h2 className="text-2xl font-black text-gray-800 mb-4 uppercase tracking-tight text-center">Prostor pro zkoušení</h2>
-            <p className="text-gray-500 text-center max-w-md">
-              Tato část zatím není implementována. V budoucnu si zde budete moci vyzkoušet kódování na vlastních slovech.
-            </p>
-          </div>
+          <PracticeSection />
         )}
       </div>
     </div>
