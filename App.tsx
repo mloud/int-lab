@@ -25,6 +25,7 @@ import OsHardwareChapter from './components/specializovana/operacni-systemy/OsHa
 import VonNeumannGame from './components/specializovana/operacni-systemy/VonNeumannGame';
 import RamSimulatorChapter from './components/specializovana/operacni-systemy/RamSimulatorChapter';
 import OsIntroChapter from './components/specializovana/operacni-systemy/OsIntroChapter';
+import OsEvolutionChapter from './components/specializovana/operacni-systemy/OsEvolutionChapter';
 import OsArchitectureChapter from './components/specializovana/operacni-systemy/OsArchitectureChapter';
 import OsBootChapter from './components/specializovana/operacni-systemy/OsBootChapter';
 import SplashScreen from './components/informatika/colors/SplashScreen';
@@ -211,6 +212,7 @@ const App: React.FC = () => {
             onBack={() => setCurrentScreen('specializovana-menu')}
             onStartOsIntro={() => setCurrentScreen('os-intro')}
             onStartOsArchitecture={() => setCurrentScreen('os-architecture-chapter')}
+            onStartOsEvolution={() => setCurrentScreen('os-evolution-chapter')}
             onStartOsBoot={() => setCurrentScreen('os-boot-chapter')}
             onStartFileSystemsMenu={() => setCurrentScreen('file-systems-menu')}
             onStartWindowsInstall={() => setCurrentScreen('windows-install-game')}
@@ -222,6 +224,8 @@ const App: React.FC = () => {
         return <OsIntroChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
       case 'os-architecture-chapter':
         return <OsArchitectureChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
+      case 'os-evolution-chapter':
+        return <OsEvolutionChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
       case 'os-boot-chapter':
         return <OsBootChapter onBack={() => setCurrentScreen('operacni-systemy-menu')} />;
       case 'file-systems-menu':

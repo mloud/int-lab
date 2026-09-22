@@ -43,12 +43,18 @@ const THEORY_CONTENT = (
           <span className="font-black text-emerald-900 uppercase tracking-wider">Operační systém (Kernel Space)</span>
           <div className="flex gap-3 mt-3 w-full justify-center text-sm text-emerald-800 font-bold">
             <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Jádro (Kernel)</div>
-            <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Ovladače (Drivers)</div>
           </div>
         </div>
 
-        {/* Spojka */}
-        <div className="w-1.5 h-8 bg-slate-200"></div>
+        {/* Spojka přes ovladače k HW */}
+        <div className="flex flex-col items-center -my-1">
+          <div className="w-1.5 h-6 bg-slate-200"></div>
+          <div className="bg-emerald-50 px-4 py-1.5 rounded-xl border-2 border-emerald-300 shadow-sm text-center relative z-20">
+            <div className="text-sm text-emerald-900 font-bold">Ovladače (Drivers)</div>
+            <div className="text-[10px] text-emerald-600 font-medium uppercase tracking-wider mt-0.5">Komunikace s HW</div>
+          </div>
+          <div className="w-1.5 h-6 bg-slate-200"></div>
+        </div>
 
         {/* Vrstva 3: Hardware */}
         <div className="w-full bg-slate-100 border-2 border-slate-300 hover:border-slate-400 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
@@ -133,20 +139,46 @@ const THEORY_CONTENT = (
         </div>
       </div>
       
-      <div className="mt-8 bg-slate-50 rounded-2xl overflow-hidden border border-slate-200">
-        <table className="w-full text-left text-sm">
+      <div className="mt-8 bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 overflow-x-auto">
+        <table className="w-full text-left text-sm min-w-max">
           <thead className="bg-slate-200 text-slate-700">
             <tr>
               <th className="p-3">Kritérium</th>
+              <th className="p-3 text-sky-700">Windows</th>
+              <th className="p-3 text-orange-600">Linux</th>
               <th className="p-3 text-green-700">Android</th>
               <th className="p-3 text-slate-800">iOS</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200">
-            <tr><td className="p-3 font-bold">Výrobce</td><td className="p-3">Google (open-source)</td><td className="p-3">Apple (pouze iPhony)</td></tr>
-            <tr><td className="p-3 font-bold">Otevřenost</td><td className="p-3">Velmi otevřený, úpravy, root</td><td className="p-3">Uzavřený, omezené úpravy</td></tr>
-            <tr><td className="p-3 font-bold">Zařízení</td><td className="p-3">Od levných po prémiové</td><td className="p-3">Pouze Apple zařízení</td></tr>
-            <tr><td className="p-3 font-bold">Aktualizace</td><td className="p-3">Závislé na výrobci (Samsung aj.)</td><td className="p-3">Přímé od Apple</td></tr>
+            <tr>
+              <td className="p-3 font-bold">Výrobce</td>
+              <td className="p-3">Microsoft (proprietární)</td>
+              <td className="p-3">Komunita / Různé firmy</td>
+              <td className="p-3">Google (open-source)</td>
+              <td className="p-3">Apple (pouze iPhony)</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-bold">Otevřenost</td>
+              <td className="p-3">Uzavřený, nelze měnit kód</td>
+              <td className="p-3">Plně otevřený (open-source)</td>
+              <td className="p-3">Velmi otevřený, úpravy, root</td>
+              <td className="p-3">Uzavřený, omezené úpravy</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-bold">Zařízení</td>
+              <td className="p-3">Většina PC a notebooků na trhu</td>
+              <td className="p-3">PC, servery, superpočítače</td>
+              <td className="p-3">Od levných po prémiové mobily</td>
+              <td className="p-3">Pouze Apple zařízení</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-bold">Aktualizace</td>
+              <td className="p-3">Centrální (Windows Update)</td>
+              <td className="p-3">Přes správce balíčků distribuce</td>
+              <td className="p-3">Závislé na výrobci (Samsung aj.)</td>
+              <td className="p-3">Přímé od Apple</td>
+            </tr>
           </tbody>
         </table>
       </div>
