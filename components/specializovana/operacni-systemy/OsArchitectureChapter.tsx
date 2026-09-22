@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard, BookOpen } from 'lucide-react';
+import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard, BookOpen, ArrowDown, ArrowUp, ArrowRight } from 'lucide-react';
 
 interface OsArchitectureChapterProps {
   onBack: () => void;
@@ -115,21 +115,12 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
   };
 
   // --- COMMUNICATION LOGIC ---
-  const triggerSyscall = () => {
-    if (commState !== 'idle') return;
-    setCommState('syscall-request');
-    setTimeout(() => {
-      setCommState('syscall-kernel');
-      setTimeout(() => {
-        setCommState('syscall-driver');
-        setTimeout(() => {
-          setCommState('syscall-done');
-          setTimeout(() => {
-            setCommState('idle');
-          }, 4000);
-        }, 3500);
-      }, 3500);
-    }, 3500);
+  const advanceCommStep = () => {
+    if (commState === 'idle') setCommState('syscall-request');
+    else if (commState === 'syscall-request') setCommState('syscall-kernel');
+    else if (commState === 'syscall-kernel') setCommState('syscall-driver');
+    else if (commState === 'syscall-driver') setCommState('syscall-done');
+    else if (commState === 'syscall-done') setCommState('idle');
   };
 
   // --- RENDER HELPERS ---
@@ -308,7 +299,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
               
               <div className="w-64 h-64 relative flex-shrink-0">
                 {/* Ring 3 */}
-                <div className="absolute inset-0 bg-blue-50 border-4 border-blue-200 rounded-full flex items-start justify-center pt-4 shadow-inner">
+                <div className="absolute inset-0 bg-blue-50 border-4 border-blue-200 rounded-full flex items-start justify-center pt-2 shadow-inner">
                   <span className="font-black text-blue-800 text-sm">Ring 3</span>
                 </div>
                 {/* Ring 1 & 2 */}
@@ -507,45 +498,68 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
               Operační paměť (RAM) je přísně rozdělena. Aplikace mají zakázáno přistupovat do prostoru jádra, aby nemohly poškodit systém. Jediná cesta je přes <strong>System Call</strong> (Systémové volání).
             </p>
 
-            <div className="flex justify-center gap-4 mb-8">
+            <div className="flex flex-col items-center mb-8 bg-indigo-50 p-6 rounded-3xl border-2 border-indigo-200 shadow-sm max-w-2xl mx-auto">
+              <div className="text-center mb-4">
+                <span className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-1 block">Co se stane dál?</span>
+                <p className="text-sm font-bold text-indigo-900 leading-relaxed min-h-[40px]">
+                  {commState === 'idle' && "Hra narazila na checkpoint. Protože běží v omezeném Ring 3, nemůže sama ukládat na disk. Následující krok odešle požadavek (SysCall) z User Space k jádru."}
+                  {commState === 'syscall-request' && "Hra požádala o uložení. Systém nyní musí hardwarově přepnout procesor do absolutního režimu Ring 0 (Kernel Space), aby OS mohl s diskem manipulovat."}
+                  {commState === 'syscall-kernel' && "Jádro přijalo požadavek a zkontrolovalo oprávnění. V dalším kroku předá instrukce specializovanému ovladači disku, který HW ovládá."}
+                  {commState === 'syscall-driver' && "Ovladač data uložil na SSD. Nyní jádro pošle zprávu o úspěchu zpět do Hra.exe a procesor se bezpečně uzamkne zpět do Ring 3."}
+                  {commState === 'syscall-done' && "Proces je kompletní! Hra pokračuje v běhu. Můžeš ukázku resetovat."}
+                </p>
+              </div>
+
               <button 
-                onClick={triggerSyscall} 
-                disabled={commState !== 'idle'} 
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black border-b-4 border-indigo-800 rounded-2xl disabled:opacity-50 transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest text-sm"
+                onClick={advanceCommStep} 
+                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black border-b-4 border-indigo-800 rounded-2xl transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest text-sm shadow-md"
               >
-                Uložit pozici ve hře (Zavolat SysCall)
+                {commState === 'idle' && "Krok 1: Poslat SysCall"}
+                {commState === 'syscall-request' && "Krok 2: Přepnout do Ring 0"}
+                {commState === 'syscall-kernel' && "Krok 3: Vykonat přes Ovladač"}
+                {commState === 'syscall-driver' && "Krok 4: Návrat do Ring 3"}
+                {commState === 'syscall-done' && "Resetovat ukázku"}
               </button>
             </div>
 
-            <div className="max-w-3xl mx-auto bg-slate-800 p-8 rounded-[3rem] shadow-2xl relative overflow-hidden text-left border-8 border-slate-700">
+            <div className="max-w-3xl mx-auto bg-white p-8 pt-12 rounded-[3rem] shadow-2xl relative overflow-hidden text-left border-8 border-slate-200">
+              <div className="absolute top-0 inset-x-0 bg-slate-200 text-slate-700 px-4 py-2 font-black tracking-widest uppercase text-xs text-center shadow-sm">
+                Rozložení v operační paměti (RAM)
+              </div>
               
               {/* User Space Region */}
-              <div className="bg-blue-50 border-4 border-blue-200 p-6 rounded-3xl mb-8 relative">
-                <div className="absolute -top-3 left-6 bg-blue-500 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
-                  USER SPACE (Aplikace) - Běží v Ring 3
+              <div className="bg-red-50/50 border-4 border-dashed border-red-300 p-6 rounded-3xl mb-8 relative">
+                <div className="absolute -top-3 left-6 bg-red-400 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
+                  USER SPACE (Uživatelský prostor) - Ring 3
                 </div>
-                <div className="flex justify-between text-xs font-mono text-blue-400 mb-4 font-bold">
+                <div className="flex justify-between text-xs font-mono text-red-400 mb-4 font-bold">
                   <span>Adresa: 11</span>
                   <span>Adresa: 100</span>
                 </div>
 
                 <div className="flex flex-wrap gap-4">
-                  <div className={`p-4 bg-white rounded-2xl shadow-sm border-2 w-48 relative z-10 transition-colors border-blue-300`}>
-                    <div className="text-[10px] text-blue-400 font-mono text-right mb-1">Adresy 11 - 40</div>
-                    <div className="flex items-center gap-2 font-bold text-blue-900 mb-2">
-                      <Gamepad2 className="w-5 h-5 text-blue-600" /> Hra.exe
+                  <div className={`p-4 bg-white rounded-2xl shadow-sm border-2 w-48 relative z-10 transition-colors border-red-200`}>
+                    <div className="text-[10px] text-red-400 font-mono text-right mb-1">Adresy 11 - 40</div>
+                    <div className="flex items-center gap-2 font-bold text-slate-700 mb-2">
+                      <Gamepad2 className="w-5 h-5 text-red-500" /> Hra.exe
                     </div>
                     
                     {commState === 'syscall-request' && (
-                      <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce z-20 whitespace-nowrap shadow-md">
-                        SysCall: write(save.dat)
-                      </div>
+                      <>
+                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full z-30 whitespace-nowrap shadow-md">
+                          SysCall: write(save.dat)
+                        </div>
+                        <ArrowDown className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-8 h-8 text-indigo-500 animate-bounce z-20" />
+                      </>
                     )}
 
                     {commState === 'syscall-done' && (
-                      <div className="absolute top-1/2 left-full translate-x-4 -translate-y-1/2 bg-green-100 text-green-700 border-2 border-green-300 text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap z-20">
-                        Data přijata ✓
-                      </div>
+                      <>
+                        <div className="absolute top-1/2 left-full translate-x-4 -translate-y-1/2 bg-green-100 text-green-700 border-2 border-green-300 text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap z-30">
+                          Data přijata ✓
+                        </div>
+                        <ArrowUp className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-8 h-8 text-green-500 animate-bounce z-20" />
+                      </>
                     )}
                   </div>
 
@@ -559,16 +573,16 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
               </div>
 
               {/* The Barrier */}
-              <div className={`h-4 w-full rounded-full mb-8 relative transition-colors bg-slate-600`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-slate-400 text-[10px] font-black px-4 py-1 rounded-full border border-slate-700">
+              <div className={`h-4 w-full rounded-full mb-8 relative transition-colors bg-slate-300`}>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-500 text-white text-[10px] font-black px-4 py-1 rounded-full border border-slate-600">
                   HARDWAROVÁ BARIÉRA (MPU)
                 </div>
               </div>
 
               {/* Kernel Space Region */}
-              <div className="bg-slate-900 border-4 border-slate-700 p-6 rounded-3xl relative">
-                <div className="absolute -top-3 left-6 bg-slate-700 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
-                  KERNEL SPACE (Jádro) - Běží v Ring 0
+              <div className="bg-slate-200 border-4 border-slate-300 p-6 rounded-3xl relative mt-4">
+                <div className="absolute -top-4 left-6 bg-slate-600 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
+                  KERNEL SPACE (Jádro) - Ring 0
                 </div>
                 <div className="flex justify-between text-xs font-mono text-slate-500 mb-4 font-bold">
                   <span>Adresa: 0</span>
@@ -576,55 +590,30 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
                 </div>
 
                 <div className="flex justify-center gap-12 relative">
+                  {commState === 'syscall-driver' && (
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-green-500 animate-pulse z-20">
+                      <ArrowRight className="w-10 h-10" />
+                    </div>
+                  )}
+
                   {/* Jádro */}
-                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all ${commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'bg-indigo-900 border-indigo-400' : 'bg-slate-800 border-slate-600'}`}>
-                    <Cpu className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-kernel' ? 'text-indigo-300 animate-pulse' : 'text-slate-500'}`} />
-                    <div className="font-bold text-slate-300">Jádro OS</div>
+                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all bg-white ${commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'border-indigo-400 shadow-indigo-100' : 'border-slate-300'}`}>
+                    <Cpu className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-kernel' ? 'text-indigo-500 animate-pulse' : 'text-slate-600'}`} />
+                    <div className="font-bold text-slate-700">Jádro OS</div>
                     {commState === 'syscall-kernel' && (
-                      <div className="text-[10px] text-indigo-200 mt-2 font-mono">Prověřuji práva Hra.exe...<br/>Bezpečné. Předávám dál.</div>
+                      <div className="text-[10px] text-indigo-500 mt-2 font-mono">Prověřuji práva...<br/>Předávám ovladači.</div>
                     )}
                   </div>
                   
                   {/* Ovladač */}
-                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all ${commState === 'syscall-driver' ? 'bg-slate-700 border-slate-400' : 'bg-slate-800 border-slate-600'}`}>
-                    <HardDrive className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-driver' ? 'text-green-300 animate-bounce' : 'text-slate-500'}`} />
-                    <div className="font-bold text-slate-300">Ovladač Disku</div>
+                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all bg-white ${commState === 'syscall-driver' ? 'border-green-400 shadow-green-100' : 'border-slate-300'}`}>
+                    <HardDrive className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-driver' ? 'text-green-500 animate-bounce' : 'text-slate-600'}`} />
+                    <div className="font-bold text-slate-700">Ovladač Disku</div>
                     {commState === 'syscall-driver' && (
-                      <div className="text-[10px] text-green-400 mt-2 font-mono">Zapisuji 'save.dat' na fyzický disk...</div>
+                      <div className="text-[10px] text-green-600 mt-2 font-mono">Zapisuji data...</div>
                     )}
                   </div>
                 </div>
-              </div>
-
-              {/* Informational Status Panel */}
-              <div className="mt-8 min-h-[120px] flex items-center justify-center">
-                {commState === 'idle' && (
-                  <div className="text-slate-500 font-medium bg-slate-800/50 px-6 py-3 rounded-2xl border border-slate-700">Klikni na tlačítko výše pro ukázku uložení hry.</div>
-                )}
-                {commState === 'syscall-request' && (
-                  <div className="bg-indigo-600 text-white p-4 rounded-3xl text-center shadow-lg border-2 border-indigo-400 max-w-md animate-in slide-in-from-bottom-2 fade-in">
-                    <div className="font-bold text-lg">1. Hra volá SysCall</div>
-                    <p className="text-xs mt-1 text-indigo-200">Hra.exe narazila na checkpoint a chce uložit postup. Volá funkci <code>write()</code>. Procesor hru drží v omezeném <strong>Ring 3</strong>, takže sama na disk zapisovat nesmí.</p>
-                  </div>
-                )}
-                {commState === 'syscall-kernel' && (
-                  <div className="bg-indigo-800 text-white p-4 rounded-3xl text-center shadow-lg border-2 border-indigo-400 max-w-md animate-in slide-in-from-bottom-2 fade-in">
-                    <div className="font-bold text-lg">2. Procesor přepíná do Ring 0</div>
-                    <p className="text-xs mt-1 text-indigo-200">Procesor hardwarově přepne režim do <strong>Ring 0</strong> (získá božská práva). Jádro zkontroluje bezpečnost a bezpečně předává úkol ovladači.</p>
-                  </div>
-                )}
-                {commState === 'syscall-driver' && (
-                  <div className="bg-slate-700 text-white p-4 rounded-3xl text-center shadow-lg border-2 border-slate-400 max-w-md animate-in slide-in-from-bottom-2 fade-in">
-                    <div className="font-bold text-lg">3. Ovladač komunikuje s HW</div>
-                    <p className="text-xs mt-1 text-slate-200">Ovladač v Kernel Space (Ring 0) přesně ví, jak komunikovat se samotným fyzickým diskem (SSD/HDD) a data na něj reálně zapíše.</p>
-                  </div>
-                )}
-                {commState === 'syscall-done' && (
-                  <div className="bg-green-600 text-white p-4 rounded-3xl text-center shadow-lg border-2 border-green-400 max-w-lg animate-in slide-in-from-bottom-2 fade-in">
-                    <h3 className="font-black text-lg mb-1 flex items-center justify-center gap-2"><CheckCircle2 className="w-5 h-5"/> 4. Úspěch a návrat do Ring 3</h3>
-                    <p className="text-xs font-medium text-green-100">Jádro pošle hře signál "hotovo". Procesor opět bezpečně odebere práva (přepne se do <strong>Ring 3</strong>) a hra může dál pokračovat.</p>
-                  </div>
-                )}
               </div>
             </div>
           </div>
