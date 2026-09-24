@@ -61,6 +61,9 @@ import BlatovTask from './components/informatika/models/BlatovTask';
 import MSTTask from './components/informatika/models/MSTTask';
 import ParallelProcesses from './components/informatika/models/ParallelProcesses';
 import SpecializovanaMenu from './components/specializovana/SpecializovanaMenu';
+import ProgramovaniMenu from './components/specializovana/programovani/ProgramovaniMenu';
+import ProgramovaniProjektyMenu from './components/specializovana/programovani/ProgramovaniProjektyMenu';
+import ScratchRaycasterProject from './components/specializovana/programovani/ScratchRaycasterProject';
 import HardwareMenu from './components/informatika/hardware/HardwareMenu';
 import PcBuilderGame from './components/informatika/hardware/PcBuilderGame';
 import DataJourneyGame from './components/informatika/hardware/DataJourneyGame';
@@ -186,8 +189,25 @@ const App: React.FC = () => {
           <SpecializovanaMenu
             onBack={() => setCurrentScreen('landing')}
             onStartOperacniSystemy={() => setCurrentScreen('operacni-systemy-menu')}
+            onStartProgramming={() => setCurrentScreen('programming-menu')}
           />
         );
+      case 'programming-menu':
+        return (
+          <ProgramovaniMenu
+            onBack={() => setCurrentScreen('specializovana-menu')}
+            onStartProjects={() => setCurrentScreen('programming-projects-menu')}
+          />
+        );
+      case 'programming-projects-menu':
+        return (
+          <ProgramovaniProjektyMenu
+            onBack={() => setCurrentScreen('programming-menu')}
+            onStartRaycaster={() => setCurrentScreen('scratch-raycaster-project')}
+          />
+        );
+      case 'scratch-raycaster-project':
+        return <ScratchRaycasterProject onBack={() => setCurrentScreen('programming-projects-menu')} />;
       case 'hardware-menu':
         return (
           <HardwareMenu

@@ -99,6 +99,9 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'osb': 'os-boot-chapter',
   'cpa': 'compression-algos-menu',
   'huf': 'huffman-game',
+  'prg': 'programming-menu',
+  'prm': 'programming-projects-menu',
+  'ray': 'scratch-raycaster-project',
 };
 
 /**
