@@ -591,6 +591,15 @@ const MarketStatsView: React.FC = () => {
              </div>
              <div className="space-y-2">
                 <div className="flex justify-between text-sm font-bold">
+                   <span className="text-purple-600">Linux & Ostatní</span>
+                   <span>~ 15 %</span>
+                </div>
+                <div className="h-4 bg-slate-200 rounded-full overflow-hidden">
+                   <div className="h-full bg-purple-400 w-[15%]"></div>
+                </div>
+             </div>
+             <div className="space-y-2">
+                <div className="flex justify-between text-sm font-bold">
                    <span className="text-slate-600">macOS (Apple)</span>
                    <span>~ 14 %</span>
                 </div>
@@ -605,15 +614,6 @@ const MarketStatsView: React.FC = () => {
                 </div>
                 <div className="h-4 bg-slate-200 rounded-full overflow-hidden">
                    <div className="h-full bg-orange-400 w-[3%]"></div>
-                </div>
-             </div>
-             <div className="space-y-2">
-                <div className="flex justify-between text-sm font-bold">
-                   <span className="text-purple-600">Linux & Ostatní</span>
-                   <span>~ 15 %</span>
-                </div>
-                <div className="h-4 bg-slate-200 rounded-full overflow-hidden">
-                   <div className="h-full bg-purple-400 w-[15%]"></div>
                 </div>
              </div>
           </div>

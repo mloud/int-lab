@@ -95,6 +95,7 @@ export const ROUTE_MAP: Record<string, Screen> = {
   'rms': 'ram-simulator',
   'osi': 'os-intro',
   'osa': 'os-architecture-chapter',
+  'ose': 'os-evolution-chapter',
   'osb': 'os-boot-chapter',
   'cpa': 'compression-algos-menu',
   'huf': 'huffman-game',
