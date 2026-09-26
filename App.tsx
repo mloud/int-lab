@@ -76,6 +76,9 @@ import CodesMenu from './components/informatika/codes/CodesMenu';
 import LaundryGame from './components/informatika/codes/LaundryGame';
 import EmojiGame from './components/informatika/codes/EmojiGame';
 import CountryCodesGame from './components/informatika/codes/CountryCodesGame';
+import FutureTechMenu from './components/informatika/future-tech/FutureTechMenu';
+import IoTChapter from './components/informatika/future-tech/IoTChapter';
+import Industry40Chapter from './components/informatika/future-tech/Industry40Chapter';
 import { Screen, Difficulty, Segment } from './types';
 import { ROCKET_DATA, CAT_DATA, COMPUTER_DATA } from './constants';
 
@@ -139,6 +142,7 @@ const App: React.FC = () => {
             onStartHardware={() => setCurrentScreen('hardware-menu')}
             onStartOs={() => setCurrentScreen('informatika-os-menu')}
             onStartCodes={() => setCurrentScreen('codes-menu')}
+            onStartFutureTech={() => setCurrentScreen('future-tech-menu')}
             onBack={() => setCurrentScreen('landing')}
           />
         );
@@ -473,6 +477,18 @@ const App: React.FC = () => {
         return <EmojiGame onBack={() => setCurrentScreen('codes-menu')} />;
       case 'country-codes-game':
         return <CountryCodesGame onBack={() => setCurrentScreen('codes-menu')} />;
+      case 'future-tech-menu':
+        return (
+          <FutureTechMenu
+            onStartIoT={() => setCurrentScreen('iot-chapter')}
+            onStartIndustry40={() => setCurrentScreen('industry-4-0-chapter')}
+            onBack={() => setCurrentScreen('informatika-menu')}
+          />
+        );
+      case 'iot-chapter':
+        return <IoTChapter onBack={() => setCurrentScreen('future-tech-menu')} />;
+      case 'industry-4-0-chapter':
+        return <Industry40Chapter onBack={() => setCurrentScreen('future-tech-menu')} />;
       default:
         return (
           <SubjectSelection
