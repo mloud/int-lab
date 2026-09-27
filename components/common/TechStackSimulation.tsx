@@ -9,11 +9,11 @@ import {
   Zap,
   ArrowRight,
   Database,
-  FileCode2,
   Box,
   Layers,
   MonitorPlay,
-  X
+  X,
+  Info
 } from 'lucide-react';
 
 interface TechStackSimulationProps {
@@ -22,18 +22,9 @@ interface TechStackSimulationProps {
 
 const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) => {
   const [step, setStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedTech, setSelectedTech] = useState<{name: string, desc: string} | null>(null);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isPlaying && step < 4) {
-      timer = setTimeout(() => {
-        setStep(s => s + 1);
-      }, 4000);
-    } else if (step >= 4) {
-      setIsPlaying(false);
-    }
-
     // Auto-scroll logic
     if (step >= 0 && step < 4) {
       const el = document.getElementById(`step-${step}`);
@@ -41,9 +32,7 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
         el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     }
-
-    return () => clearTimeout(timer);
-  }, [step, isPlaying]);
+  }, [step]);
 
   const steps = [
     {
@@ -94,21 +83,20 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
           
           {/* Controls */}
           <div className="absolute top-6 right-6 z-30 flex gap-2">
-            <button
-              onClick={() => {
-                setStep(0);
-                setIsPlaying(true);
-              }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
-            >
-              {isPlaying ? 'Restartovat' : 'Spustit simulaci'}
-            </button>
-            {step < 4 && !isPlaying && (
+            {step < 4 && (
               <button
                 onClick={() => setStep(s => s + 1)}
-                className="bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-700 px-4 py-2 rounded-xl font-bold text-sm shadow-sm transition-all active:scale-95"
+                className="bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-700 px-4 py-2 rounded-xl font-bold text-sm shadow-sm transition-all active:scale-95 flex items-center gap-2"
               >
-                Další krok
+                Další krok <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+            {step >= 4 && (
+              <button
+                onClick={() => setStep(0)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
+              >
+                Reset
               </button>
             )}
           </div>
@@ -139,11 +127,11 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
                 <div>
                   <h3 className="font-bold text-slate-800">Zdrojový kód</h3>
                   <div className="flex gap-1 justify-center mt-2">
-                    <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded font-bold">React</span>
-                    <span className="text-[10px] bg-sky-100 text-sky-700 px-2 py-1 rounded font-bold">Tailwind</span>
+                    <button onClick={() => setSelectedTech({name: 'React', desc: 'Knihovna pro tvorbu uživatelského rozhraní. Zajišťuje interaktivitu, správu stavu a komponentový přístup.'})} className="text-[10px] bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-1 rounded font-bold transition-colors cursor-pointer">React</button>
+                    <button onClick={() => setSelectedTech({name: 'Tailwind CSS', desc: 'Nástroj pro rychlé a moderní stylování. Umožňuje tvořit responzivní a atraktivní design přímo v kódu bez nutnosti externích CSS souborů.'})} className="text-[10px] bg-sky-100 hover:bg-sky-200 text-sky-700 px-2 py-1 rounded font-bold transition-colors cursor-pointer">Tailwind</button>
                   </div>
                   <div className="mt-1">
-                    <span className="text-[10px] bg-black text-white px-2 py-1 rounded font-bold">Next.js</span>
+                    <button onClick={() => setSelectedTech({name: 'Next.js', desc: 'Moderní framework nad Reactem, který umí celou aplikaci poskládat a vygenerovat do statických HTML/CSS/JS souborů pro extrémní rychlost.'})} className="text-[10px] bg-black hover:bg-slate-800 text-white px-2 py-1 rounded font-bold transition-colors cursor-pointer">Next.js</button>
                   </div>
                 </div>
               </div>
@@ -181,7 +169,12 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
                   <Github className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">GitHub Pages</h3>
+                  <h3 
+                    onClick={() => setSelectedTech({name: 'GitHub Pages', desc: 'Bezplatný server pro hostování statických webů. Slouží jako rychlý distribuční bod (CDN), odkud se stránka bleskově stáhne k žákovi.'})} 
+                    className="font-bold text-white cursor-pointer hover:text-blue-400 transition-colors underline decoration-dotted"
+                  >
+                    GitHub Pages
+                  </h3>
                   <p className="text-xs text-slate-400 mt-1">Hosting zdarma</p>
                 </div>
               </div>
@@ -239,6 +232,33 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             )}
           </div>
         </div>
+
+        {/* Info Modal for Tech Stack */}
+        {selectedTech && (
+          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+            <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl relative animate-in zoom-in-95 duration-200">
+              <button 
+                onClick={() => setSelectedTech(null)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                  <Info className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-black text-slate-800">{selectedTech.name}</h3>
+              </div>
+              <p className="text-slate-600 text-sm leading-relaxed">{selectedTech.desc}</p>
+              <button 
+                onClick={() => setSelectedTech(null)}
+                className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl transition-colors"
+              >
+                Rozumím
+              </button>
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
