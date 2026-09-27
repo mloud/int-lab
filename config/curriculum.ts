@@ -106,14 +106,65 @@ export const CURRICULUM: Chapter[] = [
     category: 'informatika'
   },
 
-  // Specializovaná IT
+  // Specializovaná IT - Operační Systémy
   {
-    id: 'spec-os',
-    title: 'Architektura OS',
-    path: '/specializovana/operacni-systemy',
+    id: 'os-uvod',
+    title: 'Úvod do OS',
+    path: '/specializovana/operacni-systemy/uvod',
     icon: Server,
     category: 'specializovana'
   },
+  {
+    id: 'os-arch',
+    title: 'Architektura OS',
+    path: '/specializovana/operacni-systemy/architektura',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-vyvoj',
+    title: 'Vývoj OS',
+    path: '/specializovana/operacni-systemy/vyvoj',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-boot',
+    title: 'Bootování',
+    path: '/specializovana/operacni-systemy/boot',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-fs',
+    title: 'Souborové systémy',
+    path: '/specializovana/operacni-systemy/souborove-systemy',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-install',
+    title: 'Instalace',
+    path: '/specializovana/operacni-systemy/instalace',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-proc',
+    title: 'Procesy',
+    path: '/specializovana/operacni-systemy/procesy',
+    icon: Server,
+    category: 'specializovana'
+  },
+  {
+    id: 'os-hw',
+    title: 'Hardware a OS',
+    path: '/specializovana/operacni-systemy/hardware',
+    icon: Server,
+    category: 'specializovana'
+  },
+  
+  // Specializovaná IT - Programování
   {
     id: 'spec-prog',
     title: 'Programování',
