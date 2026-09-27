@@ -42,9 +42,12 @@ const ChapterLayout: React.FC<ChapterLayoutProps> = ({ chapterId, children }) =>
             <div className="h-6 w-px bg-slate-200 hidden sm:block"></div>
             
             <div className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500">
-              <span className="uppercase tracking-wider text-[10px] font-bold">
+              <Link 
+                href={chapter.category === 'informatika' ? '/informatika' : '/specializovana'}
+                className="uppercase tracking-wider text-[10px] font-bold hover:text-blue-600 transition-colors cursor-pointer"
+              >
                 {chapter.category === 'informatika' ? 'Obecná Informatika' : 'Specializovaná IT'}
-              </span>
+              </Link>
               <span className="text-slate-300">/</span>
               <span className="text-slate-900 font-bold flex items-center gap-2">
                 {Icon && <Icon className="w-4 h-4 text-blue-500" />}
