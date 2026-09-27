@@ -13,7 +13,8 @@ import {
   Layers,
   MonitorPlay,
   X,
-  Info
+  Info,
+  FileCode2
 } from 'lucide-react';
 
 interface TechStackSimulationProps {
