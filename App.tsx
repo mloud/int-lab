@@ -76,6 +76,7 @@ import CodesMenu from './components/informatika/codes/CodesMenu';
 import LaundryGame from './components/informatika/codes/LaundryGame';
 import EmojiGame from './components/informatika/codes/EmojiGame';
 import CountryCodesGame from './components/informatika/codes/CountryCodesGame';
+import EncryptionMenu from './components/informatika/encryption/EncryptionMenu';
 import FutureTechMenu from './components/informatika/future-tech/FutureTechMenu';
 import IoTChapter from './components/informatika/future-tech/IoTChapter';
 import Industry40Chapter from './components/informatika/future-tech/Industry40Chapter';
@@ -142,6 +143,7 @@ const App: React.FC = () => {
             onStartHardware={() => setCurrentScreen('hardware-menu')}
             onStartOs={() => setCurrentScreen('informatika-os-menu')}
             onStartCodes={() => setCurrentScreen('codes-menu')}
+            onStartEncryption={() => setCurrentScreen('encryption-menu')}
             onStartFutureTech={() => setCurrentScreen('future-tech-menu')}
             onBack={() => setCurrentScreen('landing')}
           />
@@ -462,6 +464,8 @@ const App: React.FC = () => {
         );
       case 'quiz':
         return <Quiz onBack={() => setCurrentScreen('splash')} />;
+      case 'encryption-menu':
+        return <EncryptionMenu onBack={() => setCurrentScreen('informatika-menu')} />;
       case 'codes-menu':
         return (
           <CodesMenu
