@@ -33,6 +33,15 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
     } else if (step >= 4) {
       setIsPlaying(false);
     }
+
+    // Auto-scroll logic
+    if (step >= 0 && step < 4) {
+      const el = document.getElementById(`step-${step}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
     return () => clearTimeout(timer);
   }, [step, isPlaying]);
 
@@ -114,11 +123,15 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             ))}
           </div>
 
-          {/* Canvas Area (Vertical Layout) */}
-          <div className="w-full h-full relative mt-8 flex flex-col items-center overflow-y-auto pb-12 pt-4 hide-scrollbar">
+          {/* Canvas Area (Horizontal Layout) */}
+          <div 
+            id="simulation-canvas"
+            className="w-full h-full relative mt-8 flex flex-row items-center overflow-x-auto pb-8 pt-4 px-12 gap-4 hide-scrollbar snap-x"
+            style={{ scrollBehavior: 'smooth' }}
+          >
             
             {/* 1. Vývojář */}
-            <div className={`transition-all duration-1000 ${step >= 0 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'} relative z-10 w-64 flex-shrink-0`}>
+            <div id="step-0" className={`transition-all duration-1000 ${step >= 0 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'} relative z-10 w-64 flex-shrink-0 snap-center`}>
               <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600">
                   <Code2 className="w-8 h-8" />
@@ -137,13 +150,13 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 1 -> 2 */}
-            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 1 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
-              <div className={`absolute top-0 left-0 w-full bg-blue-500 transition-all duration-1000 ${step >= 1 ? 'h-full' : 'h-0'}`} />
-              {step === 1 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-blue-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-blue-100">Build</div>}
+            <div className={`w-16 md:w-32 h-1 bg-slate-200 transition-all duration-1000 relative ${step >= 1 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 h-full bg-blue-500 transition-all duration-1000 ${step >= 1 ? 'w-full' : 'w-0'}`} />
+              {step === 1 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold text-blue-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-blue-100">Build</div>}
             </div>
 
             {/* 2. Statické soubory */}
-            <div className={`transition-all duration-1000 delay-300 ${step >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+            <div id="step-1" className={`transition-all duration-1000 delay-300 ${step >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} relative z-10 w-64 flex-shrink-0 snap-center`}>
               <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
                   <FileCode2 className="w-8 h-8" />
@@ -156,13 +169,13 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 2 -> 3 */}
-            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 2 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
-              <div className={`absolute top-0 left-0 w-full bg-emerald-500 transition-all duration-1000 ${step >= 2 ? 'h-full' : 'h-0'}`} />
-              {step === 2 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-emerald-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-emerald-100">Deploy</div>}
+            <div className={`w-16 md:w-32 h-1 bg-slate-200 transition-all duration-1000 relative ${step >= 2 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 h-full bg-emerald-500 transition-all duration-1000 ${step >= 2 ? 'w-full' : 'w-0'}`} />
+              {step === 2 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold text-emerald-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-emerald-100">Deploy</div>}
             </div>
 
             {/* 3. GitHub Pages */}
-            <div className={`transition-all duration-1000 delay-300 ${step >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+            <div id="step-2" className={`transition-all duration-1000 delay-300 ${step >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} relative z-10 w-64 flex-shrink-0 snap-center`}>
               <div className="bg-slate-800 p-4 rounded-2xl shadow-xl border-2 border-slate-700 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center text-white">
                   <Github className="w-8 h-8" />
@@ -175,13 +188,13 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 3 -> 4 */}
-            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 3 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
-              <div className={`absolute top-0 left-0 w-full bg-orange-500 transition-all duration-1000 ${step >= 3 ? 'h-full' : 'h-0'}`} />
-              {step === 3 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-orange-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-orange-100 whitespace-nowrap">Stažení do prohlížeče</div>}
+            <div className={`w-16 md:w-32 h-1 bg-slate-200 transition-all duration-1000 relative ${step >= 3 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 h-full bg-orange-500 transition-all duration-1000 ${step >= 3 ? 'w-full' : 'w-0'}`} />
+              {step === 3 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold text-orange-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-orange-100 whitespace-nowrap">Stažení klienta</div>}
             </div>
 
             {/* 4. Žák */}
-            <div className={`transition-all duration-1000 delay-300 ${step >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+            <div id="step-3" className={`transition-all duration-1000 delay-300 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} relative z-10 w-64 flex-shrink-0 snap-center`}>
               <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-orange-200 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 relative overflow-hidden">
                   <Smartphone className="w-8 h-8 relative z-10" />
