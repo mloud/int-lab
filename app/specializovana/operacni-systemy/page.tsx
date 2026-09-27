@@ -8,7 +8,11 @@ import CategoryLayout from '@/components/layout/CategoryLayout';
 export default function Page() {
   const router = useRouter();
   return (
-    <CategoryLayout title="Operační systémy" category="specializovana">
+    <CategoryLayout 
+      title="Operační systémy" 
+      category="specializovana"
+      parent={{ title: 'Specializovaná IT', path: '/specializovana' }}
+    >
       <OperacniSystemyMenu 
             onBack={() => router.push('/specializovana')}
             onStartOsIntro={() => router.push('/specializovana/operacni-systemy/uvod')}

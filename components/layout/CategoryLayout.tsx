@@ -5,10 +5,14 @@ import { Home, Menu } from 'lucide-react';
 interface CategoryLayoutProps {
   title: string;
   category: 'informatika' | 'specializovana' | 'main';
+  parent?: {
+    title: string;
+    path: string;
+  };
   children: React.ReactNode;
 }
 
-const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, children }) => {
+const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, parent, children }) => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
@@ -29,7 +33,18 @@ const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, childr
             <div className="h-6 w-px bg-slate-200 hidden sm:block"></div>
             
             <div className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500">
-              <span className="uppercase tracking-wider text-[10px] font-bold text-slate-900">
+              {parent && (
+                <>
+                  <Link 
+                    href={parent.path}
+                    className="uppercase tracking-wider text-[10px] font-bold hover:text-blue-600 transition-colors cursor-pointer"
+                  >
+                    {parent.title}
+                  </Link>
+                  <span className="text-slate-300">/</span>
+                </>
+              )}
+              <span className={`uppercase tracking-wider text-[10px] font-bold ${parent ? 'text-slate-900' : 'text-slate-500'}`}>
                 {title}
               </span>
             </div>
