@@ -21,6 +21,7 @@ export interface Chapter {
   path: string;
   icon?: React.ElementType;
   description?: string;
+  keywords?: string[];
   category: 'informatika' | 'specializovana';
   parent?: {
     title: string;
@@ -36,6 +37,7 @@ export const CURRICULUM: Chapter[] = [
     path: '/informatika/barvy',
     icon: Palette,
     description: 'Jak počítače reprezentují a míchají barvy.',
+        keywords: ['rgb', 'cmyk', 'pixely', 'barva', 'míchání'],
     category: 'informatika'
   },
   {
@@ -44,6 +46,7 @@ export const CURRICULUM: Chapter[] = [
     path: '/informatika/binarni',
     icon: Binary,
     description: 'Nuly a jedničky: Základní jazyk počítačů.',
+        keywords: ['jedničky', 'nuly', 'číselné', 'soustavy', 'hexadecimální'],
     category: 'informatika'
   },
   {
@@ -51,6 +54,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Technologie budoucnosti',
     path: '/informatika/budoucnost',
     icon: Globe,
+        description: 'Umělá inteligence, kvantové počítače a sítě.',
+    keywords: ['AI', 'umělá inteligence', 'kvantové', 'sítě', '5g', 'iot'],
     category: 'informatika'
   },
   {
@@ -58,6 +63,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Vektorová grafika',
     path: '/informatika/cary',
     icon: PenTool,
+        description: 'Vektorové kreslení, křivky a rastr.',
+    keywords: ['vektor', 'rastr', 'křivky', 'kreslení', 'bezier'],
     category: 'informatika'
   },
   {
@@ -65,6 +72,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Hardware',
     path: '/informatika/hardware',
     icon: Cpu,
+        description: 'Stavba počítače, procesor, paměti.',
+    keywords: ['cpu', 'ram', 'procesor', 'disk', 'motherboard', 'deska'],
     category: 'informatika'
   },
   {
@@ -72,6 +81,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Jednotky informací',
     path: '/informatika/jednotky',
     icon: Ruler,
+        description: 'Bity, byty a jak se měří data.',
+    keywords: ['bit', 'byte', 'megabyte', 'gigabyte', 'data'],
     category: 'informatika'
   },
   {
@@ -79,6 +90,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Kódování znaků',
     path: '/informatika/kody',
     icon: QrCode,
+        description: 'Znakové sady, ASCII a Unicode.',
+    keywords: ['ascii', 'unicode', 'utf-8', 'znaky', 'text'],
     category: 'informatika'
   },
   {
@@ -86,6 +99,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Komprese dat',
     path: '/informatika/komprese',
     icon: FileArchive,
+        description: 'Jak zmenšit soubory (ZIP, RAR).',
+    keywords: ['zip', 'rar', 'ztrátová', 'neztrátová', 'zmenšení', 'archiv'],
     category: 'informatika'
   },
   {
@@ -93,6 +108,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Modely a grafy',
     path: '/informatika/modely',
     icon: Share2,
+        description: 'Teorie grafů a sítě.',
+    keywords: ['uzly', 'hrany', 'síť', 'graf', 'model'],
     category: 'informatika'
   },
   {
@@ -100,6 +117,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Operační systémy',
     path: '/informatika/os',
     icon: Monitor,
+        description: 'Windows, Linux, macOS.',
+    keywords: ['windows', 'linux', 'macos', 'android', 'ios'],
     category: 'informatika'
   },
   {
@@ -107,6 +126,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Šifrování a bezpečnost',
     path: '/informatika/sifry',
     icon: Lock,
+        description: 'Bezpečnost, asymetrická kryptografie.',
+    keywords: ['hesla', 'kryptografie', 'bezpečnost', 'hacker', 'rsa'],
     category: 'informatika'
   },
 
@@ -116,6 +137,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Úvod do OS',
     path: '/specializovana/operacni-systemy/uvod',
     icon: Server,
+        description: 'Základní principy a rozdělení operačních systémů.',
+    keywords: ['kernel', 'jádro', 'funkce os'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -124,6 +147,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Architektura OS',
     path: '/specializovana/operacni-systemy/architektura',
     icon: Server,
+        description: 'Monolitické vs mikro-jádro.',
+    keywords: ['architektura', 'monolit', 'mikrojádro', 'ovladače'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -132,6 +157,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Vývoj OS',
     path: '/specializovana/operacni-systemy/vyvoj',
     icon: Server,
+        description: 'Historie od sálových počítačů po mobily.',
+    keywords: ['historie', 'vývoj', 'unix', 'dos'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -140,6 +167,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Bootování',
     path: '/specializovana/operacni-systemy/boot',
     icon: Server,
+        description: 'Jak startuje počítač (BIOS, UEFI).',
+    keywords: ['boot', 'start', 'bios', 'uefi', 'zavaděč'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -148,6 +177,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Souborové systémy',
     path: '/specializovana/operacni-systemy/souborove-systemy',
     icon: Server,
+        description: 'FAT32, NTFS, EXT4 a ukládání na disk.',
+    keywords: ['soubory', 'disk', 'fat32', 'ntfs', 'ext4', 'formátování'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -156,6 +187,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Instalace',
     path: '/specializovana/operacni-systemy/instalace',
     icon: Server,
+        description: 'Instalátor OS.',
+    keywords: ['instalace', 'setup', 'windows instalace'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -164,6 +197,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Procesy',
     path: '/specializovana/operacni-systemy/procesy',
     icon: Server,
+        description: 'Jak systém spravuje běžící programy.',
+    keywords: ['procesy', 'vlákna', 'task manager', 'správce úloh'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -172,6 +207,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Hardware a OS',
     path: '/specializovana/operacni-systemy/hardware',
     icon: Server,
+        description: 'Přerušení a komunikace s HW.',
+    keywords: ['přerušení', 'irq', 'ovladače', 'hardware'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
@@ -182,6 +219,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Programování',
     path: '/specializovana/programovani',
     icon: Terminal,
+        description: 'Základy vývoje aplikací a her.',
+    keywords: ['programování', 'kód', 'vývoj', 'hra'],
     category: 'specializovana'
   },
   {
@@ -189,6 +228,8 @@ export const CURRICULUM: Chapter[] = [
     title: 'Raycaster (3D v 2D)',
     path: '/specializovana/programovani/projekty/raycaster',
     icon: Terminal,
+        description: 'Tvorba 3D enginu v 2D prostředí.',
+    keywords: ['raycasting', '3d', '2d', 'engine', 'scratch', 'doom', 'wolfenstein'],
     category: 'specializovana',
     parent: {
       title: 'Projekty a vývoj her',
@@ -219,3 +260,96 @@ export const getPrevChapter = (currentId: string) => {
   }
   return null;
 };
+
+
+export const SEARCH_INDEX: Chapter[] = [
+  ...CURRICULUM,
+  {
+    id: 'komprese-algoritmy',
+    title: 'Kompresní algoritmy',
+    path: '/informatika/komprese/algoritmy',
+    description: 'Přehled algoritmů pro bezeztrátovou a ztrátovou kompresi.',
+    keywords: ['algoritmus', 'komprese', 'huffman', 'rle'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-huffman',
+    title: 'Huffmanovo kódování',
+    path: '/informatika/komprese/algoritmy/huffman',
+    description: 'Nejznámější algoritmus pro bezeztrátovou kompresi pomocí stromu.',
+    keywords: ['huffman', 'strom', 'kódování', 'četnost', 'znaky'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-formaty',
+    title: 'Formáty souborů',
+    path: '/informatika/komprese/formaty',
+    description: 'Jak počítače ukládají obrázky, text a hudbu.',
+    keywords: ['formáty', 'soubory', 'jpeg', 'png', 'mp3'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-jpeg',
+    title: 'Komprese JPEG',
+    path: '/informatika/komprese/formaty/jpeg',
+    description: 'Jak funguje ztrátová komprese fotografií a obrázků.',
+    keywords: ['jpeg', 'jpg', 'fotky', 'ztrátová', 'obrázek'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-obrazek',
+    title: 'Komprese obrázku',
+    path: '/informatika/komprese/formaty/obrazek',
+    description: 'Interaktivní ukázka zmenšování obrázku.',
+    keywords: ['obrázek', 'komprese', 'ukázka', 'pixely'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-rle',
+    title: 'RLE (Run-Length Encoding)',
+    path: '/informatika/komprese/formaty/rle',
+    description: 'Jednoduchá komprese opakujících se znaků.',
+    keywords: ['rle', 'opakování', 'znaky', 'bezeztrátová'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-text-kroky',
+    title: 'Kroky komprese textu',
+    path: '/informatika/komprese/formaty/text-kroky',
+    description: 'Jak probíhá komprese textového souboru krok za krokem.',
+    keywords: ['text', 'kroky', 'postup', 'slovník'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-velikost',
+    title: 'Velikost souborů',
+    path: '/informatika/komprese/formaty/velikost',
+    description: 'Porovnání velikostí různých typů souborů a formátů.',
+    keywords: ['velikost', 'bajty', 'kb', 'mb', 'porovnání'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-hra',
+    title: 'Kompresní hra',
+    path: '/informatika/komprese/hra',
+    description: 'Zkuste si kompresi v interaktivní hře.',
+    keywords: ['hra', 'interaktivní', 'zábava', 'výzva'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-kontrolni-soucet',
+    title: 'Kontrolní součet',
+    path: '/informatika/komprese/kontrolni-soucet',
+    description: 'Jak ověřit, že se soubor při přenosu nebo kompresi nepoškodil.',
+    keywords: ['hash', 'md5', 'crc', 'ověření', 'bezpečnost'],
+    category: 'informatika'
+  },
+  {
+    id: 'komprese-text',
+    title: 'Komprese textu',
+    path: '/informatika/komprese/text',
+    description: 'Základy komprese textových dokumentů.',
+    keywords: ['text', 'dokument', 'slova', 'slovníková'],
+    category: 'informatika'
+  }
+];

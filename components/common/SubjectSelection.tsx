@@ -1,8 +1,9 @@
 'use client';
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search } from 'lucide-react';
 import TechStackSimulation from './TechStackSimulation';
 import { motion, AnimatePresence } from 'framer-motion';
+import SearchModal from './SearchModal';
 
 interface SubjectSelectionProps {
   onSelectInformatika: () => void;
@@ -14,7 +15,19 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   onSelectSpecializovana,
 }) => {
   const [showTechStack, setShowTechStack] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<'info' | 'spec' | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full bg-slate-50 overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-indigo-500/30">
@@ -48,6 +61,18 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
       
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-12 flex flex-col items-center">
         
+        {/* Global Search Action */}
+        <div className="absolute top-8 right-8 z-50">
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 rounded-full text-slate-500 hover:text-slate-800 transition-all font-bold text-xs uppercase tracking-wider"
+          >
+            <Search className="w-4 h-4" />
+            <span className="hidden sm:inline">Hledat</span>
+            <span className="hidden sm:inline font-mono px-1.5 py-0.5 bg-slate-100 rounded text-slate-400 text-[10px]">Ctrl+K</span>
+          </button>
+        </div>
+
         {/* Hero Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -177,6 +202,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           <TechStackSimulation onClose={() => setShowTechStack(false)} />
         )}
       </AnimatePresence>
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </div>
   );
 };

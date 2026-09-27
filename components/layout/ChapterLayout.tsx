@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Home, Menu } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Home, Menu, Search } from 'lucide-react';
 import { getChapterById, getNextChapter, getPrevChapter } from '@/config/curriculum';
+import SearchModal from '../common/SearchModal';
 
 interface ChapterLayoutProps {
   chapterId: string;
@@ -11,6 +12,18 @@ interface ChapterLayoutProps {
 
 const ChapterLayout: React.FC<ChapterLayoutProps> = ({ chapterId, children }) => {
   const router = useRouter();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
   const chapter = getChapterById(chapterId);
   
   if (!chapter) {
@@ -68,8 +81,15 @@ const ChapterLayout: React.FC<ChapterLayoutProps> = ({ chapterId, children }) =>
             </div>
           </div>
 
-          {/* Right actions (could be standard menu or user profile) */}
-          <div>
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+             <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
+                title="Hledat (Ctrl+K)"
+             >
+               <Search className="w-5 h-5" />
+             </button>
              <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors sm:hidden">
                <Menu className="w-5 h-5" />
              </button>
@@ -131,6 +151,7 @@ const ChapterLayout: React.FC<ChapterLayoutProps> = ({ chapterId, children }) =>
         </div>
       </footer>
       
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </div>
   );
 };

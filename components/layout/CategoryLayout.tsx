@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Home, Menu } from 'lucide-react';
+import { Home, Menu, Search } from 'lucide-react';
+import SearchModal from '../common/SearchModal';
 
 interface CategoryLayoutProps {
   title: string;
@@ -13,6 +14,18 @@ interface CategoryLayoutProps {
 }
 
 const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, parent, children }) => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
@@ -51,7 +64,14 @@ const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, parent
           </div>
 
           {/* Right actions */}
-          <div>
+          <div className="flex items-center gap-2">
+             <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
+                title="Hledat (Ctrl+K)"
+             >
+               <Search className="w-5 h-5" />
+             </button>
              <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors sm:hidden">
                <Menu className="w-5 h-5" />
              </button>
@@ -73,6 +93,7 @@ const CategoryLayout: React.FC<CategoryLayoutProps> = ({ title, category, parent
         </div>
       </main>
       
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </div>
   );
 };
