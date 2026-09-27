@@ -11,6 +11,8 @@ import { ROCKET_DATA, CAT_DATA, COMPUTER_DATA } from '@/constants';
 
 type Screen = 'splash' | 'menu' | 'drawing' | 'quiz';
 
+import ChapterLayout from '@/components/layout/ChapterLayout';
+
 export default function ColorsPage() {
   const router = useRouter();
   const [currentScreen, setCurrentScreen] = useState<Screen>('splash');
@@ -61,8 +63,10 @@ export default function ColorsPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc] relative">
-      {renderScreen()}
-    </div>
+    <ChapterLayout chapterId="barvy">
+      <div className="flex flex-col items-center justify-center relative w-full h-full min-h-[60vh]">
+        {renderScreen()}
+      </div>
+    </ChapterLayout>
   );
 }
