@@ -22,6 +22,10 @@ export interface Chapter {
   icon?: React.ElementType;
   description?: string;
   category: 'informatika' | 'specializovana';
+  parent?: {
+    title: string;
+    path: string;
+  };
 }
 
 export const CURRICULUM: Chapter[] = [
@@ -112,56 +116,64 @@ export const CURRICULUM: Chapter[] = [
     title: 'Úvod do OS',
     path: '/specializovana/operacni-systemy/uvod',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-arch',
     title: 'Architektura OS',
     path: '/specializovana/operacni-systemy/architektura',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-vyvoj',
     title: 'Vývoj OS',
     path: '/specializovana/operacni-systemy/vyvoj',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-boot',
     title: 'Bootování',
     path: '/specializovana/operacni-systemy/boot',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-fs',
     title: 'Souborové systémy',
     path: '/specializovana/operacni-systemy/souborove-systemy',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-install',
     title: 'Instalace',
     path: '/specializovana/operacni-systemy/instalace',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-proc',
     title: 'Procesy',
     path: '/specializovana/operacni-systemy/procesy',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
     id: 'os-hw',
     title: 'Hardware a OS',
     path: '/specializovana/operacni-systemy/hardware',
     icon: Server,
-    category: 'specializovana'
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   
   // Specializovaná IT - Programování
