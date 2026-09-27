@@ -575,7 +575,7 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
                 <line x1="21%" y1="70%" x2="29%" y2="70%" stroke="#4f46e5" strokeWidth="6" strokeDasharray="8 8" className={activeSArrow === 'in-mem' ? 'animate-[dash_1s_linear_infinite]' : ''} />
                 <polygon points="29%,70% 27%,68% 27%,72%" fill="#4f46e5" />
                 {activeSArrow === 'in-mem' && (
-                  <text x="25%" y="67%" fill="#4f46e5" fontSize="11" md:fontSize="14" fontWeight="bold" textAnchor="middle">{currentSStep.arrowText}</text>
+                  <text x="25%" y="67%" fill="#4f46e5" fontSize="11" fontWeight="bold" textAnchor="middle">{currentSStep.arrowText}</text>
                 )}
               </g>
 
@@ -584,7 +584,7 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
                 <line x1="71%" y1="70%" x2="79%" y2="70%" stroke="#e11d48" strokeWidth="6" strokeDasharray="8 8" className={activeSArrow === 'cpu-out' || activeSArrow === 'cpu-mem-read-data-out' ? 'animate-[dash_1s_linear_infinite]' : ''} />
                 <polygon points="79%,70% 77%,68% 77%,72%" fill="#e11d48" />
                 {(activeSArrow === 'cpu-out' || activeSArrow === 'cpu-mem-read-data-out') && (
-                  <text x="75%" y="67%" fill="#e11d48" fontSize="11" md:fontSize="14" fontWeight="bold" textAnchor="middle">Odesílám: 12</text>
+                  <text x="75%" y="67%" fill="#e11d48" fontSize="11" fontWeight="bold" textAnchor="middle">Odesílám: 12</text>
                 )}
               </g>
 
@@ -741,7 +741,7 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
             <line x1="21%" y1="70%" x2="29%" y2="70%" stroke="#4f46e5" strokeWidth="6" strokeDasharray="8 8" className={activeArrow === 'in-cpu' || activeArrow === 'in-mem' ? 'animate-[dash_1s_linear_infinite]' : ''} />
             <polygon points="29%,70% 27%,68% 27%,72%" fill="#4f46e5" />
             {(activeArrow === 'in-cpu' || activeArrow === 'in-mem') && (
-              <text x="25%" y="67%" fill="#4f46e5" fontSize="11" md:fontSize="14" fontWeight="bold" textAnchor="middle">{currentStep.arrowText}</text>
+              <text x="25%" y="67%" fill="#4f46e5" fontSize="11" fontWeight="bold" textAnchor="middle">{currentStep.arrowText}</text>
             )}
           </g>
 
@@ -750,7 +750,7 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
             <line x1="71%" y1="70%" x2="79%" y2="70%" stroke="#e11d48" strokeWidth="6" strokeDasharray="8 8" className={activeArrow === 'cpu-out' ? 'animate-[dash_1s_linear_infinite]' : ''} />
             <polygon points="79%,70% 77%,68% 77%,72%" fill="#e11d48" />
             {activeArrow === 'cpu-out' && (
-              <text x="75%" y="67%" fill="#e11d48" fontSize="11" md:fontSize="14" fontWeight="bold" textAnchor="middle">{currentStep.arrowText}</text>
+              <text x="75%" y="67%" fill="#e11d48" fontSize="11" fontWeight="bold" textAnchor="middle">{currentStep.arrowText}</text>
             )}
           </g>
 
