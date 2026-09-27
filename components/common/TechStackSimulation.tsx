@@ -114,12 +114,12 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             ))}
           </div>
 
-          {/* Canvas Area */}
-          <div className="w-full h-full max-w-4xl relative mt-8">
+          {/* Canvas Area (Vertical Layout) */}
+          <div className="w-full h-full relative mt-8 flex flex-col items-center overflow-y-auto pb-12 pt-4 hide-scrollbar">
             
             {/* 1. Vývojář */}
-            <div className={`absolute top-1/2 left-0 -translate-y-1/2 w-48 transition-all duration-1000 ${step >= 0 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3 relative z-10">
+            <div className={`transition-all duration-1000 ${step >= 0 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'} relative z-10 w-64 flex-shrink-0`}>
+              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600">
                   <Code2 className="w-8 h-8" />
                 </div>
@@ -137,14 +137,14 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 1 -> 2 */}
-            <div className={`absolute top-1/2 left-48 right-1/2 -translate-y-1/2 h-0.5 bg-slate-300 transition-all duration-1000 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
-              <div className={`absolute inset-0 bg-blue-500 transition-all duration-1000 ${step >= 1 ? 'w-full' : 'w-0'}`} />
-              {step === 1 && <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-xs font-bold text-blue-600 bg-slate-50 px-2">Build</div>}
+            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 1 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 w-full bg-blue-500 transition-all duration-1000 ${step >= 1 ? 'h-full' : 'h-0'}`} />
+              {step === 1 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-blue-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-blue-100">Build</div>}
             </div>
 
             {/* 2. Statické soubory */}
-            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 transition-all duration-1000 delay-300 ${step >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3 relative z-10">
+            <div className={`transition-all duration-1000 delay-300 ${step >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-slate-100 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
                   <FileCode2 className="w-8 h-8" />
                 </div>
@@ -156,14 +156,14 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 2 -> 3 */}
-            <div className={`absolute top-1/2 left-1/2 right-48 -translate-y-1/2 h-0.5 bg-slate-300 transition-all duration-1000 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
-              <div className={`absolute inset-0 bg-emerald-500 transition-all duration-1000 ${step >= 2 ? 'w-full' : 'w-0'}`} />
-              {step === 2 && <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-xs font-bold text-emerald-600 bg-slate-50 px-2">Deploy</div>}
+            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 2 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 w-full bg-emerald-500 transition-all duration-1000 ${step >= 2 ? 'h-full' : 'h-0'}`} />
+              {step === 2 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-emerald-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-emerald-100">Deploy</div>}
             </div>
 
             {/* 3. GitHub Pages */}
-            <div className={`absolute top-1/4 right-0 w-48 transition-all duration-1000 delay-300 ${step >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              <div className="bg-slate-800 p-4 rounded-2xl shadow-xl border-2 border-slate-700 flex flex-col items-center text-center gap-3 relative z-10">
+            <div className={`transition-all duration-1000 delay-300 ${step >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+              <div className="bg-slate-800 p-4 rounded-2xl shadow-xl border-2 border-slate-700 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center text-white">
                   <Github className="w-8 h-8" />
                 </div>
@@ -175,14 +175,14 @@ const TechStackSimulation: React.FC<TechStackSimulationProps> = ({ onClose }) =>
             </div>
 
             {/* Šipka 3 -> 4 */}
-            <div className={`absolute top-[40%] bottom-1/4 right-24 w-0.5 bg-slate-300 transition-all duration-1000 ${step >= 3 ? 'opacity-100' : 'opacity-0'}`}>
-              <div className={`absolute inset-x-0 top-0 bg-orange-500 transition-all duration-1000 ${step >= 3 ? 'h-full' : 'h-0'}`} />
-              {step === 3 && <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-xs font-bold text-orange-600 bg-slate-50 px-2 py-1 whitespace-nowrap z-10">Stažení do prohlížeče</div>}
+            <div className={`w-1 h-12 bg-slate-200 transition-all duration-1000 my-2 relative ${step >= 3 ? 'opacity-100' : 'opacity-0'} flex-shrink-0`}>
+              <div className={`absolute top-0 left-0 w-full bg-orange-500 transition-all duration-1000 ${step >= 3 ? 'h-full' : 'h-0'}`} />
+              {step === 3 && <div className="absolute top-1/2 left-4 -translate-y-1/2 text-[10px] font-bold text-orange-600 bg-slate-50 px-2 py-1 rounded shadow-sm border border-orange-100 whitespace-nowrap">Stažení do prohlížeče</div>}
             </div>
 
             {/* 4. Žák */}
-            <div className={`absolute bottom-1/4 right-0 w-48 transition-all duration-1000 delay-300 ${step >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-orange-200 flex flex-col items-center text-center gap-3 relative z-10">
+            <div className={`transition-all duration-1000 delay-300 ${step >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} relative z-10 w-64 flex-shrink-0`}>
+              <div className="bg-white p-4 rounded-2xl shadow-xl border-2 border-orange-200 flex flex-col items-center text-center gap-3">
                 <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 relative overflow-hidden">
                   <Smartphone className="w-8 h-8 relative z-10" />
                   {step >= 3 && <div className="absolute inset-0 bg-orange-200 animate-pulse opacity-50" />}
