@@ -9,14 +9,7 @@ interface ProgramovaniProjektyMenuProps {
 const ProgramovaniProjektyMenu: React.FC<ProgramovaniProjektyMenuProps> = ({ onBack, onStartRaycaster }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
-      <div className="flex justify-start mb-6">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
-        >
-          <ArrowLeft className="w-4 h-4" /> Zpět na Programování
-        </button>
-      </div>
+      
 
       <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center">
         <div className="w-20 h-20 bg-teal-50 rounded-3xl flex items-center justify-center mb-8 shadow-inner">

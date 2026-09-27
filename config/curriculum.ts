@@ -183,6 +183,17 @@ export const CURRICULUM: Chapter[] = [
     path: '/specializovana/programovani',
     icon: Terminal,
     category: 'specializovana'
+  },
+  {
+    id: 'prog-raycaster',
+    title: 'Raycaster (3D v 2D)',
+    path: '/specializovana/programovani/projekty/raycaster',
+    icon: Terminal,
+    category: 'specializovana',
+    parent: {
+      title: 'Projekty a vývoj her',
+      path: '/specializovana/programovani/projekty'
+    }
   }
 ];
 
