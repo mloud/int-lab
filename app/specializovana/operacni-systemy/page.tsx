@@ -3,11 +3,14 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import OperacniSystemyMenu from '@/components/specializovana/operacni-systemy/OperacniSystemyMenu';
 
+import CategoryLayout from '@/components/layout/CategoryLayout';
+
 export default function Page() {
   const router = useRouter();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc] relative">
-      <OperacniSystemyMenu onBack={() => router.push('/specializovana')}
+    <CategoryLayout title="Operační systémy" category="specializovana">
+      <OperacniSystemyMenu 
+            onBack={() => router.push('/specializovana')}
             onStartOsIntro={() => router.push('/specializovana/operacni-systemy/uvod')}
             onStartOsArchitecture={() => router.push('/specializovana/operacni-systemy/architektura')}
             onStartOsEvolution={() => router.push('/specializovana/operacni-systemy/vyvoj')}
@@ -16,6 +19,6 @@ export default function Page() {
             onStartWindowsInstall={() => router.push('/specializovana/operacni-systemy/instalace')}
             onStartProcessMemory={() => router.push('/specializovana/operacni-systemy/procesy')}
             onStartHardware={() => router.push('/specializovana/operacni-systemy/hardware')} />
-    </div>
+    </CategoryLayout>
   );
 }

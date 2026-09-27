@@ -3,11 +3,14 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import LandingPage from '@/components/informatika/LandingPage';
 
+import CategoryLayout from '@/components/layout/CategoryLayout';
+
 export default function Page() {
   const router = useRouter();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc] relative">
-      <LandingPage onStartColors={() => router.push('/informatika/barvy')}
+    <CategoryLayout title="Obecná Informatika" category="informatika">
+      <LandingPage 
+            onStartColors={() => router.push('/informatika/barvy')}
             onStartLines={() => router.push('/informatika/cary')}
             onStartCompression={() => router.push('/informatika/komprese')}
             onStartCompressionFormats={() => router.push('/informatika/komprese/formaty')}
@@ -21,6 +24,6 @@ export default function Page() {
             onStartEncryption={() => router.push('/informatika/sifry')}
             onStartFutureTech={() => router.push('/informatika/budoucnost')}
             onBack={() => router.push('/')} />
-    </div>
+    </CategoryLayout>
   );
 }
