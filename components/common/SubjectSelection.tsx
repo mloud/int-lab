@@ -1,5 +1,6 @@
-import React from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, ArrowRight, Binary, Cpu, Info } from 'lucide-react';
+import TechStackSimulation from './TechStackSimulation';
 
 interface SubjectSelectionProps {
   onSelectInformatika: () => void;
@@ -10,6 +11,8 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   onSelectInformatika,
   onSelectSpecializovana,
 }) => {
+  const [showTechStack, setShowTechStack] = useState(false);
+
   return (
     <div className="relative w-full max-w-6xl mx-auto px-4 py-12 flex flex-col items-center justify-center animate-in fade-in duration-1000">
       
@@ -91,6 +94,20 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           </button>
         </div>
       </div>
+      
+      {/* Footer Info Button */}
+      <div className="mt-16 flex justify-center w-full animate-in slide-in-from-bottom-4 duration-1000 delay-300">
+        <button
+          onClick={() => setShowTechStack(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-white/50 hover:bg-white/80 border border-slate-200/50 hover:border-slate-300 backdrop-blur-md rounded-full text-slate-500 hover:text-slate-700 font-bold text-xs uppercase tracking-widest transition-all shadow-sm hover:shadow-md"
+        >
+          <Info className="w-4 h-4" /> Jak tento web funguje?
+        </button>
+      </div>
+
+      {showTechStack && (
+        <TechStackSimulation onClose={() => setShowTechStack(false)} />
+      )}
     </div>
   );
 };
