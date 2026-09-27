@@ -21,14 +21,7 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onStartEncryption, onStartFutureTech, onBack }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
-      <div className="flex justify-start mb-6">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
-        >
-          <ArrowLeft className="w-4 h-4" /> Zpět na výběr předmětu
-        </button>
-      </div>
+      
       <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-20 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
         {/* Dekorační prvky na pozadí */}
         <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
