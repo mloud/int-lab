@@ -19,18 +19,17 @@
         
         <!-- --- 3D DOMEČEK Z PRIMITIVŮ --- -->
         
-        <!-- Trávník (Základna) -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4"></a-plane>
+        <!-- Trávník (Základna) - sníženo o 0.01 proti zdem -->
+        <a-plane position="0 -0.01 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4"></a-plane>
         
         <!-- Hlavní zdi (Tělo domu) -->
         <a-box position="0 0.5 0" width="1.5" height="1" depth="1.5" color="#F4E2C6"></a-box>
         
-        <!-- Střecha (Čtyřboký jehlan) -->
-        <!-- segments-radial="4" a rotace 45° z něj udělá přesnou čtvercovou střechu -->
-        <a-cone position="0 1.25 0" radius-bottom="1.1" radius-top="0" height="0.5" segments-radial="4" rotation="0 45 0" color="#D9534F"></a-cone>
+        <!-- Střecha (Čtyřboký jehlan) - zvýšen height na 0.6, posunuto tak, aby se spodní stěna neprala se zdí -->
+        <a-cone position="0 1.25 0" radius-bottom="1.2" radius-top="0" height="0.6" segments-radial="4" rotation="0 45 0" color="#D9534F"></a-cone>
         
-        <!-- Komín -->
-        <a-box position="0.4 1.3 -0.3" width="0.2" height="0.6" depth="0.2" color="#777777"></a-box>
+        <!-- Komín - prodloužen do hloubky zdi -->
+        <a-box position="0.4 1.2 -0.3" width="0.2" height="0.8" depth="0.2" color="#777777"></a-box>
         <!-- Kouř z komína (animovaný) -->
         <a-sphere position="0.4 1.7 -0.3" radius="0.1" color="#cccccc" opacity="0.7"
                   animation="property: position; to: 0.4 2.2 -0.3; loop: true; dur: 2000; easing: linear"
@@ -40,7 +39,7 @@
         <!-- Dveře (vpředu) - mírně povytažené ven pro zamezení Z-fighting -->
         <a-box position="0 0.35 0.78" width="0.4" height="0.7" depth="0.1" color="#8B4513"></a-box>
         <!-- Zlatá klika u dveří -->
-        <a-sphere position="0.12 0.35 0.83" radius="0.03" color="#FFD700"></a-sphere>
+        <a-sphere position="0.12 0.35 0.84" radius="0.03" color="#FFD700"></a-sphere>
 
         <!-- Levé okno -->
         <a-box position="-0.4 0.6 0.78" width="0.35" height="0.35" depth="0.1" color="#87CEEB"></a-box>
@@ -48,7 +47,7 @@
         <a-box position="0.4 0.6 0.78" width="0.35" height="0.35" depth="0.1" color="#87CEEB"></a-box>
         
         <!-- Zahrádka (malý stromek) -->
-        <a-cylinder position="-1 0.2 1" radius="0.05" height="0.4" color="#8B4513"></a-cylinder>
+        <a-cylinder position="-1 0.19 1" radius="0.05" height="0.42" color="#8B4513"></a-cylinder>
         <a-sphere position="-1 0.5 1" radius="0.2" color="#228B22"></a-sphere>
 
       </a-marker>
