@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowRight, Binary, Shapes, BoxSelect, ArrowLeft, HardDrive, Monitor, Lock } from 'lucide-react';
+import { Sparkles, ArrowRight, Binary, Shapes, BoxSelect, ArrowLeft, HardDrive, Monitor, Lock, ScanFace } from 'lucide-react';
 
 interface LandingPageProps {
   onStartColors: () => void;
@@ -15,10 +15,11 @@ interface LandingPageProps {
   onStartCodes: () => void;
   onStartEncryption: () => void;
   onStartFutureTech: () => void;
+  onStartArApps: () => void;
   onBack: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onStartEncryption, onStartFutureTech, onBack }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onStartEncryption, onStartFutureTech, onStartArApps, onBack }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
       
@@ -256,6 +257,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
           <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpa</div></button>
+        </div>
+
+        {/* --- SPECIÁLNÍ AR SEKCE --- */}
+        <h2 className="text-2xl font-black text-rose-500 w-full mt-16 mb-6 uppercase tracking-wider text-left border-b-2 border-rose-100 pb-2 flex items-center gap-2">
+          <ScanFace className="w-6 h-6" /> AR Aplikace
+        </h2>
+        <div className="grid grid-cols-1 gap-6 w-full max-w-3xl">
+          <button
+            onClick={onStartArApps}
+            className="group relative px-8 py-8 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-black rounded-[2.5rem] shadow-xl shadow-rose-200 transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-between overflow-hidden border-4 border-white"
+          >
+            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:rotate-12 transition-transform shadow-inner">
+                <ScanFace className="w-8 h-8 text-white drop-shadow-md" />
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="text-xl sm:text-2xl uppercase tracking-widest text-white drop-shadow-sm">Laboratoř AR</span>
+                <span className="text-sm font-medium text-rose-100 uppercase tracking-wider">Rozšířená realita do mobilu</span>
+              </div>
+            </div>
+            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform relative text-white" />
+          </button>
         </div>
       </div>
 

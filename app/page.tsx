@@ -21,7 +21,11 @@ export default function Page() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f8fafc] relative">
-      <SubjectSelection onSelectInformatika={() => router.push('/informatika')} onSelectSpecializovana={() => router.push('/specializovana')} />
+      <SubjectSelection 
+        onSelectInformatika={() => router.push('/informatika')} 
+        onSelectSpecializovana={() => router.push('/specializovana')} 
+        onSelectArHub={() => router.push('/informatika/ar')}
+      />
     </div>
   );
 }

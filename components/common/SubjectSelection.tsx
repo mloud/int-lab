@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search } from 'lucide-react';
+import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search, ScanFace } from 'lucide-react';
 import TechStackSimulation from './TechStackSimulation';
 import { motion, AnimatePresence } from 'framer-motion';
 import SearchModal from './SearchModal';
@@ -8,11 +8,13 @@ import SearchModal from './SearchModal';
 interface SubjectSelectionProps {
   onSelectInformatika: () => void;
   onSelectSpecializovana: () => void;
+  onSelectArHub?: () => void;
 }
 
 const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   onSelectInformatika,
   onSelectSpecializovana,
+  onSelectArHub,
 }) => {
   const [showTechStack, setShowTechStack] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -177,6 +179,33 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           </motion.div>
 
         </div>
+        
+        {/* AR Hub Button v hlavním menu */}
+        {onSelectArHub && (
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-12 w-full max-w-xl"
+          >
+            <button
+              onClick={onSelectArHub}
+              className="w-full group relative px-8 py-6 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-black rounded-[2rem] shadow-xl shadow-rose-200/50 transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-between overflow-hidden border-4 border-white"
+            >
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="flex items-center gap-5 relative">
+                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:rotate-12 transition-transform shadow-inner">
+                  <ScanFace className="w-8 h-8 text-white drop-shadow-md" />
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-xl sm:text-2xl uppercase tracking-widest text-white drop-shadow-sm">Laboratoř AR</span>
+                  <span className="text-sm font-medium text-rose-100 uppercase tracking-wider">Rozšířená realita do mobilu</span>
+                </div>
+              </div>
+              <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform relative text-white" />
+            </button>
+          </motion.div>
+        )}
       </div>
       
       {/* Footer Info Button */}

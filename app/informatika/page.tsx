@@ -23,6 +23,7 @@ export default function Page() {
             onStartCodes={() => router.push('/informatika/kody')}
             onStartEncryption={() => router.push('/informatika/sifry')}
             onStartFutureTech={() => router.push('/informatika/budoucnost')}
+            onStartArApps={() => router.push('/informatika/ar')}
             onBack={() => router.push('/')} />
     </CategoryLayout>
   );
