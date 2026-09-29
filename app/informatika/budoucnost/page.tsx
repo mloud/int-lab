@@ -11,7 +11,8 @@ export default function Page() {
       <div className="flex flex-col items-center justify-center relative w-full h-full min-h-[60vh]">
       <FutureTechMenu onBack={() => router.push('/informatika')}
             onStartIoT={() => router.push('/informatika/budoucnost/iot')}
-            onStartIndustry40={() => router.push('/informatika/budoucnost/prumysl')} />
+            onStartIndustry40={() => router.push('/informatika/budoucnost/prumysl')}
+            onStartVR={() => router.push('/informatika/budoucnost/vr')} />
     </div>
     </ChapterLayout>
   );

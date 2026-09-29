@@ -1,15 +1,17 @@
 import React from 'react';
-import { ArrowLeft, Sparkles, ArrowRight, Network, Factory } from 'lucide-react';
+import { ArrowLeft, Sparkles, ArrowRight, Network, Factory, Glasses } from 'lucide-react';
 
 interface FutureTechMenuProps {
   onStartIoT: () => void;
   onStartIndustry40: () => void;
+  onStartVR?: () => void;
   onBack: () => void;
 }
 
 const FutureTechMenu: React.FC<FutureTechMenuProps> = ({
   onStartIoT,
   onStartIndustry40,
+  onStartVR,
   onBack
 }) => {
   return (
@@ -72,6 +74,21 @@ const FutureTechMenu: React.FC<FutureTechMenuProps> = ({
             </div>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-orange-50 transition-colors">#industry40</div>
+          </button>
+
+          <button
+            onClick={onStartVR}
+            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100 sm:col-span-2 md:col-span-1 lg:col-span-2"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-5 relative">
+              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Glasses className="w-6 h-6 text-purple-600" />
+              </div>
+              <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Virtuální Realita</span>
+            </div>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#vr</div>
           </button>
         </div>
       </div>
