@@ -59,10 +59,10 @@ const ArHubChapter: React.FC<ArHubChapterProps> = ({ onBack }) => {
           </div>
         )}
 
-        {/* 1. Ukázka - Realistický model */}
+        {/* 1. Ukázka - 3D Domeček z primitivů */}
         <ARScannerCard 
-          title="Průzkumník vesmíru"
-          description="Úchvatná ukázka fotorealistického 3D modelu kosmonauta s plnohodnotným stínováním a animacemi, který vám ožije přímo na lavici."
+          title="Barevný 3D Domeček"
+          description="Ukázka tvorby komplexního 3D modelu (domeček s komínem, stromy, okny) pouze za pomoci kódování základních geometrických tvarů."
           appUrl={finalAppUrl}
         />
         

@@ -3,48 +3,53 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>AR Astronaut - Informatika</title>
-    <!-- Zahrnutí A-Frame -->
+    <title>AR Domeček - Informatika</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <!-- Zahrnutí AR.js pro A-Frame -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <!-- Zahrnutí A-Frame Extras pro přehrávání GLTF animací -->
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     
-    <!-- Scéna: Zakážeme logování AR.js pro čistší konzoli a nastavíme osvětlení -->
     <a-scene 
       embedded 
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;"
-      renderer="colorManagement: true; physicallyCorrectLights: true;"
     >
       
-      <!-- Načtení externích realistických 3D modelů (z CDN) -->
-      <a-assets>
-        <!-- Ikonický model Astronauta s vysokým rozlišením -->
-        <a-asset-item id="astronaut" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"></a-asset-item>
-      </a-assets>
-
-      <!-- Reálné osvětlení, aby model vypadal uvěřitelně na stole -->
-      <a-light type="ambient" color="#ffffff" intensity="1.2"></a-light>
-      <a-light type="directional" color="#ffffff" intensity="2" position="-1 2 1"></a-light>
-
       <!-- Marker (přednastavený Hiro marker) -->
       <a-marker preset="hiro">
         
-        <!-- GLTF Model umístěný na markeru. 
-             Scale: zmenšeno aby se vešel na papír.
-             animation-mixer: spustí animace uložené uvnitř modelu. 
-             Rotace bývá potřeba mírně upravit, aby stál kolmo. -->
-        <a-entity 
-          gltf-model="#astronaut" 
-          scale="0.2 0.2 0.2" 
-          position="0 0 0" 
-          rotation="-90 0 0" 
-          animation-mixer="loop: repeat"
-          shadow="cast: true; receive: false">
-        </a-entity>
+        <!-- --- 3D DOMEČEK Z PRIMITIVŮ --- -->
+        
+        <!-- Trávník (Základna) -->
+        <a-plane position="0 0 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4"></a-plane>
+        
+        <!-- Hlavní zdi (Tělo domu) -->
+        <a-box position="0 0.5 0" width="1.5" height="1" depth="1.5" color="#F4E2C6"></a-box>
+        
+        <!-- Střecha (Čtyřboký jehlan) -->
+        <!-- segments-radial="4" a rotace 45° z něj udělá přesnou čtvercovou střechu -->
+        <a-cone position="0 1.25 0" radius-bottom="1.1" radius-top="0" height="0.5" segments-radial="4" rotation="0 45 0" color="#D9534F"></a-cone>
+        
+        <!-- Komín -->
+        <a-box position="0.4 1.3 -0.3" width="0.2" height="0.6" depth="0.2" color="#777777"></a-box>
+        <!-- Kouř z komína (animovaný) -->
+        <a-sphere position="0.4 1.7 -0.3" radius="0.1" color="#cccccc" opacity="0.7"
+                  animation="property: position; to: 0.4 2.2 -0.3; loop: true; dur: 2000; easing: linear"
+                  animation__fade="property: opacity; to: 0; loop: true; dur: 2000; easing: linear">
+        </a-sphere>
+
+        <!-- Dveře (vpředu) -->
+        <a-box position="0 0.35 0.76" width="0.4" height="0.7" depth="0.05" color="#8B4513"></a-box>
+        <!-- Zlatá klika u dveří -->
+        <a-sphere position="0.12 0.35 0.79" radius="0.03" color="#FFD700"></a-sphere>
+
+        <!-- Levé okno -->
+        <a-box position="-0.4 0.6 0.76" width="0.35" height="0.35" depth="0.05" color="#87CEEB"></a-box>
+        <!-- Pravé okno -->
+        <a-box position="0.4 0.6 0.76" width="0.35" height="0.35" depth="0.05" color="#87CEEB"></a-box>
+        
+        <!-- Zahrádka (malý stromek) -->
+        <a-cylinder position="-1 0.2 1" radius="0.05" height="0.4" color="#8B4513"></a-cylinder>
+        <a-sphere position="-1 0.5 1" radius="0.2" color="#228B22"></a-sphere>
 
       </a-marker>
 
