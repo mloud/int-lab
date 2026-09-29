@@ -19,7 +19,16 @@ const ImageSizeGame: React.FC<ImageSizeGameProps> = ({ onBack }) => {
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [feedback, setFeedback] = useState<'none' | 'wrong' | 'correct'>('none');
 
-  const configs = {
+  interface ImageSizeConfig {
+    title: string;
+    description: string;
+    type: string;
+    resolution?: string;
+    depth?: string;
+    fields?: TaskField[];
+  }
+
+  const configs: Record<string, ImageSizeConfig> = {
     intro: {
       title: 'Jak velký je obrázek v paměti?',
       description: 'Známe-li počet pixelů a barevnou hloubku (kolik bitů potřebujeme na jeden pixel), snadno spočítáme celkovou velikost obrázku. Pamatuj: 1 bajt (B) = 8 bitů (b). Neboj se použít kalkulačku!',

@@ -16,12 +16,21 @@ const ImageCompressionGame: React.FC<ImageCompressionGameProps> = ({ onBack }) =
 
   const createEmptyGrid = (size: number) => Array(size * size).fill(0);
 
+  interface Task0Config {
+    title: string;
+    description: string;
+    mode: 'draw' | 'code';
+    gridSize: number;
+    targetBinary?: string;
+    targetGrid?: number[];
+  }
+
   // Task 0 configurations
-  const task0Configs = {
+  const task0Configs: Record<string, Task0Config> = {
     sandbox: {
       title: 'Krok 1: Pískoviště (3x3 pixely)',
       description: 'Vyzkoušej si kreslení. Klikej na čtverečky a sleduj, jak se dole generuje binární kód. 0 = bílá, 1 = černá.',
-      mode: 'draw' as const,
+      mode: 'draw',
       gridSize: 3
     },
     task1: {

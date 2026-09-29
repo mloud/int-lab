@@ -22,7 +22,8 @@ export default function Page() {
             onStartFileSystemsMenu={() => router.push('/specializovana/operacni-systemy/souborove-systemy')}
             onStartWindowsInstall={() => router.push('/specializovana/operacni-systemy/instalace')}
             onStartProcessMemory={() => router.push('/specializovana/operacni-systemy/procesy')}
-            onStartHardware={() => router.push('/specializovana/operacni-systemy/hardware')} />
+            onStartHardware={() => router.push('/specializovana/operacni-systemy/hardware')} 
+            onStartVirtualization={() => router.push('/specializovana/operacni-systemy/virtualizace')} />
     </CategoryLayout>
   );
 }

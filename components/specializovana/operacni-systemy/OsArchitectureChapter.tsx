@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard, BookOpen, ArrowDown, ArrowUp, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Monitor, Bug, AlertTriangle, RefreshCw, Layers, CheckCircle2, Server, Wifi, Gamepad2, LayoutDashboard, BookOpen, ArrowDown, ArrowUp, ArrowRight, Car, Activity, Globe, Refrigerator, Factory, CreditCard, Brain } from 'lucide-react';
 
 interface OsArchitectureChapterProps {
   onBack: () => void;
@@ -26,9 +26,304 @@ const MODULES: OsModule[] = [
   { id: 'game', name: 'Hry', icon: Gamepad2, core: false, alwaysUser: true },
 ];
 
+type AnswerType = string | string[] | Record<string, string>;
+
+interface QuizQuestion {
+  id: string;
+  type: 'single' | 'multi' | 'text' | 'match';
+  question: string;
+  options?: { id: string; text: string }[];
+  matchItems?: { left: string[]; right: string[] };
+  correct: AnswerType;
+}
+
+const ARCHITECTURE_QUIZ: QuizQuestion[] = [
+  {
+    id: 'q1',
+    type: 'single',
+    question: 'Hraješ hru a ta najednou zamrzne a spadne na plochu. Proč nespadl celý operační systém (modrá smrt)?',
+    options: [
+      { id: 'a', text: 'Hra běžela v Kernel Space, který se po chybě umí sám restartovat.' },
+      { id: 'b', text: 'Hra běžela v User Space (Ring 3), který je procesorem izolován od jádra systému. Systém pád ustojí.' },
+      { id: 'c', text: 'Operační systémy dnes už nikdy nepadají.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q2',
+    type: 'single',
+    question: 'Co se přesně stane, když ve Windows (monolitické jádro) dojde ke kritické chybě v ovladači grafické karty?',
+    options: [
+      { id: 'a', text: 'Zkolabuje pouze obrazovka, ale hudba bude hrát dál.' },
+      { id: 'b', text: 'Ovladač grafiky se tiše restartuje v pozadí.' },
+      { id: 'c', text: 'Dojde k pádu celého operačního systému (Modrá smrt / BSOD), protože ovladače běží ve sdíleném Kernel Space.' }
+    ],
+    correct: 'c'
+  },
+  {
+    id: 'q3',
+    type: 'single',
+    question: 'V QNX (mikrojádro v autech) spadne ovladač Bluetooth. Co se stane se systémem ABS (brzdy)?',
+    options: [
+      { id: 'a', text: 'Vůbec nic. Bluetooth modul je izolovaný v User Space a jádro jej pouze restartuje. Brzdy fungují dál.' },
+      { id: 'b', text: 'Auto musí nouzově zastavit a restartovat celý operační systém.' },
+      { id: 'c', text: 'Auto začne samovolně brzdit, protože zpráva o chybě zablokuje procesor.' }
+    ],
+    correct: 'a'
+  },
+  {
+    id: 'q4',
+    type: 'text',
+    question: 'Jak se anglickým termínem (2 slova) označuje chráněná paměťová oblast s neomezenými oprávněními, kde běží jádro OS?',
+    correct: 'kernel space'
+  },
+  {
+    id: 'q5',
+    type: 'multi',
+    question: 'Které z následujících entit mají obvykle plný přístup do Kernel Space (vyber 2)?',
+    options: [
+      { id: 'a', text: 'Samotné jádro operačního systému' },
+      { id: 'b', text: 'Webový prohlížeč Chrome' },
+      { id: 'c', text: 'Ovladač grafické karty (u monolitického jádra)' },
+      { id: 'd', text: 'Aplikace Kalkulačka' }
+    ],
+    correct: ['a', 'c']
+  },
+  {
+    id: 'q6',
+    type: 'single',
+    question: 'Kdo v počítači fyzicky (hardwarově) brání tomu, aby program z User Space (Ring 3) zapsal data přímo na disk nebo do cizí paměti?',
+    options: [
+      { id: 'a', text: 'Antivirus' },
+      { id: 'b', text: 'Samotný procesor (CPU) pomocí mechanismu ochranných kruhů (Protection Rings)' },
+      { id: 'c', text: 'Souborový systém FAT32/NTFS' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q7',
+    type: 'text',
+    question: 'Program v User Space zjistí, že potřebuje uložit soubor. Sám k disku nesmí. Jak se jmenuje anglický termín (2 slova) pro mechanismus, kterým o to "poprosí" jádro?',
+    correct: 'system call'
+  },
+  {
+    id: 'q8',
+    type: 'single',
+    question: 'Proč se tvůrci Windows a Linuxu drží převážně "Monolitického jádra", když pád ovladače může shodit celý systém?',
+    options: [
+      { id: 'a', text: 'Protože je mikrojádro příliš drahé na licencování.' },
+      { id: 'b', text: 'Kvůli maximálnímu výkonu. V monolitu moduly komunikují napřímo v Ring 0 bez zdržujícího přepínání kontextu a posílání zpráv.' },
+      { id: 'c', text: 'Protože monolitické jádro nelze vůbec zavirovat.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q9',
+    type: 'single',
+    question: 'Pokud chceš postavit absolutně bezpečný systém pro ovládání reaktoru, vybereš mikrojádro. V čem spočívá jeho bezpečí?',
+    options: [
+      { id: 'a', text: 'Jádro je zašifrované 256bitovým klíčem.' },
+      { id: 'b', text: 'Všechny služby, včetně síťových a ovladačů, běží jako "izolované aplikace" v User Space. V Kernel Space je jen minimum kódu.' },
+      { id: 'c', text: 'Mikrojádro nepovoluje vůbec žádné aplikace třetích stran.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q10',
+    type: 'match',
+    question: 'Přiřaď správnou vlastnost (výhodu/nevýhodu) k typu jádra:',
+    matchItems: {
+      left: ['Při chybě v síťovém ovladači spadne celý OS', 'Komunikace je zdržována neustálým posíláním zpráv (IPC)', 'Nejlepší architektura pro těžbu kryptoměn nebo herní výkon', 'Nejlepší architektura pro vesmírnou sondu'],
+      right: ['Monolit (Nevýhoda)', 'Mikrojádro (Nevýhoda)', 'Monolit (Výhoda)', 'Mikrojádro (Výhoda)']
+    },
+    correct: {
+      'Při chybě v síťovém ovladači spadne celý OS': 'Monolit (Nevýhoda)',
+      'Komunikace je zdržována neustálým posíláním zpráv (IPC)': 'Mikrojádro (Nevýhoda)',
+      'Nejlepší architektura pro těžbu kryptoměn nebo herní výkon': 'Monolit (Výhoda)',
+      'Nejlepší architektura pro vesmírnou sondu': 'Mikrojádro (Výhoda)'
+    }
+  },
+  {
+    id: 'q11',
+    type: 'single',
+    question: 'Škodlivý kód (Malware) se snaží přečíst hesla, která má v paměti uložená jiný program (např. správce hesel). Co mu v tom zabrání?',
+    options: [
+      { id: 'a', text: 'Nic, každý program v User Space vidí do paměti ostatních programů.' },
+      { id: 'b', text: 'Hardwarová izolace paměti. Procesor povolí programu vidět jen do jeho vlastního přiděleného bloku paměti.' },
+      { id: 'c', text: 'Ovladač grafické karty.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q12',
+    type: 'multi',
+    question: 'Které z následujících činností vyžadují přechod z User Space (Ring 3) do Kernel Space (Ring 0) pomocí System Callu? (Vyber 2)',
+    options: [
+      { id: 'a', text: 'Sečtení dvou velkých čísel v paměti (Kalkulačka)' },
+      { id: 'b', text: 'Přečtení souboru tajnosti.txt z pevného disku' },
+      { id: 'c', text: 'Změna barvy tlačítka ve hře (interní stav aplikace)' },
+      { id: 'd', text: 'Odeslání packetu přes Wi-Fi ovladač na internet' }
+    ],
+    correct: ['b', 'd']
+  },
+  {
+    id: 'q13',
+    type: 'text',
+    question: 'Napiš jedno slovo (česky nebo anglicky), jak se jmenuje koncept, při kterém je jádro co nejmenší a většinu práce přenáší na izolované moduly.',
+    correct: 'mikrojádro'
+  },
+  {
+    id: 'q14',
+    type: 'single',
+    question: 'Které "ochranné kruhy" (Protection Rings) se dnes v moderních OS obvykle VŮBEC nepoužívají a zůstávají prázdné?',
+    options: [
+      { id: 'a', text: 'Ring 0 a Ring 3' },
+      { id: 'b', text: 'Ring 1 a Ring 2' },
+      { id: 'c', text: 'Žádné nezůstávají prázdné.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q15',
+    type: 'single',
+    question: 'Máš navrhnout systém pro chytré lednice. Chlazení řídí vlastní elektronika, ty děláš jen OS pro dotykový displej. Co zvolíš a proč?',
+    options: [
+      { id: 'a', text: 'Mikrojádro. Lednice je přeci internet of things (IoT) a musíme garantovat spolehlivost.' },
+      { id: 'b', text: 'Monolit (např. Linux). Displej lednice není životně kritický systém, potřebuje hlavně výkon pro animace a videa.' },
+      { id: 'c', text: 'Nebudu tam dávat vůbec žádný OS.' }
+    ],
+    correct: 'b'
+  },
+  {
+    id: 'q16',
+    type: 'multi',
+    question: 'Proč je vytvoření čistého "Mikrojádra" programátorsky tak těžké a proto se na PC stále používají Monolity? (Vyber 2)',
+    options: [
+      { id: 'a', text: 'Neustálé posílání zpráv (IPC) mezi izolovanými moduly je složité na vývoj a synchronizaci.' },
+      { id: 'b', text: 'Protože do mikrojádra nejdou vůbec programovat hry.' },
+      { id: 'c', text: 'Protože procesory Intel a AMD nepodporují User Space.' },
+      { id: 'd', text: 'Režie při neustálém přesouvání zpráv snižuje celkový hrubý výkon systému.' }
+    ],
+    correct: ['a', 'd']
+  },
+  {
+    id: 'q17',
+    type: 'match',
+    question: 'Srovnej analogii uspořádání pracovníků ve firmě s typem jádra:',
+    matchItems: {
+      left: ['Všichni sedí v jedné místnosti. Práce jde rychle od ruky. Když ale jeden onemocní (spadne), nakazí celou firmu.', 'Každý sedí v zamčené kanceláři. Pokud jeden onemocní, ostatní jsou v bezpečí. Musí si ale složitě posílat dopisy.'],
+      right: ['Monolit (Rychlost vs. Zranitelnost)', 'Mikrojádro (Bezpečí vs. Pomalost)']
+    },
+    correct: {
+      'Všichni sedí v jedné místnosti. Práce jde rychle od ruky. Když ale jeden onemocní (spadne), nakazí celou firmu.': 'Monolit (Rychlost vs. Zranitelnost)',
+      'Každý sedí v zamčené kanceláři. Pokud jeden onemocní, ostatní jsou v bezpečí. Musí si ale složitě posílat dopisy.': 'Mikrojádro (Bezpečí vs. Pomalost)'
+    }
+  },
+  {
+    id: 'q18',
+    type: 'single',
+    question: 'Představ si, že by někdo hacknul (nebo úmyslně poškodil) Ovladač Disku. V jakém systému by tento útok kompromitoval rovnou samotné jádro?',
+    options: [
+      { id: 'a', text: 'V Monolitickém jádře, protože ovladač běží v nejvyšším oprávnění (Ring 0) společně s jádrem.' },
+      { id: 'b', text: 'V Mikrojádře, protože ovladač disku je absolutním pánem Ring 3.' }
+    ],
+    correct: 'a'
+  },
+  {
+    id: 'q19',
+    type: 'text',
+    question: 'Jaké číslo má ochranný kruh (Protection Ring), ve kterém běží běžné aplikace (Hry, Prohlížeče) a mají zakázáno sahat přímo na hardware?',
+    correct: '3'
+  },
+  {
+    id: 'q20',
+    type: 'single',
+    question: 'Shrnutí: Před sebou máš obří webový e-shop a moderní kardiostimulátor. Jaký je nejlepší návrhový (architektonický) postoj?',
+    options: [
+      { id: 'a', text: 'Kardiostimulátor = Monolit. E-shop = Mikrojádro.' },
+      { id: 'b', text: 'Kardiostimulátor = Mikrojádro (kritičnost vyžaduje maximální izolaci selhání). E-shop = Monolit (potřebujeme extrémní hrubý výkon pro tisíce požadavků).' },
+      { id: 'c', text: 'Obě by měly běžet na stejné architektuře.' }
+    ],
+    correct: 'b'
+  }
+];
+
 const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack }) => {
-  const [activeTab, setActiveTab] = useState<'theory' | 'practice'>('theory');
+  const [activeTab, setActiveTab] = useState<'theory' | 'practice' | 'use-cases' | 'quiz'>('theory');
   const [phase, setPhase] = useState<Phase>('builder');
+
+  // Quiz State
+  const [answers, setAnswers] = useState<Record<string, AnswerType>>({});
+  const [evaluated, setEvaluated] = useState(false);
+  const [score, setScore] = useState(0);
+
+  const handleSingleSelect = (qId: string, optionId: string) => {
+    if (evaluated) return;
+    setAnswers(prev => ({ ...prev, [qId]: optionId }));
+  };
+
+  const handleMultiSelect = (qId: string, optionId: string) => {
+    if (evaluated) return;
+    const current = (answers[qId] as string[]) || [];
+    if (current.includes(optionId)) {
+      setAnswers(prev => ({ ...prev, [qId]: current.filter(id => id !== optionId) }));
+    } else {
+      setAnswers(prev => ({ ...prev, [qId]: [...current, optionId] }));
+    }
+  };
+
+  const handleTextChange = (qId: string, value: string) => {
+    if (evaluated) return;
+    setAnswers(prev => ({ ...prev, [qId]: value }));
+  };
+
+  const handleMatchChange = (qId: string, leftItem: string, rightItem: string) => {
+    if (evaluated) return;
+    const current = (answers[qId] as Record<string, string>) || {};
+    setAnswers(prev => ({ ...prev, [qId]: { ...current, [leftItem]: rightItem } }));
+  };
+
+  const checkAnswer = (q: QuizQuestion, userAns: AnswerType): boolean => {
+    if (!userAns) return false;
+    
+    if (q.type === 'single') {
+      return q.correct === userAns;
+    }
+    if (q.type === 'text') {
+      const uText = (userAns as string).toLowerCase().trim();
+      const cText = (q.correct as string).toLowerCase().trim();
+      if (cText === 'system call' && (uText === 'syscall' || uText === 'systémové volání' || uText === 'systemove volani')) return true;
+      if (cText === 'kernel space' && (uText === 'kernelspace' || uText === 'jádro' || uText === 'jadro')) return true;
+      if (cText === 'mikrojádro' && (uText === 'microkernel' || uText === 'mikrojadro')) return true;
+      
+      return uText === cText || uText.replace('-', '') === cText.replace('-', '');
+    }
+    if (q.type === 'multi') {
+      const uArr = [...(userAns as string[])].sort();
+      const cArr = [...(q.correct as string[])].sort();
+      if (uArr.length !== cArr.length) return false;
+      return uArr.every((val, index) => val === cArr[index]);
+    }
+    if (q.type === 'match') {
+      const uDict = userAns as Record<string, string>;
+      const cDict = q.correct as Record<string, string>;
+      for (const key in cDict) {
+        if (uDict[key] !== cDict[key]) return false;
+      }
+      return Object.keys(uDict).length === Object.keys(cDict).length;
+    }
+    return false;
+  };
+
+  const handleEvaluate = () => {
+    let currentScore = 0;
+    ARCHITECTURE_QUIZ.forEach(q => {
+      if (checkAnswer(q, answers[q.id])) currentScore++;
+    });
+    setScore(currentScore);
+    setEvaluated(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Builder State
   const [builderTarget, setBuilderTarget] = useState<ArchitectureTarget>('monolithic');
@@ -44,6 +339,78 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
 
   // Communication State
   const [commState, setCommState] = useState<'idle' | 'syscall-request' | 'syscall-kernel' | 'syscall-driver' | 'syscall-done'>('idle');
+
+  // Use Cases Minigame State
+  const [useCaseIndex, setUseCaseIndex] = useState(0);
+  const [useCaseFeedback, setUseCaseFeedback] = useState<'idle' | 'correct' | 'wrong'>('idle');
+  const [useCaseSelected, setUseCaseSelected] = useState<ArchitectureTarget | null>(null);
+
+  const USE_CASES = [
+    {
+      id: 'pc',
+      title: 'Herní Počítač / Notebook',
+      icon: Monitor,
+      correct: 'monolithic',
+      explanation: 'Nejde o kritický systém. Když vám při hraní spadne hra nebo zamrzne operační systém (Modrá smrt), je to k vzteku, ale nikomu nehrozí nebezpečí. Prioritou je zde maximální grafický a výpočetní výkon (který monolit poskytuje nejlépe).'
+    },
+    {
+      id: 'car',
+      title: 'Chytré auto (Asistenční systémy)',
+      icon: Car,
+      correct: 'microkernel',
+      explanation: 'Extrémně kritický systém. Kdyby chyba v přehrávači hudby (infotainmentu) způsobila pád celého operačního systému v autě jedoucím 130 km/h, následky by byly fatální. Mikrojádro (např. QNX) tyto moduly striktně odděluje od řídících systémů.'
+    },
+    {
+      id: 'pacemaker',
+      title: 'Kardiostimulátor',
+      icon: Activity,
+      correct: 'microkernel',
+      explanation: 'Kritický systém. Zařízení udržuje člověka naživu. Uvnitř běží různé služby: např. kritická pro hlídání srdečního rytmu a méně kritická pro Bluetooth odesílání dat lékaři. Kdyby v Bluetooth modulu nastala chyba, mikrojádro jej okamžitě restartuje, aniž by to jakkoliv ohrozilo modul řídící srdce.'
+    },
+    {
+      id: 'server',
+      title: 'Webový Server (E-shop)',
+      icon: Globe,
+      correct: 'monolithic',
+      explanation: 'Nejde o život ohrožující systém. Pokud spadne webový server, nenačte se stránka. To sice stojí peníze, ale nikoho to neohrožuje na životě. Prioritou je obsloužit miliony uživatelů co nejrychleji, k čemuž je monolit (např. Linux) díky absenci zdržující interní komunikace ideální.'
+    },
+    {
+      id: 'fridge',
+      title: 'Chytrá lednice',
+      icon: Refrigerator,
+      correct: 'monolithic',
+      explanation: 'Monolit. Ve dveřích běží např. upravený Linux (Tizen, webOS), který řeší YouTube, Wi-Fi a displej, což vyžaduje spoustu ovladačů a výkonu. Samotné chlazení řídí hloupý nezávislý čip. Pád displeje jídlo nezkazí, takže izolace mikrojádrem by byla zbytečná.'
+    },
+    {
+      id: 'robot',
+      title: 'Průmyslový robot v továrně',
+      icon: Factory,
+      correct: 'microkernel',
+      explanation: 'Kritický systém. Robotické rameno váží tunu a pohybuje se obrovskou rychlostí. Kdyby se zasekl operační systém, mohlo by někoho zranit nebo zničit linku. Mikrojádro se postará o to, aby služba pro bezpečný pohyb měla vždy absolutní prioritu a nedala se shodit např. chybou síťového ovladače.'
+    },
+    {
+      id: 'atm',
+      title: 'Bankomat',
+      icon: CreditCard,
+      correct: 'monolithic',
+      explanation: 'Nejde o fyzicky kritický systém. Uvnitř většinou běží obyčejné Windows. I když je bezpečnost peněz důležitá (tu řeší šifrování na úrovni aplikací), pád operačního systému znamená jen to, že bankomat přestane fungovat a musí se restartovat. Nikoho to na životě neohrozí.'
+    }
+  ];
+
+  const handleUseCaseAnswer = (answer: ArchitectureTarget) => {
+    setUseCaseSelected(answer);
+    if (answer === USE_CASES[useCaseIndex].correct) {
+      setUseCaseFeedback('correct');
+    } else {
+      setUseCaseFeedback('wrong');
+    }
+  };
+
+  const nextUseCase = () => {
+    setUseCaseFeedback('idle');
+    setUseCaseSelected(null);
+    setUseCaseIndex((prev) => (prev + 1) % USE_CASES.length);
+  };
 
   // --- BUILDER LOGIC ---
   const handleMoveModule = (moduleId: string, targetSpace: 'user' | 'kernel' | 'unassigned') => {
@@ -151,18 +518,30 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         </button>
       </div>
 
-      <div className="w-full max-w-4xl bg-white p-2 rounded-2xl flex shadow-sm border border-slate-200 mb-6 sticky top-4 z-50">
+      <div className="w-full max-w-5xl bg-white p-2 rounded-2xl flex shadow-sm border border-slate-200 mb-6 sticky top-4 z-50 overflow-x-auto">
         <button
           onClick={() => setActiveTab('theory')}
-          className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'theory' ? 'bg-purple-50 text-purple-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+          className={`flex-1 min-w-[150px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'theory' ? 'bg-purple-50 text-purple-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
         >
           <BookOpen className="w-5 h-5" /> Teorie
         </button>
         <button
           onClick={() => setActiveTab('practice')}
-          className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'practice' ? 'bg-blue-50 text-blue-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+          className={`flex-1 min-w-[200px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'practice' ? 'bg-blue-50 text-blue-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
         >
           <Cpu className="w-5 h-5" /> Jdeme si to postavit
+        </button>
+        <button
+          onClick={() => setActiveTab('use-cases')}
+          className={`flex-1 min-w-[200px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'use-cases' ? 'bg-green-50 text-green-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+        >
+          <Gamepad2 className="w-5 h-5" /> Kde se co používá?
+        </button>
+        <button
+          onClick={() => setActiveTab('quiz')}
+          className={`flex-1 min-w-[200px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${activeTab === 'quiz' ? 'bg-indigo-50 text-indigo-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+        >
+          <Brain className="w-5 h-5" /> Ověření znalostí
         </button>
       </div>
 
@@ -621,6 +1000,229 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         
         {/* Uzavření activeTab === 'practice' */}
         </div>)}
+
+        {activeTab === 'use-cases' && (
+          <div className="animate-in fade-in zoom-in-95 duration-500 flex flex-col items-center w-full">
+            <div className="text-center mb-10">
+              <h1 className="text-3xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Architekt v praxi</h1>
+              <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                Jste hlavní systémový architekt. Ke každému zařízení určete, zda potřebuje spíše maximální výkon (Monolit) nebo absolutní bezpečnost a odolnost proti pádům ovladačů (Mikrojádro).
+              </p>
+            </div>
+
+            <div className="bg-slate-50 border-4 border-slate-200 rounded-[3rem] p-8 w-full max-w-4xl relative overflow-hidden shadow-inner">
+              <div className="absolute top-4 right-6 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                Zařízení {useCaseIndex + 1} z {USE_CASES.length}
+              </div>
+              
+              <div className="flex flex-col items-center mt-6 mb-10">
+                {React.createElement(USE_CASES[useCaseIndex].icon, { className: "w-24 h-24 text-indigo-600 mb-6 drop-shadow-md" })}
+                <h2 className="text-4xl font-black text-slate-800 text-center uppercase tracking-tight">{USE_CASES[useCaseIndex].title}</h2>
+              </div>
+
+              {useCaseFeedback === 'idle' ? (
+                <div className="grid md:grid-cols-2 gap-6 animate-in slide-in-from-bottom-4">
+                  <button 
+                    onClick={() => handleUseCaseAnswer('monolithic')}
+                    className="group bg-white p-6 rounded-3xl border-4 border-slate-200 hover:border-slate-400 hover:shadow-xl transition-all flex flex-col items-center gap-4 active:scale-95"
+                  >
+                    <Layers className="w-12 h-12 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                    <div className="text-xl font-black text-slate-700 uppercase tracking-widest">Monolitické Jádro</div>
+                    <div className="text-sm text-slate-500 text-center font-bold">Max. Výkon • Vše na jednom místě</div>
+                  </button>
+
+                  <button 
+                    onClick={() => handleUseCaseAnswer('microkernel')}
+                    className="group bg-white p-6 rounded-3xl border-4 border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all flex flex-col items-center gap-4 active:scale-95"
+                  >
+                    <ShieldCheck className="w-12 h-12 text-blue-400 group-hover:text-blue-600 transition-colors" />
+                    <div className="text-xl font-black text-blue-700 uppercase tracking-widest">Mikrojádro</div>
+                    <div className="text-sm text-blue-500 text-center font-bold">Max. Bezpečí • Oddělené moduly</div>
+                  </button>
+                </div>
+              ) : (
+                <div className={`p-8 rounded-3xl border-4 animate-in zoom-in-95 duration-300 ${useCaseFeedback === 'correct' ? 'bg-green-50 border-green-400' : 'bg-red-50 border-red-400'}`}>
+                  <div className="flex items-start gap-6">
+                    <div className="mt-1 flex-shrink-0">
+                      {useCaseFeedback === 'correct' ? (
+                        <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-200">
+                          <CheckCircle2 className="w-10 h-10 text-white" />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center shadow-lg shadow-red-200">
+                          <AlertTriangle className="w-10 h-10 text-white" />
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div>
+                      <h3 className={`text-2xl font-black uppercase tracking-widest mb-2 ${useCaseFeedback === 'correct' ? 'text-green-700' : 'text-red-700'}`}>
+                        {useCaseFeedback === 'correct' ? 'Správně!' : 'Chyba, zkusíme to jinak...'}
+                      </h3>
+                      <p className={`text-lg font-medium leading-relaxed mb-6 ${useCaseFeedback === 'correct' ? 'text-green-800' : 'text-red-800'}`}>
+                        {USE_CASES[useCaseIndex].explanation}
+                      </p>
+                      
+                      <button 
+                        onClick={nextUseCase}
+                        className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest transition-all active:scale-95 shadow-md ${useCaseFeedback === 'correct' ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-red-600 hover:bg-red-700 text-white'}`}
+                      >
+                        Další zařízení <ArrowRight className="inline-block w-5 h-5 ml-2 -mt-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'quiz' && (
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 w-full">
+            {evaluated && (
+              <div className={`p-6 rounded-2xl border-4 flex items-center gap-4 ${score === ARCHITECTURE_QUIZ.length ? 'bg-green-50 border-green-400 text-green-900' : 'bg-red-50 border-red-400 text-red-900'}`}>
+                {score === ARCHITECTURE_QUIZ.length ? <CheckCircle2 className="w-12 h-12 flex-shrink-0 text-green-500" /> : <AlertTriangle className="w-12 h-12 flex-shrink-0 text-red-500" />}
+                <div>
+                  <h3 className="font-black text-xl uppercase mb-1">
+                    {score === ARCHITECTURE_QUIZ.length ? 'Úžasný výsledek! Logika vám funguje na jedničku.' : 'Nevadí, chce to jen chvíli přemýšlet!'}
+                  </h3>
+                  <p className="font-medium text-sm">
+                    Tvoje skóre: {score} / {ARCHITECTURE_QUIZ.length}. 
+                    {score !== ARCHITECTURE_QUIZ.length && ' Zkus projít chyby, uvědomit si souvislosti a klidně test vyzkoušej znovu.'}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {ARCHITECTURE_QUIZ.map((q, index) => {
+              const isCorrect = evaluated ? checkAnswer(q, answers[q.id]) : null;
+              return (
+                <div key={q.id} className={`bg-white p-6 sm:p-8 rounded-3xl shadow-sm border-2 ${evaluated ? (isCorrect ? 'border-green-300' : 'border-red-300') : 'border-slate-200'}`}>
+                  <h3 className="font-bold text-slate-800 text-lg mb-6 flex gap-3">
+                    <span className="bg-slate-100 text-slate-500 w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0">{index + 1}</span>
+                    {q.question}
+                  </h3>
+
+                  {q.type === 'single' && (
+                    <div className="space-y-3 pl-11">
+                      {q.options?.map(opt => (
+                        <button
+                          key={opt.id}
+                          disabled={evaluated}
+                          onClick={() => handleSingleSelect(q.id, opt.id)}
+                          className={`w-full text-left p-4 rounded-xl border-2 transition-all font-medium text-sm
+                            ${answers[q.id] === opt.id ? 'border-indigo-500 bg-indigo-50 text-indigo-900' : 'border-slate-200 hover:border-indigo-200 bg-white text-slate-700'}
+                            ${evaluated && opt.id === q.correct ? '!border-green-500 !bg-green-50 !text-green-900 ring-2 ring-green-500/50' : ''}
+                            ${evaluated && answers[q.id] === opt.id && opt.id !== q.correct ? '!border-red-500 !bg-red-50 !text-red-900 line-through opacity-70' : ''}
+                          `}
+                        >
+                          {opt.text}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {q.type === 'multi' && (
+                    <div className="space-y-3 pl-11">
+                      {q.options?.map(opt => {
+                        const isSelected = (answers[q.id] as string[] || []).includes(opt.id);
+                        const isRightAns = (q.correct as string[]).includes(opt.id);
+                        return (
+                          <button
+                            key={opt.id}
+                            disabled={evaluated}
+                            onClick={() => handleMultiSelect(q.id, opt.id)}
+                            className={`w-full text-left p-4 rounded-xl border-2 transition-all font-medium text-sm flex items-center gap-3
+                              ${isSelected ? 'border-indigo-500 bg-indigo-50 text-indigo-900' : 'border-slate-200 hover:border-indigo-200 bg-white text-slate-700'}
+                              ${evaluated && isRightAns ? '!border-green-500 !bg-green-50 !text-green-900 ring-2 ring-green-500/50' : ''}
+                              ${evaluated && isSelected && !isRightAns ? '!border-red-500 !bg-red-50 !text-red-900 line-through opacity-70' : ''}
+                            `}
+                          >
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${isSelected ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300'}`}>
+                              {isSelected && <div className="w-2.5 h-2.5 bg-white rounded-sm"></div>}
+                            </div>
+                            {opt.text}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {q.type === 'text' && (
+                    <div className="pl-11">
+                      <input
+                        type="text"
+                        disabled={evaluated}
+                        value={(answers[q.id] as string) || ''}
+                        onChange={(e) => handleTextChange(q.id, e.target.value)}
+                        placeholder="Napiš odpověď..."
+                        className={`w-full p-4 rounded-xl border-2 outline-none font-bold text-slate-700
+                          ${evaluated ? (isCorrect ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50') : 'border-slate-300 focus:border-indigo-500'}
+                        `}
+                      />
+                      {evaluated && !isCorrect && (
+                        <div className="mt-3 text-sm font-bold text-red-600 bg-red-100 px-4 py-2 rounded-lg">
+                          Správná odpověď: {q.correct as string}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {q.type === 'match' && (
+                    <div className="pl-11 space-y-4">
+                      {q.matchItems?.left.map((leftItem, i) => (
+                        <div key={i} className="flex flex-col sm:flex-row items-center gap-3">
+                          <div className="flex-1 bg-slate-100 p-3 rounded-xl border border-slate-200 text-sm font-medium w-full text-center sm:text-left">
+                            {leftItem}
+                          </div>
+                          <select
+                            disabled={evaluated}
+                            value={((answers[q.id] as Record<string, string>) || {})[leftItem] || ''}
+                            onChange={(e) => handleMatchChange(q.id, leftItem, e.target.value)}
+                            className={`flex-1 p-3 rounded-xl border-2 outline-none font-bold text-sm w-full
+                              ${evaluated ? (((answers[q.id] as Record<string, string>) || {})[leftItem] === (q.correct as Record<string, string>)[leftItem] ? 'border-green-500 bg-green-50 text-green-900' : 'border-red-500 bg-red-50 text-red-900') : 'border-slate-300'}
+                            `}
+                          >
+                            <option value="">-- Vyber --</option>
+                            {q.matchItems?.right.map((rItem, j) => (
+                              <option key={j} value={rItem}>{rItem}</option>
+                            ))}
+                          </select>
+                        </div>
+                      ))}
+                      {evaluated && !isCorrect && (
+                        <div className="mt-3 text-sm font-bold text-red-600 bg-red-100 px-4 py-2 rounded-lg">
+                          Některá přiřazení jsou špatně, prostuduj si znovu typy jader.
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {!evaluated ? (
+              <button
+                onClick={handleEvaluate}
+                className="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg uppercase tracking-widest rounded-2xl shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all border-b-4 border-indigo-800"
+              >
+                Vyhodnotit kvíz
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setAnswers({});
+                  setEvaluated(false);
+                  setScore(0);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-full py-5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-black text-lg uppercase tracking-widest rounded-2xl shadow-sm transition-all border-b-4 border-slate-300"
+              >
+                Zkusit to znovu
+              </button>
+            )}
+          </div>
+        )}
 
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Hourglass, MonitorUp, Clock } from 'lucide-react';
+import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Hourglass, MonitorUp, Clock, Layers } from 'lucide-react';
 
 interface OperacniSystemyMenuProps {
   onBack: () => void;
@@ -11,9 +11,10 @@ interface OperacniSystemyMenuProps {
   onStartWindowsInstall: () => void;
   onStartProcessMemory: () => void;
   onStartHardware: () => void;
+  onStartVirtualization: () => void;
 }
 
-const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartOsIntro, onStartOsArchitecture, onStartOsEvolution, onStartOsBoot, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory, onStartHardware }) => {
+const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartOsIntro, onStartOsArchitecture, onStartOsEvolution, onStartOsBoot, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory, onStartHardware, onStartVirtualization }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
       
@@ -119,6 +120,24 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
               className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
             >
               Otevřít muzeum
+            </button>
+          </div>
+
+          {/* Karta: #osv (Virtualizace) */}
+          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osv</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                <Layers className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Virtualizace</h3>
+              <p className="text-xs text-gray-600">Simulace Type 1 a 2 hypervizorů a praktický list pro VirtualBox.</p>
+            </div>
+            <button
+              onClick={onStartVirtualization}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+            >
+              Otevřít kapitolu
             </button>
           </div>
 

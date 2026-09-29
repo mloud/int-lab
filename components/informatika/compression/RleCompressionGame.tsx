@@ -14,7 +14,17 @@ const RleCompressionGame: React.FC<RleCompressionGameProps> = ({ onBack }) => {
   const [binaryInput, setBinaryInput] = useState<string>('');
   const [feedback, setFeedback] = useState<'none' | 'wrong' | 'correct'>('none');
 
-  const configs = {
+  interface RleConfig {
+    title: string;
+    description: string;
+    mode: string;
+    gridSize: number;
+    targetGrid?: number[];
+    targetBinary?: string;
+    targetRle?: string;
+  }
+
+  const configs: Record<string, RleConfig> = {
     intro: {
       title: 'Co je to RLE komprese?',
       description: 'Run-Length Encoding (RLE) je způsob, jak zkrátit zápis opakujících se hodnot. Místo abychom psali "00000", napíšeme jednoduše "5x0". Tím ušetříme spoustu místa! RLE se historicky používá u jednoduché grafiky s velkými jednobarevnými plochami – například u faxových přenosů, starých počítačových ikon, nebo ve formátech jako BMP a PCX.',
