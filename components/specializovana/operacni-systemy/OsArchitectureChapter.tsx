@@ -5,7 +5,7 @@ interface OsArchitectureChapterProps {
   onBack: () => void;
 }
 
-type Phase = 'builder' | 'crash-test' | 'communication';
+type Phase = 'builder' | 'crash-test' | 'communication' | 'attack';
 type ArchitectureTarget = 'monolithic' | 'microkernel';
 
 interface OsModule {
@@ -340,6 +340,13 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
   // Communication State
   const [commState, setCommState] = useState<'idle' | 'syscall-request' | 'syscall-kernel' | 'syscall-driver' | 'syscall-done'>('idle');
 
+  // Attack Simulation State
+  const [attackState, setAttackState] = useState<'idle' | 'trying' | 'blocked'>('idle');
+  const [attackTarget, setAttackTarget] = useState<'mem' | 'exec' | null>(null);
+
+  // Hybrid Kernel expand
+  const [showHybrid, setShowHybrid] = useState(false);
+
   // Use Cases Minigame State
   const [useCaseIndex, setUseCaseIndex] = useState(0);
   const [useCaseFeedback, setUseCaseFeedback] = useState<'idle' | 'correct' | 'wrong'>('idle');
@@ -379,7 +386,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
       title: 'Chytrá lednice',
       icon: Refrigerator,
       correct: 'monolithic',
-      explanation: 'Monolit. Ve dveřích běží např. upravený Linux (Tizen, webOS), který řeší YouTube, Wi-Fi a displej, což vyžaduje spoustu ovladačů a výkonu. Samotné chlazení řídí hloupý nezávislý čip. Pád displeje jídlo nezkazí, takže izolace mikrojádrem by byla zbytečná.'
+      explanation: 'Monolit (Linux). Ve dveřích lednice běží upravený Linux (Tizen, webOS), který řeší YouTube, Wi-Fi a dotykový displej – to vyžaduje spoustu ovladačů a výpočetního výkonu. Klíčový detail: samotné chlazení řídí zcela nezávislý fyzický čip (MCU), který o Linuxu vůbec neví. Pád displeje tedy jídlo nezkazí, takže plná izolace mikrojádrem by přinesla jen zbytečnou složitost bez reálného přínosu.'
     },
     {
       id: 'robot',
@@ -489,6 +496,14 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
     else if (commState === 'syscall-driver') setCommState('syscall-done');
     else if (commState === 'syscall-done') setCommState('idle');
   };
+
+  // --- ATTACK SIMULATION LOGIC ---
+  const handleAttack = (target: 'mem' | 'exec') => {
+    setAttackTarget(target);
+    setAttackState('trying');
+    setTimeout(() => setAttackState('blocked'), 1500);
+  };
+  const resetAttack = () => { setAttackState('idle'); setAttackTarget(null); };
 
   // --- RENDER HELPERS ---
   const renderModule = (moduleId: string, onClickAction?: (id: string) => void) => {
@@ -642,6 +657,65 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
               </div>
             </div>
 
+            {/* Hybridní jádro – rozbalovací sekce */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <button
+                onClick={() => setShowHybrid(prev => !prev)}
+                className="w-full flex items-center justify-between px-6 py-4 bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 rounded-2xl transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                    <Layers className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-black text-purple-800 text-sm uppercase tracking-widest">Rozšíření: Hybridní jádro</div>
+                    <div className="text-xs text-purple-500 font-medium">Windows NT, macOS XNU, Android — kde to skutečně běží</div>
+                  </div>
+                </div>
+                <div className={`w-7 h-7 rounded-full bg-purple-200 flex items-center justify-center transition-transform duration-300 ${showHybrid ? 'rotate-180' : ''}`}>
+                  <ArrowDown className="w-4 h-4 text-purple-700" />
+                </div>
+              </button>
+
+              {showHybrid && (
+                <div className="mt-2 bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl border-2 border-purple-200 animate-in slide-in-from-top-2 duration-300">
+                  <p className="text-sm text-purple-800 leading-relaxed mb-6">
+                    Hybridní jádro bere <strong>rychlost monolitu</strong> a kombinuje ji s <strong>bezpečností mikrojádra</strong>.
+                    Nejpoužívanější ovladače (grafika, sítě) běží přímo v Kernel Space pro maximální výkon, zatímco méně kritické
+                    služby mohou být izolovány v User Space. Na rozdíl od čistého monolitu (jako je klasický Linux kernel)
+                    přidává hybridní jádro vrstvu abstrakce a selektivní izolaci.
+                    <strong> Windows NT, macOS i Android jsou hybridní jádra</strong> — operační systémy, ve kterých
+                    žijete každý den, a přesto nejsou ani čistý monolit, ani čisté mikrojádro.
+                  </p>
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 text-xs text-amber-800 font-medium">
+                    💡 <strong>Proč Linux v monolitu a Android v hybridu?</strong> Android používá Linuxové jádro jako základ,
+                    ale přidává nad něj vlastní HAL (Hardware Abstraction Layer) vrstvu a Google Play Services v User Space —
+                    to z něj dělá de facto hybridní architekturu, i když základní jádro je stále monolit.
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="bg-white p-4 rounded-2xl border-2 border-purple-100 text-center shadow-sm">
+                      <Monitor className="w-7 h-7 text-purple-500 mx-auto mb-2" />
+                      <div className="text-xs font-black text-purple-700 uppercase tracking-wide">Windows NT</div>
+                      <div className="text-[11px] text-slate-500 mt-1">Hybridní od verze 3.1 (1993)</div>
+                      <div className="text-[10px] text-slate-400 mt-1">Mach + vlastní Executive vrstva</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-2xl border-2 border-purple-100 text-center shadow-sm">
+                      <Cpu className="w-7 h-7 text-purple-500 mx-auto mb-2" />
+                      <div className="text-xs font-black text-purple-700 uppercase tracking-wide">macOS (XNU)</div>
+                      <div className="text-[11px] text-slate-500 mt-1">Mach mikrojádro + BSD monolit</div>
+                      <div className="text-[10px] text-slate-400 mt-1">Nejčistší hybridní architektura</div>
+                    </div>
+                    <div className="bg-white p-4 rounded-2xl border-2 border-purple-100 text-center shadow-sm">
+                      <Wifi className="w-7 h-7 text-purple-500 mx-auto mb-2" />
+                      <div className="text-xs font-black text-purple-700 uppercase tracking-wide">Android (Linux)</div>
+                      <div className="text-[11px] text-slate-500 mt-1">Linux kernel + HAL + Binder IPC</div>
+                      <div className="text-[10px] text-slate-400 mt-1">Hybridní systémem HAL vrstvy</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Ochranné kruhy (Protection Rings) */}
             <div className="bg-white p-8 rounded-3xl border-2 border-indigo-100 shadow-sm mb-12 max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
               <div className="flex-1">
@@ -712,6 +786,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
               <button onClick={() => setPhase('builder')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'builder' ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>1. Skládačka</button>
               <button onClick={() => setPhase('crash-test')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'crash-test' ? 'bg-red-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>2. Crash Test</button>
               <button onClick={() => setPhase('communication')} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'communication' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>3. Paměť</button>
+              <button onClick={() => { resetAttack(); setPhase('attack'); }} className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${phase === 'attack' ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100'}`}>🏴‍☠️ 4. Útok</button>
             </div>
 
             {phase === 'builder' && (
@@ -849,9 +924,15 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
 
                 {crashState !== 'running' && (
                   <div className="absolute inset-x-0 bottom-2 text-center z-20 animate-in fade-in slide-in-from-bottom-2">
-                    <span className="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full border border-yellow-300 shadow-sm inline-flex items-center gap-1">
-                      <RefreshCw className="w-3 h-3 animate-spin" /> Ovladač spadl. OS jej restartuje...
-                    </span>
+                    {crashState === 'crashed-mono' ? (
+                      <span className="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-400 shadow-sm inline-flex items-center gap-1 animate-pulse">
+                        💥 MONOLIT: Celý systém zkolaboval. Nutný restart!
+                      </span>
+                    ) : (
+                      <span className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full border border-green-300 shadow-sm inline-flex items-center gap-1">
+                        <RefreshCw className="w-3 h-3 animate-spin" /> MIKROJÁDRO: Ovladač restartován za ~2.3s. OS funguje dál! ✓
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
@@ -871,133 +952,273 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
         )}
 
         {phase === 'communication' && (
-          <div className="animate-in fade-in zoom-in-95 duration-500 text-center w-full">
-            <h1 className="text-3xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Paměť a Komunikace</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-              Operační paměť (RAM) je přísně rozdělena. Aplikace mají zakázáno přistupovat do prostoru jádra, aby nemohly poškodit systém. Jediná cesta je přes <strong>System Call</strong> (Systémové volání).
-            </p>
-
-            <div className="flex flex-col items-center mb-8 bg-indigo-50 p-6 rounded-3xl border-2 border-indigo-200 shadow-sm max-w-2xl mx-auto">
-              <div className="text-center mb-4">
-                <span className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-1 block">Co se stane dál?</span>
-                <p className="text-sm font-bold text-indigo-900 leading-relaxed min-h-[40px]">
-                  {commState === 'idle' && "Hra narazila na checkpoint. Protože běží v omezeném Ring 3, nemůže sama ukládat na disk. Následující krok odešle požadavek (SysCall) z User Space k jádru."}
-                  {commState === 'syscall-request' && "Hra požádala o uložení. Systém nyní musí hardwarově přepnout procesor do absolutního režimu Ring 0 (Kernel Space), aby OS mohl s diskem manipulovat."}
-                  {commState === 'syscall-kernel' && "Jádro přijalo požadavek a zkontrolovalo oprávnění. V dalším kroku předá instrukce specializovanému ovladači disku, který HW ovládá."}
-                  {commState === 'syscall-driver' && "Ovladač data uložil na SSD. Nyní jádro pošle zprávu o úspěchu zpět do Hra.exe a procesor se bezpečně uzamkne zpět do Ring 3."}
-                  {commState === 'syscall-done' && "Proces je kompletní! Hra pokračuje v běhu. Můžeš ukázku resetovat."}
-                </p>
-              </div>
-
-              <button 
-                onClick={advanceCommStep} 
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black border-b-4 border-indigo-800 rounded-2xl transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest text-sm shadow-md"
-              >
-                {commState === 'idle' && "Krok 1: Poslat SysCall"}
-                {commState === 'syscall-request' && "Krok 2: Přepnout do Ring 0"}
-                {commState === 'syscall-kernel' && "Krok 3: Vykonat přes Ovladač"}
-                {commState === 'syscall-driver' && "Krok 4: Návrat do Ring 3"}
-                {commState === 'syscall-done' && "Resetovat ukázku"}
-              </button>
+          <div className="animate-in fade-in zoom-in-95 duration-500 w-full">
+            <div className="text-center mb-6">
+              <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter">Paměť a Komunikace</h1>
+              <p className="text-gray-500 max-w-2xl mx-auto text-sm">
+                Aplikace mají zakázáno přistupovat do prostoru jádra. Jediná cesta je přes <strong>System Call</strong>.
+                Sleduj, jak se přepíná Ring CPU při každém kroku.
+              </p>
             </div>
 
-            <div className="max-w-3xl mx-auto bg-white p-8 pt-12 rounded-[3rem] shadow-2xl relative overflow-hidden text-left border-8 border-slate-200">
-              <div className="absolute top-0 inset-x-0 bg-slate-200 text-slate-700 px-4 py-2 font-black tracking-widest uppercase text-xs text-center shadow-sm">
-                Rozložení v operační paměti (RAM)
-              </div>
-              
-              {/* User Space Region */}
-              <div className="bg-red-50/50 border-4 border-dashed border-red-300 p-6 rounded-3xl mb-8 relative">
-                <div className="absolute -top-3 left-6 bg-red-400 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
-                  USER SPACE (Uživatelský prostor) - Ring 3
-                </div>
-                <div className="flex justify-between text-xs font-mono text-red-400 mb-4 font-bold">
-                  <span>Adresa: 11</span>
-                  <span>Adresa: 100</span>
-                </div>
+            <div className="flex flex-col lg:flex-row gap-6 items-start max-w-5xl mx-auto">
 
-                <div className="flex flex-wrap gap-4">
-                  <div className={`p-4 bg-white rounded-2xl shadow-sm border-2 w-48 relative z-10 transition-colors border-red-200`}>
-                    <div className="text-[10px] text-red-400 font-mono text-right mb-1">Adresy 11 - 40</div>
-                    <div className="flex items-center gap-2 font-bold text-slate-700 mb-2">
-                      <Gamepad2 className="w-5 h-5 text-red-500" /> Hra.exe
-                    </div>
-                    
-                    {commState === 'syscall-request' && (
-                      <>
-                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full z-30 whitespace-nowrap shadow-md">
-                          SysCall: write(save.dat)
-                        </div>
-                        <ArrowDown className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-8 h-8 text-indigo-500 animate-bounce z-20" />
-                      </>
-                    )}
-
-                    {commState === 'syscall-done' && (
-                      <>
-                        <div className="absolute top-1/2 left-full translate-x-4 -translate-y-1/2 bg-green-100 text-green-700 border-2 border-green-300 text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap z-30">
-                          Data přijata ✓
-                        </div>
-                        <ArrowUp className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-8 h-8 text-green-500 animate-bounce z-20" />
-                      </>
-                    )}
+              {/* LEVÝ SLOUPEC: Prstencový Ring diagram */}
+              <div className="lg:w-56 flex-shrink-0 flex flex-col items-center">
+                <div className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Režim CPU</div>
+                <div className="relative w-48 h-48">
+                  {/* Ring 3 – vnější */}
+                  <div className={`absolute inset-0 rounded-full border-4 flex items-start justify-center pt-1.5 transition-all duration-500 ${
+                    commState === 'syscall-kernel' || commState === 'syscall-driver'
+                      ? 'bg-blue-50 border-blue-200'
+                      : 'bg-blue-100 border-blue-400 shadow-lg shadow-blue-100'
+                  }`}>
+                    <span className={`font-black text-xs transition-colors duration-500 ${
+                      commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'text-blue-200' : 'text-blue-800'
+                    }`}>Ring 3</span>
                   </div>
-
-                  <div className={`p-4 bg-white rounded-2xl shadow-sm border-2 border-slate-200 w-48 relative z-10 transition-colors opacity-70`}>
-                    <div className="text-[10px] text-slate-400 font-mono text-right mb-1">Adresy 41 - 80</div>
-                    <div className="flex items-center gap-2 font-bold text-slate-700 mb-2">
-                      <LayoutDashboard className="w-5 h-5 text-slate-500" /> Prohlížeč
+                  {/* Ring 1, 2 – prázdné */}
+                  <div className="absolute inset-7 rounded-full bg-slate-50 border-4 border-slate-200 flex items-start justify-center pt-2">
+                    <span className="font-black text-slate-300 text-[9px] uppercase">1,2 prázd.</span>
+                  </div>
+                  {/* Ring 0 – vnitřní */}
+                  <div className={`absolute inset-14 rounded-full flex items-center justify-center transition-all duration-500 ${
+                    commState === 'syscall-kernel' || commState === 'syscall-driver'
+                      ? 'bg-red-500 border-4 border-red-700 shadow-lg shadow-red-200'
+                      : 'bg-red-50 border-4 border-red-200'
+                  }`}>
+                    <div className="text-center">
+                      <Cpu className={`w-5 h-5 mx-auto transition-colors duration-500 ${
+                        commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'text-white animate-pulse' : 'text-red-300'
+                      }`} />
+                      <span className={`font-black text-xs leading-none transition-colors duration-500 mt-1 block ${
+                        commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'text-white' : 'text-red-400'
+                      }`}>Ring 0</span>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* The Barrier */}
-              <div className={`h-4 w-full rounded-full mb-8 relative transition-colors bg-slate-300`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-500 text-white text-[10px] font-black px-4 py-1 rounded-full border border-slate-600">
-                  HARDWAROVÁ BARIÉRA (MPU)
+                <div className={`mt-3 text-center px-3 py-2 rounded-xl border-2 text-xs font-bold transition-all duration-500 w-full ${
+                  commState === 'syscall-kernel' || commState === 'syscall-driver'
+                    ? 'bg-red-50 border-red-300 text-red-700'
+                    : 'bg-blue-50 border-blue-200 text-blue-700'
+                }`}>
+                  {commState === 'syscall-kernel' || commState === 'syscall-driver'
+                    ? '🔴 Ring 0 — Kernel Mode'
+                    : '🔵 Ring 3 — User Mode'}
                 </div>
               </div>
 
-              {/* Kernel Space Region */}
-              <div className="bg-slate-200 border-4 border-slate-300 p-6 rounded-3xl relative mt-4">
-                <div className="absolute -top-4 left-6 bg-slate-600 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm">
-                  KERNEL SPACE (Jádro) - Ring 0
-                </div>
-                <div className="flex justify-between text-xs font-mono text-slate-500 mb-4 font-bold">
-                  <span>Adresa: 0</span>
-                  <span>Adresa: 10</span>
+              {/* PRAVÝ SLOUPEC: Krokování + RAM */}
+              <div className="flex-1 min-w-0 flex flex-col gap-4">
+                {/* Krokování */}
+                <div className="bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 shadow-sm">
+                  <span className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-2 block">Co se děje?</span>
+                  <p className="text-sm font-bold text-indigo-900 leading-relaxed min-h-[52px]">
+                    {commState === 'idle' && "Hra narazila na checkpoint. Protože běží v Ring 3, nemůže sama ukládat na disk. Odešle System Call k jádru."}
+                    {commState === 'syscall-request' && "Hra požádala o uložení. Systém hardwarově přepne CPU do Ring 0, aby OS mohl s diskem manipulovat."}
+                    {commState === 'syscall-kernel' && "Jádro přijalo požadavek a zkontrolovalo oprávnění. Předá instrukce ovladači disku."}
+                    {commState === 'syscall-driver' && "Ovladač data uložil na SSD. Jádro pošle zprávu o úspěchu zpět do Hra.exe a CPU se uzamkne do Ring 3."}
+                    {commState === 'syscall-done' && "Proces kompletní! Celý průchod přes System Call trval jen mikrosekundy."}
+                  </p>
+                  <button
+                    onClick={advanceCommStep}
+                    className="mt-3 w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black border-b-4 border-indigo-800 rounded-xl transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest text-sm shadow-md"
+                  >
+                    {commState === 'idle' && "Krok 1: Poslat SysCall ↓"}
+                    {commState === 'syscall-request' && "Krok 2: Přepnout do Ring 0 🔴"}
+                    {commState === 'syscall-kernel' && "Krok 3: Vykonat přes Ovladač →"}
+                    {commState === 'syscall-driver' && "Krok 4: Návrat do Ring 3 🔵"}
+                    {commState === 'syscall-done' && "↺ Resetovat ukázku"}
+                  </button>
                 </div>
 
-                <div className="flex justify-center gap-12 relative">
-                  {commState === 'syscall-driver' && (
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-green-500 animate-pulse z-20">
-                      <ArrowRight className="w-10 h-10" />
-                    </div>
-                  )}
-
-                  {/* Jádro */}
-                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all bg-white ${commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'border-indigo-400 shadow-indigo-100' : 'border-slate-300'}`}>
-                    <Cpu className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-kernel' ? 'text-indigo-500 animate-pulse' : 'text-slate-600'}`} />
-                    <div className="font-bold text-slate-700">Jádro OS</div>
-                    {commState === 'syscall-kernel' && (
-                      <div className="text-[10px] text-indigo-500 mt-2 font-mono">Prověřuji práva...<br/>Předávám ovladači.</div>
-                    )}
+                {/* RAM diagram – kompaktní */}
+                <div className="bg-white rounded-2xl border-4 border-slate-200 overflow-hidden shadow-sm">
+                  <div className="bg-slate-200 text-slate-700 px-4 py-1.5 font-black tracking-widest uppercase text-xs text-center">
+                    Rozložení v RAM
                   </div>
-                  
-                  {/* Ovladač */}
-                  <div className={`p-4 rounded-2xl shadow-sm border-2 w-48 text-center transition-all bg-white ${commState === 'syscall-driver' ? 'border-green-400 shadow-green-100' : 'border-slate-300'}`}>
-                    <HardDrive className={`w-8 h-8 mx-auto mb-2 ${commState === 'syscall-driver' ? 'text-green-500 animate-bounce' : 'text-slate-600'}`} />
-                    <div className="font-bold text-slate-700">Ovladač Disku</div>
-                    {commState === 'syscall-driver' && (
-                      <div className="text-[10px] text-green-600 mt-2 font-mono">Zapisuji data...</div>
-                    )}
+                  {/* User Space */}
+                  <div className="bg-red-50/60 border-b-2 border-dashed border-red-200 px-4 py-3 relative">
+                    <div className="text-[9px] font-black text-red-400 uppercase tracking-widest mb-2">User Space — Ring 3</div>
+                    <div className="flex gap-2 flex-wrap">
+                      <div className={`px-3 py-1.5 bg-white rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 relative transition-all ${
+                        commState === 'syscall-request' || commState === 'syscall-done' ? 'border-indigo-400 shadow-md' : 'border-red-200'
+                      }`}>
+                        <Gamepad2 className="w-3 h-3 text-red-500" /> Hra.exe
+                        {commState === 'syscall-request' && <span className="text-indigo-500 text-base animate-bounce ml-1">↓</span>}
+                        {commState === 'syscall-done' && <span className="text-green-500 text-base animate-bounce ml-1">↑</span>}
+                      </div>
+                      <div className="px-3 py-1.5 bg-white rounded-lg border-2 border-slate-100 text-xs font-bold opacity-50 flex items-center gap-1.5">
+                        <LayoutDashboard className="w-3 h-3 text-slate-400" /> Prohlížeč
+                      </div>
+                    </div>
+                  </div>
+                  {/* Barrier */}
+                  <div className={`h-5 flex items-center justify-center transition-colors duration-300 ${
+                    commState === 'syscall-request' ? 'bg-indigo-500' : 'bg-slate-400'
+                  }`}>
+                    <span className="text-white text-[9px] font-black uppercase tracking-widest">Hardwarová bariéra — MPU</span>
+                  </div>
+                  {/* Kernel Space */}
+                  <div className="bg-slate-100 px-4 py-3">
+                    <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Kernel Space — Ring 0</div>
+                    <div className="flex gap-2 flex-wrap">
+                      <div className={`px-3 py-1.5 bg-white rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all ${
+                        commState === 'syscall-kernel' || commState === 'syscall-driver' ? 'border-indigo-400 shadow-sm' : 'border-slate-200'
+                      }`}>
+                        <Cpu className={`w-3 h-3 ${commState === 'syscall-kernel' ? 'text-indigo-500 animate-pulse' : 'text-slate-400'}`} /> Jádro OS
+                        {commState === 'syscall-kernel' && <span className="text-[9px] text-indigo-500 font-mono">Ověřuji...</span>}
+                      </div>
+                      <div className={`px-3 py-1.5 bg-white rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all ${
+                        commState === 'syscall-driver' ? 'border-green-400 shadow-sm' : 'border-slate-200'
+                      }`}>
+                        <HardDrive className={`w-3 h-3 ${commState === 'syscall-driver' ? 'text-green-500 animate-bounce' : 'text-slate-400'}`} /> Ovladač disku
+                        {commState === 'syscall-driver' && <span className="text-[9px] text-green-600 font-mono">Zapisuji...</span>}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )}
-        
+
+
+        {phase === 'attack' && (
+          <div className="animate-in fade-in zoom-in-95 duration-500 w-full">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter">🏴‍☠️ Eskalace Privilegií</h1>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Jsi škodlivý program (Malware) běžící v <strong>Ring 3 (User Space)</strong>. Zkus se dostat
+                do chráněné paměti jádra nebo spustit zakázanou instrukci. Uvidíš, co ti v tom zabrání.
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-4">
+              {/* Memory map – stejný vizuální styl jako RAM v sekci Komunikace */}
+              <div className="bg-white rounded-2xl border-4 border-slate-200 overflow-hidden shadow-sm">
+                <div className="bg-slate-200 text-slate-700 px-4 py-1.5 font-black tracking-widest uppercase text-xs text-center">
+                  Rozložení v RAM
+                </div>
+
+                {/* User Space */}
+                <div className={`border-b-2 border-dashed px-4 py-3 relative transition-all duration-300 ${
+                  attackState === 'trying' ? 'bg-yellow-50 border-yellow-400' : 'bg-red-50/60 border-red-200'
+                }`}>
+                  <div className="flex justify-between text-xs font-mono text-red-400 mb-2 font-bold">
+                    <span>Adresa: 11</span><span>Adresa: 100</span>
+                  </div>
+                  <div className="text-[9px] font-black text-red-400 uppercase tracking-widest mb-2">User Space — Ring 3 (Ty jsi tady)</div>
+                  <div className="flex gap-2 flex-wrap">
+                    <div className={`px-3 py-1.5 bg-white rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all ${
+                      attackState === 'trying' ? 'border-yellow-400 shadow-md animate-pulse' : 'border-red-200'
+                    }`}>
+                      <Bug className="w-3 h-3 text-red-500" /> malware.exe ← TY
+                    </div>
+                    <div className="px-3 py-1.5 bg-white rounded-lg border-2 border-slate-100 text-xs font-bold opacity-60 flex items-center gap-1.5">
+                      <LayoutDashboard className="w-3 h-3 text-slate-400" /> notepad.exe
+                    </div>
+                    <div className="px-3 py-1.5 bg-white rounded-lg border-2 border-slate-100 text-xs font-bold opacity-60 flex items-center gap-1.5">
+                      <Monitor className="w-3 h-3 text-slate-400" /> chrome.exe
+                    </div>
+                  </div>
+                </div>
+
+                {/* MPU Barrier */}
+                <div className={`h-5 flex items-center justify-center transition-all duration-500 ${
+                  attackState === 'trying' ? 'bg-yellow-400 animate-pulse' :
+                  attackState === 'blocked' ? 'bg-red-500' : 'bg-slate-400'
+                }`}>
+                  <span className="text-white text-[9px] font-black uppercase tracking-widest">
+                    {attackState === 'trying' ? '⚡ Pokus o průnik...' :
+                     attackState === 'blocked' ? '🛡️ MPU zablokovala přístup!' :
+                     'Hardwarová bariéra — MPU'}
+                  </span>
+                </div>
+
+                {/* Kernel Space */}
+                <div className={`bg-slate-100 px-4 py-3 transition-all duration-300 ${
+                  attackState === 'blocked' ? 'bg-green-50' : ''
+                }`}>
+                  <div className="flex justify-between text-xs font-mono text-slate-500 mb-2 font-bold">
+                    <span>Adresa: 0</span><span>Adresa: 10</span>
+                  </div>
+                  <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Kernel Space — Ring 0 (Zakázaná zóna)</div>
+                  <div className="flex gap-2 flex-wrap">
+                    <div className="px-3 py-1.5 bg-white rounded-lg border-2 border-slate-200 text-xs font-bold flex items-center gap-1.5">
+                      <Cpu className="w-3 h-3 text-slate-400" /> Jádro OS
+                    </div>
+                    <div className="px-3 py-1.5 bg-white rounded-lg border-2 border-slate-200 text-xs font-bold flex items-center gap-1.5">
+                      <HardDrive className="w-3 h-3 text-slate-400" /> Ovladač disku
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trying feedback */}
+              {attackState === 'trying' && (
+                <div className="text-center py-4 animate-in fade-in">
+                  <div className="text-4xl mb-2 animate-bounce">⚡</div>
+                  <div className="font-black text-yellow-700 uppercase tracking-widest">Probíhá pokus o průnik...</div>
+                  <div className="text-xs text-slate-500 mt-1 font-mono">
+                    {attackTarget === 'mem' ? 'malware.exe → zápis na adresu 5 (Kernel Space)' : 'malware.exe → execute(HLT) — instrukce jen pro Ring 0'}
+                  </div>
+                </div>
+              )}
+
+              {/* Blocked feedback */}
+              {attackState === 'blocked' && (
+                <div className="bg-red-50 border-4 border-red-400 rounded-3xl p-6 animate-in zoom-in-95 duration-300">
+                  <div className="font-mono text-xs text-red-800 bg-black/5 p-4 rounded-xl mb-4 leading-relaxed">
+                    <div className="text-red-500 font-black text-sm mb-2">❌ SEGMENTATION FAULT / ACCESS VIOLATION</div>
+                    <div>Process: malware.exe (Adresa 15–30) → Ring 3</div>
+                    <div>Attempt: {attackTarget === 'mem' ? 'Zápis na adresu 5 (Kernel Space, Ring 0)' : 'Spuštění instrukce HLT — povolena jen v Ring 0'}</div>
+                    <div className="text-red-400 mt-1">CPU: Ochranné porušení — Ring 3 nemůže přistoupit do Ring 0</div>
+                    <div className="text-green-400 mt-1">→ Proces nuceně ukončen. Systém a ostatní aplikace v pořádku.</div>
+                  </div>
+                  <p className="text-sm font-medium text-red-700 leading-relaxed">
+                    <strong>Procesor (CPU) sám, na čistě hardwarové úrovni,</strong> zachytil pokus o neoprávněný přístup
+                    a okamžitě ukončil škodlivý proces. Ne antivirus. Ne Windows Defender. Samotný hardware.
+                    Jádro OS a ostatní aplikace pokračují v běhu bez jakéhokoliv výpadku.
+                  </p>
+                </div>
+              )}
+
+              {/* Attack buttons */}
+              {attackState === 'idle' && (
+                <div className="grid md:grid-cols-2 gap-4 animate-in slide-in-from-bottom-4">
+                  <button
+                    onClick={() => handleAttack('mem')}
+                    className="bg-red-50 hover:bg-red-100 border-4 border-red-200 hover:border-red-400 p-6 rounded-3xl transition-all text-left active:scale-95 shadow-sm"
+                  >
+                    <div className="text-3xl mb-3">💾</div>
+                    <div className="font-black text-red-800 uppercase tracking-widest text-sm mb-2">Útok na paměť jádra</div>
+                    <div className="text-xs text-red-600 font-medium leading-relaxed">
+                      Zkusím zapsat data na adresu 5 v Kernel Space (adresy 0–10), kde leží samotné jádro OS.
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => handleAttack('exec')}
+                    className="bg-orange-50 hover:bg-orange-100 border-4 border-orange-200 hover:border-orange-400 p-6 rounded-3xl transition-all text-left active:scale-95 shadow-sm"
+                  >
+                    <div className="text-3xl mb-3">⚡</div>
+                    <div className="font-black text-orange-800 uppercase tracking-widest text-sm mb-2">Privilegovaná instrukce</div>
+                    <div className="text-xs text-orange-600 font-medium leading-relaxed">
+                      Zkusím spustit instrukci HLT (zastav procesor) — dostupná výhradně v Ring 0. Z Ring 3 je zakázána.
+                    </div>
+                  </button>
+                </div>
+              )}
+
+              {attackState === 'blocked' && (
+                <button onClick={resetAttack} className="w-full py-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-black uppercase tracking-widest rounded-2xl transition-all border-b-4 border-slate-300">
+                  Zkusit znovu
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Uzavření activeTab === 'practice' */}
         </div>)}
 
