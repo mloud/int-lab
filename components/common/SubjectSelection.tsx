@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search, ScanFace } from 'lucide-react';
+import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search, ScanFace, Clock } from 'lucide-react';
 import TechStackSimulation from './TechStackSimulation';
 import { motion, AnimatePresence } from 'framer-motion';
 import SearchModal from './SearchModal';
@@ -18,7 +18,10 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
 }) => {
   const [showTechStack, setShowTechStack] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showVersion, setShowVersion] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<'info' | 'spec' | null>(null);
+
+  const lastBuild = process.env.NEXT_PUBLIC_LAST_BUILD || 'Lokální dev verze (nesestaveno)';
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -63,8 +66,17 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
       
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-12 flex flex-col items-center">
         
-        {/* Global Search Action */}
-        <div className="absolute top-8 right-8 z-50">
+        {/* Global Actions Container */}
+        <div className="absolute top-8 right-8 z-50 flex items-center gap-3">
+          
+          <button 
+            onClick={() => setShowVersion(true)}
+            className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 rounded-full text-slate-500 hover:text-blue-600 transition-all"
+            title="Informace o verzi"
+          >
+            <Clock className="w-5 h-5" />
+          </button>
+
           <button 
             onClick={() => setIsSearchOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 rounded-full text-slate-500 hover:text-slate-800 transition-all font-bold text-xs uppercase tracking-wider"
@@ -229,6 +241,44 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
       <AnimatePresence>
         {showTechStack && (
           <TechStackSimulation onClose={() => setShowTechStack(false)} />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showVersion && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4"
+            onClick={() => setShowVersion(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-100 flex flex-col items-center text-center"
+            >
+              <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mb-6">
+                <Clock className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-black text-slate-800 mb-2">Informace o verzi</h3>
+              <p className="text-slate-500 text-sm mb-6">
+                Tento portál je pravidelně aktualizován. Zde najdete přesný čas, kdy byla naposledy na server nahrána nová verze.
+              </p>
+              <div className="bg-slate-50 w-full p-4 rounded-xl border border-slate-100 mb-6 shadow-inner">
+                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold block mb-1">Poslední nasazení</span>
+                <span className="font-mono text-blue-600 font-bold text-lg">{lastBuild}</span>
+              </div>
+              <button 
+                onClick={() => setShowVersion(false)}
+                className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors"
+              >
+                Zavřít okno
+              </button>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

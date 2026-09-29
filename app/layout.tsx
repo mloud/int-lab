@@ -1,4 +1,4 @@
-import React from 'react';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'Interaktivní Lab',
@@ -27,6 +27,15 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+
+        {/* Cloudflare Web Analytics - měření návštěvnosti bez cookies */}
+        {process.env.NEXT_PUBLIC_CF_BEACON && (
+          <Script
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON}"}`}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
