@@ -3,6 +3,9 @@ name: Deploy Next.js app to GitHub Pages
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'analytics/**'   # Změny pouze v admin projektu hlavní web nerebuildují
+      - '*.md'           # Změny dokumentace taky nerebuildují
   workflow_dispatch:
 
 permissions:
