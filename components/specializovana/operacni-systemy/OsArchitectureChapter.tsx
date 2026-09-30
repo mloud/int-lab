@@ -294,7 +294,7 @@ const OsArchitectureChapter: React.FC<OsArchitectureChapterProps> = ({ onBack })
       const cText = (q.correct as string).toLowerCase().trim();
       if (cText === 'system call' && (uText === 'syscall' || uText === 'systémové volání' || uText === 'systemove volani')) return true;
       if (cText === 'kernel space' && (uText === 'kernelspace' || uText === 'jádro' || uText === 'jadro')) return true;
-      if (cText === 'mikrojádro' && (uText === 'microkernel' || uText === 'mikrojadro')) return true;
+      if (cText === 'mikrojádro' && (uText === 'microkernel' || uText === 'mikrokernel' || uText === 'mikrojadro')) return true;
       
       return uText === cText || uText.replace('-', '') === cText.replace('-', '');
     }

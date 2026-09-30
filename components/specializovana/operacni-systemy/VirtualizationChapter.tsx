@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Monitor, Server, Layers, Power, CheckSquare, Square, Zap, Info, ShieldAlert, Wifi, MousePointer2, Save, Download, ChevronDown, ChevronUp } from 'lucide-react';
+import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 interface VirtualizationChapterProps {
   onBack: () => void;
@@ -256,43 +258,12 @@ const SCENARIOS = [
 const VirtualizationChapter: React.FC<VirtualizationChapterProps> = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState<'theory' | 'simulation' | 'worksheet'>('theory');
 
-  // Worksheet State
-  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  // Worksheet State using useLocalStorage
+  const [checkedItems, setCheckedItems] = useLocalStorage<Record<string, boolean>>('virtualization_checks', {});
+  const [answers, setAnswers] = useLocalStorage<Record<string, string>>('virtualization_answers', {});
   const [revealedScenarios, setRevealedScenarios] = useState<Record<string, boolean>>({});
   const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>({});
-  const [studentName, setStudentName] = useState<string>('');
-  const [saveIndicator, setSaveIndicator] = useState<'saved' | 'saving'>('saved');
-
-  // Load from localStorage on mount
-  useEffect(() => {
-    try {
-      const savedChecks = localStorage.getItem('virtualization_checks');
-      const savedAnswers = localStorage.getItem('virtualization_answers');
-      const savedName = localStorage.getItem('virtualization_name');
-      if (savedChecks) setCheckedItems(JSON.parse(savedChecks));
-      if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
-      if (savedName) setStudentName(savedName);
-    } catch (e) {
-      console.error('Failed to load worksheet state', e);
-    }
-  }, []);
-
-  // Save to localStorage on change
-  useEffect(() => {
-    setSaveIndicator('saving');
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem('virtualization_checks', JSON.stringify(checkedItems));
-        localStorage.setItem('virtualization_answers', JSON.stringify(answers));
-        localStorage.setItem('virtualization_name', studentName);
-        setSaveIndicator('saved');
-      } catch (e) {
-        console.error('Failed to save worksheet state', e);
-      }
-    }, 500); // Debounce save
-    return () => clearTimeout(timer);
-  }, [checkedItems, answers, studentName]);
+  const [studentName, setStudentName] = useLocalStorage<string>('virtualization_name', '');
 
   const toggleCheck = (id: string) => {
     setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));
@@ -475,17 +446,20 @@ const VirtualizationChapter: React.FC<VirtualizationChapterProps> = ({ onBack })
                   <div className="w-full flex flex-col items-center gap-3 relative h-full justify-end font-medium">
                     {/* VMs */}
                     <div className="flex gap-3 w-full justify-center">
-                      <div className="flex-1 max-w-[110px] p-4 bg-emerald-50 border-2 border-emerald-400 rounded-xl text-center text-emerald-900 text-xs shadow-md">
+                      <div className="flex-1 max-w-[110px] p-3 bg-emerald-50 border-2 border-emerald-400 rounded-xl text-center text-emerald-900 text-xs shadow-md">
                         <div className="text-2xl mb-1 drop-shadow-sm">🐧</div>
-                        Webserver
+                        <div className="font-black leading-tight">Linux VM</div>
+                        <div className="text-[10px] font-medium opacity-75 leading-tight mt-1 border-t border-emerald-200 pt-1">Webserver</div>
                       </div>
-                      <div className="flex-1 max-w-[110px] p-4 bg-sky-50 border-2 border-sky-400 rounded-xl text-center text-sky-900 text-xs shadow-md">
-                         <div className="text-2xl mb-1 drop-shadow-sm">🗄️</div>
-                        Databáze
+                      <div className="flex-1 max-w-[110px] p-3 bg-sky-50 border-2 border-sky-400 rounded-xl text-center text-sky-900 text-xs shadow-md">
+                         <div className="text-2xl mb-1 drop-shadow-sm">🪟</div>
+                        <div className="font-black leading-tight">Windows VM</div>
+                        <div className="text-[10px] font-medium opacity-75 leading-tight mt-1 border-t border-sky-200 pt-1">Databáze</div>
                       </div>
-                      <div className="flex-1 max-w-[110px] p-4 bg-orange-50 border-2 border-orange-400 rounded-xl text-center text-orange-900 text-xs shadow-md">
-                         <div className="text-2xl mb-1 drop-shadow-sm">🛡️</div>
-                        Firewall
+                      <div className="flex-1 max-w-[110px] p-3 bg-orange-50 border-2 border-orange-400 rounded-xl text-center text-orange-900 text-xs shadow-md">
+                         <div className="text-2xl mb-1 drop-shadow-sm">🐧</div>
+                        <div className="font-black leading-tight">Linux VM</div>
+                        <div className="text-[10px] font-medium opacity-75 leading-tight mt-1 border-t border-orange-200 pt-1">Firewall</div>
                       </div>
                     </div>
                     
@@ -519,31 +493,12 @@ const VirtualizationChapter: React.FC<VirtualizationChapterProps> = ({ onBack })
         )}
 
         {activeTab === 'worksheet' && (
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
-            {/* Osobní údaje a indikátor uložení */}
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex-1 max-w-sm">
-                <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Jméno a příjmení studenta</label>
-                <input 
-                  type="text" 
-                  value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
-                  placeholder="Zadej své jméno..."
-                  className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-indigo-500 focus:ring-0 outline-none font-medium transition-all"
-                />
-              </div>
-              <div className="flex items-center gap-2 text-sm font-bold">
-                {saveIndicator === 'saved' ? (
-                  <span className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-100">
-                    <Save className="w-4 h-4" /> Uloženo (odolné proti restartu)
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-1 text-amber-600 bg-amber-50 px-3 py-2 rounded-lg border border-amber-100 animate-pulse">
-                    <Save className="w-4 h-4" /> Ukládám...
-                  </span>
-                )}
-              </div>
-            </div>
+          <WorksheetLayout
+            title="Virtualizace"
+            studentName={studentName}
+            onStudentNameChange={setStudentName}
+            onDownload={downloadWorksheet}
+          >
 
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
               <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase">1. Nasazení virtuálního stroje</h2>
@@ -688,24 +643,8 @@ const VirtualizationChapter: React.FC<VirtualizationChapterProps> = ({ onBack })
                   );
                 })}
               </div>
-
-              {/* Tlačítko na export */}
-              <div className="mt-12 pt-8 border-t-2 border-slate-100">
-                <button 
-                  onClick={downloadWorksheet}
-                  disabled={!studentName}
-                  className={`w-full py-5 rounded-2xl font-black text-lg uppercase tracking-widest shadow-xl flex justify-center items-center gap-3 transition-all ${studentName ? 'bg-indigo-600 hover:bg-indigo-700 text-white hover:-translate-y-1 active:translate-y-0 border-b-4 border-indigo-800 cursor-pointer' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}
-                >
-                  <Download className="w-6 h-6" />
-                  {studentName ? 'Stáhnout dokument (Word/Google Docs)' : 'Nejprve vyplňte své jméno nahoře'}
-                </button>
-                <p className="text-center text-slate-400 text-sm font-medium mt-4">
-                  Po kliknutí se stáhne soubor <strong>.doc</strong>, který lze snadno nahrát na Google Drive a přímo otevřít v aplikaci Google Dokumenty.
-                </p>
-              </div>
-
             </div>
-          </div>
+          </WorksheetLayout>
         )}
 
       </div>
