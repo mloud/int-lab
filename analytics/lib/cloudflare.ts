@@ -4,7 +4,7 @@
 // Dokumentace: https://developers.cloudflare.com/analytics/graphql-api/
 // Dataset: rumPageloadEventsAdaptiveGroups (Real User Monitoring)
 
-const CF_GRAPHQL_ENDPOINT = 'https://api.cloudflare.com/client/v4/graphql';
+const CF_GRAPHQL_ENDPOINT = '/api/graphql';
 
 // --- Typy ---
 
@@ -59,27 +59,24 @@ export interface DateRange {
 
 function getCredentials() {
   const accountId = process.env.NEXT_PUBLIC_CF_ACCOUNT_ID;
-  const apiToken = process.env.NEXT_PUBLIC_CF_API_TOKEN;
   const siteTag = process.env.NEXT_PUBLIC_CF_SITE_TAG;
 
-  if (!accountId || !apiToken || !siteTag) {
+  if (!accountId || !siteTag) {
     throw new Error(
       'Chybí Cloudflare přihlašovací údaje. Zkontroluj .env.local soubor.\n' +
-      'Potřebuješ: NEXT_PUBLIC_CF_ACCOUNT_ID, NEXT_PUBLIC_CF_API_TOKEN, NEXT_PUBLIC_CF_SITE_TAG'
+      'Potřebuješ: NEXT_PUBLIC_CF_ACCOUNT_ID, NEXT_PUBLIC_CF_SITE_TAG'
     );
   }
 
-  return { accountId, apiToken, siteTag };
+  return { accountId, siteTag };
 }
 
 async function queryGraphQL<T>(query: string, variables: Record<string, unknown>): Promise<T> {
-  const { apiToken } = getCredentials();
-
   const response = await fetch(CF_GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiToken}`,
+      // Authorization token je nyní bezpečně přidáván v proxy funkci (functions/api/graphql.js)
     },
     body: JSON.stringify({ query, variables }),
   });
