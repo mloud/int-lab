@@ -245,7 +245,6 @@ export async function getTopPages(range: DateRange, limit = 50): Promise<TopPage
       accounts: Array<{
         rumPageloadEventsAdaptiveGroups: Array<{
           count: number;
-          avg: { pageLoadTime: number | null };
           dimensions: { requestPath: string };
         }>;
       }>;
@@ -265,7 +264,7 @@ export async function getTopPages(range: DateRange, limit = 50): Promise<TopPage
   return groups.map(g => ({
     path: g.dimensions.requestPath || '/',
     pageviews: g.count,
-    avgLoadTime: g.avg?.pageLoadTime ?? null,
+    avgLoadTime: null,
   }));
 }
 
@@ -427,7 +426,7 @@ export async function getBrowserBreakdown(range: DateRange): Promise<BrowserStat
       accounts: Array<{
         rumPageloadEventsAdaptiveGroups: Array<{
           count: number;
-          dimensions: { browserFamily: string };
+          dimensions: { userAgentBrowser: string };
         }>;
       }>;
     };
@@ -501,7 +500,6 @@ export async function getSummaryStats(range: DateRange): Promise<SummaryStats> {
       accounts: Array<{
         total: Array<{
           count: number;
-          avg: { pageLoadTime: number | null };
         }>;
         byCountry: Array<{
           count: number;
@@ -520,7 +518,7 @@ export async function getSummaryStats(range: DateRange): Promise<SummaryStats> {
 
   const account = data?.viewer?.accounts?.[0];
   const totalPageviews = account?.total?.[0]?.count ?? 0;
-  const avgLoadTime = account?.total?.[0]?.avg?.pageLoadTime ?? 0;
+  const avgLoadTime = 0;
   const topCountry = account?.byCountry?.[0]?.dimensions?.countryName ?? 'Neznámá';
 
   return {
