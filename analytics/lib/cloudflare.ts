@@ -72,12 +72,23 @@ function getCredentials() {
 }
 
 async function queryGraphQL<T>(query: string, variables: Record<string, unknown>): Promise<T> {
-  const response = await fetch(CF_GRAPHQL_ENDPOINT, {
+  const isDev = process.env.NODE_ENV === 'development';
+  const endpoint = isDev ? 'https://api.cloudflare.com/client/v4/graphql' : CF_GRAPHQL_ENDPOINT;
+  
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  if (isDev) {
+    const apiToken = process.env.NEXT_PUBLIC_CF_API_TOKEN;
+    if (apiToken) {
+      headers['Authorization'] = `Bearer ${apiToken}`;
+    }
+  }
+
+  const response = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // Authorization token je nyní bezpečně přidáván v proxy funkci (functions/api/graphql.js)
-    },
+    headers,
     body: JSON.stringify({ query, variables }),
   });
 
