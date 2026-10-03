@@ -40,6 +40,7 @@ Naším cílem je **postavit robustní learningový portál pro základní a st�
 1. Návštěvníci hlavního webu jsou pasivně sledováni přes **Cloudflare Web Analytics** (beacon.js, bez cookies).
 2. Cloudflare ukládá analytická data (pageviews, zeměpisná data, časy, atp.) na svých serverech.
 3. Admin projekt (po přihlášení přes GitHub OAuth) volá **Cloudflare Analytics API** a stahuje tato data.
+   - *Poznámka:* Lokálně se API volá napřímo pomocí klíčů z `.env.local`. V produkci na Cloudflare Pages se stará o bezpečné volání bez nutnosti vystavení klíčů proxy ve složce `functions/api/graphql.js`.
 4. Data jsou vizualizována v dashboardu (grafy, přehledy, statistiky).
 
 ### Proč toto řešení?
