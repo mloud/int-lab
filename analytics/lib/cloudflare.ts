@@ -231,9 +231,6 @@ export async function getTopPages(range: DateRange, limit = 50): Promise<TopPage
             orderBy: [count_DESC]
           ) {
             count
-            avg {
-              pageLoadTime
-            }
             dimensions {
               requestPath
             }
@@ -477,9 +474,6 @@ export async function getSummaryStats(range: DateRange): Promise<SummaryStats> {
             limit: 1
           ) {
             count
-            avg {
-              pageLoadTime
-            }
           }
           byCountry: rumPageloadEventsAdaptiveGroups(
             filter: {
