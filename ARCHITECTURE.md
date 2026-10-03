@@ -20,6 +20,13 @@ Naším cílem je **postavit robustní learningový portál pro základní a st�
 - `/constants.ts` / `/types.ts` - Centrální definice dat, struktur a TypeScript typů.
 - `/doc` - Dokumentace k projektu
 
+## 🖨️ Pracovní listy a testy k tisku
+Novou součástí výukového portálu jsou materiály určené primárně pro fyzický tisk (testy, pracovní listy):
+- Architektura se spoléhá na CSS media query `@media print`, která skryje postranní menu a všechny digitální prvky (tlačítka pro kontrolu, navigaci).
+- Dokumenty (např. `OsSummaryWorksheet.tsx`) se formátují do velikosti A4 (`min-h-[297mm] max-w-[210mm]`).
+- Pro žáky jsou vytvořeny pomocné vizuální komponenty, jako např. `Lines` pro psaní textu a `DrawBox` pro náčrty a schémata.
+- Z testů a listů k tisku jsou flexibilně odstraňovány interaktivní prvky a metadata.
+
 ## 🔐 Administrátorská část a Data
 - **Stav:** Databáze v tuto chvíli není potřeba. Veškerý obsah a datové struktury jsou řešeny lokálně (soubory `constants.ts`, komponenty).
 - **Budoucí správa dat:** Řeší se přes analytický admin projekt (viz níže).
