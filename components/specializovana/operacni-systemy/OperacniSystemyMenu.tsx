@@ -12,9 +12,10 @@ interface OperacniSystemyMenuProps {
   onStartProcessMemory: () => void;
   onStartHardware: () => void;
   onStartVirtualization: () => void;
+  onStartAssessment: () => void;
 }
 
-const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartOsIntro, onStartOsArchitecture, onStartOsEvolution, onStartOsBoot, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory, onStartHardware, onStartVirtualization }) => {
+const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onStartOsIntro, onStartOsArchitecture, onStartOsEvolution, onStartOsBoot, onStartFileSystemsMenu, onStartWindowsInstall, onStartProcessMemory, onStartHardware, onStartVirtualization, onStartAssessment }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
       
@@ -120,6 +121,24 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
               className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
             >
               Otevřít muzeum
+            </button>
+          </div>
+
+          {/* Assessment Card */}
+          <div className="relative group p-6 bg-rose-50 rounded-3xl border-2 border-rose-300 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-rose-100">
+            <div className="absolute top-3 right-3 text-[10px] font-black text-white bg-rose-500 px-2 py-1 rounded-md uppercase tracking-widest shadow-sm z-10">TEST</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-rose-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+                <ShieldCheck className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-rose-800 mb-1 uppercase tracking-wider text-sm">Hodnocená práce</h3>
+              <p className="text-xs text-rose-600 font-medium">Hardware, úvod do OS a architektura OS. 45 minut, 50 bodů. Odemčení na heslo.</p>
+            </div>
+            <button
+              onClick={onStartAssessment}
+              className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+            >
+              Otevřít zadání
             </button>
           </div>
 
