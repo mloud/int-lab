@@ -414,7 +414,7 @@ export async function getBrowserBreakdown(range: DateRange): Promise<BrowserStat
           ) {
             count
             dimensions {
-              browserFamily
+              userAgentBrowser
             }
           }
         }
@@ -444,9 +444,9 @@ export async function getBrowserBreakdown(range: DateRange): Promise<BrowserStat
   const total = groups.reduce((sum, g) => sum + g.count, 0);
 
   return groups
-    .filter(g => g.dimensions.browserFamily)
+    .filter(g => g.dimensions.userAgentBrowser)
     .map(g => ({
-      browser: g.dimensions.browserFamily,
+      browser: g.dimensions.userAgentBrowser,
       pageviews: g.count,
       percentage: total > 0 ? Math.round((g.count / total) * 100) : 0,
     }))
