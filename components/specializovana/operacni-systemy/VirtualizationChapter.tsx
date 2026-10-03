@@ -180,12 +180,20 @@ const WORKSHEET_STEPS = [
     id: 'w8', 
     text: 'Po dokončení instalace vás systém vyzve k restartu. Nyní vás přivítá grafická plocha nainstalovaná za méně než minutu!', 
     explanation: 'Virtuální stroj se chová jako skutečné PC, takže po instalaci se musí restartovat a následně nabootuje svůj nově nahraný zavaděč z (virtuálního) pevného disku.' 
+  }
+];
+
+const WORKSHEET_SNAPSHOT_STEPS = [
+  { 
+    id: 's_snap1', 
+    text: 'Při vypnutém stroji vytvořte Snímek (Snapshot) vaší čisté instalace ReactOS.', 
+    explanation: 'Snímek funguje jako "save game". Uloží naprosto přesný stav celého virtuálního počítače (všechny soubory i nastavení), takže se k němu můžete kdykoliv bezpečně vrátit.' 
   },
   { 
-    id: 'w9', 
-    text: 'Úklid: Vypněte stroj. V levém menu VirtualBoxu na něj klikněte pravým tlačítkem, zvolte "Odstranit" a bezpodmínečně vyberte "Smazat všechny soubory".', 
-    explanation: 'Na rozdíl od odinstalace skutečného OS stačí u virtualizace smazat jednu složku na disku (ve které se ukrývá VDI disk). Po systému nezbude v počítači ani stopa a uvolníte místo dalším studentům.' 
-  },
+    id: 's_snap2', 
+    text: 'Test záchrany ze Snímku: Zapněte systém, přes Application Manager nainstalujte aplikaci a následně smažte všechny soubory z disku C:. Systém zhavaruje. Zkuste jej restartovat a poté obnovte pomocí vytvořeného Snímku.', 
+    explanation: 'Díky Snímku se nemusíte bát experimentovat. Pokud systém rozbijete nebo smažete klíčové soubory, obnova ze snapshotu ho během vteřiny vrátí do plně funkčního stavu, ve kterém byl vytvořen.' 
+  }
 ];
 
 const WORKSHEET_ADVANCED_STEPS = [
@@ -223,12 +231,7 @@ const WORKSHEET_ADVANCED_STEPS = [
     id: 'a6', 
     text: 'Připojte stažené ISO do mechaniky a systém spusťte. Otestujte, jak plynule systém běží díky vašemu pokročilému nastavení.', 
     explanation: 'Správné ladění virtuálního hardwaru je klíčovou schopností každého administrátora – hledáme rovnováhu mezi tím, aby měl virtuální stroj dostatek výkonu, ale aby zároveň nezpomalil náš hostitelský počítač.' 
-  },
-  { 
-    id: 'a7', 
-    text: 'Úklid: Systém vypněte, klikněte na něj ve VirtualBoxu pravým tlačítkem a trvale jej odstraňte (Smazat všechny soubory).', 
-    explanation: 'Tento krok je u sdílených počítačů extrémně důležitý, jelikož Linuxový VDI disk může rychle narůst do desítek gigabajtů a brzy by na školních discích došlo místo.' 
-  },
+  }
 ];
 
 const SCENARIOS = [
@@ -589,8 +592,51 @@ const VirtualizationChapter: React.FC<VirtualizationChapterProps> = ({ onBack })
                 ))}
               </div>
 
+              <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">3. Tvorba snímku a obnova systému</h2>
+              <p className="text-slate-500 font-medium mb-8">Pojďme si vytvořit bezpečnostní záchytný bod a následně otestovat záchranu úmyslně zničeného systému.</p>
+
+              <div className="space-y-3 mb-12">
+                {WORKSHEET_SNAPSHOT_STEPS.map(step => (
+                  <div 
+                    key={step.id} 
+                    className={`flex flex-col rounded-xl border-2 transition-all ${checkedItems[step.id] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                  >
+                    <div 
+                      onClick={() => toggleCheck(step.id)}
+                      className="flex items-start gap-4 p-4 cursor-pointer"
+                    >
+                      {checkedItems[step.id] ? (
+                        <CheckSquare className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      ) : (
+                        <Square className="w-6 h-6 text-slate-400 flex-shrink-0 mt-0.5" />
+                      )}
+                      <span className={`font-medium flex-1 ${checkedItems[step.id] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
+                        {step.text}
+                      </span>
+                      {step.explanation && (
+                        <button 
+                          onClick={(e) => toggleStepExpand(step.id, e)}
+                          className="p-1 rounded-md hover:bg-slate-200/50 text-slate-500 transition-colors"
+                        >
+                          {expandedSteps[step.id] ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                        </button>
+                      )}
+                    </div>
+                    
+                    {expandedSteps[step.id] && step.explanation && (
+                      <div className="px-14 pb-4 animate-in slide-in-from-top-2 duration-300">
+                        <div className="p-4 bg-white/60 rounded-xl border border-slate-200/50 shadow-sm">
+                          <h4 className="text-xs font-bold text-indigo-700 uppercase mb-1 flex items-center gap-2"><Info className="w-4 h-4"/> Detailní vysvětlení</h4>
+                          <p className="text-sm font-medium text-slate-600 leading-relaxed">{step.explanation}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
               <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase flex items-center gap-3">
-                <ShieldAlert className="w-8 h-8 text-rose-500" /> 3. Krizové scénáře (Řešení problémů)
+                <ShieldAlert className="w-8 h-8 text-rose-500" /> 4. Krizové scénáře (Řešení problémů)
               </h2>
               <p className="text-slate-500 font-medium mb-8">Při provozu virtualizovaných systémů můžete narazit na specifické problémy. Zkuste identifikovat příčinu a napište vlastní řešení do pole níže. Poté si můžete ověřit správný postup.</p>
 
