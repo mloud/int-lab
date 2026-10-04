@@ -18,6 +18,7 @@ export default function Page() {
           onStartPartitions={() => router.push(`${BASE}/deleni-disku`)}
           onStartFat={() => router.push(`${BASE}/alokace-fat`)}
           onStartFragmentation={() => router.push(`${BASE}/fragmentace`)}
+          onStartReadFlow={() => router.push(`${BASE}/cteni-souboru`)}
           onStartFATGame={() => router.push(`${BASE}/fat`)}
           onStartAllocationGame={() => router.push(`${BASE}/alokace`)}
           onStartDefragGame={() => router.push(`${BASE}/defrag`)}

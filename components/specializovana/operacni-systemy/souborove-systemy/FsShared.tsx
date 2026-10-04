@@ -112,7 +112,7 @@ export const TheoryCard: React.FC<TheoryCardProps> = ({ letter, icon: Icon, titl
       </span>
       <span>{letter && <span className="text-slate-300 mr-2">{letter}.</span>}{title}</span>
     </h2>
-    <div className="text-base text-slate-600 leading-relaxed space-y-4">{children}</div>
+    <div className="text-sm text-slate-600 leading-relaxed space-y-4">{children}</div>
   </section>
 );
 

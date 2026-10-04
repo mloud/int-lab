@@ -12,6 +12,7 @@ interface FileSystemsMenuProps {
   onStartPartitions: () => void;
   onStartFat: () => void;
   onStartFragmentation: () => void;
+  onStartReadFlow: () => void;
   // Samostatné procvičovací hry
   onStartFATGame: () => void;
   onStartAllocationGame: () => void;
@@ -27,6 +28,7 @@ const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
   onStartPartitions,
   onStartFat,
   onStartFragmentation,
+  onStartReadFlow,
   onStartFATGame,
   onStartAllocationGame,
   onStartDefragGame,
@@ -78,6 +80,15 @@ const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
       gradient: 'from-amber-500 to-orange-500',
       ring: 'hover:border-amber-200',
       action: onStartFragmentation,
+    },
+    {
+      n: 6, tag: 'fs6',
+      title: 'Architektura v praxi',
+      desc: 'Simulace toku dat při čtení souboru. Propojení OS, FAT tabulky a samotného disku.',
+      icon: AppWindow,
+      gradient: 'from-rose-500 to-red-500',
+      ring: 'hover:border-rose-200',
+      action: onStartReadFlow,
     },
   ];
 
