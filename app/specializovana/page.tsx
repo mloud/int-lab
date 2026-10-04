@@ -12,6 +12,7 @@ export default function Page() {
       <SpecializovanaMenu 
             onBack={() => router.push('/')}
             onStartOperacniSystemy={() => router.push('/specializovana/operacni-systemy')}
+            onStartOperacniSystemy2={() => router.push('/specializovana/operacni-systemy-2')}
             onStartProgramming={() => router.push('/specializovana/programovani')} />
     </CategoryLayout>
   );

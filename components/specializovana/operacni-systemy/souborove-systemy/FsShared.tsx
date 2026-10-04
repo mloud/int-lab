@@ -30,6 +30,7 @@ export interface FsTab {
 
 interface FsChapterShellProps {
   chapterNumber: number;
+  totalChapters?: number;
   title: string;
   highlight: string;
   subtitle: string;
@@ -42,7 +43,7 @@ interface FsChapterShellProps {
 
 /** Obal podkapitoly: tlačítko zpět, režim projektoru, hlavička a přepínač záložek. */
 export const FsChapterShell: React.FC<FsChapterShellProps> = ({
-  chapterNumber, title, highlight, subtitle, tabs, activeTab, onTabChange, onBack, children,
+  chapterNumber, totalChapters = 4, title, highlight, subtitle, tabs, activeTab, onTabChange, onBack, children,
 }) => {
   return (
     <div className="max-w-6xl w-full min-h-screen p-4 flex flex-col items-center animate-in fade-in duration-500 mx-auto">
@@ -58,7 +59,7 @@ export const FsChapterShell: React.FC<FsChapterShellProps> = ({
 
         <header className="text-center py-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-black uppercase tracking-[0.2em] text-xs mb-4">
-            Kapitola {chapterNumber} / 4
+            Kapitola {chapterNumber} / {totalChapters}
           </div>
           <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-[1.05]">
             {title}{' '}

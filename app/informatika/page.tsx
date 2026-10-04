@@ -20,10 +20,14 @@ export default function Page() {
             onStartModels={() => router.push('/informatika/modely')}
             onStartHardware={() => router.push('/informatika/hardware')}
             onStartOs={() => router.push('/informatika/os')}
+            onStartOs2={() => router.push('/specializovana/operacni-systemy-2')}
             onStartCodes={() => router.push('/informatika/kody')}
             onStartEncryption={() => router.push('/informatika/sifry')}
             onStartFutureTech={() => router.push('/informatika/budoucnost')}
             onStartArApps={() => router.push('/informatika/ar')}
+            onStartHardwareBasic={() => router.push('/informatika/zaklady-hw')}
+            onStartWord={() => router.push('/informatika/word')}
+            onStartExcel={() => router.push('/informatika/excel')}
             onBack={() => router.push('/')} />
     </CategoryLayout>
   );

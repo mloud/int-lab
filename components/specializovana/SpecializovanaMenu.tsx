@@ -4,10 +4,11 @@ import { ArrowLeft, Cpu, ArrowRight, Code } from 'lucide-react';
 interface SpecializovanaMenuProps {
   onBack: () => void;
   onStartOperacniSystemy: () => void;
+  onStartOperacniSystemy2: () => void;
   onStartProgramming: () => void;
 }
 
-const SpecializovanaMenu: React.FC<SpecializovanaMenuProps> = ({ onBack, onStartOperacniSystemy, onStartProgramming }) => {
+const SpecializovanaMenu: React.FC<SpecializovanaMenuProps> = ({ onBack, onStartOperacniSystemy, onStartOperacniSystemy2, onStartProgramming }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
       
@@ -50,7 +51,7 @@ const SpecializovanaMenu: React.FC<SpecializovanaMenuProps> = ({ onBack, onStart
           <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#ops1</div></button>
 
           <button
-            onClick={() => {}}
+            onClick={onStartOperacniSystemy2}
             className="group relative px-4 sm:px-6 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-blue-100"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
