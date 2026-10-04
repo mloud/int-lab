@@ -174,13 +174,53 @@ export const CURRICULUM: Chapter[] = [
   },
   {
     id: 'os-fs',
-    title: 'Souborové systémy',
+    title: 'Souborový systém a disky',
     path: '/specializovana/operacni-systemy/souborove-systemy',
     icon: Server,
-        description: 'FAT32, NTFS, EXT4 a ukládání na disk.',
+        description: 'Modul správy souborů: disky, oddíly, FAT, NTFS, ext4 a fragmentace.',
     keywords: ['soubory', 'disk', 'fat32', 'ntfs', 'ext4', 'formátování'],
     category: 'specializovana',
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+  },
+  {
+    id: 'fs-media',
+    title: '1. Paměťová média',
+    path: '/specializovana/operacni-systemy/souborove-systemy/media',
+    icon: Server,
+        description: 'HDD a SSD z pohledu OS: plotny, stopy, sektory, NAND stránky a bloky.',
+    keywords: ['hdd', 'ssd', 'sektor', 'stopa', 'plotna', 'nand', 'trim', 'lba'],
+    category: 'specializovana',
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+  },
+  {
+    id: 'fs-deleni',
+    title: '2. Dělení disku',
+    path: '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
+    icon: Server,
+        description: 'Oddíly, MBR vs. GPT, formátování a boot sektor.',
+    keywords: ['oddíl', 'partition', 'mbr', 'gpt', 'formátování', 'svazek', 'boot sektor', 'efi'],
+    category: 'specializovana',
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+  },
+  {
+    id: 'fs-fat',
+    title: '3. Alokační jednotka a FAT',
+    path: '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
+    icon: Server,
+        description: 'Cluster, FAT tabulka, mazání a obnova souborů, NTFS a ext4.',
+    keywords: ['cluster', 'alokační jednotka', 'fat', 'fat32', 'exfat', 'ntfs', 'ext4', 'mazání', 'obnova'],
+    category: 'specializovana',
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+  },
+  {
+    id: 'fs-frag',
+    title: '4. Fragmentace a údržba',
+    path: '/specializovana/operacni-systemy/souborove-systemy/fragmentace',
+    icon: Server,
+        description: 'Vznik fragmentace, defragmentace, TRIM, chkdsk a vadné sektory.',
+    keywords: ['fragmentace', 'defragmentace', 'trim', 'chkdsk', 'fsck', 'vadný sektor'],
+    category: 'specializovana',
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
   },
   {
     id: 'os-install',

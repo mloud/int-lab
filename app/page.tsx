@@ -12,7 +12,11 @@ const SHORT_LINKS: Record<string, string> = {
   'osv': '/specializovana/operacni-systemy/virtualizace',
   'osb': '/specializovana/operacni-systemy/boot',
   'pmm': '/specializovana/operacni-systemy/procesy',
-  'fsm': '/specializovana/operacni-systemy/souborove-systemy'
+  'fsm': '/specializovana/operacni-systemy/souborove-systemy',
+  'fs1': '/specializovana/operacni-systemy/souborove-systemy/media',
+  'fs2': '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
+  'fs3': '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
+  'fs4': '/specializovana/operacni-systemy/souborove-systemy/fragmentace'
 };
 
 export default function Page() {
