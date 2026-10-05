@@ -168,14 +168,14 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
 
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(2, 2, 379, 265)</code><br/><br/>Žáci mohou k řešení úlohy přistoupit s různou pečlivostí. Je na našem uvážení, která řešení akceptujeme jako dostatečně kvalitní a u kterých budeme po žácích požadovat jejich úpravu. V každém případě bychom však měli trvat na tom, aby byly všechny strany obdélníku viditelné. V opačném případě by nebylo zřejmé, jak velký obdélník vlastně žák nakreslil.</p>}>
-          <p>1. Vytvoř program <code>nejvetsi_obdelnik.py</code>, který nakreslí co největší obdélník tak, aby byly vidět jeho strany (souřadnice zvol metodou pokus-omyl):</p>
+          <p>Vytvoř program <code>nejvetsi_obdelnik.py</code>, který nakreslí co největší obdélník tak, aby byly vidět jeho strany (souřadnice zvol metodou pokus-omyl):</p>
           <CanvasPreview>
             <Rect x1={2} y1={2} width={375} height={261} />
           </CanvasPreview>
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>V dalším úloze žákům prozradíme ideu barvení a necháme žáky, aby program vyzkoušeli. V jazyce Python zápis <code>fill='...'</code> nazýváme pojmenovaným parametrem. Tuto terminologii není nutné žákům prozrazovat.</p>}>
-          <p>2. Zatím jsi kreslil jednoduché prázdné obdélníky. Vytvoř nový program <code>vybarveny.py</code> a pomocí následujícího kódu nakresli vybarvený obdélník:</p>
+          <p>Zatím jsi kreslil jednoduché prázdné obdélníky. Vytvoř nový program <code>vybarveny.py</code> a pomocí následujícího kódu nakresli vybarvený obdélník:</p>
           <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-rose-400 overflow-x-auto shadow-inner border border-slate-700">
             <div><span className="text-slate-300">import tkinter</span></div>
             <div><span className="text-slate-300">canvas = tkinter.Canvas()</span></div>
@@ -185,7 +185,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(30, 30, 130, 130, fill='red')</code><br/><code>canvas.create_rectangle(150, 30, 250, 130, fill='green')</code><br/><code>canvas.create_rectangle(30, 150, 130, 250, fill='blue')</code><br/><code>canvas.create_rectangle(150, 150, 250, 250, fill='yellow')</code></p>}>
-          <p>3. Přidej do programu <code>vybarveny.py</code> další 3 příkazy na kreslení obdélníků, abys dostal následující obrázek:</p>
+          <p>Přidej do programu <code>vybarveny.py</code> další 3 příkazy na kreslení obdélníků, abys dostal následující obrázek:</p>
           <CanvasPreview width={280} height={280}>
             <Rect x1={30} y1={30} width={100} height={100} fill="red" />
             <Rect x1={150} y1={30} width={100} height={100} fill="green" />
@@ -196,7 +196,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(50, 50, 300, 100, fill='red')</code><br/><code>canvas.create_rectangle(50, 100, 300, 150, fill='white')</code><br/><code>canvas.create_rectangle(50, 150, 300, 200, fill='blue')</code></p>}>
-          <p>4. Vytvoř nový program <code>nizozemi.py</code>, který nakreslí nizozemskou vlajku:</p>
+          <p>Vytvoř nový program <code>nizozemi.py</code>, který nakreslí nizozemskou vlajku:</p>
           <CanvasPreview width={350} height={250}>
             <Rect x1={50} y1={50} width={250} height={50} fill="red" />
             <Rect x1={50} y1={100} width={250} height={50} fill="white" />
@@ -206,7 +206,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(50, 50, 150, 200, fill='green')</code><br/><code>canvas.create_rectangle(150, 50, 250, 200, fill='white')</code><br/><code>canvas.create_rectangle(250, 50, 350, 200, fill='orange')</code></p>}>
-          <p>5. Vytvoř program <code>irsko.py</code>, který nakreslí irskou vlajku s barvou <code>'orange'</code>:</p>
+          <p>Vytvoř program <code>irsko.py</code>, který nakreslí irskou vlajku s barvou <code>'orange'</code>:</p>
           <CanvasPreview width={400} height={250}>
             <Rect x1={50} y1={50} width={100} height={150} fill="green" />
             <Rect x1={150} y1={50} width={100} height={150} fill="white" />
@@ -215,7 +215,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Obrázek se podobá finské vlajce.<br/><br/>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(50, 50, 300, 200, fill='white')</code><br/><code>canvas.create_rectangle(50, 105, 300, 145, fill='blue')</code><br/><code>canvas.create_rectangle(120, 50, 160, 200, fill='blue')</code><br/><br/>Někteří žáci mohou přijít i na řešení, ve kterém se v modré části vlajky nebudou vyskytovat černé čáry. Toto řešení je však náročnější, neboť spočívá v nakreslení modrého podkladového obdélníku a čtyř oddělených bílých obdélníků.</p>}>
-          <p>6. Vytvoř nový program <code>vlajka.py</code> a nakresli takovýto obrázek:</p>
+          <p>Vytvoř nový program <code>vlajka.py</code> a nakresli takovýto obrázek:</p>
           <CanvasPreview width={350} height={250}>
             <Rect x1={50} y1={50} width={250} height={150} fill="white" />
             <Rect x1={50} y1={105} width={250} height={40} fill="blue" />
@@ -225,7 +225,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(10, 10, 360, 20, fill='red')</code><br/><code>canvas.create_rectangle(10, 20, 20, 260, fill='blue')</code><br/><code>canvas.create_rectangle(20, 250, 370, 260, fill='red')</code><br/><code>canvas.create_rectangle(360, 10, 370, 250, fill='blue')</code></p>}>
-          <p>7. Vytvoř nový program <code>ramecek.py</code>, ve kterém ze čtyř úzkých obdélníků nakresli takovýto rámeček:</p>
+          <p>Vytvoř nový program <code>ramecek.py</code>, ve kterém ze čtyř úzkých obdélníků nakresli takovýto rámeček:</p>
           <CanvasPreview width={380} height={270}>
             <Rect x1={10} y1={10} width={350} height={10} fill="red" />
             <Rect x1={10} y1={20} width={10} height={240} fill="blue" />
@@ -235,7 +235,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>canvas.create_rectangle(50, 50, 150, 150, fill='magenta')</code><br/><code>canvas.create_rectangle(70, 70, 170, 170, fill='violet')</code><br/><code>canvas.create_rectangle(90, 90, 190, 190, fill='plum')</code><br/><code>canvas.create_rectangle(110, 110, 210, 210, fill='pink')</code></p>}>
-          <p>8. Následující obrázek vznikl ze čtyř čtverců. První z nich má souřadnice levého horního vrcholu [50, 50]. Napiš program <code>pres_sebe.py</code>, který obrázek nakreslí – zvol si libovolné čtyři různé barvy (mohou být jiné než na vzorovém obrázku):</p>
+          <p>Následující obrázek vznikl ze čtyř čtverců. První z nich má souřadnice levého horního vrcholu [50, 50]. Napiš program <code>pres_sebe.py</code>, který obrázek nakreslí – zvol si libovolné čtyři různé barvy (mohou být jiné než na vzorovém obrázku):</p>
           <CanvasPreview width={300} height={300}>
             <Rect x1={50} y1={50} width={100} height={100} fill="magenta" />
             <Rect x1={70} y1={70} width={100} height={100} fill="violet" />

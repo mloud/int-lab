@@ -173,7 +173,7 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
         </div>
 
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>x = 200</code><br/><code>y = 200</code><br/><code>canvas.create_rectangle(x - 140, y - 140, x, y, fill = 'red')</code><br/><code>canvas.create_rectangle(x - 120, y - 120, x, y, fill = 'orange')</code><br/><code>canvas.create_rectangle(x - 100, y - 100, x, y, fill = 'yellow')</code><br/><code>canvas.create_rectangle(x - 80, y - 80, x, y, fill = 'green')</code><br/><code>canvas.create_rectangle(x - 60, y - 60, x, y, fill = 'blue')</code><br/><code>canvas.create_rectangle(x - 40, y - 40, x, y, fill = 'purple')</code><br/><code>canvas.create_rectangle(x - 20, y - 20, x, y, fill = 'magenta')</code></p>}>
-          <p>1. Vytvoř program <code>duha.py</code>, který nakreslí kostičkovou duhu. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice pravého dolního rohu kostičkové duhy a použij je při kreslení barevných čtverců. Nejmenší čtverec má rozměry 20 x 20 a každý další je o 20 větší:</p>
+          <p>Vytvoř program <code>duha.py</code>, který nakreslí kostičkovou duhu. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice pravého dolního rohu kostičkové duhy a použij je při kreslení barevných čtverců. Nejmenší čtverec má rozměry 20 x 20 a každý další je o 20 větší:</p>
           <CanvasPreview width={250} height={250}>
             <Rect x1={50} y1={50} width={140} height={140} fill="red" />
             <Rect x1={70} y1={70} width={120} height={120} fill="orange" />
@@ -186,7 +186,7 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>V dalších úlohách chceme žáky naučit vytvářet a používat podprogramy, zatím bez parametrů a návratové hodnoty. Vyskytuje se zde několik nových principů: definování podprogramu, tělo podprogramu, volání podprogramu. Žáci si musí dát pozor na syntaktická pravidla: slovo <code>def</code>, symboly <code>()</code>, <code>:</code> a odsazení od kraje. Kromě toho je nezbytné mít na paměti, že nejdříve je nutno podprogram definovat a až potom je možné jej volat.<br/><br/>V části 2.B může žáky zmást, že se po spuštění programu zdánlivě nic nestane, jen se vypíše informace o restartu programu. Pokud by se někteří žáci dotazovali na správnost svého postupu, vysvětlíme jim, že postupovali správně, ale že se jimi zadané příkazy vykonají až po zavolání podprogramu v části 2.C.<br/><br/>Technická poznámka: Pokud si žáci navykli kopírovat ukázkové kódy z pracovních listů do svých programů pomocí schránky, měli by se od této chvíle naučit takto zkopírované kódy dodatečně kontrolovat. Je totiž pravděpodobné, že se při kopírování nezachová případné odsazení řádků od kraje, kvůli čemuž programy nebudou fungovat nebo budou fungovat chybně.</p>}>
-          <p>2. Doposud jsi mohl psát jen takové příkazy, které počítač znal. Teď ho naučíš nové, své vlastní příkazy – tzv. podprogramy. Postupuj následovně:</p>
+          <p>Doposud jsi mohl psát jen takové příkazy, které počítač znal. Teď ho naučíš nové, své vlastní příkazy – tzv. podprogramy. Postupuj následovně:</p>
           <ul className="list-none pl-0 mt-4 space-y-4">
             <li>A) Vytvoř nový program <code>vypis.py</code>, ve kterém bude napsaný jen následující kód:
               <PythonSnippet code={`def vypis_text():\n    print('************')\n    print('** Python **')\n    print('************')`} />
@@ -225,7 +225,7 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>V tomto programu se nejdříve definoval podprogram <code>vypis_text</code>. Za ním následují příkazy <code>print</code> a příkazy pro volání podprogramu <code>vypis_text</code>. Python zobrazil svoji vizitku dvakrát, protože v programu jsou dvě volání podprogramu <code>vypis_text</code>.<br/><br/>Na základě této úlohy by žáci měli pochopit, že podprogram můžeme zavolat i vícekrát.</p>}>
-          <p>3. Přidej do programu <code>vypis.py</code> další příkazy (jsou zvýrazněny žlutě) – pozor, tyto příkazy nesmí mít odsazení, protože už nepatří do podprogramu:</p>
+          <p>Přidej do programu <code>vypis.py</code> další příkazy (jsou zvýrazněny žlutě) – pozor, tyto příkazy nesmí mít odsazení, protože už nepatří do podprogramu:</p>
           <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-sky-400 overflow-x-auto shadow-inner border border-slate-700">
             <div><span className="text-slate-300">def vypis_text():</span></div>
             <div><span className="text-slate-300">    print('************')</span></div>
@@ -253,7 +253,7 @@ to je konec
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def vypis_text():</code><br/><code>    print('*****************')</code><br/><code>    print('** I am Python **')</code><br/><code>    print('*****************')</code><br/><br/><code>print('Hello')</code><br/><code>vypis_text()</code><br/><code>print('How are you?')</code><br/><code>vypis_text()</code><br/><code>print('I am fine.')</code><br/><code>vypis_text()</code><br/><code>print('The end')</code><br/><br/>Pokud to uznáme za vhodné, můžeme žákům prozradit, že alternativně lze odsazení příkazů od kraje zajistit pomocí jednoho stisku klávesy <code>&lt;Tab&gt;</code>. Python na dané místo vloží čtyři mezery.</p>}>
-          <p>4. Změň předchozí program tak, aby počítač vypsal:</p>
+          <p>Změň předchozí program tak, aby počítač vypsal:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre leading-relaxed">
 Hello!<br/>
 *****************<br/>
@@ -272,7 +272,7 @@ The end
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Žákům můžeme zdůraznit, že v Pythonu je zvykem všechny podprogramy zapisovat na začátku programu a až za nimi následuje samotná posloupnost příkazů, které mohou tyto podprogramy volat.<br/><br/>Řešení:<br/><code>def refren():</code><br/><code>    print('já mám koně vraný koně')</code><br/><code>    print('to jsou koně mí')</code><br/><br/><code>refren()</code><br/><code>refren()</code><br/><code>print()</code><br/><code>print('když já jím dám ovsa')</code><br/><code>print('oni skáčou hopsa')</code><br/><code>print()</code><br/><code>refren()</code><br/><code>refren()</code></p>}>
-          <p>5. Vytvoř nový program <code>pisen.py</code>, který bude obsahovat následující kód:</p>
+          <p>Vytvoř nový program <code>pisen.py</code>, který bude obsahovat následující kód:</p>
           <PythonSnippet code={`refren()\nrefren()\nprint()\nprint('když já jím dám ovsa')\nprint('oni skáčou hopsa')\nprint()\nrefren()\nrefren()\n\ndef refren():\n    print('já mám koně vraný koně')\n    print('to jsou koně mí')`} />
           <p>Když program spustíš, Python vypíše chybové hlášení:</p>
           <div className="font-mono bg-rose-50 text-rose-800 p-4 rounded-xl border border-rose-200 text-sm whitespace-pre">
@@ -286,7 +286,7 @@ NameError: name 'refren' is not defined
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Část žáků může mít podobné problémy se zápisem některých symbolů jako v 11. úloze 3. lekce. Můžeme jim připomenout symbol zpětného lomítka (<code>\</code>), pomocí kterého lze do textu vložit apostrof (jako <code>\'</code>) nebo zpětné lomítko (jako <code>\\</code>).<br/><br/>Řešení:<br/><code>def vizitka():</code><br/><code>    print('+--------------------+')</code><br/><code>    print('|        www         |')</code><br/><code>    print('|  Petr   ( o o )    |')</code><br/><code>    print('|  LEV     ( ~ )     |')</code><br/><code>    print('|            "       |')</code><br/><code>    print('|  Počítačový král   |')</code><br/><code>    print('+--------------------+')</code><br/><br/><code>vizitka()</code></p>}>
-          <p>6. Před několika týdny jsme vytvářeli program, který zobrazil tvoji vizitku, které byla podobná následující:</p>
+          <p>Před několika týdny jsme vytvářeli program, který zobrazil tvoji vizitku, které byla podobná následující:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 +--------------------+<br/>
 |        www         |<br/>
@@ -300,11 +300,11 @@ NameError: name 'refren' is not defined
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Tato úloha je zřejmou přípravou na cykly. Když se na ně budou žáci ptát, můžeme je ubezpečit, že za několik vyučovacích hodin se budou cykly učit i v tomto předmětu.<br/><br/>Řešení:<br/><code>def vizitka():</code><br/><code>    # ... (tělo z minulé úlohy) ...</code><br/><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code></p>}>
-          <p>7. Doplň do programu <code>vizitka.py</code> volání podprogramu <code>vizitka</code> tak, aby se pod sebe zobrazilo 10 tvých vizitek.</p>
+          <p>Doplň do programu <code>vizitka.py</code> volání podprogramu <code>vizitka</code> tak, aby se pod sebe zobrazilo 10 tvých vizitek.</p>
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení – definování podprogramů:<br/><code>def trojuhelnik():</code><br/><code>    print('  *  ')</code><br/><code>    print(' *** ')</code><br/><code>    print('*****')</code><br/><br/><code>def obdelnik():</code><br/><code>    print('#####')</code><br/><code>    print('#   #')</code><br/><code>    print('#####')</code><br/><br/><code>def noha():</code><br/><code>    print('  |  ')</code><br/><code>    print('__|__')</code><br/><br/>Řešení – zobrazení stromečku:<br/><code>trojuhelnik()</code><br/><code>trojuhelnik()</code><br/><code>noha()</code><br/><br/>Řešení – zobrazení domečku na kuří nožce:<br/><code>trojuhelnik()</code><br/><code>obdelnik()</code><br/><code>noha()</code><br/><br/>Řešení – zobrazení činky:<br/><code>obdelnik()</code><br/><code>noha()</code><br/><code>obdelnik()</code></p>}>
-          <p>8. Ve svém programu můžeš definovat i více podprogramů. Vytvoř nový program <code>obrazce.py</code> a definuj v něm tři podprogramy. Každý z nich zobrazí jeden z následujících obrázků:</p>
+          <p>Ve svém programu můžeš definovat i více podprogramů. Vytvoř nový program <code>obrazce.py</code> a definuj v něm tři podprogramy. Každý z nich zobrazí jeden z následujících obrázků:</p>
           <ul className="list-none pl-0 mt-4 space-y-4">
             <li>• podprogram <code>noha</code> nakreslí takovouto nohu (dole jsou dvě podtržítka vlevo i vpravo):
               <div className="font-mono bg-slate-50 p-2 rounded-xl text-sm whitespace-pre w-max mt-2">
@@ -378,12 +378,12 @@ toto je trojúhelník:<br/>
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>V této úloze tělo podprogramu obsahuje jediný příkaz – nakreslení obdélníku.<br/><br/>Proměnná <code>canvas</code> je zde tzv. globální proměnná. Globální proměnná existuje od svého vzniku (přiřazením mimo podprogram), v podprogramu se sice používá, avšak její hodnotu nelze v podprogramu měnit. Tyto informace však žákům vzhledem k jejich současným programátorským zkušenostem nebudeme prozrazovat.</p>}>
-          <p>9. Teď budeš vytvářet podprogramy, které kreslí do grafického okna. Vytvoř nový program <code>kresba_podprogram.py</code> a vyzkoušej:</p>
+          <p>Teď budeš vytvářet podprogramy, které kreslí do grafického okna. Vytvoř nový program <code>kresba_podprogram.py</code> a vyzkoušej:</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef kresli():\n    canvas.create_rectangle(10, 20, 30, 40, fill='red')\n\nkresli()`} />
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>V této úloze tělo podprogramu obsahuje posloupnost dvou příkazů. Při každém volání tohoto podprogramu se nakreslí nejprve první obdélník a přes něj druhý.<br/><br/>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def kriz():</code><br/><code>    canvas.create_rectangle(150 - 90, 100 - 30, 150 + 90, 100 + 30, fill='red')</code><br/><code>    canvas.create_rectangle(150 - 30, 100 - 90, 150 + 30, 100 + 90, fill='red')</code><br/><br/><code>kriz()</code></p>}>
-          <p>10. Vytvoř nový program <code>kriz.py</code> a v něm definuj podprogram <code>kriz</code>, který po zavolání nakreslí červený kříž:</p>
+          <p>Vytvoř nový program <code>kriz.py</code> a v něm definuj podprogram <code>kriz</code>, který po zavolání nakreslí červený kříž:</p>
           <CanvasPreview width={300} height={200}>
             <Rect x1={60} y1={70} width={180} height={60} fill="red" />
             <Rect x1={120} y1={10} width={60} height={180} fill="red" />

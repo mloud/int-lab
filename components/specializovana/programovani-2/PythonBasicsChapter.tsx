@@ -153,7 +153,7 @@ const PythonBasicsChapter: React.FC<PythonBasicsChapterProps> = ({ onBack }) => 
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode}>
-          <p>1. Najdi na počítači ikonu programu Python a spusť jej.</p>
+          <p>Najdi na počítači ikonu programu Python a spusť jej.</p>
           <p>Když se program spustí, uvidíš:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 Python 3.6.4 (default, Jan  5 2018, 02:04:42)<br/>
@@ -165,21 +165,21 @@ Type "copyright", "credits" or "license()" for more information.<br/>
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode}>
-          <p>2. Zkus za <code>{">>>"}</code> napsat matematický výraz <code>1 + 2 + 3</code> a potvrď klávesou Enter. Co Python odpoví?</p>
+          <p>Zkus za <code>{">>>"}</code> napsat matematický výraz <code>1 + 2 + 3</code> a potvrď klávesou Enter. Co Python odpoví?</p>
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode}>
-          <p>3. Python dokáže fungovat jako kalkulačka. Jaké budou výsledky následujících výrazů?</p>
+          <p>Python dokáže fungovat jako kalkulačka. Jaké budou výsledky následujících výrazů?</p>
           <PythonSnippet code={`>>> 123\n>>> 42 - 17\n>>> 3 + 4 * 5\n>>> (3 + 4) * 5\n>>> 25 - 7 - 10\n>>> 25 - (7 - 10)\n>>> 132 / 11\n>>> 1 / 2\n>>> 1 + 2 * 3 / (5 - 1)`} />
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode}>
-          <p>4. Pozor, zápisy musí být napsané zcela správně. Jinak uvidíš různá chybová hlášení. Co se stane, pokud zadáš následující příkazy?</p>
+          <p>Pozor, zápisy musí být napsané zcela správně. Jinak uvidíš různá chybová hlášení. Co se stane, pokud zadáš následující příkazy?</p>
           <PythonSnippet code={`>>> 22 + 7 *\n>>> 19 - (3 4)`} />
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode}>
-          <p>5. Někdy se však i po správném zápise může objevit chybové hlášení. Co se stane, pokud zadáš <code>10 / (6 - 2 * 3)</code> ?</p>
+          <p>Někdy se však i po správném zápise může objevit chybové hlášení. Co se stane, pokud zadáš <code>10 / (6 - 2 * 3)</code> ?</p>
           <p>Python se ti chybovými hlášeními snaží pomoci, abys chybu snadněji našel. Například:</p>
           <ul className="list-disc pl-5 mt-2 space-y-2">
             <li><code>SyntaxError: invalid syntax</code> označuje, že jsi něco napsal nesprávně</li>
@@ -188,11 +188,11 @@ Type "copyright", "credits" or "license()" for more information.<br/>
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode}>
-          <p>6. Petrovi bylo přesně před dvěma měsíci 16 let. Využij Python jako kalkulačku a spočítej, kolik je mu nyní přibližně dní. Předpokládej, že rok má 365 dní a měsíc má 30 dní.</p>
+          <p>Petrovi bylo přesně před dvěma měsíci 16 let. Využij Python jako kalkulačku a spočítej, kolik je mu nyní přibližně dní. Předpokládej, že rok má 365 dní a měsíc má 30 dní.</p>
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode}>
-          <p>7. Pokračuj v předchozí úloze a pomocí Pythonu vypočítej:</p>
+          <p>Pokračuj v předchozí úloze a pomocí Pythonu vypočítej:</p>
           <ul className="list-none pl-5 mt-2 space-y-1">
             <li>a) kolik je to hodin,</li>
             <li>b) kolik je to sekund.</li>
@@ -200,21 +200,21 @@ Type "copyright", "credits" or "license()" for more information.<br/>
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode}>
-          <p>8. Použij znovu Python jako kalkulačku a vytvoř pro něj zápis, pomocí kterého vypočítá součet všech lichých čísel od 1 do 19. Jaký bude výsledek?</p>
+          <p>Použij znovu Python jako kalkulačku a vytvoř pro něj zápis, pomocí kterého vypočítá součet všech lichých čísel od 1 do 19. Jaký bude výsledek?</p>
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode}>
-          <p>9. Zjisti, která číslice se vyskytuje nejčastěji ve výsledku výrazu:</p>
+          <p>Zjisti, která číslice se vyskytuje nejčastěji ve výsledku výrazu:</p>
           <PythonSnippet code={`123456789 * 111111111111111111111`} />
           <p>Nejčastější číslici snadno poznáš pohledem na výsledek spočítaného součinu.</p>
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode}>
-          <p>10. Lenka sbírala květiny. První den jich natrhala 15, druhý den jich natrhala o 4 více než předcházející den a třetí den jich natrhala ještě o 1 více než v oba předcházející dny dohromady. Použij Python jako kalkulačku a vypočítej, kolik květin natrhala za všechny 3 dny dohromady.</p>
+          <p>Lenka sbírala květiny. První den jich natrhala 15, druhý den jich natrhala o 4 více než předcházející den a třetí den jich natrhala ještě o 1 více než v oba předcházející dny dohromady. Použij Python jako kalkulačku a vypočítej, kolik květin natrhala za všechny 3 dny dohromady.</p>
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode}>
-          <p>11. Jirka si koupil hru za 79 korun. Později si koupil hru za dvojnásobek této ceny a ještě k tomu připlatil 5 korun. Nakonec si koupil hru za trojnásobek ceny druhé hry a ještě k tomu připlatil 17 korun. Použij Python jako kalkulačku a vypočítej:</p>
+          <p>Jirka si koupil hru za 79 korun. Později si koupil hru za dvojnásobek této ceny a ještě k tomu připlatil 5 korun. Nakonec si koupil hru za trojnásobek ceny druhé hry a ještě k tomu připlatil 17 korun. Použij Python jako kalkulačku a vypočítej:</p>
           <ul className="list-none pl-5 mt-2 space-y-1">
             <li>a) kolik Jirka zaplatil za třetí hru</li>
             <li>b) kolik Jirka zaplatil za všechny tři hry dohromady</li>
@@ -223,11 +223,11 @@ Type "copyright", "credits" or "license()" for more information.<br/>
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode}>
-          <p>12. Použij Python jako kalkulačku a vypočítej součet následujících čísel: jedna, jedna polovina, jedna třetina, jedna čtvrtina, ..., až jedna desetina.</p>
+          <p>Použij Python jako kalkulačku a vypočítej součet následujících čísel: jedna, jedna polovina, jedna třetina, jedna čtvrtina, ..., až jedna desetina.</p>
         </TaskCard>
 
         <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode}>
-          <p>13. Do sešitu si vytvoř tabulku, do níž zapiš všechny aritmetické operace, se kterými jsme se zatím v Pythonu seznámili.</p>
+          <p>Do sešitu si vytvoř tabulku, do níž zapiš všechny aritmetické operace, se kterými jsme se zatím v Pythonu seznámili.</p>
         </TaskCard>
 
         <TaskCard number="14*" title="" taskId="14" showTeacher={teacherMode}>

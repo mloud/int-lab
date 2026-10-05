@@ -175,20 +175,20 @@ const PythonFunctionsArgsChapter: React.FC<PythonFunctionsArgsChapterProps> = ({
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>cislo = 128</code><br/><code>if cislo &lt; 10:</code><br/><code>    print('Číslo', cislo, 'je jednociferné')</code><br/><code>else:</code><br/><code>    if cislo &lt; 100:</code><br/><code>        print('Číslo', cislo, 'je dvouciferné')</code><br/><code>    else:</code><br/><code>        print('Číslo', cislo, 'je trojciferné')</code></p>}>
-          <p>1. Vytvoř nový program <code>cifry_cisla.py</code>, ve kterém přiřadíš do proměnné <code>cislo</code> číslo od 0 do 999. Použij větvení na to, aby program rozhodl a správně vypsal hlášení o tom, zda je číslo jedno-, dvou- nebo trojciferné. Například pro <code>cislo = 128</code> program vypíše:</p>
+          <p>Vytvoř nový program <code>cifry_cisla.py</code>, ve kterém přiřadíš do proměnné <code>cislo</code> číslo od 0 do 999. Použij větvení na to, aby program rozhodl a správně vypsal hlášení o tom, zda je číslo jedno-, dvou- nebo trojciferné. Například pro <code>cislo = 128</code> program vypíše:</p>
           <div className="font-mono text-sm bg-slate-50 p-4 rounded-lg mt-2">
             Číslo 128 je trojciferné.
           </div>
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Cílem 2. a 3. úlohy je objevit koncept parametru: místo přiřazení nějaké hodnoty do proměnné <code>vek</code> uvnitř podprogramu vytvoříme podprogram, který má v hlavičce za názvem podprogramu v kulatých závorkách uvedený název proměnné.</p>}>
-          <p>2. Vytvoř nový program <code>muj_vek.py</code>. Přepiš do něj následující kód a dokonči jednotlivé podprogramy, aby vypisovaly správný věk:</p>
+          <p>Vytvoř nový program <code>muj_vek.py</code>. Přepiš do něj následující kód a dokonči jednotlivé podprogramy, aby vypisovaly správný věk:</p>
           <PythonSnippet code={`def jemi10():\n    vek = 10\n    print('Je mi', vek, 'let')\n\ndef jemi20():\n    vek = ......\n    print('Je mi', vek, 'let')\n\ndef jemi30():\n    vek = 30\n    print(....................................)\n\njemi10()\njemi20()\njemi30()`} />
           <p className="mt-2">Udělej to tak, aby se všechny tři podprogramy navzájem co nejvíc podobaly.</p>
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Uvnitř podprogramu je parametr obyčejnou proměnnou, která má už na začátku podprogramu určenu svou počáteční hodnotu. Zvídavější žáci mohou vyzkoušet, že parametr se uvnitř podprogramu opravdu chová jako obyčejná proměnná.</p>}>
-          <p>3. Předchozí řešení se dá zapsat pomocí jediného podprogramu:</p>
+          <p>Předchozí řešení se dá zapsat pomocí jediného podprogramu:</p>
           <PythonSnippet code={`def jemi(vek):\n    print('Je mi', vek, 'let')\n\njemi(10)\njemi(20)\njemi(30)`} />
           <p className="mt-2">Vyzkoušej jej. Jak program funguje?</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
@@ -199,7 +199,7 @@ const PythonFunctionsArgsChapter: React.FC<PythonFunctionsArgsChapterProps> = ({
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def vypis(x):</code><br/><code>    print('Číslo', x)</code><br/><code>    print('Umocněné na druhou se rovná', x * x)</code><br/><br/><code>vypis(1)</code><br/><code>vypis(2)</code><br/><code>vypis(3)</code></p>}>
-          <p>4. Vytvoř nový program <code>druha_mocnina_parametr.py</code>. Přepiš do něj následující kód a dokonči podprogram <code>vypis</code>, který používá parametr <code>x</code> na to, aby vypsal hodnotu parametru <code>x</code> a jeho druhou mocninu:</p>
+          <p>Vytvoř nový program <code>druha_mocnina_parametr.py</code>. Přepiš do něj následující kód a dokonči podprogram <code>vypis</code>, který používá parametr <code>x</code> na to, aby vypsal hodnotu parametru <code>x</code> a jeho druhou mocninu:</p>
           <PythonSnippet code={`def vypis(x):\n    print('Číslo', ...)\n    print('Umocněné na druhou se rovná', ............)\n\nvypis(1)\nvypis(2)\nvypis(3)`} />
           <p className="mt-2">Program by měl po spuštění vypsat:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
@@ -213,7 +213,7 @@ Umocněné na druhou se rovná 9
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def vypis(x):</code><br/><code>    print('Číslo', x)</code><br/><code>    print('Umocněné na druhou se rovná', x * x)</code><br/><code>    print('Převrácená hodnota se rovná', 1 / x)</code><br/><br/>Uvedené řešení není zcela univerzální – pokud žák zavolá podprogram vypis s hodnotou parametru rovnající se 0, dojde k dělení nulou a Python vypíše chybové hlášení.</p>}>
-          <p>5. Doplň do předchozího podprogramu příkaz, kterým se vypíše i převrácená hodnota <code>x</code>. Připomeňme, že převrácená hodnota čísla <code>x</code> je rovna <code>1 / x</code>. Program by měl po spuštění vypsat:</p>
+          <p>Doplň do předchozího podprogramu příkaz, kterým se vypíše i převrácená hodnota <code>x</code>. Připomeňme, že převrácená hodnota čísla <code>x</code> je rovna <code>1 / x</code>. Program by měl po spuštění vypsat:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 Číslo 1<br/>
 Umocněné na druhou se rovná 1<br/>
@@ -228,7 +228,7 @@ Převrácená hodnota se rovná 0.3333333333333333
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def kruh(r):</code><br/><code>    canvas.create_oval(200 - r, 150 - r, 200 + r, 150 + r)</code></p>}>
-          <p>6. Vytvoř nový program <code>kruh_parametr.py</code>. Přepiš do něj následující kód a dokonči podprogram <code>kruh</code> tak, aby kreslil kruhy se středem 200, 150 a poloměrem <code>r</code>, který bude parametrem podprogramu:</p>
+          <p>Vytvoř nový program <code>kruh_parametr.py</code>. Přepiš do něj následující kód a dokonči podprogram <code>kruh</code> tak, aby kreslil kruhy se středem 200, 150 a poloměrem <code>r</code>, který bude parametrem podprogramu:</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef kruh(r):\n    canvas.create_oval(............, ............, ............, ............)\n\nkruh(10)\nkruh(100)\nkruh(50)`} />
           <p className="mt-2">Jestli jsi postupoval správně, program by měl nakreslit takovýto obrázek:</p>
           <CanvasPreview width={200} height={200} bgColor="#f0f0f0">
@@ -239,7 +239,7 @@ Převrácená hodnota se rovná 0.3333333333333333
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def nahodny_kruh(r):</code><br/><code>    x = random.randint(10, 350)</code><br/><code>    y = random.randint(10, 250)</code><br/><code>    canvas.create_oval(x - r, y - r, x + r, y + r, fill='red')</code></p>}>
-          <p>7. Vytvoř nový program <code>nahodny_kruh_parametr.py</code> a v něm vytvoř podprogram <code>nahodny_kruh</code> s parametrem <code>r</code>, který nakreslí na náhodných souřadnicích červený kruh o poloměru <code>r</code>. Zavolej tento podprogram pro různé hodnoty parametru. Výsledek může vypadat například jako na následujícím obrázku:</p>
+          <p>Vytvoř nový program <code>nahodny_kruh_parametr.py</code> a v něm vytvoř podprogram <code>nahodny_kruh</code> s parametrem <code>r</code>, který nakreslí na náhodných souřadnicích červený kruh o poloměru <code>r</code>. Zavolej tento podprogram pro různé hodnoty parametru. Výsledek může vypadat například jako na následujícím obrázku:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={200} y1={100} width={40} height={40} fill="red" stroke="transparent" />
             <Oval x1={100} y1={120} width={60} height={60} fill="red" stroke="transparent" />
@@ -248,19 +248,19 @@ Převrácená hodnota se rovná 0.3333333333333333
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>V tomto případě je hodnotou parametru <code>r</code> hodnota proměnné <code>for</code> cyklu. Jestliže tento for cyklus nabývá postupně hodnot 0, 1, … 9, na náhodné pozice se nakreslí 10 červených kruhů. První z nich má poloměr 0, a proto se z něj nakreslí jen jedna malá tečka.</p>}>
-          <p>8. Vyzkoušej, co předchozí program nakreslí, když zavoláš podprogram <code>nahodny_kruh</code> následujícím způsobem:</p>
+          <p>Vyzkoušej, co předchozí program nakreslí, když zavoláš podprogram <code>nahodny_kruh</code> následujícím způsobem:</p>
           <PythonSnippet code={`for i in range(10):\n    nahodny_kruh(i)`} />
           <p className="mt-2">Diskutuj se svým spolužákem, jak program funguje.</p>
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Tabulka hodnot proměnné <code>i</code> a parametru <code>r</code>:<br/>i=0 -> r=5<br/>i=1 -> r=6<br/>i=2 -> r=7<br/>i=3 -> r=8<br/>i=4 -> r=9<br/>i=5 -> r=10<br/>i=6 -> r=11<br/>i=7 -> r=12<br/>i=8 -> r=13<br/>i=9 -> r=14</p>}>
-          <p>9. Poloměr kruhu můžeme určit i takto:</p>
+          <p>Poloměr kruhu můžeme určit i takto:</p>
           <PythonSnippet code={`for i in range(10):\n    nahodny_kruh(i + 5)`} />
           <p className="mt-2">Spusť program, abys viděl, co udělá, a doplň logicky, jaké hodnoty dostává parametr <code>r</code>, když <code>i</code> roste od 0 do 9.</p>
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def obliba(cislo):</code><br/><code>    if cislo &lt; 7:</code><br/><code>        print('Mám rád číslo', cislo)</code><br/><code>    else:</code><br/><code>        print('Číslo', cislo, 'se mi nelíbí')</code></p>}>
-          <p>10. Vytvoř nový program <code>oblibene_cislo.py</code> a v něm definuj podprogram <code>obliba</code> s parametrem <code>cislo</code>. Podprogram podle následujících pravidel vypíše, zda má číslo v oblibě:</p>
+          <p>Vytvoř nový program <code>oblibene_cislo.py</code> a v něm definuj podprogram <code>obliba</code> s parametrem <code>cislo</code>. Podprogram podle následujících pravidel vypíše, zda má číslo v oblibě:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li>když je číslo menší než 7, vypíše <code>Mám rád číslo ...</code></li>
             <li>jinak vypíše <code>Číslo ... se mi nelíbí</code></li>
@@ -277,7 +277,7 @@ Mám rád číslo 5<br/>
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení – doplníme následující kód:<br/><code>for i in range(11):</code><br/><code>    obliba(i)</code></p>}>
-          <p>11. Uprav předchozí program tak, aby pomocí cyklu zavolal podprogram <code>obliba</code> pro čísla od 0 do 10. Výsledek by měl vypadat následovně:</p>
+          <p>Uprav předchozí program tak, aby pomocí cyklu zavolal podprogram <code>obliba</code> pro čísla od 0 do 10. Výsledek by měl vypadat následovně:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 Mám rád číslo 0<br/>
 Mám rád číslo 1<br/>
@@ -299,7 +299,7 @@ Mám rád číslo 6<br/>
         </TaskCard>
 
         <TaskCard number="14" title="" taskId="14" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><code>cislo = random.randint(1, 5)</code><br/><br/><code>def zkus(n):</code><br/><code>    if n == cislo:</code><br/><code>        print('Hurá, uhádl jsi!')</code><br/><code>    else:</code><br/><code>        print('Ne, moje číslo je jiné...')</code><br/><br/><code>print('Myslím si číslo od 1 do 5. Zkus ho uhádnout...')</code></p>}>
-          <p>14. Znáš hru Myslím si číslo, ve které je potřeba uhádnout neznámé číslo? Vytvoř takovou hru na počítači – počítač si vymyslí číslo od 1 do 5 a my ho musíme uhádnout. Vytvoř nový program <code>uhadni_cislo.py</code>, který bude fungovat následujícím způsobem:</p>
+          <p>Znáš hru Myslím si číslo, ve které je potřeba uhádnout neznámé číslo? Vytvoř takovou hru na počítači – počítač si vymyslí číslo od 1 do 5 a my ho musíme uhádnout. Vytvoř nový program <code>uhadni_cislo.py</code>, který bude fungovat následujícím způsobem:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li>po spuštění programu počítač přiřadí do proměnné <code>cislo</code> náhodně vygenerované číslo,</li>
             <li>potom vypíše zprávu „Myslím si číslo od 1 do 5. Zkus ho uhádnout...“</li>
@@ -333,7 +333,7 @@ Hurá, uhádl jsi!
         </TaskCard>
 
         <TaskCard number="16" title="" taskId="16" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><code>a = random.randint(1, 10)</code><br/><code>b = random.randint(1, 10)</code><br/><br/><code>def over(soucet):</code><br/><code>    if soucet == a + b:</code><br/><code>        print('Správně')</code><br/><code>    else:</code><br/><code>        print('Nesprávně, mělo to být', a + b)</code><br/><code>print('Kolik je', a, '+', b, '?')</code></p>}>
-          <p>16. Vytvoř nový program <code>kviz.py</code>, který bude fungovat jako jednoduchý kvíz na sčítání čísel. Počítač na začátku vygeneruje dvě náhodná čísla z rozsahu od 1 do 10, vypíše je a my musíme odpovědět tím, že z příkazového řádku zavoláme podprogram <code>over</code>. Počítač poté zkontroluje, zda byla naše odpověď správná, nebo ne:</p>
+          <p>Vytvoř nový program <code>kviz.py</code>, který bude fungovat jako jednoduchý kvíz na sčítání čísel. Počítač na začátku vygeneruje dvě náhodná čísla z rozsahu od 1 do 10, vypíše je a my musíme odpovědět tím, že z příkazového řádku zavoláme podprogram <code>over</code>. Počítač poté zkontroluje, zda byla naše odpověď správná, nebo ne:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 =========== RESTART ===========<br/>
 Kolik je 10 + 7 ?<br/>

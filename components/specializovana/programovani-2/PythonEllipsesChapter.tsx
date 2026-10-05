@@ -199,11 +199,11 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>soucet = 0</code><br/><code>for i in range(100):</code><br/><code>    soucet = soucet + i</code><br/><code>print('Součet je:', soucet)</code></p>}>
-          <p>1. Napiš program <code>soucet_99.py</code>, který pomocí cyklu zjistí, jaký je součet čísel <code>0 + 1 + 2 + ... + 99</code>. Výsledek program vypíše pomocí příkazu <code>print</code>.</p>
+          <p>Napiš program <code>soucet_99.py</code>, který pomocí cyklu zjistí, jaký je součet čísel <code>0 + 1 + 2 + ... + 99</code>. Výsledek program vypíše pomocí příkazu <code>print</code>.</p>
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Nakreslí se elipsa, která má středový bod [105, 80], šířku 190 a výšku 140.</p>}>
-          <p>2. V jazyce Python kreslíme elipsy a kruhy příkazem <code>create_oval</code>. Vytvoř nový program <code>elipsa.py</code> a zapiš do něj následující kód:</p>
+          <p>V jazyce Python kreslíme elipsy a kruhy příkazem <code>create_oval</code>. Vytvoř nový program <code>elipsa.py</code> a zapiš do něj následující kód:</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ncanvas.create_oval(10, 10, 200, 150)`} />
           <p>Vyzkoušej, co program nakreslí.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
@@ -212,7 +212,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Obdélník obkreslí (ohraničí) elipsu z vnějšku. Tvoří vlastně její "bounding box".</p>}>
-          <p>3. Přidej na konec programu příkaz pro kreslení obdélníku se stejnými čísly, jako jsou v příkazu <code>create_oval</code>. Jaká bude vzájemná pozice elipsy a obdélníku?</p>
+          <p>Přidej na konec programu příkaz pro kreslení obdélníku se stejnými čísly, jako jsou v příkazu <code>create_oval</code>. Jaká bude vzájemná pozice elipsy a obdélníku?</p>
           <div className="font-mono bg-slate-50 p-6 rounded-xl border border-slate-200 text-sm mt-4">
             <p className="mb-4 font-sans text-slate-600">Čísla, která píšeme do závorek v příkazech <code>canvas.create_oval</code> a <code>canvas.create_rectangle</code>, nazýváme <span className="text-blue-600 font-bold">parametry</span>:</p>
             <p><code>canvas.create_rectangle(x1, y1, x2, y2)</code></p>
@@ -222,7 +222,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>canvas.create_rectangle(170, 50, 190, 70)</code><br/><code>canvas.create_rectangle(160, 70, 200, 110)</code><br/><code>canvas.create_rectangle(150, 110, 210, 170)</code><br/><code>canvas.create_rectangle(140, 170, 220, 250)</code></p>}>
-          <p>4. Pomocí čtverců je možné nakreslit věž z kostek. Vytvoř nový program <code>vez.py</code> a napiš do něj kód, který ji nakreslí. Při kreslení využij souřadnice z následujícího obrázku:</p>
+          <p>Pomocí čtverců je možné nakreslit věž z kostek. Vytvoř nový program <code>vez.py</code> a napiš do něj kód, který ji nakreslí. Při kreslení využij souřadnice z následujícího obrázku:</p>
           <CanvasPreview width={300} height={300} bgColor="#f0f0f0">
             <Rect x1={170} y1={50} width={20} height={20} />
             <Text x={170} y={60} text="[170, 50]" align="end" />
@@ -244,7 +244,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>canvas.create_oval(170, 50, 190, 70)</code><br/><code>canvas.create_oval(160, 70, 200, 110)</code><br/><code>canvas.create_oval(150, 110, 210, 170)</code><br/><code>canvas.create_oval(140, 170, 220, 250)</code></p>}>
-          <p>5. Diskutuj se sousedem, jak nakreslit kruh. Potom změň předchozí program tak, aby se místo věže kreslil sněhulák.</p>
+          <p>Diskutuj se sousedem, jak nakreslit kruh. Potom změň předchozí program tak, aby se místo věže kreslil sněhulák.</p>
           <CanvasPreview width={300} height={300} bgColor="#f0f0f0">
             <Oval x1={170} y1={50} width={20} height={20} />
             <Oval x1={160} y1={70} width={40} height={40} />
@@ -254,7 +254,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>canvas.create_oval(120, 40, 240, 100, fill='gray')</code><br/><code>canvas.create_oval(70, 70, 290, 130, fill='darkgray')</code><br/><code>canvas.create_oval(90, 90, 110, 110, fill='lightblue')</code><br/><code>canvas.create_oval(170, 90, 190, 110, fill='yellow')</code><br/><code>canvas.create_oval(250, 90, 270, 110, fill='lightgreen')</code></p>}>
-          <p>6. Napiš program <code>ufo.py</code>, který pomocí alespoň pěti elips nakreslí UFO. Rozměry i barvy zvol dle svého uvážení. Inspirovat se můžeš (ale nemusíš) na následujícím obrázku:</p>
+          <p>Napiš program <code>ufo.py</code>, který pomocí alespoň pěti elips nakreslí UFO. Rozměry i barvy zvol dle svého uvážení. Inspirovat se můžeš (ale nemusíš) na následujícím obrázku:</p>
           <CanvasPreview width={360} height={200} bgColor="#f0f0f0">
             <Oval x1={120} y1={40} width={120} height={60} fill="gray" />
             <Oval x1={70} y1={70} width={220} height={60} fill="darkgray" />
@@ -267,7 +267,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def strom():</code><br/><code>    x = 200</code><br/><code>    y = 150</code><br/><code>    canvas.create_rectangle(x - 5, y, x + 5, y + 50, fill='brown')</code><br/><code>    canvas.create_oval(x - 30, y - 100, x + 30, y, fill='green')</code><br/><br/><code>strom()</code></p>}>
-          <p>7. Vytvoř nový program <code>strom.py</code> a v něm podprogram <code>strom</code>, který do proměnných <code>x</code>, <code>y</code> přiřadí čísla <code>200</code>, <code>150</code> a pomocí elipsy a obdélníku nakreslí strom. Proměnné <code>x</code>, <code>y</code> představují souřadnice středu horní strany obdélníku (viz následující obrázek).</p>
+          <p>Vytvoř nový program <code>strom.py</code> a v něm podprogram <code>strom</code>, který do proměnných <code>x</code>, <code>y</code> přiřadí čísla <code>200</code>, <code>150</code> a pomocí elipsy a obdélníku nakreslí strom. Proměnné <code>x</code>, <code>y</code> představují souřadnice středu horní strany obdélníku (viz následující obrázek).</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Rect x1={145} y1={100} width={10} height={50} fill="white" />
             <Oval x1={120} y1={0} width={60} height={100} fill="white" />
@@ -283,7 +283,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def strom():</code><br/><code>    x = random.randint(30, 350)</code><br/><code>    y = random.randint(100, 200)</code><br/><code>    canvas.create_rectangle(x - 5, y, x + 5, y + 50, fill='brown')</code><br/><code>    canvas.create_oval(x - 30, y - 100, x + 30, y, fill='green')</code><br/><br/><code>for i in range(10):</code><br/><code>    strom()</code></p>}>
-          <p>8. Uprav předchozí program tak, aby se kreslil les. V podprogramu <code>strom</code> přiřaď do proměnných <code>x</code>, <code>y</code> náhodné souřadnice a zavolej tento podprogram desetkrát.</p>
+          <p>Uprav předchozí program tak, aby se kreslil les. V podprogramu <code>strom</code> přiřaď do proměnných <code>x</code>, <code>y</code> náhodné souřadnice a zavolej tento podprogram desetkrát.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Rect x1={85} y1={120} width={10} height={50} fill="brown" />
             <Oval x1={60} y1={20} width={60} height={100} fill="green" />
@@ -306,7 +306,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>canvas.create_oval(200 - 45, 100 - 45, 200 + 45, 100 + 45, fill='red')</code><br/><code>canvas.create_oval(200 - 35, 100 - 35, 200 + 35, 100 + 35, fill='white')</code></p>}>
-          <p>9. Diskutuj se sousedem, jak nakreslit kruh, jestliže znáš jeho střed a poloměr. Potom vytvoř nový program <code>znacka.py</code>, který pomocí příkazu <code>canvas.create_oval</code> nakreslí dopravní značku <em>Zákaz vjezdu</em> (viz obrázek níže). Značka bude tvořena dvěma soustřednými kruhy, jejichž společný střed bude mít souřadnice <code>[200, 100]</code>. Velký červený kruh bude mít poloměr 45 a bílý kruh bude mít poloměr 35.</p>
+          <p>Diskutuj se sousedem, jak nakreslit kruh, jestliže znáš jeho střed a poloměr. Potom vytvoř nový program <code>znacka.py</code>, který pomocí příkazu <code>canvas.create_oval</code> nakreslí dopravní značku <em>Zákaz vjezdu</em> (viz obrázek níže). Značka bude tvořena dvěma soustřednými kruhy, jejichž společný střed bude mít souřadnice <code>[200, 100]</code>. Velký červený kruh bude mít poloměr 45 a bílý kruh bude mít poloměr 35.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={105} y1={55} width={90} height={90} fill="red" stroke="transparent" />
             <Oval x1={115} y1={65} width={70} height={70} fill="white" stroke="transparent" />
@@ -314,7 +314,7 @@ const PythonEllipsesChapter: React.FC<PythonEllipsesChapterProps> = ({ onBack })
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>canvas.create_oval(200 - 45, 100 - 45, 200 + 45, 100 + 45, fill='red')</code><br/><code>canvas.create_oval(200 - 35, 100 - 35, 200 + 35, 100 + 35, fill='white')</code><br/><code>canvas.create_text(200, 95, text='PRŮJEZD', font='arial 10 bold')</code><br/><code>canvas.create_text(200, 105, text='ZAKÁZÁN', font='arial 10 bold')</code></p>}>
-          <p>10. Uprav předchozí program tak, aby nakreslil dopravní značku <em>Průjezd zakázán</em> (viz obrázek níže). Tato značka se od značky <em>Zákaz vjezdu</em> liší jen nápisem uvnitř bílého kruhu.</p>
+          <p>Uprav předchozí program tak, aby nakreslil dopravní značku <em>Průjezd zakázán</em> (viz obrázek níže). Tato značka se od značky <em>Zákaz vjezdu</em> liší jen nápisem uvnitř bílého kruhu.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={105} y1={55} width={90} height={90} fill="red" stroke="transparent" />
             <Oval x1={115} y1={65} width={70} height={70} fill="white" stroke="transparent" />

@@ -192,7 +192,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 200</code><br/><code>y = 100</code><br/><code>canvas.create_oval(x - 100, y - 50, x, y + 50)</code><br/><code>canvas.create_oval(x, y - 50, x + 100, y + 50)</code><br/><br/>V případě, že žák vyřeší úlohu bez použití proměnných x, y jen s konstantami, lze mu například říci: „změň program tak, aby se kružnice dotýkaly v bodě [243, 182]“. Místo jednoduché změny hodnot proměnných x a y bude muset žák přepočítat všechny potřebné souřadnice.</p>}>
-          <p>1. Vytvoř program <code>dve_kruznice.py</code>, který nakreslí dvě kružnice jako na obrázku níže. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice bodu, ve kterém se kružnice dotýkají (například v bodě <code>[200, 100]</code>). Kružnice budou umístěné vedle sebe a jejich poloměr bude 50. Při kreslení kružnic používej proměnné <code>x</code>, <code>y</code> tak, aby bylo možné změnou jejich hodnot obě kružnice přemístit.</p>
+          <p>Vytvoř program <code>dve_kruznice.py</code>, který nakreslí dvě kružnice jako na obrázku níže. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice bodu, ve kterém se kružnice dotýkají (například v bodě <code>[200, 100]</code>). Kružnice budou umístěné vedle sebe a jejich poloměr bude 50. Při kreslení kružnic používej proměnné <code>x</code>, <code>y</code> tak, aby bylo možné změnou jejich hodnot obě kružnice přemístit.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={50} y1={50} width={100} height={100} />
             <Oval x1={150} y1={50} width={100} height={100} />
@@ -200,7 +200,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 200</code><br/><code>y = 100</code><br/><code>r1 = 50</code><br/><code>r2 = 25</code><br/><code>canvas.create_oval(x - 2 * r1, y - r1, x, y + r1)</code><br/><code>canvas.create_oval(x, y - r2, x + 2 * r2, y + r2)</code></p>}>
-          <p>2. Uprav předchozí program tak, že poloměry kružnic nejprve přiřadíš do proměnných <code>r1</code>, <code>r2</code>. Například pro <code>r1 = 50</code>, <code>r2 = 25</code> bude obrázek vypadat takto:</p>
+          <p>Uprav předchozí program tak, že poloměry kružnic nejprve přiřadíš do proměnných <code>r1</code>, <code>r2</code>. Například pro <code>r1 = 50</code>, <code>r2 = 25</code> bude obrázek vypadat takto:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={50} y1={50} width={100} height={100} />
             <Oval x1={150} y1={75} width={50} height={50} />
@@ -209,7 +209,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení založené na postupném zvyšování hodnoty proměnné, která reprezentuje poloměr, v cyklu:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 10</code><br/><code>for i in range(10):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code><br/><code>    r = r + 10</code><br/><br/>Řešení založené na odvození poloměru z proměnné cyklu:<br/><code>for i in range(10):</code><br/><code>    r = i * 10 + 10</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code></p>}>
-          <p>3. Napiš program <code>terc.py</code>, který pomocí cyklu a deseti soustředných kružnic nakreslí terč jako na obrázku níže. Nejmenší kružnice bude mít poloměr 10 a každá další bude mít poloměr o 10 větší než předchozí:</p>
+          <p>Napiš program <code>terc.py</code>, který pomocí cyklu a deseti soustředných kružnic nakreslí terč jako na obrázku níže. Nejmenší kružnice bude mít poloměr 10 a každá další bude mít poloměr o 10 větší než předchozí:</p>
           <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
             {Array.from({ length: 10 }).map((_, i) => {
               const r = (10 - i) * 10;
@@ -221,7 +221,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(50):</code><br/><code>    r = i * 2 + 20</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code><br/><br/>Námi uváděné hodnoty 50, 2, 20 mohou být v žákovských řešeních i jiné, přibližné. Je vhodné, aby žáci při řešení úlohy experimentovali.</p>}>
-          <p>4. Vytvoř nový program <code>gramofon.py</code> a zkopíruj si do něj kód z programu <code>terc.py</code>. Uprav v programu <code>gramofon.py</code> některé číselné hodnoty tak, aby se nakreslila gramofonová deska:</p>
+          <p>Vytvoř nový program <code>gramofon.py</code> a zkopíruj si do něj kód z programu <code>terc.py</code>. Uprav v programu <code>gramofon.py</code> některé číselné hodnoty tak, aby se nakreslila gramofonová deska:</p>
           <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
             {Array.from({ length: 40 }).map((_, i) => {
               const r = (40 - i) * 2 + 20;
@@ -233,7 +233,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 100</code><br/><code>for i in range(10):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='white')</code><br/><code>    r = r - 10</code><br/><br/>Ani v této úloze nemusíme poloměr vypočítávat postupným snižováním hodnoty dané proměnné v cyklu, ale můžeme jej odvodit přímo z proměnné cyklu:<br/><code>r = 100 - 10 * i</code></p>}>
-          <p>5. Vrať se k programu <code>terc.py</code> a uprav kreslení kruhů tak, aby byl každý z nich vyplněný bílou barvou (tj. s parametrem <code>fill='white'</code>). Výsledek by měl vypadat podobně jako na obrázku níže:</p>
+          <p>Vrať se k programu <code>terc.py</code> a uprav kreslení kruhů tak, aby byl každý z nich vyplněný bílou barvou (tj. s parametrem <code>fill='white'</code>). Výsledek by měl vypadat podobně jako na obrázku níže:</p>
           <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
             {Array.from({ length: 10 }).map((_, i) => {
               const r = (10 - i) * 10;
@@ -245,7 +245,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 100</code><br/><code>for i in range(5):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='white')</code><br/><code>    r = r - 10</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='black')</code><br/><code>    r = r - 10</code></p>}>
-          <p>6. Uprav kreslení terče tak, aby se střídaly černé a bílé oblasti jako na obrázku níže. V cyklu se kreslí vždy dva kruhy – větší bílý a menší černý.</p>
+          <p>Uprav kreslení terče tak, aby se střídaly černé a bílé oblasti jako na obrázku níže. V cyklu se kreslí vždy dva kruhy – větší bílý a menší černý.</p>
           <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
             {Array.from({ length: 5 }).map((_, i) => {
               const rw = (10 - i * 2) * 10;
@@ -261,7 +261,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 50</code><br/><code>for i in range(15):</code><br/><code>    canvas.create_oval(x, 100, x + 20, 120, fill='gold')</code><br/><code>    x = x + 20</code><br/><br/>Úlohu lze řešit i na základě odvozování proměnné x od proměnné cyklu:<br/><code>for i in range(15):</code><br/><code>    x = 50 + i * 20</code><br/><code>    canvas.create_oval(x, 100, x + 20, 120, fill='gold')</code></p>}>
-          <p>7. Napiš program <code>retizek.py</code>, který pomocí cyklu nakreslí řetízek z 15 zlatých kroužků:</p>
+          <p>Napiš program <code>retizek.py</code>, který pomocí cyklu nakreslí řetízek z 15 zlatých kroužků:</p>
           <CanvasPreview width={360} height={100} bgColor="#f0f0f0">
             {Array.from({ length: 15 }).map((_, i) => (
               <Oval key={i} x1={i * 20 + 30} y1={40} width={20} height={20} fill="gold" />
@@ -270,7 +270,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def mince():</code><br/><code>    x = random.randint(50, 340)</code><br/><code>    y = random.randint(50, 210)</code><br/><code>    h = random.randint(1, 5)</code><br/><code>    canvas.create_oval(x - 25, y - 25, x + 25, y + 25, fill='silver')</code><br/><code>    canvas.create_text(x, y, text=h, font='arial 30')</code><br/><br/><code>for i in range(10):</code><br/><code>    mince()</code></p>}>
-          <p>8. Vytvoř nový program <code>mince.py</code> a v něm vytvoř podprogram <code>mince</code>. Podprogram bude generovat náhodnou pozici a náhodnou hodnotu mince od 1 do 5. Minci nakresli jako kruh s číslem (viz následující obrázek).</p>
+          <p>Vytvoř nový program <code>mince.py</code> a v něm vytvoř podprogram <code>mince</code>. Podprogram bude generovat náhodnou pozici a náhodnou hodnotu mince od 1 do 5. Minci nakresli jako kruh s číslem (viz následující obrázek).</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={60} y1={30} width={40} height={40} fill="silver" stroke="gray" />
             <Text x={80} y={50} text="1" fontSize={24} />
@@ -300,7 +300,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>h = random.choice([1, 2, 5, 10, 20, 50])</code><br/>Zbytek beze změny.<br/><br/>Zápis <code>random.choice([1, 2, 5, 10, 20, 50])</code> náhodně zvolí jednu z možností, které jsou uvedeny v hranatých závorkách. Pokročilejším žákům můžeme prozradit, že kulaté závorky patří k příkazu <code>random.choice</code> a že hranaté závorky uvozují seznam prvků, ze kterých se náhodná hodnota vybírá.</p>}>
-          <p>9. Uprav svůj program tak, aby se generovaly jen mince s hodnotami 1, 2, 5, 10, 20, 50.</p>
+          <p>Uprav svůj program tak, aby se generovaly jen mince s hodnotami 1, 2, 5, 10, 20, 50.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Oval x1={60} y1={40} width={40} height={40} fill="silver" stroke="gray" />
             <Text x={80} y={60} text="10" fontSize={20} fontWeight="bold" />
@@ -339,7 +339,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení – pozdravy:<br/><code>import random</code><br/><code>for i in range(10):</code><br/><code>    print(random.choice(['Ahoj', 'Nazdar', 'Servus', 'Čau']))</code><br/><br/>Ostatní podúlohy se řeší obdobně.</p>}>
-          <p>11. Vyzkoušej, jako funguje <code>random.choice</code> – každý z příkazů nech pomocí cyklu vykonat několikrát:</p>
+          <p>Vyzkoušej, jako funguje <code>random.choice</code> – každý z příkazů nech pomocí cyklu vykonat několikrát:</p>
           <ul className="list-disc pl-5 mt-2 space-y-2 text-sm font-mono text-slate-700">
             <li>a) <code>print(random.choice(['Ahoj', 'Nazdar', 'Servus', 'Čau']))</code></li>
             <li>b) <code>print(random.choice('POMERANČ'))</code></li>
@@ -348,7 +348,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Očekávané řešení:<br/><code>import random</code><br/><code>pocasi = random.choice(['pěkný', 'ošklivý', 'deštivý', 'slunečný'])</code><br/><code>print('Dnes je', pocasi, 'den')</code></p>}>
-          <p>12. Napiš program <code>pocasi.py</code>, který zobrazuje zprávy ve tvaru:</p>
+          <p>Napiš program <code>pocasi.py</code>, který zobrazuje zprávy ve tvaru:</p>
           <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
 Dnes je ... den
           </div>

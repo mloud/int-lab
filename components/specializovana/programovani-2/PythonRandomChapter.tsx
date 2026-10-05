@@ -173,7 +173,7 @@ const PythonRandomChapter: React.FC<PythonRandomChapterProps> = ({ onBack }) => 
         </div>
 
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def cara():</code><br/><code>    print('+--+--+--+--+--+--+')</code><br/><br/><code>def hulky():</code><br/><code>    print('|  |  |  |  |  |  |')</code><br/><br/><code>cara()</code><br/><code>hulky()</code><br/><code>cara()</code><br/><code>hulky()</code><br/><code>cara()</code></p>}>
-          <p>1. Nyní budeš vytvářet mřížku. Napiš program <code>mrizka.py</code>, ve kterém definuješ dva podprogramy s příkazy <code>print</code>:</p>
+          <p>Nyní budeš vytvářet mřížku. Napiš program <code>mrizka.py</code>, ve kterém definuješ dva podprogramy s příkazy <code>print</code>:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
             <li>podprogram <code>cara</code> zobrazí v jednom řádku 19 znaků <code>+--+--+--+--+--+--+</code></li>
             <li>podprogram <code>hulky</code> zobrazí střídavě hůlku a dvě mezery tak, aby znaků (včetně mezer) bylo 19.</li>
@@ -189,7 +189,7 @@ const PythonRandomChapter: React.FC<PythonRandomChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def cara():</code><br/><code>    print('+--+--+--+--+--+--+')</code><br/><br/><code>def hulky():</code><br/><code>    print('|  |  |  |  |  |  |')</code><br/><br/><code>def ctvereckovany_papir():</code><br/><code>    cara()</code><br/><code>    hulky()</code><br/><code>    cara()</code><br/><code>    hulky()</code><br/><code>    cara()</code><br/><code>    hulky()</code><br/><code>    cara()</code><br/><code>    hulky()</code><br/><code>    cara()</code><br/><br/><code>ctvereckovany_papir()</code></p>}>
-          <p>2. Přidej do předchozího programu ještě jeden podprogram <code>ctvereckovany_papir</code>. Ten využije tvé podprogramy <code>cara</code> a <code>hulky</code> tak, že jejich voláním zobrazí čtvercovou síť jako na obrázku níže. Tento nový podprogram zavolej pro zobrazení sítě.</p>
+          <p>Přidej do předchozího programu ještě jeden podprogram <code>ctvereckovany_papir</code>. Ten využije tvé podprogramy <code>cara</code> a <code>hulky</code> tak, že jejich voláním zobrazí čtvercovou síť jako na obrázku níže. Tento nový podprogram zavolej pro zobrazení sítě.</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre tracking-widest mt-2">
 +--+--+--+--+--+--+<br/>
 |  |  |  |  |  |  |<br/>
@@ -204,7 +204,7 @@ const PythonRandomChapter: React.FC<PythonRandomChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Cílem dalších úloh je naučit žáky pracovat s náhodnými čísly. V následující úloze žáky necháme experimentovat s generátorem náhodných čísel:<br/><br/>Slovo <code>random</code> znamená náhodný. Při vykonaní příkazu <code>random.randint(1, 6)</code> si počítač vymyslí nějaké číslo od 1 do 6. Je to podobné, jako by si počítač hodil hrací kostkou.</p>}>
-          <p>3. Zadej do příkazového řádku tyto příkazy:</p>
+          <p>Zadej do příkazového řádku tyto příkazy:</p>
           <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-fuchsia-400 overflow-x-auto shadow-inner border border-slate-700">
             <div><span className="text-fuchsia-500 mr-2 select-none">{">>>"}</span><span className="text-slate-300">import random</span></div>
             <div><span className="text-fuchsia-500 mr-2 select-none">{">>>"}</span><span className="text-slate-300 bg-yellow-500/20 px-1">random.randint(1, 6)</span></div>
@@ -217,12 +217,12 @@ const PythonRandomChapter: React.FC<PythonRandomChapterProps> = ({ onBack }) => 
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>V této úloze žáci pracují v interaktivním režimu. Pokud někteří z nich budou ze zvyku vytvářet nový program, upozorníme je na tento omyl. Úloha je řešena v interaktivním režimu proto, že činnost generátoru náhodných čísel se nejlépe projeví, když jej vyvoláme vícekrát. Od 4. úlohy však budou žáci opět vytvářet programy.<br/><br/>Zápis <code>import random</code> má podobný význam jako už známý zápis <code>import tkinter</code>. Našemu programu zpřístupní externí knihovnu nových příkazů (podprogramů). Knihovna <code>random</code> obsahuje několik užitečných příkazů, které generují náhodná čísla. My z nich prozatím využijeme jen příkaz <code>random.randint(od, do)</code>, který náhodně vybere hodnotu z daného intervalu celých čísel <code>&lt;od, do&gt;</code>.<br/><br/>Proměnná <code>n</code> je zde globální proměnnou.</p>}>
-          <p>4. Náhodné číslo si můžeš zapamatovat – napiš program <code>kostka.py</code> s následujícím kódem a spusť jej (i vícekrát):</p>
+          <p>Náhodné číslo si můžeš zapamatovat – napiš program <code>kostka.py</code> s následujícím kódem a spusť jej (i vícekrát):</p>
           <PythonSnippet code={`import random\nn = random.randint(1, 6)\nprint('Na kostce padla', n)`} />
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Dále chceme zabalit házení kostkou do podprogramu, aby se hody kostkou daly jednoduše vícekrát zopakovat. Z pohledu žáka jsou v následující ukázce dva nové jevy: použití proměnné v podprogramu (tj. lokální proměnná <code>n</code>) a použití náhodných čísel v podprogramu.<br/><br/>Řešení bez použití cyklu (tj. copy-paste):<br/><code>import random</code><br/><br/><code>def hod_kostkou():</code><br/><code>    n = random.randint(1, 6)</code><br/><code>    print('Na kostce padla', n)</code><br/><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><code>hod_kostkou()</code><br/><br/>Pojmy lokální a globální proměnná zatím není potřeba žáky učit. Plánujeme řešit jen takové úlohy, ve kterých by se neměly vyskytnout konflikty s proměnnými.<br/>Z pohledu Pythonu lokální proměnná existuje pouze při běhu podprogramu, tj. vznikne až po zavolání podprogramu. Po skončení běhu podprogramu tato proměnná dále neexistuje (automaticky se zruší).</p>}>
-          <p>5. Uprav program <code>kostka.py</code> – vytvoř podprogram <code>hod_kostkou</code> a doplň kód programu tak, aby se simulovalo deset hodů za sebou:</p>
+          <p>Uprav program <code>kostka.py</code> – vytvoř podprogram <code>hod_kostkou</code> a doplň kód programu tak, aby se simulovalo deset hodů za sebou:</p>
           <PythonSnippet code={`import random\n\ndef hod_kostkou():\n    n = random.randint(1, 6)\n    print('Na kostce padla', n)\n\nhod_kostkou()`} />
           <p>Měl by se zobrazit výpis podobný následujícímu:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
@@ -240,7 +240,7 @@ Na kostce padla 3
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Následují úlohy, ve kterých se žáci lépe seznámí s generátorem náhodných čísel. Ve všech úlohách předpokládáme, že žáci upravené podprogramy zavolají vícekrát, aby je otestovali.<br/><br/>Řešení – upraví se pouze podprogram <code>hod_kostkou</code>:<br/><code>def hod_kostkou():</code><br/><code>    n = random.randint(1, 20)</code><br/><code>    print('Na kostce padla', n)</code></p>}>
-          <p>6. Uprav předchozí program tak, aby počítač simuloval jeden hod na dvacetistěnné kostce.</p>
+          <p>Uprav předchozí program tak, aby počítač simuloval jeden hod na dvacetistěnné kostce.</p>
         </TaskCard>
 
         <TaskCard number="7*" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení – upraví se pouze podprogram <code>hod_kostkou</code>:<br/><code>def hod_kostkou():</code><br/><code>    n = random.randint(0, 1)</code><br/><code>    print('Na kostce padla', n)</code></p>}>
@@ -260,7 +260,7 @@ Na kostce padla 3
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Možné řešení:<br/><code>import random</code><br/><br/><code>def predpoved():</code><br/><code>    teplota = random.randint(-15, 35)</code><br/><code>    print('Dnes bude', teplota, 'stupňů.')</code><br/><br/><code>predpoved()</code><br/><br/>V 5. úloze této lekce jsme žákům ukázali uložení náhodně vygenerované hodnoty do proměnné, kterou jsme nazvali <code>n</code>. Zatímco ve všech předchozích úlohách bylo uložení vygenerované hodnoty do takto nazvané proměnné v pořádku, v této úloze je vhodnější nazvat proměnnou výstižněji, například <code>teplota</code>. Díky tomu bude na první pohled zřejmý význam této proměnné.</p>}>
-          <p>11. Napiš program <code>predpoved.py</code> a v něm podprogram <code>predpoved</code>, který vypíše zprávu s předpovědí počasí na dnešní den. Zpráva může vypadat například takto:</p>
+          <p>Napiš program <code>predpoved.py</code> a v něm podprogram <code>predpoved</code>, který vypíše zprávu s předpovědí počasí na dnešní den. Zpráva může vypadat například takto:</p>
           <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
 Dnes bude 15 stupňů.
           </div>
@@ -268,26 +268,26 @@ Dnes bude 15 stupňů.
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><br/><code>a = random.randint(0, 9)</code><br/><code>b = random.randint(0, 9)</code><br/><code>c = random.randint(0, 9)</code><br/><code>d = random.randint(0, 9)</code><br/><code>print('Tvůj nový PIN je', a, b, c, d)</code></p>}>
-          <p>12. Vytvoř program <code>pin.py</code>, který vygeneruje náhodný PIN pro tvůj mobil. Do čtyř proměnných <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code> přiřaď náhodná čísla od 0 po 9 a potom je jediným příkazem <code>print</code> vypiš. Výpis může vypadat například takto:</p>
+          <p>Vytvoř program <code>pin.py</code>, který vygeneruje náhodný PIN pro tvůj mobil. Do čtyř proměnných <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code> přiřaď náhodná čísla od 0 po 9 a potom je jediným příkazem <code>print</code> vypiš. Výpis může vypadat například takto:</p>
           <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
 Tvůj nový PIN je 1 3 7 3
           </div>
         </TaskCard>
 
         <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode} teacherNote={<p>Možné řešení s použitím proměnných:<br/><code>import random</code><br/><br/><code>den = random.randint(1, 30)</code><br/><code>mesic = random.randint(1, 12)</code><br/><code>rok = random.randint(2018, 2099)</code><br/><code>print('Pokoj si uklidím', den, '.', mesic, '.', rok)</code><br/><br/>Možné řešení bez použití proměnných:<br/><code>import random</code><br/><br/><code>print('Pokoj si uklidím',</code><br/><code>      random.randint(1, 30), '.',</code><br/><code>      random.randint(1, 12), '.',</code><br/><code>      random.randint(2018, 2099))</code><br/><br/>Uvedené výpisy se některým žákům nemusí líbit, protože vypisované tečky ve vygenerovaném datu jsou od čísel oddělené mezerami. Pokročilejší formátování výstupů je náročnější téma a přesahuje možnosti tohoto kurzu. Žáky, vzhledem k jejich současným programátorským zkušenostem, však alternativní zápisy nedoporučujeme učit.</p>}>
-          <p>13. Vytvoř nový program <code>datumy.py</code> – generátor náhodných datumů (pro jednoduchost nechť má každý měsíc 30 dní). Po spuštění program vypíše informaci s vygenerovaným náhodným datem, například:</p>
+          <p>Vytvoř nový program <code>datumy.py</code> – generátor náhodných datumů (pro jednoduchost nechť má každý měsíc 30 dní). Po spuštění program vypíše informaci s vygenerovaným náhodným datem, například:</p>
           <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
 Pokoj si uklidím 30 . 2 . 2025
           </div>
         </TaskCard>
 
         <TaskCard number="14" title="" taskId="14" showTeacher={teacherMode} teacherNote={<p>V následujících úlohách se kombinuje kreslení a náhodná čísla:<br/><br/>Pokud je náhodně vygenerovaná hodnota použita pouze jednou jako v předchozích úlohách, je možné ji použít, aniž by byla uložena do proměnné. Když však tuto hodnotu chceme použít opakovaně, je nutné ji uložit do proměnné. To je typicky případ generování náhodných souřadnic v úlohách zaměřených na kreslení. Pokud bychom například v této úloze neuložili souřadnice do proměnných <code>x</code> a <code>y</code>, ale tělo podprogramu <code>nahodny_ctverec</code> zapsali s násobným voláním <code>randint</code>, velmi pravděpodobně by se nakreslil obdélník (každá souřadnice by se generovala zvlášť).</p>}>
-          <p>14. Vytvoř nový program <code>nahodny_ctverec.py</code>, ve kterém pomocí následujícího kódu nakreslíš náhodně umístěný čtverec:</p>
+          <p>Vytvoř nový program <code>nahodny_ctverec.py</code>, ve kterém pomocí následujícího kódu nakreslíš náhodně umístěný čtverec:</p>
           <PythonSnippet code={`import tkinter\nimport random\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef nahodny_ctverec():\n    x = random.randint(10, 300)\n    y = random.randint(10, 200)\n    canvas.create_rectangle(x, y, x + 50, y + 50,\n                            fill='orange')\n\nnahodny_ctverec()`} />
         </TaskCard>
 
         <TaskCard number="15" title="" taskId="15" showTeacher={teacherMode} teacherNote={<p>Domníváme se, že je vhodnější, aby si žáci náhodně vygenerovanou hodnotu vždy ukládali do proměnné. Ačkoliv je tento přístup zdlouhavější, je univerzálnější a při vhodném pojmenování proměnných je kód též srozumitelnější.<br/><br/>Řešení – upraví se pouze volání podprogramu:<br/><code>nahodny_ctverec()</code><br/><code>nahodny_ctverec()</code><br/><code>nahodny_ctverec()</code><br/><code>nahodny_ctverec()</code><br/><code>nahodny_ctverec()</code></p>}>
-          <p>15. Doplň do programu <code>nahodny_ctverec.py</code> příkazy tak, aby program nakreslil pět náhodných čtverců:</p>
+          <p>Doplň do programu <code>nahodny_ctverec.py</code> příkazy tak, aby program nakreslil pět náhodných čtverců:</p>
           <CanvasPreview width={300} height={200}>
             <Rect x1={60} y1={30} width={40} height={40} fill="orange" />
             <Rect x1={130} y1={40} width={40} height={40} fill="orange" />
@@ -298,7 +298,7 @@ Pokoj si uklidím 30 . 2 . 2025
         </TaskCard>
 
         <TaskCard number="16" title="" taskId="16" showTeacher={teacherMode} teacherNote={<p>Řešení – upraví se pouze podprogram <code>nahodny_ctverec</code>:<br/><code>def nahodny_ctverec():</code><br/><code>    x = random.randint(10, 300)</code><br/><code>    y = random.randint(10, 200)</code><br/><code>    a = random.randint(10, 100)</code><br/><code>    canvas.create_rectangle(x, y, x + a, y + a, fill='orange')</code><br/><br/>Poznámka: Proměnné <code>x</code>, <code>y</code>, <code>a</code> jsou lokální proměnné. Proměnná <code>canvas</code> je globální proměnná.</p>}>
-          <p>16. Uprav program <code>nahodny_ctverec.py</code> tak, aby se čtverce kreslily nejen na náhodných pozicích, ale také aby měl každý čtverec náhodnou velikost z intervalu od 10 do 100:</p>
+          <p>Uprav program <code>nahodny_ctverec.py</code> tak, aby se čtverce kreslily nejen na náhodných pozicích, ale také aby měl každý čtverec náhodnou velikost z intervalu od 10 do 100:</p>
           <CanvasPreview width={300} height={200}>
             <Rect x1={150} y1={20} width={60} height={60} fill="orange" />
             <Rect x1={40} y1={100} width={35} height={35} fill="orange" />
@@ -309,7 +309,7 @@ Pokoj si uklidím 30 . 2 . 2025
         </TaskCard>
 
         <TaskCard number="17" title="" taskId="17" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def nahodny_ctverec():</code><br/><code>    x = random.randint(10, 300)</code><br/><code>    y = random.randint(10, 200)</code><br/><code>    a = random.randint(10, 100)</code><br/><code>    canvas.create_rectangle(x, y, x + a, y + a, fill='orange')</code><br/><br/><code>def nahodny_obdelnik():</code><br/><code>    x = random.randint(10, 300)</code><br/><code>    y = random.randint(10, 200)</code><br/><code>    a = random.randint(10, 100)</code><br/><code>    b = random.randint(10, 100)</code><br/><code>    canvas.create_rectangle(x, y, x+a, y+b, fill='lime green')</code><br/><br/><code>nahodny_ctverec()</code><br/><code>nahodny_obdelnik()</code><br/><code>... (10 volání)</code><br/><br/>Podprogram <code>nahodny_obdelnik</code> zřejmě vznikne jako kopie podprogramu <code>nahodny_ctverec</code>, kterou žáci přejmenují a přidají do ní lokální proměnnou <code>b</code> pro výšku obdélníku. Barvu si mohou zvolit dle vlastního uvážení.</p>}>
-          <p>17. Doplň do programu <code>nahodny_ctverec.py</code> nový podprogram <code>nahodny_obdelnik</code>. Ten vygeneruje náhodné souřadnice i rozměry obdélníku a nakreslí jej. Vlož příkazy, které střídavě nakreslí pět náhodných čtverců a pět obdélníků.</p>
+          <p>Doplň do programu <code>nahodny_ctverec.py</code> nový podprogram <code>nahodny_obdelnik</code>. Ten vygeneruje náhodné souřadnice i rozměry obdélníku a nakreslí jej. Vlož příkazy, které střídavě nakreslí pět náhodných čtverců a pět obdélníků.</p>
           <CanvasPreview width={300} height={200}>
             <Rect x1={40} y1={20} width={20} height={60} fill="limegreen" />
             <Rect x1={120} y1={30} width={70} height={70} fill="orange" />
@@ -322,7 +322,7 @@ Pokoj si uklidím 30 . 2 . 2025
         </TaskCard>
 
         <TaskCard number="18" title="" taskId="18" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = random.randint(50, 250)</code><br/><code>y = random.randint(50, 150)</code><br/><code>canvas.create_rectangle(10, 10, x, y, fill='darkgreen')</code><br/><code>canvas.create_rectangle(x, 10, 310, y, fill='yellow')</code><br/><code>canvas.create_rectangle(10, y, x, 210, fill='orange')</code><br/><code>canvas.create_rectangle(x, y, 310, 210, fill='navy')</code><br/><br/>Vnější vrcholy obdélníku je možné zvolit libovolně. V našem řešení má levý horní vrchol souřadnice [10, 10] a protože rozměry obdélníku mají být 300x200, protilehlý vrchol (pravý dolní) má souřadnice [310, 210]. Vnitřní náhodně zvolený bod jsme vygenerovali tak, aby byl od okrajů obdélníku vzdálen alespoň 50, tedy každá ze čtyř oblastí bude mít rozměry minimálně 50x50.</p>}>
-          <p>18. Vytvoř nový program <code>sportovni_vlajka.py</code>, který bude kreslit sportovní vlajku vaší třídy. Vlajka bude tvořena čtyřmi barevnými obdélníky, které se vzájemně dotýkají v jediném bodě jako na obrázku níže:</p>
+          <p>Vytvoř nový program <code>sportovni_vlajka.py</code>, který bude kreslit sportovní vlajku vaší třídy. Vlajka bude tvořena čtyřmi barevnými obdélníky, které se vzájemně dotýkají v jediném bodě jako na obrázku níže:</p>
           <CanvasPreview width={300} height={200}>
             <Rect x1={50} y1={30} width={150} height={100} fill="darkgreen" />
             <Rect x1={200} y1={30} width={50} height={100} fill="yellow" />

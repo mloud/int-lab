@@ -198,7 +198,7 @@ const PythonLoopVariableChapter: React.FC<PythonLoopVariableChapterProps> = ({ o
         </div>
 
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>print('Kočka leze dírou')</code><br/><code>for i in range(2):</code><br/><code>    print('pes oknem')</code><br/><code>for i in range(2):</code><br/><code>    print('nebude-li pršet')</code><br/><code>    print('nezmoknem')</code><br/><br/>Někteří žáci patrně přijdou jen na použití jednoho <code>for</code> cyklu, ale možného použití druhého cyklu si nevšimnou. Takové žáky přivedeme na myšlenku, že se v říkance opakují ještě jiné verše, a tak je možné použít ještě jeden <code>for</code> cyklus.</p>}>
-          <p>1. Tvůj mladší sourozenec našel následující říkanku:</p>
+          <p>Tvůj mladší sourozenec našel následující říkanku:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 kočka leze dírou<br/>
 pes oknem<br/>
@@ -212,7 +212,7 @@ nezmoknem
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Další úloha ilustruje použití proměnné <code>i</code> a novou, ale důležitou činnost <code>for</code> cyklu.</p>}>
-          <p>2. Vytvoř program <code>rada_cisel.py</code> a pomocí následujícího kódu vypiš celá čísla od 0 do 9:</p>
+          <p>Vytvoř program <code>rada_cisel.py</code> a pomocí následujícího kódu vypiš celá čísla od 0 do 9:</p>
           <PythonSnippet code={`for i in range(10):\n    print('číslo', i)`} />
           <p>Jestli jsi kód zapsal(a) správně, program po spuštění vypíše:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre h-48 overflow-y-auto">
@@ -242,7 +242,7 @@ nezmoknem
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení pro 0, 1, ... 10:<br/><code>for i in range(11):</code><br/><code>    print('číslo', i)</code><br/><br/>Řešení pro 1, 2, ... 10:<br/><code>for i in range(10):</code><br/><code>    print('číslo', i + 1)</code><br/><br/>Řešení pro 2, 4, ... 20:<br/><code>for i in range(10):</code><br/><code>    print('číslo', (i + 1) * 2)</code><br/>nebo:<br/><code>for i in range(10):</code><br/><code>    print('číslo', i * 2 + 2)</code><br/><br/>Řešení pro 10, 20, ... 100:<br/><code>for i in range(10):</code><br/><code>    print('číslo', (i + 1) * 10)</code><br/>nebo:<br/><code>for i in range(10):</code><br/><code>    print('číslo', i * 10 + 10)</code><br/><br/>V této úloze se žáci poprvé setkávají s výpočty založenými na proměnné cyklu, což může některým žákům činit potíže. Je vhodné se žáky diskutovat o tom, jak by bylo možno řadu požadovaných čísel vytvořit na základě řady čísel 0 až 9.<br/>Tyto úlohy lze řešit alternativně jen pomocí vhodných parametrů příkazu range: <code>range(1, 11)</code>, <code>range(2, 21, 2)</code> atd. Nechceme však, aby úlohy žáci takto řešili, ani jim různé varianty příkazu range neprozrazujeme.</p>}>
-          <p>3. Urči, co je potřeba v předchozím programu změnit, aby se vypsala čísla:</p>
+          <p>Urči, co je potřeba v předchozím programu změnit, aby se vypsala čísla:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm font-mono text-slate-700">
             <li>a) 0, 1, ... 10 – tedy i číslo 10</li>
             <li>b) 1, 2, ... 10</li>
@@ -256,7 +256,7 @@ nezmoknem
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for i in range(7):</code><br/><code>    print(i, 'na druhou je', i * i)</code></p>}>
-          <p>4. Vytvoř program <code>druhe_mocniny.py</code>, který pomocí <code>for</code> cyklu vypíše čísla a jejich druhé mocniny:</p>
+          <p>Vytvoř program <code>druhe_mocniny.py</code>, který pomocí <code>for</code> cyklu vypíše čísla a jejich druhé mocniny:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 0 na druhou je 0<br/>
 1 na druhou je 1<br/>
@@ -269,7 +269,7 @@ nezmoknem
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for i in range(10):</code><br/><code>    print('Na stromě bylo', i, 'vrabců, jeden přiletěl a už je tam', i + 1, 'vrabců')</code><br/><br/>Tato i následující úloha poskytuje prostor k diskuzi o české gramatice. Lze diskutovat, jak by bylo nutné programy upravit, aby generovaly gramaticky správné věty.</p>}>
-          <p>5. Máme takovouto povídku:</p>
+          <p>Máme takovouto povídku:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre overflow-x-auto text-slate-600">
 Na stromě bylo 0 vrabců, jeden přiletěl a už je tam 1 vrabců<br/>
 Na stromě bylo 1 vrabců, jeden přiletěl a už je tam 2 vrabců<br/>
@@ -281,7 +281,7 @@ Na stromě bylo 9 vrabců, jeden přiletěl a už je tam 10 vrabců
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for i in range(10):</code><br/><code>    print('Na stromě bylo', 10 - i, 'vrabců, jeden odletěl a zůstalo tam', 9 - i, 'vrabců')</code><br/><br/>V této úloze se žáci poprvé setkávají s tím, že se v cyklu vypisované číslo snižuje. Někteří žáci se proto mohou snažit upravovat parametry příkazu range tak, aby se do proměnné i nepřiřazovala čísla od 0 do 9, ale například od 10 do 1. Tyto snahy však obvykle nevedou k požadovanému řešení.</p>}>
-          <p>6. Vrabci z předchozí povídky odlétají – vymysli v programu <code>povidka.py</code> kód, který to bude pomocí <code>for</code> cyklu vyprávět:</p>
+          <p>Vrabci z předchozí povídky odlétají – vymysli v programu <code>povidka.py</code> kód, který to bude pomocí <code>for</code> cyklu vyprávět:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre overflow-x-auto text-slate-600">
 Na stromě bylo 10 vrabců, jeden odletěl a zůstalo tam 9 vrabců<br/>
 Na stromě bylo 9 vrabců, jeden odletěl a zůstalo tam 8 vrabců<br/>
@@ -291,7 +291,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení (souřadnice x, y jsou vygenerované tak, aby odpovídaly středu kartičky):<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(10):</code><br/><code>    x = random.randint(20, 340)</code><br/><code>    y = random.randint(30, 230)</code><br/><code>    canvas.create_rectangle(x - 20, y - 30, x + 20, y + 30, fill='deepskyblue')</code><br/><code>    canvas.create_text(x, y, text=i, font='arial 30')</code></p>}>
-          <p>7. Máme kartičky s čísly od 0 do 9, které chceme náhodně rozložit po ploše. Vytvoř program <code>deset_karticek.py</code>, který pomocí cyklu postupně nakreslí deset takových kartiček na náhodných pozicích:</p>
+          <p>Máme kartičky s čísly od 0 do 9, které chceme náhodně rozložit po ploše. Vytvoř program <code>deset_karticek.py</code>, který pomocí cyklu postupně nakreslí deset takových kartiček na náhodných pozicích:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Rect x1={150} y1={20} width={30} height={40} fill="deepskyblue" />
             <Text x={165} y={40} text="2" fontSize={24} />
@@ -327,7 +327,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>V úloze není číslo úmyslně umístěné ve středu kartičky. Záleží však na kreativitě žáků, jak budou kreslené bankovky nakonec vypadat.</p>}>
-          <p>8. Na chodníku je rozhozených pět cizokrajných bankovek s hodnotami 10, 20, 30, 40 a 50. Napiš program <code>bankovky.py</code>, který takové bankovky nakreslí pomocí <code>for</code> cyklu:</p>
+          <p>Na chodníku je rozhozených pět cizokrajných bankovek s hodnotami 10, 20, 30, 40 a 50. Napiš program <code>bankovky.py</code>, který takové bankovky nakreslí pomocí <code>for</code> cyklu:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Rect x1={100} y1={30} width={80} height={40} fill="yellowgreen" />
             <Text x={115} y={45} text="40" fontSize={20} align="center" />
@@ -347,7 +347,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/>když se zobrazí 0: x = 0<br/>když se zobrazí 1: x = 50<br/>když se zobrazí 2: x = 100<br/>když se zobrazí 3: x = 150<br/>když se zobrazí 4: x = 200<br/>když se zobrazí 5: x = 250<br/>když se zobrazí 6: x = 300<br/>když se zobrazí 7: x = 350<br/><br/>Cílem úlohy je předvést, jak se proměnná cyklu používá při výpočtu souřadnic. Proto chceme, aby žáci program odkrokovali a viděli souvislost mezi proměnnou <code>i</code> a výpočtem souřadnic.</p>}>
-          <p>9. Vytvoř nový program <code>kresleni_cisel.py</code> a přepiš do něj následující kód, který kreslí čísla na grafickou plochu:</p>
+          <p>Vytvoř nový program <code>kresleni_cisel.py</code> a přepiš do něj následující kód, který kreslí čísla na grafickou plochu:</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(8):\n    x = i * 50\n    canvas.create_text(x, 100, text=i, font='arial 30')`} />
           <p>Vytvořený program spusť, abys viděl(a), co udělá, a vyplň následující tabulku:</p>
           <table className="w-full mt-4 border-collapse border border-slate-300 text-sm">
@@ -372,7 +372,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(8):</code><br/><code>    x = i * 50</code><br/><code>    y = i * 30</code><br/><code>    canvas.create_text(x, y, text=i, font='arial 30')</code></p>}>
-          <p>10. Uprav předchozí program tak, aby se čísla kreslila přibližně na úhlopříčce grafické plochy podobně jako na následujícím obrázku:</p>
+          <p>Uprav předchozí program tak, aby se čísla kreslila přibližně na úhlopříčce grafické plochy podobně jako na následujícím obrázku:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             {Array.from({ length: 8 }).map((_, i) => (
               <Text key={i} x={i * 38} y={i * 25} text={i.toString()} fontSize={24} />
@@ -382,7 +382,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(8):</code><br/><code>    x = i * 50 + 15</code><br/><code>    y = i * 30 + 20</code><br/><code>    canvas.create_text(x, y, text=i, font='arial 30')</code></p>}>
-          <p>11. V předchozím programu se číslo 0 kreslilo za roh grafické plochy, takže nebylo skoro vidět. Uprav výpočet souřadnic tak, aby byla vidět všechna čísla. Výsledek může vypadat jako na obrázku níže:</p>
+          <p>V předchozím programu se číslo 0 kreslilo za roh grafické plochy, takže nebylo skoro vidět. Uprav výpočet souřadnic tak, aby byla vidět všechna čísla. Výsledek může vypadat jako na obrázku níže:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             {Array.from({ length: 8 }).map((_, i) => (
               <Text key={i} x={i * 38 + 15} y={i * 25 + 20} text={i.toString()} fontSize={24} />
@@ -391,7 +391,7 @@ Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(6):</code><br/><code>    x = i * 50 + 10</code><br/><code>    canvas.create_rectangle(x, 100, x + 20, 200, fill='red')</code><br/><br/>V takovýchto úlohách zaměřených na kreslení bývá pro žáky náročné odvodit vzorec pro výpočet souřadnic pomocí proměnné cyklu. Je vhodné naučit žáky načrtnout si průběh kreslení a souřadnice si odvodit: postupně přidáváme další pozice s konkrétními čísly, aby žáci viděli vztah mezi pořadovým číslem a souřadnicí.</p>}>
-          <p>12. Víš, jak vypadá padající had z domina? Vytvoř program <code>domino.py</code>, který pomocí cyklu a obdélníku nakreslí zatím ještě stojící kostky domina:</p>
+          <p>Víš, jak vypadá padající had z domina? Vytvoř program <code>domino.py</code>, který pomocí cyklu a obdélníku nakreslí zatím ještě stojící kostky domina:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             {Array.from({ length: 6 }).map((_, i) => (
               <Rect key={i} x1={i * 35 + 30} y1={80} width={15} height={80} fill="red" />

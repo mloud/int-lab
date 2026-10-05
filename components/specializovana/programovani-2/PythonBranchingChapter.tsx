@@ -174,11 +174,11 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>vek = 15</code><br/><code>if vek &lt; 18:</code><br/><code>    print('Ahoj')</code><br/><code>else:</code><br/><code>    print('Dobrý den')</code></p>}>
-          <p>1. Kamarádku pozdravíš neformálně „Ahoj“, ale starší lidi pozdravíš formálněji, například „Dobrý den“. Napiš program <code>pozdravy_podle_veku.py</code>, ve kterém do proměnné <code>vek</code> přiřadíš věk člověka. Potom použij příkaz větvení na to, aby se program podle věku rozhodl, který z uvedených dvou pozdravů vypíše. Otestuj, jaké pozdravy se vypisují pro různé hodnoty proměnné <code>vek</code>.</p>
+          <p>Kamarádku pozdravíš neformálně „Ahoj“, ale starší lidi pozdravíš formálněji, například „Dobrý den“. Napiš program <code>pozdravy_podle_veku.py</code>, ve kterém do proměnné <code>vek</code> přiřadíš věk člověka. Potom použij příkaz větvení na to, aby se program podle věku rozhodl, který z uvedených dvou pozdravů vypíše. Otestuj, jaké pozdravy se vypisují pro různé hodnoty proměnné <code>vek</code>.</p>
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>hodin = 7</code><br/><code>if hodin &lt; 10:</code><br/><code>    print('Vyděláš si', hodin * 80, 'korun.')</code><br/><code>else:</code><br/><code>    print('Vyděláš si', hodin * 100, 'korun.')</code></p>}>
-          <p>2. Na brigádě ve stánku se zmrzlinou dostaneš mzdu podle následujícího pravidla:</p>
+          <p>Na brigádě ve stánku se zmrzlinou dostaneš mzdu podle následujícího pravidla:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li>když budeš pracovat méně než 10 hodin, vyděláš si 80 korun za hodinu,</li>
             <li>jinak si vyděláš 100 korun za hodinu.</li>
@@ -197,13 +197,13 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>hodin = 20</code><br/><code>if hodin &lt; 10:</code><br/><code>    mzda = hodin * 80</code><br/><code>else:</code><br/><code>    mzda = hodin * 100</code><br/><code>print('Vyděláš si', mzda, 'korun.')</code></p>}>
-          <p>3. Předchozí úloha se dá řešit i takto:</p>
+          <p>Předchozí úloha se dá řešit i takto:</p>
           <PythonSnippet code={`hodin = 20\nif ..............................:\n    mzda = ..............................\nelse:\n    mzda = ..............................\nprint('Vyděláš si', mzda, 'korun.')`} />
           <p className="mt-2">Doplň namísto vytečkovaných částí správné výrazy. Ověř, že program správně počítá mzdu pro různé hodnoty proměnné <code>hodin</code>.</p>
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>megabajty = 6</code><br/><code>if megabajty &lt; 10:</code><br/><code>    cena = megabajty * 2</code><br/><code>else:</code><br/><code>    cena = 20</code><br/><code>print('Zaplatíš', cena, 'korun.')</code></p>}>
-          <p>4. Mobilní operátor Vegafon počítá platby za přenesená data podle následujících pravidel:</p>
+          <p>Mobilní operátor Vegafon počítá platby za přenesená data podle následujících pravidel:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li>když za den přeneseš méně než 10 megabajtů dat, zaplatíš za každý megabajt 2 koruny,</li>
             <li>jinak zaplatíš za celý den 20 korun.</li>
@@ -222,7 +222,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>megabajty = 20</code><br/><code>if megabajty &lt; 10:</code><br/><code>    cena = megabajty * 1</code><br/><code>else:</code><br/><code>    cena = 10 + (megabajty - 10) * 3</code><br/><code>print('Zaplatíš', cena, 'korun.')</code></p>}>
-          <p>5. Mobilní operátor Zodrafon počítá platby za přenesená data podle odlišných pravidel:</p>
+          <p>Mobilní operátor Zodrafon počítá platby za přenesená data podle odlišných pravidel:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li>když za den přeneseš méně než 10 megabajtů, zaplatíš za každý megabajt 1 korunu,</li>
             <li>jinak zaplatíš 10 korun a k tomu za každý megabajt nad limit 10 megabajtů 3 koruny.</li>
@@ -241,7 +241,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 4</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='yellow')</code></p>}>
-          <p>6. Vytvoř program <code>den_noc.py</code>, který podle zadaného času nakreslí do grafické plochy slunce nebo měsíc. Do proměnné <code>cas</code> přiřaď počet hodin. Použij příkaz větvení na to, aby se pro <code>cas &lt; 8</code> kreslil měsíc jako bílý kruh, jinak se kreslilo slunce jako žlutý kruh. Poloměr kruhu nechť je v obou případech 50 a střed kruhu má souřadnice <code>[200, 100]</code>. Program by měl například nakreslit:</p>
+          <p>Vytvoř program <code>den_noc.py</code>, který podle zadaného času nakreslí do grafické plochy slunce nebo měsíc. Do proměnné <code>cas</code> přiřaď počet hodin. Použij příkaz větvení na to, aby se pro <code>cas &lt; 8</code> kreslil měsíc jako bílý kruh, jinak se kreslilo slunce jako žlutý kruh. Poloměr kruhu nechť je v obou případech 50 a střed kruhu má souřadnice <code>[200, 100]</code>. Program by měl například nakreslit:</p>
           <div className="flex justify-around items-center mt-4">
             <div className="text-center">
               <CanvasPreview width={200} height={150} bgColor="#f0f0f0">
@@ -259,7 +259,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 4</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='yellow')</code></p>}>
-          <p>7. Do předchozího řešení doplň kreslení pozadí – měsíc se nakreslí na tmavomodré pozadí, slunce na světlemodré pozadí:</p>
+          <p>Do předchozího řešení doplň kreslení pozadí – měsíc se nakreslí na tmavomodré pozadí, slunce na světlemodré pozadí:</p>
           <div className="flex justify-around items-center mt-4">
             <div className="text-center">
               <CanvasPreview width={200} height={150} bgColor="navy">
@@ -280,7 +280,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 14</code><br/><code>x = 200</code><br/><code>y = 150</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='yellow')</code><br/><code>canvas.create_rectangle(0, 180, 400, 300, fill='green')</code></p>}>
-          <p>8. Uprav předchozí program tak, aby se nejdříve do proměnných <code>x</code>, <code>y</code> přiřadily souřadnice středu kruhu a ty se potom použily v příkazech <code>create_oval</code>. Kromě toho přidej na úplný konec programu i kreslení zeleného obdélníku, který bude představovat krajinu. Potom program pro <code>x = 200</code> a <code>y = 150</code> bude kreslit scény jako na následujících obrázcích:</p>
+          <p>Uprav předchozí program tak, aby se nejdříve do proměnných <code>x</code>, <code>y</code> přiřadily souřadnice středu kruhu a ty se potom použily v příkazech <code>create_oval</code>. Kromě toho přidej na úplný konec programu i kreslení zeleného obdélníku, který bude představovat krajinu. Potom program pro <code>x = 200</code> a <code>y = 150</code> bude kreslit scény jako na následujících obrázcích:</p>
           <div className="flex justify-around items-center mt-4">
             <div className="text-center">
               <CanvasPreview width={200} height={150} bgColor="navy">
@@ -301,7 +301,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = random.randint(0, 16)</code><br/><code>x = random.randint(100, 300)</code><br/><code>y = random.randint(100, 200)</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='yellow')</code><br/><code>canvas.create_rectangle(0, 180, 400, 300, fill='green')</code></p>}>
-          <p>9. Vylepši předchozí program tak, aby fungoval jako náhodný generátor krajinek – přiřaď na začátku do proměnných <code>x</code>, <code>y</code>, <code>cas</code> náhodná čísla:</p>
+          <p>Vylepši předchozí program tak, aby fungoval jako náhodný generátor krajinek – přiřaď na začátku do proměnných <code>x</code>, <code>y</code>, <code>cas</code> náhodná čísla:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
             <li><code>x</code> z rozsahu 100, 300</li>
             <li><code>y</code> z rozsahu 100, 200</li>
@@ -311,7 +311,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Oba programy (s dvěma cykly vs. jeden cyklus + if) vypisují to samé, jen druhý používá vnořené větvení.</p>}>
-          <p>10. Následující program vypisuje denní harmonogram:</p>
+          <p>Následující program vypisuje denní harmonogram:</p>
           <PythonSnippet code={`for i in range(8):\n    print(i, 'ještě spím')\nfor i in range(6):\n    print(8 + i, 'jsem ve škole')`} />
           <p>Diskutuj se spolužákem, co konkrétně program vypíše. Poté program spusť v Pythonu a zkontroluj, zda byla Tvá domněnka správná.</p>
           <p className="mt-4">Předchozí program se dá zapsat i takto, jen pomocí jediného cyklu:</p>
@@ -320,7 +320,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for i in range(10):</code><br/><code>    if i &lt; 5:</code><br/><code>        print('Mám', i * 10, 'korun, jsem chudý')</code><br/><code>    else:</code><br/><code>        print('Mám', i * 10, 'korun, jsem bohatý')</code></p>}>
-          <p>11. Vytvoř nový program <code>chudy_bohaty.py</code>. V něm podobně jako v předchozí úloze použij cyklus s vnořeným větvením a vypiš:</p>
+          <p>Vytvoř nový program <code>chudy_bohaty.py</code>. V něm podobně jako v předchozí úloze použij cyklus s vnořeným větvením a vypiš:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 Mám 0 korun, jsem chudý<br/>
 Mám 10 korun, jsem chudý<br/>
@@ -337,7 +337,7 @@ Mám 90 korun, jsem bohatý
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for n in range(11):</code><br/><code>    if n * n &lt; 5 * n:</code><br/><code>        print(n * n, 'je menší než', 5 * n)</code><br/><code>    else:</code><br/><code>        print(n * n, 'je větší nebo rovno', 5 * n)</code><br/><br/>Pro která n onen vztah platí? Odpověď: pro n = 1, 2, 3, 4.</p>}>
-          <p>12. Víš, pro která čísla <code>n</code> platí, že <code>n²</code> je menší než <code>5 * n</code>? Napiš program <code>nasobky_peti.py</code>, který pro všechna čísla od 0 do 10 otestuje tento vztah a vypíše o tom patřičnou informaci, například:</p>
+          <p>Víš, pro která čísla <code>n</code> platí, že <code>n²</code> je menší než <code>5 * n</code>? Napiš program <code>nasobky_peti.py</code>, který pro všechna čísla od 0 do 10 otestuje tento vztah a vypíše o tom patřičnou informaci, například:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 ...<br/>
 16 je menší než 20<br/>
@@ -349,7 +349,7 @@ Mám 90 korun, jsem bohatý
         </TaskCard>
 
         <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 20</code><br/><code>for i in range(15):</code><br/><code>    if i &lt; 8:</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill='red')</code><br/><code>    else:</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill='blue')</code><br/><code>    x = x + 20</code></p>}>
-          <p>13. Vytvoř nový program <code>koralky_na_niti.py</code>, ve kterém pomocí jediného cyklu s vnořeným větvením nakresli 15 korálků jako na obrázku níže. Prvních 8 korálků bude červených a zbylých 7 modrých.</p>
+          <p>Vytvoř nový program <code>koralky_na_niti.py</code>, ve kterém pomocí jediného cyklu s vnořeným větvením nakresli 15 korálků jako na obrázku níže. Prvních 8 korálků bude červených a zbylých 7 modrých.</p>
           <CanvasPreview width={360} height={100} bgColor="#f0f0f0">
             {Array.from({ length: 15 }).map((_, i) => (
               <Oval key={i} x1={i * 20 + 30} y1={40} width={20} height={20} fill={i < 8 ? "red" : "blue"} />

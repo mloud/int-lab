@@ -198,7 +198,7 @@ const PythonLoopsChapter: React.FC<PythonLoopsChapterProps> = ({ onBack }) => {
         </div>
 
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def gps():</code><br/><code>    x = random.randint(20, 360)</code><br/><code>    y = random.randint(20, 240)</code><br/><code>    canvas.create_text(x, y, text='+')</code><br/><code>    canvas.create_text(x - 10, y + 10, text=x)</code><br/><code>    canvas.create_text(x + 10, y + 10, text=y)</code><br/><br/><code>gps()</code><br/><code>gps()</code><br/><code>gps()</code><br/><code>... (10 volání)</code></p>}>
-          <p>1. Běháme po louce a zaznamenáváme si naši GPS pozici. Vytvoř nový program <code>gps.py</code> a v něm podprogram <code>gps</code>, který vygeneruje náhodné souřadnice <code>x</code>, <code>y</code> představující GPS pozici. Na tomto místě nakreslí značku <code>+</code> a pod ni vypíše danou pozici – čísla <code>x</code>, <code>y</code>. Po deseti zavoláních podprogramu <code>gps</code> můžeš dostat například takovýto výsledek:</p>
+          <p>Běháme po louce a zaznamenáváme si naši GPS pozici. Vytvoř nový program <code>gps.py</code> a v něm podprogram <code>gps</code>, který vygeneruje náhodné souřadnice <code>x</code>, <code>y</code> představující GPS pozici. Na tomto místě nakreslí značku <code>+</code> a pod ni vypíše danou pozici – čísla <code>x</code>, <code>y</code>. Po deseti zavoláních podprogramu <code>gps</code> můžeš dostat například takovýto výsledek:</p>
           <CanvasPreview width={380} height={200}>
             <Text x={60} y={40} text="+" />
             <Text x={50} y={50} text="38" fontSize={10} />
@@ -243,11 +243,11 @@ const PythonLoopsChapter: React.FC<PythonLoopsChapterProps> = ({ onBack }) => {
         </TaskCard>
 
         <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>print('Těším se na prázdniny')</code><br/><code>print('Těším se na prázdniny')</code><br/><code>print('Těším se na prázdniny')</code><br/><code>print('Těším se na prázdniny')</code><br/><code>print('Těším se na prázdniny')</code></p>}>
-          <p>2. Vytvoř program <code>tesim_se.py</code> bez grafické plochy, který pomocí příkazu <code>print</code> vypíše text <code>'Těším se na prázdniny'</code> pětkrát pod sebe.</p>
+          <p>Vytvoř program <code>tesim_se.py</code> bez grafické plochy, který pomocí příkazu <code>print</code> vypíše text <code>'Těším se na prázdniny'</code> pětkrát pod sebe.</p>
         </TaskCard>
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Žáky necháme upravit a vyzkoušet následující řešení – minimalizujeme výklad, nepočítáme s tím, že budeme něco vysvětlovat.<br/><br/>Program vypíše:<br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code></p>}>
-          <p>3. V obou předchozích programech jsi měl vícekrát nakopírované příkazy <code>gps()</code> nebo <code>print(...)</code>. Abys je nemusel opakovaně kopírovat, můžeš to zapsat jednodušeji. Kód programu <code>tesim_se.py</code> uprav stejně, jako je uvedeno níže:</p>
+          <p>V obou předchozích programech jsi měl vícekrát nakopírované příkazy <code>gps()</code> nebo <code>print(...)</code>. Abys je nemusel opakovaně kopírovat, můžeš to zapsat jednodušeji. Kód programu <code>tesim_se.py</code> uprav stejně, jako je uvedeno níže:</p>
           <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-indigo-400 overflow-x-auto shadow-inner border border-slate-700 relative">
             <div><span className="text-slate-300">for i in range(</span><span className="text-yellow-300 bg-yellow-500/20 px-1">5</span><span className="text-slate-300">):</span></div>
             <div><span className="text-slate-300">    print('Těším se na prázdniny')</span></div>
@@ -256,11 +256,11 @@ const PythonLoopsChapter: React.FC<PythonLoopsChapterProps> = ({ onBack }) => {
         </TaskCard>
 
         <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Žáky necháme experimentovat. Předpokládáme, že žáci velmi rychle odhalí, že číslo v závorkách u příkazu <code>range</code> označuje počet opakování od okraje odsazeného příkazu.<br/><br/>V Pythonu se doporučuje odsazovat vnořené příkazy od kraje přesně o 4 mezery, ačkoliv by program fungoval i s odsazením o libovolný počet mezer větší než 0. Pokud je vnořených příkazů více, musí být všechny tyto příkazy odsazeny od kraje o stejný počet mezer.</p>}>
-          <p>4. Zkus místo čísla <span className="bg-yellow-200">5</span> dát číslo <code>10</code> a program znovu spusť. Experimentuj i s jinými čísly, například <code>1</code>, <code>100</code> a podobně. Urči, co je tímto číslem ovlivňováno.</p>
+          <p>Zkus místo čísla <span className="bg-yellow-200">5</span> dát číslo <code>10</code> a program znovu spusť. Experimentuj i s jinými čísly, například <code>1</code>, <code>100</code> a podobně. Urči, co je tímto číslem ovlivňováno.</p>
         </TaskCard>
 
         <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>V další úloze je demonstrováno, že tělo cyklu může obsahovat více příkazů.</p>}>
-          <p>5. Uprav program stejně, jako je uvedeno níže, a spusť jej:</p>
+          <p>Uprav program stejně, jako je uvedeno níže, a spusť jej:</p>
           <PythonSnippet code={`for i in range(5):\n    print('Těším se na prázdniny')\n    print('=====================')`} />
           <p>Jestli jsi postupoval správně, po spuštění uvidíš:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
@@ -291,17 +291,17 @@ Těším se na prázdniny<br/>
         </TaskCard>
 
         <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Je žádoucí, aby si žáci na základě experimentování uvědomili, jak se program vykoná a jak se bude chovat, když některý příkaz nebude odsazený od kraje.<br/><br/>Program vypíše:<br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>Těším se na prázdniny</code><br/><code>=====================</code><br/><br/>Tělo cyklu (posloupnost od kraje odsazených řádků) končí na prvním neodsazeném řádku. Všechny řádky těla cyklu musí být odsazené o stejný počet mezer. Do těla cyklu můžeme vložit i prázdné řádky – ty se budou ignorovat.<br/>Tělo cyklu musí obsahovat aspoň jeden neprázdný řádek, nesmí tedy být prázdné.</p>}>
-          <p>6. Je důležité odsadit od kraje příkazy, které tvoří tělo cyklu. Vyzkoušej, co vypíše takto upravený program:</p>
+          <p>Je důležité odsadit od kraje příkazy, které tvoří tělo cyklu. Vyzkoušej, co vypíše takto upravený program:</p>
           <PythonSnippet code={`for i in range(5):\n    print('Těším se na prázdniny')\nprint('=====================')`} />
           <p>Diskutuj se svým spolužákem, jaký je rozdíl v zápisu kódu programu z úlohy 6 oproti úloze 5. Potom určete, jak se tento rozdíl projevil po spuštění programu.</p>
         </TaskCard>
 
         <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Doposud jsme cyklus používali jen při vypisování textu, nyní začneme používat cyklus v kombinaci s grafikou.<br/><br/>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def gps():</code><br/><code>    x = random.randint(20, 360)</code><br/><code>    y = random.randint(20, 240)</code><br/><code>    canvas.create_text(x, y, text='+')</code><br/><code>    canvas.create_text(x - 10, y + 10, text=x)</code><br/><code>    canvas.create_text(x + 10, y + 10, text=y)</code><br/><br/><code>for i in range(10):</code><br/><code>    gps()</code></p>}>
-          <p>7. Otevři program <code>gps.py</code>, vytvořený v 1. úloze, a opakované volání podprogramu <code>gps()</code> zapiš pomocí <code>for</code> cyklu. Jestli jsi postupoval(a) správně, mělo by se po spuštění programu na obrazovce zobrazit opět deset GPS pozic.</p>
+          <p>Otevři program <code>gps.py</code>, vytvořený v 1. úloze, a opakované volání podprogramu <code>gps()</code> zapiš pomocí <code>for</code> cyklu. Jestli jsi postupoval(a) správně, mělo by se po spuštění programu na obrazovce zobrazit opět deset GPS pozic.</p>
         </TaskCard>
 
         <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def cerveny_ctverec():</code><br/><code>    x = random.randint(10, 360)</code><br/><code>    y = random.randint(10, 250)</code><br/><code>    canvas.create_rectangle(x, y, x + 10, y + 10, fill='red')</code><br/><br/><code>for i in range(2000):</code><br/><code>    cerveny_ctverec()</code></p>}>
-          <p>8. Vytvoř nový program <code>opakovany_ctverec.py</code> a v něm podprogram <code>cerveny_ctverec()</code>. Ten nakreslí na grafickou plochu na náhodné souřadnice červený čtverec se stranou délky 10. Použij <code>for</code> cyklus na to, abys nakreslil 2000 červených čtverců. Výsledek může vypadat například jako na následujícím obrázku:</p>
+          <p>Vytvoř nový program <code>opakovany_ctverec.py</code> a v něm podprogram <code>cerveny_ctverec()</code>. Ten nakreslí na grafickou plochu na náhodné souřadnice červený čtverec se stranou délky 10. Použij <code>for</code> cyklus na to, abys nakreslil 2000 červených čtverců. Výsledek může vypadat například jako na následujícím obrázku:</p>
           <CanvasPreview width={300} height={200}>
             {Array.from({ length: 400 }).map((_, i) => (
               <Rect 
@@ -317,7 +317,7 @@ Těším se na prázdniny<br/>
         </TaskCard>
 
         <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def cerveny_ctverec():</code><br/><code>    x = random.randint(10, 360)</code><br/><code>    y = random.randint(10, 250)</code><br/><code>    canvas.create_rectangle(x, y, x + 10, y + 10, fill='red')</code><br/><br/><code>def modry_ctverec():</code><br/><code>    x = random.randint(10, 360)</code><br/><code>    y = random.randint(10, 250)</code><br/><code>    canvas.create_rectangle(x, y, x + 10, y + 10, fill='blue')</code><br/><br/><code>for i in range(2000):</code><br/><code>    cerveny_ctverec()</code><br/><code>    modry_ctverec()</code></p>}>
-          <p>9. Doplň do programu <code>opakovany_ctverec.py</code> podprogram <code>modry_ctverec()</code>. Tento podprogram bude kreslit na náhodné souřadnice modrý čtverec se stranou délky 10. Zajisti, aby tělo cyklu obsahovalo volání podprogramu <code>cerveny_ctverec()</code> i podprogramu <code>modry_ctverec()</code>. Výsledek může vypadat například jako na následujícím obrázku:</p>
+          <p>Doplň do programu <code>opakovany_ctverec.py</code> podprogram <code>modry_ctverec()</code>. Tento podprogram bude kreslit na náhodné souřadnice modrý čtverec se stranou délky 10. Zajisti, aby tělo cyklu obsahovalo volání podprogramu <code>cerveny_ctverec()</code> i podprogramu <code>modry_ctverec()</code>. Výsledek může vypadat například jako na následujícím obrázku:</p>
           <CanvasPreview width={300} height={200}>
             {Array.from({ length: 400 }).map((_, i) => (
               <React.Fragment key={i}>
@@ -341,7 +341,7 @@ Těším se na prázdniny<br/>
         </TaskCard>
 
         <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Program nejdříve nakreslí červené čtverce. Potom nakreslí modré. Proto uvidíme jen málo červených ploch, a mnoho modrých.</p>}>
-          <p>10. Uprav kód programu podle následujícího vzoru tak, aby v něm byly dva cykly za sebou.</p>
+          <p>Uprav kód programu podle následujícího vzoru tak, aby v něm byly dva cykly za sebou.</p>
           <PythonSnippet code={`for i in range(2000):\n    cerveny_ctverec()\nfor i in range(2000):\n    modry_ctverec()`} />
           <p>Zobrazil se stejný obrázek jako předtím? Pokud ne, diskutuj se svým spolužákem, proč je obrázek jiný.</p>
           <div className="opacity-50 mt-4 pointer-events-none">
@@ -357,7 +357,7 @@ Těším se na prázdniny<br/>
         </TaskCard>
 
         <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def hvezdicka():</code><br/><code>    x = random.randint(10, 360)</code><br/><code>    y = random.randint(10, 250)</code><br/><code>    a = random.randint(2, 4)</code><br/><code>    canvas.create_rectangle(x, y, x + a, y + a, fill='yellow')</code><br/><br/><code>canvas.create_rectangle(0, 0, 380, 270, fill='navy')</code><br/><code>for i in range(1000):</code><br/><code>    hvezdicka()</code><br/><br/>O vykonávání příkazů a jejich pořadí je potřeba se žáky diskutovat. Lze je například navést, aby vyměnili pořadí cyklu a kreslení modrého obdélníku, a ptát se, proč uvidí jen modrou plochu.</p>}>
-          <p>11. Vytvoř nový program <code>obloha.py</code>, který pomocí grafických příkazů nakreslí hvězdnou oblohu:</p>
+          <p>Vytvoř nový program <code>obloha.py</code>, který pomocí grafických příkazů nakreslí hvězdnou oblohu:</p>
           <CanvasPreview width={300} height={200} bgColor="navy">
             {Array.from({ length: 200 }).map((_, i) => (
               <Rect 
@@ -380,13 +380,13 @@ Těším se na prázdniny<br/>
         </TaskCard>
 
         <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Program vypíše (pravděpodobně s jinými čísly) následující:<br/><code>bylo vylosováno číslo 52</code><br/><code>bylo vylosováno číslo 26</code><br/><code>bylo vylosováno číslo 72</code><br/><code>bylo vylosováno číslo 80</code><br/><code>bylo vylosováno číslo 48</code><br/><br/>Žáků se následně můžeme zeptat, co program vykonává. Nechceme však, aby žáci program jen přečetli: „for i in range(5), do n přiřaď ...“.</p>}>
-          <p>12. Je dán následující program:</p>
+          <p>Je dán následující program:</p>
           <PythonSnippet code={`import random\n\nfor i in range(5):\n    n = random.randint(1, 100)\n    print('bylo vylosováno číslo', n)`} />
           <p>Diskutuj se svým spolužákem, co program vykoná. Potom na počítači za použití Pythonu zkontroluj, zda byla tvá domněnka správná.</p>
         </TaskCard>
 
         <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><br/><code>for i in range(5):</code><br/><code>    a = random.randint(1, 6)</code><br/><code>    b = random.randint(1, 6)</code><br/><code>    print('Na první kostce padlo číslo', a)</code><br/><code>    print('Na druhé kostce padlo číslo', b)</code><br/><code>    print('Součet obou čísel je', a + b)</code><br/><code>    print()</code></p>}>
-          <p>13. Napiš program <code>dve_kostky.py</code>, který simuluje hody dvěma kostkami. Zapiš pomocí <code>for</code> cyklu pět hodů, kdy se v těle cyklu do dvou proměnných přiřadí dvě náhodná čísla, ta se vypíšou a vypíše se i jejich součet. Výpis může vypadat například takto:</p>
+          <p>Napiš program <code>dve_kostky.py</code>, který simuluje hody dvěma kostkami. Zapiš pomocí <code>for</code> cyklu pět hodů, kdy se v těle cyklu do dvou proměnných přiřadí dvě náhodná čísla, ta se vypíšou a vypíše se i jejich součet. Výpis může vypadat například takto:</p>
           <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
 Na první kostce padlo číslo 4<br/>
 Na druhé kostce padlo číslo 3<br/>
@@ -400,7 +400,7 @@ Součet obou čísel je 6<br/>
         </TaskCard>
 
         <TaskCard number="14" title="" taskId="14" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(5):</code><br/><code>    x = random.randint(60, 330)</code><br/><code>    y = random.randint(60, 210)</code><br/><code>    canvas.create_rectangle(x - 50, y - 50, x + 50, y + 50, fill='white')</code><br/><code>    canvas.create_text(x, y, text=random.randint(1, 6), font='arial 50')</code></p>}>
-          <p>14. Napiš program <code>kostky_s_cisly.py</code>, který pomocí grafických příkazů nakreslí na náhodných místech pět hracích kostek. Kostku nakresli jako čtverec, do kterého je vepsané náhodně vygenerované číslo. Použij <code>for</code> cyklus, ve kterém budou všechna přiřazení i kreslení.</p>
+          <p>Napiš program <code>kostky_s_cisly.py</code>, který pomocí grafických příkazů nakreslí na náhodných místech pět hracích kostek. Kostku nakresli jako čtverec, do kterého je vepsané náhodně vygenerované číslo. Použij <code>for</code> cyklus, ve kterém budou všechna přiřazení i kreslení.</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
             <Rect x1={150} y1={50} width={60} height={60} fill="white" />
             <Text x={180} y={80} text="5" fontSize={30} />
