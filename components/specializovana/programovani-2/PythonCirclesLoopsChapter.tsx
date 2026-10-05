@@ -9,13 +9,13 @@ interface PythonCirclesLoopsChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-yellow-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-cyan-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
-            <span className="text-yellow-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-yellow-300">{line.substring(3).trim()}</span>
+            <span className="text-cyan-500 mr-2 select-none">{">>>"}</span>
+            <span className="text-cyan-300">{line.substring(3).trim()}</span>
           </>
         ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
           <span className="text-rose-400">{line}</span>
@@ -28,36 +28,54 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
+  <div className="mt-4 bg-cyan-50 border-l-4 border-cyan-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
     <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-yellow-600" />
-      <span className="font-bold text-yellow-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
+      <GraduationCap className="w-5 h-5 text-cyan-600" />
+      <span className="font-bold text-cyan-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
     </div>
-    <div className="text-sm text-yellow-900 leading-relaxed">
+    <div className="text-sm text-cyan-900 leading-relaxed">
       {children}
     </div>
   </div>
 );
 
-const CanvasPreview = ({ children, width = 300, height = 200, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
+const CanvasPreview = ({ children, width = 380, height = 266, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
   <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
     {children}
   </div>
 );
 
-const Rect = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
+const Oval = ({ x1, y1, width, height, fill = "transparent", stroke = "black" }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string }) => (
   <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'}`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
+    className="absolute rounded-[50%]" 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill, border: `1px solid ${stroke}` }} 
   />
 );
 
-const Oval = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
-  <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'} rounded-[50%]`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
-  />
-);
+const Text = ({ x, y, text, color = "black", align = "center", baseline = "middle", fontSize = 14, fontWeight = "normal" }: { x: number, y: number, text: string, color?: string, align?: "start"|"end"|"center", baseline?: "top"|"middle"|"bottom", fontSize?: number, fontWeight?: string }) => {
+  let transform = 'translate(-50%, -50%)';
+  if (align === "start") {
+    if (baseline === "top") transform = 'translate(0, 0)';
+    if (baseline === "middle") transform = 'translate(0, -50%)';
+    if (baseline === "bottom") transform = 'translate(0, -100%)';
+  } else if (align === "end") {
+    if (baseline === "top") transform = 'translate(-100%, 0)';
+    if (baseline === "middle") transform = 'translate(-100%, -50%)';
+    if (baseline === "bottom") transform = 'translate(-100%, -100%)';
+  } else {
+    if (baseline === "top") transform = 'translate(-50%, 0)';
+    if (baseline === "bottom") transform = 'translate(-50%, -100%)';
+  }
+
+  return (
+    <div 
+      className="absolute font-sans" 
+      style={{ left: x, top: y, color, transform, fontSize: `${fontSize}px`, fontWeight }}
+    >
+      {text}
+    </div>
+  );
+};
 
 const TaskCard = ({ 
   number, 
@@ -74,16 +92,17 @@ const TaskCard = ({
   showTeacher: boolean,
   taskId: string
 }) => {
-  const [done, setDone] = useLocalStorage(`py15-task-${taskId}`, false);
+  const [done, setLocalStorageDone] = useLocalStorage(`py15-task-${taskId}`, false);
+  const doneBool = done === true;
 
   return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
+    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
       <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center font-black text-xl">
+        <div className="shrink-0 w-12 h-12 bg-cyan-100 text-cyan-700 rounded-2xl flex items-center justify-center font-black text-xl">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -94,15 +113,15 @@ const TaskCard = ({
 
           <div className="mt-6 flex justify-end">
             <button 
-              onClick={() => setDone(!done)}
+              onClick={() => setLocalStorageDone(!doneBool)}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                done 
+                doneBool 
                 ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
                 : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {done ? 'Splněno' : 'Označit jako splněné'}
+              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-emerald-600' : 'text-slate-400'}`} />
+              {doneBool ? 'Splněno' : 'Označit jako splněné'}
             </button>
           </div>
         </div>
@@ -138,15 +157,15 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
   return (
     <FsChapterShell
       title="Kruhy a cykly"
-      subtitle="Geometrie kružnic a náhodný výběr choice (iMyšlení Lekce 15)"
-      icon={<Target className="w-8 h-8 text-yellow-600" />}
+      subtitle="Lekce 15"
+      icon={<Target className="w-8 h-8 text-cyan-600" />}
       onBack={onBack}
-      accentColor="yellow"
+      accentColor="cyan"
       tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-yellow-100">
+          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-cyan-100">
             <input 
               type="password" 
               placeholder="Zadej PIN" 
@@ -156,13 +175,13 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
               onKeyDown={(e) => e.key === 'Enter' && submitPin()}
               autoFocus
             />
-            <button onClick={submitPin} className="bg-yellow-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
+            <button onClick={submitPin} className="bg-cyan-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
           </div>
         ) : (
           <button 
             onClick={handleToggleTeacher}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-yellow-100 text-yellow-700 border-yellow-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
+              teacherMode ? 'bg-cyan-100 text-cyan-700 border-cyan-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
             {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
@@ -172,111 +191,168 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-yellow-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-yellow-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Dnes spojíme dvě nejsilnější zbraně programátora: magii <code>for</code> cyklů a kreslení kulatých kružnic! Také se naučíme losovat věci z klobouku pomocí tajného příkazu <code>random.choice</code>.
-          </p>
-        </div>
-
-        <TaskCard number="1" title="Dvě dotýkající se kružnice" taskId="1" showTeacher={teacherMode} teacherNote={<p>Úloha slouží k ověření výpočtu středů. Jestliže je bod dotyku <code>[200, 100]</code> a poloměr je 50, pak levý kruh má střed na 150 a pravý na 250. Vzorec je: levý `x-100, y-50, x, y+50` a pravý `x, y-50, x+100, y+50`.</p>}>
-          <p>Vytvoř program <code>dve_kruznice.py</code>, který nakreslí přesně dvě kružnice (s poloměrem 50) položené tak, aby se na obrazovce dotýkaly přesně svým okrajem jen v jediném bodě!</p>
-          <p>Tento středový bod dotyku si nejprve napevno zapiš do proměnných <code>x</code> a <code>y</code> (třeba <code>x=200, y=100</code>). Pak zkus obě kružnice nakreslit odvozováním od těchto dvou proměnných. Až to dokážeš, zkus <code>x</code> a <code>y</code> změnit na něco jiného – a obě kružnice by se měly najednou přemístit, aniž bys musel přepisovat příkazy pro kreslení!</p>
-          <CanvasPreview width={300} height={200}>
-            <Oval x1={150-50} y1={100-50} width={100} height={100} fill="transparent" />
-            <Oval x1={150+50} y1={100-50} width={100} height={100} fill="transparent" />
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 200</code><br/><code>y = 100</code><br/><code>canvas.create_oval(x - 100, y - 50, x, y + 50)</code><br/><code>canvas.create_oval(x, y - 50, x + 100, y + 50)</code><br/><br/>V případě, že žák vyřeší úlohu bez použití proměnných x, y jen s konstantami, lze mu například říci: „změň program tak, aby se kružnice dotýkaly v bodě [243, 182]“. Místo jednoduché změny hodnot proměnných x a y bude muset žák přepočítat všechny potřebné souřadnice.</p>}>
+          <p>1. Vytvoř program <code>dve_kruznice.py</code>, který nakreslí dvě kružnice jako na obrázku níže. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice bodu, ve kterém se kružnice dotýkají (například v bodě <code>[200, 100]</code>). Kružnice budou umístěné vedle sebe a jejich poloměr bude 50. Při kreslení kružnic používej proměnné <code>x</code>, <code>y</code> tak, aby bylo možné změnou jejich hodnot obě kružnice přemístit.</p>
+          <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
+            <Oval x1={50} y1={50} width={100} height={100} />
+            <Oval x1={150} y1={50} width={100} height={100} />
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="2" title="Asymetrický dotyk" taskId="2" showTeacher={teacherMode} teacherNote={<p>Zavedení <code>r1</code> a <code>r2</code>. Zde si žáci trénují vzorce s poloměry. Levý: <code>x - 2*r1, y - r1, x, y + r1</code>. Pravý: <code>x, y - r2, x + 2*r2, y + r2</code>. Tento přepis je učí, že všechny rozměry mohou být plně parametrizované z proměnných.</p>}>
-          <p>Co kdyby byl každý kruh jinak velký? Uprav předchozí program tak, že si na začátku nadefinuješ poloměry kružnic do proměnných <code>r1</code> a <code>r2</code> (např. <code>r1 = 50</code>, <code>r2 = 25</code>).</p>
-          <p>Musíš kompletně překopat odvozování souřadnic tak, aby v příkazech vůbec nebyla vidět čísla (kromě násobení třeba dvojkou <code>2 * r1</code>). Bude program pak fungovat vždy, když zkusíš zvětšit jeden a zmenšit druhý?</p>
-          <CanvasPreview width={300} height={200}>
-            <Oval x1={150-50} y1={100-50} width={100} height={100} fill="transparent" />
-            <Oval x1={150+50} y1={100-25} width={50} height={50} fill="transparent" />
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 200</code><br/><code>y = 100</code><br/><code>r1 = 50</code><br/><code>r2 = 25</code><br/><code>canvas.create_oval(x - 2 * r1, y - r1, x, y + r1)</code><br/><code>canvas.create_oval(x, y - r2, x + 2 * r2, y + r2)</code></p>}>
+          <p>2. Uprav předchozí program tak, že poloměry kružnic nejprve přiřadíš do proměnných <code>r1</code>, <code>r2</code>. Například pro <code>r1 = 50</code>, <code>r2 = 25</code> bude obrázek vypadat takto:</p>
+          <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
+            <Oval x1={50} y1={50} width={100} height={100} />
+            <Oval x1={150} y1={75} width={50} height={50} />
+          </CanvasPreview>
+          <p className="mt-4 font-bold text-slate-800">Bude program fungovat správně i v případě, že hodnotu proměnné r1 zmenšíš o 10 a hodnotu proměnné r2 zvětšíš o 5? Jestli ne, program oprav.</p>
+        </TaskCard>
+
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení založené na postupném zvyšování hodnoty proměnné, která reprezentuje poloměr, v cyklu:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 10</code><br/><code>for i in range(10):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code><br/><code>    r = r + 10</code><br/><br/>Řešení založené na odvození poloměru z proměnné cyklu:<br/><code>for i in range(10):</code><br/><code>    r = i * 10 + 10</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code></p>}>
+          <p>3. Napiš program <code>terc.py</code>, který pomocí cyklu a deseti soustředných kružnic nakreslí terč jako na obrázku níže. Nejmenší kružnice bude mít poloměr 10 a každá další bude mít poloměr o 10 větší než předchozí:</p>
+          <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
+            {Array.from({ length: 10 }).map((_, i) => {
+              const r = (10 - i) * 10;
+              return (
+                <Oval key={i} x1={150 - r} y1={125 - r} width={r * 2} height={r * 2} />
+              );
+            })}
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="3" title="Střelecký terč" taskId="3" showTeacher={teacherMode} teacherNote={<p>Úloha z procvičování cyklů s odvozováním. Lze řešit např. přes odvození z proměnné cyklu <code>r = i * 10 + 10</code>. Všechny kruhy mají střed ve 150, 100.</p>}>
-          <p>Napiš program <code>terc.py</code>, který pomocí jediného cyklu a deseti po sobě zvětšovaných kružnic nakreslí takovýto soustředný terč. Nejmenší kružnice uprostřed bude mít poloměr 10, a každá další o 10 více než ta předchozí!</p>
-          <p className="text-yellow-700 font-bold mt-2">Dvě možné cesty řešení:</p>
-          <ul className="list-disc pl-5 text-sm space-y-1">
-            <li>Buď založíš <code>r = 10</code> před cyklem a v každém kole ho zvětšíš <code>r = r + 10</code>.</li>
-            <li>Nebo to budeš matematicky odvozovat rovnou z čísla kroku: <code>r = i * 10 + 10</code>!</li>
-          </ul>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <Oval key={i} x1={150 - (100 - i * 10)} y1={100 - (100 - i * 10)} width={(100 - i * 10) * 2} height={(100 - i * 10) * 2} fill="transparent" />
-            ))}
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(50):</code><br/><code>    r = i * 2 + 20</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r)</code><br/><br/>Námi uváděné hodnoty 50, 2, 20 mohou být v žákovských řešeních i jiné, přibližné. Je vhodné, aby žáci při řešení úlohy experimentovali.</p>}>
+          <p>4. Vytvoř nový program <code>gramofon.py</code> a zkopíruj si do něj kód z programu <code>terc.py</code>. Uprav v programu <code>gramofon.py</code> některé číselné hodnoty tak, aby se nakreslila gramofonová deska:</p>
+          <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
+            {Array.from({ length: 40 }).map((_, i) => {
+              const r = (40 - i) * 2 + 20;
+              return (
+                <Oval key={i} x1={150 - r} y1={125 - r} width={r * 2} height={r * 2} />
+              );
+            })}
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="4" title="Gramofonová deska" taskId="4" showTeacher={teacherMode} teacherNote={<p>Úprava na mnohem hustější terč, tzv. gramodesku. <code>for i in range(50)</code> a odvození poloměru s menším krokem: <code>r = i * 2 + 20</code> (nebo podobně). Očekáváme od žáků experimentování.</p>}>
-          <p>Zkopíruj si kód do nového programu <code>gramofon.py</code>. Nyní nech program v cyklu běžet padesátkrát, ale přičítej o mnohem menší čísla (třeba o dvojku namísto desítky). Snaž se vyladit čísla tak, aby se nakreslila tlustá gramofonová deska s dírkou uprostřed (nejmenší kruh na začátku nemůže být nula, ale třeba 20)!</p>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 50 }).map((_, i) => (
-              <Oval key={i} x1={150 - (i * 1.5 + 15)} y1={100 - (i * 1.5 + 15)} width={(i * 1.5 + 15) * 2} height={(i * 1.5 + 15) * 2} fill="transparent" />
-            ))}
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 100</code><br/><code>for i in range(10):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='white')</code><br/><code>    r = r - 10</code><br/><br/>Ani v této úloze nemusíme poloměr vypočítávat postupným snižováním hodnoty dané proměnné v cyklu, ale můžeme jej odvodit přímo z proměnné cyklu:<br/><code>r = 100 - 10 * i</code></p>}>
+          <p>5. Vrať se k programu <code>terc.py</code> a uprav kreslení kruhů tak, aby byl každý z nich vyplněný bílou barvou (tj. s parametrem <code>fill='white'</code>). Výsledek by měl vypadat podobně jako na obrázku níže:</p>
+          <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
+            {Array.from({ length: 10 }).map((_, i) => {
+              const r = (10 - i) * 10;
+              return (
+                <Oval key={i} x1={150 - r} y1={125 - r} width={r * 2} height={r * 2} fill="white" />
+              );
+            })}
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="5" title="Vybarvování terče" taskId="5" showTeacher={teacherMode} teacherNote={<p>Pokud žák použije <code>fill='white'</code> na kód, kde roste poloměr (r=10..100), stane se mu, že každý další velký kruh VZAPĚTÍ zakryje ty malé (přemaluje je na bílo). Proto budou žáci donuceni přemýšlet a obrátit generování – nejprve největší <code>r=100</code>, pak zmenšovat <code>r = r - 10</code>. Nebo přes vzorec <code>r = 100 - 10 * i</code>.</p>}>
-          <p>Vrať se ke klasickému programu s deseti kružnicemi <code>terc.py</code> a přidej dovnitř vybarvení: <code>fill='white'</code>. Spusť to. Zmizely ti všechny čáry a vidíš jen jeden bílý kruh? To proto, že každý nově vygenerovaný VĚTŠÍ bílý kruh nekompromisně překryl a "vylepil" z plátna ten menší kruh pod ním!</p>
-          <p className="font-bold text-yellow-700 mt-2">Důležitý úkol: Jak to musíš matematicky otočit (od jakého poloměru <code>r</code> musíš začít a co s ním musíš dělat v každém kole?), aby se ti menší bílé kruhy kreslily AŽ NA TY velké, a vznikly by tak pěkné soustředné prstence?</p>
-        </TaskCard>
-
-        <TaskCard number="6" title="Závodní terč" taskId="6" showTeacher={teacherMode} teacherNote={<p>Dva kruhy na jedno kolo cyklu: jeden s `fill='white'` a hned menší `fill='black'`. Cyklus běží 5x místo 10x. Nebo testování liché/sudé, ale to ještě neumí.</p>}>
-          <p>Uprav ten předchozí vybarvený, postupně se ZMENŠUJÍCÍ terč tak, aby se po sobě střídaly černé a bílé zóny přesně takhle:</p>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <Oval key={i} x1={150 - (100 - i * 10)} y1={100 - (100 - i * 10)} width={(100 - i * 10) * 2} height={(100 - i * 10) * 2} fill={i % 2 === 0 ? "white" : "black"} />
-            ))}
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>r = 100</code><br/><code>for i in range(5):</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='white')</code><br/><code>    r = r - 10</code><br/><code>    canvas.create_oval(190 - r, 130 - r, 190 + r, 130 + r, fill='black')</code><br/><code>    r = r - 10</code></p>}>
+          <p>6. Uprav kreslení terče tak, aby se střídaly černé a bílé oblasti jako na obrázku níže. V cyklu se kreslí vždy dva kruhy – větší bílý a menší černý.</p>
+          <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
+            {Array.from({ length: 5 }).map((_, i) => {
+              const rw = (10 - i * 2) * 10;
+              const rb = (9 - i * 2) * 10;
+              return (
+                <React.Fragment key={i}>
+                  <Oval x1={150 - rw} y1={125 - rw} width={rw * 2} height={rw * 2} fill="white" />
+                  <Oval x1={150 - rb} y1={125 - rb} width={rb * 2} height={rb * 2} fill="black" />
+                </React.Fragment>
+              );
+            })}
           </CanvasPreview>
-          <p className="mt-2 text-sm italic">Tip: Budeš to muset vyřešit tak, že v každém kole nakreslíš hned dva zmenšující se kruhy – velký bílý a pod ním s menším poloměrem černý. Tím pádem ti bude stačit jen 5 opakování cyklu (protože v každém kole vyčaruješ dva kruhy)!</p>
         </TaskCard>
 
-        <TaskCard number="7" title="Zlatý řetízek" taskId="7" showTeacher={teacherMode} teacherNote={<p>Triviální úloha pro odlehčení. <code>create_oval</code> posouvaný po ose x, stejně jako dříve obdélníky.</p>}>
-          <p>Zkus si na chvilku odpočinout a napsat program <code>retizek.py</code>, který nakreslí do vodorovné lajny vedle sebe řetízek přesně z patnácti zlatých pospojovaných kroužků (podobně jako se tvoří olympijské kruhy)!</p>
-          <CanvasPreview width={300} height={100} className="border-none shadow-none bg-white">
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 50</code><br/><code>for i in range(15):</code><br/><code>    canvas.create_oval(x, 100, x + 20, 120, fill='gold')</code><br/><code>    x = x + 20</code><br/><br/>Úlohu lze řešit i na základě odvozování proměnné x od proměnné cyklu:<br/><code>for i in range(15):</code><br/><code>    x = 50 + i * 20</code><br/><code>    canvas.create_oval(x, 100, x + 20, 120, fill='gold')</code></p>}>
+          <p>7. Napiš program <code>retizek.py</code>, který pomocí cyklu nakreslí řetízek z 15 zlatých kroužků:</p>
+          <CanvasPreview width={360} height={100} bgColor="#f0f0f0">
             {Array.from({ length: 15 }).map((_, i) => (
-              <Oval key={i} x1={30 + i * 16} y1={40} width={20} height={20} fill="gold" />
+              <Oval key={i} x1={i * 20 + 30} y1={40} width={20} height={20} fill="gold" />
             ))}
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="8" title="Mincovna" taskId="8" showTeacher={teacherMode} teacherNote={<p>Podprogram mince() kreslí kruh s výplní a text uvnitř kruhu (vše na stejném středu).</p>}>
-          <p>Vytvoř nový program <code>mince.py</code> a v něm podprogram <code>mince()</code>.</p>
-          <p>Podprogram si vylosuje náhodnou souřadnici středu <code>[x,y]</code> a následně náhodné číslo od 1 do 5 do proměnné <code>h</code>. Následně tam nakreslí světle šedý kruh (minci) a do jejího centra pak velkým písmem vloží to vymyšlené číslo jako svou hodnotu!</p>
-          <p>Zavolej podprogram desetkrát z cyklu, aby se mince rozesypaly na stůl.</p>
-        </TaskCard>
-
-        <TaskCard number="9" title="Klobouk jménem CHOICE" taskId="9" showTeacher={teacherMode} teacherNote={<p>Zavedení magického příkazu <code>random.choice([])</code> pro losování z nesouvislé množiny hodnot.</p>}>
-          <p>Je na čase naučit se nový magický příkaz Pythonu! Funkce <code>randint(1,5)</code> umí losovat jen souvislá čísla (1,2,3,4,5). Ale co když chceš vypsat skutečné koruny a chceš nechat počítač náhodně tahat jen mince z reálných hodnot jako "desetikorunu" nebo "padesátikorunu"? Nula, trojka nebo čtyřka přece na stůl padnout nesmí!</p>
-          <p>Na to použijeme příkaz <code>random.choice()</code> (anglicky "náhodná volba"), kterému předložíme "kloubouk" plný přesných hodnot (oddělených čárkou v hranatých závorkách).</p>
-          <PythonSnippet code={`h = random.choice([1, 2, 5, 10, 20, 50])`} />
-          <p>Přepiš tuto novou funkci do svých mincí a obdivuj, jak program losuje jen platná česká oběživa!</p>
-        </TaskCard>
-
-        <TaskCard number="10*" title="Barvy z klobouku" taskId="10" showTeacher={teacherMode} teacherNote={<p>Aplikace choice na textové řetězce (stringy). <code>random.choice(['silver', 'gold', 'white'])</code>.</p>}>
-          <p className="flex items-center gap-2 font-bold text-yellow-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
-          </p>
-          <p>Dokážeš udělat to, aby si tvá mincovna také losovala barvy (zlatá, stříbrná a bronzová)? Stačí do <code>random.choice()</code> nedávat čísla, ale seznam různých stringů s anglickými názvy barev, a proměnnou <code>barva</code> pak narvat do `fill` kružnice!</p>
-          <CanvasPreview width={300} height={200}>
-            {[
-              [50, 40, 5, "silver"], [120, 140, 50, "gold"], [200, 60, 2, "peru"], 
-              [230, 150, 10, "silver"], [140, 80, 20, "gold"], [80, 110, 1, "peru"]
-            ].map((d, i) => (
-              <div key={i} className="absolute border border-black flex items-center justify-center font-bold text-lg rounded-[50%]" style={{ left: d[0], top: d[1], width: 40, height: 40, transform: 'translate(-50%, -50%)', backgroundColor: d[3] as string }}>
-                {d[2]}
-              </div>
-            ))}
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def mince():</code><br/><code>    x = random.randint(50, 340)</code><br/><code>    y = random.randint(50, 210)</code><br/><code>    h = random.randint(1, 5)</code><br/><code>    canvas.create_oval(x - 25, y - 25, x + 25, y + 25, fill='silver')</code><br/><code>    canvas.create_text(x, y, text=h, font='arial 30')</code><br/><br/><code>for i in range(10):</code><br/><code>    mince()</code></p>}>
+          <p>8. Vytvoř nový program <code>mince.py</code> a v něm vytvoř podprogram <code>mince</code>. Podprogram bude generovat náhodnou pozici a náhodnou hodnotu mince od 1 do 5. Minci nakresli jako kruh s číslem (viz následující obrázek).</p>
+          <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
+            <Oval x1={60} y1={30} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={80} y={50} text="1" fontSize={24} />
+            
+            <Oval x1={120} y1={40} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={140} y={60} text="5" fontSize={24} />
+            
+            <Oval x1={200} y1={60} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={220} y={80} text="3" fontSize={24} />
+            
+            <Oval x1={150} y1={90} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={170} y={110} text="1" fontSize={24} />
+            
+            <Oval x1={80} y1={90} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={100} y={110} text="5" fontSize={24} />
+            
+            <Oval x1={110} y1={120} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={130} y={140} text="2" fontSize={24} />
+            
+            <Oval x1={170} y1={140} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={190} y={160} text="5" fontSize={24} />
+            
+            <Oval x1={60} y1={150} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={80} y={170} text="4" fontSize={24} />
           </CanvasPreview>
+          <p className="mt-4">Podprogram <code>mince</code> zavolej pomocí cyklu desetkrát.</p>
         </TaskCard>
 
-        <TaskCard number="11" title="Rosnička" taskId="11" showTeacher={teacherMode} teacherNote={<p>Úplné odpojení z grafiky do terminálu. Zpráva používá choice na stringy pro zábavný textový generátor.</p>}>
-          <p>Na závěr dnešní lekce vytvoř krátký textový program <code>pocasi.py</code>, který bude dělat automatickou (a zcela náhodnou) televizní rosničku!</p>
-          <p>Pomocí příkazu print má na obrazovku vypisovat např. <em>Dnes je ošklivý den</em>. Místo slova "ošklivý" však dej proměnnou, do které program přes <code>random.choice</code> vylosuje jednu z těchto možností: <code>'pěkný', 'ošklivý', 'deštivý', 'slunečný'</code>.</p>
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>h = random.choice([1, 2, 5, 10, 20, 50])</code><br/>Zbytek beze změny.<br/><br/>Zápis <code>random.choice([1, 2, 5, 10, 20, 50])</code> náhodně zvolí jednu z možností, které jsou uvedeny v hranatých závorkách. Pokročilejším žákům můžeme prozradit, že kulaté závorky patří k příkazu <code>random.choice</code> a že hranaté závorky uvozují seznam prvků, ze kterých se náhodná hodnota vybírá.</p>}>
+          <p>9. Uprav svůj program tak, aby se generovaly jen mince s hodnotami 1, 2, 5, 10, 20, 50.</p>
+          <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
+            <Oval x1={60} y1={40} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={80} y={60} text="10" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={100} y1={50} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={120} y={70} text="20" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={160} y1={60} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={180} y={80} text="1" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={230} y1={70} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={250} y={90} text="2" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={200} y1={100} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={220} y={120} text="10" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={120} y1={120} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={140} y={140} text="10" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={80} y1={140} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={100} y={160} text="50" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={180} y1={150} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={200} y={170} text="5" fontSize={20} fontWeight="bold" />
+            
+            <Oval x1={220} y1={130} width={40} height={40} fill="silver" stroke="gray" />
+            <Text x={240} y={150} text="2" fontSize={20} fontWeight="bold" />
+          </CanvasPreview>
+          <p className="mt-4">Pro generování hodnot mincí použij místo <code>random.randint(1, 5)</code> zápis:</p>
+          <PythonSnippet code={`random.choice([1, 2, 5, 10, 20, 50])`} />
+          <p className="mt-2 text-sm text-slate-500">Zápis <code>random.choice</code> čteme jako: náhodný výběr z vyjmenovaných hodnot.</p>
+        </TaskCard>
+
+        <TaskCard number="10*" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>barva=random.choice(['silver', 'gold', 'white'])</code><br/><code>canvas.create_oval(x - 25, y - 25, x + 25, y + 25, fill=barva)</code></p>}>
+          <p>10* Zápis <code>random.choice</code> můžeš použít i na výběr barvy. Uprav předchozí program tak, že do proměnné <code>barva</code> přiřadíš <code>random.choice(['silver', 'gold', 'white'])</code> a tuto proměnnou použiješ při kreslení oválu v parametru <code>fill=barva</code>.</p>
+        </TaskCard>
+
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení – pozdravy:<br/><code>import random</code><br/><code>for i in range(10):</code><br/><code>    print(random.choice(['Ahoj', 'Nazdar', 'Servus', 'Čau']))</code><br/><br/>Ostatní podúlohy se řeší obdobně.</p>}>
+          <p>11. Vyzkoušej, jako funguje <code>random.choice</code> – každý z příkazů nech pomocí cyklu vykonat několikrát:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-2 text-sm font-mono text-slate-700">
+            <li>a) <code>print(random.choice(['Ahoj', 'Nazdar', 'Servus', 'Čau']))</code></li>
+            <li>b) <code>print(random.choice('POMERANČ'))</code></li>
+            <li>c) <code>print(random.choice([1 / 2, 1 / 3, 1 / 4, 1 / 5]))</code></li>
+          </ul>
+        </TaskCard>
+
+        <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Očekávané řešení:<br/><code>import random</code><br/><code>pocasi = random.choice(['pěkný', 'ošklivý', 'deštivý', 'slunečný'])</code><br/><code>print('Dnes je', pocasi, 'den')</code></p>}>
+          <p>12. Napiš program <code>pocasi.py</code>, který zobrazuje zprávy ve tvaru:</p>
+          <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
+Dnes je ... den
+          </div>
+          <p>Místo <code>...</code> se vypíše jedna z možností <code>'pěkný'</code>, <code>'ošklivý'</code>, <code>'deštivý'</code>, <code>'slunečný'</code>.</p>
         </TaskCard>
 
       </div>

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { CheckCircle, GraduationCap, Unlock, Lock, Brush, Code } from 'lucide-react';
+import { CheckCircle, GraduationCap, Unlock, Lock, Square, Code } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 
@@ -9,15 +9,15 @@ interface PythonDrawingChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-emerald-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-teal-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
-            <span className="text-sky-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-emerald-300">{line.substring(3).trim()}</span>
+            <span className="text-teal-500 mr-2 select-none">{">>>"}</span>
+            <span className="text-teal-300">{line.substring(3).trim()}</span>
           </>
-        ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') || line.startsWith('ModuleNotFoundError') || line.startsWith('AttributeError') || line.startsWith('TypeError') ? (
+        ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
           <span className="text-rose-400">{line}</span>
         ) : (
           <span className="text-slate-300 whitespace-pre">{line}</span>
@@ -28,34 +28,28 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
+  <div className="mt-4 bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
     <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-sky-600" />
-      <span className="font-bold text-sky-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
+      <GraduationCap className="w-5 h-5 text-teal-600" />
+      <span className="font-bold text-teal-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
     </div>
-    <div className="text-sm text-sky-900 leading-relaxed">
+    <div className="text-sm text-teal-900 leading-relaxed">
       {children}
     </div>
   </div>
 );
 
-const CanvasPreview = ({ children, width = 300, height = 200, className = "" }: { children: React.ReactNode, width?: number, height?: number, className?: string }) => (
-  <div className={`relative bg-white border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height }}>
-    {/* Tkinter Window Top Bar Fake */}
-    <div className="absolute top-0 left-0 right-0 h-6 bg-slate-200 border-b border-slate-300 flex items-center px-2 z-10">
-      <div className="w-3 h-3 rounded-full bg-slate-400 mr-1"></div>
-      <div className="w-3 h-3 rounded-full bg-slate-400 mr-1"></div>
-      <div className="w-3 h-3 rounded-full bg-slate-400"></div>
-    </div>
-    {/* Canvas Content */}
-    <div className="absolute top-6 left-0 right-0 bottom-0 bg-white">
-      {children}
-    </div>
+const CanvasPreview = ({ children, width = 380, height = 266, className = "" }: { children: React.ReactNode, width?: number, height?: number, className?: string }) => (
+  <div className={`relative border-2 border-slate-300 bg-white shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height }}>
+    {children}
   </div>
 );
 
-const Rect = ({ x1, y1, width, height }: { x1: number, y1: number, width: number, height: number }) => (
-  <div className="absolute border border-black bg-transparent" style={{ left: x1, top: y1, width, height }} />
+const Rect = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
+  <div 
+    className={`absolute ${noBorder ? '' : 'border border-black'}`} 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
+  />
 );
 
 const TaskCard = ({ 
@@ -78,11 +72,11 @@ const TaskCard = ({
   return (
     <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
       <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-sky-100 text-sky-700 rounded-2xl flex items-center justify-center font-black text-xl">
+        <div className="shrink-0 w-12 h-12 bg-teal-100 text-teal-700 rounded-2xl flex items-center justify-center font-black text-xl">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -136,16 +130,16 @@ const PythonDrawingChapter: React.FC<PythonDrawingChapterProps> = ({ onBack }) =
 
   return (
     <FsChapterShell
-      title="Kreslení v Tkinter"
-      subtitle="Grafické plátno a obdélníky (iMyšlení Lekce 5)"
-      icon={<Brush className="w-8 h-8 text-sky-600" />}
+      title="Kreslení"
+      subtitle="Lekce 5"
+      icon={<Square className="w-8 h-8 text-teal-600" />}
       onBack={onBack}
-      accentColor="sky"
+      accentColor="teal"
       tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-sky-100">
+          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-teal-100">
             <input 
               type="password" 
               placeholder="Zadej PIN" 
@@ -155,13 +149,13 @@ const PythonDrawingChapter: React.FC<PythonDrawingChapterProps> = ({ onBack }) =
               onKeyDown={(e) => e.key === 'Enter' && submitPin()}
               autoFocus
             />
-            <button onClick={submitPin} className="bg-sky-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
+            <button onClick={submitPin} className="bg-teal-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
           </div>
         ) : (
           <button 
             onClick={handleToggleTeacher}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-sky-100 text-sky-700 border-sky-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
+              teacherMode ? 'bg-teal-100 text-teal-700 border-teal-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
             {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
@@ -171,120 +165,114 @@ const PythonDrawingChapter: React.FC<PythonDrawingChapterProps> = ({ onBack }) =
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-sky-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-sky-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Dnes končíme s nudným textem a přesuneme se do světa <strong>Grafiky!</strong> Naučíme Python otevřít bílé plátno a nakreslit na něj tvé první tvary. Každý program si vždy <strong>ulož a spusť</strong> (klávesa F5). Budeme teď pracovat rovnou se třemi okny (kód, terminál a grafické okno)!
+        <div className="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-2xl mb-8">
+          <p className="text-teal-800/80 text-sm sm:text-base font-bold">
+            První i druhá úloha slouží k opakování práce s proměnnými a výpisy.
           </p>
         </div>
 
-        <TaskCard number="1" title="Opakování z minula" taskId="1" showTeacher={teacherMode} teacherNote={<p>První úloha slouží k zopakování práce s proměnnými a výpisy.</p>}>
-          <p>Už jsi směňoval koruny na eura. Teď vytvoř nový program <code>smena2.py</code>, který bude umět směnit eura na koruny.</p>
-          <p>Použij proměnné <code>suma</code> a <code>kurz</code>, do kterých přiřadíš počáteční hodnoty – kolik eur chceš vyměnit a aktuální kurz (například 25.23 korun za 1 euro). Do proměnné <code>dostanes</code> přiřaď výpočet a všechno to vypiš příkazem <code>print</code>, například ve tvaru:</p>
-          <PythonSnippet code={`Za ... eur dostaneš ... korun při kurzu ... korun za euro.`} />
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>suma = 20</code><br/><code>kurz = 25.23</code><br/><code>dostanes = suma * kurz</code><br/><code>print('Za', suma, 'eur dostaneš', dostanes, 'korun při kurzu', kurz, 'korun za euro.')</code></p>}>
+          <p>1. Už jsi směňoval koruny na eura. Teď vytvoř nový program <code>smena2.py</code>, který bude umět směnit eura na koruny. Použij proměnné <code>suma</code> a <code>kurz</code>, do kterých přiřadíš počáteční hodnoty – kolik eur chceš vyměnit a aktuální kurz (například 25.23 korun za 1 euro). Do proměnné <code>dostanes</code> přiřaď hodnotu výrazu, kterým se vypočítá, kolik korun dostaneš za svou sumu. Program vypíše výsledek například ve tvaru:</p>
+          <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
+Za ... eur dostaneš ... korun při kurzu ... korun za euro.
+          </div>
         </TaskCard>
 
-        <TaskCard number="2" title="Taxi" taskId="2" showTeacher={teacherMode} teacherNote={<p>Začátečníci často zapomínají na ukončovací závorku u příkazu print. V případně dlouhých zápisů Python funguje tak, že dokud není uzavřena, bere řádky pod tím jako součást prvního.</p>}>
-          <p>Následující program pracuje s proměnnými. Urči <strong>bez použití počítače</strong>, co program vypíše:</p>
-          <PythonSnippet code={`km = 8\nc = 30\ns = km * c + 50\nprint('Za jízdu o délce', km, 'km s naším taxi zaplatíš',\n      s, 'korun')`} />
-          <p>Poté program přepiš do Pythonu a zkontroluj, zda byla tvá domněnka správná.</p>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení – počítač vypíše:<br/><code>Za jízdu o délce 8 km s naším taxi zaplatíš 290 korun</code></p>}>
+          <p>2. Následující program pracuje s proměnnými. Urči bez použití počítače, co program vypíše:</p>
+          <PythonSnippet code={`km = 8\nc = 30\ns = km * c + 50\nprint('Za jízdu o délce', km, 'km s naším taxi zaplatíš', s, 'korun')`} />
+          <p>Na počítači za použití Pythonu zkontroluj, zda byla tvá domněnka správná.</p>
         </TaskCard>
 
-        <TaskCard number="3" title="Malířské plátno (Canvas)" taskId="3" showTeacher={teacherMode} teacherNote={<p>Zde se inicializuje grafická plocha. Toto žákům podrobně nevysvětlujeme. Stačí jim říci: "Tyto 3 řádky vytvoří prázdné okno".</p>}>
-          <p>Doposud tvé programy počítaly a vypisovaly textové zprávy. Teď se naučíš vytvářet programy, které budou umět kreslit obrázky. Postupuj takto:</p>
-          <ul className="list-decimal pl-5 space-y-1 mb-4">
-            <li>Vytvoř nový program <code>platno.py</code> s následujícím obsahem:</li>
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>V části 3.A se inicializuje grafická plocha, do proměnné <code>canvas</code> se přiřazuje objekt grafické plochy. Toto žákům nevysvětlujeme (je to příliš brzo). Tyto příkazy je potřeba opsat z pracovního listu nebo je odtud zkopírovat. Když se žáci budou dožadovat vysvětlení významu těchto příkazů, stačí jim říci, že: „tyto příkazy slouží k tomu, aby se vytvořilo prázdné okno“. Žáky ze znalosti těchto příkazů nebudeme zkoušet.<br/><br/>Protože se slovo <code>canvas</code> bude v dalších zápisech často vyskytovat, můžeme se žáky diskutovat o jeho významu (např. „grafická plocha“, „malířské plátno“ apod.). Případně si při vysvětlovaní můžeme pomoci metaforou: „Windowsovské okno je rám, ve kterém se musí nacházet malířské plátno, abychom do něj mohli kreslit. Jsou ale i taková windowsovská okna, do kterých se kreslit nedá.“</p>}>
+          <p>3. Doposud tvé programy počítaly a vypisovaly textové zprávy. Teď se naučíš vytvářet programy, které budou umět kreslit obrázky. Postupuj takto:</p>
+          <ul className="list-none pl-0 mt-4 space-y-4">
+            <li>A) Vytvoř nový program <code>platno.py</code> s následujícím obsahem:
+              <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()`} />
+            </li>
+            <li>B) Program spusť – na obrazovce uvidíš nové okno:</li>
+            <li>C) Zjisti, zda se dá okno posouvat, měnit jeho velikost. Nakonec toto nové okno zavři.</li>
           </ul>
-          <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()`} />
-          <ul className="list-decimal pl-5 space-y-1 mt-4">
-            <li>Program ulož a spusť. Na obrazovce uvidíš nové okno!</li>
-            <li>Zjisti, zda se dá okno posouvat nebo měnit jeho velikost. Nakonec okno zavři.</li>
-          </ul>
-          <p className="mt-4 text-sky-700">Tvůj program vyrobil grafickou plochu <strong>canvas</strong> (plátno). Slovo <code>canvas</code> budeš používat v dalších příkazech na kreslení.</p>
+          <p className="mt-4">Tvůj program vyrobil grafickou plochu <code>canvas</code>. Slovo <code>canvas</code> budeš používat i v dalších příkazech na kreslení.</p>
         </TaskCard>
 
-        <TaskCard number="4" title="První obdélník" taskId="4" showTeacher={teacherMode} teacherNote={<p>V této úloze objevují žáci základy fungování <code>canvas.create_rectangle</code> a souřadnic.</p>}>
-          <p>Přidej do svého programu <code>platno.py</code> nový příkaz a program opět spusť:</p>
-          <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\ncanvas.create_rectangle(50, 70, 220, 150)`} />
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>V této úloze jsou z pohledu žáka dvě nové věci:<br/>• Jak funguje souřadnicová soustava (je jiná, než znají z matematiky)<br/>• Jak funguje kreslení obdélníků (zadávají se souřadnice protilehlých vrcholů)</p>}>
+          <p>4. Přidej do svého programu <code>platno.py</code> nový příkaz (je žlutě označený) a program opět spusť:</p>
+          <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-teal-400 overflow-x-auto shadow-inner border border-slate-700">
+            <div><span className="text-slate-300">import tkinter</span></div>
+            <div><span className="text-slate-300">canvas = tkinter.Canvas()</span></div>
+            <div><span className="text-slate-300">canvas.pack()</span></div>
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">canvas.create_rectangle(50, 70, 220, 150)</span></div>
+          </div>
           <p>Uvidíš obdélník:</p>
-          <CanvasPreview width={300} height={200}>
+          <CanvasPreview>
             <Rect x1={50} y1={70} width={170} height={80} />
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="5" title="Kouzlení se souřadnicemi" taskId="5" showTeacher={teacherMode} teacherNote={<p>Nejdřív je potřeba rozumět, jak funguje souřadnicová soustava v počítači. Žáci musí zjistit, že [0, 0] je v <strong>levém horním rohu</strong> a čím větší je osa Y, tím jde bod víc dolů (převrácená oproti matematice).</p>}>
-          <p>V závorkách příkazu <code>canvas.create_rectangle( , , , )</code> jsou 4 čísla. Zkus je v programu <code>platno.py</code> postupně měnit. Program pokaždé spusť, abys viděl, co nakreslí:</p>
-          <ul className="list-[lower-alpha] pl-5 space-y-2 mt-4 font-mono text-sm bg-slate-50 p-4 rounded-xl">
-            <li>canvas.create_rectangle(<span className="bg-yellow-200">0</span>, <span className="bg-yellow-200">0</span>, 220, 150)</li>
-            <li>canvas.create_rectangle(0, 0, <span className="bg-yellow-200">50</span>, <span className="bg-yellow-200">50</span>)</li>
-            <li>canvas.create_rectangle(0, 0, <span className="bg-yellow-200">250</span>, 50)</li>
-            <li>canvas.create_rectangle(<span className="bg-yellow-200">20</span>, <span className="bg-yellow-200">10</span>, 250, 50)</li>
-            <li>canvas.create_rectangle(20, 10, <span className="bg-yellow-200">50</span>, <span className="bg-yellow-200">250</span>)</li>
-          </ul>
-          <p className="mt-4 font-bold text-sky-700">Víš, jak tato čísla fungují? Kde je bod [0,0]?</p>
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode}>
+          <p>5. V závorkách příkazu <code>canvas.create_rectangle( , , , )</code> jsou 4 čísla. Zkus je v programu <code>platno.py</code> postupně měnit (změny oproti předchozímu zápisu jsou zvýrazněny žlutě). Program pokaždé spusť, abys viděl, co nakreslí:</p>
+          <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-teal-400 overflow-x-auto shadow-inner border border-slate-700">
+            <div><span className="text-slate-300">a) canvas.create_rectangle(</span><span className="text-yellow-300 bg-yellow-500/20 px-1">0</span><span className="text-slate-300">, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">0</span><span className="text-slate-300">, 220, 150)</span></div>
+            <div><span className="text-slate-300">b) canvas.create_rectangle(0, 0, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">50</span><span className="text-slate-300">, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">50</span><span className="text-slate-300">)</span></div>
+            <div><span className="text-slate-300">c) canvas.create_rectangle(0, 0, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">250</span><span className="text-slate-300">, 50)</span></div>
+            <div><span className="text-slate-300">d) canvas.create_rectangle(</span><span className="text-yellow-300 bg-yellow-500/20 px-1">20</span><span className="text-slate-300">, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">10</span><span className="text-slate-300">, 250, 50)</span></div>
+            <div><span className="text-slate-300">e) canvas.create_rectangle(20, 10, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">50</span><span className="text-slate-300">, </span><span className="text-yellow-300 bg-yellow-500/20 px-1">250</span><span className="text-slate-300">)</span></div>
+          </div>
+          <p>Víš, jak tato čísla fungují?</p>
         </TaskCard>
 
-        <TaskCard number="6" title="Posun obdélníku" taskId="6" showTeacher={teacherMode} teacherNote={<p>Úloha testuje, zda pochopili souřadnice. Tento obdélník má vrcholy na stejných x,y jako je šířka plátna (pokud vědí). Nakreslí obdélník z levého horního kvadrantu někam doprostřed.</p>}>
-          <p>Změň svůj program <code>platno.py</code> tak, aby nakreslil obdélník, který má souřadnice protilehlých vrcholů <code>[50, 30]</code> a <code>[300, 200]</code>.</p>
-          <PythonSnippet code={`canvas.create_rectangle(50, 30, 300, 200)`} />
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>canvas.create_rectangle(50, 30, 300, 200)</code><br/><br/>V této lekci žáci nepracují jen se dvěma dříve používanými okny (textovým editorem s programem a interaktivní konzolí), ale seznamují se zde s dalším oknem obsahujícím grafickou plochu.</p>}>
+          <p>6. Změň svůj program <code>platno.py</code> tak, aby nakreslil obdélník, který má souřadnice protilehlých vrcholů [50, 30] a [300, 200].</p>
         </TaskCard>
 
-        <TaskCard number="7" title="Šířka a výška bez počítače" taskId="7" showTeacher={teacherMode} teacherNote={<p>Šířka: 300 - 50 = 250. Výška: 200 - 30 = 170. ±1 pixel v grafických programech žákům tolerujeme a nezabíháme do technických podrobností s jedničkou u pixelů.</p>}>
-          <p>a) Spočítej bez použití počítače, jakou šířku a výšku má obdélník z předchozí úlohy (číslo 6).</p>
-          <p>b*) Svou domněnku ověř za použití sejmutí obrazovky (PrintScreen) a libovolného grafického editoru (např. Malování).</p>
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení – stačí takovýto výpočet:<br/>Šířka: <code>300 - 50</code><br/>Výška: <code>200 - 30</code></p>}>
+          <p>7. a) Spočítej bez použití počítače, jakou šířku a výšku má obdélník z předchozí úlohy.</p>
+          <p>b*) Svou domněnku ověř za použití snímku obrazovky a libovolného grafického editoru.</p>
         </TaskCard>
 
-        <TaskCard number="8" title="Nový obdélník s výpočtem" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení buď <code>canvas.create_rectangle(200, 100, 200 + 60, 100 + 140)</code> nebo z hlavy <code>(200, 100, 260, 240)</code>. Obě varianty jsou správné.</p>}>
-          <p>Vytvoř nový program <code>obdelnik.py</code> a nakresli obdélník, který má jeden vrchol na souřadnicích <code>[200, 100]</code>, jeho šířka je <strong>60</strong> a výška <strong>140</strong>.</p>
-          <p className="text-sky-700 text-sm mt-2">Druhý vrchol (pravý dolní) si musíš logicky spočítat pomocí sčítání.</p>
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>canvas.create_rectangle(200, 100, 200 + 60, 100 + 140)</code><br/>nebo:<br/><code>canvas.create_rectangle(200, 100, 260, 240)</code><br/><br/>Samozřejmě uznáme i řešení s volbou jiných protilehlých vrcholů.</p>}>
+          <p>8. Vytvoř nový program <code>obdelnik.py</code> a nakresli obdélník, který má jeden vrchol na souřadnicích [200, 100], jeho šířka je 60 a výška 140.</p>
         </TaskCard>
 
-        <TaskCard number="9" title="Tři obdélníky" taskId="9" showTeacher={teacherMode} teacherNote={<p>Ať si to zkusí na papír, to je klíčové pro chápání souřadnicové osy jdoucí dolů.</p>}>
-          <p>Bez použití počítače urči a do sešitu nakresli, jak přibližně budou rozmístěné následující obdélníky. Jaká je výška a šířka každého z nich?</p>
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode}>
+          <p>9. Bez použití počítače urči a do sešitu nakresli, jak přibližně budou rozmístěné následující obdélníky. Jaká je výška a šířka každého z nich?</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\ncanvas.create_rectangle(50, 70, 220, 150)\ncanvas.create_rectangle(60, 80, 130, 140)\ncanvas.create_rectangle(160, 90, 230, 160)`} />
           <p>Na počítači za použití Pythonu zkontroluj, zda byla tvá domněnka správná.</p>
         </TaskCard>
 
-        <TaskCard number="10" title="Dva čtverce" taskId="10" showTeacher={teacherMode} teacherNote={<p><code>canvas.create_rectangle(100, 50, 100 + 80, 50 + 80)</code>. Zde je žádoucí upozornit žáky, že i čtverec je vlastně obdélník, proto použijeme příkaz <code>create_rectangle</code>.</p>}>
-          <p>Vytvoř nový program <code>vedle_sebe.py</code>, který vedle sebe nakreslí dva čtverce se stranami délky 80 (pozici čtverců zvol podle uvážení):</p>
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Možné řešení:<br/><code>canvas.create_rectangle(100, 50, 100 + 80, 50 + 80)</code><br/><code>canvas.create_rectangle(200, 50, 200 + 80, 50 + 80)</code><br/><br/>Když se budou žáci ptát, jakým příkazem se kreslí čtverec, je třeba s nimi diskutovat a přivést je na myšlenku, že mohou použit již známý příkaz.<br/><br/>Můžeme vidět, že v našem řešení píšeme na místech některých parametrů výrazy se součty (například 100 + 80). Nevadí nám ani řešení s nevypočítanými výrazy – z nich je lepší vidět, jak souřadnice vznikají a jsou z nich dobře čitelné i rozměry obdélníku.</p>}>
+          <p>10. Vytvoř nový program <code>vedle_sebe.py</code>, který vedle sebe nakreslí dva čtverce se stranami délky 80 (pozici čtverců zvol podle uvážení):</p>
           <CanvasPreview width={300} height={150}>
-            <Rect x1={60} y1={35} width={80} height={80} />
-            <Rect x1={160} y1={35} width={80} height={80} />
+            <Rect x1={50} y1={35} width={80} height={80} />
+            <Rect x1={150} y1={35} width={80} height={80} />
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="11" title="Soustředné čtverce" taskId="11" showTeacher={teacherMode} teacherNote={<p>Úlohu lze řešit posunem o 25 (polovina rozdílu velikostí) dovnitř většího čtverce. Nebo zvolením společného středu a odečítáním a přičítáním od něj.</p>}>
-          <p>Vytvoř program <code>soustredne.py</code>, který nakreslí dva velké čtverce – jeden se stranou délky 100 a druhý 150. Čtverce budou mít společný střed jako na následujícím obrázku:</p>
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Úlohu lze řešit vícero způsoby:<br/>• Na nějaké pozici nakreslíme větší čtverec a menší do něj umístíme tak, aby mezi nimi byla mezera 25:<br/><code>canvas.create_rectangle(100, 50, 250, 200)</code><br/><code>canvas.create_rectangle(100 + 25, 50 + 25, 250 - 25, 200 - 25)</code><br/>• Na nějaké pozici nakreslíme menší čtverec a větší nakreslíme okolo něj tak, aby mezi nimi byla mezera 25:<br/><code>canvas.create_rectangle(150, 100, 250, 200)</code><br/><code>canvas.create_rectangle(150 - 25, 100 - 25, 250 + 25, 200 + 25)</code><br/>• Zvolíme si střed a dopočítáme souřadnice vrcholů:<br/><code>canvas.create_rectangle(200 - 50, 100 - 50, 200 + 50, 100 + 50)</code><br/><code>canvas.create_rectangle(200 - 75, 100 - 75, 200 + 75, 100 + 75)</code></p>}>
+          <p>11. Vytvoř program <code>soustredne.py</code>, který nakreslí dva velké čtverce – jeden se stranou délky 100 a druhý 150. Čtverce budou mít společný střed jako na následujícím obrázku:</p>
+          <CanvasPreview width={300} height={200}>
+            <Rect x1={75} y1={25} width={150} height={150} />
+            <Rect x1={100} y1={50} width={100} height={100} />
+          </CanvasPreview>
+        </TaskCard>
+
+        <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Možná řešení:<br/>• Kreslíme od spodního největšího obdélníku. Postupujeme jako bychom obdélníky na sebe pokládali. Každý další obdélník má y-ové souřadnice vrcholů menší o 50, x-ová souřadnice levého vrcholu je zvětšená o 25 a x-ová souřadnice pravého vrcholu je zmenšená o 25:<br/><code>canvas.create_rectangle(100, 200, 100 + 150, 200 + 50)</code><br/><code>canvas.create_rectangle(100 + 25, 150, 100 + 150 - 25, 150 + 50)</code><br/><code>canvas.create_rectangle(100 + 50, 100, 100 + 150 - 50, 100 + 50)</code><br/>• Zvolíme x-ovou souřadnici středu celé stavby (například 200). Kreslíme od horního obdélníku a počítáme souřadnice protilehlých vrcholů:<br/><code>canvas.create_rectangle(200 - 25, 100, 200 + 25, 100 + 50)</code><br/><code>canvas.create_rectangle(200 - 50, 150, 200 + 50, 150 + 50)</code><br/><code>canvas.create_rectangle(200 - 75, 200, 200 + 75, 200 + 50)</code></p>}>
+          <p>12. Vytvoř program <code>pyramida.py</code>, který ze tří obdélníků o rozměrech 150x50, 100x50 a 50x50 nakreslí následující pyramidu:</p>
+          <CanvasPreview width={300} height={200}>
+            <Rect x1={125} y1={25} width={50} height={50} />
+            <Rect x1={100} y1={75} width={100} height={50} />
+            <Rect x1={75} y1={125} width={150} height={50} />
+          </CanvasPreview>
+        </TaskCard>
+
+        <TaskCard number="13*" title="" taskId="13" showTeacher={teacherMode} teacherNote={<p>Nejprve nakreslíme velký středový čtverec a poté menší čtverce v následujícím pořadí: horní čtverec, dolní čtverec, levý čtverec, pravý čtverec<br/><code>canvas.create_rectangle(100, 100, 200, 200)</code><br/><code>canvas.create_rectangle(100, 100 - 50, 100 + 50, 100)</code><br/><code>canvas.create_rectangle(200 - 50, 200, 200, 200 + 50)</code><br/><code>canvas.create_rectangle(100 - 50, 200 - 50, 100, 200)</code><br/><code>canvas.create_rectangle(200, 100, 200 + 50, 100 + 50)</code></p>}>
+          <p>13* Vytvoř program <code>ornament.py</code>, který z pěti čtverců nakreslí následující ornament. Rozměry čtverců zvol podle svého uvážení (všechny menší čtverce budou stejně velké):</p>
           <CanvasPreview width={300} height={250}>
-            <Rect x1={75} y1={40} width={150} height={150} />
-            <Rect x1={100} y1={65} width={100} height={100} />
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="12" title="Pyramida" taskId="12" showTeacher={teacherMode} teacherNote={<p>Žáci začnou od největšího zespodu: x-ová souřadnice levého rohu se vždy u dalšího obdélníku posune doprava (zvětší) o 25 a y-ová se posune nahoru (zmenší) o 50.</p>}>
-          <p>Vytvoř program <code>pyramida.py</code>, který ze tří obdélníků o rozměrech <strong>150x50</strong>, <strong>100x50</strong> a <strong>50x50</strong> nakreslí následující pyramidu:</p>
-          <CanvasPreview width={300} height={250}>
-            <Rect x1={125} y1={50} width={50} height={50} />
-            <Rect x1={100} y1={100} width={100} height={50} />
-            <Rect x1={75} y1={150} width={150} height={50} />
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="13*" title="Ornament" taskId="13" showTeacher={teacherMode} teacherNote={<p>Způsobů je více. Jedna z cest: nakreslíme velký středový čtverec a poté na něj nabalíme 4 stejně velké menší čtverce ze všech stran.</p>}>
-          <p className="flex items-center gap-2 font-bold text-amber-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol
-          </p>
-          <p>Vytvoř program <code>ornament.py</code>, který z <strong>pěti</strong> čtverců nakreslí následující ornament. Rozměry čtverců zvol podle svého uvážení (všechny čtyři menší čtverce budou stejně velké):</p>
-          <CanvasPreview width={300} height={300}>
-            {/* Center */}
             <Rect x1={100} y1={100} width={100} height={100} />
-            {/* Top */}
             <Rect x1={100} y1={50} width={50} height={50} />
-            {/* Bottom */}
             <Rect x1={150} y1={200} width={50} height={50} />
-            {/* Left */}
             <Rect x1={50} y1={150} width={50} height={50} />
-            {/* Right */}
             <Rect x1={200} y1={100} width={50} height={50} />
           </CanvasPreview>
         </TaskCard>

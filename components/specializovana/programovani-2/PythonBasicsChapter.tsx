@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Play, CheckCircle, Terminal, HelpCircle, GraduationCap, Unlock, Lock, AlertTriangle } from 'lucide-react';
+import { CheckCircle, GraduationCap, Unlock, Lock, Terminal, Code } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 
@@ -9,18 +9,18 @@ interface PythonBasicsChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-emerald-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-indigo-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
-            <span className="text-amber-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-emerald-300">{line.substring(3).trim()}</span>
+            <span className="text-indigo-500 mr-2 select-none">{">>>"}</span>
+            <span className="text-indigo-300">{line.substring(3).trim()}</span>
           </>
-        ) : line.startsWith('SyntaxError') || line.startsWith('ZeroDivisionError') ? (
+        ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') || line.startsWith('ZeroDivisionError') ? (
           <span className="text-rose-400">{line}</span>
         ) : (
-          <span className="text-slate-300">{line}</span>
+          <span className="text-slate-300 whitespace-pre">{line}</span>
         )}
       </div>
     ))}
@@ -28,12 +28,12 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
+  <div className="mt-4 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
     <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-amber-600" />
-      <span className="font-bold text-amber-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
+      <GraduationCap className="w-5 h-5 text-indigo-600" />
+      <span className="font-bold text-indigo-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
     </div>
-    <div className="text-sm text-amber-900 leading-relaxed">
+    <div className="text-sm text-indigo-900 leading-relaxed">
       {children}
     </div>
   </div>
@@ -54,7 +54,7 @@ const TaskCard = ({
   showTeacher: boolean,
   taskId: string
 }) => {
-  const [done, setDone] = useLocalStorage(`py-task-${taskId}`, false);
+  const [done, setDone] = useLocalStorage(`py1-task-${taskId}`, false);
 
   return (
     <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
@@ -63,7 +63,7 @@ const TaskCard = ({
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -117,12 +117,12 @@ const PythonBasicsChapter: React.FC<PythonBasicsChapterProps> = ({ onBack }) => 
 
   return (
     <FsChapterShell
-      title="Základy Pythonu"
-      subtitle="Výpisy a proměnné (iMyšlení Lekce 1)"
+      title="Výpisy"
+      subtitle="Lekce 1"
       icon={<Terminal className="w-8 h-8 text-indigo-600" />}
       onBack={onBack}
       accentColor="indigo"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Terminal }]}
+      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
@@ -142,7 +142,7 @@ const PythonBasicsChapter: React.FC<PythonBasicsChapterProps> = ({ onBack }) => 
           <button 
             onClick={handleToggleTeacher}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-amber-100 text-amber-700 border-amber-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
+              teacherMode ? 'bg-indigo-100 text-indigo-700 border-indigo-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
             {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
@@ -152,152 +152,94 @@ const PythonBasicsChapter: React.FC<PythonBasicsChapterProps> = ({ onBack }) => 
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-indigo-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-indigo-800/80 text-sm sm:text-base">
-            Otevři si na počítači program <strong>IDLE</strong> nebo <strong>Thonny</strong> a dej si jej na jednu polovinu obrazovky. Na druhou polovinu si dej tento prohlížeč. Všechny úkoly budeme zatím psát přímo do interaktivní konzole (tam, kde vidíš <code>&gt;&gt;&gt;</code>).
-          </p>
-        </div>
-
-        <TaskCard 
-          number="1" 
-          title="První krůčky" 
-          taskId="1"
-          showTeacher={teacherMode}
-          teacherNote={<p>Nechme žáky nalézt a spustit programovací prostředí. Cílem je, aby si žáci zvykali na komunikaci s počítačem v interaktivním režimu.</p>}
-        >
-          <p>Najdi na počítači ikonu programu Python (IDLE) a spusť jej. Když se program spustí, uvidíš podobné okno, které čeká na tvé příkazy za značkou <code>&gt;&gt;&gt;</code>.</p>
-        </TaskCard>
-
-        <TaskCard 
-          number="2" 
-          title="Python jako kalkulačka" 
-          taskId="2"
-          showTeacher={teacherMode}
-          teacherNote={<p>Zde je důležité, aby si žáci zvykli zapisovat příkazy a potvrzovat je klávesou Enter. Mezery okolo operátorů není potřeba psát, ale doporučujeme to – program se provzdušní.</p>}
-        >
-          <p>Zkus za symboly <code>&gt;&gt;&gt;</code> napsat následující matematický výraz a potvrď klávesou Enter. Co Python odpoví?</p>
-          <PythonSnippet code=">>> 1 + 2 + 3" />
-        </TaskCard>
-
-        <TaskCard 
-          number="3" 
-          title="Složitější výpočty" 
-          taskId="3"
-          showTeacher={teacherMode}
-          teacherNote={<p>Nedoporučujeme řešit tyto úlohy dopředu na tabuli. Zde už mohou žáci tvořit chybné zápisy, případně nemusí rychle porozumět, jak počítač výraz vyhodnotil. Cennější je, když toto chování objevují sami.</p>}
-        >
-          <p>Python dokáže fungovat jako pokročilá kalkulačka a respektuje závorky. Vyzkoušej, jaké budou výsledky následujících výrazů:</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <PythonSnippet code=">>> 42 - 17" />
-            <PythonSnippet code=">>> 3 + 4 * 5" />
-            <PythonSnippet code=">>> (3 + 4) * 5" />
-            <PythonSnippet code=">>> 25 - (7 - 10)" />
-            <PythonSnippet code=">>> 132 / 11" />
-            <PythonSnippet code=">>> 1 + 2 * 3 / (5 - 1)" />
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode}>
+          <p>1. Najdi na počítači ikonu programu Python a spusť jej.</p>
+          <p>Když se program spustí, uvidíš:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Python 3.6.4 (default, Jan  5 2018, 02:04:42)<br/>
+[GCC 5.4.0 20160609] on linux<br/>
+Type "copyright", "credits" or "license()" for more information.<br/>
+{">>>"} |
           </div>
+          <p className="text-sm italic text-slate-500">sem budeš zapisovat příkazy</p>
         </TaskCard>
 
-        <TaskCard 
-          number="4" 
-          title="Když uděláme chybu" 
-          taskId="4"
-          showTeacher={teacherMode}
-          teacherNote={<p>Žáci by se měli naučit rozpoznávat situace, jak počítač reaguje na nesprávné výrazy. Častou chybou je chybějící operátor před závorkou (např. <code>3(4)</code> místo <code>3 * 4</code>).</p>}
-        >
-          <p>Pozor, zápisy musí být napsané zcela správně. Jinak uvidíš různá chybová hlášení, která ti většinou červeně řeknou, kde je problém. Co se stane, pokud zadáš tyto příkazy?</p>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode}>
+          <p>2. Zkus za <code>{">>>"}</code> napsat matematický výraz <code>1 + 2 + 3</code> a potvrď klávesou Enter. Co Python odpoví?</p>
+        </TaskCard>
+
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode}>
+          <p>3. Python dokáže fungovat jako kalkulačka. Jaké budou výsledky následujících výrazů?</p>
+          <PythonSnippet code={`>>> 123\n>>> 42 - 17\n>>> 3 + 4 * 5\n>>> (3 + 4) * 5\n>>> 25 - 7 - 10\n>>> 25 - (7 - 10)\n>>> 132 / 11\n>>> 1 / 2\n>>> 1 + 2 * 3 / (5 - 1)`} />
+        </TaskCard>
+
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode}>
+          <p>4. Pozor, zápisy musí být napsané zcela správně. Jinak uvidíš různá chybová hlášení. Co se stane, pokud zadáš následující příkazy?</p>
           <PythonSnippet code={`>>> 22 + 7 *\n>>> 19 - (3 4)`} />
         </TaskCard>
 
-        <TaskCard 
-          number="5" 
-          title="Dělení nulou" 
-          taskId="5"
-          showTeacher={teacherMode}
-          teacherNote={
-            <>
-              <p>Při chybných výrazech počítač někdy vypíše několik řádků s chybou. Je nutné se učit rozpoznávat, co je v chybovém hlášení důležité (většinou to je úplně poslední řádek).</p>
-              <ul className="list-disc pl-5 mt-2">
-                <li><code>SyntaxError: invalid syntax</code> (něco jsi napsal nesprávně)</li>
-                <li><code>ZeroDivisionError: division by zero</code> (snažíš se dělit nulou)</li>
-              </ul>
-            </>
-          }
-        >
-          <p>Někdy se však i po naprosto správném zápise může objevit chybové hlášení. Zkus zadat následující příkaz. Proč si myslíš, že došlo k chybě?</p>
-          <PythonSnippet code=">>> 10 / (6 - 2 * 3)" />
-        </TaskCard>
-
-        <TaskCard 
-          number="6" 
-          title="Petrův věk" 
-          taskId="6"
-          showTeacher={teacherMode}
-          teacherNote={<p><strong>Očekávané řešení:</strong> <code>16 * 365 + 2 * 30</code><br/>V této úloze je vhodné žáky vést, aby ještě před sestavením výrazu v Pythonu přibližně odhadli výsledek (cca 5800). Díky tomu ihned zjistí, pokud napsali např. <code>16 * 365 * 2</code> (což je hloupost).</p>}
-        >
-          <p>Sestav a vypočítej slovní úlohu pomocí jednoho výrazu:<br/>Petrovi bylo přesně před dvěma měsíci 16 let. Využij Python jako kalkulačku a spočítej, kolik je mu nyní přibližně dní. Předpokládej, že rok má 365 dní a měsíc 30 dní.</p>
-        </TaskCard>
-
-        <TaskCard 
-          number="7" 
-          title="Liché počítání" 
-          taskId="8"
-          showTeacher={teacherMode}
-          teacherNote={<p><strong>Možné řešení:</strong> <code>1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19</code> = 100.</p>}
-        >
-          <p>Vytvoř v Pythonu zápis, pomocí kterého vypočítáš součet <strong>všech lichých čísel od 1 do 19</strong> (včetně). Jaký bude výsledek?</p>
-        </TaskCard>
-
-        <TaskCard 
-          number="8" 
-          title="Obrovská čísla" 
-          taskId="9"
-          showTeacher={teacherMode}
-          teacherNote={<p>Cílem této úlohy je ukázat, že na rozdíl od jiných jazyků (nebo běžných kalkulaček) Python bez problémů zvládá celočíselnou aritmetiku s obrovskými čísly. Nepřeteče.</p>}
-        >
-          <p>Která číslice se vyskytuje nejčastěji ve výsledku tohoto obřího výrazu?</p>
-          <PythonSnippet code=">>> 123456789 * 111111111111111111111" />
-        </TaskCard>
-        
-        <TaskCard 
-          number="9" 
-          title="Složité nákupy" 
-          taskId="11"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Zde je cílem, aby žáci efektivně použili závorky. U třetího (c) bodu by měli najít způsob, jak obě ceny zkrátit.</p>
-              <p><strong>první hra:</strong> 79</p>
-              <p><strong>druhá hra:</strong> <code>79 * 2 + 5</code></p>
-              <p><strong>třetí hra (a):</strong> <code>(79 * 2 + 5) * 3 + 17</code></p>
-              <p><strong>všechny hry (b):</strong> <code>79 + 79 * 2 + 5 + (79 * 2 + 5) * 3 + 17</code></p>
-            </div>
-          }
-        >
-          <p>Jirka si koupil hru za 79 korun. Později si koupil druhou hru za <strong>dvojnásobek této ceny a ještě k tomu připlatil 5 korun</strong>. Nakonec si koupil třetí hru za <strong>trojnásobek ceny druhé hry a ještě k tomu připlatil 17 korun</strong>.</p>
-          <p className="font-bold mt-2">Spočítej pomocí Pythonu:</p>
-          <ul className="list-[lower-alpha] pl-5 space-y-1 mt-1 text-slate-600">
-            <li>kolik Jirka zaplatil za třetí hru?</li>
-            <li>kolik zaplatil za všechny tři hry dohromady?</li>
-            <li className="text-indigo-600">*) vymysli co nejkratší zápis, kterým lze obě předchozí otázky vypočítat.</li>
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode}>
+          <p>5. Někdy se však i po správném zápise může objevit chybové hlášení. Co se stane, pokud zadáš <code>10 / (6 - 2 * 3)</code> ?</p>
+          <p>Python se ti chybovými hlášeními snaží pomoci, abys chybu snadněji našel. Například:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-2">
+            <li><code>SyntaxError: invalid syntax</code> označuje, že jsi něco napsal nesprávně</li>
+            <li><code>ZeroDivisionError: division by zero</code> oznamuje, že chceš dělit nulou</li>
           </ul>
         </TaskCard>
 
-        <TaskCard 
-          number="10*" 
-          title="Umocňování a priority" 
-          taskId="15"
-          showTeacher={teacherMode}
-          teacherNote={
-            <p><strong>Očekávané zjištění:</strong> Operátor umocnění <code>**</code> má absolutně nejvyšší prioritu ze všech operátorů (má přednost před násobením i dělením). To znamená, že <code>2 ** 8 - 1</code> se spočítá jako (256 - 1) = 255. Nikoli 2 na sedmou.</p>
-          }
-        >
-          <p className="flex items-center gap-2 font-bold text-amber-600 mb-2">
-            <AlertTriangle className="w-5 h-5" /> Výzkumný úkol
-          </p>
-          <p>Zjisti, jak se vyhodnocuje tento výraz:</p>
-          <PythonSnippet code=">>> 2 ** 8 - 1" />
-          <p>Znamená to, že se nejdřív vypočítá <code>2 ** 8</code> (a následně se odečte 1), nebo se nejdřív odečte <code>8 - 1</code> a umocní se dvojka na sedmou? Podle výsledku urči, zda má umocňování v Pythonu <strong>vyšší nebo nižší</strong> prioritu než odčítání.</p>
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode}>
+          <p>6. Petrovi bylo přesně před dvěma měsíci 16 let. Využij Python jako kalkulačku a spočítej, kolik je mu nyní přibližně dní. Předpokládej, že rok má 365 dní a měsíc má 30 dní.</p>
+        </TaskCard>
+
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode}>
+          <p>7. Pokračuj v předchozí úloze a pomocí Pythonu vypočítej:</p>
+          <ul className="list-none pl-5 mt-2 space-y-1">
+            <li>a) kolik je to hodin,</li>
+            <li>b) kolik je to sekund.</li>
+          </ul>
+        </TaskCard>
+
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode}>
+          <p>8. Použij znovu Python jako kalkulačku a vytvoř pro něj zápis, pomocí kterého vypočítá součet všech lichých čísel od 1 do 19. Jaký bude výsledek?</p>
+        </TaskCard>
+
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode}>
+          <p>9. Zjisti, která číslice se vyskytuje nejčastěji ve výsledku výrazu:</p>
+          <PythonSnippet code={`123456789 * 111111111111111111111`} />
+          <p>Nejčastější číslici snadno poznáš pohledem na výsledek spočítaného součinu.</p>
+        </TaskCard>
+
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode}>
+          <p>10. Lenka sbírala květiny. První den jich natrhala 15, druhý den jich natrhala o 4 více než předcházející den a třetí den jich natrhala ještě o 1 více než v oba předcházející dny dohromady. Použij Python jako kalkulačku a vypočítej, kolik květin natrhala za všechny 3 dny dohromady.</p>
+        </TaskCard>
+
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode}>
+          <p>11. Jirka si koupil hru za 79 korun. Později si koupil hru za dvojnásobek této ceny a ještě k tomu připlatil 5 korun. Nakonec si koupil hru za trojnásobek ceny druhé hry a ještě k tomu připlatil 17 korun. Použij Python jako kalkulačku a vypočítej:</p>
+          <ul className="list-none pl-5 mt-2 space-y-1">
+            <li>a) kolik Jirka zaplatil za třetí hru</li>
+            <li>b) kolik Jirka zaplatil za všechny tři hry dohromady</li>
+            <li>c*) vymysli co nejkratší zápis, kterým lze úkoly z a) a b) vypočítat</li>
+          </ul>
+        </TaskCard>
+
+        <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode}>
+          <p>12. Použij Python jako kalkulačku a vypočítej součet následujících čísel: jedna, jedna polovina, jedna třetina, jedna čtvrtina, ..., až jedna desetina.</p>
+        </TaskCard>
+
+        <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode}>
+          <p>13. Do sešitu si vytvoř tabulku, do níž zapiš všechny aritmetické operace, se kterými jsme se zatím v Pythonu seznámili.</p>
+        </TaskCard>
+
+        <TaskCard number="14*" title="" taskId="14" showTeacher={teacherMode}>
+          <p>14* Výpočet <code>2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2</code> je umocnění 2 na 10. V Pythonu se toto zapisuje jako: <code>2 ** 10</code>. Tipni si, kolik číslic bude ve výsledku umocnění 2 na 30. Poté použij Python jako kalkulačku, vypočítej pomocí něho 2 umocněno na 30 a ručně spočítej počet číslic ve výsledku. Byl tvůj odhad správný?</p>
+        </TaskCard>
+
+        <TaskCard number="15*" title="" taskId="15" showTeacher={teacherMode}>
+          <p>15* Zjisti, jak se počítá hodnota <code>2 ** 8 - 1</code>. Tedy zda se nejdříve vypočítá mocnina <code>2 ** 8</code>, od které se odečte 1, nebo se nejdříve vypočítá rozdíl <code>8 - 1</code> a touto hodnotou se potom umocní číslo 2. Zjisti, jak je to s operacemi násobení a umocňování – tedy jak se počítají výrazy <code>3 * 2 ** 5</code> a <code>2 ** 5 * 3</code>.</p>
+        </TaskCard>
+
+        <TaskCard number="16*" title="" taskId="16" showTeacher={teacherMode}>
+          <p>16* Matematici vědí, že když sečtou několik za sebou jdoucích mocnin čísla 2 počínaje 2 na 0, dostanou jinou mocninu čísla 2 zmenšenou o 1. Zkontroluj, zda součet čísel <code>2 ** 0, 2 ** 1, 2 ** 2, … 2 ** 9</code> dává hodnotu <code>2 ** 10 - 1</code>.</p>
         </TaskCard>
 
       </div>

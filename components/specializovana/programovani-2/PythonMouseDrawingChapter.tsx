@@ -39,6 +39,26 @@ const TeacherNote = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+const CanvasPreview = ({ children, width = 380, height = 266, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
+  <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
+    {children}
+  </div>
+);
+
+const Rect = ({ x1, y1, width, height, fill = "transparent", stroke = "black", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string, noBorder?: boolean }) => (
+  <div 
+    className="absolute" 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill, border: noBorder ? 'none' : `1px solid ${stroke}` }} 
+  />
+);
+
+const Oval = ({ x1, y1, width, height, fill = "transparent", stroke = "black" }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string }) => (
+  <div 
+    className="absolute rounded-[50%]" 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill, border: `1px solid ${stroke}` }} 
+  />
+);
+
 const TaskCard = ({ 
   number, 
   title, 
@@ -54,16 +74,17 @@ const TaskCard = ({
   showTeacher: boolean,
   taskId: string
 }) => {
-  const [done, setDone] = useLocalStorage(`py20-task-${taskId}`, false);
+  const [done, setLocalStorageDone] = useLocalStorage(`py20-task-${taskId}`, false);
+  const doneBool = done === true;
 
   return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
+    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
       <div className="flex gap-4">
         <div className="shrink-0 w-12 h-12 bg-cyan-100 text-cyan-700 rounded-2xl flex items-center justify-center font-black text-xl">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -74,15 +95,15 @@ const TaskCard = ({
 
           <div className="mt-6 flex justify-end">
             <button 
-              onClick={() => setDone(!done)}
+              onClick={() => setLocalStorageDone(!doneBool)}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                done 
+                doneBool 
                 ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
                 : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {done ? 'Splněno' : 'Označit jako splněné'}
+              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-emerald-600' : 'text-slate-400'}`} />
+              {doneBool ? 'Splněno' : 'Označit jako splněné'}
             </button>
           </div>
         </div>
@@ -118,7 +139,7 @@ const PythonMouseDrawingChapter: React.FC<PythonMouseDrawingChapterProps> = ({ o
   return (
     <FsChapterShell
       title="Kreslení myší"
-      subtitle="Souběžné události, canvas.bind a interakce v reálném čase (iMyšlení Lekce 20)"
+      subtitle="Lekce 20"
       icon={<MousePointer2 className="w-8 h-8 text-cyan-600" />}
       onBack={onBack}
       accentColor="cyan"
@@ -153,68 +174,90 @@ const PythonMouseDrawingChapter: React.FC<PythonMouseDrawingChapterProps> = ({ o
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <div className="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-cyan-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-cyan-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Není úžasné, jak se nám všechny ty lekce krásně složily dohromady? Dneska ale už nezůstaneme jen u toho, že program všechno bleskově namaluje a umře. Naučíme počítač čekat a REAGOVAT na tvé tažení myší! Staneš se vývojářem skutečného Malování!
+          <p className="text-cyan-800/80 text-sm sm:text-base font-bold">
+            V této lekci se naučíme používat zábavný způsob kreslení do grafické plochy pomocí myši.
           </p>
         </div>
 
-        <TaskCard number="1" title="Sledování myši (Event Bind)" taskId="1" showTeacher={teacherMode} teacherNote={<p>Úplně nový příkaz <code>canvas.bind</code> sváže událost myši se specifikovanou funkcí. Parametr události obsahuje i x a y. Důležité je si pamatovat, že název funkce se do bindu píše BEZ kulatých závorek! My jen předáváme zástupce.</p>}>
-          <p>Nyní se naučíme počítači přikázat, ať čeká a "naslouchá", jestli někdo nekliká myší. Vytvoř program <code>mys.py</code>.</p>
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>V úloze se objevila nová konstrukce <code>canvas.bind('&lt;B1-Motion&gt;', klik)</code>. Pomocí takového zápisu oznamujeme grafické ploše, aby <strong>sledovala</strong> tažení myší se stisknutým levým tlačítkem. Od této chvíle se při každém tažení myší automaticky zavolá podprogram <code>klik</code>. Podprogram musí mít jeden parametr – nazvali jsme jej <code>mys</code>. Ten obsahuje komplexní informace o události, z nichž využíváme <code>mys.x</code> a <code>mys.y</code>.</p>}>
+          <p>1. Vytvoř nový program <code>mys.py</code> a přepiš do něj následující kód. Program poté spusť.</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef klik(mys):\n    print(mys.x, mys.y)\n\ncanvas.bind('<B1-Motion>', klik)`} />
-          <p>Nový tajemný příkaz <code>canvas.bind</code> udělal to, že plátno od teď STÁLE tajně poslouchá událost <code>{'<B1-Motion>'}</code> (Tedy že jsi zrovna stiskl Levý klik a táhneš po plátně myší!). Kdykoliv to uděláš, tak plátno okamžitě zavolá tvou funkci <code>klik</code> a jako její parametr uvnitř závorky (<code>mys</code>) do ní pošle přesné informace o tvé myši!</p>
-          <p className="font-bold text-cyan-700">Táhni uvnitř svého prázdného plátna a podívej se do konzole dole, jak ti to chrlí x a y souřadnice tvé ruky rychlostí kulometu!</p>
+          <p className="mt-2">Přibyl zde nový příkaz <code>canvas.bind</code>, díky němuž bude od této chvíle grafická plocha vědět, co má udělat, když nad ní stiskneme levé tlačítko myši a myší potom táhneme. V textovém okně se začnou vypisovat dvojice celých čísel. Víš, jaká jsou to čísla?</p>
         </TaskCard>
 
-        <TaskCard number="2" title="Malování hvězdiček" taskId="2" showTeacher={teacherMode} teacherNote={<p>Proměnění terminálového trasování na interaktivní kreslení v Canvasu.</p>}>
-          <p>Když už tvůj program umí vyčíst informace o aktuální x,y poloze tvého táhnutí, proč to nenakreslit?</p>
-          <p>Ve tvé funkci vyměň onen nudný <code>print()</code> za grafický <code>canvas.create_text()</code>, a nakresli text <code>"*"</code> přesně na ty dvě polohy, které ti pošle myš! Pokud přidáš i parametry <code>font='arial 50', fill='red'</code>, bude to luxusní rudý štětec na malování ohromných hvězd.</p>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    canvas.create_text(mys.x, mys.y, text='*', font='arial 50', fill='red')</code><br/><br/>Místo vypisování hvězdičky '*' mohou žáci zkoušet vypisovat i jiné texty, například 'O', '/' nebo slovo 'PYTHON'.</p>}>
+          <p>2. Zápis <code>mys.x</code> a <code>mys.y</code> v programu označuje x-ovou a y-ovou souřadnici místa v grafické ploše, kde jsi klikl(a). Namísto příkazu <code>print</code> v podprogramu <code>klik</code> použij příkaz <code>canvas.create_text</code>, pomocí něhož vykresli znak <code>'*'</code>.</p>
+          <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef klik(mys):\n    ......................................................................................\n\ncanvas.bind('<B1-Motion>', klik)`} />
+          <p className="mt-2">Program nyní při tažení myší kreslí malé hvězdičky. Pomocí parametrů <code>font='...'</code> a <code>fill='...'</code> můžeš velikost těchto znaků zvětšit na 50 a změnit jejich barvu na červenou.</p>
+          <p>Zkus takto nakreslit i něco zajímavějšího a výsledným obrázkem se pochlub spolužákovi.</p>
         </TaskCard>
 
-        <TaskCard number="3" title="Kreslení čáry z kruhů" taskId="3" showTeacher={teacherMode} teacherNote={<p>Místo textu kreslíme kružnice s poloměrem 5, čímž vznikne tlustá souvislá čára ve chvíli, kdy uživatel táhne.</p>}>
-          <p>Pokud místo textu s hvězdičkou do funkce zapojíš svůj dobře známý <code>canvas.create_oval</code>, vznikne dokonalý "kulatý" štětec.</p>
-          <p>Stačí opět od přijaté pozice myši (<code>mys.x</code>) vždy odečíst -5 a vzápětí k ní přičíst +5, aby ti vznikl pevný poloměr ohraničující čtverce, a máš plnohodnotný malovací štětec!</p>
-          <p className="italic text-sm text-cyan-700 mt-2">Pokus: A teď změň těch tvých 5 pixelů na 30! Co vidíš?</p>
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    canvas.create_oval(mys.x-5, mys.y-5, mys.x+5, mys.y+5)</code><br/><br/>Velké modré kruhy nakreslíme pomocí následujícího kódu:<br/><code>def klik(mys):</code><br/><code>    canvas.create_oval(mys.x-30, mys.y-30, mys.x+30, mys.y+30, fill='blue')</code></p>}>
+          <p>3. Pomocí příkazu <code>canvas.create_oval(x-5, y-5, x+5, y+5)</code> umíš nakreslit malý kruh se středem <code>[x, y]</code> a s poloměrem 5. V programu <code>mys.py</code> místo příkazu pro text vhodně použij příkaz pro kreslení malého kruhu. Nyní by se na místa, kudy jsi táhl(a) myší, měly kreslit kruhy.</p>
+          <p className="mt-4 font-bold">Teď změň poloměr kreslených kruhů například na hodnotu 30. Jak se změní kreslené kruhy?</p>
+          <p>Co je ještě nutné změnit, aby bylo možné vytvořit modrou souvislou stopu tvořenou plnými kruhy? Svou domněnku ověř přidáním parametru <code>fill='blue'</code>.</p>
         </TaskCard>
 
-        <TaskCard number="4" title="Dvoubarevný štětec z ifu" taskId="4" showTeacher={teacherMode} teacherNote={<p>Do události zapojíme větvení. Plátno se nám rozdělí na x &lt; 150.</p>}>
-          <p>Co kdyby tvůj štětec nečekaně měnil barvu podle toho, na jaké polovině plátna se s myší zrovna pohybuješ?</p>
-          <p>Obal svůj malovací příkaz vevnitř funkce <code>klik(mys)</code> do inteligentní podmínky <code>if / else</code>! Bude se to neustále pídit po tom, jestli je <code>mys.x {"<"} 150</code>. Pokud ano, tak ať štětec chrlí jen červené kruhy, ale jinak ty modré (přes <code>fill</code>).</p>
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    if mys.x &lt; 150:</code><br/><code>        canvas.create_oval(mys.x-5, mys.y-5, mys.x+5, mys.y+5, fill='red')</code><br/><code>    else:</code><br/><code>        canvas.create_oval(mys.x-5, mys.y-5, mys.x+5, mys.y+5, fill='green')</code></p>}>
+          <p>4. Podprogram <code>klik</code> se ještě předtím, než nakreslí barevný kroužek, může pomocí příkazu větvení rozhodnout, jestli bude kreslit červený nebo zelený kroužek. Uprav podprogram tak, aby se kroužky kreslily <strong>červeně</strong>, pokud je jejich x-ová souřadnice <strong>menší než 150</strong>; jinak se kreslily zeleně. Poloměr všech kroužků bude 5.</p>
+          <p className="mt-2 text-sm text-slate-600">Pokud budeš myší přejíždět zleva doprava a zpět, barva se bude na určité čáře sama měnit!</p>
         </TaskCard>
 
-        <TaskCard number="5" title="Smazání plátna" taskId="5" showTeacher={teacherMode} teacherNote={<p>Další novinka: událost ButtonPress-3 (pravý klik) a smazání všeho z Canvasu příkazem <code>canvas.delete('all')</code>.</p>}>
-          <p>Už tě to počmárané plátno štve a chceš ho smazat? Přidej si ÚPLNĚ NOVOU událost!</p>
-          <PythonSnippet code={`def smaz(mys):\n    canvas.delete('all')\n\ncanvas.bind('<ButtonPress-3>', smaz)`} />
-          <p>Založil jsi druhou funkci na smazání plátna (přes <code>delete('all')</code>). A pod tím prvním slavným "bindem" dole ho nasloucháš i na <code>{'<ButtonPress-3>'}</code>, což je stisk pravého tlačítka na tvé myši! Stačí kdykoliv kliknout naprázdno do plátna pravým myšítkem, a to se dočista vyhladí jako po výbuchu!</p>
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    canvas.create_oval(mys.x-5, mys.y-5, mys.x+5, mys.y+5, fill='blue')</code><br/><code>    canvas.create_oval(mys.x-5+15, mys.y-5, mys.x+5+15, mys.y+5, fill='yellow')</code></p>}>
+          <p>5. Vytvoř nový program <code>dvojite.py</code> a zkopíruj do něj kód z programu mys.py. Uprav podprogram <code>klik</code> tak, aby kreslil všechny kroužky modře s poloměrem 5. Zajisti, aby se <strong>kromě</strong> modrého kroužku nakreslil i stejně velký žlutý kroužek. Jeho střed však bude o 15 posunutý vpravo (k x-ové souřadnici přičteš 15).</p>
+          <p className="mt-2 text-sm text-slate-600">Při tažení myší by měl vzniknout zajímavý stínový efekt dvojité čáry.</p>
         </TaskCard>
 
-        <TaskCard number="6" title="Paprsky štěstí" taskId="6" showTeacher={teacherMode} teacherNote={<p>Kreslení úsečky přes <code>create_line(x1,y1, x2,y2)</code>, přičemž první bod je kotva a druhý je myš.</p>}>
-          <p>Odstraň podmínky, a vyměň malování štětcem oválů za úplně nový příkaz: Kreslení obyčejné čáry <code>canvas.create_line(x1, y1, x2, y2)</code>.</p>
-          <p>Funguje to skvěle: Vždycky narýsuje úsečku od prvního bodu až po ten tvůj druhý zadaný.</p>
-          <p>Když si napevno nastavíš ten PRVNÍ jako střed plátna (<code>150, 100</code>) a jako ten DRUHÝ zadáš <code>mys.x, mys.y</code>, bude se ti při tažení kursoru kreslit do té pozice od středu pořád dokola nová natažená rovná čára. Pokud budeš myší u tažení rovnou i kroužit, vznikne ti úžasné laserové paprskovité slunce vycházející ze středu!</p>
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Použili jsme tu nový příkaz <code>canvas.delete('all')</code>, pomocí kterého se z grafické plochy vymaže doposud vytvořená kresba.<br/>Číslice 3 v zápisu <code>'&lt;ButtonPress-3&gt;'</code> označuje pravé tlačítko myši. Kdyby se nahradila hodnotou 1, plocha by se smazala při každém kliknutí levým tlačítkem.</p>}>
+          <p>6. Vytvoř si nový program <code>odstranit.py</code> a zkopíruj do něj kód z minulého programu. Přepiš následující žlutě označený kód:</p>
+          <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef klik(mys):\n    ...\n\ndef smaz(mys):\n    canvas.delete('all')\n\ncanvas.bind('<B1-Motion>', klik)\ncanvas.bind('<ButtonPress-3>', smaz)`} />
+          <p className="mt-2">Nyní by mělo vše fungovat stejně, ale program bude také reagovat na situaci, kdy do grafické plochy klikneš pravým tlačítkem myši. Zkus něco do plochy nakreslit a potom klikni do plochy pravým tlačítkem. Můžeš to opakovat i vícekrát. Diskutuj se spolužákem, co se po kliknutí pravým tlačítkem myši stalo.</p>
         </TaskCard>
 
-        <TaskCard number="7*" title="Duplikovaný štětec 3D" taskId="7" showTeacher={teacherMode} teacherNote={<p>Experimenty s <code>for</code> cyklem uvnitř obsluhy události, nebo s více body naráz. Stačí nakreslit druhý element s drobným posunem a vznikne optická iluze tlusté housenky, co leze z myši.</p>}>
-          <p className="flex items-center gap-2 font-bold text-cyan-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
-          </p>
-          <p>Vrať se zpět k tomu kulatému stětci s funkcí `create_oval`.</p>
-          <p>Zkopíruj vnitřek toho příkazu tak, abys rovnou do svého <code>klik(mys)</code> udělal po sobě příkazy dva! První bude modrý kruh, ten druhý bude hned žlutý kruh... ALE... do jeho X a Y (hned za parametr myši v pluskách) si drze přičti <code>+ 15</code>.</p>
-          <p>Tím jsi stvořil optický klam a 3D duplikátor! Od té chvíle bude s tvojí myší cestovat nejen ten původní štětec, ale vždy o 15 bodů dál úplně stejný jeho stín a věrný kamarád! Při tažení ti vznikne dvojitá obří vlnovka!</p>
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Při tažení myší se kreslí úsečky z bodu [150, 100] do aktuální pozice myši. Proto mají všechny tyto úsečky společný jeden vrchol.<br/>Nakreslit srdce je snadné: barvu (fill u textu/ovalu, fill u line) lze samozřejmě nastavit, a když žáci přejíždějí myší, sami srdce postupně "vymalují" pomocí stovek čar.</p>}>
+          <p>7. Nyní se naučíme používat nový grafický příkaz <code>canvas.create_line(x1, y1, x2, y2)</code>. Pomocí něho lze nakreslit jednoduchou čáru (úsečku) z bodu <code>[x1, y1]</code> do bodu <code>[x2, y2]</code>. Vytvoř nový program <code>paprsky.py</code> a zkopíruj do něj předchozí kód.</p>
+          <p>Uprav podprogram klik takto:</p>
+          <PythonSnippet code={`def klik(mys):\n    canvas.create_line(150, 100, mys.x, mys.y)`} />
+          <p className="mt-2">Když program spustíš, budou všechny čáry vycházet z jednoho pevného středu <code>150, 100</code> až tam, kde máš zrovna myš.</p>
+          <p className="font-bold text-cyan-800">Dokážeš nakreslit plné červené srdce? Barvu úsečky nastavíš přes <code>fill='red'</code> a myší "vybarvíš" tvar srdce!</p>
         </TaskCard>
 
-        <TaskCard number="8*" title="Sprej na zdi grafitti" taskId="8" showTeacher={teacherMode} teacherNote={<p>Do události pro tažení myši dají žáci gigantický cyklus (for i in range(50)), který vystřelí přes `create_text` 50 různých puntíků do zcela náhodných úhlů od myši (-30, 30). Mistrovské dílo a vyvrcholení učebnice!</p>}>
-          <p className="flex items-center gap-2 font-bold text-cyan-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
-          </p>
-          <p>Jako absolutní Finále a tvůj závěrečný mistrovský kousek stvoříš simulaci skutečného spreje na zdi (Grafitti)!</p>
-          <p>Pojmenuj to <code>sprej.py</code>. V oné tajemné funkci <code>klik(mys)</code> vymaž úplně vše. Napiš obří for cyklus s padesáti koly! V tom cyklu (čímž se rozehraje v jediném nepostřehnutelném kliknutí točivý ohňostroj kódů) vylosuj náhodný bod rozptylu od myši: <code>dx = randint(-30, 30)</code>.</p>
-          <p>A pod tím vypal do obrazovky skrz <code>create_text</code> jeden bod spreje, na pozici <code>mys.x + dx</code>.</p>
-          <p>Právě jsi ohnul svět, cykly a události ve svůj prospěch! Když teď v plátně stiskneš tlačítko, vyprskne kolem myši okamžitě šrapnel 50 teček. Pokud potáhneš po obrazovce s myší s tímto sprejem, vznikne mistrovské dílo.</p>
-          <div className="mt-6 flex flex-col items-center p-4 bg-emerald-50 rounded-xl border-2 border-emerald-200">
-            <h3 className="font-black text-xl text-emerald-800 uppercase tracking-widest text-center mb-2">Gratulujeme!</h3>
-            <p className="text-center text-sm font-medium text-emerald-700">Dostal jsi se až na samotný konec kurzu! Prošel jsi 20 lekcemi od obyčejných proměnných až po interaktivní události v plátně. Jsi plnohodnotný programátor!</p>
-          </div>
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    canvas.create_line(mys.x, mys.y, mys.x, mys.y-50)</code></p>}>
+          <p>8. Vytvoř nový program <code>spendliky.py</code> a zkopíruj do něj kód. Uprav kód tak, aby každá úsečka <strong>začínala na pozici myši</strong> <code>([mys.x, mys.y])</code> a končila v bodě posunutém o 50 směrem vzhůru (tedy y-ová souřadnice konce úsečky bude o 50 zmenšená).</p>
+          <p className="mt-2 text-sm text-slate-600">Dostaneš tak svislé čárky, které budou vždy mířit nahoru z místa, kudy jsi táhl myší (efekt hřebenu).</p>
+        </TaskCard>
+
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    canvas.create_line(mys.x, mys.y, mys.x, mys.y-50)</code><br/><code>    canvas.create_oval(mys.x-5, mys.y-5-50, mys.x+5, mys.y+5-50, fill='red')</code></p>}>
+          <p>9. Uprav program <code>spendliky.py</code> tak, aby byl na horním konci každé svislé úsečky nakreslen ještě malý červený kroužek.</p>
+          <p className="mt-2 text-sm text-slate-600">Tip: Kroužek se nakreslí tak, že z <code>mys.y</code> ubereš 50, čímž ho dostaneš na konec té čáry.</p>
+        </TaskCard>
+
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><code>def klik(mys):</code><br/><code>    barva = random.choice(['red', 'yellow', 'blue', 'green'])</code><br/><code>    canvas.create_rectangle(10, 10, mys.x, mys.y, fill=barva)</code></p>}>
+          <p>10. Vytvoř nový program <code>mys_obdelniky.py</code>. Uprav podprogram <code>klik</code> tak, aby byl schopen nakreslit obdélník, jehož levý horní roh bude mít vždy souřadnice <code>[10, 10]</code> a pravý dolní roh bude na aktuální pozici myši <code>[mys.x, mys.y]</code>. Tento obdélník bude vybarvený náhodně zvolenou barvou.</p>
+          <PythonSnippet code={`barva = random.choice(['red', 'yellow', 'blue', 'green'])`} />
+        </TaskCard>
+
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def klik(mys):</code><br/><code>    x = mys.x</code><br/><code>    y = mys.y</code><br/><code>    for i in range(10):</code><br/><code>        canvas.create_oval(x-5, y-5, x+5, y+5, fill='red')</code><br/><code>        x = x + 10</code></p>}>
+          <p>11. Vrať se k programu <code>dvojite.py</code> a uprav v něm kód tak, aby byl schopen kreslit 10 červených kroužků. Tyto kroužky budou nakreslené těsně vedle sebe:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li>První kroužek bude na pozici myši</li>
+            <li>Každý další bude mít svůj střed posunutý o 10 vpravo oproti předchozímu kroužku (tedy x-ovou souřadnici zvětši o 10)</li>
+          </ul>
+          <p className="mt-2 font-bold text-cyan-800">Vykreslení jednotlivých kroužků v podprogramu klik zajisti pomocí for cyklu.</p>
+          <p className="mt-2 text-sm text-slate-600">Při tažení myší tak nakreslíš celou tlustou "stuhu" z 10 bodů naráz.</p>
+        </TaskCard>
+
+        <TaskCard number="12*" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import random</code><br/><code>barva = 'blue'</code><br/><code>def klik(mys):</code><br/><code>    for i in range(50):</code><br/><code>        dx = random.randint(-30, 30)</code><br/><code>        dy = random.randint(-30, 30)</code><br/><code>        canvas.create_text(mys.x + dx, mys.y + dy, text='+', fill=barva)</code><br/><br/>Do terminálu můžeme psát přímo příkazy a změnit tak globální proměnnou <code>barva = 'yellow'</code>, myš začne kreslit žlutě.</p>}>
+          <p>12* Vytvoř nový program <code>sprej.py</code>. Nyní budeš dělat efekt reálného spreje.</p>
+          <p>Nejprve <strong>mimo</strong> podprogram (úplně dolů, ale před bind) zapiš kód <code>barva = 'blue'</code>. Dále budeš upravovat podprogram <code>klik</code>:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-2 text-sm text-slate-600">
+            <li>Nejprve se náhodně zvolí dvě čísla <code>dx</code> a <code>dy</code> z intervalu -30, 30 (pomocí <code>random.randint(-30, 30)</code>)</li>
+            <li>Tato dvojice čísel vyjadřuje posunutí nakreslené tečky oproti pozici myši. Tečka bude na pozici <code>mys.x+dx, mys.y+dy</code></li>
+            <li>Na tuto posunutou pozici nakresli znak <code>'+'</code> (přes create_text). Jako barvu použij proměnnou <code>barva</code>.</li>
+            <li>Tento postup s náhodnými čísly zopakuj <strong>v cyklu 50krát</strong>. Tím při jednom "kliknutí" nakreslíš 50 částeček!</li>
+          </ul>
+          <p className="mt-4 font-bold text-cyan-800">Když budeš chtít za běhu změnit barvu spreje, stačí do příkazového řádku zapsat kód: <code>barva = 'yellow'</code>.</p>
+          <p className="text-sm">Od tohoto okamžiku bude sprej na plátně prskat žlutou barvu.</p>
         </TaskCard>
 
       </div>

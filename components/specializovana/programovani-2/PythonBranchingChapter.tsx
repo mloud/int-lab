@@ -9,13 +9,13 @@ interface PythonBranchingChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-indigo-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-yellow-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
-            <span className="text-indigo-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-indigo-300">{line.substring(3).trim()}</span>
+            <span className="text-yellow-500 mr-2 select-none">{">>>"}</span>
+            <span className="text-yellow-300">{line.substring(3).trim()}</span>
           </>
         ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
           <span className="text-rose-400">{line}</span>
@@ -28,34 +28,34 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
+  <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
     <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-indigo-600" />
-      <span className="font-bold text-indigo-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
+      <GraduationCap className="w-5 h-5 text-yellow-600" />
+      <span className="font-bold text-yellow-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
     </div>
-    <div className="text-sm text-indigo-900 leading-relaxed">
+    <div className="text-sm text-yellow-900 leading-relaxed">
       {children}
     </div>
   </div>
 );
 
-const CanvasPreview = ({ children, width = 300, height = 200, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
+const CanvasPreview = ({ children, width = 380, height = 266, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
   <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
     {children}
   </div>
 );
 
-const Rect = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
+const Rect = ({ x1, y1, width, height, fill = "transparent", stroke = "black", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string, noBorder?: boolean }) => (
   <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'}`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
+    className="absolute" 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill, border: noBorder ? 'none' : `1px solid ${stroke}` }} 
   />
 );
 
-const Oval = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
+const Oval = ({ x1, y1, width, height, fill = "transparent", stroke = "black" }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string }) => (
   <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'} rounded-[50%]'`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
+    className="absolute rounded-[50%]" 
+    style={{ left: x1, top: y1, width, height, backgroundColor: fill, border: `1px solid ${stroke}` }} 
   />
 );
 
@@ -74,16 +74,17 @@ const TaskCard = ({
   showTeacher: boolean,
   taskId: string
 }) => {
-  const [done, setDone] = useLocalStorage(`py17-task-${taskId}`, false);
+  const [done, setLocalStorageDone] = useLocalStorage(`py17-task-${taskId}`, false);
+  const doneBool = done === true;
 
   return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
+    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
       <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-indigo-100 text-indigo-700 rounded-2xl flex items-center justify-center font-black text-xl">
+        <div className="shrink-0 w-12 h-12 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center font-black text-xl">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -94,15 +95,15 @@ const TaskCard = ({
 
           <div className="mt-6 flex justify-end">
             <button 
-              onClick={() => setDone(!done)}
+              onClick={() => setLocalStorageDone(!doneBool)}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                done 
+                doneBool 
                 ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
                 : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {done ? 'Splněno' : 'Označit jako splněné'}
+              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-emerald-600' : 'text-slate-400'}`} />
+              {doneBool ? 'Splněno' : 'Označit jako splněné'}
             </button>
           </div>
         </div>
@@ -138,15 +139,15 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
   return (
     <FsChapterShell
       title="Větvení a konstrukce"
-      subtitle="Kombinace smyček a podmínek pro komplexní grafiku (iMyšlení Lekce 17)"
-      icon={<GitMerge className="w-8 h-8 text-indigo-600" />}
+      subtitle="Lekce 17"
+      icon={<GitMerge className="w-8 h-8 text-yellow-600" />}
       onBack={onBack}
-      accentColor="indigo"
+      accentColor="yellow"
       tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-indigo-100">
+          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-yellow-100">
             <input 
               type="password" 
               placeholder="Zadej PIN" 
@@ -156,13 +157,13 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
               onKeyDown={(e) => e.key === 'Enter' && submitPin()}
               autoFocus
             />
-            <button onClick={submitPin} className="bg-indigo-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
+            <button onClick={submitPin} className="bg-yellow-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
           </div>
         ) : (
           <button 
             onClick={handleToggleTeacher}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-indigo-100 text-indigo-700 border-indigo-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
+              teacherMode ? 'bg-yellow-100 text-yellow-700 border-yellow-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
             {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
@@ -172,111 +173,229 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-indigo-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-indigo-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Dnes obě tvé super-schopnosti (cykly a podmínky if/else) spojíme do jedné! Zjistíme, co se stane, když uvnitř jednoho velkého cyklu dáš podmínku, aby počítač část věcí kreslil modře, a jinou část červeně.
-          </p>
-        </div>
-
-        <TaskCard number="1" title="Opakování: Neformální pozdrav" taskId="1" showTeacher={teacherMode} teacherNote={<p>Úloha pro zopakování úplných základů větvení z předchozí lekce. Pokud <code>vek &lt; 18</code> vypíše "Ahoj", jinak vypíše "Dobrý den".</p>}>
-          <p>Kamarádku pozdravíš neformálně "Ahoj", ale starší lidi pozdravíš formálněji, například "Dobrý den". Napiš program <code>pozdravy_podle_veku.py</code>, ve kterém do proměnné <code>vek</code> přiřadíš věk člověka.</p>
-          <p>Potom použij příkaz větvení (if a else) na to, aby se program sám rozhodl, který z uvedených dvou pozdravů vypíše na obrazovku. Otestuj ho pro čísla 15, 18 i 50.</p>
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>vek = 15</code><br/><code>if vek &lt; 18:</code><br/><code>    print('Ahoj')</code><br/><code>else:</code><br/><code>    print('Dobrý den')</code></p>}>
+          <p>1. Kamarádku pozdravíš neformálně „Ahoj“, ale starší lidi pozdravíš formálněji, například „Dobrý den“. Napiš program <code>pozdravy_podle_veku.py</code>, ve kterém do proměnné <code>vek</code> přiřadíš věk člověka. Potom použij příkaz větvení na to, aby se program podle věku rozhodl, který z uvedených dvou pozdravů vypíše. Otestuj, jaké pozdravy se vypisují pro různé hodnoty proměnné <code>vek</code>.</p>
         </TaskCard>
 
-        <TaskCard number="2" title="Výplata na brigádě" taskId="2" showTeacher={teacherMode} teacherNote={<p>Tady se do obou větví if/else přidává i matematický výpočet výdělku: <code>mzda = hodin * 80</code> vs <code>mzda = hodin * 100</code>.</p>}>
-          <p>Na brigádě ve stánku se zmrzlinou dostaneš mzdu podle následujícího pravidla:</p>
-          <ul className="list-disc pl-5 mb-2 space-y-1 text-sm">
-            <li>když budeš pracovat <strong>méně než 10 hodin</strong>, vyděláš si 80 korun za hodinu,</li>
-            <li>jinak (tzn. od 10 a výše) dostaneš obrovský bonus a vyděláš si 100 korun za hodinu.</li>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>hodin = 7</code><br/><code>if hodin &lt; 10:</code><br/><code>    print('Vyděláš si', hodin * 80, 'korun.')</code><br/><code>else:</code><br/><code>    print('Vyděláš si', hodin * 100, 'korun.')</code></p>}>
+          <p>2. Na brigádě ve stánku se zmrzlinou dostaneš mzdu podle následujícího pravidla:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li>když budeš pracovat méně než 10 hodin, vyděláš si 80 korun za hodinu,</li>
+            <li>jinak si vyděláš 100 korun za hodinu.</li>
           </ul>
-          <p>Vytvoř program, ve kterém do proměnné <code>hodin</code> přiřadíš počet hodin. Potom pomocí větvení vypočti do nové proměnné <code>mzda</code> konečnou částku k vyplacení a na konci programu ji jedním printem vypiš. Program by měl vypsat:</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-sm rounded-xl">
-            Vyděláš si 560 korun.<br/>
-            <span className="text-emerald-700">// (tohle platí pro hodin = 7)</span><br/><br/>
-            Vyděláš si 1200 korun.<br/>
-            <span className="text-emerald-700">// (tohle platí pro hodin = 12)</span>
+          <p className="mt-4">Vytvoř nový program, ve kterém do proměnné <code>hodin</code> přiřaď počet hodin, které jsi odpracoval. Potom pomocí příkazu větvení vypiš, kolik si vyděláš. Program by měl vypsat:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Vyděláš si 560 korun.<br/>
+              <span className="text-slate-500 font-sans">pro hodin = 7</span>
+            </div>
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Vyděláš si 1200 korun.<br/>
+              <span className="text-slate-500 font-sans">pro hodin = 12</span>
+            </div>
           </div>
         </TaskCard>
 
-        <TaskCard number="3" title="Mobilní operátor Vegafon" taskId="3" showTeacher={teacherMode} teacherNote={<p>Další varianta ifelse s výpočtem, zkušení žáci už ji zvládnou rychle. <code>if megabajty &lt; 10: cena = megabajty * 2 else: cena = 20</code>.</p>}>
-          <p>Mobilní operátor Vegafon počítá platby za tvá přenesená mobilní data takto:</p>
-          <ul className="list-disc pl-5 mb-2 space-y-1 text-sm">
-            <li>Když za den přeneseš <strong>méně než 10 megabajtů dat</strong>, zaplatíš za každý tvůj megabajt 2 koruny.</li>
-            <li>Jinak (od 10 nahoru) máš už paušál a zaplatíš za celý den pevných 20 korun nezávisle na datech.</li>
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>hodin = 20</code><br/><code>if hodin &lt; 10:</code><br/><code>    mzda = hodin * 80</code><br/><code>else:</code><br/><code>    mzda = hodin * 100</code><br/><code>print('Vyděláš si', mzda, 'korun.')</code></p>}>
+          <p>3. Předchozí úloha se dá řešit i takto:</p>
+          <PythonSnippet code={`hodin = 20\nif ..............................:\n    mzda = ..............................\nelse:\n    mzda = ..............................\nprint('Vyděláš si', mzda, 'korun.')`} />
+          <p className="mt-2">Doplň namísto vytečkovaných částí správné výrazy. Ověř, že program správně počítá mzdu pro různé hodnoty proměnné <code>hodin</code>.</p>
+        </TaskCard>
+
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>megabajty = 6</code><br/><code>if megabajty &lt; 10:</code><br/><code>    cena = megabajty * 2</code><br/><code>else:</code><br/><code>    cena = 20</code><br/><code>print('Zaplatíš', cena, 'korun.')</code></p>}>
+          <p>4. Mobilní operátor Vegafon počítá platby za přenesená data podle následujících pravidel:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li>když za den přeneseš méně než 10 megabajtů dat, zaplatíš za každý megabajt 2 koruny,</li>
+            <li>jinak zaplatíš za celý den 20 korun.</li>
           </ul>
-          <p>Napiš program <code>mobilni_data.py</code>, dej si data do proměnné a vypočítej svou cenu!</p>
-        </TaskCard>
-
-        <TaskCard number="4" title="Zrádný operátor Zodrafon" taskId="4" showTeacher={teacherMode} teacherNote={<p>Zde se podmínka v `else` stává záludnější, platí se základ 10 kč a k tomu data nad limit (přesah): <code>cena = 10 + (megabajty - 10) * 3</code>.</p>}>
-          <p>Konkurenční operátor Zodrafon počítá platby takto záludně:</p>
-          <ul className="list-disc pl-5 mb-2 space-y-1 text-sm">
-            <li>Když přeneseš do 10 megabajtů dat, zaplatíš za každý megabajt 1 korunu.</li>
-            <li>Jinak tě zkasíruje o 10 korun a k tomu za KAŽDÝ tvůj přečerpaný megabajt nad onen limit 10 megabajtů doplatíš těžké 3 koruny. (Tedy např. za 12 megabajtů platíš 10 kč základ + ty dva extra megabajty * 3 kč).</li>
-          </ul>
-          <p>Vytvoř program <code>mobilni_data2.py</code>. Pokud správně zkonstruuješ onu rovnici do svého <code>else</code>, měl by ti program pro zadaných 20 megabajtů vyhodit cenu 40 korun.</p>
-        </TaskCard>
-
-        <TaskCard number="5" title="Cyklus dne a noci" taskId="5" showTeacher={teacherMode} teacherNote={<p>Podmínka určující i obarvení grafiky (parametr fill). Zde se do <code>if</code> dá kreslení bílého kruhu a do <code>else</code> žlutého kruhu.</p>}>
-          <p>Vytvoř nový grafický program <code>den_noc.py</code>, který podle zadaného času nakreslí slunce nebo měsíc.</p>
-          <p>Do proměnné <code>cas</code> přiřaď libovolný počet hodin (0 až 23). Použij příkaz větvení na to, aby se pro čas menší než 8 nakreslil měsíc (bílý kruh uprostřed plátna), ale JINAK aby se nakreslilo slunce (stejný kruh, akorát bude celý žlutý).</p>
-        </TaskCard>
-
-        <TaskCard number="6" title="Vykreslení nebe" taskId="6" showTeacher={teacherMode} teacherNote={<p>Nyní už obě větve obsahují 2 příkazy pod sebou: <code>create_rectangle</code> (pozadí) a <code>create_oval</code> (nebeské těleso). Důležité je pohlídat stejné odsazení obou příkazů zleva uvnitř větví <code>if</code> a <code>else</code>!</p>}>
-          <p>Do předchozího kódu doplň kreslení pozadí – ať visí náš měsíc na ohromném tmavomodrém obdélníku přes celé plátno, a žluté sluníčko zase na zářivě světlemodrém pozadí! Musíš do svých obou větví vložit po jednom novém příkazu takto (dbej na to odsazení!):</p>
-          <PythonSnippet code={`if cas < 8:\n    canvas.create_rectangle(0, 0, 300, 200, fill='navy')\n    canvas.create_oval(... ten tvůj bílý kruh ...)\nelse:\n    canvas.create_rectangle(0, 0, 300, 200, fill='cyan')\n    canvas.create_oval(... ten tvůj žlutý kruh ...)`} />
-        </TaskCard>
-
-        <TaskCard number="7" title="Krajinka" taskId="7" showTeacher={teacherMode} teacherNote={<p>Žáci zjišťují, že pokud chtějí něco společného pro VŠECHNY scénáře nezávisle na podmínce (jako je třeba zelená louka, pohoří nebo tráva), nesmí to dávat do ifů, ale dát to prostě s nulovým odsazením až na samotný konec programu mimo struktury.</p>}>
-          <p>K tvému střídajícímu se dni a noci přidej zelenou louku. Trávu představuje zelený obdélník, ležící třeba ve spodní čtvrtině obrazovky.</p>
-          <p className="font-bold text-indigo-700">Trik:</p>
-          <p>Tento zelený obdélník nemusíš složitě kopírovat do ifu pro noc i do ifu pro den, protože tráva je tam přece furt stejná bez ohledu na slunce! Úplně postačí ho nakreslit až na samotném konci programu zcela bez odsazení (aby se prostě automaticky nalepil přes všechno).</p>
-          <CanvasPreview width={300} height={200} noBorder>
-            <div className="absolute inset-0 bg-cyan-400"></div>
-            <Oval x1={150-30} y1={90-30} width={60} height={60} fill="yellow" noBorder />
-            <Rect x1={0} y1={150} width={300} height={50} fill="green" noBorder />
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="8" title="Úkryt do cyklu" taskId="8" showTeacher={teacherMode} teacherNote={<p>Tady nastupuje opravdová magie (vnořené konstrukce). Všechny řádky s větvením musí být nyní OPUC ODSUNUTÉ DO PRAVA, aby byly součástí for cyklu. A kód, co už byl uvnitř if/else, se posouvá ještě dál!</p>}>
-          <p>Přečti si následující program. Zkouší, co se stane, když se příkaz <code>if</code> a <code>else</code> ocitne <strong>vevnitř (v těle) jednoho velkého opakujícího se for cyklu</strong>!</p>
-          <PythonSnippet code={`for i in range(14):\n    if i < 8:\n        print(i, 'ještě spím')\n    else:\n        print(i, 'už jsem ve škole')`} />
-          <p>Díky tomu, že je if schovaný uvnitř cyklu a rovnou si ověřuje naši cyklující proměnnou <code>i</code>, se program prvních osm kol (od i=0 po i=7) rozhodne věci zaspat, a až nastane osmé kolo, neomylně začne psát, že je ve škole.</p>
-          <p className="mt-2 text-indigo-700 font-bold">Pozor na propastné odsazování!</p>
-          <p className="text-sm">Všimni si, že <code>if</code> a <code>else</code> jsou teď samotné odsazené o 4 mezery do prava, protože leží ve smyčce. A jejich vnitřní příkazy print musí být odsazené dokonce o 8 mezer!</p>
-        </TaskCard>
-
-        <TaskCard number="9" title="Chudý a bohatý" taskId="9" showTeacher={teacherMode} teacherNote={<p>Aplikace poznatku z předchozí úlohy. Cyklus <code>for i in range(10)</code>. Tělo je posunuté. Uvnitř <code>if i &lt; 5:</code> a do něj vnořený print "jsem chudý". Else a do něj vnořený "jsem bohatý".</p>}>
-          <p>Vytvoř nový program <code>chudy_bohaty.py</code>. V něm podobně jako v předchozí úloze vytvoř smyčku s 10 opakováními. Dovnitř cyklu vlož podmínku, a zajisti si tak tenhle luxusní výpis:</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-xs sm:text-sm rounded-xl">
-            Mám 0 korun, jsem chudý<br/>
-            Mám 10 korun, jsem chudý<br/>
-            ...<br/>
-            Mám 40 korun, jsem chudý<br/>
-            Mám 50 korun, jsem bohatý<br/>
-            Mám 60 korun, jsem bohatý<br/>
-            ...
+          <p className="mt-4">Napiš program <code>mobilni_data.py</code>, ve kterém do proměnné <code>megabajty</code> přiřadíš počet přenesených megabajtů dat za jeden den. Použij příkaz větvení na to, abys do proměnné <code>cena</code> přiřadil vyúčtovanou cenu. Nakonec tuto cenu vypiš. Výpis může vypadat například takto:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Zaplatíš 12 korun.<br/>
+              <span className="text-slate-500 font-sans">pro megabajty = 6</span>
+            </div>
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Zaplatíš 20 korun.<br/>
+              <span className="text-slate-500 font-sans">pro megabajty = 20</span>
+            </div>
           </div>
-          <p className="text-sm mt-2 italic">Nápověda: Ten 10x nárůst peněz získáš v printu opět klasickým násobením <code>i * 10</code>.</p>
         </TaskCard>
 
-        <TaskCard number="10" title="Náhrdelník" taskId="10" showTeacher={teacherMode} teacherNote={<p>Kombinace cyklu kreslícího řadu na x-ose a podmiňování barev podle <code>i</code>. `x = 50 + i * 20`, pokud `i &lt; 8` nakreslí red, jinak blue.</p>}>
-          <p>Vytvoř nový program <code>koralky.py</code>. Tvoje <code>for</code> smyčka teď bude umět střídat grafiku!</p>
-          <p>Pomocí jediného cyklu s vnořeným větvením nakresli řadu 15 korálků. Pomocí podmínky na <code>i</code> zařiď, aby prvních 8 z nich bylo vybarveno červeně, a zbytek modře.</p>
-          <CanvasPreview width={300} height={100} className="border-none shadow-none bg-white">
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>megabajty = 20</code><br/><code>if megabajty &lt; 10:</code><br/><code>    cena = megabajty * 1</code><br/><code>else:</code><br/><code>    cena = 10 + (megabajty - 10) * 3</code><br/><code>print('Zaplatíš', cena, 'korun.')</code></p>}>
+          <p>5. Mobilní operátor Zodrafon počítá platby za přenesená data podle odlišných pravidel:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li>když za den přeneseš méně než 10 megabajtů, zaplatíš za každý megabajt 1 korunu,</li>
+            <li>jinak zaplatíš 10 korun a k tomu za každý megabajt nad limit 10 megabajtů 3 koruny.</li>
+          </ul>
+          <p className="mt-4">Napiš program <code>mobilni_data2.py</code>, který počítá a vypisuje cenu podle těchto pravidel, a ověř, zda funguje správně. Program by měl například vypsat:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Zaplatíš 6 korun.<br/>
+              <span className="text-slate-500 font-sans">pro megabajty = 6</span>
+            </div>
+            <div className="text-center font-mono text-sm bg-slate-50 p-2 rounded-lg">
+              Zaplatíš 40 korun.<br/>
+              <span className="text-slate-500 font-sans">pro megabajty = 20</span>
+            </div>
+          </div>
+        </TaskCard>
+
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 4</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='yellow')</code></p>}>
+          <p>6. Vytvoř program <code>den_noc.py</code>, který podle zadaného času nakreslí do grafické plochy slunce nebo měsíc. Do proměnné <code>cas</code> přiřaď počet hodin. Použij příkaz větvení na to, aby se pro <code>cas &lt; 8</code> kreslil měsíc jako bílý kruh, jinak se kreslilo slunce jako žlutý kruh. Poloměr kruhu nechť je v obou případech 50 a střed kruhu má souřadnice <code>[200, 100]</code>. Program by měl například nakreslit:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="#f0f0f0">
+                <Oval x1={50} y1={25} width={100} height={100} fill="white" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 4</div>
+            </div>
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="#f0f0f0">
+                <Oval x1={50} y1={25} width={100} height={100} fill="yellow" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 14</div>
+            </div>
+          </div>
+        </TaskCard>
+
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 4</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(150, 50, 250, 150, fill='yellow')</code></p>}>
+          <p>7. Do předchozího řešení doplň kreslení pozadí – měsíc se nakreslí na tmavomodré pozadí, slunce na světlemodré pozadí:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="navy">
+                <Oval x1={50} y1={25} width={100} height={100} fill="white" stroke="transparent" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 4</div>
+            </div>
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="cyan">
+                <Oval x1={50} y1={25} width={100} height={100} fill="yellow" stroke="transparent" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 14</div>
+            </div>
+          </div>
+          <p className="mt-4 font-bold text-slate-800">Návod, jak to udělat:</p>
+          <p className="mt-2 text-sm text-slate-600">Stačí, když do každé větve přidáš příkaz na kreslení velkého obdélníku, který překryje celou grafickou plochu:</p>
+          <PythonSnippet code={`if ..............................:\n    canvas.create_rectangle(.............................., fill='navy')\n    canvas.create_oval(.............................., fill='white')\nelse:\n    canvas.create_rectangle(.............................., fill='cyan')\n    canvas.create_oval(.............................., fill='yellow')`} />
+        </TaskCard>
+
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = 14</code><br/><code>x = 200</code><br/><code>y = 150</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='yellow')</code><br/><code>canvas.create_rectangle(0, 180, 400, 300, fill='green')</code></p>}>
+          <p>8. Uprav předchozí program tak, aby se nejdříve do proměnných <code>x</code>, <code>y</code> přiřadily souřadnice středu kruhu a ty se potom použily v příkazech <code>create_oval</code>. Kromě toho přidej na úplný konec programu i kreslení zeleného obdélníku, který bude představovat krajinu. Potom program pro <code>x = 200</code> a <code>y = 150</code> bude kreslit scény jako na následujících obrázcích:</p>
+          <div className="flex justify-around items-center mt-4">
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="navy">
+                <Oval x1={50} y1={75} width={100} height={100} fill="white" stroke="transparent" />
+                <Rect x1={0} y1={120} width={200} height={30} fill="green" stroke="transparent" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 4</div>
+            </div>
+            <div className="text-center">
+              <CanvasPreview width={200} height={150} bgColor="cyan">
+                <Oval x1={50} y1={75} width={100} height={100} fill="yellow" stroke="transparent" />
+                <Rect x1={0} y1={120} width={200} height={30} fill="green" stroke="transparent" />
+              </CanvasPreview>
+              <div className="font-mono text-sm mt-2">pro cas = 14</div>
+            </div>
+          </div>
+          <p className="mt-4">Horní okraj zeleného obdélníku umísti na y-ovou souřadnici 180.</p>
+        </TaskCard>
+
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>cas = random.randint(0, 16)</code><br/><code>x = random.randint(100, 300)</code><br/><code>y = random.randint(100, 200)</code><br/><code>if cas &lt; 8:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='navy')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='white')</code><br/><code>else:</code><br/><code>    canvas.create_rectangle(0, 0, 400, 300, fill='cyan')</code><br/><code>    canvas.create_oval(x - 50, y - 50, x + 50, y + 50, fill='yellow')</code><br/><code>canvas.create_rectangle(0, 180, 400, 300, fill='green')</code></p>}>
+          <p>9. Vylepši předchozí program tak, aby fungoval jako náhodný generátor krajinek – přiřaď na začátku do proměnných <code>x</code>, <code>y</code>, <code>cas</code> náhodná čísla:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li><code>x</code> z rozsahu 100, 300</li>
+            <li><code>y</code> z rozsahu 100, 200</li>
+            <li><code>cas</code> z rozsahu 0, 16</li>
+          </ul>
+          <p className="mt-4">Program několikrát spusť a sleduj, zda se krajinky vytváří dle tvého očekávání.</p>
+        </TaskCard>
+
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Oba programy (s dvěma cykly vs. jeden cyklus + if) vypisují to samé, jen druhý používá vnořené větvení.</p>}>
+          <p>10. Následující program vypisuje denní harmonogram:</p>
+          <PythonSnippet code={`for i in range(8):\n    print(i, 'ještě spím')\nfor i in range(6):\n    print(8 + i, 'jsem ve škole')`} />
+          <p>Diskutuj se spolužákem, co konkrétně program vypíše. Poté program spusť v Pythonu a zkontroluj, zda byla Tvá domněnka správná.</p>
+          <p className="mt-4">Předchozí program se dá zapsat i takto, jen pomocí jediného cyklu:</p>
+          <PythonSnippet code={`for i in range(14):\n    if i < 8:\n        print(i, 'ještě spím')\n    else:\n        print(i, 'jsem ve škole')`} />
+          <p>Tělo cyklu <code>for</code> obsahuje jeden vnořený příkaz větvení <code>if else</code>. Vyzkoušej, jak funguje tato verze.</p>
+        </TaskCard>
+
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for i in range(10):</code><br/><code>    if i &lt; 5:</code><br/><code>        print('Mám', i * 10, 'korun, jsem chudý')</code><br/><code>    else:</code><br/><code>        print('Mám', i * 10, 'korun, jsem bohatý')</code></p>}>
+          <p>11. Vytvoř nový program <code>chudy_bohaty.py</code>. V něm podobně jako v předchozí úloze použij cyklus s vnořeným větvením a vypiš:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Mám 0 korun, jsem chudý<br/>
+Mám 10 korun, jsem chudý<br/>
+Mám 20 korun, jsem chudý<br/>
+Mám 30 korun, jsem chudý<br/>
+Mám 40 korun, jsem chudý<br/>
+Mám 50 korun, jsem bohatý<br/>
+Mám 60 korun, jsem bohatý<br/>
+Mám 70 korun, jsem bohatý<br/>
+Mám 80 korun, jsem bohatý<br/>
+Mám 90 korun, jsem bohatý
+          </div>
+          <p className="mt-4 text-sm text-slate-600">Proměnná cyklu se mění od 0 do 9 a vypisuje se desetinásobek hodnoty této proměnné.</p>
+        </TaskCard>
+
+        <TaskCard number="12" title="" taskId="12" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>for n in range(11):</code><br/><code>    if n * n &lt; 5 * n:</code><br/><code>        print(n * n, 'je menší než', 5 * n)</code><br/><code>    else:</code><br/><code>        print(n * n, 'je větší nebo rovno', 5 * n)</code><br/><br/>Pro která n onen vztah platí? Odpověď: pro n = 1, 2, 3, 4.</p>}>
+          <p>12. Víš, pro která čísla <code>n</code> platí, že <code>n²</code> je menší než <code>5 * n</code>? Napiš program <code>nasobky_peti.py</code>, který pro všechna čísla od 0 do 10 otestuje tento vztah a vypíše o tom patřičnou informaci, například:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+...<br/>
+16 je menší než 20<br/>
+25 je větší nebo rovno 25<br/>
+36 je větší nebo rovno 30<br/>
+...
+          </div>
+          <p className="mt-4 font-bold">Co tvůj program zjistil? Pro která n onen vztah platí?</p>
+        </TaskCard>
+
+        <TaskCard number="13" title="" taskId="13" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 20</code><br/><code>for i in range(15):</code><br/><code>    if i &lt; 8:</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill='red')</code><br/><code>    else:</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill='blue')</code><br/><code>    x = x + 20</code></p>}>
+          <p>13. Vytvoř nový program <code>koralky_na_niti.py</code>, ve kterém pomocí jediného cyklu s vnořeným větvením nakresli 15 korálků jako na obrázku níže. Prvních 8 korálků bude červených a zbylých 7 modrých.</p>
+          <CanvasPreview width={360} height={100} bgColor="#f0f0f0">
             {Array.from({ length: 15 }).map((_, i) => (
-              <Oval key={i} x1={15 + i * 18} y1={40} width={18} height={18} fill={i < 8 ? "red" : "blue"} />
+              <Oval key={i} x1={i * 20 + 30} y1={40} width={20} height={20} fill={i < 8 ? "red" : "blue"} />
             ))}
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="11*" title="Rozsypané korálky" taskId="11" showTeacher={teacherMode} teacherNote={<p>Cyklus s náhodnou pozicí. Pokud vyjde X &lt; 200 nakreslí se červený kruh, jinak namodralý. Na obrazovce vznikne jasná dělící hranice mezi barvami podle toho, kam zrovna náhodně spadly.</p>}>
-          <p className="flex items-center gap-2 font-bold text-indigo-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
-          </p>
-          <p>Dejme obrovské smyčce volnou ruku a nechme ji náhodně nakreslit 100 korálků rozházených po celé ploše.</p>
-          <p>V každém kole se vylosuje nějaké náhodné <code>X</code> a <code>Y</code>. Tvoje podmínka pak ale ověří ono vylosované číslo <code>X</code>. Když si všimne, že onen náhodný korálek spadl nalevo (kdy <code>x {"<"} 150</code>), vybarví ho červeně. Ale jakékoliv kuličky, které zrovna náhodně "popadaly" do pravé poloviny plátna, vymaluje modře!</p>
-          <p>Po spuštění programu objevíš úžasný efekt: kuličky jsou po stole sice náhodně rozházené, ale přesto bude barvami stůl jasně říznutý v půli a červené a modré týmy se spolu nesmíchají!</p>
+        <TaskCard number="14*" title="" taskId="14" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 20</code><br/><code>for i in range(15):</code><br/><code>    if i &lt; 8:</code><br/><code>        barva = random.choice(['red', 'yellow'])</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill=barva)</code><br/><code>    else:</code><br/><code>        barva = random.choice(['blue', 'green'])</code><br/><code>        canvas.create_oval(x, 100, x + 20, 120, fill=barva)</code><br/><code>    x = x + 20</code></p>}>
+          <p>14* Uprav předchozí program tak, aby se prvních 8 korálků barvilo náhodně pomocí</p>
+          <PythonSnippet code={`random.choice(['red', 'yellow'])`} />
+          <p>a zbylých 7 pomocí</p>
+          <PythonSnippet code={`random.choice(['blue', 'green'])`} />
+          <p className="mt-4">Výsledek může vypadat například jako na následujícím obrázku:</p>
+          <CanvasPreview width={360} height={100} bgColor="#f0f0f0">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <Oval 
+                key={i} 
+                x1={i * 20 + 30} 
+                y1={40} 
+                width={20} 
+                height={20} 
+                fill={i < 8 ? (Math.random() > 0.5 ? "red" : "yellow") : (Math.random() > 0.5 ? "blue" : "green")} 
+              />
+            ))}
+          </CanvasPreview>
+        </TaskCard>
+
+        <TaskCard number="15*" title="" taskId="15" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>import random</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def koralek():</code><br/><code>    x = random.randint(10, 390)</code><br/><code>    y = random.randint(10, 290)</code><br/><code>    if x &lt; 200:</code><br/><code>        barva = random.choice(['red', 'yellow'])</code><br/><code>    else:</code><br/><code>        barva = random.choice(['blue', 'green'])</code><br/><code>    canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill=barva)</code><br/><br/><code>for i in range(100):</code><br/><code>    koralek()</code></p>}>
+          <p>15* Vytvoř nový program <code>rozsypane_koralky.py</code> a v něm definuj podprogram <code>koralek</code>. V tomto podprogramu vygeneruj náhodné pozice <code>x</code>, <code>y</code> pro střed korálku. Program potom podle x-ové souřadnice nakreslí:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-600">
+            <li>červený nebo žlutý korálek, pokud je <code>x &lt; 200</code>;</li>
+            <li>modrý nebo zelený korálek pro ostatní čísla.</li>
+          </ul>
+          <p className="mt-4">Využij kreslení korálků z předchozí úlohy.</p>
+          <p>Když zavoláš podprogram <code>koralek</code> v cyklu stokrát, můžeš dostat například takovýto obrázek:</p>
+          <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
+            {Array.from({ length: 100 }).map((_, i) => {
+              const x = Math.floor(Math.random() * 280) + 10;
+              const y = Math.floor(Math.random() * 180) + 10;
+              const isLeft = x < 150;
+              const fill = isLeft ? (Math.random() > 0.5 ? "red" : "yellow") : (Math.random() > 0.5 ? "blue" : "green");
+              return (
+                <Oval key={i} x1={x - 8} y1={y - 8} width={16} height={16} fill={fill} />
+              );
+            })}
+          </CanvasPreview>
         </TaskCard>
 
       </div>

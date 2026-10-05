@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Terminal, CheckCircle, GraduationCap, Unlock, Lock, Zap, Code } from 'lucide-react';
+import { CheckCircle, GraduationCap, Unlock, Lock, Zap, Code } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 
@@ -9,13 +9,13 @@ interface PythonOutputsChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-emerald-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-purple-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
             <span className="text-purple-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-emerald-300">{line.substring(3).trim()}</span>
+            <span className="text-purple-300">{line.substring(3).trim()}</span>
           </>
         ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
           <span className="text-rose-400">{line}</span>
@@ -63,7 +63,7 @@ const TaskCard = ({
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -117,8 +117,8 @@ const PythonOutputsChapter: React.FC<PythonOutputsChapterProps> = ({ onBack }) =
 
   return (
     <FsChapterShell
-      title="Proměnné a výpisy"
-      subtitle="Kombinace textu a matematiky (iMyšlení Lekce 4)"
+      title="Výpisy"
+      subtitle="Lekce 4"
       icon={<Zap className="w-8 h-8 text-purple-600" />}
       onBack={onBack}
       accentColor="purple"
@@ -152,150 +152,86 @@ const PythonOutputsChapter: React.FC<PythonOutputsChapterProps> = ({ onBack }) =
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-purple-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-purple-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Dnes propojíme dvě věci, které už známe – <strong>Proměnné</strong> (paměťové krabičky) a <strong>Příkaz print</strong>. Budeme vytvářet inteligentní programy, které počítají a rovnou s námi i hezky mluví. Každý program si vždy <strong>ulož a spusť</strong> (klávesa F5).
-          </p>
-        </div>
-
-        <TaskCard 
-          number="1" 
-          title="Opakování" 
-          taskId="1"
-          showTeacher={teacherMode}
-          teacherNote={<p>Na úvodní úloze si žáci zopakují vytvoření nového programu, jeho uložení (jako zaciname.py), spuštění a příkaz print.</p>}
-        >
-          <p>Vytvoř program <code>zaciname.py</code>, který tě po spuštění přivítá zprávou se dvěma řádky:</p>
-          <PythonSnippet code={`Dobrý den\nZačíná programování`} />
-          <p>Poté program ulož a spusť. Zobrazila se zpráva dole v konzoli (Shellu)?</p>
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>print('Dobrý den')</code><br/><code>print('Začíná programování')</code></p>}>
+          <p>1. Vytvoř program <code>zaciname.py</code>, který tě po spuštění přivítá zprávou se dvěma řádky:</p>
+          <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
+Dobrý den<br/>
+Začíná programování
+          </div>
         </TaskCard>
 
-        <TaskCard 
-          number="2" 
-          title="Výpis pyramidy čísel" 
-          taskId="2"
-          showTeacher={teacherMode}
-          teacherNote={<p>Stačí pod sebe napsat <code>print(1 * 1)</code>, <code>print(11 * 11)</code>, <code>print(111 * 111)</code>, atd. Cílem je ukázat, že print může vyhodnocovat libovolně velké matematické výrazy postupně za sebou a vypíše je pod sebe na nové řádky.</p>}
-        >
-          <p>Doplň do předchozího programu příkazy <code>print</code> a vypiš pomocí nich pod sebou hodnoty výrazů (musíš je nechat Python spočítat, nedávej je do apostrofů!):</p>
-          <PythonSnippet code={`1*1\n11*11\n111*111\n1111*1111\n...\n111111111*111111111`} />
-          <p>Co vznikne ve výpisu? Je to docela magické, že?</p>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>print(1 * 1)</code><br/><code>print(11 * 11)</code><br/><code>...</code><br/><code>print(111111111 * 111111111)</code></p>}>
+          <p>2. Doplň do předchozího programu příkazy <code>print</code> a vypiš pomocí nich pod sebou hodnoty výrazů: <code>1*1</code>, <code>11*11</code>, <code>111*111</code>, <code>1111*1111</code>, …, <code>111111111*111111111</code>.</p>
         </TaskCard>
 
-        <TaskCard 
-          number="3" 
-          title="Vkládání proměnných do vět" 
-          taskId="3"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Zde se kombinují proměnné, přiřazení a výpisy. Pokud žáci v další (čtvrté) úloze vytvoří řešení <code>print('Příští rok mi bude 17 let')</code>, <strong>neopravujte je!</strong> Zjistí to sami v páté úloze, kde se proměnná změní a program jim vyhodí nesmysl.</p>
-            </div>
-          }
-        >
-          <p>I ve svém programu (nejen v interaktivním režimu) můžeš používat proměnné. Vytvoř program <code>vek.py</code>, který bude obsahovat následující kód, ulož ho a spusť:</p>
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode}>
+          <p>3. I ve svém programu můžeš používat proměnné – vytvoř program <code>vek.py</code>, který bude obsahovat následující kód, a spusť jej:</p>
           <PythonSnippet code={`vek = 16\nprint('Je mi', vek, 'let')`} />
-          <p>Nyní na konec programu přidej další příkaz, pomocí kterého vypíšeš zprávu:</p>
-          <PythonSnippet code={`Příští rok mi bude 17 let`} />
-          <p className="font-bold text-purple-600">Důležité: Místo čísla 17 použij matematický výraz v kombinaci s proměnnou vek (tzn. <code>vek + 1</code>). Jinak by tvůj program nebyl chytrý!</p>
+          <p>Když program spustíš, vypíše se:</p>
+          <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
+Je mi 16 let
+          </div>
         </TaskCard>
 
-        <TaskCard 
-          number="4" 
-          title="Zkouška chytrosti programu" 
-          taskId="5"
-          showTeacher={teacherMode}
-          teacherNote={<p>Zde se projeví, zda žáci správně pochopili smysl proměnné. Pokud napsali předtím 17 "natvrdo", vyjde jim "Je mi 40 let, Příští rok mi bude 17 let". Dojde jim to a opraví kód na <code>vek + 1</code>.</p>}
-        >
-          <p>Představ si, že tvůj chytrý program spustí tvůj otec. Vyzkoušej program za něj – změň na prvním řádku hodnotu proměnné <code>vek</code> na skutečný věk tvého otce (např. na 40). Nic jiného neměň!</p>
-          <p>Zobrazí mu program správný výsledek i na svém druhém řádku (kde počítá, kolik mu bude příští rok)? Jestliže ti program vypsal nějaký nesmysl, vrať se k Úloze 3 a oprav si to!</p>
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Je chybou použít <code>print('Příští rok mi bude 17 let')</code>, protože číslo je „zadrátované“ natvrdo. Správně je:<br/><code>print('Příští rok mi bude', vek + 1, 'let')</code></p>}>
+          <p>4. Přidej na konec programu <code>vek.py</code> další příkaz, pomocí kterého vypíšeš zprávu:</p>
+          <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm mb-4">
+Příští rok mi bude 17 let
+          </div>
+          <p>Až budeš mít hotovo, program otestuj.</p>
         </TaskCard>
 
-        <TaskCard 
-          number="5" 
-          title="Chytrá peněženka" 
-          taskId="6"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Prozatím budeme používat některé proměnné jako "vstupní hodnoty" (konstanty) na začátku skriptu, abychom zatím nemuseli učit příkaz <code>input()</code> a přetypování.</p>
-              <p>Očekávané řešení:</p>
-              <code>penize = 100</code><br/>
-              <code>platba = 20</code><br/>
-              <code>print('Mám', penize, 'korun')</code><br/>
-              <code>print('Zbyde mi', penize - platba, 'korun')</code>
-            </div>
-          }
-        >
-          <p>Vytvoř program <code>penezenka.py</code>. Na začátku přiřaď do proměnné <code>penize</code>, kolik korun máš. Do proměnné <code>platba</code> přiřaď cenu nákupu. Použij proměnné a vypiš pomocí nich přesně toto:</p>
-          <PythonSnippet code={`Mám ... korun\nPlatím ... korun\nZbyde mi ... korun`} />
-          <p className="text-purple-600">Místo teček se ve tvém výpisu musí objevit přesně ta čísla uložená v proměnných nebo výsledek odečítání!</p>
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode}>
+          <p>5. Představ si, že program <code>vek.py</code> spustí tvůj otec. Vyzkoušej program za něj – dosaď do proměnné <code>vek</code> skutečný věk tvého otce. Zobrazí mu program <code>vek.py</code> správný výsledek i na druhém řádku svého výstupu? Jestli ne, program oprav.</p>
         </TaskCard>
 
-        <TaskCard 
-          number="6" 
-          title="Běh okolo hřiště" 
-          taskId="7"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Předpokládané řešení:</p>
-              <p><code>sirka = 50</code><br/><code>delka = 80</code><br/><code>pocet_kol = 7</code></p>
-              <p><code>print('Šířka hřiště je', sirka, 'metrů, délka je', delka, 'metrů')</code></p>
-              <p>Elegantnější řešení může používat pomocnou proměnnou <code>jedno_kolo = 2 * (sirka + delka)</code>.</p>
-              <p>Druhá část úlohy slouží pro ověření správnosti, stačí jen změnit vstupní proměnné. Upozorněte ty žáky, kteří napsali ve výpisu číslo 7, že to musí vyměnit za proměnnou <code>pocet_kol</code>.</p>
-            </div>
-          }
-        >
-          <p>Školní hřiště má šířku <strong>50</strong> metrů a délku <strong>80</strong> metrů. V rámci tělocviku budeš běhat po jeho obvodě.</p>
-          <p>Vytvoř program <code>hriste.py</code>, který spočítá a vypíše, kolik metrů uběhneš po <strong>7</strong> kolech. Na začátku programu přiřaď všechny tučně zvýrazněné hodnoty do tří proměnných (třeba <code>sirka</code>, <code>delka</code> a <code>pocet_kol</code>) a pomocí těchto proměnných vypiš:</p>
-          <PythonSnippet code={`Šířka hřiště je 50 metrů, délka je 80 metrů\nJedno kolo okolo hřiště je 260 metrů\nPo 7 kolech uběhneš 1820 metrů`} />
-          <p className="font-bold mt-4">Druhá zkouška:</p>
-          <p>Předpokládejme nyní, že hřiště má šířku 45 metrů a délku 70 metrů. Jen přepiš proměnné nahoře a znovu to spusť. Zobrazí program správné hodnoty na všech řádcích (230 metrů kolo a 1610 celkem)? Jestli ne, oprav program!</p>
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>penize = 250</code><br/><code>platba = 180</code><br/><code>print('Mám', penize, 'korun')</code><br/><code>print('Platím', platba, 'korun')</code><br/><code>print('Zbyde mi', penize - platba, 'korun')</code></p>}>
+          <p>6. Vytvoř program <code>penezenka.py</code>. Na začátku přiřaď do proměnně <code>penize</code>, kolik korun máš. Do proměnné <code>platba</code> přiřaď cenu nákupu. Použij proměnné a vypiš pomocí nich:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Mám ... korun<br/>
+Platím ... korun<br/>
+Zbyde mi ... korun
+          </div>
+          <p className="mt-4">V následujících úlohách se <strong>tučně zvýrazněné</strong> hodnoty mohou měnit. Ve výpisech nepiš konkrétní čísla, ale použij vytvořené proměnné.</p>
         </TaskCard>
 
-        <TaskCard 
-          number="7*" 
-          title="Záludná procenta" 
-          taskId="9"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Tady žáci počítají slevu jako <code>sleva = 100 - (cena_po_sleve / puvodni_cena) * 100</code>.</p>
-              <p>Důležité odhalení: Pokud přiřadí do <code>puvodni_cena = 250</code> a do <code>cena_po_sleve = 239</code>, program jim místo čistých <code>4.4</code> procent vyhodí divoké číslo <code>4.400000000000006</code>.</p>
-              <p>O problému informujeme jen ty, co narazí. Jde o chybu reprezentace desetinných čísel ve dvojkové soustavě. Je to technický detail (tzv. "floating point math"). Python nezvládne číslo 4.4 vyjádřit ve dvojkové soustavě konečným počtem znaků, takže se to musí zaokrouhlit.</p>
-            </div>
-          }
-        >
-          <p className="flex items-center gap-2 font-bold text-amber-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol
-          </p>
-          <p>Napiš program <code>sleva.py</code>. Víš, že původní cena byla <strong>256</strong> korun a cena po slevě je <strong>214</strong> korun. Nech program vypočítat, kolik procent činí sleva, a pěkně to vypsat.</p>
-          <p>Poté vyzkoušej program pro původní cenu <strong>250</strong> korun a zlevněnou na <strong>239</strong>. Jakou výši slevy program vypíše? Není na tom čísle něco divného?</p>
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>sirka = 50</code><br/><code>delka = 80</code><br/><code>pocet_kol = 7</code><br/><code>print('Šířka hřiště je', sirka, 'metrů, délka je', delka, 'metrů')</code><br/><code>print('Jedno kolo okolo hřiště je', 2 * (sirka + delka), 'metrů')</code><br/><code>print('Po', pocet_kol, 'kolech uběhneš', pocet_kol * 2 * (sirka + delka), 'metrů')</code></p>}>
+          <p>7. Školní hřiště má šířku <strong>50</strong> metrů a délku <strong>80</strong> metrů. V rámci tělocviku budeš běhat po jeho obvodě. Vytvoř program <code>hriste.py</code>, který spočítá a vypíše, kolik metrů uběhneš po <strong>7</strong> kolech. Na začátku programu přiřaď do proměnné <code>sirka</code> hodnotu <strong>50</strong>, do proměnné <code>delka</code> hodnotu <strong>80</strong> a do proměnné <code>pocet_kol</code> hodnotu <strong>7</strong> a pomocí těchto proměnných vypiš:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Šířka hřiště je 50 metrů, délka je 80 metrů<br/>
+Jedno kolo okolo hřiště je 260 metrů<br/>
+Po 7 kolech uběhneš 1820 metrů
+          </div>
+          <p className="mt-4">Předpokládejme nyní, že školní hřiště má šířku <strong>45</strong> metrů a délku <strong>70</strong> metrů. Přiřaď tedy do proměnné <code>sirka</code> hodnotu <strong>45</strong> a do proměnné <code>delka</code> hodnotu <strong>70</strong>. Zobrazí program správné hodnoty na druhém a na třetím řádku svého výstupu? Jestli ne, program oprav.</p>
         </TaskCard>
 
-        <TaskCard 
-          number="8" 
-          title="Diskuze a komentáře" 
-          taskId="10"
-          showTeacher={teacherMode}
-          teacherNote={
-            <div className="space-y-2">
-              <p>Řešení spočívá v promyšleném použití operací <code>+</code> a <code>*</code>:</p>
-              <p><code>pocet1 = 3</code><br/><code>pocet2 = 2</code><br/><code>pocet3 = 5</code></p>
-              <p>Alena (pocet1) = 3</p>
-              <p>Petr (pocet1 * pocet2) = 6</p>
-              <p>Pavla ((pocet1 + pocet1 * pocet2) * pocet3) = 45</p>
-              <p>V další úloze si ověří, zda to postavili chytře z proměnných (jen změní pocet1 na 4, a na konci musí vyjít 60 pro Pavlu).</p>
-            </div>
-          }
-        >
-          <p>Kamarádi Alena, Petr a Pavla diskutují na sociální síti. Alena napsala <strong>3</strong> příspěvky. Petr na každý z nich poslal <strong>2</strong> odpovědi. Pavla všechno komentuje a ke každému z příspěvků Aleny a Petra poslala <strong>5</strong> komentářů.</p>
-          <p>Vytvoř program <code>diskuze.py</code> a definuj pro tučně zvýrazněná čísla proměnné (třeba <code>pocet1</code>, <code>pocet2</code>, <code>pocet3</code>). Z těchto proměnných nechej program spočítat a vypsat:</p>
-          <PythonSnippet code={`Počet příspěvků od Aleny: 3\nPočet příspěvků od Petra: 6\nPočet příspěvků od Pavly: 45`} />
-          <p className="font-bold mt-4">Zkouška správnosti:</p>
-          <p>Kolik komentářů by celkem napsala Pavla, jestliže by Alena napsala <strong>4</strong> příspěvky? Uprav nahoře jednu proměnnou (ostatní zachovej). Tvůj program by ti měl vyhodit pro Pavlu výsledek 60. Vyhodil?</p>
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>puvodni_cena = 199</code><br/><code>sleva = 20</code><br/><code>cena_po_sleve = puvodni_cena * (1 - sleva / 100)</code><br/><code>print('Cena alba je', puvodni_cena, 'korun')</code><br/><code>print('Sleva činí', sleva, 'procent')</code><br/><code>print('Zaplatíš', cena_po_sleve, 'korun')</code><br/><br/>Pro původní cenu 399 a slevu 30 % program vypíše zaplatíš 279.3 korun.</p>}>
+          <p>8. Internetový obchod s hudbou nabízí <strong>20</strong>% slevu. Chceš si koupit album, jehož původní cena byla <strong>199</strong> korun. Napiš program <code>sleva.py</code>, který vypočítá, kolik zaplatíš. V programu použij proměnné <code>puvodni_cena</code>, <code>sleva</code>, <code>cena_po_sleve</code> a pomocí nich proveď výpočty a vypiš:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Cena alba je 199 korun<br/>
+Sleva činí 20 procent<br/>
+Zaplatíš 159.2 korun
+          </div>
+          <p className="mt-4">Jakou výslednou cenu program vypíše pro album, jehož původní cena byla <strong>399</strong> korun, jestliže sleva činí <strong>30</strong> %?</p>
+        </TaskCard>
+
+        <TaskCard number="9*" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>puvodni_cena = 256</code><br/><code>cena_po_sleve = 214</code><br/><code>sleva = (1 - cena_po_sleve / puvodni_cena) * 100</code><br/><code>print('Cena alba je', puvodni_cena, 'korun')</code><br/><code>print('Sleva činí', sleva, 'procent')</code><br/><code>print('Zaplatíš', cena_po_sleve, 'korun')</code><br/><br/>Pro původní cenu 250 a cenu po slevě 230 vypíše slevu 8 procent.</p>}>
+          <p>9* Uprav program <code>sleva.py</code> tak, aby byl schopen spočítat výši slevy, jestliže původní cena alba byla <strong>256</strong> korun a cena alba po slevě je <strong>214</strong> korun.</p>
+          <p>Jakou výši slevy program vypíše pro album, jehož původní cena byla <strong>250</strong> korun a cena po slevě je <strong>230</strong> korun?</p>
+        </TaskCard>
+
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>pocet1 = 3</code><br/><code>pocet2 = 2</code><br/><code>pocet3 = 5</code><br/><code>print('Počet příspěvků od Aleny:', pocet1)</code><br/><code>print('Počet příspěvků od Petra:', pocet1 * pocet2)</code><br/><code>print('Počet příspěvků od Pavly:', pocet1 * pocet3 + pocet1 * pocet2 * pocet3)</code></p>}>
+          <p>10. Kamarádi Alena, Petr a Pavla diskutují na sociální síti. Alena napsala <strong>3</strong> příspěvky. Petr na každý z nich poslal <strong>2</strong> odpovědi. Pavla všechno komentuje a ke každému z příspěvků Aleny a Petra poslala <strong>5</strong> komentářů. Napiš program <code>diskuze.py</code>, který tuto diskuzi zhodnotí:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Počet příspěvků od Aleny: 3<br/>
+Počet příspěvků od Petra: 6<br/>
+Počet příspěvků od Pavly: 45
+          </div>
+          <p className="mt-4">Program vytvoř tak, aby se na začátku do proměnných <code>pocet1</code>, <code>pocet2</code> a <code>pocet3</code> přiřadil počet příspěvků Aleny, počet odpovědí na každý z nich od Petra a počet komentářů na každý z příspěvků od Pavly.</p>
+        </TaskCard>
+
+        <TaskCard number="11" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Pro 4 příspěvky Aleny (<code>pocet1 = 4</code>) vypíše program 60 pro Pavlu.</p>}>
+          <p>11. Kolik komentářů by podle tvého programu musela napsat Pavla, jestliže by Alena napsala <strong>4</strong> příspěvky? Počet odpovědí Petra a Pavly a způsob výpočtu se nemění.</p>
         </TaskCard>
 
       </div>

@@ -9,13 +9,13 @@ interface PythonSubroutinesChapterProps {
 }
 
 const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-emerald-400 overflow-x-auto shadow-inner border border-slate-700">
+  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-sky-400 overflow-x-auto shadow-inner border border-slate-700">
     {code.split('\n').map((line, i) => (
       <div key={i} className="flex">
         {line.startsWith('>>>') ? (
           <>
-            <span className="text-amber-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-emerald-300">{line.substring(3).trim()}</span>
+            <span className="text-sky-500 mr-2 select-none">{">>>"}</span>
+            <span className="text-sky-300">{line.substring(3).trim()}</span>
           </>
         ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
           <span className="text-rose-400">{line}</span>
@@ -28,22 +28,20 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
+  <div className="mt-4 bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
     <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-amber-600" />
-      <span className="font-bold text-amber-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
+      <GraduationCap className="w-5 h-5 text-sky-600" />
+      <span className="font-bold text-sky-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
     </div>
-    <div className="text-sm text-amber-900 leading-relaxed">
+    <div className="text-sm text-sky-900 leading-relaxed">
       {children}
     </div>
   </div>
 );
 
-const CanvasPreview = ({ children, width = 300, height = 200, className = "" }: { children: React.ReactNode, width?: number, height?: number, className?: string }) => (
-  <div className={`relative bg-slate-50 border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height }}>
-    <div className="absolute top-0 left-0 right-0 bottom-0 bg-white shadow-inner">
-      {children}
-    </div>
+const CanvasPreview = ({ children, width = 380, height = 266, className = "" }: { children: React.ReactNode, width?: number, height?: number, className?: string }) => (
+  <div className={`relative border-2 border-slate-300 bg-white shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height }}>
+    {children}
   </div>
 );
 
@@ -69,16 +67,17 @@ const TaskCard = ({
   showTeacher: boolean,
   taskId: string
 }) => {
-  const [done, setDone] = useLocalStorage(`py8-task-${taskId}`, false);
+  const [done, setLocalStorageDone] = useLocalStorage(`py8-task-${taskId}`, false);
+  const doneBool = done === true;
 
   return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
+    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
       <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center font-black text-xl">
+        <div className="shrink-0 w-12 h-12 bg-sky-100 text-sky-700 rounded-2xl flex items-center justify-center font-black text-xl">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
+          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
           <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
@@ -89,15 +88,15 @@ const TaskCard = ({
 
           <div className="mt-6 flex justify-end">
             <button 
-              onClick={() => setDone(!done)}
+              onClick={() => setLocalStorageDone(!doneBool)}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                done 
+                doneBool 
                 ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
                 : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {done ? 'Splněno' : 'Označit jako splněné'}
+              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-emerald-600' : 'text-slate-400'}`} />
+              {doneBool ? 'Splněno' : 'Označit jako splněné'}
             </button>
           </div>
         </div>
@@ -133,15 +132,15 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
   return (
     <FsChapterShell
       title="Podprogramy"
-      subtitle="Vlastní příkazy a skládání kódu (iMyšlení Lekce 8)"
-      icon={<Box className="w-8 h-8 text-amber-600" />}
+      subtitle="Lekce 8"
+      icon={<Box className="w-8 h-8 text-sky-600" />}
       onBack={onBack}
-      accentColor="amber"
+      accentColor="sky"
       tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-amber-100">
+          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-sky-100">
             <input 
               type="password" 
               placeholder="Zadej PIN" 
@@ -151,13 +150,13 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
               onKeyDown={(e) => e.key === 'Enter' && submitPin()}
               autoFocus
             />
-            <button onClick={submitPin} className="bg-amber-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
+            <button onClick={submitPin} className="bg-sky-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
           </div>
         ) : (
           <button 
             onClick={handleToggleTeacher}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-amber-100 text-amber-700 border-amber-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
+              teacherMode ? 'bg-sky-100 text-sky-700 border-sky-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
             {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
@@ -167,172 +166,251 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
       </div>
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-amber-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-amber-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Někdy potřebujeme vykonat stejnou věc v programu víckrát. Místo toho, abychom ten samý kód pořád dokola psali (nebo kopírovali), naučíme počítač úplně <strong>nový příkaz</strong>, pod který to všechno schováme. Říkáme tomu podprogram (nebo funkce). Každý program si vždy <strong>ulož a spusť</strong> (klávesa F5).
+        <div className="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-r-2xl mb-8">
+          <p className="text-sky-800/80 text-sm sm:text-base font-bold">
+            První úloha slouží k opakování použití proměnných při kreslení:
           </p>
         </div>
 
-        <TaskCard number="1" title="Opakování: Kostičková duha" taskId="1" showTeacher={teacherMode} teacherNote={<p>Úloha na procvičení proměnných z minulé lekce. Žáci napíší 7 příkazů pro kreslení obdélníků, kde od proměnných <code>x, y</code> budou postupně odečítat hodnoty od 140 až do 20.</p>}>
-          <p>Vytvoř program <code>duha.py</code>, který nakreslí kostičkovou duhu. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice pravého dolního rohu kostičkové duhy a použij je při kreslení barevných čtverců. Nejmenší čtverec má rozměry 20x20 a každý další je o 20 pixelů větší.</p>
-          <CanvasPreview width={300} height={200} className="border-b-4 border-black border-t-0 border-l-0 border-r-0 shadow-none bg-white">
-            <Rect x1={150-140} y1={200-140} width={140} height={140} fill="red" />
-            <Rect x1={150-120} y1={200-120} width={120} height={120} fill="orange" />
-            <Rect x1={150-100} y1={200-100} width={100} height={100} fill="yellow" />
-            <Rect x1={150-80} y1={200-80} width={80} height={80} fill="green" />
-            <Rect x1={150-60} y1={200-60} width={60} height={60} fill="blue" />
-            <Rect x1={150-40} y1={200-40} width={40} height={40} fill="purple" />
-            <Rect x1={150-20} y1={200-20} width={20} height={20} fill="magenta" />
+        <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><code>x = 200</code><br/><code>y = 200</code><br/><code>canvas.create_rectangle(x - 140, y - 140, x, y, fill = 'red')</code><br/><code>canvas.create_rectangle(x - 120, y - 120, x, y, fill = 'orange')</code><br/><code>canvas.create_rectangle(x - 100, y - 100, x, y, fill = 'yellow')</code><br/><code>canvas.create_rectangle(x - 80, y - 80, x, y, fill = 'green')</code><br/><code>canvas.create_rectangle(x - 60, y - 60, x, y, fill = 'blue')</code><br/><code>canvas.create_rectangle(x - 40, y - 40, x, y, fill = 'purple')</code><br/><code>canvas.create_rectangle(x - 20, y - 20, x, y, fill = 'magenta')</code></p>}>
+          <p>1. Vytvoř program <code>duha.py</code>, který nakreslí kostičkovou duhu. Do proměnných <code>x</code>, <code>y</code> přiřaď souřadnice pravého dolního rohu kostičkové duhy a použij je při kreslení barevných čtverců. Nejmenší čtverec má rozměry 20 x 20 a každý další je o 20 větší:</p>
+          <CanvasPreview width={250} height={250}>
+            <Rect x1={50} y1={50} width={140} height={140} fill="red" />
+            <Rect x1={70} y1={70} width={120} height={120} fill="orange" />
+            <Rect x1={90} y1={90} width={100} height={100} fill="yellow" />
+            <Rect x1={110} y1={110} width={80} height={80} fill="green" />
+            <Rect x1={130} y1={130} width={60} height={60} fill="blue" />
+            <Rect x1={150} y1={150} width={40} height={40} fill="purple" />
+            <Rect x1={170} y1={170} width={20} height={20} fill="magenta" />
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="2" title="Tvůj první podprogram" taskId="2" showTeacher={teacherMode} teacherNote={<p>Žáci si zde musí dát pozor na syntaktická pravidla: slovo <code>def</code>, symboly <code>():</code> a především na to, že příkazy uvnitř musí být <strong>odsazené od kraje</strong> (např. o 4 mezery, což např. Thonny nebo IDLE udělá automaticky po stisku Enter za dvojtečkou).</p>}>
-          <p>Doposud jsi mohl psát jen takové příkazy, které počítač znal (jako <code>print</code>). Teď ho naučíš nové, své vlastní příkazy – tzv. podprogramy. Postupuj následovně:</p>
-          <p>Vytvoř nový program <code>vypis.py</code>, ve kterém bude napsaný jen následující kód (všimni si nového slova <code>def</code> a dvojtečky na konci řádku!):</p>
-          <PythonSnippet code={`def vypis_text():\n    print('************')\n    print('** Python **')\n    print('************')`} />
-          <p>Poté tento program <strong>ulož a spusť</strong>. Zdánlivě se vůbec nic nestane! To proto, že jsme počítač tento příkaz zatím jen <em>naučili</em>, ale neřekli jsme mu, ať ho provede.</p>
-          <p>Klikni do terminálu pod programem a vyzkoušej svůj nový příkaz <strong>zavolat</strong> (nezapomeň na prázdné závorky!):</p>
-          <PythonSnippet code={`>>> vypis_text()`} />
-          <p>Co se stalo? Počítač by ti měl vytisknout vizitku se třemi řádky přesně tak, jak jsi ho to předtím naučil!</p>
-        </TaskCard>
-
-        <TaskCard number="3" title="Volání z programu" taskId="3" showTeacher={teacherMode} teacherNote={<p>V tomto programu se nejdříve definuje podprogram. Za ním následují příkazy (už bez odsazení!), které ho volají. Žáci by měli pochopit, že podprogram lze volat i vícekrát.</p>}>
-          <p>Je dost nepraktické volat podprogram ručně z terminálu. My chceme, aby to počítač udělal sám.</p>
-          <p>Přidej na konec svého programu <code>vypis.py</code> další příkazy (od řádku 6). <strong>Důležité: Tyto nové příkazy nesmí být odsazené mezerami od okraje! Tím počítači říkáš, že tvoje definice podprogramu už skončila.</strong></p>
-          <PythonSnippet code={`def vypis_text():\n    print('************')\n    print('** Python **')\n    print('************')\n\nprint('Vítej!')\nvypis_text()\nprint()\nvypis_text()\nprint('to je konec')`} />
-          <p>Když program spustíš, uvidíš v terminálu zobrazenou vizitku rovnou dvakrát pod sebou!</p>
-        </TaskCard>
-
-        <TaskCard number="4" title="Anglická konverzace" taskId="4" showTeacher={teacherMode} teacherNote={<p>Úloha procvičuje skládání klasického textu s voláním podprogramu. Zde už vidí tu reálnou úsporu času – nemusí psát třikrát pod sebou ty hvězdičkové rámečky, napíší jen jediné slovo <code>vypis_text()</code>.</p>}>
-          <p>Změň předchozí program <code>vypis.py</code> tak, aby počítač vypsal následující text. Pokus se to udělat co nejchytřeji (hvězdičkovou vizitku "I am Python" uprav uvnitř definice tvého podprogramu a v těle programu ho prostě jen třikrát zavolej na správném místě!).</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-sm rounded-xl">
-            Hello!<br/>
-            *****************<br/>
-            ** I am Python **<br/>
-            *****************<br/>
-            How are you?<br/>
-            *****************<br/>
-            ** I am Python **<br/>
-            *****************<br/>
-            I am fine.<br/>
-            *****************<br/>
-            ** I am Python **<br/>
-            *****************<br/>
-            The end
-          </div>
-        </TaskCard>
-
-        <TaskCard number="5" title="Skákající koně a záhada chybové hlášky" taskId="5" showTeacher={teacherMode} teacherNote={<p>V další úloze si žáci uvědomí velmi důležité pravidlo: podprogram musí být definován <strong>vždy předtím</strong>, než je poprvé zavolán. Jinak počítač vyhodí <code>NameError</code>.</p>}>
-          <p>Vytvoř nový program <code>pisen.py</code>, který bude obsahovat následující kód (úmyslně ho přesně takto opiš a spusť):</p>
-          <PythonSnippet code={`refren()\nrefren()\nprint()\nprint('když já jím dám ovsa')\nprint('oni skáčou hopsa')\nprint()\nrefren()\nrefren()\n\ndef refren():\n    print('já mám koně vraný koně')\n    print('to jsou koně mí')`} />
-          <p>Když program spustíš, Python vybuchne a vypíše chybové hlášení: <code>NameError: name 'refren' is not defined</code>.</p>
-          <p className="text-amber-700 font-bold">Python ti tím oznamuje, že na 1. řádku zkoušíš volat příkaz, který ho ale učíš až na konci souboru. Počítač čte soubory odshora dolů! Přesuň definici <code>def refren()</code> úplně nahoru nad zbytek programu a oprav to!</p>
-        </TaskCard>
-
-        <TaskCard number="6" title="Vykreslovací vizitka" taskId="6" showTeacher={teacherMode} teacherNote={<p>Část žáků může mít problém se zápisem některých speciálních symbolů (jako uvozovky). Připomeňte jim zpětné lomítko <code>\</code> pro tzv. escape sekvenci. Například <code>print('| \" |')</code>, pokud používají stejné uvozovky venku i vevnitř.</p>}>
-          <p>Představ si, že chceš v terminálu často kreslit ASCII vizitku. Vytvoř program <code>vizitka.py</code> a definuj v něm podprogram <code>vizitka()</code>, který vizitku vytiskne na obrazovku. Nakonec ve svém programu tento podprogram aspoň jednou zavolej, abys ověřil, že funguje!</p>
-          <pre className="bg-black p-4 text-emerald-400 font-mono text-sm rounded-xl overflow-x-auto leading-relaxed">{`+--------------------+
-|        www         |
-|  Petr      ( o o ) |
-|  LEV       (  ~  ) |
-|             "      |
-|  Počítačový král   |
-+--------------------+`}</pre>
-        </TaskCard>
-
-        <TaskCard number="7" title="Vizitka 10x" taskId="7" showTeacher={teacherMode} teacherNote={<p>Úloha je zřejmou přípravou na cykly. Žáci uvidí, že musí 10x napsat stejné slovo pod sebe, což je sice úspornější než opisovat celou vizitku, ale stále otravné. Zeptejte se jich, zda by to nešlo ještě nějak zautomatizovat!</p>}>
-          <p>Doplň do předchozího programu <code>vizitka.py</code> volání tvého podprogramu tolikrát, aby se pod sebou tvá vizitka vytiskla přesně <strong>desetkrát</strong>!</p>
-          <p className="text-slate-500 italic mt-2">Není to trochu únavné, psát to pod sebe desetkrát? Brzy se naučíme něco, čemu se říká "cykly", abychom to počítači mohli říct jen jednou: "Udělej to desetkrát!"</p>
-        </TaskCard>
-
-        <TaskCard number="8" title="Stavební kostky: Stromeček a domeček" taskId="8" showTeacher={teacherMode} teacherNote={<p>Úkolem je nadefinovat tři stavební bloky a pak je na konci volat ve správném pořadí: např. stromeček je <code>trojuhelnik()</code> 2x a pak <code>noha()</code>. Domeček je <code>trojuhelnik()</code>, <code>obdelnik()</code> a <code>noha()</code>.</p>}>
-          <p>Ve svém programu můžeš mít kolik podprogramů chceš! Vytvoř program <code>obrazce.py</code> a nauč počítač 3 malé podprogramy (každý vytiskne část obrázku):</p>
-          <ul className="list-disc pl-5 space-y-4 mt-2 bg-slate-50 p-4 rounded-xl text-sm">
-            <li>podprogram <strong>noha()</strong> nakreslí dvě podtržítka s čárkou:
-              <pre className="font-mono mt-1 text-slate-800 font-bold leading-tight">{`  |
-__|__`}</pre>
+        <TaskCard number="2" title="" taskId="2" showTeacher={teacherMode} teacherNote={<p>V dalších úlohách chceme žáky naučit vytvářet a používat podprogramy, zatím bez parametrů a návratové hodnoty. Vyskytuje se zde několik nových principů: definování podprogramu, tělo podprogramu, volání podprogramu. Žáci si musí dát pozor na syntaktická pravidla: slovo <code>def</code>, symboly <code>()</code>, <code>:</code> a odsazení od kraje. Kromě toho je nezbytné mít na paměti, že nejdříve je nutno podprogram definovat a až potom je možné jej volat.<br/><br/>V části 2.B může žáky zmást, že se po spuštění programu zdánlivě nic nestane, jen se vypíše informace o restartu programu. Pokud by se někteří žáci dotazovali na správnost svého postupu, vysvětlíme jim, že postupovali správně, ale že se jimi zadané příkazy vykonají až po zavolání podprogramu v části 2.C.<br/><br/>Technická poznámka: Pokud si žáci navykli kopírovat ukázkové kódy z pracovních listů do svých programů pomocí schránky, měli by se od této chvíle naučit takto zkopírované kódy dodatečně kontrolovat. Je totiž pravděpodobné, že se při kopírování nezachová případné odsazení řádků od kraje, kvůli čemuž programy nebudou fungovat nebo budou fungovat chybně.</p>}>
+          <p>2. Doposud jsi mohl psát jen takové příkazy, které počítač znal. Teď ho naučíš nové, své vlastní příkazy – tzv. podprogramy. Postupuj následovně:</p>
+          <ul className="list-none pl-0 mt-4 space-y-4">
+            <li>A) Vytvoř nový program <code>vypis.py</code>, ve kterém bude napsaný jen následující kód:
+              <PythonSnippet code={`def vypis_text():\n    print('************')\n    print('** Python **')\n    print('************')`} />
+              <p className="text-sm italic text-slate-500 mt-2">Příkazy nech odsazené od kraje (Python tam automaticky vložil 4 mezery)</p>
             </li>
-            <li>podprogram <strong>obdelnik()</strong> nakreslí:
-              <pre className="font-mono mt-1 text-slate-800 font-bold leading-tight">{`#####
-#   #
-#####`}</pre>
+            <li>B) Program spusť – jestli je všechno v pořádku, uvidíš v interaktivní konzoli jen zprávu o spuštění (RESTART).</li>
+            <li>C) Do příkazového řádku napiš:
+              <PythonSnippet code={`>>> vypis_text()`} />
             </li>
-            <li>podprogram <strong>trojuhelnik()</strong> nakreslí:
-              <pre className="font-mono mt-1 text-slate-800 font-bold leading-tight">{`  *
- ***
-*****`}</pre>
+            <li>D) Jestli jsi postupoval správně, Python zobrazí text:
+              <div className="font-mono bg-slate-50 p-2 rounded-lg text-sm my-2 whitespace-pre">
+************<br/>
+** Python **<br/>
+************
+              </div>
             </li>
           </ul>
-          <p className="mt-4">Nyní pomocí těchto tří podprogramů poskládej a vytiskni tyto tři objekty (jen volej podprogramy za sebou ve správném pořadí)!</p>
-          <div className="grid grid-cols-3 text-center bg-slate-100 py-4 mt-2 rounded-xl">
-            <div className="flex flex-col items-center">
-              <pre className="font-mono font-bold text-slate-800 leading-tight text-left">{`  *
- ***
-*****
-  *
- ***
-*****
-  |
-__|__`}</pre>
-              <span className="text-slate-500 mt-2 block text-xs">Stromeček</span>
+          <div className="mt-8 border-t border-slate-200 pt-6">
+            <h4 className="font-bold text-slate-800 mb-4">Co se stalo?</h4>
+            <div className="font-mono bg-slate-50 p-6 rounded-xl border border-slate-200 text-sm relative">
+              <div className="mb-2"><span className="text-sky-600 font-bold">def</span> <span className="text-purple-600">vypis_text</span><span className="text-rose-500 font-bold">():</span></div>
+              <div className="pl-8 text-slate-600">print('************')</div>
+              <div className="pl-8 text-slate-600">print('** Python **')</div>
+              <div className="pl-8 text-slate-600">print('************')</div>
             </div>
-            <div className="flex flex-col items-center">
-              <pre className="font-mono font-bold text-slate-800 leading-tight text-left">{`  *
- ***
-*****
-#####
-#   #
-#####
-  |
-__|__`}</pre>
-              <span className="text-slate-500 mt-2 block text-xs">Domeček na kuří nožce</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <pre className="font-mono font-bold text-slate-800 leading-tight text-left">{`#####
-#   #
-#####
-  |
+            <ul className="mt-4 space-y-2 text-sm text-slate-600">
+              <li>• slovem <code>def</code> začíná <strong>definice</strong> tvého nového příkazu – podprogramu</li>
+              <li>• <code>vypis_text</code> je <strong>název</strong> podprogramu</li>
+              <li>• prázdné závorky <code>()</code> a dvojtečka <code>:</code> jsou velmi důležité</li>
+              <li>• odsazené příkazy tvoří <strong>tělo</strong> podprogramu</li>
+            </ul>
+            <p className="mt-4">Po spuštění programu se počítač naučil nový příkaz <code>vypis_text</code>. Počítač ho zatím nevykonal, jen se ho naučil. Skupinu příkazů <code>print</code> – tedy tělo podprogramu <code>vypis_text</code> – počítač vykoná až tehdy, když do příkazového řádku napíšeš:</p>
+            <PythonSnippet code={`>>> vypis_text()`} />
+            <p>Takovýto zápis se nazývá <strong>volání</strong> podprogramu. Prázdné závorky jsou velmi důležité.</p>
+          </div>
+        </TaskCard>
+
+        <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>V tomto programu se nejdříve definoval podprogram <code>vypis_text</code>. Za ním následují příkazy <code>print</code> a příkazy pro volání podprogramu <code>vypis_text</code>. Python zobrazil svoji vizitku dvakrát, protože v programu jsou dvě volání podprogramu <code>vypis_text</code>.<br/><br/>Na základě této úlohy by žáci měli pochopit, že podprogram můžeme zavolat i vícekrát.</p>}>
+          <p>3. Přidej do programu <code>vypis.py</code> další příkazy (jsou zvýrazněny žlutě) – pozor, tyto příkazy nesmí mít odsazení, protože už nepatří do podprogramu:</p>
+          <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-sky-400 overflow-x-auto shadow-inner border border-slate-700">
+            <div><span className="text-slate-300">def vypis_text():</span></div>
+            <div><span className="text-slate-300">    print('************')</span></div>
+            <div><span className="text-slate-300">    print('** Python **')</span></div>
+            <div><span className="text-slate-300">    print('************')</span></div>
+            <br />
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">print('Vítej!')</span></div>
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">vypis_text()</span></div>
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">print()</span></div>
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">vypis_text()</span></div>
+            <div className="bg-yellow-500/20 px-1 -mx-1"><span className="text-yellow-300">print('to je konec')</span></div>
+          </div>
+          <p>Když program spustíš, uvidíš takovýto výsledek:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+Vítej!<br/>
+************<br/>
+** Python **<br/>
+************<br/>
+<br/>
+************<br/>
+** Python **<br/>
+************<br/>
+to je konec
+          </div>
+        </TaskCard>
+
+        <TaskCard number="4" title="" taskId="4" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>def vypis_text():</code><br/><code>    print('*****************')</code><br/><code>    print('** I am Python **')</code><br/><code>    print('*****************')</code><br/><br/><code>print('Hello')</code><br/><code>vypis_text()</code><br/><code>print('How are you?')</code><br/><code>vypis_text()</code><br/><code>print('I am fine.')</code><br/><code>vypis_text()</code><br/><code>print('The end')</code><br/><br/>Pokud to uznáme za vhodné, můžeme žákům prozradit, že alternativně lze odsazení příkazů od kraje zajistit pomocí jednoho stisku klávesy <code>&lt;Tab&gt;</code>. Python na dané místo vloží čtyři mezery.</p>}>
+          <p>4. Změň předchozí program tak, aby počítač vypsal:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre leading-relaxed">
+Hello!<br/>
+*****************<br/>
+** I am Python **<br/>
+*****************<br/>
+How are you?<br/>
+*****************<br/>
+** I am Python **<br/>
+*****************<br/>
+I am fine.<br/>
+*****************<br/>
+** I am Python **<br/>
+*****************<br/>
+The end
+          </div>
+        </TaskCard>
+
+        <TaskCard number="5" title="" taskId="5" showTeacher={teacherMode} teacherNote={<p>Žákům můžeme zdůraznit, že v Pythonu je zvykem všechny podprogramy zapisovat na začátku programu a až za nimi následuje samotná posloupnost příkazů, které mohou tyto podprogramy volat.<br/><br/>Řešení:<br/><code>def refren():</code><br/><code>    print('já mám koně vraný koně')</code><br/><code>    print('to jsou koně mí')</code><br/><br/><code>refren()</code><br/><code>refren()</code><br/><code>print()</code><br/><code>print('když já jím dám ovsa')</code><br/><code>print('oni skáčou hopsa')</code><br/><code>print()</code><br/><code>refren()</code><br/><code>refren()</code></p>}>
+          <p>5. Vytvoř nový program <code>pisen.py</code>, který bude obsahovat následující kód:</p>
+          <PythonSnippet code={`refren()\nrefren()\nprint()\nprint('když já jím dám ovsa')\nprint('oni skáčou hopsa')\nprint()\nrefren()\nrefren()\n\ndef refren():\n    print('já mám koně vraný koně')\n    print('to jsou koně mí')`} />
+          <p>Když program spustíš, Python vypíše chybové hlášení:</p>
+          <div className="font-mono bg-rose-50 text-rose-800 p-4 rounded-xl border border-rose-200 text-sm whitespace-pre">
+Traceback (most recent call last):<br/>
+  File "D:\projekty-python\pisen.py", line 1, in &lt;module&gt;<br/>
+    refren()<br/>
+NameError: name 'refren' is not defined
+          </div>
+          <p className="mt-4">Python ti tímto hlášením oznamuje, že na 1. řádku programu není možné volat podprogram <code>refren</code>, protože tento podprogram ještě nebyl definován.</p>
+          <p>Uprav program <code>pisen.py</code> tak, aby se úryvek písně vypsal správně.</p>
+        </TaskCard>
+
+        <TaskCard number="6" title="" taskId="6" showTeacher={teacherMode} teacherNote={<p>Část žáků může mít podobné problémy se zápisem některých symbolů jako v 11. úloze 3. lekce. Můžeme jim připomenout symbol zpětného lomítka (<code>\</code>), pomocí kterého lze do textu vložit apostrof (jako <code>\'</code>) nebo zpětné lomítko (jako <code>\\</code>).<br/><br/>Řešení:<br/><code>def vizitka():</code><br/><code>    print('+--------------------+')</code><br/><code>    print('|        www         |')</code><br/><code>    print('|  Petr   ( o o )    |')</code><br/><code>    print('|  LEV     ( ~ )     |')</code><br/><code>    print('|            "       |')</code><br/><code>    print('|  Počítačový král   |')</code><br/><code>    print('+--------------------+')</code><br/><br/><code>vizitka()</code></p>}>
+          <p>6. Před několika týdny jsme vytvářeli program, který zobrazil tvoji vizitku, které byla podobná následující:</p>
+          <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
++--------------------+<br/>
+|        www         |<br/>
+|  Petr   ( o o )    |<br/>
+|  LEV     ( ~ )     |<br/>
+|            "       |<br/>
+|  Počítačový král   |<br/>
++--------------------+
+          </div>
+          <p className="mt-4">Vytvoř nový program <code>vizitka.py</code> a v něm definuj podprogram <code>vizitka</code>, který takovou vizitku zobrazí. Nakonec tento podprogram zavolej, abys ověřil(a), že funguje správně.</p>
+        </TaskCard>
+
+        <TaskCard number="7" title="" taskId="7" showTeacher={teacherMode} teacherNote={<p>Tato úloha je zřejmou přípravou na cykly. Když se na ně budou žáci ptát, můžeme je ubezpečit, že za několik vyučovacích hodin se budou cykly učit i v tomto předmětu.<br/><br/>Řešení:<br/><code>def vizitka():</code><br/><code>    # ... (tělo z minulé úlohy) ...</code><br/><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code><br/><code>vizitka()</code></p>}>
+          <p>7. Doplň do programu <code>vizitka.py</code> volání podprogramu <code>vizitka</code> tak, aby se pod sebe zobrazilo 10 tvých vizitek.</p>
+        </TaskCard>
+
+        <TaskCard number="8" title="" taskId="8" showTeacher={teacherMode} teacherNote={<p>Řešení – definování podprogramů:<br/><code>def trojuhelnik():</code><br/><code>    print('  *  ')</code><br/><code>    print(' *** ')</code><br/><code>    print('*****')</code><br/><br/><code>def obdelnik():</code><br/><code>    print('#####')</code><br/><code>    print('#   #')</code><br/><code>    print('#####')</code><br/><br/><code>def noha():</code><br/><code>    print('  |  ')</code><br/><code>    print('__|__')</code><br/><br/>Řešení – zobrazení stromečku:<br/><code>trojuhelnik()</code><br/><code>trojuhelnik()</code><br/><code>noha()</code><br/><br/>Řešení – zobrazení domečku na kuří nožce:<br/><code>trojuhelnik()</code><br/><code>obdelnik()</code><br/><code>noha()</code><br/><br/>Řešení – zobrazení činky:<br/><code>obdelnik()</code><br/><code>noha()</code><br/><code>obdelnik()</code></p>}>
+          <p>8. Ve svém programu můžeš definovat i více podprogramů. Vytvoř nový program <code>obrazce.py</code> a definuj v něm tři podprogramy. Každý z nich zobrazí jeden z následujících obrázků:</p>
+          <ul className="list-none pl-0 mt-4 space-y-4">
+            <li>• podprogram <code>noha</code> nakreslí takovouto nohu (dole jsou dvě podtržítka vlevo i vpravo):
+              <div className="font-mono bg-slate-50 p-2 rounded-xl text-sm whitespace-pre w-max mt-2">
+&nbsp;&nbsp;|&nbsp;&nbsp;<br/>
 __|__
+              </div>
+            </li>
+            <li>• podprogram <code>obdelnik</code> nakreslí takovýto obdélník:
+              <div className="font-mono bg-slate-50 p-2 rounded-xl text-sm whitespace-pre w-max mt-2">
+#####<br/>
+#&nbsp;&nbsp;&nbsp;#<br/>
 #####
-#   #
-#####`}</pre>
-              <span className="text-slate-500 mt-2 block text-xs">Činka</span>
+              </div>
+            </li>
+            <li>• podprogram <code>trojuhelnik</code> nakreslí takovýto trojúhelník:
+              <div className="font-mono bg-slate-50 p-2 rounded-xl text-sm whitespace-pre w-max mt-2">
+&nbsp;&nbsp;*&nbsp;&nbsp;<br/>
+&nbsp;***&nbsp;<br/>
+*****
+              </div>
+            </li>
+          </ul>
+          <p className="mt-6">Na konec programu vlož volání podprogramů, abys každý z nich otestoval. Potom zkus pomocí vytvořených podprogramů zobrazit následující obrázky:</p>
+          <div className="flex flex-col sm:flex-row gap-8 items-end mt-4 font-mono bg-slate-50 p-6 rounded-xl border border-slate-200 text-sm whitespace-pre text-blue-600">
+            <div>
+  *<br/>
+ ***<br/>
+*****<br/>
+  *<br/>
+ ***<br/>
+*****<br/>
+  |<br/>
+__|__
+            </div>
+            <div>
+  *<br/>
+ ***<br/>
+*****<br/>
+#####<br/>
+#   #<br/>
+#####<br/>
+  |<br/>
+__|__
+            </div>
+            <div>
+#####<br/>
+#   #<br/>
+#####<br/>
+  |<br/>
+__|__<br/>
+#####<br/>
+#   #<br/>
+#####
+            </div>
+            <div className="text-slate-500 italic flex-1 border-l-2 pl-4">
+toto je noha:<br/>
+  |<br/>
+__|__<br/>
+<br/>
+toto je obdélník:<br/>
+#####<br/>
+#   #<br/>
+#####<br/>
+<br/>
+toto je trojúhelník:<br/>
+  *<br/>
+ ***<br/>
+*****
             </div>
           </div>
         </TaskCard>
 
-        <TaskCard number="9" title="Kreslení obdélníku z podprogramu" taskId="9" showTeacher={teacherMode} teacherNote={<p>Doposud podprogramy fungovaly v terminálu, teď je žáci zkusí použít pro Canvas. Proměnná <code>canvas</code> funguje uvnitř podprogramu, protože je globální. To není nutné vysvětlovat, stačí, když zjistí, že to funguje.</p>}>
-          <p>Doposud naše podprogramy jen psaly text. Pojďme vytvořit vlastní kreslící povely! Vytvoř program <code>kresba_podprogram.py</code> a vyzkoušej tento kód:</p>
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>V této úloze tělo podprogramu obsahuje jediný příkaz – nakreslení obdélníku.<br/><br/>Proměnná <code>canvas</code> je zde tzv. globální proměnná. Globální proměnná existuje od svého vzniku (přiřazením mimo podprogram), v podprogramu se sice používá, avšak její hodnotu nelze v podprogramu měnit. Tyto informace však žákům vzhledem k jejich současným programátorským zkušenostem nebudeme prozrazovat.</p>}>
+          <p>9. Teď budeš vytvářet podprogramy, které kreslí do grafického okna. Vytvoř nový program <code>kresba_podprogram.py</code> a vyzkoušej:</p>
           <PythonSnippet code={`import tkinter\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\ndef kresli():\n    canvas.create_rectangle(10, 20, 30, 40, fill='red')\n\nkresli()`} />
-          <p>Program ti po zavolání vlastního příkazu `kresli()` skutečně nakreslí do okna červený obdélník!</p>
         </TaskCard>
 
-        <TaskCard number="10" title="Vlastní příkaz pro kříž" taskId="10" showTeacher={teacherMode} teacherNote={<p>V této úloze tělo podprogramu obsahuje posloupnost dvou příkazů <code>create_rectangle</code>, které se překříží, a vytvoří tak tvar plus.</p>}>
-          <p>Vytvoř nový program <code>kriz.py</code> a uvnitř něj nadefinuj podprogram s názvem <code>kriz()</code>. Tento podprogram musí nakreslit dvěma červenými obdélníky přes sebe znaménko plus (kříž). Poté podprogram alespoň jednou v programu zavolej, ať uvidíš, jestli to funguje.</p>
-          <CanvasPreview width={150} height={150}>
-            <Rect x1={25} y1={55} width={100} height={40} fill="red" />
-            <Rect x1={55} y1={25} width={40} height={100} fill="red" />
+        <TaskCard number="10" title="" taskId="10" showTeacher={teacherMode} teacherNote={<p>V této úloze tělo podprogramu obsahuje posloupnost dvou příkazů. Při každém volání tohoto podprogramu se nakreslí nejprve první obdélník a přes něj druhý.<br/><br/>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def kriz():</code><br/><code>    canvas.create_rectangle(150 - 90, 100 - 30, 150 + 90, 100 + 30, fill='red')</code><br/><code>    canvas.create_rectangle(150 - 30, 100 - 90, 150 + 30, 100 + 90, fill='red')</code><br/><br/><code>kriz()</code></p>}>
+          <p>10. Vytvoř nový program <code>kriz.py</code> a v něm definuj podprogram <code>kriz</code>, který po zavolání nakreslí červený kříž:</p>
+          <CanvasPreview width={300} height={200}>
+            <Rect x1={60} y1={70} width={180} height={60} fill="red" />
+            <Rect x1={120} y1={10} width={60} height={180} fill="red" />
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="11*" title="Stavíme Robota" taskId="11" showTeacher={teacherMode} teacherNote={<p>Krásná úloha na rozpad složitého problému na podproblémy (tzv. dekompozice). Pokud někdo nakreslí robota v jiných proporcích, nevadí. Zásadní je, aby se skládal z těchto čtyř definovaných dílů a volaly se přes podprogramy.</p>}>
-          <p className="flex items-center gap-2 font-bold text-amber-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol
-          </p>
-          <p>Vytvoř program <code>robot.py</code>, který bude umět nakreslit robota z obrázku. Tvé plátno by mělo obsahovat čtyři samostatné podprogramy: <code>hlava()</code>, <code>ruce()</code>, <code>nohy()</code> a <code>telo()</code>.</p>
-          <p>Když na konec kódu napíšeš tato čtyři volání, měl by se ti robot celý krásně vykreslit:</p>
-          <PythonSnippet code={`hlava()\nruce()\nnohy()\ntelo()`} />
-          <CanvasPreview width={300} height={300}>
-            <Rect x1={120} y1={50} width={60} height={50} fill="steelblue" />
-            <Rect x1={130} y1={100} width={40} height={20} fill="lightblue" />
-            
-            <Rect x1={60} y1={140} width={180} height={20} fill="tomato" />
-            <Rect x1={110} y1={120} width={80} height={100} fill="royalblue" />
-            
-            <Rect x1={120} y1={220} width={20} height={60} fill="purple" />
-            <Rect x1={160} y1={220} width={20} height={60} fill="purple" />
-          </CanvasPreview>
+        <TaskCard number="11*" title="" taskId="11" showTeacher={teacherMode} teacherNote={<p>Toto je ukázka jednoho z možných řešení. Žáci zřejmě navrhnou nakreslení jiných obdélníků, jehož výsledkem bude akceptovatelný robot.<br/><br/>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>def hlava():</code><br/><code>    canvas.create_rectangle(160, 40, 200, 100, fill='skyblue')</code><br/><code>    canvas.create_rectangle(150, 10, 210, 55, fill='steelblue')</code><br/><br/><code>def telo():</code><br/><code>    canvas.create_rectangle(140, 70, 220, 190, fill='royalblue')</code><br/><br/><code>def ruce():</code><br/><code>    canvas.create_rectangle(80, 90, 280, 110, fill='tomato')</code><br/><br/><code>def nohy():</code><br/><code>    canvas.create_rectangle(150, 160, 170, 250, fill='purple')</code><br/><code>    canvas.create_rectangle(190, 160, 210, 250, fill='purple')</code><br/><br/><code>hlava()</code><br/><code>ruce()</code><br/><code>nohy()</code><br/><code>telo()</code></p>}>
+          <p>11* Vytvoř nový program <code>robot.py</code>, který bude schopen nakreslit robota. V programu budou čtyři podprogramy – <code>hlava</code>, <code>ruce</code>, <code>nohy</code>, <code>telo</code> – a každý z nich bude schopen nakreslit část robota. Když je zavoláš v následujícím pořadí:</p>
+          <div className="flex flex-col sm:flex-row gap-8 mt-4">
+            <div className="font-mono bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm whitespace-pre">
+hlava()<br/>
+ruce()<br/>
+nohy()<br/>
+telo()
+            </div>
+            <div className="flex-1">
+              <p className="mb-2">nakreslí se celý robot jako na obrázku vpravo:</p>
+              <CanvasPreview width={300} height={300} className="!m-0">
+                <Rect x1={130} y1={20} width={40} height={40} fill="steelblue" />
+                <Rect x1={140} y1={60} width={20} height={20} fill="lightblue" />
+                <Rect x1={70} y1={100} width={160} height={20} fill="tomato" />
+                <Rect x1={140} y1={170} width={20} height={80} fill="purple" />
+                <Rect x1={110} y1={170} width={20} height={80} fill="purple" />
+                <Rect x1={110} y1={80} width={80} height={100} fill="royalblue" />
+              </CanvasPreview>
+            </div>
+          </div>
         </TaskCard>
 
       </div>
