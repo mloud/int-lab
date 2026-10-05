@@ -37,8 +37,8 @@ const BackupSystemChapter: React.FC<BackupSystemChapterProps> = ({ onBack }) => 
         <ul>
           <li><strong>Úkol 1 (Záchrana po instalaci softwaru - 7-zip):</strong> ${task1 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
           <li><strong>Úkol 2 (Záchrana po instalaci špatného ovladače):</strong> ${task2 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
-          <li><strong>Úkol 3 (Záchrana poškozeného skriptu přes VSS shadow copy):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
-          <li><strong>Úkol 4 (WinRE - Simulace havárie bootu):</strong> ${task4 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 3 (WinRE - Simulace havárie bootu):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 4 (Záchrana poškozeného skriptu přes VSS shadow copy):</strong> ${task4 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
         </ul>
       </body>
       </html>
@@ -195,12 +195,23 @@ const BackupSystemChapter: React.FC<BackupSystemChapterProps> = ({ onBack }) => 
                 </div>
                 
                 <div className="bg-indigo-800/50 p-5 rounded-2xl border border-indigo-700/50">
-                  <h3 className="text-lg font-bold mb-2 text-rose-400">Havárie znemožňující start (WinRE)</h3>
-                  <p className="text-sm text-indigo-200 leading-relaxed mb-2">Pokud modrá smrt brání startu Windows, do grafického nástroje se nedostanete. Záchranou je <strong>WinRE (Windows Recovery Environment)</strong>.</p>
+                  <h3 className="text-lg font-bold mb-2 text-rose-400">Příklad smrtelné havárie (SATA/AHCI Ovladač)</h3>
+                  <p className="text-sm text-indigo-200 leading-relaxed mb-4">Pokud modrá smrt brání startu Windows, do grafického nástroje se nedostanete. Záchranou je <strong>WinRE (Windows Recovery Environment)</strong>. V praxi si ukážeme havárii vyvolanou poškozením systémového ovladače diskového řadiče.</p>
+                  
+                  <div className="bg-rose-950/50 border border-rose-900/50 p-4 rounded-xl mb-4">
+                    <p className="text-xs text-rose-300 font-mono mb-2">Tento příkaz natvrdo smaže konfiguraci systémového ovladače disku z registru:</p>
+                    <code className="text-rose-400 font-black text-sm block mb-3">reg delete "HKLM\SYSTEM\CurrentControlSet\Services\storahci" /f</code>
+                    <ul className="text-xs text-rose-200/80 list-disc pl-4 space-y-1">
+                      <li><strong>HKLM...storahci</strong>: Cesta ke standardnímu ovladači AHCI řadiče disků.</li>
+                      <li><strong>/f</strong>: Smaže klíč okamžitě bez potvrzení.</li>
+                      <li><strong>Efekt:</strong> Za běhu se nic nestane (ovladač už je v paměti). Ale při příštím startu Windows ztratí schopnost komunikovat s diskem a okamžitě zhavarují do BSOD (INACCESSIBLE_BOOT_DEVICE).</li>
+                    </ul>
+                  </div>
+
                   <ul className="text-sm text-indigo-200 leading-relaxed list-disc pl-4 space-y-1">
-                    <li>Jedná se o minimalizovaný operační systém s nástroji pro opravu, který sídlí ve vlastním skrytém systémovém oddílu (Recovery Partition) o velikosti cca 500-600 MB. Není tedy závislý na běhu hlavních Windows.</li>
-                    <li>Pokud dojde k destrukci bootu, Windows se při třetím neúspěšném startu do tohoto oddílu přepnou automaticky (nebo lze vyvolat držením SHIFT při restartování). Odtud lze nástroj <strong>Bod obnovení spustit offline</strong>.</li>
-                    <li><strong>Varování:</strong> Pokud je systémový disk zašifrován BitLockerem, WinRE zablokuje přístup k obnovení, dokud nezadáte velmi dlouhý <em>BitLocker Recovery klíč</em>. Bez něj je oprava i data navždy ztracena.</li>
+                    <li>K záchraně slouží skrytý oddíl <strong>WinRE (Recovery Partition)</strong>, do kterého se rozbité Windows po třetím neúspěšném startu přepnou samy.</li>
+                    <li>Tento oddíl nepoužívá rozbitý registr C: disku, funguje nezávisle a obsahuje záchranné nástroje.</li>
+                    <li><strong>Varování:</strong> Pokud je systémový disk zašifrován BitLockerem, WinRE zablokuje přístup k obnovení, dokud nezadáte velmi dlouhý <em>BitLocker Recovery klíč</em>. Bez něj je obnova nemožná.</li>
                   </ul>
                 </div>
               </div>
@@ -285,8 +296,60 @@ const BackupSystemChapter: React.FC<BackupSystemChapterProps> = ({ onBack }) => 
             {/* Úkol 3 */}
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
-                <span className="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm">3</span>
-                Úkol 3: Záchrana poškozeného skriptu z VSS (stínová kopie)
+                <span className="w-8 h-8 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center text-sm">3</span>
+                Úkol 3: Destrukce diskového ovladače a záchrana přes WinRE
+              </h3>
+              <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
+                Vyzkoušíme si totální destrukci bootovacího procesu zásahem do registru. Poškodíme záznam systémového ovladače disku, což počítač při dalším startu vyřadí z provozu (Modrá smrt). Jedinou záchranou bude oddíl WinRE.
+              </p>
+              
+              <div className="pl-11 space-y-4">
+                <div className="bg-white border border-slate-200 p-4 rounded-xl">
+                  <h4 className="text-sm font-bold text-slate-800 mb-2">Krok A: Příprava Bodu záchrany</h4>
+                  <p className="text-sm text-slate-600">Pro jistotu si před tímto "experimentem" vytvořte bod obnovení s názvem <strong>Pred_Kritickym_Zasahem</strong>.</p>
+                </div>
+                
+                <div className="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="text-sm font-bold text-rose-900 mb-2">Krok B: Skutečná destrukce v Registrech</h4>
+                  <p className="text-sm text-rose-800 mb-2">Spusťte Příkazový řádek jako <strong>Správce</strong> a zkopírujte do něj tento destruktivní příkaz:</p>
+                  <code className="text-rose-600 font-mono text-sm block mb-2 p-2 bg-rose-100/50 rounded-lg border border-rose-200/50">
+                    reg delete "HKLM\SYSTEM\CurrentControlSet\Services\storahci" /f
+                  </code>
+                  <p className="text-sm text-rose-800">Příkaz musí ohlásit "Operace byla úspěšně dokončena". <strong>Ihned poté běžte do nabídky Start a běžně restartujte počítač.</strong></p>
+                </div>
+
+                <div className="bg-blue-900 text-white p-4 rounded-xl">
+                  <h4 className="text-sm font-bold text-blue-300 mb-2">Krok C: Modrá smrt a náběh WinRE</h4>
+                  <p className="text-sm text-blue-100 mb-2">Počítač se pokusí spustit Windows, ale nemůže najít ovladač disku. Vyskočí Modrá obrazovka (INACCESSIBLE BOOT DEVICE) a počítač se znovu restartuje.</p>
+                  <p className="text-sm text-blue-100">Jelikož systém poznal, že se nezvládl spustit, při dalším pokusu automaticky nastartuje <strong>Diagnostiku a Automatickou opravu (WinRE)</strong>. Objeví se modré záchranné menu.</p>
+                </div>
+                
+                <div className="bg-white border-2 border-emerald-200 p-4 rounded-xl">
+                  <h4 className="text-sm font-bold text-emerald-800 mb-2">Krok D: Obnova mrtvého systému</h4>
+                  <p className="text-sm text-emerald-700 mb-2">V záchranném menu WinRE se proklikejte k nástroji pro Obnovení:</p>
+                  <ul className="text-sm text-emerald-700 list-disc pl-5 space-y-1">
+                    <li>Zvolte <strong>Odstranit potíže</strong> (Troubleshoot) -&gt; <strong>Upřesnit možnosti</strong> (Advanced options).</li>
+                    <li>Klikněte na <strong>Obnovení systému</strong> (System Restore).</li>
+                    <li>Nástroj si vyžádá výběr vašeho uživatelského účtu a zadání hesla (aby zamezil zneužití cizí osobou).</li>
+                    <li>Vyberte vámi vytvořený bod <em>Pred_Kritickym_Zasahem</em> a dokončete proces. Systém zapojí správný ovladač zpět.</li>
+                    <li>Jakmile se ukáže, že obnova proběhla úspěšně, klikněte na Restartovat. Windows znovu ožijí!</li>
+                  </ul>
+                </div>
+
+                <div className="mt-4">
+                  <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
+                    <input type="checkbox" checked={task3} onChange={e => setTask3(e.target.checked)} className="w-5 h-5 text-rose-600 rounded" />
+                    <span className="font-bold text-slate-700">WinRE záchrana nasimulována! Mám splněno ✅</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Úkol 4 */}
+            <div className="space-y-4 relative">
+              <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
+                <span className="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm">4</span>
+                Úkol 4: Záchrana poškozeného skriptu z VSS (stínová kopie)
               </h3>
               <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
                 Někdy nechceme přetáčet celý systém dozadu, ale jenom vytáhnout z "fotografie v čase" jeden jediný důležitý systémový soubor.
@@ -344,54 +407,8 @@ const BackupSystemChapter: React.FC<BackupSystemChapterProps> = ({ onBack }) => 
 
                 <div className="mt-4">
                   <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
-                    <input type="checkbox" checked={task3} onChange={e => setTask3(e.target.checked)} className="w-5 h-5 text-amber-600 rounded" />
+                    <input type="checkbox" checked={task4} onChange={e => setTask4(e.target.checked)} className="w-5 h-5 text-amber-600 rounded" />
                     <span className="font-bold text-slate-700">Skript zachráněn a systém vrácen! Mám splněno ✅</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            {/* Úkol 4 */}
-            <div className="space-y-4 relative">
-              <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
-                <span className="w-8 h-8 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center text-sm">4</span>
-                Úkol 4: Simulace těžké havárie a záchrana přes WinRE
-              </h3>
-              <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
-                Představte si, že jste právě nainstalovali experimentální grafický ovladač. Místo plochy vás přivítá černá obrazovka a počítač ihned po startu zhavaruje. Nemáte jak spustit klasický grafický Bod obnovení ve Windows.
-              </p>
-              
-              <div className="pl-11 space-y-4">
-                <div className="bg-white border border-slate-200 p-4 rounded-xl">
-                  <h4 className="text-sm font-bold text-slate-800 mb-2">Krok A: Příprava Bodu záchrany</h4>
-                  <p className="text-sm text-slate-600">Pro jistotu si před "experimentem" vytvořte bod obnovení s názvem <strong>Pred_Kritickym_Zasahem</strong>.</p>
-                </div>
-                
-                <div className="bg-white border border-slate-200 p-4 rounded-xl">
-                  <h4 className="text-sm font-bold text-slate-800 mb-2">Krok B: Průnik do Recovery Environment</h4>
-                  <p className="text-sm text-slate-600 mb-2">Ve školní laboratoři / virtuálním stroji nebudeme skutečně ničit grafický ovladač, ale nasimulujeme nouzovou cestu:</p>
-                  <ul className="text-sm text-slate-600 list-disc pl-5 space-y-1">
-                    <li>Otevřete Start menu a klikněte na tlačítko Napájení.</li>
-                    <li>Stiskněte a <strong>držte klávesu SHIFT</strong> a zároveň klikněte na <strong>Restartovat</strong>.</li>
-                    <li>Systém se nezačne běžně restartovat, ale po chvíli vás přepne na modrou obrazovku s nabídkou. V tu chvíli se spouští ze skrytého Oddílu pro obnovení (Recovery Partition).</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-rose-50 border border-rose-200 p-4 rounded-xl">
-                  <h4 className="text-sm font-bold text-rose-800 mb-2">Krok C: Obnova mrtvého systému</h4>
-                  <p className="text-sm text-rose-800 mb-2">Ve WinRE se proklikejte nabídkami k záchrannému nástroji:</p>
-                  <ul className="text-sm text-rose-800 list-disc pl-5 space-y-1">
-                    <li>Zvolte <strong>Odstranit potíže</strong> (Troubleshoot).</li>
-                    <li>Zvolte <strong>Upřesnit možnosti</strong> (Advanced options).</li>
-                    <li>Zvolte <strong>Obnovení systému</strong> (System Restore).</li>
-                    <li>Nástroj si pravděpodobně vyžádá výběr vašeho uživatelského účtu a hesla, případně klíč BitLocker. (Zadejte heslo).</li>
-                    <li>Vyberte bod <em>Pred_Kritickym_Zasahem</em> a dokončete proces obnovy. Systém poskládá registry zpět dohromady ze zálohy na disku, aniž by musel běžet samotný systém Windows. Následně se počítač automaticky restartuje.</li>
-                  </ul>
-                </div>
-
-                <div className="mt-4">
-                  <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
-                    <input type="checkbox" checked={task4} onChange={e => setTask4(e.target.checked)} className="w-5 h-5 text-rose-600 rounded" />
-                    <span className="font-bold text-slate-700">WinRE záchrana nasimulována! Mám splněno ✅</span>
                   </label>
                 </div>
               </div>

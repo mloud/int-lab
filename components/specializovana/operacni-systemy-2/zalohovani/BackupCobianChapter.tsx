@@ -18,6 +18,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
   const [task1, setTask1] = useLocalStorage('cobian-task1', false);
   const [task2, setTask2] = useLocalStorage('cobian-task2', false);
   const [task3, setTask3] = useLocalStorage('cobian-task3', false);
+  const [task4, setTask4] = useLocalStorage('cobian-task4', false);
 
   // Stav simulátoru
   const [simDay, setSimDay] = useState(0);
@@ -46,12 +47,13 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
         <h2>Splněné experimenty</h2>
         <ul>
           <li><strong>Úkol 0 (Instalace jako Služba):</strong> ${task0 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
-          <li><strong>Úkol 1 (Plná záloha a test obnovy):</strong> ${task1 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
-          <li><strong>Úkol 2 (Inkrementální záloha a test obnovy):</strong> ${task2 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
-          <li><strong>Úkol 3 (Záchrana webového projektu):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 1 (Plná záloha - princip):</strong> ${task1 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 2 (Inkrementální záloha):</strong> ${task2 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 3 (Diferenciální záloha):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 4 (Komplexní obnova projektu):</strong> ${task4 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
         </ul>
 
-        <h2>Úkol 4: Shrnutí & Závěrečné otázky</h2>
+        <h2>Úkol 5: Shrnutí & Závěrečné otázky</h2>
         <p><strong>Otázka 1 (Proč by bylo špatné dělat každý den v 17:00 pouze Plnou zálohu na 1 TB disk?):</strong><br/>${ansQ1}</p>
         <p><strong>Otázka 2 (Který typ zálohy trvá nejkratší dobu při vytváření?):</strong><br/>${ansQ2}</p>
         <p><strong>Otázka 3 (Kde v prostředí Cobianu nastavím, aby se záloha ukládala na síťové úložiště NAS?):</strong><br/>${ansQ3}</p>
@@ -424,7 +426,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               <p className="text-sm text-slate-600 leading-relaxed mb-3">Vytvořte si na ploše složky pro experimenty:</p>
               <ul className="text-sm text-slate-600 list-disc pl-5 space-y-1">
                 <li><code>TEST_ZDROJ</code> (sem vložte 2 soubory, např. Dokument1.txt a Foto1.jpg).</li>
-                <li><code>TEST_ZALOHY</code> (zde uvidíte výsledky práce Cobianu).</li>
+                <li>Hlavní složku <code>Zaloha</code>, a v ní vytvořte tři podsložky: <code>Plna</code>, <code>Inkrementalni</code> a <code>Diferencialni</code>.</li>
               </ul>
             </div>
 
@@ -452,19 +454,19 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
                 <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm">1</span>
-                Úkol 1: Plná (Full) záloha a simulace ztráty
+                Úkol 1: Plná (Full) záloha (Ověření principu)
               </h3>
               <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-16 space-y-2">
-                <li>Vytvořte v Cobianu úlohu <strong>1_Plna</strong>, zvolte typ Plná, jako zdroj <code>TEST_ZDROJ</code> a cíl <code>TEST_ZALOHY</code>. Spusťte ji.</li>
-                <li>Ověřte v cílové složce, že vznikla složka obsahující oba soubory s časovým razítkem (např. <em>TEST_ZDROJ 2026-10-15 14;30</em>).</li>
-                <li><strong>Simulace 1 (Změna):</strong> Přidejte do <code>TEST_ZDROJ</code> soubor Dokument2.txt a úlohu spusťte znovu.</li>
-                <li>Ověřte, že se v cíli vytvořila zcela nová složka, která má opět VŠECHNY soubory (staré i nové).</li>
-                <li><strong>Simulace 2 (Katastrofa):</strong> Smažte celou původní složku <code>TEST_ZDROJ</code> (jako by shořel disk). Nyní se pokuste svá data obnovit překopírováním nejnovější složky ze záloh zpět na plochu pod názvem TEST_ZDROJ.</li>
+                <li>Vytvořte v Cobianu úlohu <strong>1_Plna</strong>, zvolte typ Plná, jako zdroj <code>TEST_ZDROJ</code> a cíl <code>Zaloha\Plna</code>.</li>
+                <li><strong>Pondělí:</strong> Vytvořte v <code>TEST_ZDROJ</code> soubor <em>dokument1.txt</em>. Spusťte zálohu.</li>
+                <li><strong>Úterý:</strong> Přidejte <em>dokument2.txt</em>. Spusťte zálohu znovu.</li>
+                <li><strong>Středa:</strong> Přidejte <em>dokument3.txt</em>. Spusťte zálohu potřetí.</li>
+                <li>Ověřte v cílové složce <code>Zaloha\Plna</code>, že každá nově vytvořená složka (Pondělní, Úterní, Středeční) obsahuje <strong>všechny soubory</strong> platné v daný den (staré i nové).</li>
               </ul>
               <div className="pl-11 mt-4">
                 <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
                   <input type="checkbox" checked={task1} onChange={e => setTask1(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
-                  <span className="font-bold text-slate-700">Mám ověřeno a dokážu obnovit zkázu ✅</span>
+                  <span className="font-bold text-slate-700">Ověřeno: Plná záloha vždy kopíruje vše ✅</span>
                 </label>
               </div>
             </div>
@@ -473,19 +475,20 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
                 <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm">2</span>
-                Úkol 2: Přírůstková (Incremental) záloha a složitá obnova
+                Úkol 2: Přírůstková (Incremental) záloha
               </h3>
               <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-16 space-y-2">
-                <li>Vytvořte úlohu <strong>2_Inkrementalni</strong> (vyberte stejné složky zdroj a cíl). Spusťte ji (první záloha je vždy automaticky plná).</li>
-                <li><strong>Simulace 1 (První změna):</strong> Přidejte do <code>TEST_ZDROJ</code> soubor Dokument3.txt. Znovu spusťte úlohu.</li>
-                <li>Ověřte výsledek: V nově vytvořené cílové složce by se měl objevit <strong>pouze nový soubor</strong> Dokument3.txt. Cobian díky zrušenému atributu <em>Archivovat</em> bezpečně ví, že staré soubory nepotřebuje kopírovat.</li>
-                <li><strong>Simulace 2 (Druhá změna):</strong> Přidejte do <code>TEST_ZDROJ</code> soubor Dokument4.txt a opět spusťte úlohu. Zkontrolujte, že ve třetí vytvořené složce je <strong>pouze</strong> Dokument4.txt (Dokument3.txt se už ignoruje, protože byl zálohován minule).</li>
-                <li><strong>Simulace 3 (Katastrofa):</strong> Opět smažte <code>TEST_ZDROJ</code>. Nyní ji zkuste složit zpět. Musíte překopírovat složku první Plné zálohy a <strong>do ní</strong> následně překopírovat (přepsat) obsahy <strong>všech dalších vytvořených inkrementálních složek přesně v tom pořadí, v jakém vznikaly</strong>.</li>
+                <li><strong>Příprava:</strong> Smažte obsah <code>TEST_ZDROJ</code> i <code>Zaloha\Inkrementalni</code>. Začínáme od nuly.</li>
+                <li>Vytvořte úlohu <strong>2_Inkrementalni</strong> (zdroj <code>TEST_ZDROJ</code>, cíl <code>Zaloha\Inkrementalni</code>).</li>
+                <li><strong>Pondělí:</strong> Vytvořte <em>dokument1.txt</em>. Spusťte zálohu (první se provede jako Plná).</li>
+                <li><strong>Úterý:</strong> Přidejte <em>dokument2.txt</em>. Spusťte zálohu.</li>
+                <li><strong>Středa:</strong> Přidejte <em>dokument3.txt</em>. Spusťte zálohu.</li>
+                <li>Ověřte výsledek: V nově vytvořených složkách pro Úterý a Středu by se měl nacházet <strong>vždy pouze jeden nový změněný soubor</strong>!</li>
               </ul>
               <div className="pl-11 mt-4">
                 <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
                   <input type="checkbox" checked={task2} onChange={e => setTask2(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
-                  <span className="font-bold text-slate-700">Mám ověřeno a zkusil jsem puzzle obnovy ✅</span>
+                  <span className="font-bold text-slate-700">Ověřeno: Inkrementální kopíruje jen změny od včerejška ✅</span>
                 </label>
               </div>
             </div>
@@ -494,52 +497,74 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
                 <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm">3</span>
-                Úkol 3: Závěrečná certifikace (Záchrana projektu)
+                Úkol 3: Rozdílová (Differential) záloha
               </h3>
-              <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
-                V tomto úkolu využijete <strong>Diferenciální zálohu</strong>. Simulujeme vývoj reálného webového projektu napříč týdnem, který nakonec zničí ransomware. Vaším úkolem je web oživit.
-              </p>
-              
-              <div className="pl-11 space-y-4">
-                <div className="bg-white border-l-4 border-blue-400 p-4 rounded-r-xl shadow-sm">
-                  <h4 className="font-bold text-slate-800 text-sm mb-1">Fáze 1: Pondělí (Plná záloha)</h4>
-                  <p className="text-sm text-slate-600">Vytvořte na ploše složku <code>Muj_Projekt</code> a v ní vytvořte obyčejný textový dokument a přejmenujte jej na <code>index.html</code>. Napište do něj <em>"Vítejte na mem webu"</em> a uložte. V Cobianu vytvořte úlohu typu <strong>Plná</strong> a spusťte ji.</p>
-                </div>
-                
-                <div className="bg-white border-l-4 border-emerald-400 p-4 rounded-r-xl shadow-sm">
-                  <h4 className="font-bold text-slate-800 text-sm mb-1">Fáze 2: Úterý (Diferenciální záloha)</h4>
-                  <p className="text-sm text-slate-600">Změňte typ úlohy v Cobianu na <strong>Rozdílová (Differential)</strong>. Do složky <code>Muj_Projekt</code> přidejte nový soubor <code>style.css</code> (klidně prázdný, jde nám o soubor). Spusťte zálohu. Všimněte si, že se zazálohoval jen CSS soubor.</p>
-                </div>
-                
-                <div className="bg-white border-l-4 border-amber-400 p-4 rounded-r-xl shadow-sm">
-                  <h4 className="font-bold text-slate-800 text-sm mb-1">Fáze 3: Středa (Diferenciální záloha)</h4>
-                  <p className="text-sm text-slate-600">Přidejte do projektu libovolný obrázek <code>logo.jpg</code>. Znovu spusťte zálohu. Zkontrolujte vytvořenou cílovou složku: <strong>Cobian sem nakopíroval jak logo, tak včerejší CSS soubor!</strong> (Protože u obou vidí, že jsou novější než Plná záloha z pondělí).</p>
-                </div>
-                
-                <div className="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-xl shadow-sm">
-                  <h4 className="font-bold text-rose-800 text-sm mb-1">Fáze 4: Čtvrtek (Ransomware útočí!)</h4>
-                  <p className="text-sm text-rose-700">Tragédie! Smažte ze své plochy celou složku <code>Muj_Projekt</code> a vysypte koš. Šéf po vás chce web okamžitě nahodit zpět.</p>
-                </div>
-                
-                <div className="bg-white border-l-4 border-purple-400 p-4 rounded-r-xl shadow-sm">
-                  <h4 className="font-bold text-slate-800 text-sm mb-1">Fáze 5: Záchrana (Puzzle pro profíky)</h4>
-                  <p className="text-sm text-slate-600">Obnovte složku na plochu ze záloh. <strong>Pamatujte na teorii:</strong> Zkopírujte složku z Pondělí (Plná záloha) a do ní překopírujte POUZE obsah zálohy ze Středy (Poslední diferenciální). Úterní zálohu ignorujte! Poklepáním na <code>index.html</code> ověřte, že tam vidíte soubory ze všech dnů.</p>
-                </div>
-                
-                <div className="mt-6">
-                  <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
-                    <input type="checkbox" checked={task3} onChange={e => setTask3(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
-                    <span className="font-bold text-slate-700">✅ Zvládl jsem to! Obnovil jsem celý projekt po katastrofě!</span>
-                  </label>
-                </div>
+              <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-16 space-y-2">
+                <li><strong>Příprava:</strong> Smažte obsah <code>TEST_ZDROJ</code> i <code>Zaloha\Diferencialni</code>. Opět čistý stůl.</li>
+                <li>Vytvořte úlohu <strong>3_Diferencialni</strong> typu Rozdílová (zdroj <code>TEST_ZDROJ</code>, cíl <code>Zaloha\Diferencialni</code>).</li>
+                <li><strong>Pondělí:</strong> Vytvořte <em>dokument1.txt</em>. Spusťte zálohu.</li>
+                <li><strong>Úterý:</strong> Přidejte <em>dokument2.txt</em>. Spusťte zálohu.</li>
+                <li><strong>Středa:</strong> Přidejte <em>dokument3.txt</em>. Spusťte zálohu.</li>
+                <li>Ověřte cíl: Poslední vytvořená složka (Středa) musí obsahovat <strong>dokument2.txt i dokument3.txt</strong> (tedy vše, co se změnilo od Pondělní plné zálohy).</li>
+              </ul>
+              <div className="pl-11 mt-4">
+                <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
+                  <input type="checkbox" checked={task3} onChange={e => setTask3(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
+                  <span className="font-bold text-slate-700">Ověřeno: Diferenciální kopíruje změny od první zálohy ✅</span>
+                </label>
               </div>
             </div>
 
             {/* Úkol 4 */}
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
-                <span className="w-8 h-8 bg-fuchsia-100 text-fuchsia-700 rounded-full flex items-center justify-center text-sm">4</span>
-                Úkol 4: Shrnutí a závěrečné otázky
+                <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm">4</span>
+                Úkol 4: Komplexní projekt (Havárie a Záchrana)
+              </h3>
+              <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
+                Simulujeme vývoj projektu napříč týdnem, který nakonec zničí havárie disku. Vaším úkolem je jej z Inkrementálních záloh <strong>zcela přesně a bezpečně obnovit</strong>!
+              </p>
+              
+              <div className="pl-11 space-y-4">
+                <div className="bg-white border-l-4 border-blue-400 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1">Den 1: (Plná)</h4>
+                  <p className="text-sm text-slate-600">V čisté složce <code>Muj_Projekt</code> vytvořte velký 10MB soubor simulující film. Spusťte Příkazový řádek a zadejte:<br/><code>fsutil file createnew "C:\Cesta\K\Slozce\Muj_Projekt\film.mp4" 10485760</code><br/>(Cestu nahraďte svou vlastní). Pak v Cobianu vytvořte úlohu typu <strong>Inkrementální</strong> s cílem <code>Zaloha\Projekt</code> a spusťte ji.</p>
+                </div>
+                
+                <div className="bg-white border-l-4 border-emerald-400 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1">Den 2: (Inkrement)</h4>
+                  <p className="text-sm text-slate-600">Do složky přidejte malý textový soubor <code>denik.txt</code> (s nějakým textem). Spusťte zálohu. Povšimněte si, jak bleskově se provedla a jak malá je cílová složka.</p>
+                </div>
+                
+                <div className="bg-white border-l-4 border-amber-400 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1">Den 3: (Inkrement)</h4>
+                  <p className="text-sm text-slate-600">Přidejte soubor <code>kniha.txt</code>. Spusťte zálohu.</p>
+                </div>
+
+                <div className="bg-white border-l-4 border-orange-400 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1">Den 4: (Změna - Inkrement)</h4>
+                  <p className="text-sm text-slate-600">Otevřete <code>denik.txt</code>, připište do něj další řádku textu a uložte. Spusťte zálohu.</p>
+                </div>
+                
+                <div className="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-xl shadow-sm">
+                  <h4 className="font-bold text-rose-800 text-sm mb-1">Den 5: Katastrofa!</h4>
+                  <p className="text-sm text-rose-700">Smažte celou původní složku <code>Muj_Projekt</code>! Nyní musíte z cílových 4 složek složit svůj projekt stoprocentně zpět do původního stavu.</p>
+                </div>
+                
+                <div className="mt-6">
+                  <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
+                    <input type="checkbox" checked={task4} onChange={e => setTask4(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
+                    <span className="font-bold text-slate-700">✅ Zvládl jsem to! Obnovil jsem celý projekt bez ztráty dat!</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Úkol 5 */}
+            <div className="space-y-4 relative">
+              <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
+                <span className="w-8 h-8 bg-fuchsia-100 text-fuchsia-700 rounded-full flex items-center justify-center text-sm">5</span>
+                Úkol 5: Shrnutí a závěrečné otázky
               </h3>
               
               <div className="pl-11 space-y-6">
