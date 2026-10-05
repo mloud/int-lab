@@ -29,16 +29,18 @@ export interface FsTab {
 }
 
 interface FsChapterShellProps {
-  chapterNumber: number;
+  chapterNumber?: number;
   totalChapters?: number;
   title: string;
-  highlight: string;
+  highlight?: string;
   subtitle: string;
-  tabs: FsTab[];
-  activeTab: string;
-  onTabChange: (id: string) => void;
+  tabs?: FsTab[];
+  activeTab?: string;
+  onTabChange?: (id: string) => void;
   onBack: () => void;
   children: React.ReactNode;
+  icon?: React.ReactNode;
+  accentColor?: string;
 }
 
 /** Obal podkapitoly: tlačítko zpět, režim projektoru, hlavička a přepínač záložek. */
@@ -58,9 +60,11 @@ export const FsChapterShell: React.FC<FsChapterShellProps> = ({
         </div>
 
         <header className="text-center py-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-black uppercase tracking-[0.2em] text-xs mb-4">
-            Kapitola {chapterNumber} / {totalChapters}
-          </div>
+          {chapterNumber !== undefined && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-black uppercase tracking-[0.2em] text-xs mb-4">
+              Kapitola {chapterNumber} / {totalChapters}
+            </div>
+          )}
           <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-[1.05]">
             {title}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-500">{highlight}</span>
@@ -68,22 +72,24 @@ export const FsChapterShell: React.FC<FsChapterShellProps> = ({
           <p className="mt-4 text-lg text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">{subtitle}</p>
         </header>
 
-        <nav className="bg-white/90 backdrop-blur p-2 rounded-2xl flex shadow-sm border border-slate-200 sticky top-20 z-30 overflow-x-auto gap-1">
-          {tabs.map(tab => {
-            const Icon = tab.icon;
-            const active = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                id={`fs-tab-${tab.id}`}
-                onClick={() => onTabChange(tab.id)}
-                className={`flex-1 min-w-[150px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${active ? 'bg-purple-50 text-purple-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
-              >
-                <Icon className="w-6 h-6" /> {tab.label}
-              </button>
-            );
-          })}
-        </nav>
+        {tabs && tabs.length > 0 && (
+          <nav className="bg-white/90 backdrop-blur p-2 rounded-2xl flex shadow-sm border border-slate-200 sticky top-20 z-30 overflow-x-auto gap-1">
+            {tabs.map(tab => {
+              const Icon = tab.icon;
+              const active = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  id={`fs-tab-${tab.id}`}
+                  onClick={() => onTabChange && onTabChange(tab.id)}
+                  className={`flex-1 min-w-[150px] py-3 px-4 rounded-xl font-bold transition-all text-sm uppercase tracking-wide flex justify-center items-center gap-2 ${active ? 'bg-purple-50 text-purple-700 shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
+                >
+                  <Icon className="w-6 h-6" /> {tab.label}
+                </button>
+              );
+            })}
+          </nav>
+        )}
 
         <div key={activeTab} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-16">
           <div className="bg-white/80 backdrop-blur-xl w-full rounded-[3rem] shadow-2xl border-4 border-white p-8 sm:p-12 overflow-hidden relative min-h-[600px]">

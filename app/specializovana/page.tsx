@@ -13,7 +13,8 @@ export default function Page() {
             onBack={() => router.push('/')}
             onStartOperacniSystemy={() => router.push('/specializovana/operacni-systemy')}
             onStartOperacniSystemy2={() => router.push('/specializovana/operacni-systemy-2')}
-            onStartProgramming={() => router.push('/specializovana/programovani')} />
+            onStartProgramming={() => router.push('/specializovana/programovani')} 
+            onStartProgramming2={() => router.push('/specializovana/programovani-2')} />
     </CategoryLayout>
   );
 }
