@@ -6,6 +6,7 @@ import ScratchSequenceChapter from '@/components/specializovana/programovani/scr
 import ScratchVariablesChapter from '@/components/specializovana/programovani/scratch/ScratchVariablesChapter';
 import ScratchVariablesLoopsChapter from '@/components/specializovana/programovani/scratch/ScratchVariablesLoopsChapter';
 import ScratchSubprogramsChapter from '@/components/specializovana/programovani/scratch/ScratchSubprogramsChapter';
+import ScratchConditionsChapter from '@/components/specializovana/programovani/scratch/ScratchConditionsChapter';
 import { useRouter } from 'next/navigation';
 import { BookOpen } from 'lucide-react';
 
@@ -78,6 +79,20 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
               Otevřít lekci
             </button>
           </div>
+
+          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
+            <div className="flex flex-col items-center mt-2">
+              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
+              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 6</h3>
+              <p className="text-xs text-slate-600">Podmíněný příkaz</p>
+            </div>
+            <button
+              onClick={() => onSelectChapter(6)}
+              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
+            >
+              Otevřít lekci
+            </button>
+          </div>
         </div>
 
         <button 
@@ -106,6 +121,9 @@ export default function ScratchPage() {
   }
   if (activeChapter === 4) {
     return <ScratchSubprogramsChapter onBack={() => setActiveChapter(null)} />;
+  }
+  if (activeChapter === 6) {
+    return <ScratchConditionsChapter onBack={() => setActiveChapter(null)} />;
   }
 
   return (
