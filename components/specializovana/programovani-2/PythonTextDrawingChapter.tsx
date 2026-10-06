@@ -161,7 +161,7 @@ const PythonTextDrawingChapter: React.FC<PythonTextDrawingChapterProps> = ({ onB
       icon={<Type className="w-8 h-8 text-pink-600" />}
       onBack={onBack}
       accentColor="pink"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 10', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

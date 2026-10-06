@@ -135,7 +135,7 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
       icon={<Calculator className="w-8 h-8 text-violet-600" />}
       onBack={onBack}
       accentColor="violet"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 12', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

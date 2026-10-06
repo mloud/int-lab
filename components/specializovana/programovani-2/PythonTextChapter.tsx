@@ -137,7 +137,7 @@ const PythonTextChapter: React.FC<PythonTextChapterProps> = ({ onBack }) => {
       icon={<Type className="w-8 h-8 text-cyan-600" />}
       onBack={onBack}
       accentColor="cyan"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 10', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

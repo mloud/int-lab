@@ -161,7 +161,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
       icon={<Target className="w-8 h-8 text-cyan-600" />}
       onBack={onBack}
       accentColor="cyan"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 15', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

@@ -122,7 +122,7 @@ const PythonOutputsChapter: React.FC<PythonOutputsChapterProps> = ({ onBack }) =
       icon={<Zap className="w-8 h-8 text-purple-600" />}
       onBack={onBack}
       accentColor="purple"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 4', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

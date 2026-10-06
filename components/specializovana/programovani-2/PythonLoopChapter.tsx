@@ -135,7 +135,7 @@ const PythonLoopChapter: React.FC<PythonLoopChapterProps> = ({ onBack }) => {
       icon={<Repeat className="w-8 h-8 text-rose-600" />}
       onBack={onBack}
       accentColor="rose"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 11', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

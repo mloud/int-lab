@@ -135,7 +135,7 @@ const PythonNestedBranchingChapter: React.FC<PythonNestedBranchingChapterProps> 
       icon={<Network className="w-8 h-8 text-pink-600" />}
       onBack={onBack}
       accentColor="pink"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 18', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

@@ -136,7 +136,7 @@ const PythonVariablesDrawingChapter: React.FC<PythonVariablesDrawingChapterProps
       icon={<Square className="w-8 h-8 text-amber-600" />}
       onBack={onBack}
       accentColor="amber"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 7', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

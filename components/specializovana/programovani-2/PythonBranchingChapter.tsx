@@ -143,7 +143,7 @@ const PythonBranchingChapter: React.FC<PythonBranchingChapterProps> = ({ onBack 
       icon={<GitMerge className="w-8 h-8 text-yellow-600" />}
       onBack={onBack}
       accentColor="yellow"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 17', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

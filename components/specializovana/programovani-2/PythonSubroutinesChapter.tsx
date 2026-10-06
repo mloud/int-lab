@@ -136,7 +136,7 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
       icon={<Box className="w-8 h-8 text-sky-600" />}
       onBack={onBack}
       accentColor="sky"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 8', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

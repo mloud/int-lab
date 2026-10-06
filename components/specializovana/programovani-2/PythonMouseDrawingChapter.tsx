@@ -143,7 +143,7 @@ const PythonMouseDrawingChapter: React.FC<PythonMouseDrawingChapterProps> = ({ o
       icon={<MousePointer2 className="w-8 h-8 text-cyan-600" />}
       onBack={onBack}
       accentColor="cyan"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 20', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

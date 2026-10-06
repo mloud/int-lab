@@ -142,7 +142,7 @@ const PythonConditionsChapter: React.FC<PythonConditionsChapterProps> = ({ onBac
       icon={<GitBranch className="w-8 h-8 text-red-600" />}
       onBack={onBack}
       accentColor="red"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 16', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
@@ -256,7 +256,7 @@ const PythonConditionsChapter: React.FC<PythonConditionsChapterProps> = ({ onBac
           </CanvasPreview>
         </TaskCard>
 
-        <TaskCard number="10*" title="Obdélníkový souboj" taskId="10" showTeacher={teacherMode} teacherNote={<p>Pokud a=50, b=100 a my to chceme naležato, tak `width` musí být to větší číslo z nich, a `height` to menší. O to se tady musí podmínkou postarat (když a > b pak a je šířka... atd.).</p>}>
+        <TaskCard number="10*" title="Obdélníkový souboj" taskId="10" showTeacher={teacherMode} teacherNote={<p>Pokud a=50, b=100 a my to chceme naležato, tak `width` musí být to větší číslo z nich, a `height` to menší. O to se tady musí podmínkou postarat (když a &gt; b pak a je šířka... atd.).</p>}>
           <p className="flex items-center gap-2 font-bold text-red-600 mb-2">
             <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
           </p>

@@ -136,7 +136,7 @@ const PythonColorsChapter: React.FC<PythonColorsChapterProps> = ({ onBack }) => 
       icon={<Palette className="w-8 h-8 text-rose-600" />}
       onBack={onBack}
       accentColor="rose"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 6', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

@@ -122,7 +122,7 @@ const PythonVariablesChapter: React.FC<PythonVariablesChapterProps> = ({ onBack 
       icon={<Terminal className="w-8 h-8 text-orange-600" />}
       onBack={onBack}
       accentColor="orange"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 2', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

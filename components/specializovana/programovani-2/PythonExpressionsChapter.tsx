@@ -135,7 +135,7 @@ const PythonExpressionsChapter: React.FC<PythonExpressionsChapterProps> = ({ onB
       icon={<Settings2 className="w-8 h-8 text-orange-600" />}
       onBack={onBack}
       accentColor="orange"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 13', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

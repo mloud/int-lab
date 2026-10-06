@@ -142,7 +142,7 @@ const PythonOvalsChapter: React.FC<PythonOvalsChapterProps> = ({ onBack }) => {
       icon={<Circle className="w-8 h-8 text-teal-600" />}
       onBack={onBack}
       accentColor="teal"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 14', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

@@ -143,7 +143,7 @@ const PythonFunctionsArgsChapter: React.FC<PythonFunctionsArgsChapterProps> = ({
       icon={<Puzzle className="w-8 h-8 text-emerald-600" />}
       onBack={onBack}
       accentColor="emerald"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 19', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

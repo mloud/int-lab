@@ -136,7 +136,7 @@ const PythonRandomChapter: React.FC<PythonRandomChapterProps> = ({ onBack }) => 
       icon={<Dices className="w-8 h-8 text-fuchsia-600" />}
       onBack={onBack}
       accentColor="fuchsia"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 9', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (

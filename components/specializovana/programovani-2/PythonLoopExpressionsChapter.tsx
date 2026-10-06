@@ -161,7 +161,7 @@ const PythonLoopExpressionsChapter: React.FC<PythonLoopExpressionsChapterProps> 
       icon={<Calculator className="w-8 h-8 text-violet-600" />}
       onBack={onBack}
       accentColor="violet"
-      tabs={[{ id: 'lekce', label: 'Lekce', icon: Code }]}
+      tabs={[{ id: 'lekce', label: 'Lekce 13', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
