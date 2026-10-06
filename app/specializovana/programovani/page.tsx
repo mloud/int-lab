@@ -15,7 +15,8 @@ export default function Page() {
     >
       <ProgramovaniMenu 
             onBack={() => router.push('/specializovana')}
-            onStartProjects={() => router.push('/specializovana/programovani/projekty')} />
+            onStartProjects={() => router.push('/specializovana/programovani/projekty')}
+            onStartScratch={() => router.push('/specializovana/programovani/scratch')} />
     </CategoryLayout>
   );
 }

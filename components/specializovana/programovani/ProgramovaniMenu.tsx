@@ -4,9 +4,10 @@ import { ArrowLeft, Code, FolderOpen } from 'lucide-react';
 interface ProgramovaniMenuProps {
   onBack: () => void;
   onStartProjects: () => void;
+  onStartScratch: () => void;
 }
 
-const ProgramovaniMenu: React.FC<ProgramovaniMenuProps> = ({ onBack, onStartProjects }) => {
+const ProgramovaniMenu: React.FC<ProgramovaniMenuProps> = ({ onBack, onStartProjects, onStartScratch }) => {
   return (
     <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
       
@@ -24,11 +25,29 @@ const ProgramovaniMenu: React.FC<ProgramovaniMenuProps> = ({ onBack, onStartProj
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          {/* Scratch */}
+          <div className="relative group p-6 bg-amber-50/50 rounded-3xl border-2 border-amber-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-amber-50 hover:shadow-xl transition-shadow">
+            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-amber-50 transition-colors">#scr</div>
+            <div className="flex flex-col items-center mt-4">
+              <div className="w-12 h-12 bg-amber-500 rounded-2xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
+                <Code className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-black text-amber-700 mb-1 uppercase tracking-wider text-sm">Scratch</h3>
+              <p className="text-xs text-gray-600">Úvod do programování pomocí bloků pro úplné začátečníky.</p>
+            </div>
+            <button
+              onClick={onStartScratch}
+              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20 w-full"
+            >
+              Otevřít Scratch
+            </button>
+          </div>
+
           {/* Projekty */}
-          <div className="relative group p-6 bg-emerald-50/50 rounded-3xl border-2 border-emerald-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-emerald-50">
+          <div className="relative group p-6 bg-emerald-50/50 rounded-3xl border-2 border-emerald-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-emerald-50 hover:shadow-xl transition-shadow">
             <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-emerald-50 transition-colors">#prm</div>
             <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
+              <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <FolderOpen className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-black text-emerald-700 mb-1 uppercase tracking-wider text-sm">Projekty</h3>
@@ -36,7 +55,7 @@ const ProgramovaniMenu: React.FC<ProgramovaniMenuProps> = ({ onBack, onStartProj
             </div>
             <button
               onClick={onStartProjects}
-              className="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
+              className="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20 w-full"
             >
               Zobrazit projekty
             </button>

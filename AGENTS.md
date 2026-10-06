@@ -29,3 +29,6 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
    - **Nadpisy sekcí (H2):** Používej `text-2xl font-black text-slate-800`.
    - **Nadpisy vnořených karet/bloků (H3):** Používej `text-xl font-black` (často v kombinaci s `uppercase tracking-widest` nebo `tracking-tight`).
    - **Běžný text (odstavce, seznamy):** Výkladový text uvnitř karet nedávej do výchozí velikosti, ale VŽDY použij menší font `text-sm` s větším řádkováním, např. `text-sm text-slate-600 leading-relaxed`. Zlepšuje to čitelnost a prémiový vzhled.
+6. **Scratch Kapitoly a Úkoly:**
+   - Pro Scratch kapitoly vždy používej šablonu (komponentu `FsChapterShell`) s barvou `accentColor="border-amber-500"` a metodickým přepínačem s PINem.
+   - Samotné úkoly (komponenta `TaskCard`) VŽDY obaluj do kontejneru `<div className="flex flex-col gap-8">`, aby se karty nedotýkaly a byla mezi nimi konzistentní mezera, přesně jako v lekci 1.
