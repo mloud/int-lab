@@ -32,3 +32,6 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
 6. **Scratch Kapitoly a Úkoly:**
    - Pro Scratch kapitoly vždy používej šablonu (komponentu `FsChapterShell`) s barvou `accentColor="border-amber-500"` a metodickým přepínačem s PINem.
    - Samotné úkoly (komponenta `TaskCard`) VŽDY obaluj do kontejneru `<div className="flex flex-col gap-8">`, aby se karty nedotýkaly a byla mezi nimi konzistentní mezera, přesně jako v lekci 1.
+7. **Tvorba Testů a Pracovních listů:**
+   - Kdykoli přidáváš nový test nebo pracovní list pro žáky, použij k tomu vždy univerzální komponentu `TestWorksheetShell`.
+   - VŽDY se předtím zeptej uživatele na to, jaký má být nastaven **přístupový PIN pro studenty** (k odtajnění zadání) a **přístupový PIN pro učitele** (k zobrazení vzorového řešení).
