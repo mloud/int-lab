@@ -24,7 +24,7 @@ export default function Page() {
             onStartProcessMemory={() => router.push('/specializovana/operacni-systemy/procesy')}
             onStartHardware={() => router.push('/specializovana/operacni-systemy/hardware')} 
             onStartVirtualization={() => router.push('/specializovana/operacni-systemy/virtualizace')}
-            onStartAssessment={() => router.push('/specializovana/operacni-systemy/hodnoceni')} />
+            onStartAssessment={() => router.push('/specializovana/operacni-systemy/test01')} />
     </CategoryLayout>
   );
 }
