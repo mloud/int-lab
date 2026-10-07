@@ -20,10 +20,10 @@ export default function Page() {
           onStartFragmentation={() => router.push(`${BASE}/fragmentace`)}
           onStartReadFlow={() => router.push(`${BASE}/cteni-souboru`)}
           onStartFATGame={() => router.push(`${BASE}/fat`)}
-          onStartAllocationGame={() => router.push(`${BASE}/alokace`)}
           onStartDefragGame={() => router.push(`${BASE}/defrag`)}
           onStartChkdskGame={() => router.push(`${BASE}/chkdsk`)}
           onStartClusterSizeGame={() => router.push(`${BASE}/velikost-clusteru`)}
+          onStartAdvancedTopics={() => router.push(`${BASE}/pokrocile`)}
         />
       </div>
     </ChapterLayout>

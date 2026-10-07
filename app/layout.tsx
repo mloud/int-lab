@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="cs">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://cdn.tailwindcss.com"></script>
+        <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <style>{`
           body {

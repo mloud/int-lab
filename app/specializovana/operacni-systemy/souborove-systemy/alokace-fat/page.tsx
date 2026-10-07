@@ -13,8 +13,8 @@ export default function Page() {
       <FatChapter
         onBack={() => router.push(BASE)}
         onOpenFatGame={() => router.push(`${BASE}/fat`)}
-        onOpenClusterGame={() => router.push(`${BASE}/velikost-clusteru`)}
-        onOpenAllocationGame={() => router.push(`${BASE}/alokace`)}
+        onOpenDeleteGame={() => router.push(`${BASE}/mazani`)}
+        onOpenFormatGame={() => router.push(`${BASE}/formatovani`)}
       />
     </ChapterLayout>
   );

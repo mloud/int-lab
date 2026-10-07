@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ArrowLeft, HardDrive, Binary, Grid, ArrowUpDown, Search, Calculator,
-  Disc3, PieChart, Table2, Wrench, AppWindow, Cpu, Layers, ChevronRight, ArrowDown
+  Disc3, PieChart, Table2, Wrench, AppWindow, Cpu, Layers, ChevronRight, ArrowDown, Database
 } from 'lucide-react';
 
 interface FileSystemsMenuProps {
@@ -15,10 +15,10 @@ interface FileSystemsMenuProps {
   onStartReadFlow: () => void;
   // Samostatné procvičovací hry
   onStartFATGame: () => void;
-  onStartAllocationGame: () => void;
   onStartDefragGame: () => void;
   onStartChkdskGame: () => void;
-  onStartClusterSizeGame: () => void;
+  // Pokrocila temata
+  onStartAdvancedTopics: () => void;
 }
 
 const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
@@ -30,10 +30,9 @@ const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
   onStartFragmentation,
   onStartReadFlow,
   onStartFATGame,
-  onStartAllocationGame,
   onStartDefragGame,
   onStartChkdskGame,
-  onStartClusterSizeGame,
+  onStartAdvancedTopics,
 }) => {
   const chapters = [
     {
@@ -65,8 +64,8 @@ const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
     },
     {
       n: 4, tag: 'fs4',
-      title: 'Alokační jednotka a FAT',
-      desc: 'Cluster, FAT tabulka, mazání a obnova souborů. Srovnání s NTFS a ext4.',
+      title: 'Systém souborů',
+      desc: 'Od hardwaru k OS. Clustery, tabulka souborů, vnitřní fragmentace a mýtus o smazaných datech.',
       icon: Table2,
       gradient: 'from-purple-500 to-fuchsia-500',
       ring: 'hover:border-purple-200',
@@ -90,12 +89,19 @@ const FileSystemsMenu: React.FC<FileSystemsMenuProps> = ({
       ring: 'hover:border-rose-200',
       action: onStartReadFlow,
     },
+    {
+      n: 99, tag: 'fs-adv',
+      title: 'Pokročilá témata',
+      desc: 'Alokační strategie (First/Best Fit) a další komplexní principy z univerzitních osnov.',
+      icon: Database,
+      gradient: 'from-slate-600 to-slate-800',
+      ring: 'hover:border-slate-400',
+      action: onStartAdvancedTopics,
+    },
   ];
 
   const games = [
     { tag: 'fat', title: 'Základy FAT tabulky', desc: 'Čtení a oprava řetězců ve FAT.', icon: Binary, color: 'text-indigo-600', bg: 'bg-indigo-50', action: onStartFATGame },
-    { tag: 'clu', title: 'Velikost clusteru', desc: 'Spočítej plýtvání místem na disku.', icon: Calculator, color: 'text-rose-600', bg: 'bg-rose-50', action: onStartClusterSizeGame },
-    { tag: 'alo', title: 'Alokační strategie', desc: 'First Fit, Best Fit a Worst Fit.', icon: Grid, color: 'text-emerald-600', bg: 'bg-emerald-50', action: onStartAllocationGame },
     { tag: 'dfg', title: 'Defragmentace disku', desc: 'Srovnej bloky a zrychli čtení.', icon: ArrowUpDown, color: 'text-amber-600', bg: 'bg-amber-50', action: onStartDefragGame },
     { tag: 'chk', title: 'Detektiv CHKDSK', desc: 'Najdi ztracené a překřížené clustery.', icon: Search, color: 'text-purple-600', bg: 'bg-purple-50', action: onStartChkdskGame },
   ];
