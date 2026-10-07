@@ -14,7 +14,8 @@ import { ArrowRight, Usb, Printer, CheckSquare, Square, Info } from 'lucide-reac
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
-
+import hddImg from '@/public/images/os/hdd_internals.jpg';
+import ssdImg from '@/public/images/os/ssd_internals.jpg';
 
 function SpeedSimulation() {
   const [running, setRunning] = useState(false);
@@ -424,7 +425,7 @@ export default function DiskMediaChapter({ onBack }: { onBack: () => void }) {
               </p>
               
               <div className="my-6 rounded-2xl overflow-hidden border-2 border-indigo-100 shadow-sm relative group">
-                <img src="/images/os/hdd_internals.jpg" alt="Vnitřní uspořádání mechanického pevného disku (HDD)" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src={hddImg.src} alt="Vnitřní uspořádání mechanického pevného disku (HDD)" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
                   <span className="text-white font-bold text-sm tracking-wide">Pohyblivé mechanické části (Rotující plotna a hlavička)</span>
                 </div>
@@ -472,7 +473,7 @@ export default function DiskMediaChapter({ onBack }: { onBack: () => void }) {
               </p>
 
               <div className="my-6 rounded-2xl overflow-hidden border-2 border-teal-100 shadow-sm relative group">
-                <img src="/images/os/ssd_internals.jpg" alt="Vnitřní uspořádání paměťového SSD disku (NVMe)" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src={ssdImg.src} alt="Vnitřní uspořádání paměťového SSD disku (NVMe)" className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
                   <span className="text-white font-bold text-sm tracking-wide">Žádné pohyblivé části (Paměťové čipy NAND a řadič)</span>
                 </div>
