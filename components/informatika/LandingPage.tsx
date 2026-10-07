@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowRight, Binary, Shapes, BoxSelect, ArrowLeft, HardDrive, Monitor, Lock, ScanFace } from 'lucide-react';
+import { Sparkles, ArrowRight, Binary, Shapes, BoxSelect, ArrowLeft, HardDrive, Monitor, Lock, ScanFace, BarChart3 } from 'lucide-react';
 
 interface LandingPageProps {
   onStartColors: () => void;
@@ -17,10 +17,11 @@ interface LandingPageProps {
   onStartFutureTech: () => void;
   onStartArApps: () => void;
   onStartOs2: () => void;
+  onStartBarCharts: () => void;
   onBack: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartOs2, onStartCodes, onStartEncryption, onStartFutureTech, onStartArApps, onBack }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartOs2, onStartCodes, onStartEncryption, onStartFutureTech, onStartArApps, onStartBarCharts, onBack }) => {
   return (
     <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
       
@@ -255,6 +256,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, 
             </div>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative text-yellow-400 shrink-0 ml-2" />
           <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#fut</div></button>
+
+          <button
+            onClick={onStartBarCharts}
+            className="group relative px-4 sm:px-6 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex items-center gap-3 sm:gap-4 relative w-full">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform shrink-0">
+                <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
+              </div>
+              <span className="text-sm sm:text-base uppercase tracking-normal text-emerald-700 text-left leading-tight break-words flex-1">Sloupcové<br/>grafy</span>
+            </div>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative text-emerald-400 shrink-0 ml-2" />
+          <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-emerald-50 transition-colors">#gra</div></button>
         </div>
 
         <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">Střední škola</h2>

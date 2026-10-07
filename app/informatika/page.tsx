@@ -9,7 +9,7 @@ export default function Page() {
   const router = useRouter();
   return (
     <CategoryLayout title="Obecná Informatika" category="informatika">
-      <LandingPage 
+            <LandingPage 
             onStartColors={() => router.push('/informatika/barvy')}
             onStartLines={() => router.push('/informatika/cary')}
             onStartCompression={() => router.push('/informatika/komprese')}
@@ -28,6 +28,7 @@ export default function Page() {
             onStartHardwareBasic={() => router.push('/informatika/zaklady-hw')}
             onStartWord={() => router.push('/informatika/word')}
             onStartExcel={() => router.push('/informatika/excel')}
+            onStartBarCharts={() => router.push('/informatika/grafy')}
             onBack={() => router.push('/')} />
     </CategoryLayout>
   );
