@@ -54,39 +54,49 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
 
         <h2>1. Vytvoření datového disku (D:)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['p1'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p1'] ? 'X' : ' '} ]</span> Zmenšen systémový disk (C:) o 3000 MB</div>
-          <div class="step"><span class="${checkedItems['p2'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p2'] ? 'X' : ' '} ]</span> Vytvořen nový oddíl (D:) pro Filmy a Hry</div>
+          <div class="step"><span class="${checkedItems['p1'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p1'] ? 'X' : ' '} ]</span> Zmenšete systémový disk (C:) o 3000 MB.</div>
+          <div class="step"><span class="${checkedItems['p2'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p2'] ? 'X' : ' '} ]</span> Na uvolněném místě vytvořte nový oddíl. Přiřaďte mu písmeno D: (pokud je obsazené, zvolte jiné) a jmenovku "Data".</div>
+          <div class="step"><span class="${checkedItems['p1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p1b'] ? 'X' : ' '} ]</span> Na novém disku D: vytvořte testovací textový soubor (např. "mojedata.txt").</div>
           <div class="question">Jaká je výsledná kapacita (v MB), kterou ukazuje Windows v Průzkumníku? A proč to není přesně 3000 MB?</div>
           <div class="answer">${(answers['capacity'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
-        <h2>2. Došlo místo (Změna velikosti)</h2>
+        <h2>2. Rozdělení a sloučení (Práce s D:)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['p3'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p3'] ? 'X' : ' '} ]</span> Oddíl D: úspěšně rozšířen o další prostor.</div>
-          <div class="question">S jakými problémy byste se setkali ve Správě disků, kdyby nealokované (volné) místo leželo na disku fyzicky PŘED vaším oddílem D:? Lze jednoduše rozšiřovat "doleva"?</div>
-          <div class="answer">${(answers['expand_issue'] || '').replace(/\n/g, '<br/>')}</div>
+          <div class="step"><span class="${checkedItems['p3'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p3'] ? 'X' : ' '} ]</span> Zmenšete disk D: o polovinu jeho kapacity a z uvolněného místa vytvořte nový oddíl E: (a uložte na něj soubor).</div>
+          <div class="step"><span class="${checkedItems['p3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p3b'] ? 'X' : ' '} ]</span> Nejprve zkopírujte (zazálohujte) soubor z E: na D:. Teprve poté oddíl E: odstraňte a disk D: rozšiřte zpět.</div>
+          <div class="question">Proč jsme před rozšířením D: museli oddíl E: smazat? V jakém směru (doprava/doleva) vlastně umí Správa disků ve Windows oddíl rozšiřovat?</div>
+          <div class="answer">${(answers['expand_direction'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
-        <h2>3. Záloha (Z:) a Neviditelný Trezor (T:)</h2>
+        <h2>3. Neviditelný Trezor (T:)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['p4'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p4'] ? 'X' : ' '} ]</span> Vytvořen oddíl Z: (Zálohy) a oddíl T: (Trezor).</div>
-          <div class="step"><span class="${checkedItems['p5'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p5'] ? 'X' : ' '} ]</span> Oddílu T: bylo odstraněno písmeno, aby byl skrytý.</div>
-          <div class="question">Ztratili jsme odstraněním písmene T: data na tomto oddílu? Jak se nyní disk chová z pohledu běžného uživatele či malwaru v Průzkumníkovi?</div>
+          <div class="step"><span class="${checkedItems['p4'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p4'] ? 'X' : ' '} ]</span> Zmenšete C: o dalších 1000 MB a vytvořte nový oddíl s jmenovkou "Trezor" a písmenem T:.</div>
+          <div class="step"><span class="${checkedItems['p4b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p4b'] ? 'X' : ' '} ]</span> Na oddíl T: uložte testovací soubor "tajne.txt".</div>
+          <div class="step"><span class="${checkedItems['p5'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p5'] ? 'X' : ' '} ]</span> Ve Správě disků odstraňte Trezoru písmeno (čímž ho dočasně skryjete z Průzkumníku).</div>
+          <div class="step"><span class="${checkedItems['p5b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p5b'] ? 'X' : ' '} ]</span> Oddílu znovu přiřaďte písmeno a zkontrolujte, zda tam váš soubor zůstal.</div>
+          <div class="question">Ztratili jsme odstraněním písmene (když byl disk dočasně skrytý) nějaká data? Co se stane, když oddíl nemá přiřazené písmeno?</div>
           <div class="answer">${(answers['hidden_behavior'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <h2>4. Připojení disku do složky (Mount Point)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['p6'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p6'] ? 'X' : ' '} ]</span> Oddíl připojen do prázdné složky C:\\Tajne.</div>
-          <div class="step"><span class="${checkedItems['p7'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p7'] ? 'X' : ' '} ]</span> Vytvořen testovací soubor přes složku.</div>
+          <div class="step"><span class="${checkedItems['p6'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p6'] ? 'X' : ' '} ]</span> Vytvořte nový svazek H: a na disku C: vytvořte prázdnou složku C:\\TestMount.</div>
+          <div class="step"><span class="${checkedItems['p6b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p6b'] ? 'X' : ' '} ]</span> Přidejte k disku H: druhou cestu ("Připojit do následující prázdné složky") a nasměrujte ji do C:\\TestMount.</div>
+          <div class="step"><span class="${checkedItems['p7'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p7'] ? 'X' : ' '} ]</span> Vytvořte soubor na disku H: a ověřte, že je okamžitě dostupný i přes složku C:\\TestMount.</div>
           <div class="question">Popište scénář z praxe: Kdy je reálně výhodné připojit celý nový fyzický disk jen jako složku "Hry" na disku C: místo toho, abych mu dal nové písmeno D:?</div>
           <div class="answer">${(answers['mount_usage'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
-        <h2>5. Závěrečný úklid (Návrat do původního stavu)</h2>
+        <h2>5. Sloučení svazků (Rozšíření C: zpět)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['p8'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p8'] ? 'X' : ' '} ]</span> Všechny testovací oddíly smazány a C: vráceno do původní podoby.</div>
+          <p><em>Zkuste nyní proces obrátit. Sloučit vytvořené místo zpět do systémového disku C:.</em></p>
+          <div class="step"><span class="${checkedItems['p8'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p8'] ? 'X' : ' '} ]</span> Odstraňte ve Správě disků všechny vytvořené oddíly (D:, Trezor, H:) a v Průzkumníku smažte složku C:\\TestMount.</div>
+          <div class="step"><span class="${checkedItems['p9'] ? 'checked' : 'unchecked'}">[ ${checkedItems['p9'] ? 'X' : ' '} ]</span> Rozšiřte disk C: zpět na jeho maximální původní kapacitu.</div>
+          <div class="question">Co se při odstraňování oddílů stane s daty, která na nich byla uložena? Představuje tato operace nějaké riziko?</div>
+          <div class="answer">${(answers['merge_data_loss'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
+
       </body>
       </html>
     `;
@@ -334,11 +344,15 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
             <div className="space-y-3 mb-6">
               <div onClick={() => toggleCheck('p1')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p1'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p1'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p1'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Klikl/a jsem pravým na svazek (C:), zvolil "Zmenšit svazek" a zadal hodnotu 3000 MB (cca 3 GB).</span>
+                <span className={`font-medium flex-1 ${checkedItems['p1'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Klikněte pravým tlačítkem na svazek (C:), zvolte "Zmenšit svazek" a zadejte hodnotu 3000 MB (cca 3 GB).</span>
               </div>
               <div onClick={() => toggleCheck('p2')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p2'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p2'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p2'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Na uvolněném černém místě jsem vytvořil/a nový svazek, přiřadil/a písmeno D: (Data) a naformátoval/a.</span>
+                <span className={`font-medium flex-1 ${checkedItems['p2'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Na uvolněném černém místě vytvořte nový svazek. Přiřaďte mu písmeno D: (pokud je obsazené, zvolte jiné), nastavte jmenovku na "Data" a naformátujte jej.</span>
+              </div>
+              <div onClick={() => toggleCheck('p1b')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p1b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p1b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p1b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Otevřete Průzkumník a na novém disku D: vytvořte libovolný textový soubor (např. "mojedata.txt").</span>
               </div>
             </div>
 
@@ -353,39 +367,54 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
             </div>
 
 
-            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">2. Došlo místo (Změna velikosti)</h2>
-            <p className="text-slate-500 font-medium mb-6">Disk D: se plní. Potřebujeme z C: ukrojit další místo a přidat ho k D:.</p>
+            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">2. Rozdělení a sloučení (Práce s D:)</h2>
+            <p className="text-slate-500 font-medium mb-6">Zkusíme si oddíl D: rozdělit na dva menší a následně je zase spojit v jeden.</p>
 
             <div className="space-y-3 mb-6">
               <div onClick={() => toggleCheck('p3')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p3'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p3'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p3'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Zmenšil/a jsem C: o další 2000 MB. Poté jsem klikl/a pravým na D: -> "Rozšířit svazek" a volné místo připojil/a.</span>
+                <span className={`font-medium flex-1 ${checkedItems['p3'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Zmenšete disk D: o polovinu jeho kapacity. Z uvolněného místa napravo vytvořte nový oddíl E: a uložte na něj soubor "data_e.txt".</span>
+              </div>
+              <div onClick={() => toggleCheck('p3b')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p3b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p3b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p3b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Zkopírujte (zazálohujte) soubor "data_e.txt" z E: na D:. Teprve poté oddíl E: odstraňte a uvolněné místo připojte zpět k D: (přes "Rozšířit svazek").</span>
               </div>
             </div>
 
             <div className="mb-12">
-              <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Lze ve Správě disků oddíl rozšiřovat "doleva" (když nealokované místo leží fyzicky PŘED ním)?</label>
+              <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Proč jsme před rozšířením D: museli oddíl E: smazat? V jakém směru (doprava/doleva) umí Správa disků oddíl rozšiřovat?</label>
               <textarea 
-                value={answers['expand_issue'] || ''}
-                onChange={(e) => handleAnswerChange('expand_issue', e.target.value)}
-                placeholder="Jak se Správa disků chová, pokud je volné místo před oddílem, který chceme rozšířit?..."
+                value={answers['expand_direction'] || ''}
+                onChange={(e) => handleAnswerChange('expand_direction', e.target.value)}
+                placeholder="Vysvětlete, proč nelze dva disky jen tak 'slít' dohromady a jakým směrem musí být volné místo..."
                 className="w-full min-h-[100px] p-4 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none font-medium text-slate-700 resize-none transition-all shadow-inner"
               />
             </div>
 
-
-            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">3. Záloha (Z:) a Neviditelný Trezor (T:)</h2>
-            <p className="text-slate-500 font-medium mb-6">Vytvoříme další 2 oddíly, z nichž jeden před uživatelem a viry (částečně) skryjeme.</p>
+            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">3. Neviditelný Trezor (T:)</h2>
+            <p className="text-slate-500 font-medium mb-6">Vytvoříme další oddíl, který před uživatelem a viry (částečně) skryjeme.</p>
 
             <div className="space-y-3 mb-6">
               <div onClick={() => toggleCheck('p4')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p4'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p4'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p4'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Zmenšil/a jsem C: ještě o 2000 MB a vytvořil/a z nich dva oddíly po 1000 MB: Záloha (Z:) a Trezor (T:).</span>
+                <span className={`font-medium flex-1 ${checkedItems['p4'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Zmenšete C: o dalších 1000 MB a vytvořte z nich nový oddíl. Dejte mu jmenovku "Trezor" a písmeno T: (pokud je obsazené, použijte jiné).</span>
+              </div>
+              <div onClick={() => toggleCheck('p4b')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p4b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p4b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p4b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Otevřete oddíl T: (Trezor) a uložte na něj testovací soubor "tajne.txt".</span>
+              </div>
+              <div onClick={() => toggleCheck('p5')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p5'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p5'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p5'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Ve Správě disků klikněte na Trezor pravým tlačítkem, zvolte "Změnit písmeno..." a písmeno odstraňte. (Sledujte, že disk zmizí z Průzkumníku).</span>
+              </div>
+              <div onClick={() => toggleCheck('p5b')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p5b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p5b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p5b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Skrytému oddílu ve Správě disků opět přiřaďte libovolné písmeno. Otevřete jej a ověřte, zda tam váš soubor "tajne.txt" zůstal.</span>
               </div>
             </div>
 
             <div className="mb-12">
-              <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Ztratili jsme odebráním písmene na oddílu T: nějaká data? Co se stane, když oddíl nemá přiřazené písmeno?</label>
+              <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Ztratili jsme odstraněním písmene (když byl disk dočasně skrytý) nějaká data? Co se stane, když oddíl nemá přiřazené písmeno?</label>
               <textarea 
                 value={answers['hidden_behavior'] || ''}
                 onChange={(e) => handleAnswerChange('hidden_behavior', e.target.value)}
@@ -396,16 +425,20 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
 
 
             <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">4. Připojení disku do složky (Mount Point)</h2>
-            <p className="text-slate-500 font-medium mb-6">Disku nemusíme nutně dávat písmeno (D:). Můžeme oddíl vzít a naroubovat ho do existující prázdné složky na jiném disku.</p>
+            <p className="text-slate-500 font-medium mb-6">Disku nemusíme nutně dávat písmeno (např. D: nebo T:). Můžeme oddíl vzít a naroubovat ho do existující prázdné složky na jiném disku.</p>
 
             <div className="space-y-3 mb-6">
               <div onClick={() => toggleCheck('p6')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p6'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p6'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p6'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Vytvořil/a jsem na disku C: prázdnou složku "Tajne". Poté jsem skrytému oddílu ve Správě disků přidal/a cestu: "Připojit do následující prázdné složky..." a namířil ji na C:\Tajne.</span>
+                <span className={`font-medium flex-1 ${checkedItems['p6'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Z volného místa vytvořte nový svazek a přiřaďte mu písmeno H:. Na disku C: zároveň vytvořte prázdnou složku s názvem "TestMount".</span>
+              </div>
+              <div onClick={() => toggleCheck('p6b')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p6b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p6b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p6b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Ve Správě disků u H: zvolte "Změnit písmeno...". Tlačítkem "Přidat" vytvořte novou cestu "Připojit do následující prázdné složky" mířící do C:\TestMount.</span>
               </div>
               <div onClick={() => toggleCheck('p7')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p7'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p7'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p7'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Otevřel/a jsem na disku C: složku "Tajne", vytvořil/a uvnitř soubor, následně jsem oddílu přidal/a i písmeno T: a ověřil/a, že soubor vidím pod písmenem T: i pod C:\Tajne.</span>
+                <span className={`font-medium flex-1 ${checkedItems['p7'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Otevřete disk H:, vytvořte v něm testovací soubor a ověřte si, že je soubor okamžitě viditelný i ve složce C:\TestMount. (Jeden disk má teď 2 různé cesty).</span>
               </div>
             </div>
 
@@ -419,15 +452,28 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
               />
             </div>
 
-            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">5. Závěrečný úklid</h2>
-            <p className="text-slate-500 font-medium mb-6">Pojďme po sobě uklidit, aby disk nezůstal trvale rozdělen.</p>
+            <h2 className="text-2xl font-black text-slate-800 mb-2 uppercase mt-8">5. Sloučení svazků (Ztráta dat)</h2>
+            <p className="text-slate-500 font-medium mb-6">Pojďme po sobě uklidit, aby disk nezůstal trvale rozdělen. Uvědomte si ale dopad této operace.</p>
             
             <div className="space-y-3 mb-6">
-
               <div onClick={() => toggleCheck('p8')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p8'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                 {checkedItems['p8'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                <span className={`font-medium flex-1 ${checkedItems['p8'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Všechny nové svazky (D:, Z:, skrytý) jsem odstranil/a. C: jsem rozšířil/a do původní maximální kapacity.</span>
+                <span className={`font-medium flex-1 ${checkedItems['p8'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Ve Správě disků postupně odstraňte všechny námi vytvořené svazky (D:, Trezor, H:) a v Průzkumníku smažte složku C:\TestMount.</span>
               </div>
+              <div onClick={() => toggleCheck('p9')} className={`flex items-start gap-4 p-4 cursor-pointer rounded-xl border-2 transition-all ${checkedItems['p9'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                {checkedItems['p9'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                <span className={`font-medium flex-1 ${checkedItems['p9'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>Následně klikněte na oddíl C: a přes "Rozšířit svazek" do něj vraťte veškeré uvolněné místo (rozšiřte ho zpět na původní velikost).</span>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Co se při odstraňování oddílů stane s daty na nich uloženými? Představuje slučování nějaké riziko?</label>
+              <textarea 
+                value={answers['merge_data_loss'] || ''}
+                onChange={(e) => handleAnswerChange('merge_data_loss', e.target.value)}
+                placeholder="Mohu si to v půlce operace rozmyslet?..."
+                className="w-full min-h-[100px] p-4 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none font-medium text-slate-700 resize-none transition-all shadow-inner"
+              />
             </div>
 
           </div>
