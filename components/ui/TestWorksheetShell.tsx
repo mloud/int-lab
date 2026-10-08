@@ -94,13 +94,17 @@ export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin
       <style>{`
         @page { size: A4; margin: 14mm 15mm; }
         @media print {
+          html, body { background-color: white !important; height: auto !important; }
           body * { visibility: hidden !important; }
+          .bg-slate-50, .bg-slate-100 { background-color: transparent !important; }
+          .min-h-screen { min-height: 0 !important; }
           #print-sheet, #print-sheet * { visibility: visible !important; }
           #print-sheet {
             position: absolute; left: 0; top: 0;
             width: 100% !important; max-width: none !important;
             margin: 0 !important; padding: 0 !important;
             box-shadow: none !important; border: none !important;
+            background-color: white !important;
           }
           .print-avoid-break { break-inside: avoid; page-break-inside: avoid; }
           .print-page-break { break-before: page; page-break-before: always; }

@@ -56,7 +56,7 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
 
           <Question id="A3" title="Von Neumannova architektura">
             <Sub label="a)">Nakreslete blokové schéma Von Neumannovy architektury počítače obsahující všechny její základní bloky.</Sub>
-            <DrawBox height="85mm" />
+            <DrawBox height="60mm" />
           </Question>
 
           <section className="print-avoid-break mb-7 text-[11pt]">
@@ -72,11 +72,11 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
               <li>2) Vyznačte, ze kterých dvou hlavních částí se skládá a co každá část obsahuje.</li>
             </ul>
             {showSolutions ? (
-               <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex items-center justify-center text-rose-600 font-bold italic" style={{ height: '90mm' }}>
+               <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex items-center justify-center text-rose-600 font-bold italic" style={{ height: '60mm' }}>
                  ŘEŠENÍ: Nákres obdélníku rozděleného na Instrukce (Kód / povely CO se má dít) a Data (Proměnné / S ČÍM se to děje).
                </div>
             ) : (
-               <DrawBox height="90mm" />
+               <DrawBox height="60mm" />
             )}
           </Question>
 
@@ -104,13 +104,13 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
               Počítač si můžeme představit jako dům o třech patrech (vrstvách), od fyzických součástek až po programy pro uživatele. Nakreslete tyto <strong>tři hlavní vrstvy</strong>. U každého patra (vrstvy) napište jeho obecný název a uveďte jeden konkrétní příklad, co do něj patří.
             </p>
             {showSolutions ? (
-               <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex flex-col items-center justify-center text-rose-600 font-bold italic gap-4" style={{ height: '70mm' }}>
+               <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex flex-col items-center justify-center text-rose-600 font-bold italic gap-4" style={{ height: '50mm' }}>
                  <p>3. Patro: Aplikační SW (např. Word, Hra, Prohlížeč)</p>
                  <p>2. Patro: Operační systém (např. Windows, Android, Linux)</p>
                  <p>1. Patro: Hardware (např. CPU, disk, paměť RAM)</p>
                </div>
             ) : (
-               <DrawBox height="70mm" />
+               <DrawBox height="50mm" />
             )}
           </Question>
 
@@ -160,13 +160,13 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
             <div className="grid grid-cols-2 gap-4">
               {showSolutions ? (
                  <>
-                   <div className="border-2 border-slate-700 rounded-md w-full flex items-center justify-center p-4 text-rose-600 font-bold italic text-center" style={{ height: '75mm' }}>ŘEŠENÍ: Vše (ovladače, souborový systém) běží společně v privilegovaném Kernel Space. User space obsahuje jen uživ. aplikace.</div>
-                   <div className="border-2 border-slate-700 rounded-md w-full flex items-center justify-center p-4 text-rose-600 font-bold italic text-center" style={{ height: '75mm' }}>ŘEŠENÍ: V Kernel Space běží jen minimum (např. plánovač procesů, IPC). Ovladače a služby běží izolovaně v User Space jako servery.</div>
+                   <div className="border-2 border-slate-700 rounded-md w-full flex items-center justify-center p-4 text-rose-600 font-bold italic text-center" style={{ height: '55mm' }}>ŘEŠENÍ: Vše (ovladače, souborový systém) běží společně v privilegovaném Kernel Space. User space obsahuje jen uživ. aplikace.</div>
+                   <div className="border-2 border-slate-700 rounded-md w-full flex items-center justify-center p-4 text-rose-600 font-bold italic text-center" style={{ height: '55mm' }}>ŘEŠENÍ: V Kernel Space běží jen minimum (např. plánovač procesů, IPC). Ovladače a služby běží izolovaně v User Space jako servery.</div>
                  </>
               ) : (
                  <>
-                   <DrawBox height="75mm" label="Monolitické jádro" />
-                   <DrawBox height="75mm" label="Mikrojádro" />
+                   <DrawBox height="55mm" label="Monolitické jádro" />
+                   <DrawBox height="55mm" label="Mikrojádro" />
                  </>
               )}
             </div>

@@ -18,17 +18,17 @@ const TeacherNote = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const TaskCard = ({ 
-  number, 
-  title, 
-  children, 
-  teacherNote, 
+const TaskCard = ({
+  number,
+  title,
+  children,
+  teacherNote,
   showTeacher,
   taskId,
   saveAs
-}: { 
-  number: string, 
-  title: string, 
+}: {
+  number: string,
+  title: string,
   children: React.ReactNode,
   teacherNote?: React.ReactNode,
   showTeacher?: boolean,
@@ -61,8 +61,8 @@ const TaskCard = ({
           onClick={() => setCompleted(!completed)}
           className={`
             flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-colors
-            ${completed 
-              ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
+            ${completed
+              ? 'bg-amber-100 text-amber-700 hover:bg-amber-200'
               : 'bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600'
             }
           `}
@@ -71,7 +71,7 @@ const TaskCard = ({
           {completed ? 'Hotovo' : 'Označit za hotové'}
         </button>
       </div>
-      
+
       <div className="text-slate-700">
         {children}
       </div>
@@ -106,7 +106,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
     >
       <div className="flex justify-end mb-4">
         {teacherMode ? (
-          <button 
+          <button
             onClick={() => setTeacherMode(false)}
             className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-colors"
           >
@@ -116,8 +116,8 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
         ) : (
           pinMode ? (
             <form onSubmit={handlePinSubmit} className="flex gap-2">
-              <input 
-                type="password" 
+              <input
+                type="password"
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
                 placeholder="PIN"
@@ -129,7 +129,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
               </button>
             </form>
           ) : (
-            <button 
+            <button
               onClick={() => setPinMode(true)}
               className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-600 transition-colors"
             >
@@ -188,7 +188,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
               <h4 className="font-bold text-slate-800 mb-4 text-center">Ukázka:</h4>
               <div className="flex justify-center">
                 <ScratchCBlock category="control">
-                  když 
+                  když
                   <span className="mx-1">
                     <ScratchHexagon category="operators">
                       <ScratchBlock category="variables">penez</ScratchBlock> {">"} <ScratchInput>1000000</ScratchInput>
@@ -205,11 +205,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
         </div>
 
         <div className="flex flex-col gap-8">
-          <TaskCard 
-            number="1" 
-            title="Je větší?" 
-            taskId="cond-1" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="1"
+            title="Je větší?"
+            taskId="cond-1"
+            showTeacher={teacherMode}
             teacherNote={<p>Úvod do neúplného podmíněného příkazu. Žáci používají senzor <code>odpověď</code> a porovnávají ho pomocí bloku ze zelené kategorie Operátory.</p>}
             saveAs="PodminkaNeuplna.sb3"
           >
@@ -218,11 +218,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             </p>
           </TaskCard>
 
-          <TaskCard 
-            number="2" 
-            title="Je sudé?" 
-            taskId="cond-2" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="2"
+            title="Je sudé?"
+            taskId="cond-2"
+            showTeacher={teacherMode}
             teacherNote={<p>Zde je nutné využít operátor "zbytek po dělení". Číslo je sudé, pokud je zbytek po dělení 2 roven 0.</p>}
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -233,18 +233,18 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
               <ScratchHexagon category="operators">
                 <ScratchBlock category="operators">
                   zbytek <ScratchBlock category="sensing">odpověď</ScratchBlock> děleno <ScratchInput>2</ScratchInput>
-                </ScratchBlock> 
-                {" = "} 
+                </ScratchBlock>
+                {" = "}
                 <ScratchInput>0</ScratchInput>
               </ScratchHexagon>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="3" 
-            title="První je větší" 
-            taskId="cond-3" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="3"
+            title="První je větší"
+            taskId="cond-3"
+            showTeacher={teacherMode}
             teacherNote={<p>Protože chceme porovnat dvě čísla od uživatele zadaná postupně, je nutné si první číslo po první otázce uložit do proměnné. Jinak nová odpověď přepíše tu starou.</p>}
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -255,27 +255,27 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="4" 
-            title="Vracení do středu" 
-            taskId="cond-4" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="4"
+            title="Vracení do středu"
+            taskId="cond-4"
+            showTeacher={teacherMode}
             teacherNote={<p>Žáci si nejprve vytvoří jednoduché chození na klávesy. Poté ve stejném cyklu kontrolují pozici okrajů – <code>když x {">"} 210</code>, <code>když x {"<"} -210</code> atd.</p>}
             saveAs="PostavaNaStred.sb3"
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
               Vytvořte scénář, ve kterém se postava pohybuje pomocí směrových kláves (nahoru, dolů, doleva, doprava). Pokud se postava dostane blíže než na 30 kroků k okraji obrazovky, vraťte ji zpět na střed (souřadnice 0, 0).
             </p>
-            
+
             <div className="grid md:grid-cols-12 gap-8 mt-8">
               <div className="md:col-span-5 flex flex-col items-center">
                 <div className="w-full max-w-[320px] aspect-[4/3] bg-white border-[12px] border-red-500 flex items-center justify-center shadow-sm">
                   {/* Jednoduchá ikona kočky */}
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z"/>
-                    <path d="M9 13a2.5 2.5 0 0 0 5 0"/>
-                    <path d="M15 10h.01"/>
-                    <path d="M9 10h.01"/>
+                    <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z" />
+                    <path d="M9 13a2.5 2.5 0 0 0 5 0" />
+                    <path d="M15 10h.01" />
+                    <path d="M9 10h.01" />
                   </svg>
                 </div>
                 <div className="mt-6 w-full max-w-[320px] flex flex-col text-slate-600 font-bold text-lg space-y-1">
@@ -297,19 +297,19 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                           <div className="h-10"></div>
                         </ScratchCBlock>
                       </div>
-                      
+
                       <ScratchCBlock category="control">
                         když <ScratchHexagon isSlot /> tak
                         <div className="h-8"></div>
                       </ScratchCBlock>
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-4">
                       <ScratchHexagon category="sensing">
                         klávesa <ScratchInput type="dropdown">šipka vpravo</ScratchInput> stisknuta?
                       </ScratchHexagon>
                     </div>
-                    
+
                     <div className="flex gap-4">
                       <ScratchBlock category="motion">změň y o <ScratchInput>10</ScratchInput></ScratchBlock>
                       <ScratchBlock category="motion">změň x o <ScratchInput>10</ScratchInput></ScratchBlock>
@@ -329,13 +329,13 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 </div>
               </div>
             </div>
-            
+
           </TaskCard>
-          <TaskCard 
-            number="5" 
-            title="Pac-Man efekt (přechod přes okraj)" 
-            taskId="cond-5" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="5"
+            title="Pac-Man efekt (přechod přes okraj)"
+            taskId="cond-5"
+            showTeacher={teacherMode}
             teacherNote={<p>Místo na střed se kočka při překročení x {">"} 210 přesune na opačnou stranu, tedy na x = -210 (a zachová si své y). Podobně pro ostatní okraje.</p>}
             saveAs="PostavaNaOkraj.sb3"
           >
@@ -362,10 +362,10 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-md w-full">
               <h4 className="font-bold text-slate-800 mb-4 text-center">Ukázka úplné podmínky:</h4>
               <div className="flex justify-center">
-                <ScratchCElseBlock 
-                  category="control" 
-                  topLabel="když" 
-                  midLabel="jinak" 
+                <ScratchCElseBlock
+                  category="control"
+                  topLabel="když"
+                  midLabel="jinak"
                   bottomLabel="tak"
                   elseChildren={
                     <div className="ml-4 mt-2 mb-2">
@@ -388,11 +388,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
         </div>
 
         <div className="flex flex-col gap-8">
-          <TaskCard 
-            number="6" 
-            title="Je sudé nebo liché?" 
-            taskId="cond-6" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="6"
+            title="Je sudé nebo liché?"
+            taskId="cond-6"
+            showTeacher={teacherMode}
             teacherNote={<p>Úprava úkolu č. 2. Žáci nahradí jednoduché "když" za úplné "když - jinak". Odpadá tak nutnost tvořit dvě nezávislé podmínky pro sudé a liché číslo.</p>}
             saveAs="PodminkaUplna.sb3"
           >
@@ -400,7 +400,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
               Napište scénář, který se zeptá na číslo a vypíše "Číslo je sudé", pokud je číslo dělitelné 2. <strong>Jinak vypíše "Číslo je liché".</strong>
             </p>
             <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 w-fit">
-              <ScratchCElseBlock 
+              <ScratchCElseBlock
                 category="control"
                 topLabel="když"
                 midLabel="jinak"
@@ -412,11 +412,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="7" 
-            title="Porovnání dvou čísel (Úplné)" 
-            taskId="cond-7" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="7"
+            title="Porovnání dvou čísel (Úplné)"
+            taskId="cond-7"
+            showTeacher={teacherMode}
             teacherNote={<p>Zde se projeví, zda žáci pochopili, že se na dvě čísla musí zeptat postupně a to první si musí uložit do proměnné. Jinak nová "odpověď" přepíše tu starou. Pro třetí bod (Jsou stejná) je nutné vnořit další "když-jinak" do větve "jinak".</p>}
           >
             <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
@@ -425,18 +425,18 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 <p>Napište scénář, který se zeptá na dvě čísla: Pokud je první číslo větší než druhé, vypíše <strong>"První je větší"</strong>. Jinak vypíše <strong>"Druhé je větší"</strong>.</p>
                 <p className="mt-2 italic text-amber-600 font-bold">(Nápověda k zamyšlení: nebudou třeba proměnné? 🤔)</p>
               </div>
-              
+
               <div className="pt-4 border-t border-slate-200">
                 <h4 className="font-bold text-slate-800 mb-2">2. Co když jsou stejná?</h4>
                 <p>Až bude fungovat bod číslo 1, zkuste scénář vylepšit: Pokud jsou čísla stejná, vypíše <strong>"Jsou stejná"</strong>.</p>
               </div>
             </div>
           </TaskCard>
-          <TaskCard 
-            number="8" 
-            title="Generování vlajek" 
-            taskId="cond-8" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="8"
+            title="Generování vlajek"
+            taskId="cond-8"
+            showTeacher={teacherMode}
             teacherNote={<p>Žáci využijí cyklus k náhodnému rozmístění teček. Pro Polsko (horizontální) testujeme osu Y (y {">"} 0 = bílá, jinak červená). Pro Francii (vertikální) testujeme osu X s více podmínkami. Německo má 3 horizontální pruhy. Japonsko vyžaduje složitější matematiku nebo vzdálenost od středu.</p>}
             saveAs="Vlajky.sb3"
           >
@@ -460,12 +460,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 </div>
                 <span className="text-sm font-bold text-slate-800">Polsko</span>
               </div>
-              
+
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 mt-6">
                 <h4 className="font-bold text-slate-800 mb-6">Nápověda (použijte tyto příkazy):</h4>
-                
+
                 <div className="flex flex-col md:flex-row gap-x-12 gap-y-8 items-start">
-                  
+
                   {/* První sloupec: Pero a proměnné s operátorem */}
                   <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-2">
@@ -475,7 +475,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                         <span className="text-sm font-bold text-slate-500">← Vytiskne tečku</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col gap-4 mt-auto">
                       <div className="flex gap-2">
                         <ScratchBlock category="motion">x</ScratchBlock>
@@ -486,7 +486,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       </ScratchHexagon>
                     </div>
                   </div>
-                  
+
                   {/* Druhý sloupec: Cyklus */}
                   <div className="flex flex-col gap-4">
                     <ScratchCBlock category="control">
@@ -494,12 +494,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       <div className="h-8"></div>
                     </ScratchCBlock>
                   </div>
-                  
+
                   {/* Třetí sloupec: Ostatní bloky */}
                   <div className="flex flex-col gap-4">
                     <ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock>
-                    
-                    <ScratchCElseBlock 
+
+                    <ScratchCElseBlock
                       category="control"
                       topLabel="když"
                       midLabel="jinak"
@@ -508,25 +508,25 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                     >
                       <div className="h-6"></div>
                     </ScratchCElseBlock>
-                    
+
                     <ScratchBlock category="pen">
-                      nastav barvu pera na 
+                      nastav barvu pera na
                       <span className="inline-block w-4 h-4 rounded-full bg-red-600 border-2 border-white shadow-sm ml-2"></span>
                     </ScratchBlock>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="9" 
-            title="Generování dalších vlajek" 
-            taskId="cond-9" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="9"
+            title="Generování dalších vlajek"
+            taskId="cond-9"
+            showTeacher={teacherMode}
             teacherNote={<p>Žáci rozšiřují předchozí program. Francie vyžaduje složitější testování osy X s vnořenými podmínkami. Japonsko je bonus vyžadující výpočet vzdálenosti od středu (kruh).</p>}
-            saveAs="Vlajky2.sb3"
+            saveAs="Vlajky.sb3"
           >
             <div className="space-y-6">
               <p className="text-sm text-slate-600">
@@ -541,7 +541,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
                   <span className="text-sm font-bold text-slate-800">Polsko</span>
                 </div>
-                
+
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-full aspect-[3/2] border border-slate-300 rounded shadow-sm overflow-hidden flex">
                     <div className="flex-1 bg-blue-700"></div>
@@ -550,7 +550,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
                   <span className="text-sm font-bold text-slate-800">Francie</span>
                 </div>
-                
+
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-full aspect-[3/2] border border-slate-300 rounded shadow-sm overflow-hidden flex flex-col">
                     <div className="flex-1 bg-slate-900"></div>
@@ -559,7 +559,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
                   <span className="text-sm font-bold text-slate-800">Německo</span>
                 </div>
-                
+
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-full aspect-[3/2] border border-slate-300 rounded shadow-sm overflow-hidden bg-slate-50 flex items-center justify-center">
                     <div className="w-[45%] aspect-square rounded-full bg-red-600"></div>
@@ -567,12 +567,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   <span className="text-sm font-bold text-slate-800">Japonsko</span>
                 </div>
               </div>
-              
+
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
                 <h4 className="font-bold text-slate-800 mb-6">Nápověda (použijte tyto příkazy):</h4>
-                
+
                 <div className="flex flex-col md:flex-row gap-x-12 gap-y-8 items-start">
-                  
+
                   {/* První sloupec: Pero a proměnné s operátorem */}
                   <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-2">
@@ -582,7 +582,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                         <span className="text-sm font-bold text-slate-500">← Vytiskne tečku</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col gap-4 mt-auto">
                       <div className="flex gap-2">
                         <ScratchBlock category="motion">x</ScratchBlock>
@@ -593,7 +593,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       </ScratchHexagon>
                     </div>
                   </div>
-                  
+
                   {/* Druhý sloupec: Cyklus */}
                   <div className="flex flex-col gap-4">
                     <ScratchCBlock category="control">
@@ -601,12 +601,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       <div className="h-8"></div>
                     </ScratchCBlock>
                   </div>
-                  
+
                   {/* Třetí sloupec: Ostatní bloky */}
                   <div className="flex flex-col gap-4">
                     <ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock>
-                    
-                    <ScratchCElseBlock 
+
+                    <ScratchCElseBlock
                       category="control"
                       topLabel="když"
                       midLabel="jinak"
@@ -615,36 +615,36 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                     >
                       <div className="h-6"></div>
                     </ScratchCElseBlock>
-                    
+
                     <ScratchBlock category="pen">
-                      nastav barvu pera na 
+                      nastav barvu pera na
                       <span className="inline-block w-4 h-4 rounded-full bg-red-600 border-2 border-white shadow-sm ml-2"></span>
                     </ScratchBlock>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="10" 
-            title="Zkoušení malé násobilky" 
-            taskId="cond-10" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="10"
+            title="Zkoušení malé násobilky"
+            taskId="cond-10"
+            showTeacher={teacherMode}
             teacherNote={<p>Žáci si musí vygenerovaná čísla uložit do dvou proměnných, aby mohli spočítat správný výsledek pro kontrolu. Dále potřebují třetí proměnnou na počítání správných odpovědí. Známkování na konci vyžaduje složené větvení (když-jinak s dalším vloženým když-jinak).</p>}
             saveAs="ZkouseniMaleNasobilky.sb3"
           >
             <div className="space-y-6">
               <p className="text-sm text-slate-600 font-bold">Vytvořte program pro zkoušení malé násobilky.</p>
-              
+
               <ul className="list-disc pl-5 text-sm text-slate-600 space-y-2">
                 <li>Program vygeneruje dvě náhodná čísla v rozmezí 1 až 10.</li>
                 <li>Zobrazí je ve formě otázky, např. <strong>„2 × 3 = ?“</strong>.</li>
                 <li>Uživatelova odpověď se zkontroluje a program vypíše, zda byla správná nebo špatná.</li>
                 <li>Rozšiř tak, aby se celkem se zobrazilo 10 otázek.</li>
               </ul>
-              
+
               <div className="pt-4 border-t border-slate-200">
                 <p className="text-sm font-bold text-slate-800 mb-2">Poté na konci:</p>
                 <ul className="list-disc pl-5 text-sm text-slate-600 space-y-2">
@@ -668,12 +668,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                     </div>
                   </div>
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z"/>
-                    <path d="M9 13a2.5 2.5 0 0 0 5 0"/>
-                    <path d="M15 10h.01"/>
-                    <path d="M9 10h.01"/>
+                    <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z" />
+                    <path d="M9 13a2.5 2.5 0 0 0 5 0" />
+                    <path d="M15 10h.01" />
+                    <path d="M9 10h.01" />
                   </svg>
-                  
+
                   <div className="absolute bottom-4 left-4 right-4 h-8 border-2 border-amber-300 rounded-full flex items-center justify-end px-2">
                     <div className="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -696,17 +696,17 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             </div>
           </TaskCard>
 
-          <TaskCard 
-            number="11" 
-            title="Hádání čísla" 
-            taskId="cond-11" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="11"
+            title="Hádání čísla"
+            taskId="cond-11"
+            showTeacher={teacherMode}
             teacherNote={<p>Klasická hra vyšší/nižší by k tomuto zadání seděla lépe, ale zadání zmiňuje jen "správná / nesprávná odpověď". Aplikujte zadání 1:1, žáci si vyzkouší porovnávání vygenerované proměnné s odpovědí.</p>}
             saveAs="HadaniCisla.sb3"
           >
             <div className="space-y-6 text-sm text-slate-600">
               <p className="font-bold">Vytvořte program ve kterém se snažíte uhodnout číslo, které si počítač myslí.</p>
-              
+
               <ul className="list-disc pl-5 space-y-2">
                 <li>Počítač vygeneruje náhodné číslo od 1 do 10.</li>
                 <li>Zobrazí se otázka <strong>„Hádej číslo“</strong> (nebo <strong>„Jaké číslo si myslím?“</strong>).</li>
@@ -720,12 +720,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
                 </div>
                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z"/>
-                  <path d="M9 13a2.5 2.5 0 0 0 5 0"/>
-                  <path d="M15 10h.01"/>
-                  <path d="M9 10h.01"/>
+                  <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.76 1.4.08 1.38 3.32 1.14 5.37a9.3 9.3 0 0 1 1.44 4.88c0 5.14-4.27 9.25-9.5 9.25S4 17.89 4 12.75a9.3 9.3 0 0 1 1.44-4.88c-.24-2.05-.26-5.29 1.14-5.37 1.39-.08 4.64.76 6.42 2.76C10.65 5.09 11.33 5 12 5Z" />
+                  <path d="M9 13a2.5 2.5 0 0 0 5 0" />
+                  <path d="M15 10h.01" />
+                  <path d="M9 10h.01" />
                 </svg>
-                
+
                 <div className="absolute bottom-4 left-4 right-4 h-8 border-2 border-amber-300 rounded-full flex items-center justify-end px-2">
                   <div className="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -743,11 +743,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   <ScratchBlock category="variables">
                     nastav <ScratchInput type="dropdown">cislo</ScratchInput> na <ScratchInput>0</ScratchInput>
                   </ScratchBlock>
-                  <ScratchCBlock 
+                  <ScratchCBlock
                     category="control"
                     topLabel={
                       <>
-                        opakuj dokud nenastane 
+                        opakuj dokud nenastane
                         <span className="mx-1">
                           <ScratchHexagon category="operators">
                             <ScratchBlock category="variables">cislo</ScratchBlock> {"="} <ScratchInput>3</ScratchInput>
@@ -761,7 +761,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       <ScratchBlock category="variables">změň <ScratchInput type="dropdown">cislo</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock>
                     </div>
                   </ScratchCBlock>
-                  
+
                   {/* Šipka ukazující na podmínku */}
                   <div className="hidden md:block absolute -top-4 -right-16 w-32 h-24 border-t-2 border-r-2 border-slate-400 rounded-tr-[3rem] opacity-60 z-0">
                     <div className="absolute -bottom-1 -left-2 text-slate-400">▼</div>
@@ -779,11 +779,11 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             </div>
           </div>
 
-          <TaskCard 
-            number="12" 
-            title="Hádání čísla (vylepšené)" 
-            taskId="cond-12" 
-            showTeacher={teacherMode} 
+          <TaskCard
+            number="12"
+            title="Hádání čísla (vylepšené)"
+            taskId="cond-12"
+            showTeacher={teacherMode}
             teacherNote={<p>Zde žáci přidají cyklus "opakuj dokud nenastane". Podmínka v cyklu bude (odpověď = hádané číslo). Nápověda vyšší/nižší vyžaduje navíc vložit podmínku když-jinak.</p>}
             saveAs="HadaniCisla2.sb3"
           >
