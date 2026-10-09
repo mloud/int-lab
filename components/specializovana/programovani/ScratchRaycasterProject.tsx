@@ -13,6 +13,7 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
   const [showPhase2Tip, setShowPhase2Tip] = useState(false);
   const [showPhase4Tip, setShowPhase4Tip] = useState(false);
   const [showPhase5Tip, setShowPhase5Tip] = useState(false);
+  const [showPhase6Tip, setShowPhase6Tip] = useState(false);
 
   const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
     { id: 'intro', label: 'Úvod a cíl', icon: <Flag className="w-4 h-4" /> },
@@ -21,7 +22,7 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
     { id: 'phase3', label: 'Fáze 3: Zorné pole', icon: <MonitorPlay className="w-4 h-4" /> },
     { id: 'phase4', label: 'Fáze 4: 3D Prostor', icon: <Crosshair className="w-4 h-4" /> },
     { id: 'phase5', label: 'Fáze 5: Stínování', icon: <Cloud className="w-4 h-4" /> },
-    { id: 'phase6', label: 'Fáze 6', icon: <Terminal className="w-4 h-4" /> },
+    { id: 'phase6', label: 'Fáze 6: Nepřátelé', icon: <Skull className="w-4 h-4" /> },
     { id: 'milestones', label: 'Milníky', icon: <CheckCircle2 className="w-4 h-4" /> },
   ];
 
@@ -784,6 +785,235 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
     </div>
   );
 
+  const PHASE6_CONTENT = (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      {/* Hlavička fáze */}
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h2 className="text-3xl font-black text-slate-800 mb-2 uppercase flex items-center gap-3">
+          <Skull className="w-10 h-10 text-teal-500" /> Fáze 6: Nepřátelé
+        </h2>
+        <p className="text-xl text-teal-600 font-bold mb-6">Oddělení Logiky a Zobrazení</p>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 flex flex-col justify-center">
+            <h3 className="font-bold text-blue-900 mb-2 uppercase tracking-widest text-sm">Cíl Fáze 6</h3>
+            <p className="text-blue-800 leading-relaxed font-medium">
+              Problém: Kdybychom použili jednu postavu nepřítele pro pohyb na mapě i pro 3D zobrazení, postava by se nemohla spolehnout na Scratch kolize (`dotýká se zdi?`), protože by neustále "poskakovala" na střed monitoru a měnila svou velikost podle vzdálenosti. Řešení: Založíme dvě postavy. Jedna je čistě mozek (Model), druhá je vzhled (View).
+            </p>
+          </div>
+          
+          {/* Ilustrace Fáze 6 */}
+          <div className="col-span-1 md:col-span-2 grid md:grid-cols-2 gap-8 bg-slate-900 rounded-2xl p-8 border-4 border-slate-800 relative">
+            
+            {/* 2D pohled (Nepritel_Logika) */}
+            <div className="flex flex-col items-center">
+              <h4 className="text-teal-400 font-bold text-xs uppercase mb-4 tracking-widest text-center">1. Nepritel_Logika (2D Mapa)</h4>
+              <div className="w-full aspect-square bg-slate-900 rounded-xl border-2 border-slate-700 relative overflow-hidden p-2 max-w-[200px]">
+                {/* Obvodové stěny */}
+                <div className="absolute inset-0 border-[12px] border-slate-600 rounded-lg"></div>
+                
+                {/* Nepřítel (Červená kulička / Sprite) */}
+                <div className="absolute top-1/2 left-1/2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center z-10 border border-red-300 shadow-[0_0_15px_rgba(239,68,68,0.8)] -translate-x-1/2 -translate-y-1/2">
+                </div>
+              </div>
+              <p className="text-slate-400 text-xs mt-4 text-center">Tečka řešící kolize se zdmi na mapě.<br/>Poskytuje <code>MapX</code> a <code>MapY</code>.</p>
+            </div>
+
+            {/* 3D pohled (Nepritel_View) */}
+            <div className="flex flex-col items-center">
+              <h4 className="text-teal-400 font-bold text-xs uppercase mb-4 tracking-widest text-center">2. Nepritel_View (3D Obrazovka)</h4>
+              <div className="w-full aspect-square bg-slate-900 rounded-xl border-2 border-slate-700 relative overflow-hidden flex flex-col max-w-[200px]">
+                {/* Strop a podlaha */}
+                <div className="w-full h-1/2 bg-slate-800"></div>
+                <div className="w-full h-1/2 bg-slate-950"></div>
+                
+                {/* 3D Zdi z raycasteru */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-[12%] h-[80%] bg-slate-500 border-r border-slate-600/30 shadow-[5px_0_15px_rgba(0,0,0,0.3)] z-20"></div>
+                  <div className="w-[12%] h-[70%] bg-slate-500 border-r border-slate-600/30 z-20"></div>
+                  <div className="w-[12%] h-[35%] bg-slate-600 border-r border-slate-700/30"></div>
+                  <div className="w-[12%] h-[34%] bg-slate-600 border-r border-slate-700/30"></div>
+                  <div className="w-[16%] h-[34%] bg-slate-600 border-r border-slate-700/30"></div>
+                  <div className="w-[12%] h-[45%] bg-slate-500 border-l border-slate-600/30 z-10"></div>
+                  <div className="w-[12%] h-[55%] bg-slate-500 border-l border-slate-600/30 z-10"></div>
+                  <div className="w-[12%] h-[65%] bg-slate-500 z-10"></div>
+                </div>
+                
+                {/* Nepřítel (Kartonový 2D Billboard Sprite stojící na podlaze) */}
+                <div className="absolute top-1/2 left-[45%] -translate-x-1/2 -translate-y-[20%] flex flex-col items-center z-10 hover:scale-105 transition-transform">
+                  <div className="w-12 h-14 bg-red-600 border-2 border-red-800 rounded-t-xl relative shadow-lg flex flex-col items-center z-10">
+                    <div className="flex gap-2 mt-2">
+                      <div className="w-2.5 h-2.5 bg-yellow-300 rounded-full flex justify-center pt-0.5">
+                        <div className="w-1 h-1 bg-black rounded-full"></div>
+                      </div>
+                      <div className="w-2.5 h-2.5 bg-yellow-300 rounded-full flex justify-center pt-0.5">
+                        <div className="w-1 h-1 bg-black rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="w-5 h-1.5 bg-red-900 rounded-full mt-2"></div>
+                    <div className="absolute top-5 -left-2 w-3 h-5 bg-red-700 rounded-l-lg border-y-2 border-l-2 border-red-800"></div>
+                    <div className="absolute top-5 -right-2 w-3 h-5 bg-red-700 rounded-r-lg border-y-2 border-r-2 border-red-800"></div>
+                  </div>
+                  <div className="flex gap-3 -mt-1 z-0">
+                    <div className="w-3 h-3 bg-red-900 rounded-b-sm border-x-2 border-b-2 border-red-950"></div>
+                    <div className="w-3 h-3 bg-red-900 rounded-b-sm border-x-2 border-b-2 border-red-950"></div>
+                  </div>
+                  <div className="w-12 h-2 bg-black/60 rounded-full mt-1 blur-sm"></div>
+                </div>
+              </div>
+              <p className="text-slate-400 text-xs mt-4 text-center">Billboard zmenšující se podle vzdálenosti.<br/>Z-Buffer hlídá, zda není za zdí.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Zadání úkolů */}
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h3 className="text-2xl font-black text-slate-800 mb-6 uppercase flex items-center gap-3">
+          <Target className="w-8 h-8 text-rose-500" /> Tvé úkoly
+        </h3>
+        
+        <div className="space-y-6">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">1</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Mozek na mapě (Logika)</h4>
+              <p className="text-slate-600">Vytvoř postavu <strong>Nepritel_Logika</strong>. Její kostým bude malá tečka (podobně jako Hráč). Naprogramuj jí jednoduchý pohyb po mapě, odrážení od zdí (kontrola přes `dotýká se barvy`). Nezapomeň tuto postavu <strong>skrýt</strong> (nebo nastavit průhlednost na 100), aby ji Hráč na mapě reálně neviděl hrát. Své souřadnice X a Y musí neustále ukládat do nových proměnných <code>Nepritel_MapX</code> a <code>Nepritel_MapY</code>.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">2</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Vzhled (View)</h4>
+              <p className="text-slate-600">Vytvoř postavu <strong>Nepritel_View</strong> a nakresli jí/stáhni kostým nepřítele (např. monstrum zepředu). Tato postava se vůbec neřídí svým vlastním pohybem! V nekonečném cyklu si nejprve spočítá vzdálenost od Hráče (pomocí Pythagorovy věty s proměnnými <code>MapX/Y</code>) a podle toho nastaví svou <strong>velikost</strong>.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">3</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Umístění na monitoru</h4>
+              <p className="text-slate-600">Kde se má nepřítel ukázat na obrazovce? Musíš spočítat úhel mezi Hráčem a Logikou nepřítele. Následně tento úhel odečti od úhlu, kam se Hráč aktuálně dívá. Výsledek tohoto rozdílu úhlů určuje X souřadnici nepřítele na Scratch plátně (bude to vyžadovat trochu násobení, aby se úhly převedly na pixely obrazovky).</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">4</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Schovávání za zdi (Z-Buffer)</h4>
+              <p className="text-slate-600">Těsně před tím, než se postava na obrazovce ukáže, zkontroluj náš 1D Z-Buffer (Seznam <code>Vzdalenosti</code>). Zjisti, na jakém X se postava nachází, najdi odpovídající hodnotu v Seznamu a zkontroluj: <em>Je Nepřítel dál, než je na tomto místě zeď?</em> Pokud ano, <strong>skryj ho</strong>. Pokud ne, <strong>ukaž ho</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tip pro studenty */}
+      <div className="bg-amber-50 rounded-3xl shadow-sm border border-amber-200 overflow-hidden">
+        <button 
+          onClick={() => setShowPhase6Tip(!showPhase6Tip)}
+          className="w-full flex items-center justify-between p-6 hover:bg-amber-100 transition-colors text-left"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-amber-200 text-amber-700 rounded-xl flex items-center justify-center shrink-0">
+              <Info className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-black text-amber-800 uppercase tracking-wider">
+              Tip: Matematika úhlu
+            </h3>
+          </div>
+          <div className="text-amber-700 font-bold text-sm bg-amber-200/50 px-4 py-2 rounded-lg">
+            {showPhase6Tip ? 'Skrýt nápovědu' : 'Zobrazit nápovědu'}
+          </div>
+        </button>
+        
+        {showPhase6Tip && (
+          <div className="p-6 pt-0 border-t border-amber-200/50 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+            <p className="text-amber-800 font-medium leading-relaxed">
+              Spočítat správný rozdíl úhlů tak, aby nepřítel nepřeskakoval, když hráč rotuje přes 360 stupňů zpět na 0, může být docela oříšek. Ve Scratchi je často nejjednodušší použít skrytou pomocnou postavu: <em>Natoč ji směrem k Logice nepřítele, přečti její směr, a tento směr odečti od směru hráče.</em> Nezapomeň pak hodnotu "znormalizovat" (aby vždy vyšla v rozmezí -180 až +180).
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const MILESTONES_CONTENT = (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h2 className="text-3xl font-black text-slate-800 mb-6 uppercase flex items-center gap-3">
+          <CheckCircle2 className="w-10 h-10 text-teal-500" /> Milníky projektu
+        </h2>
+        <p className="text-lg text-slate-600 font-medium mb-8">
+          Zkontroluj si, zda tvůj raycaster splňuje všechny základní požadavky. Pokud dokážeš odškrtnout všechny tyto body, úspěšně jsi naprogramoval svůj první 3D engine!
+        </p>
+
+        <div className="space-y-4">
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Základní 2D pohyb</h4>
+              <p className="text-slate-600 text-sm mt-1">Hráč se dokáže pohybovat po mapě stylem "tank" (otáčení + pohyb vpřed/vzad) a v žádném případě neprojde skrz nakreslenou zeď.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Synchronizace a Senzor</h4>
+              <p className="text-slate-600 text-sm mt-1">Senzor paprsků nelétá náhodně, ale je pevně synchronizovaný. Spouští se výhradně na příkaz Hráče přes zprávu (broadcast).</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Plný 1D Z-Buffer</h4>
+              <p className="text-slate-600 text-sm mt-1">Seznam vzdáleností se na začátku každého snímku promaže a na jeho konci obsahuje desítky položek se vzdálenostmi pro zorné pole (např. 60 položek).</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Bez Fish-eye defektu</h4>
+              <p className="text-slate-600 text-sm mt-1">Když se postavím čelem k rovné zdi, je na obrazovce zeď skutečně rovná, nikoliv vypouklá jako bublina. Vzdálenosti jsou korigovány pomocí cosinusu.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Hloubkové stínování</h4>
+              <p className="text-slate-600 text-sm mt-1">Zdi blízko jsou světlé, zdi v dálce mizí do tmy. Matematika jasu správně reaguje na uložené vzdálenosti.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-slate-100 bg-slate-50 hover:border-teal-200 hover:bg-teal-50/30 transition-colors">
+            <div className="w-8 h-8 rounded-full border-2 border-slate-300 bg-white flex shrink-0"></div>
+            <div>
+              <h4 className="font-bold text-slate-800 text-lg">Oddělené postavy</h4>
+              <p className="text-slate-600 text-sm mt-1">Hra dodržuje architekturu "Model vs. View". Nepřítel je rozdělený na mozek schovaný na mapě a vzhled na obrazovce.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-5 rounded-2xl border-2 border-amber-200 bg-amber-50 shadow-sm relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-2">
+               <Flag className="w-16 h-16 text-amber-500/10" />
+             </div>
+             <div className="w-8 h-8 rounded-full border-2 border-amber-500 bg-white flex shrink-0 z-10 relative"></div>
+             <div className="z-10 relative">
+              <h4 className="font-bold text-amber-900 text-lg uppercase tracking-tight">Finální zkouška</h4>
+              <p className="text-amber-800 text-sm mt-1">Nepřítel se na monitoru nejen správně zmenšuje a zvětšuje, ale pokud zaleze na mapě za roh, korektně zmizí, protože se porovná s údaji v Z-Bufferu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 sm:p-8">
       <div className="max-w-6xl mx-auto flex flex-col gap-6">
@@ -822,7 +1052,9 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
           {activeTab === 'phase3' && PHASE3_CONTENT}
           {activeTab === 'phase4' && PHASE4_CONTENT}
           {activeTab === 'phase5' && PHASE5_CONTENT}
-          {activeTab !== 'intro' && activeTab !== 'phase1' && activeTab !== 'phase2' && activeTab !== 'phase3' && activeTab !== 'phase4' && activeTab !== 'phase5' && (
+          {activeTab === 'phase6' && PHASE6_CONTENT}
+          {activeTab === 'milestones' && MILESTONES_CONTENT}
+          {activeTab !== 'intro' && activeTab !== 'phase1' && activeTab !== 'phase2' && activeTab !== 'phase3' && activeTab !== 'phase4' && activeTab !== 'phase5' && activeTab !== 'phase6' && activeTab !== 'milestones' && (
             <div className="bg-white p-12 rounded-3xl shadow-sm border border-slate-200 text-center animate-in fade-in duration-500">
               <Box className="w-16 h-16 text-slate-300 mx-auto mb-4" />
               <h2 className="text-2xl font-black text-slate-800 uppercase mb-2">Obsah se připravuje</h2>
