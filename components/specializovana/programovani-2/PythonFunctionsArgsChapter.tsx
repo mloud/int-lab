@@ -253,7 +253,7 @@ Převrácená hodnota se rovná 0.3333333333333333
           <p className="mt-2">Diskutuj se svým spolužákem, jak program funguje.</p>
         </TaskCard>
 
-        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Tabulka hodnot proměnné <code>i</code> a parametru <code>r</code>:<br/>i=0 -> r=5<br/>i=1 -> r=6<br/>i=2 -> r=7<br/>i=3 -> r=8<br/>i=4 -> r=9<br/>i=5 -> r=10<br/>i=6 -> r=11<br/>i=7 -> r=12<br/>i=8 -> r=13<br/>i=9 -> r=14</p>}>
+        <TaskCard number="9" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Tabulka hodnot proměnné <code>i</code> a parametru <code>r</code>:<br/>i=0 -&gt; r=5<br/>i=1 -&gt; r=6<br/>i=2 -&gt; r=7<br/>i=3 -&gt; r=8<br/>i=4 -&gt; r=9<br/>i=5 -&gt; r=10<br/>i=6 -&gt; r=11<br/>i=7 -&gt; r=12<br/>i=8 -&gt; r=13<br/>i=9 -&gt; r=14</p>}>
           <p>Poloměr kruhu můžeme určit i takto:</p>
           <PythonSnippet code={`for i in range(10):\n    nahodny_kruh(i + 5)`} />
           <p className="mt-2">Spusť program, abys viděl, co udělá, a doplň logicky, jaké hodnoty dostává parametr <code>r</code>, když <code>i</code> roste od 0 do 9.</p>
