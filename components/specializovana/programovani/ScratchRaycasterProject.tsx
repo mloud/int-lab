@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Flag, Map, Eye, MonitorPlay, Crosshair, Skull, CheckCircle2, Box, Layers, Target, Terminal, Info, Cloud } from 'lucide-react';
+import { ArrowLeft, Flag, Map, Eye, MonitorPlay, Crosshair, Skull, CheckCircle2, Box, Layers, Target, Terminal, Info, Cloud, Brain } from 'lucide-react';
 
 interface ScratchRaycasterProjectProps {
   onBack: () => void;
 }
 
-type TabId = 'intro' | 'phase1' | 'phase2' | 'phase3' | 'phase4' | 'phase5' | 'phase6' | 'milestones';
+type TabId = 'intro' | 'phase1' | 'phase2' | 'phase3' | 'phase4' | 'phase5' | 'phase6' | 'phase7' | 'milestones';
 
 const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState<TabId>('intro');
@@ -14,6 +14,7 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
   const [showPhase4Tip, setShowPhase4Tip] = useState(false);
   const [showPhase5Tip, setShowPhase5Tip] = useState(false);
   const [showPhase6Tip, setShowPhase6Tip] = useState(false);
+  const [showPhase7Tip, setShowPhase7Tip] = useState(false);
 
   const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
     { id: 'intro', label: 'Úvod a cíl', icon: <Flag className="w-4 h-4" /> },
@@ -23,6 +24,7 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
     { id: 'phase4', label: 'Fáze 4: 3D Prostor', icon: <Crosshair className="w-4 h-4" /> },
     { id: 'phase5', label: 'Fáze 5: Stínování', icon: <Cloud className="w-4 h-4" /> },
     { id: 'phase6', label: 'Fáze 6: Nepřátelé', icon: <Skull className="w-4 h-4" /> },
+    { id: 'phase7', label: 'Fáze 7: AI', icon: <Brain className="w-4 h-4" /> },
     { id: 'milestones', label: 'Milníky', icon: <CheckCircle2 className="w-4 h-4" /> },
   ];
 
@@ -940,6 +942,125 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
     </div>
   );
 
+  const PHASE7_CONTENT = (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      {/* Hlavička fáze */}
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h2 className="text-3xl font-black text-slate-800 mb-2 uppercase flex items-center gap-3">
+          <Brain className="w-10 h-10 text-teal-500" /> Fáze 7: Umělá inteligence
+        </h2>
+        <p className="text-xl text-teal-600 font-bold mb-6">Pohyb, viditelnost a vyhýbání se překážkám</p>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 flex flex-col justify-center">
+            <h3 className="font-bold text-blue-900 mb-2 uppercase tracking-widest text-sm">Cíl Fáze 7</h3>
+            <p className="text-blue-800 leading-relaxed font-medium">
+              Vdechneme nepříteli život! Z obyčejného statického terče se stane aktivní lovec. Aby ale hra byla zajímavá, nepřítel začne hráče pronásledovat až ve chvíli, kdy ho reálně "uvidí". A co víc – naučíme ho chytře obcházet překážky pomocí senzorů, aby se nezasekl v prvním rohu.
+            </p>
+          </div>
+          
+          {/* Ilustrace Fáze 7 */}
+          <div className="bg-slate-900 rounded-2xl p-4 flex flex-col items-center justify-center border-4 border-slate-800 relative h-48 overflow-hidden">
+             {/* 2D mapa naznačující senzory */}
+             <div className="absolute inset-0 opacity-20">
+               {/* Naznačení gridu */}
+               <div className="w-full h-full" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+             </div>
+             
+             {/* Nepřítel */}
+             <div className="w-8 h-8 bg-red-500 rounded-full z-10 flex items-center justify-center relative shadow-[0_0_15px_rgba(239,68,68,0.8)] translate-x-4">
+                {/* 3 paprsky do stran */}
+                <div className="absolute top-1/2 left-1/2 w-24 h-0.5 bg-yellow-400/80 -translate-y-1/2 origin-left -rotate-45 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></div>
+                <div className="absolute top-1/2 left-1/2 w-16 h-0.5 bg-red-400/80 -translate-y-1/2 origin-left"></div>
+                <div className="absolute top-1/2 left-1/2 w-24 h-0.5 bg-yellow-400/80 -translate-y-1/2 origin-left rotate-45 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></div>
+             </div>
+             
+             {/* Překážka vpředu */}
+             <div className="absolute right-[20%] w-8 h-24 bg-slate-600 border-2 border-slate-500 z-10"></div>
+             
+             {/* Hráč v dálce */}
+             <div className="absolute right-[5%] bottom-[20%] w-6 h-6 bg-teal-500 rounded-full z-10 shadow-[0_0_10px_rgba(20,184,166,0.8)]"></div>
+             
+             <p className="text-slate-400 font-bold text-xs uppercase absolute bottom-2 left-2 z-20 bg-slate-900/80 px-2 py-1 rounded">Skenování překážek</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Zadání úkolů */}
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h3 className="text-2xl font-black text-slate-800 mb-6 uppercase flex items-center gap-3">
+          <Target className="w-8 h-8 text-rose-500" /> Tvé úkoly (Na 2D Mapě)
+        </h3>
+        
+        <div className="space-y-6">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">1</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Stavy nepřítele (Paměť)</h4>
+              <p className="text-slate-600">Umělá inteligence potřebuje paměť. Vytvoř pro nepřítele novou proměnnou (např. <code>AI_Stav</code>). Na začátku bude ve stavu <strong>"ČEKÁ"</strong>. Později ho budeme přepínat do stavů <strong>"PRONÁSLEDUJE"</strong> a <strong>"OBCHÁZÍ"</strong>. Zabráníš tak tomu, aby se každou vteřinu rozhodoval jinak a jen se třepetal na místě.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">2</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Zrak (Line of Sight)</h4>
+              <p className="text-slate-600">Pokud nepřítel <strong>ČEKÁ</strong>, měl by se každou chvíli rozhlédnout. Zkus vymyslet mechanismus "neviditelného paprsku" – dočasně namiř na hráče a postupuj krok za krokem. Pokud narazíš na zeď dřív než na hráče, znamená to, že se hráč schovává. Pokud je cesta volná, přepni stav na <strong>"PRONÁSLEDUJE"</strong>! <em>(Nezapomeň, že tento sken by měl proběhnout bleskově bez obnovy obrazovky.)</em></p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">3</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Přímý útok a detekce zdi</h4>
+              <p className="text-slate-600">Pokud nepřítel <strong>PRONÁSLEDUJE</strong>, natáčí se k hráči a jde kupředu. Před každým krokem si ale musí zkontrolovat, jestli nenarazí do zdi. Pokud je před ním volno, jde dál. Pokud je před ním překážka, musí přejít do stavu <strong>"OBCHÁZÍ"</strong>.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-slate-100 text-slate-500 font-black rounded-xl flex items-center justify-center shrink-0">4</div>
+            <div>
+              <h4 className="font-bold text-lg text-slate-800 mb-1">Chytré obcházení (Oskenování okolí)</h4>
+              <p className="text-slate-600">Když nepřítel narazí na zeď, potřebuje zjistit, kudy ji oběhnout. Využij princip <strong>skenování okolí</strong>! Zkus z místa nárazu zjistit (pomocí testovacích skoků, neviditelných paprsků nebo senzorů) situaci trochu doleva (např. pod úhlem 45°) a trochu doprava. Který směr je volný? Vyber ten lepší směr a vynuť, aby nepřítel chvíli pokračoval v tomto směru, i když ztratí přímý směr na hráče. Až zeď oběhne, může se vrátit k pronásledování.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tip pro studenty */}
+      <div className="bg-amber-50 rounded-3xl shadow-sm border border-amber-200 overflow-hidden">
+        <button 
+          onClick={() => setShowPhase7Tip(!showPhase7Tip)}
+          className="w-full flex items-center justify-between p-6 hover:bg-amber-100 transition-colors text-left"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-amber-200 text-amber-700 rounded-xl flex items-center justify-center shrink-0">
+              <Info className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-black text-amber-800 uppercase tracking-wider">
+              Tip: Nechcete skenovat paprsky? Zkuste "Tykadla"
+            </h3>
+          </div>
+          <div className="text-amber-700 font-bold text-sm bg-amber-200/50 px-4 py-2 rounded-lg">
+            {showPhase7Tip ? 'Skrýt nápovědu' : 'Zobrazit nápovědu'}
+          </div>
+        </button>
+        
+        {showPhase7Tip && (
+          <div className="p-6 pt-0 border-t border-amber-200/50 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+            <p className="text-amber-800 font-medium leading-relaxed mb-4">
+              Místo toho, abys programoval složité vysílání matematických paprsků do stran z jednoho bodu, můžeš využít samotný kostým pro <code>Nepritel_Logika</code> na 2D mapě! 
+            </p>
+            <p className="text-amber-800 font-medium leading-relaxed">
+              Nakresli k "mozkové tečce" na mapě dvě malé různobarevné tečky (tykadla) mířící vlevo a vpravo dopředu. Pokud se např. <em>zelené tykadlo</em> dotýká zdi, nepřítel ví, že má zatáčet doprava, protože zleva je překážka. Pokud <em>modré tykadlo</em> narazí, zabočí doleva. Je to super jednoduchý trik, který používají autíčka sledující čáru!
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   const MILESTONES_CONTENT = (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
@@ -1053,8 +1174,9 @@ const ScratchRaycasterProject: React.FC<ScratchRaycasterProjectProps> = ({ onBac
           {activeTab === 'phase4' && PHASE4_CONTENT}
           {activeTab === 'phase5' && PHASE5_CONTENT}
           {activeTab === 'phase6' && PHASE6_CONTENT}
+          {activeTab === 'phase7' && PHASE7_CONTENT}
           {activeTab === 'milestones' && MILESTONES_CONTENT}
-          {activeTab !== 'intro' && activeTab !== 'phase1' && activeTab !== 'phase2' && activeTab !== 'phase3' && activeTab !== 'phase4' && activeTab !== 'phase5' && activeTab !== 'phase6' && activeTab !== 'milestones' && (
+          {activeTab !== 'intro' && activeTab !== 'phase1' && activeTab !== 'phase2' && activeTab !== 'phase3' && activeTab !== 'phase4' && activeTab !== 'phase5' && activeTab !== 'phase6' && activeTab !== 'phase7' && activeTab !== 'milestones' && (
             <div className="bg-white p-12 rounded-3xl shadow-sm border border-slate-200 text-center animate-in fade-in duration-500">
               <Box className="w-16 h-16 text-slate-300 mx-auto mb-4" />
               <h2 className="text-2xl font-black text-slate-800 uppercase mb-2">Obsah se připravuje</h2>

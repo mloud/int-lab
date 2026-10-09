@@ -226,7 +226,7 @@ const PythonSubroutinesChapter: React.FC<PythonSubroutinesChapterProps> = ({ onB
 
         <TaskCard number="3" title="" taskId="3" showTeacher={teacherMode} teacherNote={<p>V tomto programu se nejdříve definoval podprogram <code>vypis_text</code>. Za ním následují příkazy <code>print</code> a příkazy pro volání podprogramu <code>vypis_text</code>. Python zobrazil svoji vizitku dvakrát, protože v programu jsou dvě volání podprogramu <code>vypis_text</code>.<br/><br/>Na základě této úlohy by žáci měli pochopit, že podprogram můžeme zavolat i vícekrát.</p>}>
           <p>Přidej do programu <code>vypis.py</code> další příkazy (jsou zvýrazněny žlutě) – pozor, tyto příkazy nesmí mít odsazení, protože už nepatří do podprogramu:</p>
-          <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-sky-400 overflow-x-auto shadow-inner border border-slate-700">
+          <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-sky-400 overflow-x-auto shadow-inner border border-slate-700 whitespace-pre">
             <div><span className="text-slate-300">def vypis_text():</span></div>
             <div><span className="text-slate-300">    print('************')</span></div>
             <div><span className="text-slate-300">    print('** Python **')</span></div>
@@ -330,48 +330,48 @@ __|__
           <p className="mt-6">Na konec programu vlož volání podprogramů, abys každý z nich otestoval. Potom zkus pomocí vytvořených podprogramů zobrazit následující obrázky:</p>
           <div className="flex flex-col sm:flex-row gap-8 items-end mt-4 font-mono bg-slate-50 p-6 rounded-xl border border-slate-200 text-sm whitespace-pre text-blue-600">
             <div>
-  *<br/>
- ***<br/>
+&nbsp;&nbsp;*<br/>
+&nbsp;***<br/>
 *****<br/>
-  *<br/>
- ***<br/>
+&nbsp;&nbsp;*<br/>
+&nbsp;***<br/>
 *****<br/>
-  |<br/>
+&nbsp;&nbsp;|<br/>
 __|__
             </div>
             <div>
-  *<br/>
- ***<br/>
+&nbsp;&nbsp;*<br/>
+&nbsp;***<br/>
 *****<br/>
 #####<br/>
-#   #<br/>
+#&nbsp;&nbsp;&nbsp;#<br/>
 #####<br/>
-  |<br/>
+&nbsp;&nbsp;|<br/>
 __|__
             </div>
             <div>
 #####<br/>
-#   #<br/>
+#&nbsp;&nbsp;&nbsp;#<br/>
 #####<br/>
-  |<br/>
+&nbsp;&nbsp;|<br/>
 __|__<br/>
 #####<br/>
-#   #<br/>
+#&nbsp;&nbsp;&nbsp;#<br/>
 #####
             </div>
             <div className="text-slate-500 italic flex-1 border-l-2 pl-4">
 toto je noha:<br/>
-  |<br/>
+&nbsp;&nbsp;|<br/>
 __|__<br/>
 <br/>
 toto je obdélník:<br/>
 #####<br/>
-#   #<br/>
+#&nbsp;&nbsp;&nbsp;#<br/>
 #####<br/>
 <br/>
 toto je trojúhelník:<br/>
-  *<br/>
- ***<br/>
+&nbsp;&nbsp;*<br/>
+&nbsp;***<br/>
 *****
             </div>
           </div>
@@ -405,8 +405,8 @@ telo()
                 <Rect x1={130} y1={20} width={40} height={40} fill="steelblue" />
                 <Rect x1={140} y1={60} width={20} height={20} fill="lightblue" />
                 <Rect x1={70} y1={100} width={160} height={20} fill="tomato" />
-                <Rect x1={140} y1={170} width={20} height={80} fill="purple" />
-                <Rect x1={110} y1={170} width={20} height={80} fill="purple" />
+                <Rect x1={120} y1={170} width={20} height={80} fill="purple" />
+                <Rect x1={160} y1={170} width={20} height={80} fill="purple" />
                 <Rect x1={110} y1={80} width={80} height={100} fill="royalblue" />
               </CanvasPreview>
             </div>
