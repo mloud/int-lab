@@ -25,6 +25,13 @@ import {
   FolderTree,
   FileCode,
   FolderKanban,
+  Bot,
+  Radio,
+  Eye,
+  Compass,
+  Wrench,
+  Cog,
+  Activity,
   HelpCircle,
   LucideIcon
 } from 'lucide-react';
@@ -55,6 +62,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
   FolderTree,
   FileCode,
   FolderKanban,
+  Bot,
+  Radio,
+  Eye,
+  Compass,
+  Wrench,
+  Cog,
+  Activity,
 };
 
 /**

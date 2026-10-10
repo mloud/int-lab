@@ -630,6 +630,204 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               ]
             }
           ]
+        },
+
+        // 3. ROČNÍK SŠ
+        {
+          grade: 3,
+          gradeLabel: '3. Ročník',
+          pillColor: 'bg-emerald-600',
+          subjects: [
+            {
+              id: 'rob3',
+              title: 'Robotika 1',
+              tag: 'rob3',
+              description: 'Mikrokontroléry, architektura MCU, senzorika s IOKit, diferenciální podvozek Cutebot a IoT v MicroPythonu.',
+              icon: 'Bot',
+              gradient: 'from-emerald-600 to-teal-700',
+              route: '/specializovana/robotika-3',
+              chapters: [
+                {
+                  id: 'rob3-mcu',
+                  title: 'Architektura MCU a MicroPython',
+                  description: 'Embedded systémy, GPIO piny, vnitřní periferie a neblokující stavový automat.',
+                  tag: 'mcu',
+                  icon: 'Cpu',
+                  gradient: 'from-emerald-600 to-teal-700',
+                  route: '/specializovana/robotika-3/mcu',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob3-mcu-gpio', title: 'GPIO a digitální signály', description: 'Ovládání vstupů/výstupů a logické úrovně', tag: 'gp', icon: 'Cpu', gradient: 'from-emerald-600 to-teal-700', route: '/specializovana/robotika-3/mcu/gpio' },
+                    { id: 'rob3-mcu-periferie', title: 'Periferie micro:bitu', description: 'LED matice, tlačítka a interní senzory', tag: 'mb', icon: 'Cpu', gradient: 'from-emerald-600 to-teal-700', route: '/specializovana/robotika-3/mcu/periferie' },
+                    { id: 'rob3-mcu-cas', title: 'Neblokující časování', description: 'Eliminace sleep() pomocí ticks_ms()', tag: 'tm', icon: 'Clock', gradient: 'from-emerald-600 to-teal-700', route: '/specializovana/robotika-3/mcu/casovani' },
+                    { id: 'rob3-mcu-fsm', title: 'Stavový automat (FSM)', description: 'Řízení logiky zařízení konečným automatem', tag: 'fsm', icon: 'Layers', gradient: 'from-emerald-600 to-teal-700', route: '/specializovana/robotika-3/mcu/fsm' }
+                  ]
+                },
+                {
+                  id: 'rob3-senzory',
+                  title: 'Senzory a sběrnice (IOKit)',
+                  description: 'A/D převodník, analogové vzorkování, protokol I2C a filtrace šumu.',
+                  tag: 'snz',
+                  icon: 'Activity',
+                  gradient: 'from-teal-600 to-cyan-700',
+                  route: '/specializovana/robotika-3/senzory',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob3-snz-adc', title: 'A/D převod & analogová čidla', description: 'Vzorkování napětí, fotorezistor a potenciometr', tag: 'adc', icon: 'Activity', gradient: 'from-teal-600 to-cyan-700', route: '/specializovana/robotika-3/senzory/adc' },
+                    { id: 'rob3-snz-i2c', title: 'I2C protokol a OLED displej', description: 'Adresace zařízení a zobrazení telemetrie', tag: 'i2c', icon: 'Monitor', gradient: 'from-teal-600 to-cyan-700', route: '/specializovana/robotika-3/senzory/i2c' },
+                    { id: 'rob3-snz-us', title: 'Ultrazvukový senzor', description: 'Měření vzdálenosti metodou Time-of-Flight', tag: 'tof', icon: 'Radio', gradient: 'from-teal-600 to-cyan-700', route: '/specializovana/robotika-3/senzory/ultrazvuk' },
+                    { id: 'rob3-snz-flt', title: 'Filtrace dat a hystereze', description: 'Plovoucí průměr a eliminace falešných sepnutí', tag: 'flt', icon: 'Activity', gradient: 'from-teal-600 to-cyan-700', route: '/specializovana/robotika-3/senzory/filtrace' }
+                  ]
+                },
+                {
+                  id: 'rob3-cutebot',
+                  title: 'Pohony a Cutebot',
+                  description: 'DC motory, H-můstek, PWM regulace a diferenciální kinematika.',
+                  tag: 'cut',
+                  icon: 'Cog',
+                  gradient: 'from-cyan-600 to-blue-700',
+                  route: '/specializovana/robotika-3/cutebot',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob3-cut-pwm', title: 'DC motory a PWM', description: 'H-můstek a střída signálu pro regulaci otáček', tag: 'pwm', icon: 'Cog', gradient: 'from-cyan-600 to-blue-700', route: '/specializovana/robotika-3/cutebot/motory' },
+                    { id: 'rob3-cut-kin', title: 'Diferenciální kinematika', description: 'Kalibrace přímého směru a otáčení na místě', tag: 'kin', icon: 'Compass', gradient: 'from-cyan-600 to-blue-700', route: '/specializovana/robotika-3/cutebot/kinematika' },
+                    { id: 'rob3-cut-brk', title: 'Detekce překážek', description: 'Proporcionální brzdění před překážkou', tag: 'brk', icon: 'Radio', gradient: 'from-cyan-600 to-blue-700', route: '/specializovana/robotika-3/cutebot/prekazky' },
+                    { id: 'rob3-cut-rgb', title: 'RGB světlomety a tóny', description: 'Stavová signalizace a piezo telemetrie', tag: 'rgb', icon: 'Palette', gradient: 'from-cyan-600 to-blue-700', route: '/specializovana/robotika-3/cutebot/telemetrie' }
+                  ]
+                },
+                {
+                  id: 'rob3-navigace',
+                  title: 'Autonomní navigace',
+                  description: 'IR reflexní senzory, Bang-Bang vs. stavový automat a P-regulátor trati.',
+                  tag: 'nav',
+                  icon: 'Compass',
+                  gradient: 'from-blue-600 to-indigo-700',
+                  route: '/specializovana/robotika-3/navigace',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob3-nav-ir', title: 'IR senzory povrchu', description: 'Odrazivost podkladu a kalibrace prahů', tag: 'ir', icon: 'Activity', gradient: 'from-blue-600 to-indigo-700', route: '/specializovana/robotika-3/navigace/ir-senzory' },
+                    { id: 'rob3-nav-kriz', title: 'Stavový automat pro trať', description: 'Řešení odboček, pravoúhlých zatáček a křižovatek', tag: 'fsm', icon: 'Layers', gradient: 'from-blue-600 to-indigo-700', route: '/specializovana/robotika-3/navigace/krizovatky' },
+                    { id: 'rob3-nav-pid', title: 'Proporcionální regulátor (P)', description: 'Plynulé vyrovnávání směru bez kmitání', tag: 'pid', icon: 'Compass', gradient: 'from-blue-600 to-indigo-700', route: '/specializovana/robotika-3/navigace/pid' },
+                    { id: 'rob3-nav-sumo', title: 'Aréna Sumo & Bludiště', description: 'Autonomní vyhledávání cíle a únik ze zóny', tag: 'sum', icon: 'Bot', gradient: 'from-blue-600 to-indigo-700', route: '/specializovana/robotika-3/navigace/sumo' }
+                  ]
+                },
+                {
+                  id: 'rob3-iot',
+                  title: 'Internet věcí & Telemetrie',
+                  description: 'Micro:bit Radio pakety, dálkové ovládání a distribuovaná senzorová síť.',
+                  tag: 'iot',
+                  icon: 'Radio',
+                  gradient: 'from-indigo-600 to-violet-700',
+                  route: '/specializovana/robotika-3/iot',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob3-iot-rad', title: 'Micro:bit Radio protokol', description: 'Bezdrátový přenos paketů na 2.4 GHz', tag: 'rad', icon: 'Radio', gradient: 'from-indigo-600 to-violet-700', route: '/specializovana/robotika-3/iot/radio' },
+                    { id: 'rob3-iot-rc', title: 'Dálkové řízení akcelerometrem', description: 'Naklápění vysílače pro ovládání Cutebota', tag: 'rc', icon: 'Compass', gradient: 'from-indigo-600 to-violet-700', route: '/specializovana/robotika-3/iot/ovladani' },
+                    { id: 'rob3-iot-net', title: 'Senzorová IoT síť', description: 'Sběr telemetrie z uzlů do centrálního OLED hubu', tag: 'net', icon: 'Network', gradient: 'from-indigo-600 to-violet-700', route: '/specializovana/robotika-3/iot/sit' }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+
+        // 4. ROČNÍK SŠ
+        {
+          grade: 4,
+          gradeLabel: '4. Ročník',
+          pillColor: 'bg-indigo-600',
+          subjects: [
+            {
+              id: 'rob4',
+              title: 'Robotika 2',
+              tag: 'rob4',
+              description: 'Holonomní kinematika VEX AIM, AI počítačové vidění, Smart motory VEX IQ a simulace KUKA EDU.',
+              icon: 'Bot',
+              gradient: 'from-indigo-600 to-purple-700',
+              route: '/specializovana/robotika-4',
+              chapters: [
+                {
+                  id: 'rob4-aim-pohyb',
+                  title: 'VEX AIM: Holonomní podvozek',
+                  description: '3-wheel omni kinematika, rozklad vektorů rychlosti, elektromagnet a kicker.',
+                  tag: 'aim1',
+                  icon: 'Compass',
+                  gradient: 'from-indigo-600 to-purple-700',
+                  route: '/specializovana/robotika-4/aim-kinematika',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob4-aim-omni', title: 'Tříkolový Kiwi/Omni pohon', description: 'Všesměrový pohyb bez otáčení šasi', tag: 'omn', icon: 'Compass', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/robotika-4/aim-kinematika/omni' },
+                    { id: 'rob4-aim-vec', title: 'Vektorový rozklad v Pythonu', description: 'Výpočet otáček motorů pomocí goniometrie', tag: 'vec', icon: 'Code', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/robotika-4/aim-kinematika/vektory' },
+                    { id: 'rob4-aim-mag', title: 'Elektromagnet a kicker', description: 'Aktivní zachycení a vystřelení herního míčku', tag: 'kck', icon: 'Cog', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/robotika-4/aim-kinematika/manipulace' },
+                    { id: 'rob4-aim-arn', title: 'Přesné manévrování v aréně', description: 'Trajektorie a diagonální jízda (strafe)', tag: 'arn', icon: 'Bot', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/robotika-4/aim-kinematika/arena' }
+                  ]
+                },
+                {
+                  id: 'rob4-aim-vision',
+                  title: 'VEX AIM: Počítačové vidění',
+                  description: 'Barevné signatury, Visual Servoing a prostorová orientace pomocí AprilTags.',
+                  tag: 'aim2',
+                  icon: 'Eye',
+                  gradient: 'from-purple-600 to-pink-700',
+                  route: '/specializovana/robotika-4/aim-vision',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob4-vis-col', title: 'Kamera jako senzor & barvy', description: 'Kalibrace barevných signatur a detekce objektů', tag: 'col', icon: 'Palette', gradient: 'from-purple-600 to-pink-700', route: '/specializovana/robotika-4/aim-vision/barvy' },
+                    { id: 'rob4-vis-srv', title: 'Visual Servoing (Sledování cíle)', description: 'Autonomní natáčení a dojíždění k pohybujícímu se cíli', tag: 'srv', icon: 'Eye', gradient: 'from-purple-600 to-pink-700', route: '/specializovana/robotika-4/aim-vision/tracking' },
+                    { id: 'rob4-vis-tag', title: 'Lokalizace přes AprilTags', description: '2D vizuální značky pro navigaci k brance a zónám', tag: 'tag', icon: 'ScanFace', gradient: 'from-purple-600 to-pink-700', route: '/specializovana/robotika-4/aim-vision/apriltags' },
+                    { id: 'rob4-vis-mis', title: 'Autonomní sportovní mise', description: 'Vyhledání míčku, uchopení magnetem a střelba', tag: 'mis', icon: 'Bot', gradient: 'from-purple-600 to-pink-700', route: '/specializovana/robotika-4/aim-vision/mise' }
+                  ]
+                },
+                {
+                  id: 'rob4-vex-iq',
+                  title: 'VEX IQ: Inženýrské systémy',
+                  description: 'Převodové poměry, optické enkodéry, gyroskop a přesná odometrie.',
+                  tag: 'viq',
+                  icon: 'Wrench',
+                  gradient: 'from-pink-600 to-rose-700',
+                  route: '/specializovana/robotika-4/vex-iq',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob4-viq-gr', title: 'Převodové poměry & točivý moment', description: 'Vztah rychlosti a síly v konstrukci robotu', tag: 'gr', icon: 'Cog', gradient: 'from-pink-600 to-rose-700', route: '/specializovana/robotika-4/vex-iq/prevody' },
+                    { id: 'rob4-viq-enc', title: 'Smart motory & optické enkodéry', description: 'Řízení na přesný úhel a čtení zátěže', tag: 'enc', icon: 'Activity', gradient: 'from-pink-600 to-rose-700', route: '/specializovana/robotika-4/vex-iq/enkodery' },
+                    { id: 'rob4-viq-odo', title: 'Odometrie & IMU gyroskop', description: 'Výpočet absolutní polohy z rotace kol', tag: 'odo', icon: 'Compass', gradient: 'from-pink-600 to-rose-700', route: '/specializovana/robotika-4/vex-iq/odometrie' },
+                    { id: 'rob4-viq-lft', title: 'Zdvihací mechanismy', description: 'Autonomní nabírání a vykládání materiálu', tag: 'lft', icon: 'Wrench', gradient: 'from-pink-600 to-rose-700', route: '/specializovana/robotika-4/vex-iq/mechanismy' }
+                  ]
+                },
+                {
+                  id: 'rob4-kuka',
+                  title: 'KUKA EDU: Průmyslová robotika',
+                  description: '6-DoF kinematika, bezpečnostní zóny, offline simulace a Pick & Place.',
+                  tag: 'kuka',
+                  icon: 'Bot',
+                  gradient: 'from-amber-600 to-orange-700',
+                  route: '/specializovana/robotika-4/kuka',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob4-kuka-kin', title: '6-DoF kinematika & bezpečnost', description: 'Osy A1-A6, kartézský prostor a E-Stop okruhy', tag: 'kin', icon: 'ShieldCheck', gradient: 'from-amber-600 to-orange-700', route: '/specializovana/robotika-4/kuka/kinematika' },
+                    { id: 'rob4-kuka-tcp', title: 'Simulátor: Kalibrace TCP', description: 'Tool Center Point a souřadnicový systém BASE', tag: 'tcp', icon: 'Wrench', gradient: 'from-amber-600 to-orange-700', route: '/specializovana/robotika-4/kuka/tcp' },
+                    { id: 'rob4-kuka-pnp', title: 'Simulátor: Pick & Place trajektorie', description: 'PTP a LIN pohyby bez kolizních stavů', tag: 'pnp', icon: 'Layers', gradient: 'from-amber-600 to-orange-700', route: '/specializovana/robotika-4/kuka/pick-and-place' },
+                    { id: 'rob4-kuka-hw', title: 'Ověření na fyzickém robotu KUKA', description: 'Režim T1, nahrání odzkoušeného kódu a cyklus', tag: 'krl', icon: 'Bot', gradient: 'from-amber-600 to-orange-700', route: '/specializovana/robotika-4/kuka/realny-robot' }
+                  ]
+                },
+                {
+                  id: 'rob4-projekt',
+                  title: 'Závěrečný kooperativní projekt',
+                  description: 'Propojení VEX AIM, VEX IQ, KUKA a IoT do funkční automatizované buňky.',
+                  tag: 'prj',
+                  icon: 'FolderKanban',
+                  gradient: 'from-rose-600 to-red-700',
+                  route: '/specializovana/robotika-4/projekt',
+                  hasSubchapters: true,
+                  subchapters: [
+                    { id: 'rob4-prj-arch', title: 'Architektura kooperativní linky', description: 'Definice rozhraní a rozdělení týmových rolí', tag: 'arc', icon: 'Network', gradient: 'from-rose-600 to-red-700', route: '/specializovana/robotika-4/projekt/architektura' },
+                    { id: 'rob4-prj-run', title: 'Týmová integrace a ladění', description: 'Autonomní logistika a kooperace v reálném čase', tag: 'run', icon: 'Bot', gradient: 'from-rose-600 to-red-700', route: '/specializovana/robotika-4/projekt/realizace' },
+                    { id: 'rob4-prj-prez', title: 'Obhajoba & Troubleshooting', description: 'Prezentace projektu a řešení simulovaných poruch', tag: 'def', icon: 'ShieldCheck', gradient: 'from-rose-600 to-red-700', route: '/specializovana/robotika-4/projekt/obhajoba' }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
