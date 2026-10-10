@@ -458,7 +458,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 {
                   id: 'fs-menu',
                   title: 'Souborový systém a disky',
-                  description: 'V návaznosti na kapitolu Architektura OS se nyní detailně zaměříme na jeden z klíčových subsystémů jádra – modul správy souborů. Objasníme si principy, pomocí kterých operační systém abstrakcí převádí fyzické bloky dat na strukturovaný systém souborů a složek.',
+                  description: 'FAT, NTFS, alokace dat, klastry a simulátory disků.',
                   tag: 'fs',
                   icon: 'HardDrive',
                   gradient: 'from-purple-600 to-indigo-500',
