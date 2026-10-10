@@ -82,3 +82,19 @@ export function getChapterById(chapterId: string, school: SchoolConfig = current
   }
   return undefined;
 }
+
+/**
+ * Vyhledá kapitolu i s jejími rodičovskými entitami (předmět, divize, ročník)
+ */
+export function getChapterDetailsById(chapterId: string, school: SchoolConfig = currentSchool): { chapter: ChapterConfig; subject: SubjectConfig; division: DivisionConfig; grade: GradeConfig } | undefined {
+  for (const division of school.divisions) {
+    for (const grade of division.grades) {
+      for (const subject of grade.subjects) {
+        const chapter = subject.chapters.find(c => c.id === chapterId);
+        if (chapter) return { chapter, subject, division, grade };
+      }
+    }
+  }
+  return undefined;
+}
+

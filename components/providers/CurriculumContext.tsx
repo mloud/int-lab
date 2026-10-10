@@ -18,6 +18,7 @@ interface CurriculumContextType {
   getDivision: (divisionId: string) => DivisionConfig | undefined;
   getSubject: (subjectId: string) => { subject: SubjectConfig; division: DivisionConfig; grade: GradeConfig } | undefined;
   getChapter: (chapterId: string) => ChapterConfig | undefined;
+  getChapterDetails: (chapterId: string) => { chapter: ChapterConfig; subject: SubjectConfig; division: DivisionConfig; grade: GradeConfig } | undefined;
   setSchool: (school: SchoolConfig) => void;
   switchSchool: (schoolId: string) => void;
   isLoading: boolean;
@@ -109,6 +110,20 @@ export const CurriculumProvider: React.FC<{ children: React.ReactNode; initialSc
     };
   }, [school]);
 
+  const getChapterDetails = useMemo(() => {
+    return (chapterId: string) => {
+      for (const division of school.divisions) {
+        for (const grade of division.grades) {
+          for (const subject of grade.subjects) {
+            const chapter = subject.chapters.find(c => c.id === chapterId);
+            if (chapter) return { chapter, subject, division, grade };
+          }
+        }
+      }
+      return undefined;
+    };
+  }, [school]);
+
   return (
     <CurriculumContext.Provider
       value={{
@@ -118,6 +133,7 @@ export const CurriculumProvider: React.FC<{ children: React.ReactNode; initialSc
         getDivision,
         getSubject,
         getChapter,
+        getChapterDetails,
         setSchool,
         switchSchool,
         isLoading
@@ -152,6 +168,17 @@ export function useCurriculum(): CurriculumContextType {
             for (const subject of grade.subjects) {
               const chapter = subject.chapters.find(c => c.id === id);
               if (chapter) return chapter;
+            }
+          }
+        }
+        return undefined;
+      },
+      getChapterDetails: (id: string) => {
+        for (const division of DEFAULT_SCHOOL.divisions) {
+          for (const grade of division.grades) {
+            for (const subject of grade.subjects) {
+              const chapter = subject.chapters.find(c => c.id === id);
+              if (chapter) return { chapter, subject, division, grade };
             }
           }
         }

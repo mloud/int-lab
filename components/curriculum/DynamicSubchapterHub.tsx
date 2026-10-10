@@ -13,8 +13,26 @@ interface DynamicSubchapterHubProps {
 
 export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chapterId, onBack }) => {
   const router = useRouter();
-  const { getChapter } = useCurriculum();
-  const chapter = getChapter(chapterId);
+  const { getChapterDetails, getChapter } = useCurriculum();
+  const details = getChapterDetails(chapterId);
+  const chapter = details?.chapter || getChapter(chapterId);
+  const parentSubject = details?.subject;
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    if (parentSubject?.route) {
+      router.push(parentSubject.route);
+      return;
+    }
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/specializovana');
+    }
+  };
 
   if (!chapter || !chapter.subchapters || chapter.subchapters.length === 0) {
     return (
@@ -22,7 +40,7 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
         <h2 className="text-xl font-bold text-red-600 mb-2">Kapitola nenalezena</h2>
         <p className="text-sm text-slate-500 mb-4">Kapitola &quot;{chapterId}&quot; s podkapitolami není v konfiguraci definována.</p>
         <button
-          onClick={() => router.back()}
+          onClick={handleBack}
           className="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider"
         >
           Zpět
@@ -39,11 +57,11 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
         {/* Tlačítko Zpět */}
         <div className="w-full flex justify-start mb-6">
           <button
-            onClick={onBack || (() => router.back())}
+            onClick={handleBack}
             className="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 rounded-full text-xs font-bold uppercase tracking-wider transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Zpět na přehled kapitol</span>
+            <span>Zpět na {parentSubject ? parentSubject.title : 'přehled kapitol'}</span>
           </button>
         </div>
 
