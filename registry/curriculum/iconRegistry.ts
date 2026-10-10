@@ -33,6 +33,14 @@ import {
   Cog,
   Activity,
   HelpCircle,
+  Disc3,
+  Disc,
+  PieChart,
+  Table2,
+  LayoutGrid,
+  AppWindow,
+  ArrowUpDown,
+  Search,
   LucideIcon
 } from 'lucide-react';
 
@@ -69,6 +77,14 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Wrench,
   Cog,
   Activity,
+  Disc3,
+  Disc,
+  PieChart,
+  Table2,
+  LayoutGrid,
+  AppWindow,
+  ArrowUpDown,
+  Search,
 };
 
 /**

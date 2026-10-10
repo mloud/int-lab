@@ -12,6 +12,17 @@ export interface SubchapterConfig {
   gradient: string;
   route: string;
   actionLabel?: string;
+  orderNumber?: number | string;
+}
+
+export interface PracticeGameConfig {
+  tag: string;
+  title: string;
+  description: string;
+  icon: string;
+  color?: string;
+  bg?: string;
+  route: string;
 }
 
 /**
@@ -29,6 +40,7 @@ export interface ChapterConfig {
   route: string;
   hasSubchapters?: boolean;
   subchapters?: SubchapterConfig[];
+  practiceGames?: PracticeGameConfig[];
   actionLabel?: string;
   variant?: 'default' | 'filled';
   isTest?: boolean;

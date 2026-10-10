@@ -1625,15 +1625,15 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   // =========================================================================
   {
     id: 'fs-uvod',
-    title: 'Úvod do souborových systémů',
-    shortCode: '#fs0',
-    description: 'Struktura hierarchického stromu adresářů, metadata a souborové operace.',
+    title: '1. Úvod a architektura',
+    shortCode: '#fs1',
+    description: 'K čemu slouží souborový systém a jak si předává data s hardwarem a aplikacemi.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
     defaultPath: '/specializovana/operacni-systemy/souborove-systemy/uvod',
-    iconName: 'FolderTree',
-    keywords: ['soubory', 'složky', 'strom', 'metadata', 'souborový systém'],
+    iconName: 'Layers',
+    keywords: ['soubory', 'složky', 'strom', 'metadata', 'souborový systém', 'architektura'],
     difficulty: 'medium',
     targetAudience: ['ss-odborna'],
     recommendedGrades: [1],
@@ -1647,8 +1647,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: 'Úvod do souborových systémů',
-      lesson: 'Úvod do souborových systémů'
+      subchapter: '1. Úvod a architektura',
+      lesson: 'Úvod a architektura'
     },
     tabs: {
       hasTheory: true,
@@ -1660,9 +1660,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   },
   {
     id: 'fs-media',
-    title: '1. Paměťová média (HDD a SSD)',
-    shortCode: '#fs1',
-    description: 'Plotny, stopy, sektory vs. NAND flash buňky, bloky a opotřebení SSD.',
+    title: '2. Paměťová média',
+    shortCode: '#fs2',
+    description: 'HDD a SSD pod lupou. Plotny, stopy, sektory, NAND paměť a proč je SSD tak rychlé.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
@@ -1682,8 +1682,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: '1. Paměťová média (HDD a SSD)',
-      lesson: '1. Paměťová média (HDD a SSD)'
+      subchapter: '2. Paměťová média',
+      lesson: 'Paměťová média (HDD a SSD)'
     },
     tabs: {
       hasTheory: true,
@@ -1695,9 +1695,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   },
   {
     id: 'fs-deleni',
-    title: '2. Dělení disku (MBR vs GPT)',
-    shortCode: '#fs2',
-    description: 'Oddíly disku, primární vs. logické oddíly, tabulky MBR a moderní standard GPT.',
+    title: '3. Dělení disku',
+    shortCode: '#fs3',
+    description: 'Oddíly a svazky, MBR vs. GPT, formátování a co je na disku potřeba ke startu OS.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
@@ -1717,8 +1717,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: '2. Dělení disku (MBR vs GPT)',
-      lesson: '2. Dělení disku (MBR vs GPT)'
+      subchapter: '3. Dělení disku',
+      lesson: 'Dělení disku (MBR vs GPT)'
     },
     tabs: {
       hasTheory: true,
@@ -1730,9 +1730,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   },
   {
     id: 'fs-fat',
-    title: '3. Alokační jednotka a FAT tabulka',
-    shortCode: '#fs3',
-    description: 'Cluster, zřetězený seznam clusterů ve FAT tabulce a limity FAT16/FAT32.',
+    title: '4. Systém souborů',
+    shortCode: '#fs4',
+    description: 'Od hardwaru k OS. Clustery, tabulka souborů, vnitřní fragmentace a mýtus o smazaných datech.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
@@ -1752,8 +1752,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: '3. Alokační jednotka a FAT tabulka',
-      lesson: '3. Alokační jednotka a FAT tabulka'
+      subchapter: '4. Systém souborů',
+      lesson: 'Systém souborů (FAT tabulka a clustery)'
     },
     tabs: {
       hasTheory: true,
@@ -1765,9 +1765,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   },
   {
     id: 'fs-fragmentace',
-    title: '4. Fragmentace a údržba disku',
-    shortCode: '#fs4',
-    description: 'Proč data na disku fragmentují, jak probíhá defragmentace a proč se nedefragmentuje SSD.',
+    title: '5. Fragmentace a údržba',
+    shortCode: '#fs5',
+    description: 'Jak vzniká fragmentace, defragmentace vs. TRIM, kontrola disku a vadné sektory.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
@@ -1787,8 +1787,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: '4. Fragmentace a údržba disku',
-      lesson: '4. Fragmentace a údržba disku'
+      subchapter: '5. Fragmentace a údržba',
+      lesson: 'Fragmentace a údržba disku'
     },
     tabs: {
       hasTheory: true,
@@ -1904,16 +1904,16 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy/ClusterSizeGame')
   },
   {
-    id: 'fs-cteni',
-    title: 'Tok čtení souboru operačním systémem',
-    shortCode: '#fs-read',
-    description: 'Krok za krokem: od volání fopen() přes vyhledání cesty, FAT a čtení z disku.',
+    id: 'fs-read',
+    title: '6. Architektura v praxi',
+    shortCode: '#fs6',
+    description: 'Simulace toku dat při čtení souboru. Propojení OS, FAT tabulky a samotného disku.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
     defaultPath: '/specializovana/operacni-systemy/souborove-systemy/cteni-souboru',
-    iconName: 'FileSearch',
-    keywords: ['čtení', 'tok dat', 'fopen', 'io operace'],
+    iconName: 'AppWindow',
+    keywords: ['čtení', 'tok dat', 'fopen', 'io operace', 'architektura'],
     difficulty: 'hard',
     targetAudience: ['ss-odborna'],
     recommendedGrades: [1],
@@ -1927,8 +1927,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: 'Tok I/O operací a čtení souboru',
-      lesson: 'Tok čtení souboru operačním systémem'
+      subchapter: '6. Architektura v praxi',
+      lesson: 'Architektura v praxi (Čtení souboru)'
     },
     tabs: {
       hasTheory: true,
@@ -3210,16 +3210,16 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   // =========================================================================
   // =========================================================================
   {
-    id: 'fs-pokrocile',
-    title: 'Pokročilé souborové systémy (NTFS & ext4)',
+    id: 'fs-adv',
+    title: '99. Pokročilá témata',
     shortCode: '#fs-adv',
-    description: 'Žurnálování, přístupová práva ACL, komprese, šifrování BitLocker a inody v Linuxu.',
+    description: 'Alokační strategie (First/Best Fit) a další komplexní principy z univerzitních osnov.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
     defaultPath: '/specializovana/operacni-systemy/souborove-systemy/pokrocile',
-    iconName: 'Shield',
-    keywords: ['ntfs', 'ext4', 'žurnál', 'acl', 'práva', 'inody'],
+    iconName: 'Database',
+    keywords: ['alokace', 'first-fit', 'best-fit', 'ntfs', 'ext4', 'pokročilé'],
     difficulty: 'hard',
     targetAudience: ['ss-odborna'],
     recommendedGrades: [1],
@@ -3233,8 +3233,8 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Operační systémy 1',
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
-      subchapter: 'Pokročilé souborové systémy (NTFS & ext4)',
-      lesson: 'Pokročilé souborové systémy (NTFS & ext4)'
+      subchapter: '99. Pokročilá témata',
+      lesson: 'Pokročilá témata souborových systémů'
     },
     tabs: {
       hasTheory: true,

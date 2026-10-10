@@ -52,8 +52,8 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
   const ChapterIcon = getCurriculumIcon(chapter.icon);
 
   return (
-    <div className="max-w-5xl w-full animate-in fade-in duration-500 px-4">
-      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
+    <div className="max-w-6xl w-full animate-in fade-in duration-500 px-4">
+      <div className="bg-white/80 backdrop-blur-xl p-6 sm:p-14 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
         {/* Tlačítko Zpět */}
         <div className="w-full flex justify-start mb-6">
           <button
@@ -73,17 +73,20 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
         </div>
 
         {/* Nadpis */}
-        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-3 tracking-tighter leading-none uppercase">
+        <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tighter uppercase leading-none">
           {chapter.title}
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-500 mb-12 max-w-2xl font-medium leading-relaxed">
+        <p className="text-base sm:text-lg text-gray-500 mb-12 max-w-3xl font-medium leading-relaxed">
           {chapter.description}
         </p>
 
-        {/* Grid podkapitol */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {chapter.subchapters.map((sub) => {
+        {/* Podkapitoly */}
+        <h2 className="text-left w-full text-2xl font-black text-slate-800 mb-6 uppercase tracking-tight">
+          Podkapitoly
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-4">
+          {chapter.subchapters.map((sub, idx) => {
             const SubIcon = getCurriculumIcon(sub.icon);
             return (
               <TechnicalCard
@@ -93,13 +96,53 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
                 description={sub.description}
                 icon={SubIcon}
                 gradient={sub.gradient}
-                actionLabel={sub.actionLabel || 'Otevřít lekci'}
+                actionLabel={sub.actionLabel || 'Otevřít kapitolu'}
                 onClick={() => router.push(sub.route)}
                 accentCorner={false}
+                orderNumber={sub.orderNumber !== undefined ? sub.orderNumber : (idx + 1)}
               />
             );
           })}
         </div>
+
+        {/* Procvičovací hry */}
+        {chapter.practiceGames && chapter.practiceGames.length > 0 && (
+          <div className="w-full mt-10 text-left border-t border-slate-200/80 pt-8">
+            <h2 className="text-left text-2xl font-black text-slate-800 mb-2 uppercase tracking-tight">
+              Procvičovací hry
+            </h2>
+            <p className="text-left text-base text-slate-500 mb-6 font-medium">
+              Samostatné úlohy na procvičení – vhodné po probrání kapitol 3 a 4.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {chapter.practiceGames.map((g) => {
+                const GameIcon = getCurriculumIcon(g.icon);
+                return (
+                  <button
+                    key={g.tag}
+                    onClick={() => router.push(g.route)}
+                    className="group relative p-5 bg-white hover:bg-slate-50 border-4 border-gray-50 hover:border-purple-100 rounded-[2rem] shadow-md hover:shadow-xl transition-all hover:scale-105 active:scale-95 text-left flex flex-col justify-between min-h-[190px]"
+                  >
+                    <div>
+                      <div className={`w-12 h-12 ${g.bg || 'bg-purple-50'} rounded-2xl flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform`}>
+                        <GameIcon className={`w-6 h-6 ${g.color || 'text-purple-600'}`} />
+                      </div>
+                      <h3 className="text-base font-black text-gray-900 mb-1 uppercase tracking-wide leading-tight">
+                        {g.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 font-semibold leading-snug">
+                        {g.description}
+                      </p>
+                    </div>
+                    <span className="mt-3 text-xs font-black text-purple-600 uppercase tracking-widest group-hover:translate-x-1 transition-transform">
+                      Spustit ➔
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

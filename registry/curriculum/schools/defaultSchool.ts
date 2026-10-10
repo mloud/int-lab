@@ -457,27 +457,120 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 },
                 {
                   id: 'fs-menu',
-                  title: 'Souborové systémy',
-                  description: 'FAT, NTFS, alokace dat, klastry a simulátory disků.',
+                  title: 'Souborový systém a disky',
+                  description: 'V návaznosti na kapitolu Architektura OS se nyní detailně zaměříme na jeden z klíčových subsystémů jádra – modul správy souborů. Objasníme si principy, pomocí kterých operační systém abstrakcí převádí fyzické bloky dat na strukturovaný systém souborů a složek.',
                   tag: 'fs',
                   icon: 'HardDrive',
-                  gradient: 'from-purple-600 to-indigo-600',
+                  gradient: 'from-purple-600 to-indigo-500',
                   route: '/specializovana/operacni-systemy/souborove-systemy',
                   hasSubchapters: true,
                   subchapters: [
-                    { id: 'fs-uvod', title: 'Úvod do souborových systémů', description: 'Hierarchie souborů a adresářů', tag: 'fsu', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/uvod' },
-                    { id: 'fs-deleni', title: 'Dělení disku (Partitions)', description: 'MBR vs GPT a oddíly na disku', tag: 'del', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/deleni-disku' },
-                    { id: 'fs-form', title: 'Formátování', description: 'Příprava disku a vytváření struktur', tag: 'fmt', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/formatovani' },
-                    { id: 'fs-cluster', title: 'Velikost clusteru', description: 'Vliv clusteru na využití disku', tag: 'cls', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/velikost-clusteru' },
-                    { id: 'fs-fat', title: 'FAT a FAT32', description: 'Struktura alokační tabulky', tag: 'fat', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/fat' },
-                    { id: 'fs-alloc', title: 'Alokace FAT simulátor', description: 'Zápis a řetězení clusterů', tag: 'alc', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/alokace-fat' },
-                    { id: 'fs-read', title: 'Čtení souboru', description: 'Jak OS dohledává clustery', tag: 'rea', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/cteni-souboru' },
-                    { id: 'fs-del', title: 'Mazání a obnova dat', description: 'Co se stane při smazání souboru', tag: 'del', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/mazani' },
-                    { id: 'fs-frag', title: 'Fragmentace disku', description: 'Rozpad souborů do nesouvislých bloků', tag: 'frg', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/fragmentace' },
-                    { id: 'fs-defrag', title: 'Defragmentace', description: 'Uspořádání dat pro rychlejší čtení', tag: 'dfg', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/defrag' },
-                    { id: 'fs-chkdsk', title: 'Kontrola chyb (CHKDSK)', description: 'Oprava nekonzistentních záznamů', tag: 'chk', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/chkdsk' },
-                    { id: 'fs-media', title: 'Paměťová média', description: 'HDD, SSD, Flash disky a optical média', tag: 'med', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/media' },
-                    { id: 'fs-adv', title: 'Pokročilé funkce NTFS', description: 'Žurnálování, komprese a práva ACL', tag: 'adv', icon: 'HardDrive', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/souborove-systemy/pokrocile' }
+                    {
+                      id: 'fs-uvod',
+                      title: 'Úvod a architektura',
+                      description: 'K čemu slouží souborový systém a jak si předává data s hardwarem a aplikacemi.',
+                      tag: 'FS1',
+                      icon: 'Layers',
+                      gradient: 'from-blue-500 to-indigo-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/uvod',
+                      orderNumber: 1,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-media',
+                      title: 'Paměťová média',
+                      description: 'HDD a SSD pod lupou. Plotny, stopy, sektory, NAND paměť a proč je SSD tak rychlé.',
+                      tag: 'FS2',
+                      icon: 'Disc3',
+                      gradient: 'from-sky-500 to-cyan-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/media',
+                      orderNumber: 2,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-deleni',
+                      title: 'Dělení disku',
+                      description: 'Oddíly a svazky, MBR vs. GPT, formátování a co je na disku potřeba ke startu OS.',
+                      tag: 'FS3',
+                      icon: 'PieChart',
+                      gradient: 'from-emerald-500 to-teal-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
+                      orderNumber: 3,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-fat',
+                      title: 'Systém souborů',
+                      description: 'Od hardwaru k OS. Clustery, tabulka souborů, vnitřní fragmentace a mýtus o smazaných datech.',
+                      tag: 'FS4',
+                      icon: 'Table2',
+                      gradient: 'from-purple-500 to-fuchsia-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
+                      orderNumber: 4,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-frag',
+                      title: 'Fragmentace a údržba',
+                      description: 'Jak vzniká fragmentace, defragmentace vs. TRIM, kontrola disku a vadné sektory.',
+                      tag: 'FS5',
+                      icon: 'Wrench',
+                      gradient: 'from-amber-500 to-orange-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/fragmentace',
+                      orderNumber: 5,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-read',
+                      title: 'Architektura v praxi',
+                      description: 'Simulace toku dat při čtení souboru. Propojení OS, FAT tabulky a samotného disku.',
+                      tag: 'FS6',
+                      icon: 'AppWindow',
+                      gradient: 'from-rose-500 to-red-500',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/cteni-souboru',
+                      orderNumber: 6,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-adv',
+                      title: 'Pokročilá témata',
+                      description: 'Alokační strategie (First/Best Fit) a další komplexní principy z univerzitních osnov.',
+                      tag: 'FS-ADV',
+                      icon: 'Database',
+                      gradient: 'from-slate-600 to-slate-800',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/pokrocile',
+                      orderNumber: 99,
+                      actionLabel: 'Otevřít kapitolu'
+                    }
+                  ],
+                  practiceGames: [
+                    {
+                      tag: 'fat',
+                      title: 'Základy FAT tabulky',
+                      description: 'Čtení a oprava řetězců ve FAT.',
+                      icon: 'Binary',
+                      color: 'text-indigo-600',
+                      bg: 'bg-indigo-50',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/fat'
+                    },
+                    {
+                      tag: 'dfg',
+                      title: 'Defragmentace disku',
+                      description: 'Srovnej bloky a zrychli čtení.',
+                      icon: 'ArrowUpDown',
+                      color: 'text-amber-600',
+                      bg: 'bg-amber-50',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/defrag'
+                    },
+                    {
+                      tag: 'chk',
+                      title: 'Detektiv CHKDSK',
+                      description: 'Najdi ztracené a překřížené clustery.',
+                      icon: 'Search',
+                      color: 'text-purple-600',
+                      bg: 'bg-purple-50',
+                      route: '/specializovana/operacni-systemy/souborove-systemy/chkdsk'
+                    }
                   ]
                 },
                 {

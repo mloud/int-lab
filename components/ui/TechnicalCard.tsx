@@ -14,6 +14,7 @@ export interface TechnicalCardProps {
   variant?: 'default' | 'filled';
   isTest?: boolean;
   className?: string;
+  orderNumber?: number | string;
 }
 
 export const TechnicalCard: React.FC<TechnicalCardProps> = ({
@@ -28,7 +29,8 @@ export const TechnicalCard: React.FC<TechnicalCardProps> = ({
   accentCorner = false,
   variant = 'default',
   isTest = false,
-  className = ''
+  className = '',
+  orderNumber
 }) => {
   const cleanTag = tag.startsWith('#') ? tag.slice(1) : tag;
   const isFilled = variant === 'filled';
@@ -45,6 +47,13 @@ export const TechnicalCard: React.FC<TechnicalCardProps> = ({
           : 'p-6 bg-white rounded-3xl border-2 border-slate-100 text-slate-800 min-h-[260px] shadow-md hover:shadow-xl'
       } flex flex-col items-center text-center justify-between transition-all overflow-hidden ${className}`}
     >
+      {/* Horní levý roh: Číslování kapitoly (pokud je zadáno a není to accentCorner ani isFilled) */}
+      {orderNumber !== undefined && !accentCorner && !isFilled && (
+        <div className="absolute top-3 left-4 text-2xl font-black text-slate-200 select-none">
+          {orderNumber}{typeof orderNumber === 'number' || !String(orderNumber).endsWith('.') ? '.' : ''}
+        </div>
+      )}
+
       {/* Horní pravý roh: Technický #tag */}
       <div
         className={`absolute font-mono font-bold uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm transition-colors ${
