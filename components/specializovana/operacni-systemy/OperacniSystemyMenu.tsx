@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Cpu, ShieldCheck, HardDrive, Hourglass, MonitorUp, Clock, Layers } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface OperacniSystemyMenuProps {
   onBack: () => void;
@@ -32,199 +33,113 @@ const OperacniSystemyMenu: React.FC<OperacniSystemyMenuProps> = ({ onBack, onSta
           Vyberte si téma k procvičování. Začněte se souborovými systémy a zjistěte, jak se data fyzicky zapisují na disk!
         </p>
 
-        {/* Preview of future topics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
-          {/* Karta 1: #win (Instalace OS) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#win</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <MonitorUp className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Instalace OS</h3>
-              <p className="text-xs text-gray-600">Simulátor instalace Windows 11 pro IT techniky.</p>
-            </div>
-            <button
-              onClick={onStartWindowsInstall}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Spustit simulátor
-            </button>
-          </div>
+        {/* Topics grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="win"
+            title="Instalace OS"
+            description="Simulátor instalace Windows 11 pro IT techniky."
+            icon={MonitorUp}
+            gradient="from-purple-600 to-indigo-600"
+            actionLabel="Spustit simulátor"
+            onClick={onStartWindowsInstall}
+            accentCorner={false}
+          />
 
-          {/* Karta 2: #osh (Hardware) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osh</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Základy hardwaru pro OS</h3>
-              <p className="text-xs text-gray-600">Hardware z pohledu operačního systému.</p>
-            </div>
-            <button
-              onClick={onStartHardware}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
+          <TechnicalCard
+            tag="osh"
+            title="Základy hardwaru pro OS"
+            description="Hardware z pohledu operačního systému a komunikace s komponentami."
+            icon={Cpu}
+            gradient="from-purple-600 to-indigo-600"
+            onClick={onStartHardware}
+            accentCorner={false}
+          />
 
-          {/* Karta 3: #osi (Úvod do OS) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osi</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Úvod do OS</h3>
-              <p className="text-xs text-gray-600">Základní teorie, funkce, licence a typy operačních systémů s interaktivním kvízem.</p>
-            </div>
-            <button
-              onClick={onStartOsIntro}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
+          <TechnicalCard
+            tag="osi"
+            title="Úvod do OS"
+            description="Základní teorie, funkce, licence a typy operačních systémů s interaktivním kvízem."
+            icon={Cpu}
+            gradient="from-purple-600 to-indigo-600"
+            onClick={onStartOsIntro}
+            accentCorner={false}
+          />
 
-          {/* Karta 4: #osa (Architektura OS) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osa</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <ShieldCheck className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Architektura OS</h3>
-              <p className="text-xs text-gray-600">Jak funguje monolitické a mikrojádro. Hravý simulátor výpadků služeb.</p>
-            </div>
-            <button
-              onClick={onStartOsArchitecture}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
+          <TechnicalCard
+            tag="osa"
+            title="Architektura OS"
+            description="Jak funguje monolitické a mikrojádro. Hravý simulátor výpadků služeb."
+            icon={ShieldCheck}
+            gradient="from-purple-600 to-indigo-600"
+            onClick={onStartOsArchitecture}
+            accentCorner={false}
+          />
 
-          {/* Assessment Card */}
-          <div className="relative group p-6 bg-rose-50 rounded-3xl border-2 border-rose-300 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-rose-100">
-            <div className="absolute top-3 right-3 text-[10px] font-black text-white bg-rose-500 px-2 py-1 rounded-md uppercase tracking-widest shadow-sm z-10">TEST</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-rose-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <ShieldCheck className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-rose-800 mb-1 uppercase tracking-wider text-sm">Hodnocená práce</h3>
-              <p className="text-xs text-rose-600 font-medium">Hardware, úvod do OS a architektura OS. 45 minut, 50 bodů. Odemčení na heslo.</p>
-            </div>
-            <button
-              onClick={onStartAssessment}
-              className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít zadání
-            </button>
-          </div>
+          <TechnicalCard
+            tag="TEST"
+            title="Hodnocená práce"
+            description="Hardware, úvod do OS a architektura OS. 45 minut, 50 bodů. Odemčení na heslo."
+            icon={ShieldCheck}
+            gradient="from-rose-500 to-red-600"
+            actionLabel="Otevřít zadání"
+            onClick={onStartAssessment}
+            accentCorner={false}
+          />
 
-          {/* Karta: #ose (Evoluce OS) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#ose</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Clock className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Evoluce OS</h3>
-              <p className="text-xs text-gray-600">Od sálových počítačů s děrnými štítky až po dnešní chytré telefony.</p>
-            </div>
-            <button
-              onClick={onStartOsEvolution}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít muzeum
-            </button>
-          </div>
+          <TechnicalCard
+            tag="ose"
+            title="Evoluce OS"
+            description="Od sálových počítačů s děrnými štítky až po dnešní chytré telefony."
+            icon={Clock}
+            gradient="from-purple-600 to-indigo-600"
+            actionLabel="Otevřít muzeum"
+            onClick={onStartOsEvolution}
+            accentCorner={false}
+          />
 
-          {/* Karta: #osv (Virtualizace) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osv</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Layers className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Virtualizace</h3>
-              <p className="text-xs text-gray-600">Simulace Type 1 a 2 hypervizorů a praktický list pro VirtualBox.</p>
-            </div>
-            <button
-              onClick={onStartVirtualization}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Otevřít kapitolu
-            </button>
-          </div>
-          {/* Karta 7: #fsm (Souborové systémy) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#fsm</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <HardDrive className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Souborový systém a disky</h3>
-              <p className="text-xs text-gray-600">Jak operační systém ukládá data a organizuje složky na disku.</p>
-            </div>
-            <button
-              onClick={onStartFileSystemsMenu}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Zobrazit kapitolu
-            </button>
-          </div>
+          <TechnicalCard
+            tag="osv"
+            title="Virtualizace"
+            description="Simulace Type 1 a 2 hypervizorů a praktický list pro VirtualBox."
+            icon={Layers}
+            gradient="from-purple-600 to-indigo-600"
+            onClick={onStartVirtualization}
+            accentCorner={false}
+          />
 
-          {/* Karta 5: #osb (Start OS Boot) */}
-          <div className="relative group p-6 bg-purple-50/50 rounded-3xl border-2 border-purple-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-purple-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#osb</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-purple-700 mb-1 uppercase tracking-wider text-sm">Start OS (Boot)</h3>
-              <p className="text-xs text-gray-600">Simulátor UEFI a pochopení přesné sekvence bootování systému.</p>
-            </div>
-            <button
-              onClick={onStartOsBoot}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Spustit simulátor
-            </button>
-          </div>
-          
-          {/* Karta 6: #pmm (Běh programu) */}
-          <div className="relative group p-6 bg-indigo-50/50 rounded-3xl border-2 border-indigo-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-indigo-50">
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-indigo-50 transition-colors">#pmm</div>
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-indigo-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Hourglass className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-indigo-700 mb-1 uppercase tracking-wider text-sm">Běh programu</h3>
-              <p className="text-xs text-gray-600">Prozkoumejte procesy v paměti RAM a cyklus procesoru.</p>
-            </div>
-            <button
-              onClick={onStartProcessMemory}
-              className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20"
-            >
-              Zobrazit simulátory
-            </button>
-          </div>
+          <TechnicalCard
+            tag="fsm"
+            title="Souborový systém a disky"
+            description="Jak operační systém ukládá data a organizuje složky na disku. FAT, fragmentace a média."
+            icon={HardDrive}
+            gradient="from-purple-600 to-pink-600"
+            actionLabel="Otevřít kapitolu"
+            onClick={onStartFileSystemsMenu}
+            accentCorner={true}
+          />
 
-          {/* Karta 8: Práva a bezpečnost */}
-          <div className="relative group p-6 bg-purple-50/30 rounded-3xl border-2 border-purple-100/50 flex flex-col items-center text-center justify-between min-h-[220px]">
-            <div className="flex flex-col items-center mt-4">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="font-bold text-gray-800 mb-1 uppercase tracking-wider text-sm">Práva a bezpečnost</h3>
-              <p className="text-xs text-gray-500">Správa uživatelů a zabezpečení přístupu k souborům.</p>
-            </div>
-            <span className="text-[10px] uppercase font-bold tracking-widest text-purple-400 bg-purple-50 px-2.5 py-1 rounded-full mt-4">Připravuje se</span>
-          </div>
-          
+          <TechnicalCard
+            tag="osb"
+            title="Start OS (Boot)"
+            description="Simulátor UEFI a pochopení přesné sekvence bootování systému."
+            icon={Cpu}
+            gradient="from-purple-600 to-indigo-600"
+            actionLabel="Spustit simulátor"
+            onClick={onStartOsBoot}
+            accentCorner={false}
+          />
+
+          <TechnicalCard
+            tag="pmm"
+            title="Běh programu"
+            description="Prozkoumejte procesy v paměti RAM a cyklus procesoru."
+            icon={Hourglass}
+            gradient="from-indigo-600 to-purple-600"
+            actionLabel="Zobrazit simulátory"
+            onClick={onStartProcessMemory}
+            accentCorner={true}
+          />
         </div>
       </div>
     </div>

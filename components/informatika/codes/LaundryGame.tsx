@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle2, RotateCcw } from 'lucide-react';
 
 interface LaundryGameProps {
   onBack: () => void;
+  hideBack?: boolean;
 }
 
 interface SymbolDef {
@@ -82,7 +83,7 @@ const SYMBOLS: SymbolDef[] = [
   }
 ];
 
-const LaundryGame: React.FC<LaundryGameProps> = ({ onBack }) => {
+const LaundryGame: React.FC<LaundryGameProps> = ({ onBack, hideBack = false }) => {
   const [shuffledLabels, setShuffledLabels] = useState<string[]>([]);
   const [matches, setMatches] = useState<Record<string, string>>({});
   const [selectedSymbolId, setSelectedSymbolId] = useState<string | null>(null);
@@ -152,14 +153,16 @@ const LaundryGame: React.FC<LaundryGameProps> = ({ onBack }) => {
   const getLabelForSymbol = (id: string) => matches[id] || null;
 
   return (
-    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
-        >
-          <ArrowLeft className="w-4 h-4" /> Zpět
-        </button>
+    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-4 py-4">
+      <div className={`flex ${hideBack ? 'justify-end' : 'justify-between'} items-center mb-6`}>
+        {!hideBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
+          >
+            <ArrowLeft className="w-4 h-4" /> Zpět
+          </button>
+        )}
         <button
           onClick={startNewGame}
           className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-indigo-600 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-indigo-100 uppercase tracking-wider text-xs"

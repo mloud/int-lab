@@ -4,12 +4,13 @@ import { ArrowLeft, CheckCircle, Info, RefreshCcw, Trophy } from 'lucide-react';
 import { Segment, RGB } from '../../../types';
 
 interface RGBDrawingProps {
-  onBack: () => void;
+  onBack?: () => void;
   initialSegments: Segment[];
   title: string;
+  hideBack?: boolean;
 }
 
-const RGBDrawing: React.FC<RGBDrawingProps> = ({ onBack, initialSegments, title }) => {
+const RGBDrawing: React.FC<RGBDrawingProps> = ({ onBack, initialSegments, title, hideBack = false }) => {
   const [segments, setSegments] = useState<Segment[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [inputRGB, setInputRGB] = useState<RGB>({ r: 255, g: 255, b: 255 });
@@ -65,14 +66,16 @@ const RGBDrawing: React.FC<RGBDrawingProps> = ({ onBack, initialSegments, title 
   return (
     <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-8 items-start animate-in fade-in duration-500">
       <div className="flex-1 bg-white p-6 rounded-[2.5rem] shadow-lg border border-gray-100 w-full overflow-hidden">
-        <div className="flex items-center justify-between mb-6">
-          <button 
-            onClick={onBack}
-            className="flex items-center text-gray-500 hover:text-blue-600 transition-colors font-bold"
-          >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Zpět
-          </button>
+        <div className={`flex items-center ${hideBack ? 'justify-end' : 'justify-between'} mb-6`}>
+          {!hideBack && onBack && (
+            <button 
+              onClick={onBack}
+              className="flex items-center text-gray-500 hover:text-blue-600 transition-colors font-bold text-xs uppercase tracking-wider"
+            >
+              <ArrowLeft className="w-4 h-4 mr-1" />
+              Zpět
+            </button>
+          )}
           <div className="flex flex-col items-end">
              <h2 className="text-xl font-black text-gray-800 uppercase tracking-tighter">{title}</h2>
              <div className="flex items-center space-x-2 text-blue-700 font-bold bg-blue-50 px-4 py-1.5 rounded-full mt-1">

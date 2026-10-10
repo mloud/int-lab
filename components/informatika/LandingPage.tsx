@@ -1,5 +1,19 @@
 import React from 'react';
-import { Sparkles, ArrowRight, Binary, Shapes, BoxSelect, ArrowLeft, HardDrive, Monitor, Lock, ScanFace, BarChart3 } from 'lucide-react';
+import { 
+  Sparkles, 
+  Binary, 
+  Shapes, 
+  BoxSelect, 
+  HardDrive, 
+  Monitor, 
+  Lock, 
+  ScanFace, 
+  BarChart3, 
+  Palette, 
+  Cpu, 
+  Network 
+} from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface LandingPageProps {
   onStartColors: () => void;
@@ -20,294 +34,250 @@ interface LandingPageProps {
   onBack: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onStartColors, onStartLines, onStartCompression, onStartCompressionFormats, onStartCompressionAlgos, onStartBinary, onStartDataUnits, onStartModels, onStartHardware, onStartOs, onStartCodes, onStartEncryption, onStartFutureTech, onStartArApps, onStartBarCharts, onBack }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ 
+  onStartColors, 
+  onStartLines, 
+  onStartCompression, 
+  onStartCompressionFormats, 
+  onStartCompressionAlgos, 
+  onStartBinary, 
+  onStartDataUnits, 
+  onStartModels, 
+  onStartHardware, 
+  onStartOs, 
+  onStartCodes, 
+  onStartEncryption, 
+  onStartFutureTech, 
+  onStartArApps, 
+  onStartBarCharts 
+}) => {
   return (
-    <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
+    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-4">
       
-      <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-20 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
         {/* Dekorační prvky na pozadí */}
         <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-indigo-100/50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
-        <div className="relative mb-10">
-          <div className="w-32 h-32 bg-gradient-to-tr from-indigo-600 to-blue-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-indigo-200 animate-bounce-subtle">
-            <Binary className="w-16 h-16 text-white" />
+        <div className="relative mb-8">
+          <div className="w-28 h-28 bg-gradient-to-tr from-indigo-600 to-blue-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-indigo-200">
+            <Binary className="w-14 h-14 text-white" />
           </div>
-          <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-lg rotate-12">
-            <Sparkles className="w-6 h-6 text-white" />
+          <div className="absolute -top-3 -right-3 w-10 h-10 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-lg rotate-12">
+            <Sparkles className="w-5 h-5 text-white" />
           </div>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-black text-gray-900 mb-6 tracking-tighter leading-none uppercase">
+        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
             Obecná informatika
           </span>
         </h1>
 
-        <p className="text-xl sm:text-2xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
-          Interaktivní úlohy
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
+          Interaktivní úlohy a laboratorní simulace
         </p>
 
-        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">6. Třída</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartCodes}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-rose-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
-                <Binary className="w-6 h-6 text-rose-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-rose-700">Kódy kolem nás</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-rose-400" />
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-rose-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cod</div></button>
-
-          <button
-            onClick={onStartEncryption}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
-                <Lock className="w-6 h-6 text-emerald-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Šifrování dat</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-emerald-50 transition-colors">#enc</div></button>
-
-          <button
-            onClick={onStartColors}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-blue-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Binary className="w-6 h-6 text-blue-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-blue-700">Kódování barev</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-blue-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#rgb</div></button>
-
-          <button
-            onClick={onStartLines}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-indigo-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
-                <Shapes className="w-6 h-6 text-indigo-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-indigo-700">Obrázek z čar</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-indigo-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#lin</div></button>
-
-          <button
-            onClick={onStartCompression}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                <BoxSelect className="w-6 h-6 text-emerald-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese (jednoduše)</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#com</div></button>
-
-          <button
-            onClick={onStartModels}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Shapes className="w-6 h-6 text-purple-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Modely</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mod</div></button>
-
-          <button
-            onClick={onStartBinary}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-amber-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Binary className="w-6 h-6 text-amber-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-amber-700">Binární čísla</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-amber-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bin</div></button>
+        {/* 6. TŘÍDA */}
+        <div className="w-full mb-14">
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3">
+            <span className="w-3 h-7 rounded-full bg-blue-600"></span> 6. Třída
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="cod"
+              title="Kódy kolem nás"
+              description="Piktogramy, prací symboly, digitální emoce (Emoji) a mezinárodní kódy států."
+              icon={Binary}
+              gradient="from-rose-500 to-pink-500"
+              onClick={onStartCodes}
+              accentCorner={false}
+            />
+            <TechnicalCard
+              tag="enc"
+              title="Šifrování dat"
+              description="Principy kryptografie, Caesarova substituční šifra, mřížka a vlastní šifrování."
+              icon={Lock}
+              gradient="from-emerald-500 to-teal-500"
+              onClick={onStartEncryption}
+              accentCorner={false}
+            />
+            <TechnicalCard
+              tag="rgb"
+              title="Kódování barev"
+              description="Aditivní skládání světel RGB na monitoru, míchací laboratoř a omalovánky."
+              icon={Palette}
+              gradient="from-blue-500 to-indigo-500"
+              onClick={onStartColors}
+              accentCorner={false}
+            />
+            <TechnicalCard
+              tag="lin"
+              title="Obrázek z čar"
+              description="Vektorová geometrie, skládání tvarů, body a úsečky v souřadnicovém plátně."
+              icon={Shapes}
+              gradient="from-indigo-500 to-purple-500"
+              onClick={onStartLines}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="com"
+              title="Komprese (jednoduše)"
+              description="Základy zmenšování dat, slovníková metoda textu a slučování barevných pixelů."
+              icon={BoxSelect}
+              gradient="from-teal-500 to-emerald-500"
+              onClick={onStartCompression}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="bin"
+              title="Binární čísla"
+              description="Dvojková soustava hravě, převodník čísel, logická hradla a binární sčítání."
+              icon={Binary}
+              gradient="from-amber-500 to-orange-500"
+              onClick={onStartBinary}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="mod"
+              title="Modely"
+              description="Grafové úlohy, jízdní řády, Eulerovské tahy a hledání nejkratších cest v síti."
+              icon={Network}
+              gradient="from-purple-500 to-pink-500"
+              onClick={onStartModels}
+              accentCorner={true}
+            />
+          </div>
         </div>
 
-        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">7. Třída</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartModels}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Shapes className="w-6 h-6 text-purple-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Modely</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mod</div></button>
+        {/* 7. TŘÍDA */}
+        <div className="w-full mb-14">
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3">
+            <span className="w-3 h-7 rounded-full bg-purple-600"></span> 7. Třída
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="mod"
+              title="Modely a sítě"
+              description="Pokročilé grafové algoritmy, minimální kostra, Petriho sítě a plánování procesů."
+              icon={Network}
+              gradient="from-purple-500 to-pink-500"
+              onClick={onStartModels}
+              accentCorner={true}
+            />
+          </div>
         </div>
 
-        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">8. Třída</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartDataUnits}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-fuchsia-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-fuchsia-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                <HardDrive className="w-6 h-6 text-fuchsia-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-fuchsia-700">Jednotky dat</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-fuchsia-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#dum</div></button>
+        {/* 8. TŘÍDA */}
+        <div className="w-full mb-14">
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3">
+            <span className="w-3 h-7 rounded-full bg-fuchsia-600"></span> 8. Třída
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="dum"
+              title="Jednotky dat"
+              description="Bity, bajty, předpony KB až TB, výpočty kapacity paměti a rychlosti stahování."
+              icon={HardDrive}
+              gradient="from-fuchsia-500 to-purple-600"
+              onClick={onStartDataUnits}
+              accentCorner={true}
+            />
+          </div>
         </div>
 
-        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">9. Třída</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartHardware}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-sky-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-cyan-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <HardDrive className="w-6 h-6 text-sky-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-sky-700">Součásti počítače</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-sky-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#hwm</div></button>
-
-          <button
-            onClick={onStartOs}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-slate-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-500/5 to-gray-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Monitor className="w-6 h-6 text-slate-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-slate-700">Operační systémy</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-slate-400" />
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#osm</div>
-          </button>
-
-          <button
-            onClick={onStartCompressionFormats}
-            className="group relative px-4 sm:px-6 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-orange-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-3 sm:gap-4 relative w-full">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform shrink-0">
-                <BoxSelect className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600" />
-              </div>
-              <span className="text-sm sm:text-base uppercase tracking-normal text-orange-700 text-left leading-tight break-words flex-1">Komprese<br/><span className="text-xs sm:text-sm text-orange-500">(pokročilejší)</span></span>
-            </div>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative text-orange-400 shrink-0 ml-2" />
-          <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ko2</div></button>
-
-          <button
-            onClick={onStartFutureTech}
-            className="group relative px-4 sm:px-6 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-yellow-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-amber-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-3 sm:gap-4 relative w-full">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform shrink-0">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
-              </div>
-              <span className="text-sm sm:text-base uppercase tracking-normal text-yellow-700 text-left leading-tight break-words flex-1">Technologie<br/><span className="text-xs sm:text-sm text-yellow-500">budoucnosti</span></span>
-            </div>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative text-yellow-400 shrink-0 ml-2" />
-          <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#fut</div></button>
-
-          <button
-            onClick={onStartBarCharts}
-            className="group relative px-4 sm:px-6 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-3 sm:gap-4 relative w-full">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform shrink-0">
-                <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
-              </div>
-              <span className="text-sm sm:text-base uppercase tracking-normal text-emerald-700 text-left leading-tight break-words flex-1">Sloupcové<br/>grafy</span>
-            </div>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative text-emerald-400 shrink-0 ml-2" />
-          <div className="absolute top-2 right-2 text-[9px] font-mono font-bold text-gray-400 bg-white/80 px-1.5 py-0.5 rounded border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-emerald-50 transition-colors">#gra</div></button>
+        {/* 9. TŘÍDA */}
+        <div className="w-full mb-14">
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3">
+            <span className="w-3 h-7 rounded-full bg-sky-600"></span> 9. Třída
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="hwm"
+              title="Součásti počítače"
+              description="Hardware komponenty, procesor, paměť RAM, sběrnice a konfigurátor sestavy."
+              icon={Cpu}
+              gradient="from-sky-500 to-cyan-500"
+              onClick={onStartHardware}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="osm"
+              title="Operační systémy"
+              description="Správa procesů a paměti, bootovací sekvence, přípony a klávesové zkratky."
+              icon={Monitor}
+              gradient="from-slate-600 to-gray-700"
+              onClick={onStartOs}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="ko2"
+              title="Komprese (pokročilejší)"
+              description="Barevná hloubka, RLE kódování, ztrátový JPEG a porovnání multimediálních formátů."
+              icon={BoxSelect}
+              gradient="from-orange-500 to-red-500"
+              onClick={onStartCompressionFormats}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="fut"
+              title="Technologie budoucnosti"
+              description="Internet věcí (IoT), automatizace Průmyslu 4.0 a virtuální realita (VR)."
+              icon={Sparkles}
+              gradient="from-yellow-500 to-amber-500"
+              onClick={onStartFutureTech}
+              accentCorner={true}
+            />
+            <TechnicalCard
+              tag="gra"
+              title="Sloupcové grafy"
+              description="Čtení, vizualizace a interpretace datových řad pomocí sloupcových grafů."
+              icon={BarChart3}
+              gradient="from-emerald-500 to-green-600"
+              onClick={onStartBarCharts}
+              accentCorner={false}
+            />
+          </div>
         </div>
 
-        <h2 className="text-2xl font-black text-gray-800 w-full mt-12 mb-6 uppercase tracking-wider text-left border-b-2 border-gray-200 pb-2">Střední škola</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartCompressionAlgos}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-emerald-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                <BoxSelect className="w-6 h-6 text-emerald-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-emerald-700">Komprese algoritmy</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-emerald-400" />
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpa</div></button>
+        {/* STŘEDNÍ ŠKOLA */}
+        <div className="w-full mb-14">
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3">
+            <span className="w-3 h-7 rounded-full bg-emerald-600"></span> Střední škola
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="cpa"
+              title="Komprese algoritmy"
+              description="Matematické a stromové algoritmy kódování dat, Huffmanův optimální strom."
+              icon={BoxSelect}
+              gradient="from-emerald-600 to-teal-600"
+              onClick={onStartCompressionAlgos}
+              accentCorner={true}
+            />
+          </div>
         </div>
 
-        {/* --- SPECIÁLNÍ AR SEKCE --- */}
-        <h2 className="text-2xl font-black text-rose-500 w-full mt-16 mb-6 uppercase tracking-wider text-left border-b-2 border-rose-100 pb-2 flex items-center gap-2">
-          <ScanFace className="w-6 h-6" /> AR Aplikace
-        </h2>
-        <div className="grid grid-cols-1 gap-6 w-full max-w-3xl">
-          <button
-            onClick={onStartArApps}
-            className="group relative px-8 py-8 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-black rounded-[2.5rem] shadow-xl shadow-rose-200 transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-between overflow-hidden border-4 border-white"
-          >
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:rotate-12 transition-transform shadow-inner">
-                <ScanFace className="w-8 h-8 text-white drop-shadow-md" />
-              </div>
-              <div className="flex flex-col items-start">
-                <span className="text-xl sm:text-2xl uppercase tracking-widest text-white drop-shadow-sm">Laboratoř AR</span>
-                <span className="text-sm font-medium text-rose-100 uppercase tracking-wider">Rozšířená realita do mobilu</span>
-              </div>
-            </div>
-            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform relative text-white" />
-          </button>
+        {/* AR APLIKACE */}
+        <div className="w-full">
+          <h2 className="text-2xl font-black text-rose-600 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-rose-100 flex items-center gap-3">
+            <ScanFace className="w-6 h-6 text-rose-500" /> AR Aplikace
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <TechnicalCard
+              tag="ar"
+              title="Laboratoř AR"
+              description="Interaktivní rozšířená realita a 3D virtuální modely přímo ve vašem mobilním telefonu."
+              icon={ScanFace}
+              gradient="from-rose-500 to-pink-500"
+              actionLabel="Otevřít AR Laboratoř"
+              onClick={onStartArApps}
+              accentCorner={false}
+            />
+          </div>
         </div>
+
       </div>
-
-      <style>{`
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0) rotate(0); }
-          50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        .animate-bounce-subtle {
-          animation: bounce-subtle 4s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 };

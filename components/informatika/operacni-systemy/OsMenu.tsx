@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowLeft, Monitor, Settings, Power, FileText, Activity, Zap } from 'lucide-react';
+import { ArrowLeft, Monitor, Power, FileText, Activity, Zap } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface OsMenuProps {
   onBack: () => void;
@@ -10,9 +11,16 @@ interface OsMenuProps {
   onStartShortcutNinja: () => void;
 }
 
-const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSequence, onStartFileExtension, onStartRamManager, onStartShortcutNinja }) => {
+const OsMenu: React.FC<OsMenuProps> = ({ 
+  onBack, 
+  onStartMatchGame, 
+  onStartBootSequence, 
+  onStartFileExtension, 
+  onStartRamManager, 
+  onStartShortcutNinja 
+}) => {
   return (
-    <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
+    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-4">
       <div className="flex justify-start mb-6">
         <button
           onClick={onBack}
@@ -22,73 +30,63 @@ const OsMenu: React.FC<OsMenuProps> = ({ onBack, onStartMatchGame, onStartBootSe
         </button>
       </div>
 
-      <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-20 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-32 h-32 bg-slate-200/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200/50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         
-        <div className="w-32 h-32 bg-gradient-to-tr from-slate-600 to-gray-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-slate-200 mb-10">
-          <Monitor className="w-16 h-16 text-white" />
+        <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-slate-600 to-gray-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-slate-200 mb-8">
+          <Monitor className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-black text-gray-900 mb-6 tracking-tighter leading-none uppercase">
+        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
           Operační <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-gray-600">Systémy</span>
         </h1>
         
-        <p className="text-xl sm:text-2xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
           Základy pro běžného uživatele
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          {/* Tlačítka na jednotlivé hry */}
-          <button
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="mat"
+            title="Kdo je kdo?"
+            description="Přehled a porovnání nejrozšířenějších systémů (Windows, Linux, macOS, Android, iOS)."
+            icon={Monitor}
+            gradient="from-slate-600 to-gray-700"
             onClick={onStartMatchGame}
-            className="group relative px-8 py-8 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center justify-center gap-4 overflow-hidden border-4 border-slate-100 hover:border-slate-300"
-          >
-            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Monitor className="w-8 h-8 text-slate-600" />
-            </div>
-            <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Kdo je kdo?<br/><span className="text-sm text-slate-400">Přehled systémů</span></span>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mat</div></button>
-
-          <button
+          />
+          <TechnicalCard
+            tag="boo"
+            title="Start Počítače"
+            description="Co se děje po stisknutí tlačítka napájení? Bootovací proces od BIOSu/UEFI po plochu."
+            icon={Power}
+            gradient="from-blue-600 to-indigo-600"
             onClick={onStartBootSequence}
-            className="group relative px-8 py-8 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center justify-center gap-4 overflow-hidden border-4 border-slate-100 hover:border-slate-300"
-          >
-            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Power className="w-8 h-8 text-slate-600" />
-            </div>
-            <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Start Počítače<br/><span className="text-sm text-slate-400">Bootovací sekvence</span></span>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#boo</div></button>
-
-          <button
+          />
+          <TechnicalCard
+            tag="ext"
+            title="Detektiv Přípona"
+            description="Jak operační systém pozná, v čem soubor otevřít? Přípony .exe, .docx, .png a jejich asociace."
+            icon={FileText}
+            gradient="from-emerald-600 to-teal-600"
             onClick={onStartFileExtension}
-            className="group relative px-8 py-8 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center justify-center gap-4 overflow-hidden border-4 border-slate-100 hover:border-slate-300"
-          >
-            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <FileText className="w-8 h-8 text-slate-600" />
-            </div>
-            <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Detektiv Přípona<br/><span className="text-sm text-slate-400">Jak se otevírají soubory?</span></span>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ext</div></button>
-
-          <button
+          />
+          <TechnicalCard
+            tag="ram"
+            title="Krotitel RAMky"
+            description="Správce úloh v praxi. Sleduj běžící procesy, zátěž procesoru a hospodaření s pamětí RAM."
+            icon={Activity}
+            gradient="from-purple-600 to-pink-600"
             onClick={onStartRamManager}
-            className="group relative px-8 py-8 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center justify-center gap-4 overflow-hidden border-4 border-slate-100 hover:border-slate-300"
-          >
-            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Activity className="w-8 h-8 text-slate-600" />
-            </div>
-            <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Krotitel RAMky<br/><span className="text-sm text-slate-400">Správce úloh a paměť</span></span>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#ram</div></button>
-
-          <button
+          />
+          <TechnicalCard
+            tag="nin"
+            title="Zkratkový Ninja"
+            description="Staň se mistrem klávesnice. Důležité klávesové zkratky, které ti ušetří hodiny práce."
+            icon={Zap}
+            gradient="from-amber-500 to-orange-500"
             onClick={onStartShortcutNinja}
-            className="group relative px-8 py-8 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center justify-center gap-4 overflow-hidden border-4 border-slate-100 hover:border-slate-300"
-          >
-            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Zap className="w-8 h-8 text-slate-600" />
-            </div>
-            <span className="text-xl uppercase tracking-widest text-slate-700 text-center">Zkratkový Ninja<br/><span className="text-sm text-slate-400">Mistr klávesnice</span></span>
-          <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#nin</div></button>
+          />
         </div>
       </div>
     </div>

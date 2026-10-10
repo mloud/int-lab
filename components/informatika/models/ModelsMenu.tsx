@@ -1,6 +1,6 @@
-
 import React from 'react';
-import { ArrowLeft, Share2, Network, ArrowRight, Map } from 'lucide-react';
+import { ArrowLeft, Share2, Network, Map, GitFork } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface ModelsMenuProps {
   onStartGraphs: () => void;
@@ -11,114 +11,79 @@ interface ModelsMenuProps {
   onBack: () => void;
 }
 
-const ModelsMenu: React.FC<ModelsMenuProps> = ({ onStartGraphs, onStartPathFinding, onStartBlatov, onStartMST, onStartParallel, onBack }) => {
+const ModelsMenu: React.FC<ModelsMenuProps> = ({ 
+  onStartGraphs, 
+  onStartPathFinding, 
+  onStartBlatov, 
+  onStartMST, 
+  onStartParallel, 
+  onBack 
+}) => {
   return (
-    <div className="max-w-6xl w-full text-center animate-in fade-in duration-500">
+    <div className="max-w-6xl w-full animate-in fade-in duration-500 px-4">
       <div className="flex justify-start mb-6">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-400 hover:text-purple-600 transition-colors font-bold uppercase text-sm tracking-widest"
+          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Zpět na úvod
+          <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
       </div>
 
-      <div className="bg-white p-10 rounded-[3rem] shadow-xl border-4 border-purple-100 mb-10 max-w-4xl mx-auto">
-        <div className="flex justify-center mb-6">
-          <div className="p-5 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl shadow-lg">
-            <Share2 className="w-16 h-16 text-white" />
-          </div>
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden mb-10">
+        <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-purple-200 mb-8">
+          <Share2 className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
         </div>
         
-        <h1 className="text-5xl font-black text-gray-800 mb-4 tracking-tight uppercase">
-          Modely
+        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
+          Modely <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">a sítě</span>
         </h1>
-        <p className="text-gray-500 mb-0 text-xl font-medium">
-          Zkoumej, jak zjednodušit a modelovat reálný svět.
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.1em] sm:tracking-[0.2em]">
+          Zkoumej, jak zjednodušit a modelovat reálný svět
         </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <button
-          onClick={onStartGraphs}
-          className="group relative px-6 py-10 bg-white hover:bg-purple-50 text-purple-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-purple-200"
-        >
-          <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-            <Network className="w-10 h-10 text-purple-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Jízdní řád</h3>
-            <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Ohodnocené grafy
-            </p>
-          </div>
-          <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tim</div></button>
-
-        <button
-          onClick={onStartPathFinding}
-          className="group relative px-6 py-10 bg-white hover:bg-purple-50 text-purple-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-purple-200"
-        >
-          <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <Share2 className="w-10 h-10 text-purple-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Hledání tras</h3>
-            <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Všechny cesty v grafu
-            </p>
-          </div>
-          <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#pat</div></button>
-
-        <button
-          onClick={onStartBlatov}
-          className="group relative px-6 py-10 bg-white hover:bg-purple-50 text-purple-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-purple-200"
-        >
-          <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center group-hover:rotate-[-6deg] transition-transform">
-            <Map className="w-10 h-10 text-purple-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Blátov</h3>
-            <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Kostra grafu
-            </p>
-          </div>
-          <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bla</div></button>
-
-        <button
-          onClick={onStartMST}
-          className="group relative px-6 py-10 bg-white hover:bg-purple-50 text-purple-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-purple-200"
-        >
-          <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-            <Network className="w-10 h-10 text-purple-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Minimální kostra</h3>
-            <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Nejlevnější propojení
-            </p>
-          </div>
-          <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mst</div></button>
-
-        <button
-          onClick={onStartParallel}
-          className="group relative px-6 py-10 bg-white hover:bg-purple-50 text-purple-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-purple-200"
-        >
-          <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center group-hover:rotate-[-6deg] transition-transform">
-            <Share2 className="w-10 h-10 text-purple-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Paralelní procesy</h3>
-            <p className="text-purple-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Petriho sítě
-            </p>
-          </div>
-          <ArrowRight className="absolute bottom-6 right-6 w-6 h-6 text-purple-300 group-hover:translate-x-1 transition-transform" />
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#par</div></button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="tim"
+            title="Jízdní řád"
+            description="Ohodnocené grafy a kolize: Vytvoř optimální model rozvrhu a vyřeš časové konflikty."
+            icon={Network}
+            gradient="from-purple-500 to-indigo-500"
+            onClick={onStartGraphs}
+          />
+          <TechnicalCard
+            tag="pat"
+            title="Hledání tras"
+            description="Algoritmy hledání cest: Najdi nejkratší spojení mezi uzly v síti (Dijkstrův princip)."
+            icon={Share2}
+            gradient="from-blue-500 to-cyan-500"
+            onClick={onStartPathFinding}
+          />
+          <TechnicalCard
+            tag="bla"
+            title="Blátov"
+            description="Klasický problém mostů a cest: Eulerovský tah jedním tahem bez opakování hran."
+            icon={Map}
+            gradient="from-amber-500 to-orange-500"
+            onClick={onStartBlatov}
+          />
+          <TechnicalCard
+            tag="mst"
+            title="Minimální kostra"
+            description="Nejlevnější propojení měst a sítí: Hledání minimální kostry grafu bez cyklů."
+            icon={Network}
+            gradient="from-emerald-500 to-teal-500"
+            onClick={onStartMST}
+          />
+          <TechnicalCard
+            tag="par"
+            title="Paralelní procesy"
+            description="Petriho sítě: Modelování současně běžících procesů, front a synchronizace úloh."
+            icon={GitFork}
+            gradient="from-rose-500 to-pink-500"
+            onClick={onStartParallel}
+          />
+        </div>
       </div>
     </div>
   );

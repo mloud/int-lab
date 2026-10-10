@@ -9,6 +9,7 @@ import ScratchSubprogramsChapter from '@/components/specializovana/programovani/
 import ScratchConditionsChapter from '@/components/specializovana/programovani/scratch/ScratchConditionsChapter';
 import { useRouter } from 'next/navigation';
 import { BookOpen } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => void }) => {
   const router = useRouter();
@@ -23,76 +24,61 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
           Nauč se základy programování vizuální formou skládáním bloků.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
-            <div className="flex flex-col items-center mt-2">
-              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
-              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 1</h3>
-              <p className="text-xs text-slate-600">Algoritmus a sekvence příkazů</p>
-            </div>
-            <button
-              onClick={() => onSelectChapter(1)}
-              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
-            >
-              Otevřít lekci
-            </button>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="scr1"
+            title="Lekce 1: Sekvence"
+            description="Algoritmus a sekvence příkazů pro postavu kocoura ve Scratchi."
+            icon={BookOpen}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(1)}
+            accentCorner={false}
+          />
           
-          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
-            <div className="flex flex-col items-center mt-2">
-              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
-              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 2</h3>
-              <p className="text-xs text-slate-600">Základy – Proměnné a operátory</p>
-            </div>
-            <button
-              onClick={() => onSelectChapter(2)}
-              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
-            >
-              Otevřít lekci
-            </button>
-          </div>
+          <TechnicalCard
+            tag="scr2"
+            title="Lekce 2: Proměnné"
+            description="Základy práce s proměnnými a operátory. Ukládání a změna hodnot."
+            icon={BookOpen}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(2)}
+            accentCorner={false}
+          />
 
-          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
-            <div className="flex flex-col items-center mt-2">
-              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
-              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 3</h3>
-              <p className="text-xs text-slate-600">Proměnná v cyklu</p>
-            </div>
-            <button
-              onClick={() => onSelectChapter(3)}
-              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
-            >
-              Otevřít lekci
-            </button>
-          </div>
+          <TechnicalCard
+            tag="scr3"
+            title="Lekce 3: Cykly"
+            description="Proměnná v cyklu, postupné počítání kroků a kreslení spirál."
+            icon={BookOpen}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(3)}
+            accentCorner={false}
+          />
 
-          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
-            <div className="flex flex-col items-center mt-2">
-              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
-              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 4</h3>
-              <p className="text-xs text-slate-600">Podprogramy (Vlastní bloky)</p>
-            </div>
-            <button
-              onClick={() => onSelectChapter(4)}
-              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
-            >
-              Otevřít lekci
-            </button>
-          </div>
+          <TechnicalCard
+            tag="scr4"
+            title="Lekce 4: Podprogramy"
+            description="Vlastní bloky a podprogramy pro přehlednější a znovupoužitelný kód."
+            icon={BookOpen}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(4)}
+            accentCorner={false}
+          />
 
-          <div className="relative group p-6 bg-amber-50 rounded-3xl border-2 border-amber-200 flex flex-col items-center text-center justify-between shadow-lg">
-            <div className="flex flex-col items-center mt-2">
-              <BookOpen className="w-8 h-8 text-amber-600 mb-2" />
-              <h3 className="font-black text-amber-800 uppercase tracking-widest text-sm mb-2">Lekce 6</h3>
-              <p className="text-xs text-slate-600">Podmíněný příkaz</p>
-            </div>
-            <button
-              onClick={() => onSelectChapter(6)}
-              className="mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider w-full transition-all active:scale-95"
-            >
-              Otevřít lekci
-            </button>
-          </div>
+          <TechnicalCard
+            tag="scr6"
+            title="Lekce 6: Podmínky"
+            description="Podmíněný příkaz (když - tak) a interaktivní chování programu na podněty."
+            icon={BookOpen}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(6)}
+            accentCorner={false}
+          />
         </div>
 
         <button 

@@ -23,7 +23,12 @@ interface Question {
   options: (typeof COLORS[0])[];
 }
 
-const Quiz: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+interface QuizProps {
+  onBack?: () => void;
+  hideBack?: boolean;
+}
+
+const Quiz: React.FC<QuizProps> = ({ onBack, hideBack = false }) => {
   const [score, setScore] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
@@ -117,10 +122,12 @@ const Quiz: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   return (
     <div className="max-w-2xl w-full animate-in fade-in duration-500 px-4">
-      <div className="flex items-center justify-between mb-8">
-        <button onClick={onBack} className="flex items-center text-gray-600 hover:text-blue-600 font-black uppercase text-xs tracking-widest transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" /> Konec
-        </button>
+      <div className={`flex items-center ${hideBack ? 'justify-end' : 'justify-between'} mb-8`}>
+        {!hideBack && onBack && (
+          <button onClick={onBack} className="flex items-center text-gray-600 hover:text-blue-600 font-black uppercase text-xs tracking-widest transition-colors">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Konec
+          </button>
+        )}
         <div className="flex items-center space-x-3">
           <span className="text-xs font-black text-gray-500 uppercase tracking-widest">Otázka {questionIndex + 1}/{totalQuestions}</span>
           <div className="w-24 sm:w-32 h-2.5 bg-gray-200 rounded-full overflow-hidden">

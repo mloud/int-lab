@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Cpu, Layers, Activity, ListOrdered } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface ProcessMemoryMenuProps {
   onBack: () => void;
@@ -37,58 +38,39 @@ const ProcessMemoryMenu: React.FC<ProcessMemoryMenuProps> = ({
           Vyzkoušejte si, jak procesor čte instrukce a jak operační systém organizuje paměť běžícího procesu (Stack, Heap, Data, Text).
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-5xl">
-          {/* Idea 1: Memory Stepper */}
-          <div className="p-6 bg-indigo-50/50 rounded-3xl border-2 border-indigo-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-indigo-50">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-indigo-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <ListOrdered className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-indigo-700 mb-1 uppercase tracking-wider text-sm">CPU & RAM Krokovač</h3>
-              <p className="text-xs text-gray-600">Projděte si krok za krokem vykonávání kódu a sledujte plnění paměti.</p>
-            </div>
-            <button
-              onClick={onStartMemoryStepper}
-              className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
-            >
-              Spustit krokovač
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#stp</div></button>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="stp"
+            title="CPU & RAM Krokovač"
+            description="Projděte si krok za krokem vykonávání kódu a sledujte plnění paměti."
+            icon={ListOrdered}
+            gradient="from-indigo-600 to-blue-600"
+            actionLabel="Spustit krokovač"
+            onClick={onStartMemoryStepper}
+            accentCorner={false}
+          />
 
-          {/* Idea 2: Memory Allocator */}
-          <div className="p-6 bg-emerald-50/50 rounded-3xl border-2 border-emerald-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-emerald-50">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Layers className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-emerald-700 mb-1 uppercase tracking-wider text-sm">Třídička paměti</h3>
-              <p className="text-xs text-gray-600">Rozhodněte, co patří na Zásobník, co na Haldu a co do Datového segmentu.</p>
-            </div>
-            <button
-              onClick={onStartMemoryAllocator}
-              className="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
-            >
-              Spustit hru
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#mal</div></button>
-          </div>
+          <TechnicalCard
+            tag="mal"
+            title="Třídička paměti"
+            description="Rozhodněte, co patří na Zásobník, co na Haldu a co do Datového segmentu."
+            icon={Layers}
+            gradient="from-emerald-500 to-teal-600"
+            actionLabel="Spustit hru"
+            onClick={onStartMemoryAllocator}
+            accentCorner={false}
+          />
 
-          {/* Idea 3: CPU Cycle */}
-          <div className="p-6 bg-rose-50/50 rounded-3xl border-2 border-rose-200/80 flex flex-col items-center text-center justify-between min-h-[220px] shadow-lg shadow-rose-50">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-rose-500 rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                <Cpu className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-black text-rose-700 mb-1 uppercase tracking-wider text-sm">Závod procesoru</h3>
-              <p className="text-xs text-gray-600">Buďte chvíli procesorem a zkuste stíhat cyklus Fetch-Decode-Execute.</p>
-            </div>
-            <button
-              onClick={onStartCpuCycle}
-              className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
-            >
-              Spustit simulátor
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#cpu</div></button>
-          </div>
-
+          <TechnicalCard
+            tag="cpu"
+            title="Závod procesoru"
+            description="Buďte chvíli procesorem a zkuste stíhat cyklus Fetch-Decode-Execute."
+            icon={Cpu}
+            gradient="from-rose-500 to-red-600"
+            actionLabel="Spustit simulátor"
+            onClick={onStartCpuCycle}
+            accentCorner={false}
+          />
         </div>
       </div>
     </div>

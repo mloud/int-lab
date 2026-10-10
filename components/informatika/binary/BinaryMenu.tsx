@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { ArrowLeft, Binary, Users, ListOrdered, Table, PlusCircle } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface BinaryMenuProps {
   onStartTeachers: () => void;
@@ -20,107 +20,75 @@ const BinaryMenu: React.FC<BinaryMenuProps> = ({
   onBack 
 }) => {
   return (
-    <div className="max-w-4xl w-full text-center animate-in fade-in duration-500">
+    <div className="max-w-6xl w-full animate-in fade-in duration-500 px-4">
       <div className="flex justify-start mb-6">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-400 hover:text-amber-600 transition-colors font-bold uppercase text-sm tracking-widest"
+          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Zpět na úvod
+          <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
       </div>
 
-      <div className="bg-white p-10 rounded-[3rem] shadow-xl border-4 border-amber-100 mb-10">
-        <div className="flex justify-center mb-6">
-          <div className="p-5 bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl shadow-lg">
-            <Binary className="w-16 h-16 text-white" />
-          </div>
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden mb-10">
+        <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-amber-500 to-orange-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-amber-200 mb-8">
+          <Binary className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
         </div>
         
-        <h1 className="text-5xl font-black text-gray-800 mb-4 tracking-tight uppercase">
-          Binární čísla
+        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
+          Binární <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">čísla</span>
         </h1>
-        <p className="text-gray-500 mb-0 text-xl font-medium">
-          Nauč se kódovat informace pomocí nul a jedniček.
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.1em] sm:tracking-[0.2em]">
+          Nauč se kódovat informace pomocí nul a jedniček
         </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <button
-          onClick={onStartTeachers}
-          className="group relative px-6 py-10 bg-white hover:bg-amber-50 text-amber-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-amber-200"
-        >
-          <div className="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-            <Users className="w-10 h-10 text-amber-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Kabinet učitelů</h3>
-            <p className="text-amber-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Signalizace přítomnosti
-            </p>
-          </div>
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tea</div></button>
-
-        <button
-          onClick={onStartCounting}
-          className="group relative px-6 py-10 bg-white hover:bg-amber-50 text-amber-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-amber-200"
-        >
-          <div className="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <ListOrdered className="w-10 h-10 text-amber-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Desítková na binární</h3>
-            <p className="text-amber-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Nastav žáky dle čísla
-            </p>
-          </div>
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#stc</div></button>
-
-        <button
-          onClick={onStartBinaryToDecimal}
-          className="group relative px-6 py-10 bg-white hover:bg-amber-50 text-amber-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-amber-200"
-        >
-          <div className="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <Binary className="w-10 h-10 text-amber-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Binární na desítkovou</h3>
-            <p className="text-amber-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Vypočítej číslo dle žáků
-            </p>
-          </div>
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#bin</div></button>
-
-        <button
-          onClick={onStartTruthTable}
-          className="group relative px-6 py-10 bg-white hover:bg-amber-50 text-amber-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-amber-200"
-        >
-          <div className="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center group-hover:-rotate-6 transition-transform">
-            <Table className="w-10 h-10 text-amber-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Pravdivostní tabulka</h3>
-            <p className="text-amber-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Logické podmínky
-            </p>
-          </div>
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#tru</div></button>
-
-        <button
-          onClick={onStartAddition}
-          className="group relative px-6 py-10 bg-white hover:bg-amber-50 text-amber-900 font-black rounded-[3rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex flex-col items-center gap-4 overflow-hidden border-4 border-gray-50 hover:border-amber-200"
-        >
-          <div className="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
-            <PlusCircle className="w-10 h-10 text-amber-600" />
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-black uppercase tracking-tight">Sčítání binárních čísel</h3>
-            <p className="text-amber-500/60 font-bold text-[10px] uppercase tracking-widest mt-2 leading-relaxed">
-              Binární aritmetika
-            </p>
-          </div>
-        <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#add</div></button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="tea"
+            title="Kabinet učitelů"
+            description="Logická detektivní úloha: Signalizace přítomnosti v kabinetu pomocí binárních přepínačů."
+            icon={Users}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Spustit hru"
+            onClick={onStartTeachers}
+          />
+          <TechnicalCard
+            tag="stc"
+            title="Desítková na binární"
+            description="Interaktivní počítadlo s žáky. Nauč se převádět běžná čísla do dvojkového zápisu."
+            icon={ListOrdered}
+            gradient="from-blue-500 to-indigo-500"
+            actionLabel="Spustit cvičení"
+            onClick={onStartCounting}
+          />
+          <TechnicalCard
+            tag="bin"
+            title="Binární na desítkovou"
+            description="Čtení binárního kódu. Spočítej desítkovou hodnotu z postavených žáků a binárních vah."
+            icon={Binary}
+            gradient="from-emerald-500 to-teal-500"
+            actionLabel="Spustit cvičení"
+            onClick={onStartBinaryToDecimal}
+          />
+          <TechnicalCard
+            tag="tru"
+            title="Pravdivostní tabulka"
+            description="Logická hradla AND, OR a NOT v praxi. Sestav pravdivostní tabulku pro zadané podmínky."
+            icon={Table}
+            gradient="from-purple-500 to-pink-500"
+            actionLabel="Otevřít tabulku"
+            onClick={onStartTruthTable}
+          />
+          <TechnicalCard
+            tag="add"
+            title="Sčítání binárních čísel"
+            description="Binární aritmetika: Nauč se sčítat dvě dvojková čísla pod sebou i s přenosem do vyššího řádu."
+            icon={PlusCircle}
+            gradient="from-rose-500 to-red-500"
+            actionLabel="Spustit sčítačku"
+            onClick={onStartAddition}
+          />
+        </div>
       </div>
     </div>
   );

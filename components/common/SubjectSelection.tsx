@@ -4,6 +4,7 @@ import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search, ScanFa
 import TechStackSimulation from './TechStackSimulation';
 import { motion, AnimatePresence } from 'framer-motion';
 import SearchModal from './SearchModal';
+import SchoolDivisionCard from '@/components/ui/SchoolDivisionCard';
 
 interface SubjectSelectionProps {
   onSelectInformatika: () => void;
@@ -111,85 +112,23 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
 
         {/* Selection Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-          
-          {/* Informatika Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            onHoverStart={() => setHoveredCard('info')}
-            onHoverEnd={() => setHoveredCard(null)}
+          <SchoolDivisionCard
+            title="Obecná Informatika"
+            description="Objevte základy digitálního světa. Od binární soustavy, přes barvy, kompresi a algoritmy až po fungování moderního internetu."
+            icon={Binary}
+            watermarkIcon={Code}
+            colorScheme="blue"
             onClick={onSelectInformatika}
-            className="group relative cursor-pointer outline-none"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-50 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative h-full w-full bg-white/80 backdrop-blur-2xl p-10 sm:p-12 rounded-[2.5rem] border border-white overflow-hidden flex flex-col transition-all duration-500 group-hover:-translate-y-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_60px_rgb(59,130,246,0.15)]">
-              
-              {/* Background watermark icon */}
-              <div className="absolute -top-10 -right-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none transform group-hover:rotate-12 group-hover:scale-110">
-                <Code className="w-64 h-64 text-blue-600" />
-              </div>
-              
-              {/* Icon Container */}
-              <div className="relative mb-8">
-                <div className="absolute inset-0 bg-blue-200 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 rounded-full"></div>
-                <div className="relative w-20 h-20 bg-blue-50 border border-blue-100 text-blue-600 rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-sm">
-                  <Binary className="w-10 h-10" />
-                </div>
-              </div>
-              
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-800 mb-6 uppercase tracking-wide">
-                Obecná Informatika
-              </h2>
-              <p className="text-slate-500 font-medium text-lg leading-relaxed mb-12 flex-1">
-                Objevte základy digitálního světa. Od binární soustavy, přes barvy, kompresi a algoritmy až po fungování moderního internetu.
-              </p>
-              
-              <div className="flex items-center gap-3 text-blue-600 font-bold uppercase tracking-widest text-sm group-hover:text-blue-500 transition-colors mt-auto">
-                Vstoupit do modulu <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
-              </div>
-            </div>
-          </motion.div>
+          />
 
-          {/* Specializovana Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            onHoverStart={() => setHoveredCard('spec')}
-            onHoverEnd={() => setHoveredCard(null)}
+          <SchoolDivisionCard
+            title="Specializovaná IT"
+            description="Ponořte se do hloubky počítačových věd. Operační systémy, struktury na disku, simulátory paměti, vývoj her a architektura OS."
+            icon={Cpu}
+            watermarkIcon={Database}
+            colorScheme="purple"
             onClick={onSelectSpecializovana}
-            className="group relative cursor-pointer outline-none"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-50 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative h-full w-full bg-white/80 backdrop-blur-2xl p-10 sm:p-12 rounded-[2.5rem] border border-white overflow-hidden flex flex-col transition-all duration-500 group-hover:-translate-y-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_60px_rgb(168,85,247,0.15)]">
-              
-              {/* Background watermark icon */}
-              <div className="absolute -top-10 -right-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none transform group-hover:-rotate-12 group-hover:scale-110">
-                <Database className="w-64 h-64 text-purple-600" />
-              </div>
-              
-              {/* Icon Container */}
-              <div className="relative mb-8">
-                <div className="absolute inset-0 bg-purple-200 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 rounded-full"></div>
-                <div className="relative w-20 h-20 bg-purple-50 border border-purple-100 text-purple-600 rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 shadow-sm">
-                  <Cpu className="w-10 h-10" />
-                </div>
-              </div>
-              
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-800 mb-6 uppercase tracking-wide">
-                Specializovaná IT
-              </h2>
-              <p className="text-slate-500 font-medium text-lg leading-relaxed mb-12 flex-1">
-                Ponořte se do hloubky počítačových věd. Operační systémy, struktury na disku, simulátory paměti, vývoj her a architektura OS.
-              </p>
-              
-              <div className="flex items-center gap-3 text-purple-600 font-bold uppercase tracking-widest text-sm group-hover:text-purple-500 transition-colors mt-auto">
-                Vstoupit do modulu <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
-              </div>
-            </div>
-          </motion.div>
-
+          />
         </div>
         
         {/* AR Hub Button v hlavním menu */}

@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle2, RotateCcw, Globe2, Trash2 } from 'lucide-react
 
 interface CountryCodesGameProps {
   onBack: () => void;
+  hideBack?: boolean;
 }
 
 interface CountryData {
@@ -31,7 +32,7 @@ interface PlacedItem {
   originalId: string;
 }
 
-const CountryCodesGame: React.FC<CountryCodesGameProps> = ({ onBack }) => {
+const CountryCodesGame: React.FC<CountryCodesGameProps> = ({ onBack, hideBack = false }) => {
   const [placedItems, setPlacedItems] = useState<Record<string, PlacedItem>>({});
   
   const [availableDomains, setAvailableDomains] = useState<{id: string, value: string}[]>([]);
@@ -141,14 +142,16 @@ const CountryCodesGame: React.FC<CountryCodesGameProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-2 py-4 sm:p-8">
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
-        >
-          <ArrowLeft className="w-4 h-4" /> Zpět
-        </button>
+    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-2 py-4 sm:p-4">
+      <div className={`flex ${hideBack ? 'justify-end' : 'justify-between'} items-center mb-6`}>
+        {!hideBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
+          >
+            <ArrowLeft className="w-4 h-4" /> Zpět
+          </button>
+        )}
         <button
           onClick={startNewGame}
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white hover:bg-gray-50 text-blue-600 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-blue-100 uppercase tracking-wider text-xs"

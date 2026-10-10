@@ -9,10 +9,7 @@ export default function Page() {
   return (
     <ChapterLayout chapterId="kody">
       <div className="flex flex-col items-center justify-center relative w-full h-full min-h-[60vh]">
-      <CodesMenu onBack={() => router.push('/informatika')}
-            onStartLaundryGame={() => router.push('/informatika/kody/prani')}
-            onStartEmojiGame={() => router.push('/informatika/kody/emoji')}
-            onStartCountryCodesGame={() => router.push('/informatika/kody/staty')} />
+        <CodesMenu onBack={() => router.push('/informatika')} />
     </div>
     </ChapterLayout>
   );

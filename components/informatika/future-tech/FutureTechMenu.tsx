@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowLeft, Sparkles, ArrowRight, Network, Factory, Glasses } from 'lucide-react';
+import { ArrowLeft, Sparkles, Network, Factory, Glasses } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface FutureTechMenuProps {
   onStartIoT: () => void;
@@ -15,81 +16,61 @@ const FutureTechMenu: React.FC<FutureTechMenuProps> = ({
   onBack
 }) => {
   return (
-    <div className="max-w-4xl w-full animate-in fade-in duration-1000 px-4">
+    <div className="max-w-6xl w-full animate-in fade-in duration-1000 px-4">
       <div className="flex justify-start mb-6">
         <button
           onClick={onBack}
           className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
         >
-          <ArrowLeft className="w-4 h-4" /> Zpět na výběr
+          <ArrowLeft className="w-4 h-4" /> Zpět do menu
         </button>
       </div>
 
-      <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-20 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center text-center relative overflow-hidden mb-10">
         <div className="absolute top-0 left-0 w-32 h-32 bg-yellow-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-amber-100/50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
-        <div className="relative mb-10">
-          <div className="w-32 h-32 bg-gradient-to-tr from-yellow-500 to-amber-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-yellow-200">
-            <Sparkles className="w-16 h-16 text-white" />
+        <div className="relative mb-8">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-yellow-500 to-amber-500 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-yellow-200">
+            <Sparkles className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
           </div>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-black text-gray-900 mb-6 tracking-tighter leading-none uppercase">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-600">
-            Technologie budoucnosti
-          </span>
+        <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4 tracking-tighter leading-none uppercase">
+          Technologie <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-600">budoucnosti</span>
         </h1>
 
-        <p className="text-xl sm:text-2xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
-          Témata
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl font-black uppercase tracking-[0.2em]">
+          Trendy a inovace moderního IT světa
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <button
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+          <TechnicalCard
+            tag="iot"
+            title="IoT (Internet věcí)"
+            description="Chytrá domácnost, senzory a propojená zařízení, která komunikují bez lidského zásahu."
+            icon={Network}
+            gradient="from-blue-500 to-cyan-500"
             onClick={onStartIoT}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-blue-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Network className="w-6 h-6 text-blue-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-blue-700">IoT (Internet věcí)</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-blue-400" />
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-blue-50 transition-colors">#iot</div>
-          </button>
-
-          <button
+          />
+          <TechnicalCard
+            tag="industry40"
+            title="Průmysl 4.0"
+            description="Inteligentní továrny, průmysloví roboti a digitalizace výroby nového věku."
+            icon={Factory}
+            gradient="from-orange-500 to-amber-600"
             onClick={onStartIndustry40}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-orange-100"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Factory className="w-6 h-6 text-orange-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-orange-700">Průmysl 4.0</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-orange-400" />
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-orange-50 transition-colors">#industry40</div>
-          </button>
-
-          <button
-            onClick={onStartVR}
-            className="group relative px-8 py-6 bg-white hover:bg-gray-50 text-gray-900 font-black rounded-[2.5rem] shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-between overflow-hidden border-4 border-gray-50 hover:border-purple-100 sm:col-span-2 md:col-span-1 lg:col-span-2"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-fuchsia-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="flex items-center gap-5 relative">
-              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <Glasses className="w-6 h-6 text-purple-600" />
-              </div>
-              <span className="text-lg sm:text-xl uppercase tracking-widest text-purple-700">Virtuální Realita</span>
-            </div>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform relative text-purple-400" />
-            <div className="absolute top-3 right-3 text-xs font-mono font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-md border border-gray-200/50 uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm group-hover:bg-purple-50 transition-colors">#vr</div>
-          </button>
+          />
+          {onStartVR && (
+            <TechnicalCard
+              tag="vr"
+              title="Virtuální Realita"
+              description="VR brýle, simulované 3D prostředí a digitální světy pro výuku i zábavu."
+              icon={Glasses}
+              gradient="from-purple-500 to-fuchsia-600"
+              onClick={onStartVR}
+            />
+          )}
         </div>
       </div>
     </div>

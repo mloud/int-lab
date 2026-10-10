@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Save, BookOpen, Cloud } from 'lucide-react';
+import TechnicalCard from '@/components/ui/TechnicalCard';
 
 interface BackupMenuProps {
   onBack: () => void;
@@ -86,34 +87,20 @@ const BackupMenu: React.FC<BackupMenuProps> = ({
 
         <h2 className="text-left text-2xl font-black text-slate-800 mb-6 uppercase tracking-tight">Podkapitoly</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {chapters.map(ch => {
-            const Icon = ch.icon;
-            return (
-              <div
-                key={ch.n}
-                id={`backup-chapter-${ch.n}`}
-                className="relative group p-6 bg-white rounded-3xl border-2 border-slate-100 flex flex-col items-center text-center justify-between min-h-[260px] shadow-md hover:shadow-xl transition-all"
-              >
-                <div className="absolute top-3 left-4 text-2xl font-black text-slate-200">{ch.n}.</div>
-                <div className="absolute top-3 right-3 text-[10px] font-mono font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-md border border-slate-100 uppercase tracking-widest shadow-sm z-10">#{ch.tag}</div>
-                
-                <div className="flex flex-col items-center mt-6 z-10 relative flex-1">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${ch.gradient} rounded-2xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:-rotate-3 transition-all`}>
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="font-black text-slate-800 mb-2 uppercase tracking-wide text-sm">{ch.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed max-w-[95%]">{ch.desc}</p>
-                </div>
-                
-                <button
-                  onClick={ch.action}
-                  className={`mt-5 px-4 py-2.5 bg-gradient-to-r ${ch.gradient} text-white font-bold rounded-xl shadow-md text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 relative z-20 w-full opacity-90 group-hover:opacity-100`}
-                >
-                  Otevřít kapitolu
-                </button>
-              </div>
-            );
-          })}
+          {chapters.map(ch => (
+            <TechnicalCard
+              key={ch.tag}
+              id={`backup-chapter-${ch.n}`}
+              tag={ch.tag}
+              title={ch.title}
+              description={ch.desc}
+              icon={ch.icon}
+              gradient={ch.gradient}
+              actionLabel="Otevřít kapitolu"
+              onClick={ch.action}
+              accentCorner={false}
+            />
+          ))}
         </div>
       </div>
     </div>
