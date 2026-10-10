@@ -646,6 +646,47 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               icon: 'Bot',
               gradient: 'from-emerald-600 to-teal-700',
               route: '/specializovana/robotika-3',
+              analysis: {
+                goal: 'Osvojit si architekturu vestavných systémů, práci se senzorickými a analogovými signály, řízení diferenciálního podvozku a základy IoT komunikace v jazyce MicroPython.',
+                targetProfile: 'Absolvent 3. ročníku rozumí principům hardware-software rozhraní. Dokáže samostatně zapojit a naprogramovat senzorický systém, odfiltrovat šum měření, řídit motory přes PWM, navrhnout stavový automat (FSM) pro autonomní navigaci a zprostředkovat bezdrátovou telemetrii.',
+                expectedOutcomes: [
+                  'Samostatná tvorba neblokujícího embedded kódu v MicroPythonu bez použití blokujícího sleep().',
+                  'Konstrukce a implementace konečného stavového automatu (FSM) pro řízení logiky robotu.',
+                  'Čtení a softwarová filtrace dat z analogových i digitálních I2C/SPI senzorů (plovoucí průměr, hystereze).',
+                  'Řízení stejnosměrných motorů pomocí PWM a H-můstku, kalibrace diferenciálního podvozku.',
+                  'Algoritmizace autonomního sledování trasy pomocí proporcionálního P/PD regulátoru.',
+                  'Využití bezdrátové komunikace na 2.4 GHz (Radio pakety) pro telemetrii a dálkové ovládání.'
+                ],
+                steps: [
+                  {
+                    step: '1. Architektura MCU & MicroPython (1:1 na micro:bitu)',
+                    description: 'Přechod z PC Pythonu na embedded svět, GPIO piny, práce s časem (ticks_ms) a stavový automat.',
+                    why: 'Eliminace černých pasažérů individuální prací 1:1. Žáci musí pochopit hardwarové limity a neblokující architekturu dříve, než začnou řídit motory.'
+                  },
+                  {
+                    step: '2. Senzorika, ADC & Sběrnice (IOKit v 5 dvojicích)',
+                    description: 'Analogové vzorkování napětí, protokol I2C, OLED displej, filtrace šumu a hystereze.',
+                    why: 'Fyzický svět není binární – signály šumí a kolísají. Bez kalibrace a filtrace nelze postavit spolehlivého autonomního robota.'
+                  },
+                  {
+                    step: '3. Pohony & Diferenciální kinematika (Cutebot)',
+                    description: 'DC motory, H-můstek, PWM střída, kalibrace přímého směru a proporcionální brzdění.',
+                    why: 'Cutebot je hotové vozítko, takže se žáci nezdržují mechanickou montáží a ihned aplikují matematiku motoriky.'
+                  },
+                  {
+                    step: '4. Autonomní navigace po čáře (Cutebot)',
+                    description: 'IR reflexní senzory, srovnání Bang-Bang řízení, stavového automatu a P/PD regulátoru.',
+                    why: 'Klíčový didaktický přechod od jednoduchého kmitavého řízení k plynulé regulaci a rozhodovacím algoritmům.'
+                  },
+                  {
+                    step: '5. IoT & Bezdrátová telemetrie (micro:bit Radio)',
+                    description: 'Paketový přenos dat na 2.4 GHz, dálkové ovládání akcelerometrem a distribuovaná senzorová síť.',
+                    why: 'Příprava na Průmysl 4.0 – robotika v praxi nefunguje izolovaně, ale komunikuje v síti s ostatními uzly a dispečinkem.'
+                  }
+                ],
+                hardwareRequirements: ['30x BBC micro:bit v2', '10x Elecfreaks Cutebot', '10x Elecfreaks IOKit', 'OLED displeje SSD1306', 'IR a ultrazvukové senzory'],
+                softwareStack: ['MicroPython', 'VS Code (Serial monitor / REPL)', 'Python Editor for micro:bit (WebUSB)']
+              },
               chapters: [
                 {
                   id: 'rob3-mcu',
@@ -745,6 +786,47 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               icon: 'Bot',
               gradient: 'from-indigo-600 to-purple-700',
               route: '/specializovana/robotika-4',
+              analysis: {
+                goal: 'Proniknout do pokročilé mobilní kinematiky, počítačového vidění s AI, inženýrské mechaniky se Smart motory a průmyslové robotiky v simulátoru i na reálném manipulátoru KUKA EDU.',
+                targetProfile: 'Absolvent 4. ročníku ovládá holonomní (všesměrový) pohyb a vektorovou matematiku v Pythonu. Dokáže naprogramovat autonomní navigaci s využitím AI kamery a AprilTags, navrhnout zvedací mechanismus s motorovými enkodéry a odometrií, a odsimulovat i nahrát průmyslový Pick & Place program pro 6-osou KUKA buňku.',
+                expectedOutcomes: [
+                  'Matematický rozklad vektorů rychlosti pro řízení 3-kolového všesměrového (omni) podvozku VEX AIM.',
+                  'Implementace počítačového vidění v reálném čase: sledování cílů (Visual Servoing) a prostorová orientace přes 2D AprilTags.',
+                  'Konstrukční návrh mechanických převodů, práce s točivým momentem a odometrií s využitím Smart motorů VEX IQ a IMU gyroskopu.',
+                  'Pochopení 6-DoF kinematiky, bezpečnostních norem a souřadnicových systémů (WORLD, BASE, TOOL/TCP) průmyslových manipulátorů.',
+                  'Offline programování a ladění trajektorií (PTP, LIN) v robotickém simulátoru s následným přenosem na fyzický stroj KUKA EDU.',
+                  'Týmová integrace heterogenního hardwaru (mobilní roboti + průmyslová buňka + IoT) v rámci maturitního projektu.'
+                ],
+                steps: [
+                  {
+                    step: '1. VEX AIM: Všesměrový podvozek & Vektory (14 h)',
+                    description: 'Tříkolová omni kinematika, goniometrický rozklad sil a rychlostí, elektromagnet a mechanický kicker.',
+                    why: 'AIM je zkompletovaný, takže v září ihned programují. Přechod od diferenciálního k holonomnímu pohybu rozvíjí aplikovanou matematiku a prostorové myšlení.'
+                  },
+                  {
+                    step: '2. VEX AIM: Počítačové vidění s AI kamerou (14 h)',
+                    description: 'Kamera jako senzor, Visual Servoing (dojíždění k pohybujícímu se cíli), čtení AprilTags a herní strategie.',
+                    why: 'Žáci už umí robota přesně ovládat, takže přidání zraku a autonomního rozhodování dává okamžitý smysl a je vizuálně atraktivní.'
+                  },
+                  {
+                    step: '3. VEX IQ: Inženýrská mechanika & Smart motory (14 h)',
+                    description: 'Převodové poměry, točivý moment, optické enkodéry motorů, IMU gyroskop a zdvihací mechanismy.',
+                    why: 'Po softwarové fázi přichází fyzická inženýrská konstrukce – žáci se učí dimenzovat sílu a rychlost a měřit absolutní dráhu odometrií.'
+                  },
+                  {
+                    step: '4. KUKA EDU: Simulátor & Průmyslová manipulace (8 h)',
+                    description: '6-DoF kinematika, TCP kalibrace, bezpečnostní zóny a Pick & Place. 5 dvojic u simulátoru na PC + ověření na reálném KUKA robotu.',
+                    why: 'Příprava na reálný průmysl. Díky simulátoru všech 10 žáků intenzivně programuje na PC bez prostojů a k fyzickému robotu jdou s odladěným programem.'
+                  },
+                  {
+                    step: '5. Závěrečný projekt: Kooperativní buňka & Obhajoba (10 h)',
+                    description: 'Týmová syntéza VEX AIM + VEX IQ + KUKA EDU + IoT v autonomní logistické misi, technická dokumentace a obhajoba.',
+                    why: 'Komplexní prověrka samostatnosti a týmové práce před praktickou maturitou – simulace reálného inženýrského workflow v Průmyslu 4.0.'
+                  }
+                ],
+                hardwareRequirements: ['VEX AIM školní sada robotů', '5x VEX IQ školní sada robotů s AI Vision senzorem', '1x KUKA EDU robotická buňka', 'Simulační software na PC', 'Soutěžní aréna s míčky a AprilTags'],
+                softwareStack: ['VEXcode Python', 'VS Code (VEX Extension)', 'KUKA Simulační prostředí (RoboDK / KUKA.Sim)', 'Python 3']
+              },
               chapters: [
                 {
                   id: 'rob4-aim-pohyb',

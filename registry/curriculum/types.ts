@@ -35,6 +35,22 @@ export interface ChapterConfig {
 }
 
 /**
+ * Didaktický rozbor učiva předmětu (volitelná součást pro pedagogy i studenty)
+ */
+export interface SubjectCurriculumAnalysis {
+  goal: string; // Hlavní cíl a vize předmětu
+  targetProfile: string; // Co je výstupem (profil absolventa / dovednosti v praxi)
+  expectedOutcomes: string[]; // Konkrétní vzdělávací výstupy
+  steps: Array<{ // Didaktická gradace: jaké kroky a proč
+    step: string;
+    description: string;
+    why: string; // Proč právě tento krok v tomto pořadí
+  }>;
+  hardwareRequirements?: string[]; // Hardwareové zázemí
+  softwareStack?: string[]; // Vývojová prostředí a jazyky
+}
+
+/**
  * Předmět (reprezentovaný vyplněnou kartou variant="filled" v ročníku)
  */
 export interface SubjectConfig {
@@ -47,6 +63,7 @@ export interface SubjectConfig {
   route: string;
   actionLabel?: string;
   chapters: ChapterConfig[];
+  analysis?: SubjectCurriculumAnalysis;
 }
 
 /**

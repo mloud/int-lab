@@ -28,6 +28,14 @@ Novou součástí výukového portálu jsou materiály určené primárně pro f
 - Pro žáky jsou vytvořeny pomocné vizuální komponenty, jako např. `Lines` pro psaní textu a `DrawBox` pro náčrty a schémata.
 - Z testů a listů k tisku jsou flexibilně odstraňovány interaktivní prvky a metadata.
 
+## 🎓 Didaktický model kurikula a rozbor učiva předmětu
+Každý předmět v kurikulu (`SubjectConfig` v `registry/curriculum/types.ts`) může volitelně nést strukturovaný didaktický rozbor (`analysis: SubjectCurriculumAnalysis`):
+- **Cíl & Profil výstupu:** `goal` a `targetProfile` definující kompetence a profil absolventa předmětu.
+- **Konkrétní výstupy:** `expectedOutcomes: string[]` – explicitní seznam dovedností žáka v praxi.
+- **Didaktická gradace (Kroky & Proč):** `steps: Array<{ step, description, why }>` – vysvětlení, jaké kroky po sobě následují a jaké je odborné/pedagogické zdůvodnění tohoto pořadí.
+- **HW a SW zázemí:** `hardwareRequirements` a `softwareStack`.
+- **Prezentace v UI:** Komponenta `DynamicSubjectHub` tento rozbor automaticky a přehledně zobrazuje pod mřížkou kapitol (včetně sbalování/rozbalování), pokud jsou data v modelu vyplněna. Pokud v modelu chybí, rozbor se nezobrazuje.
+
 ## 🔐 Administrátorská část a Správa dat (Plánovaný další krok)
 - **Aktuální stav:** Data škol a lekcí jsou definována lokálně v TypeScript registrech (`registry/curriculum/schools/` a `registry/lessons.ts`).
 - **Plánovaný přechod (Server & Admin rozhraní):**
