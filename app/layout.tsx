@@ -2,8 +2,8 @@ import Script from 'next/script';
 import { CurriculumProvider } from '@/components/providers/CurriculumContext';
 
 export const metadata = {
-  title: 'Interaktivní Lab',
-  description: 'Aplikace Informatika',
+  title: 'IntLab | Interactive Learning Lab',
+  description: 'Interaktivní mezioborová výuková laboratoř pro moderní školy',
 };
 
 export default function RootLayout({

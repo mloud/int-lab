@@ -19,10 +19,10 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
       colorScheme: 'blue',
       route: '/informatika',
       grades: [
-        // 6. TŘÍDA
+        // 6. ROČNÍK (PRIMA)
         {
           grade: 6,
-          gradeLabel: '6. Třída',
+          gradeLabel: 'Prima (6. ročník)',
           pillColor: 'bg-blue-600',
           subjects: [
             {
@@ -114,10 +114,10 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
           ]
         },
 
-        // 7. TŘÍDA
+        // 7. ROČNÍK (SEKUNDA)
         {
           grade: 7,
-          gradeLabel: '7. Třída',
+          gradeLabel: 'Sekunda (7. ročník)',
           pillColor: 'bg-teal-600',
           subjects: [
             {
@@ -151,10 +151,10 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
           ]
         },
 
-        // 8. TŘÍDA
+        // 8. ROČNÍK (TERCIE)
         {
           grade: 8,
-          gradeLabel: '8. Třída',
+          gradeLabel: 'Tercie (8. ročník)',
           pillColor: 'bg-indigo-600',
           subjects: [
             {
@@ -185,10 +185,10 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
           ]
         },
 
-        // 9. TŘÍDA
+        // 9. ROČNÍK (KVARTA)
         {
           grade: 9,
-          gradeLabel: '9. Třída',
+          gradeLabel: 'Kvarta (9. ročník)',
           pillColor: 'bg-rose-600',
           subjects: [
             {
@@ -414,6 +414,18 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   hasSubchapters: false
                 },
                 {
+                  id: 'os-test',
+                  title: 'Hodnocená práce',
+                  description: 'Hardware, úvod do OS a architektura OS. 45 minut, 50 bodů. Odemčení na heslo.',
+                  tag: 'TEST',
+                  icon: 'ShieldCheck',
+                  gradient: 'from-rose-500 to-red-600',
+                  actionLabel: 'Otevřít zadání',
+                  route: '/specializovana/operacni-systemy/test01',
+                  hasSubchapters: false,
+                  isTest: true
+                },
+                {
                   id: 'os-history',
                   title: 'Vývoj a distribuce',
                   description: 'Historie operačních systémů, přehled distribucí a rodiny OS.',
@@ -482,17 +494,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     { id: 'pm-alloc', title: 'Alokátor paměti', description: 'First-fit, Best-fit alokace bloků', tag: 'alc', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/procesy/allocator' },
                     { id: 'pm-step', title: 'Krokování procesů', description: 'Stavy procesů (Ready, Running, Blocked)', tag: 'stp', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/procesy/stepper' }
                   ]
-                },
-                {
-                  id: 'os-test',
-                  title: 'Závěrečný test OS 1',
-                  description: 'Souhrnné prověření znalostí první části operačních systémů.',
-                  tag: 'tst',
-                  icon: 'ShieldCheck',
-                  gradient: 'from-purple-600 to-indigo-600',
-                  actionLabel: 'Spustit test',
-                  route: '/specializovana/operacni-systemy/test01',
-                  hasSubchapters: false
                 }
               ]
             },

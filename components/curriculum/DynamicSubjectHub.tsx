@@ -85,6 +85,8 @@ export const DynamicSubjectHub: React.FC<DynamicSubjectHubProps> = ({ subjectId,
                 actionLabel={chapter.actionLabel || 'Otevřít kapitolu'}
                 onClick={() => router.push(chapter.route)}
                 accentCorner={hasSub}
+                variant={chapter.variant}
+                isTest={chapter.isTest}
               />
             );
           })}

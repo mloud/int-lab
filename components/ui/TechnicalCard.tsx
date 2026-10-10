@@ -12,6 +12,7 @@ export interface TechnicalCardProps {
   onClick: () => void;
   accentCorner?: boolean;
   variant?: 'default' | 'filled';
+  isTest?: boolean;
   className?: string;
 }
 
@@ -26,10 +27,12 @@ export const TechnicalCard: React.FC<TechnicalCardProps> = ({
   onClick,
   accentCorner = false,
   variant = 'default',
+  isTest = false,
   className = ''
 }) => {
   const cleanTag = tag.startsWith('#') ? tag.slice(1) : tag;
   const isFilled = variant === 'filled';
+  const isAssessment = isTest || cleanTag.toUpperCase() === 'TEST';
 
   return (
     <div
@@ -37,6 +40,8 @@ export const TechnicalCard: React.FC<TechnicalCardProps> = ({
       className={`relative group ${
         isFilled
           ? `p-6 bg-gradient-to-br ${gradient} text-white rounded-3xl border-2 border-white/20 min-h-[240px] max-w-[320px] w-full shadow-xl hover:shadow-2xl hover:scale-[1.02]`
+          : isAssessment
+          ? 'p-6 bg-white rounded-3xl border-2 border-rose-200 text-slate-800 min-h-[260px] shadow-md hover:shadow-xl hover:border-rose-400 hover:shadow-rose-100/60'
           : 'p-6 bg-white rounded-3xl border-2 border-slate-100 text-slate-800 min-h-[260px] shadow-md hover:shadow-xl'
       } flex flex-col items-center text-center justify-between transition-all overflow-hidden ${className}`}
     >
@@ -45,6 +50,8 @@ export const TechnicalCard: React.FC<TechnicalCardProps> = ({
         className={`absolute font-mono font-bold uppercase tracking-widest shadow-sm z-10 backdrop-blur-sm transition-colors ${
           isFilled
             ? 'top-3 right-3.5 text-[10px] text-white/90 bg-white/20 border border-white/30 px-2.5 py-0.5 rounded-md group-hover:bg-white/30'
+            : isAssessment
+            ? 'top-3.5 right-4 text-[10px] text-rose-600 bg-rose-50/90 border border-rose-200 px-2.5 py-0.5 rounded-md group-hover:bg-rose-100 group-hover:text-rose-700'
             : 'top-3.5 right-4 text-[10px] text-slate-400 bg-slate-50/90 border border-slate-100 px-2 py-0.5 rounded-md group-hover:bg-slate-100 group-hover:text-slate-600'
         }`}
       >

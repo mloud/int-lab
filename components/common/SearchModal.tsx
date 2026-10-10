@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Search, X, ChevronRight, BookOpen } from 'lucide-react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Search, X, ChevronRight, BookOpen, GraduationCap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 import { SEARCH_INDEX, Chapter } from '@/config/curriculum';
+import { useCurriculum } from '@/components/providers/CurriculumContext';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -14,8 +15,40 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Chapter[]>([]);
+  const [filterBySchool, setFilterBySchool] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { school } = useCurriculum();
+
+  // Zjištění všech platných cest v rámci aktivní školy
+  const activeSchoolPaths = useMemo(() => {
+    const paths = new Set<string>();
+    for (const div of school.divisions) {
+      paths.add(div.route);
+      for (const g of div.grades) {
+        for (const s of g.subjects) {
+          paths.add(s.route);
+          for (const c of s.chapters) {
+            paths.add(c.route);
+            if (c.subchapters) {
+              for (const sub of c.subchapters) {
+                paths.add(sub.route);
+              }
+            }
+          }
+        }
+      }
+    }
+    return paths;
+  }, [school]);
+
+  const isChapterInSchool = useMemo(() => {
+    return (chapter: Chapter): boolean => {
+      if (activeSchoolPaths.has(chapter.path)) return true;
+      // Ověření shody s prefixem cesty divize (např. /informatika/...)
+      return school.divisions.some(div => chapter.path.startsWith(div.route));
+    };
+  }, [activeSchoolPaths, school]);
 
   // Initialize Fuse.js
   const fuse = useRef(
@@ -25,6 +58,17 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       includeScore: true,
     })
   );
+
+  const performSearch = (searchTerm: string, onlySchool: boolean) => {
+    if (searchTerm.trim() === '') {
+      setResults([]);
+      return;
+    }
+
+    const searchResults = fuse.current.search(searchTerm).map(result => result.item);
+    const filtered = onlySchool ? searchResults.filter(isChapterInSchool) : searchResults;
+    setResults(filtered.slice(0, 8));
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -53,14 +97,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setQuery(val);
+    performSearch(val, filterBySchool);
+  };
 
-    if (val.trim() === '') {
-      setResults([]);
-      return;
-    }
-
-    const searchResults = fuse.current.search(val).map(result => result.item);
-    setResults(searchResults.slice(0, 5));
+  const handleToggleFilter = (onlySchool: boolean) => {
+    setFilterBySchool(onlySchool);
+    performSearch(query, onlySchool);
   };
 
   const handleSelect = (path: string) => {
@@ -99,6 +141,41 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Sub-header s filtrem školy */}
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-50 border-b border-slate-100 text-xs">
+          <div className="flex items-center gap-1.5">
+            <GraduationCap className="w-4 h-4 text-indigo-600 mr-0.5" />
+            <span className="text-slate-500 font-medium">Rozsah:</span>
+            <div className="inline-flex p-0.5 bg-slate-200/70 rounded-lg">
+              <button
+                type="button"
+                onClick={() => handleToggleFilter(true)}
+                className={`px-2.5 py-1 rounded-md font-bold text-xs transition-all ${
+                  filterBySchool
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                {school.shortName || school.name}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleToggleFilter(false)}
+                className={`px-2.5 py-1 rounded-md font-bold text-xs transition-all ${
+                  !filterBySchool
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Celý portál
+              </button>
+            </div>
+          </div>
+          <span className="text-[11px] font-medium text-slate-400">
+            {filterBySchool ? `Jen pro: ${school.shortName || school.name}` : 'Hledání napříč všemi lekcemi'}
+          </span>
         </div>
 
         {/* Results */}

@@ -107,11 +107,14 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           >
             <Sparkles className="w-8 h-8 text-indigo-500" />
           </motion.div>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500 mb-6 tracking-tighter">
-            INTERAKTIVNÍ LAB
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-slate-900 mb-6 tracking-tighter">
+            INTERAKTIVNÍ{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600">
+              LAB
+            </span>
           </h1>
-          <p className="text-lg sm:text-xl text-slate-500 font-bold tracking-[0.4em] uppercase">
-            Vyberte si svou cestu
+          <p className="text-base sm:text-xl text-slate-500 font-bold tracking-[0.35em] uppercase">
+            Mezioborový výukový portál
           </p>
 
           {/* Přepínač školy (ZŠ vs Kompletní škola) */}

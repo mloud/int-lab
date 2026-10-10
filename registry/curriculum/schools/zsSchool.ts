@@ -20,8 +20,11 @@ export const ZS_SCHOOL: SchoolConfig = {
       watermarkIcon: 'Code',
       colorScheme: 'blue',
       route: '/informatika',
-      // Přebírá ročníky 6, 7, 8, 9 z výchozího kurikula ZŠ
-      grades: DEFAULT_SCHOOL.divisions[0]?.grades || [],
+      // Přebírá ročníky 6, 7, 8, 9 z kurikula a nastavuje tradiční značení pro ZŠ (6.–9. Třída)
+      grades: (DEFAULT_SCHOOL.divisions[0]?.grades || []).map((g) => ({
+        ...g,
+        gradeLabel: `${g.grade}. Třída`,
+      })),
     }
   ]
 };

@@ -30,6 +30,8 @@ export interface ChapterConfig {
   hasSubchapters?: boolean;
   subchapters?: SubchapterConfig[];
   actionLabel?: string;
+  variant?: 'default' | 'filled';
+  isTest?: boolean;
 }
 
 /**

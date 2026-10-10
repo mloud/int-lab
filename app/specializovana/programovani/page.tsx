@@ -1,22 +1,15 @@
 'use client';
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import ProgramovaniMenu from '@/components/specializovana/programovani/ProgramovaniMenu';
-
+import DynamicSubjectHub from '@/components/curriculum/DynamicSubjectHub';
 import CategoryLayout from '@/components/layout/CategoryLayout';
 
 export default function Page() {
-  const router = useRouter();
   return (
     <CategoryLayout 
-      title="Programování" 
+      title="Programování a hry 1" 
       category="specializovana"
       parent={{ title: 'Specializovaná IT', path: '/specializovana' }}
     >
-      <ProgramovaniMenu 
-            onBack={() => router.push('/specializovana')}
-            onStartProjects={() => router.push('/specializovana/programovani/projekty')}
-            onStartScratch={() => router.push('/specializovana/programovani/scratch')} />
+      <DynamicSubjectHub subjectId="prg1" />
     </CategoryLayout>
   );
 }

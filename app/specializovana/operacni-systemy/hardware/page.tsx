@@ -1,18 +1,15 @@
 'use client';
-import React from 'react';
-import ChapterLayout from '@/components/layout/ChapterLayout';
-import { useRouter } from 'next/navigation';
-import OsHardwareChapter from '@/components/specializovana/operacni-systemy/OsHardwareChapter';
+import DynamicSubchapterHub from '@/components/curriculum/DynamicSubchapterHub';
+import CategoryLayout from '@/components/layout/CategoryLayout';
 
 export default function Page() {
-  const router = useRouter();
   return (
-    <ChapterLayout chapterId="os-hw">
-      <div className="flex flex-col items-center justify-center relative w-full h-full min-h-[60vh]">
-      <OsHardwareChapter onBack={() => router.push('/specializovana/operacni-systemy')}
-            onStartVonNeumann={() => router.push('/specializovana/operacni-systemy/hardware/von-neumann')}
-            onStartRamSimulator={() => router.push('/specializovana/operacni-systemy/hardware/ram')} />
-    </div>
-    </ChapterLayout>
+    <CategoryLayout 
+      title="Základy hardwaru pro OS" 
+      category="specializovana"
+      parent={{ title: 'Operační systémy 1', path: '/specializovana/operacni-systemy' }}
+    >
+      <DynamicSubchapterHub chapterId="os-hardware" />
+    </CategoryLayout>
   );
 }
