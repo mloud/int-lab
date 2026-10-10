@@ -43,7 +43,7 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
      - Vzhled: Velká reprezentativní karta s gradientem, vodotiskovou ikonou a velkým tlačítkem se šipkou.
    - **B. Karta Předmětu (Subject Card):**
      - Komponenta: `TechnicalCard` (`components/ui/TechnicalCard.tsx`) s `variant="filled"`.
-     - Použití: Výběr předmětu (např. ve `SpecializovanaMenu.tsx` – OS 1, PRG 1; nebo v `InformatikaMenu.tsx` – Informatika 6, 7, 8, 9).
+     - Použití: Výběr předmětu (v `DynamicDivisionHub` – OS 1, PRG 1; Informatika 6, 7, 8, 9).
      - Vzhled: Plný barevný gradient pozadí, bílá typografie, bílé akční tlačítko.
      - Pravidlo: **NIKDY nezobrazovat ikonu složky v rohu** (`accentCorner={false}`).
    - **C. Karta Kapitoly s podkapitolami (Chapter Hub):**
@@ -54,25 +54,28 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
      - Komponenta: `TechnicalCard` s `variant="default"` a `accentCorner={false}`.
      - Použití: Karty, které vedou přímo na konkrétní interaktivní lekci / simulátor bez dalšího větvení.
      - Vzhled: Bílý podklad, `#tag` vpravo nahoře, **žádná ikona složky v rohu**.
+   - **E. Testové Kapitoly (Test Card):**
+     - Komponenta: `TechnicalCard` s `isTest={true}`.
+     - Vzhled: Červené/růžové zvýraznění (`border-rose-200`, `#TEST` růžový tag, rose tlačítko a ikona).
 
 9. **Členění podle Ročníků (Grade Sections):**
-   - Všechny hlavní přehledy předmětů a témat (např. `InformatikaMenu.tsx`, `SpecializovanaMenu.tsx`) VŽDY děl do sekcí podle ročníků.
+   - Všechny hlavní přehledy předmětů a témat (např. v `DynamicDivisionHub`) VŽDY děl do sekcí podle ročníků.
    - **Nadpis sekce (H2):** `text-2xl font-black text-slate-800 uppercase tracking-tight text-left mb-6 pb-2 border-b-2 border-slate-100 flex items-center gap-3`.
    - **Barevná pilulka:** `<span className="w-3 h-7 rounded-full bg-[barva]"></span>` před názvem ročníku (např. `6. Třída`, `1. Ročník`).
    - **Grid karet:** `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full` (nebo 2 sloupce dle počtu karet).
 
 10. **Postup při Přidání Nového Předmětu (Subject Workflow):**
-    - **Krok 1 (Menu):** Do příslušného menu (např. `SpecializovanaMenu.tsx`) přidej kartu `TechnicalCard` s `variant="filled"` a `accentCorner={false}` do správné sekce ročníku.
-    - **Krok 2 (Routa):** Vytvoř novou stránku v `app/` (např. `app/specializovana/[predmet]/page.tsx`) obalenou v `CategoryLayout`.
-    - **Krok 3 (Rozcestník předmětu):** Vytvoř menu komponentu (např. `[Predmet]Menu.tsx`) s fixním skleněným rámcem a gridem kapitol (`TechnicalCard`).
-    - **Krok 4 (Registry):** Zaregistruj nový předmět do `registry/lessons.ts` s odpovídající `educationalPath` (`schoolType`, `grade`, `gradeLabel`, `subject`).
+    - **Krok 1 (Kurikulum):** Do definice školy v `registry/curriculum/schools/` (např. `defaultSchool.ts`, `zsSchool.ts`) přidej předmět s ročníkem, ikonou, gradientem a kapitolami do správné divize.
+    - **Krok 2 (Routa):** Vytvoř novou stránku v `app/` (např. `app/[divize]/[predmet]/page.tsx`) obalenou v `CategoryLayout`, která renderuje `DynamicSubjectHub`.
+    - **Krok 3 (Registry lekcí):** Zaregistruj nový předmět do `registry/lessons.ts` s odpovídající `educationalPath` (`schoolType`, `grade`, `gradeLabel`, `subject`).
 
 11. **Postup při Přidání Nové Kapitoly (Chapter Workflow):**
-    - **Krok 1 (Karta):** V menu předmětu přidej `TechnicalCard`:
-      - Pokud má podkapitoly: nastav `accentCorner={true}` (objeví se ikona složky v rohu).
-      - Pokud je to přímá lekce: nastav `accentCorner={false}`.
+    - **Krok 1 (Kurikulum & Karta):** V kurikulu školy nastav kapitolu předmětu:
+      - Pokud má podkapitoly: nastav `hasSubchapters: true` (a `accentCorner={true}`).
+      - Pokud je to přímá lekce: nastav `hasSubchapters: false` (a `accentCorner={false}`).
+      - Pokud jde o test/písemku: nastav `isTest: true`.
     - **Krok 2 (Routa):** Vytvoř stránku v `app/.../[kapitola]/page.tsx`.
     - **Krok 3 (Obsah):**
-      - Má-li podkapitoly: vytvoř rozcestník s kartami `TechnicalCard` (`accentCorner={false}`).
+      - Má-li podkapitoly: použij `DynamicSubchapterHub` s definovanými podkapitolami.
       - Jde-li o přímou lekci: použij šablonu obsahu (`FsChapterShell`, `WorksheetLayout` nebo vlastní interaktivní komponentu).
     - **Krok 4 (Registry):** Zapiš lekci do `registry/lessons.ts`.
