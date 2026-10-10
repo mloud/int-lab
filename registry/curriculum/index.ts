@@ -1,12 +1,36 @@
 export * from './types';
 export * from './iconRegistry';
 export * from './schools/defaultSchool';
+export * from './schools/zsSchool';
 
 import { SchoolConfig, DivisionConfig, SubjectConfig, ChapterConfig, GradeConfig } from './types';
 import { DEFAULT_SCHOOL } from './schools/defaultSchool';
+import { ZS_SCHOOL } from './schools/zsSchool';
+
+/**
+ * Seznam všech dostupných škol v systému.
+ */
+export const AVAILABLE_SCHOOLS: SchoolConfig[] = [
+  DEFAULT_SCHOOL,
+  ZS_SCHOOL,
+];
 
 // Aktuálně zvolená škola (do budoucna možnost přepínat z cookie/localstorage/env)
 let currentSchool: SchoolConfig = DEFAULT_SCHOOL;
+
+/**
+ * Vrátí seznam všech dostupných škol
+ */
+export function getAvailableSchools(): SchoolConfig[] {
+  return AVAILABLE_SCHOOLS;
+}
+
+/**
+ * Vyhledá školu podle jejího ID
+ */
+export function getSchoolById(schoolId: string): SchoolConfig | undefined {
+  return AVAILABLE_SCHOOLS.find(s => s.id === schoolId);
+}
 
 /**
  * Vrátí konfiguraci aktivní školy

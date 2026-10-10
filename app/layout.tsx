@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { CurriculumProvider } from '@/components/providers/CurriculumContext';
 
 export const metadata = {
   title: 'Interaktivní Lab',
@@ -26,7 +27,9 @@ export default function RootLayout({
         `}</style>
       </head>
       <body>
-        {children}
+        <CurriculumProvider>
+          {children}
+        </CurriculumProvider>
 
         {/* Cloudflare Web Analytics - měření návštěvnosti bez cookies */}
         {process.env.NEXT_PUBLIC_CF_BEACON && (

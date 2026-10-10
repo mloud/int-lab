@@ -2,17 +2,17 @@ import { SchoolConfig } from '../types';
 
 export const DEFAULT_SCHOOL: SchoolConfig = {
   id: 'zs-vimperk',
-  name: 'Interaktivní Lab (Východzí kurikulum)',
-  shortName: 'IntLab',
-  description: 'Kompletní výukový portál všeobecné i odborné informatiky',
+  name: 'Gymnázium Vimperk',
+  shortName: 'Gymnázium Vimperk',
+  description: 'Kompletní výukový portál všeobecné i odborné informatiky pro základní i střední školy',
   divisions: [
     // =========================================================================
     // 1. DIVIZE: OBECNÁ INFORMATIKA (ZŠ)
     // =========================================================================
     {
       id: 'obecna-it',
-      title: 'Obecná Informatika',
-      subtitle: 'Základní škola (2. stupeň)',
+      title: 'Nižší Gymnázium',
+      subtitle: 'Nižší Gymnázium',
       description: 'Objevte základy digitálního světa. Od binární soustavy, přes barvy, kompresi a algoritmy až po fungování moderního internetu.',
       icon: 'Binary',
       watermarkIcon: 'Code',

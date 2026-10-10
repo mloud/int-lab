@@ -1,14 +1,17 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, Binary, Cpu, Info, Code, Database, Search, ScanFace, Clock } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Sparkles, ArrowRight, Info, Search, ScanFace, Clock, GraduationCap } from 'lucide-react';
 import TechStackSimulation from './TechStackSimulation';
 import { motion, AnimatePresence } from 'framer-motion';
 import SearchModal from './SearchModal';
 import SchoolDivisionCard from '@/components/ui/SchoolDivisionCard';
+import { useCurriculum } from '@/components/providers/CurriculumContext';
+import { getCurriculumIcon } from '@/registry/curriculum';
 
 interface SubjectSelectionProps {
-  onSelectInformatika: () => void;
-  onSelectSpecializovana: () => void;
+  onSelectInformatika?: () => void;
+  onSelectSpecializovana?: () => void;
   onSelectArHub?: () => void;
 }
 
@@ -17,6 +20,8 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   onSelectSpecializovana,
   onSelectArHub,
 }) => {
+  const router = useRouter();
+  const { school, availableSchools, switchSchool, divisions } = useCurriculum();
   const [showTechStack, setShowTechStack] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showVersion, setShowVersion] = useState(false);
@@ -93,7 +98,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mb-20 flex flex-col items-center text-center"
+          className="mb-14 flex flex-col items-center text-center"
         >
           <motion.div 
             whileHover={{ rotate: 180, scale: 1.1 }}
@@ -108,28 +113,86 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
           <p className="text-lg sm:text-xl text-slate-500 font-bold tracking-[0.4em] uppercase">
             Vyberte si svou cestu
           </p>
+
+          {/* Přepínač školy (ZŠ vs Kompletní škola) */}
+          {availableSchools.length > 1 && (
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-8 inline-flex p-1.5 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-200/50"
+            >
+              {availableSchools.map((s) => {
+                const isActive = s.id === school.id;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => switchSchool(s.id)}
+                    className={`relative flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm tracking-wide transition-all ${
+                      isActive
+                        ? 'bg-slate-900 text-white shadow-md'
+                        : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100/70'
+                    }`}
+                  >
+                    <GraduationCap className={`w-4 h-4 ${isActive ? 'text-indigo-300' : 'text-slate-400'}`} />
+                    <span>{s.shortName || s.name}</span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    )}
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
         </motion.div>
 
-        {/* Selection Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-          <SchoolDivisionCard
-            title="Obecná Informatika"
-            description="Objevte základy digitálního světa. Od binární soustavy, přes barvy, kompresi a algoritmy až po fungování moderního internetu."
-            icon={Binary}
-            watermarkIcon={Code}
-            colorScheme="blue"
-            onClick={onSelectInformatika}
-          />
+        {/* Selection Cards (dynamicky generované z konfigurace aktivní školy) */}
+        <motion.div 
+          layout
+          className={`grid gap-8 w-full transition-all duration-300 ${
+            divisions.length === 1 
+              ? 'grid-cols-1 max-w-xl mx-auto' 
+              : divisions.length === 2 
+              ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' 
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
+          <AnimatePresence mode="popLayout">
+            {divisions.map((division) => {
+              const DivisionIcon = getCurriculumIcon(division.icon);
+              const Watermark = getCurriculumIcon(division.watermarkIcon || 'Code');
+              const handleCardClick = () => {
+                if (division.id === 'obecna-it' && onSelectInformatika) {
+                  onSelectInformatika();
+                } else if (division.id === 'specializovana-it' && onSelectSpecializovana) {
+                  onSelectSpecializovana();
+                } else {
+                  router.push(division.route);
+                }
+              };
 
-          <SchoolDivisionCard
-            title="Specializovaná IT"
-            description="Ponořte se do hloubky počítačových věd. Operační systémy, struktury na disku, simulátory paměti, vývoj her a architektura OS."
-            icon={Cpu}
-            watermarkIcon={Database}
-            colorScheme="purple"
-            onClick={onSelectSpecializovana}
-          />
-        </div>
+              return (
+                <motion.div
+                  key={division.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25 }}
+                  className="w-full h-full"
+                >
+                  <SchoolDivisionCard
+                    title={division.title}
+                    description={division.description}
+                    icon={DivisionIcon}
+                    watermarkIcon={Watermark}
+                    colorScheme={division.colorScheme}
+                    onClick={handleCardClick}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
         
         {/* AR Hub Button v hlavním menu */}
         {onSelectArHub && (
