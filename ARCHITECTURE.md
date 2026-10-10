@@ -9,14 +9,15 @@ Naším cílem je **postavit robustní learningový portál pro základní a st�
 ## 🛠 Tech Stack (Aktuální stav)
 - **Framework:** Next.js s App Routerem (`/app` adresář)
 - **Knihovna a jazyk:** React 19, TypeScript
-- **Stylování:** Tailwind CSS (načítáno přes CDN v `layout.tsx`), s fontem *Quicksand*
+- **Stylování:** Tailwind CSS, s fontem *Quicksand*
 - **Ikony a Animace:** `lucide-react` pro ikonografii, `framer-motion` (a `motion`) pro plynulé interakce a micro-animace.
 - **Vyhledávání:** `fuse.js` (fuzzy search)
 - **Analytika:** Cloudflare Web Analytics (bez cookies)
 
 ## 📂 Struktura projektu
-- `/app` - Next.js App Router (hlavní stránky, `layout.tsx`, routování)
-- `/components` - Znovupoužitelné React komponenty (rozděleno tematicky - informatika, specializovana, apod.)
+- `/app` - Next.js App Router (hlavní stránky, `layout.tsx`, dynamické a statické routy)
+- `/components` - Znovupoužitelné React komponenty (kurikulum, layout, informatika, specializovana, ui)
+- `/registry` - Modulární registry škol (`/curriculum/schools/`), kapitol a lekcí (`lessons.ts`)
 - `/constants.ts` / `/types.ts` - Centrální definice dat, struktur a TypeScript typů.
 - `/doc` - Dokumentace k projektu
 
@@ -27,9 +28,14 @@ Novou součástí výukového portálu jsou materiály určené primárně pro f
 - Pro žáky jsou vytvořeny pomocné vizuální komponenty, jako např. `Lines` pro psaní textu a `DrawBox` pro náčrty a schémata.
 - Z testů a listů k tisku jsou flexibilně odstraňovány interaktivní prvky a metadata.
 
-## 🔐 Administrátorská část a Data
-- **Stav:** Databáze v tuto chvíli není potřeba. Veškerý obsah a datové struktury jsou řešeny lokálně (soubory `constants.ts`, komponenty).
-- **Budoucí správa dat:** Řeší se přes analytický admin projekt (viz níže).
+## 🔐 Administrátorská část a Správa dat (Plánovaný další krok)
+- **Aktuální stav:** Data škol a lekcí jsou definována lokálně v TypeScript registrech (`registry/curriculum/schools/` a `registry/lessons.ts`).
+- **Plánovaný přechod (Server & Admin rozhraní):**
+  1. **Serverová databáze / API:** Přemístit definice škol, předmětů, kapitol a lekcí na server (např. Cloudflare D1, Supabase nebo serverless API).
+  2. **Administrační rozhraní (CMS):** Vybudovat webový admin panel, který umožní učiteli/správci:
+     - Přidávat, upravovat a skrývat školy, ročníky, předměty i kapitoly v reálném čase bez zásahu do zdrojového kódu a bez nutnosti rebuildu.
+     - Spravovat metadata lekcí, přístupové PINy pro testy a řazení témat.
+  3. **Zabezpečení:** Autentizace administrátora přes Cloudflare Access (GitHub OAuth) nebo bezpečný session systém.
 
 ## 📊 Analytický admin projekt (FINÁLNÍ ARCHITEKTONICKÉ ROZHODNUTÍ)
 
