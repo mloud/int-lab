@@ -70,7 +70,7 @@ export default function FatChapter({
 
         <h2>1. Fyzický sektor, cluster a vnitřní fragmentace (čistě v GUI)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> <strong>Krok 1A:</strong> Stiskněte Win + R, zadejte <code>msinfo32</code> a přejděte na Součásti &gt; Úložiště &gt; Disky. Vyhledejte položku "Bajtů na sektor".</div>
+          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> <strong>Krok 1A:</strong> Stiskněte Win + R, zadejte <code>msinfo32</code> (Informace o systému) a spusťte jej. V otevřeném okně sami vyhledejte údaje o svém pevném disku a najděte parametr udávající velikost fyzického sektoru.</div>
           <div class="question">Jakou velikost fyzického sektoru má váš disk (v bajtech)?</div>
           <div class="answer">${(answers['sector_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
@@ -574,7 +574,7 @@ export default function FatChapter({
                 >
                   {checkedItems['sec_1a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 1A (Fyzický sektor):</strong> Stiskněte <kbd className="px-1.5 py-0.5 bg-white border rounded text-xs">Win + R</kbd>, napište <code>msinfo32</code> a stiskněte Enter. V levém stromu rozklikněte <strong>Součásti → Úložiště → Disky</strong> a vyhledejte položku <em>Bajtů na sektor</em>.
+                    <strong>Krok 1A (Fyzický sektor):</strong> Stiskněte <kbd className="px-1.5 py-0.5 bg-white border rounded text-xs">Win + R</kbd>, napište <code>msinfo32</code> a spusťte jej. V otevřeném okně <em>Informace o systému</em> sami v nabídce vyhledejte sekci věnovanou vašemu disku a najděte parametr udávající velikost fyzického sektoru.
                   </span>
                 </div>
               </div>
