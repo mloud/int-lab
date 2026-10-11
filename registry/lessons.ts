@@ -2113,6 +2113,74 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy/procesy/ProcessIntroChapter')
   },
   {
+    id: 'proc-states',
+    title: '2. Životní cyklus a stavy procesu',
+    shortCode: '#proc2',
+    description: 'Stavový diagram procesu: Běžící, Připravený a Čekající na I/O operace disku.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy/procesy/stavy',
+    iconName: 'Activity',
+    keywords: ['stavy procesu', 'running', 'ready', 'blocked', 'stavový diagram', 'io'],
+    difficulty: 'easy',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 30,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Operační systémy 1',
+      thematicBlock: 'Běh programu (Procesy a paměť)',
+      chapter: 'Běh programu (Procesy a paměť)',
+      subchapter: '2. Životní cyklus a stavy',
+      lesson: 'Životní cyklus a stavy'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy/procesy/ProcessStatesChapter')
+  },
+  {
+    id: 'proc-threads',
+    title: '3. Vlákna (Threads)',
+    shortCode: '#proc3',
+    description: 'Rozdíl mezi těžkým procesem a lehkým vláknem, sdílená paměť a moderní multitasking.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy/procesy/vlakna',
+    iconName: 'GitBranch',
+    keywords: ['vlákna', 'threads', 'multithreading', 'sdílená paměť', 'proces vs vlákno'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 35,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Operační systémy 1',
+      thematicBlock: 'Běh programu (Procesy a paměť)',
+      chapter: 'Běh programu (Procesy a paměť)',
+      subchapter: '3. Vlákna (Threads)',
+      lesson: 'Vlákna (Threads)'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy/procesy/ProcessThreadsChapter')
+  },
+  {
     id: 'proc-adv',
     title: 'Pokročilá témata: Plánování a paměť',
     shortCode: '#proc-adv',

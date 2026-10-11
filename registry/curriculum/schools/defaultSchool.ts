@@ -566,6 +566,28 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       actionLabel: 'Otevřít kapitolu'
                     },
                     {
+                      id: 'proc-states',
+                      title: 'Životní cyklus a stavy',
+                      description: 'Stavový diagram procesu: Běžící, Připravený a Čekající na I/O operace disku.',
+                      tag: 'PR2',
+                      icon: 'Activity',
+                      gradient: 'from-purple-500 to-indigo-500',
+                      route: '/specializovana/operacni-systemy/procesy/stavy',
+                      orderNumber: 2,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'proc-threads',
+                      title: 'Vlákna (Threads)',
+                      description: 'Rozdíl mezi těžkým procesem a lehkým vláknem, sdílená paměť a moderní multitasking.',
+                      tag: 'PR3',
+                      icon: 'GitBranch',
+                      gradient: 'from-emerald-500 to-teal-500',
+                      route: '/specializovana/operacni-systemy/procesy/vlakna',
+                      orderNumber: 3,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
                       id: 'proc-adv',
                       title: 'Pokročilá témata',
                       description: 'Plánování procesoru (FIFO, Round Robin), alokátor paměti a krokování instrukcí.',

@@ -41,6 +41,7 @@ import {
   AppWindow,
   ArrowUpDown,
   Search,
+  GitBranch,
   LucideIcon
 } from 'lucide-react';
 
@@ -48,6 +49,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Binary,
   Sparkles,
   Shapes,
+  GitBranch,
   BoxSelect,
   HardDrive,
   Monitor,
