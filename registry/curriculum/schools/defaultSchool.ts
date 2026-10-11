@@ -547,16 +547,35 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 {
                   id: 'proc-mem',
                   title: 'Procesy a paměť',
-                  description: 'Plánování CPU, stavy procesů a alokátor paměti.',
+                  description: 'Vznik procesu, identifikace PID, paměťový prostor a střídání procesů na CPU.',
                   tag: 'pm',
                   icon: 'Cpu',
                   gradient: 'from-purple-600 to-indigo-600',
                   route: '/specializovana/operacni-systemy/procesy',
                   hasSubchapters: true,
                   subchapters: [
-                    { id: 'pm-cpu', title: 'Plánování procesoru', description: 'Simulátor CPU scheduleru (FIFO, Round Robin)', tag: 'cpu', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/procesy/cpu' },
-                    { id: 'pm-alloc', title: 'Alokátor paměti', description: 'First-fit, Best-fit alokace bloků', tag: 'alc', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/procesy/allocator' },
-                    { id: 'pm-step', title: 'Krokování procesů', description: 'Stavy procesů (Ready, Running, Blocked)', tag: 'stp', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/procesy/stepper' }
+                    {
+                      id: 'proc-intro',
+                      title: 'Úvod a vznik procesu',
+                      description: 'Co je program, jak z něj vznikne proces, identifikace PID a rozdělení na kód a data.',
+                      tag: 'PR1',
+                      icon: 'Layers',
+                      gradient: 'from-blue-500 to-indigo-500',
+                      route: '/specializovana/operacni-systemy/procesy/uvod',
+                      orderNumber: 1,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'proc-adv',
+                      title: 'Pokročilá témata',
+                      description: 'Plánování procesoru (FIFO, Round Robin), alokátor paměti a krokování instrukcí.',
+                      tag: 'PR-ADV',
+                      icon: 'Database',
+                      gradient: 'from-slate-600 to-slate-800',
+                      route: '/specializovana/operacni-systemy/procesy/pokrocile',
+                      orderNumber: 99,
+                      actionLabel: 'Otevřít kapitolu'
+                    }
                   ]
                 }
               ]

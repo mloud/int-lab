@@ -2078,6 +2078,75 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     },
     componentLoader: () => import('@/components/specializovana/operacni-systemy/CpuCycleGame')
   },
+  {
+    id: 'proc-intro',
+    title: '1. Úvod a vznik procesu',
+    shortCode: '#proc1',
+    description: 'Co je program, jak z něj vznikne proces, identifikace PID a rozdělení na kód a data.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy/procesy/uvod',
+    iconName: 'Layers',
+    keywords: ['proces', 'program', 'pid', 'program counter', 'střídání procesů'],
+    difficulty: 'easy',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 30,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Operační systémy 1',
+      thematicBlock: 'Běh programu (Procesy a paměť)',
+      chapter: 'Běh programu (Procesy a paměť)',
+      subchapter: '1. Úvod a vznik procesu',
+      lesson: 'Úvod a vznik procesu'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy/procesy/ProcessIntroChapter')
+  },
+  {
+    id: 'proc-adv',
+    title: 'Pokročilá témata: Plánování a paměť',
+    shortCode: '#proc-adv',
+    description: 'Plánování procesoru (FIFO, Round Robin), alokátor paměti a krokování instrukcí.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy/procesy/pokrocile',
+    iconName: 'Database',
+    keywords: ['plánování', 'round robin', 'alokace', 'paměť'],
+    difficulty: 'hard',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Operační systémy 1',
+      thematicBlock: 'Běh programu (Procesy a paměť)',
+      chapter: 'Běh programu (Procesy a paměť)',
+      subchapter: 'Pokročilá témata',
+      lesson: 'Pokročilá témata: Plánování a paměť'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy/procesy/AdvancedProcessTopicsChapter')
+  },
+
 
   // Python 1–10 (Programování 2. ročník)
   {
