@@ -542,35 +542,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       orderNumber: 99,
                       actionLabel: 'Otevřít kapitolu'
                     }
-                  ],
-                  practiceGames: [
-                    {
-                      tag: 'fat',
-                      title: 'Základy FAT tabulky',
-                      description: 'Čtení a oprava řetězců ve FAT.',
-                      icon: 'Binary',
-                      color: 'text-indigo-600',
-                      bg: 'bg-indigo-50',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/fat'
-                    },
-                    {
-                      tag: 'dfg',
-                      title: 'Defragmentace disku',
-                      description: 'Srovnej bloky a zrychli čtení.',
-                      icon: 'ArrowUpDown',
-                      color: 'text-amber-600',
-                      bg: 'bg-amber-50',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/defrag'
-                    },
-                    {
-                      tag: 'chk',
-                      title: 'Detektiv CHKDSK',
-                      description: 'Najdi ztracené a překřížené clustery.',
-                      icon: 'Search',
-                      color: 'text-purple-600',
-                      bg: 'bg-purple-50',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/chkdsk'
-                    }
                   ]
                 },
                 {
