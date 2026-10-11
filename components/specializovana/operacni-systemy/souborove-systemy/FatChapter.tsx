@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import { 
-  ArrowLeft, Grid, HardDrive, Layout, 
+import {
+  ArrowLeft, Grid, HardDrive, Layout,
   MemoryStick, FileSearch, ShieldAlert,
   FolderOpen, HardDriveDownload, MonitorPlay, Save, Database, Trash2, Eraser, Table2
 } from 'lucide-react';
-import { 
-  FsChapterShell, 
-  TheoryCard, 
-  Callout, 
+import {
+  FsChapterShell,
+  TheoryCard,
+  Callout,
   TermCard,
-  RevealQuestions, 
-  PracticeLink 
+  RevealQuestions,
+  PracticeLink
 } from './FsShared';
 import { useRouter } from 'next/navigation';
 
-export default function FatChapter({ 
+export default function FatChapter({
   onBack,
   onOpenFatGame,
   onOpenDeleteGame,
   onOpenFormatGame
-}: { 
+}: {
   onBack: () => void,
   onOpenFatGame: () => void,
   onOpenDeleteGame: () => void,
@@ -46,10 +46,10 @@ export default function FatChapter({
     >
       {activeTab === 'theory' && (
         <div className="space-y-12">
-          
+
           <TheoryCard icon={HardDrive} title="Od hardwaru k softwaru" letter="A" tone="slate">
             <p>
-              Zatím jsme se pohybovali na úrovni hardwaru. Víme, že disk je fyzicky rozdělen na <strong>sektory</strong> (typicky o velikosti 4 KB) a že tyto sektory umíme sdružit do logických <strong>oddílů</strong>. 
+              Zatím jsme se pohybovali na úrovni hardwaru. Víme, že disk je fyzicky rozdělen na <strong>sektory</strong> (typicky o velikosti 4 KB) a že tyto sektory umíme sdružit do logických <strong>oddílů</strong>.
             </p>
             <p className="mt-4">
               Kdyby ale operační systém musel hledat fotky sektor po sektoru napříč gigabajty dat, zbláznil by se. Proto musíme prázdný oddíl <strong>naformátovat</strong> = vypálit na něj logickou mřížku a vytvořit katalog. Teprve tomu říkáme <strong>Souborový systém</strong> (File System) a teprve do něj umí Windows zapisovat složky a soubory.
@@ -65,17 +65,17 @@ export default function FatChapter({
             <div className="bg-slate-50 p-6 sm:p-10 rounded-2xl border-2 border-slate-200 mt-6 mb-6">
               <div className="max-w-2xl mx-auto">
                 <h4 className="font-bold text-slate-800 uppercase text-center mb-4 text-sm tracking-widest">Mřížka Clusterů (Alokačních jednotek)</h4>
-                
+
                 <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2">
                   {[...Array(24)].map((_, i) => {
                     const isFile1 = i >= 10 && i <= 12; // 3 clusters for big file
                     const isFile2 = i >= 3 && i <= 5;   // 3 single clusters for small files
-                    
+
                     let bgClass = 'bg-white border-slate-200 text-slate-400';
                     let textTop = 'text-slate-300';
                     let textBot = 'text-slate-500';
                     let fillAmount = '0%';
-                    
+
                     if (isFile1) {
                       bgClass = 'bg-purple-100 border-purple-400 overflow-hidden relative z-10';
                       textTop = 'text-purple-600 relative z-20';
@@ -89,8 +89,8 @@ export default function FatChapter({
                     }
 
                     return (
-                      <div 
-                        key={i} 
+                      <div
+                        key={i}
                         className={`aspect-square rounded-xl flex flex-col items-center justify-center p-1 border-2 transition-transform hover:scale-110 relative ${bgClass}`}
                       >
                         {/* Výplň dat */}
@@ -104,7 +104,7 @@ export default function FatChapter({
                     );
                   })}
                 </div>
-                
+
                 {/* Legenda k souborům */}
                 <div className="mt-6 grid sm:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
@@ -116,7 +116,7 @@ export default function FatChapter({
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3 p-4 bg-emerald-50 rounded-xl border-2 border-emerald-200">
                     <div className="w-5 h-5 rounded bg-emerald-500 shrink-0 mt-0.5 opacity-60"></div>
                     <div>
@@ -133,7 +133,7 @@ export default function FatChapter({
             <div className="mt-6">
               <Callout kind="warning" title="Zlaté pravidlo clusteru (Vnitřní fragmentace)">
                 <p>
-                  Jeden soubor může na disku zabrat třeba tisíc clusterů, ale <strong>jeden cluster nikdy nemohou sdílet dva různé soubory</strong>. 
+                  Jeden soubor může na disku zabrat třeba tisíc clusterů, ale <strong>jeden cluster nikdy nemohou sdílet dva různé soubory</strong>.
                 </p>
                 <p className="mt-2 text-sm">
                   <em>Pokud uložíte textový soubor o velikosti 1 Bajt, na disku reálně zabere celé 4 Kilobajty. Zbytek clusteru nenávratně propadne. Tomu se říká vnitřní fragmentace (slack space).</em>
@@ -150,7 +150,7 @@ export default function FatChapter({
             <div className="mt-8 flex flex-col xl:flex-row gap-8">
               {/* Levá část: Adresář a FAT tabulka */}
               <div className="xl:w-[45%] flex flex-col gap-4">
-                
+
                 {/* Adresář (Hlavičky souborů) */}
                 <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col">
                   <h4 className="font-bold text-slate-800 uppercase text-xs mb-3 flex items-center gap-2">
@@ -195,35 +195,29 @@ export default function FatChapter({
 
                   {/* Názvy sloupců (Hlavička tabulky) */}
                   <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-[11px] font-black uppercase tracking-wider text-slate-700 mb-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold">1</span>
-                      <span>Číslo clusteru</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center text-[10px] font-bold">2</span>
-                      <span>Následující cluster</span>
-                    </div>
+                    <div className="pl-1">Číslo clusteru</div>
+                    <div className="pl-1">Následující cluster</div>
                   </div>
 
                   {/* Řádky tabulky */}
                   <div className="space-y-1 font-mono text-xs max-h-[460px] overflow-y-auto pr-1">
                     {[
-                      { cluster: 0, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 1, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 2, next: '3', file: 'zprava.txt', desc: '➔ ukazuje na #3' },
-                      { cluster: 3, next: 'EOF', file: 'zprava.txt', desc: 'Konec souboru' },
-                      { cluster: 4, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 5, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 6, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 7, next: '8', file: 'dovolena.jpg', desc: '➔ ukazuje na #8' },
-                      { cluster: 8, next: '14', file: 'dovolena.jpg', desc: '➔ ukazuje na #14' },
-                      { cluster: 9, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 10, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 11, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 12, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 13, next: '0', file: null, desc: 'Volno' },
-                      { cluster: 14, next: '15', file: 'dovolena.jpg', desc: '➔ ukazuje na #15' },
-                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg', desc: 'Konec souboru' },
+                      { cluster: 0, next: '0', file: null },
+                      { cluster: 1, next: '0', file: null },
+                      { cluster: 2, next: '3', file: 'zprava.txt' },
+                      { cluster: 3, next: 'EOF', file: 'zprava.txt' },
+                      { cluster: 4, next: '0', file: null },
+                      { cluster: 5, next: '0', file: null },
+                      { cluster: 6, next: '0', file: null },
+                      { cluster: 7, next: '8', file: 'dovolena.jpg' },
+                      { cluster: 8, next: '14', file: 'dovolena.jpg' },
+                      { cluster: 9, next: '0', file: null },
+                      { cluster: 10, next: '0', file: null },
+                      { cluster: 11, next: '0', file: null },
+                      { cluster: 12, next: '0', file: null },
+                      { cluster: 13, next: '0', file: null },
+                      { cluster: 14, next: '15', file: 'dovolena.jpg' },
+                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg' },
                     ].map((row) => {
                       const isSky = row.file === 'zprava.txt';
                       const isAmber = row.file === 'dovolena.jpg';
@@ -231,24 +225,22 @@ export default function FatChapter({
                       return (
                         <div
                           key={row.cluster}
-                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${
-                            isSky
+                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${isSky
                               ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
                               : isAmber
-                              ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
-                              : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
-                          }`}
+                                ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
+                                : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
+                            }`}
                         >
                           {/* 1. Sloupec: Číslo clusteru */}
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
-                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${
-                                isSky
+                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${isSky
                                   ? 'bg-sky-200 text-sky-950'
                                   : isAmber
-                                  ? 'bg-amber-200 text-amber-950'
-                                  : 'bg-slate-200/80 text-slate-600'
-                              }`}
+                                    ? 'bg-amber-200 text-amber-950'
+                                    : 'bg-slate-200/80 text-slate-600'
+                                }`}
                             >
                               #{row.cluster}
                             </span>
@@ -262,18 +254,14 @@ export default function FatChapter({
                           {/* 2. Sloupec: Následující cluster */}
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
-                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${
-                                isSky
+                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${isSky
                                   ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
                                   : isAmber
-                                  ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
-                                  : 'text-slate-400'
-                              }`}
+                                    ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
+                                    : 'text-slate-400'
+                                }`}
                             >
                               {row.next}
-                            </span>
-                            <span className="text-[10px] font-sans font-normal opacity-70 truncate">
-                              {row.desc}
                             </span>
                           </div>
                         </div>
@@ -292,15 +280,15 @@ export default function FatChapter({
               {/* Pravá část: Mřížka disku */}
               <div className="xl:w-[55%] bg-slate-50 p-6 sm:p-8 rounded-2xl border-2 border-slate-200">
                 <h4 className="font-bold text-slate-800 uppercase text-center mb-4 text-sm tracking-widest">Fyzický stav na disku</h4>
-                
+
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                   {[...Array(24)].map((_, i) => {
                     const isSky = i === 2 || i === 3;
                     const isAmber = i === 7 || i === 8 || i === 14 || i === 15;
-                    
+
                     let bgClass = 'bg-white border-slate-200 text-slate-400';
                     let textTop = 'text-slate-300';
-                    
+
                     if (isSky) {
                       bgClass = 'bg-sky-500 border-sky-600 shadow-sm';
                       textTop = 'text-sky-100';
@@ -310,17 +298,17 @@ export default function FatChapter({
                     }
 
                     return (
-                      <div 
-                        key={i} 
+                      <div
+                        key={i}
                         className={`aspect-square rounded-xl flex flex-col items-center justify-center p-1 border-2 transition-transform hover:scale-105 relative ${bgClass}`}
                       >
                         <div className={`absolute top-1 left-1.5 text-[9px] font-mono opacity-80 ${textTop}`}>#{i}</div>
                         {isSky ? (
-                           <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>zprava<br/>.txt</div>
+                          <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>zprava<br />.txt</div>
                         ) : isAmber ? (
-                           <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>dovolena<br/>.jpg</div>
+                          <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>dovolena<br />.jpg</div>
                         ) : (
-                           <div className={`text-[9px] font-bold mt-1 ${textTop}`}>Volno</div>
+                          <div className={`text-[9px] font-bold mt-1 ${textTop}`}>Volno</div>
                         )}
                       </div>
                     );
@@ -355,7 +343,7 @@ export default function FatChapter({
             </div>
           </TheoryCard>
 
-          <RevealQuestions 
+          <RevealQuestions
             questions={[
               {
                 q: "Proč má textový soubor obsahující jediné písmeno 'A' na disku reálnou velikost 4096 bajtů?",
@@ -369,36 +357,36 @@ export default function FatChapter({
                 q: "Mám zbrusu novou 64GB flashku. Chci na ni zkopírovat 8GB film. Zkopírování se ale hned přeruší s chybou. Proč?",
                 a: "Flashka je z výroby pravděpodobně naformátovaná na zastaralý souborový systém FAT32, který nedokáže pracovat se soubory většími než 4 GB. Řešením je flashku v Počítači zformátovat (přepsat) na exFAT nebo NTFS."
               }
-            ]} 
+            ]}
           />
         </div>
       )}
 
       {activeTab === 'sim' && (
         <div className="space-y-6">
-          <PracticeLink 
-            tag="SIMULACE" 
-            title="Tabulka FAT (Simulátor)" 
-            desc="Sledujte vizuálně, jak se clustery zaplňují a jak se jejich poloha zapisuje do tabulky na disku." 
-            icon={Save} 
-            tone="emerald" 
-            onClick={onOpenFatGame} 
+          <PracticeLink
+            tag="SIMULACE"
+            title="Tabulka FAT (Simulátor)"
+            desc="Sledujte vizuálně, jak se clustery zaplňují a jak se jejich poloha zapisuje do tabulky na disku."
+            icon={Save}
+            tone="emerald"
+            onClick={onOpenFatGame}
           />
-          <PracticeLink 
-            tag="HRA" 
-            title="Mazání souborů" 
-            desc="Vyzkoušejte si smazat soubor a zjistěte, proč data na disku ve skutečnosti pořád leží." 
-            icon={Trash2} 
-            tone="rose" 
-            onClick={onOpenDeleteGame} 
+          <PracticeLink
+            tag="HRA"
+            title="Mazání souborů"
+            desc="Vyzkoušejte si smazat soubor a zjistěte, proč data na disku ve skutečnosti pořád leží."
+            icon={Trash2}
+            tone="rose"
+            onClick={onOpenDeleteGame}
           />
-          <PracticeLink 
-            tag="SIMULACE" 
-            title="Rychlé vs. Pomalé formátování" 
-            desc="Podívejte se, jaký je rozdíl mezi smazáním tabulky a fyzickým přepisováním dat nulami." 
-            icon={Eraser} 
-            tone="amber" 
-            onClick={onOpenFormatGame} 
+          <PracticeLink
+            tag="SIMULACE"
+            title="Rychlé vs. Pomalé formátování"
+            desc="Podívejte se, jaký je rozdíl mezi smazáním tabulky a fyzickým přepisováním dat nulami."
+            icon={Eraser}
+            tone="amber"
+            onClick={onOpenFormatGame}
           />
         </div>
       )}
