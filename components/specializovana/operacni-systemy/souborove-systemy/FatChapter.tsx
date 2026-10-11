@@ -3,7 +3,7 @@ import {
   ArrowLeft, Grid, HardDrive, Layout,
   MemoryStick, FileSearch, ShieldAlert,
   FolderOpen, HardDriveDownload, MonitorPlay, Save, Database, Trash2, Eraser, Table2,
-  ClipboardList, CheckSquare, Square, FileText
+  ClipboardList, CheckSquare, Square, FileText, Terminal, ChevronDown
 } from 'lucide-react';
 import {
   FsChapterShell,
@@ -68,10 +68,10 @@ export default function FatChapter({
           <strong>Předmět:</strong> Operační systémy — Souborové systémy</p>
         </div>
 
-        <h2>1. Fyzický sektor, cluster a vnitřní fragmentace (čistě v GUI)</h2>
+        <h2>1. Fyzický sektor, cluster a vnitřní fragmentace</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> Spusťte <code>msinfo32</code> (Informace o systému), v nabídce sami vyhledejte sekci o pevném disku a najděte parametr udávající velikost fyzického sektoru.</div>
-          <div class="question">Jakou velikost fyzického sektoru uvádí systém u vašeho disku (v bajtech)?</div>
+          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> Spusťte Příkazový řádek nebo PowerShell jako správce a zadejte příkaz: <code>fsutil fsinfo sectorinfo C:</code> (Nápověda pro spuštění: Win → vyhledat "cmd" nebo "powershell" → kliknout pravým tlačítkem a zvolit "Spustit jako správce").</div>
+          <div class="question">Jakou fyzickou velikost sektoru (PhysicalBytesPerSector...) příkaz vypsal (v bajtech či KB)?</div>
           <div class="answer">${(answers['sector_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
@@ -84,11 +84,6 @@ export default function FatChapter({
         <div class="task">
           <div class="question">Otázka k zamyšlení: Proč soubor o velikosti 1 bajt spotřeboval na flash disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ prozrazuje a jak se tomuto jevu odborně říká? (Poznámka k NTFS: Na disku C: s NTFS ukazuje Průzkumník 0 B, protože se data vejdou přímo do záznamu tabulky MFT).</div>
           <div class="answer">${(answers['internal_frag'] || '').replace(/\n/g, '<br/>')}</div>
-        </div>
-
-        <div class="task">
-          <div class="question">Výpočet: Z kolika fyzických sektorů (např. 512 B) se skládá jeden cluster (4 096 B) vašeho disku?</div>
-          <div class="answer">${(answers['sectors_per_cluster'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <h2>2. Formátování v praxi: Rychlé vs. Úplné</h2>
@@ -556,10 +551,10 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-sm font-black">1</span>
-                Fyzický sektor, cluster a vnitřní fragmentace (čistě v GUI)
+                Fyzický sektor, cluster a vnitřní fragmentace
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Zatímco hardware pracuje se sektory, operační systém vyhrazuje místo v celých clusterech. Vyzkoušejte si tento rozdíl přímo v grafickém prostředí Windows.
+                Moderní disky fyzicky zapisují v blocích po 4 KB (Advanced Format). Zjistěte skutečnou geometrii svého disku přímo v systému a porovnejte ji s alokací souboru.
               </p>
 
               <div className="space-y-3 mb-6">
@@ -568,20 +563,37 @@ export default function FatChapter({
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_1a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['sec_1a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Spusťte Informace o systému (<kbd className="px-1.5 py-0.5 bg-white border rounded text-xs">Win + R</kbd> → <code>msinfo32</code>), v nabídce sami vyhledejte sekci věnovanou vašemu disku a najděte parametr udávající velikost fyzického sektoru.
-                  </span>
+                  <div className="flex-1">
+                    <span className={`text-sm font-medium ${checkedItems['sec_1a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
+                      Spusťte Příkazový řádek (nebo PowerShell) jako správce a zadejte příkaz: <code className="bg-slate-200/80 text-indigo-700 px-1.5 py-0.5 rounded font-bold text-xs">fsutil fsinfo sectorinfo C:</code>
+                    </span>
+
+                    {/* Rozbalovací box s doplňkovými informacemi */}
+                    <details 
+                      onClick={(e) => e.stopPropagation()} 
+                      className="mt-3 text-xs bg-amber-50/90 border border-amber-200 rounded-xl p-3 cursor-pointer select-none group"
+                    >
+                      <summary className="font-bold text-amber-800 flex items-center gap-1.5 list-none hover:text-amber-900 transition-colors">
+                        <Terminal className="w-3.5 h-3.5 text-amber-600" />
+                        <span>Jak spustit Příkazový řádek / PowerShell jako správce?</span>
+                        <ChevronDown className="w-3.5 h-3.5 ml-auto text-amber-600 group-open:rotate-180 transition-transform" />
+                      </summary>
+                      <p className="mt-2 text-amber-900 leading-relaxed font-normal">
+                        Stiskněte klávesu <kbd className="px-1.5 py-0.5 bg-white border border-amber-300 rounded shadow-xs">Win</kbd>, napište <code>cmd</code> nebo <code>powershell</code>, klikněte na nalezenou aplikaci pravým tlačítkem myši a zvolte <strong>Spustit jako správce</strong> (nebo použijte klávesovou zkratku <kbd className="px-1.5 py-0.5 bg-white border border-amber-300 rounded shadow-xs">Ctrl + Shift + Enter</kbd>).
+                      </p>
+                    </details>
+                  </div>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.1 Jakou velikost fyzického sektoru uvádí systém u vašeho disku (v bajtech)?
+                  1.1 Jakou hodnotu fyzické velikosti sektoru (PhysicalBytesPerSector...) příkaz vypsal?
                 </label>
                 <textarea 
                   value={answers['sector_size'] || ''}
                   onChange={(e) => handleAnswerChange('sector_size', e.target.value)}
-                  placeholder="Např. 512 bajtů nebo 4 096 bajtů..."
+                  placeholder="Např. PhysicalBytesPerSectorForAtomicity: 4096 (což odpovídá 4 KB)..."
                   className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
@@ -619,18 +631,6 @@ export default function FatChapter({
                   onChange={(e) => handleAnswerChange('internal_frag', e.target.value)}
                   placeholder="Vysvětlete pojem alokační jednotka / cluster a vnitřní fragmentace (slack space)..."
                   className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.4 Výpočet: Z kolika fyzických sektorů (např. 512 B z prvního úkolu) se skládá jeden cluster (4 096 B) vašeho disku?
-                </label>
-                <textarea 
-                  value={answers['sectors_per_cluster'] || ''}
-                  onChange={(e) => handleAnswerChange('sectors_per_cluster', e.target.value)}
-                  placeholder="Uveďte výpočet: např. 4096 / 512 = ..."
-                  className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
             </div>
