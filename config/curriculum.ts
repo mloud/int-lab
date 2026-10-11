@@ -243,6 +243,16 @@ export const CURRICULUM: Chapter[] = [
     parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
   },
   {
+    id: 'proc-mem',
+    title: 'Procesy a paměť',
+    path: '/specializovana/operacni-systemy/procesy',
+    icon: Server,
+    description: 'Vznik procesu, identifikace PID a střídání procesů na CPU.',
+    keywords: ['procesy', 'vlákna', 'task manager', 'správce úloh', 'pid'],
+    category: 'specializovana',
+    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+  },
+  {
     id: 'os-hw',
     title: 'Hardware a OS',
     path: '/specializovana/operacni-systemy/hardware',
