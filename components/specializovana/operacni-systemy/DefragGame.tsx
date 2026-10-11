@@ -124,7 +124,6 @@ export default function DefragGame({ onBack }: DefragGameProps) {
   // Spuštění simulace čtení
   const startReadingSimulation = () => {
     if (isPlaying) {
-      // Zastavení
       if (timerRef.current) clearTimeout(timerRef.current);
       setIsPlaying(false);
       setMechPhase('idle');
@@ -150,6 +149,19 @@ export default function DefragGame({ onBack }: DefragGameProps) {
     let jumps = 0;
     let waits = 0;
 
+    // Pomocná funkce pro výpočet rotace dopředu tak, aby zadaný sektor dorazil přesně na pozici 12 hodin (pod hlavu)
+    const getAngleForSector = (angleIndex: number, fromAngle: number): number => {
+      // Úhel cílového sektoru na pozici 12 hodin je - (angleIndex * 45) modulo 360
+      const targetRemainder = ((- (angleIndex * 45) % 360) - 360) % 360; // vždy v rozsahu -359 až 0
+      const currentRemainder = ((fromAngle % 360) - 360) % 360;
+      
+      let delta = targetRemainder - currentRemainder;
+      if (delta >= 0) {
+        delta -= 360; // vždy rotujeme plynule dopředu (ve stejném směru)
+      }
+      return fromAngle + delta;
+    };
+
     const processNextBlock = () => {
       if (blockIndex >= fileBlocks.length) {
         setIsPlaying(false);
@@ -157,8 +169,8 @@ export default function DefragGame({ onBack }: DefragGameProps) {
         setCurrentReadingId(null);
         setStatusMessage(
           mode === 'fragmented'
-            ? '❌ Dokončeno! Čtení bylo trhané a pomalé – hlava musela neustále přeskakovat a plotna čekat na dotočení.'
-            : '✅ Dokončeno! Bleskové plynulé čtení – žádné přeskakování hlavy ani zbytečné čekání!'
+            ? '❌ Dokončeno! Čtení bylo trhané a pomalé – hlava musela 3× mechanicky přeskočit a plotna se opakovaně dotáčela.'
+            : '✅ Dokončeno! Bleskové plynulé čtení – žádné přeskakování hlavy, sektory 1, 2, 3, 4 byly načteny za sebou na jediné plynulé otočení!'
         );
         return;
       }
@@ -166,84 +178,77 @@ export default function DefragGame({ onBack }: DefragGameProps) {
       const targetBlock = fileBlocks[blockIndex];
       const needsTrackChange = currentArmTrack !== targetBlock.track;
 
-      // KROK 1: PŘESKOK HLAVY (SEEK)
-      if (needsTrackChange) {
-        jumps++;
-        setHeadJumpsCount(jumps);
-        setMechPhase('seeking');
-        currentArmTrack = targetBlock.track;
-        setActiveTrack(currentArmTrack);
+      if (mode === 'defragmented') {
+        // === DEFRAGMENTOVANÝ REŽIM: PLYNULÉ SEKVENČNÍ ČTENÍ ===
+        // Všechny bloky leží na Stopě 0. Hlava se nastaví jednou a plotna plynule rotuje.
+        if (currentArmTrack !== 0) {
+          currentArmTrack = 0;
+          setActiveTrack(0);
+        }
+
+        // Plotna se plynule natočí k cílovému sektoru
+        currentAngle = getAngleForSector(targetBlock.angleIndex, currentAngle);
+        setPlatterAngle(currentAngle);
+        setMechPhase('reading');
+        setCurrentReadingId(targetBlock.id);
+        setReadSectorIds((prev) => [...prev, targetBlock.id]);
         setStatusMessage(
-          `⚡ 1. PŘESKOK HLAVY (Seek): Raménko mechanicky přeskakuje na ${currentArmTrack === 0 ? 'Vnější stopu 0' : 'Vnitřní stopu 1'}!`
+          `⚡ Plynulé čtení: Sektor #${targetBlock.id} (Část ${targetBlock.order}/4) právě prochází pod hlavou!`
         );
 
-        timerRef.current = setTimeout(() => {
-          // KROK 2: ČEKÁNÍ NA SEKTOR POD HLAVOU (DOTOČENÍ PLOTNY)
-          waits++;
-          setWaitingCount(waits);
-          setMechPhase('rotating');
-          setStatusMessage(
-            `🔄 2. ČEKÁNÍ NA SEKTOR: Hlava čeká na stopě, plotna se točí a hledá sektor #${targetBlock.id}...`
-          );
+        blockIndex++;
+        // Plynulý rychlý krok pro navazující čtení
+        timerRef.current = setTimeout(processNextBlock, 600);
 
-          // Rotace plotny k cílovému sektoru
-          // Cílový sektor má nativní úhel (targetBlock.angleIndex * 45 - 90)
-          // Aby dorazil pod hlavu (která je nahoře na -90°):
-          const targetBase = (360 - ((targetBlock.angleIndex * 45) % 360)) % 360;
-          const currentBase = ((currentAngle % 360) + 360) % 360;
-          let diff = (targetBase - currentBase + 360) % 360;
-          if (diff === 0) diff = 360; // nutné otočení
-          currentAngle += diff;
-          setPlatterAngle(currentAngle);
+      } else {
+        // === FRAGMENTOVANÝ REŽIM: TRHANÉ ČTENÍ S PŘESKAKOVÁNÍM HLAVY ===
+        if (needsTrackChange) {
+          // 1. FÁZE: Přeskok raménka mezi stopami
+          jumps++;
+          setHeadJumpsCount(jumps);
+          setMechPhase('seeking');
+          currentArmTrack = targetBlock.track;
+          setActiveTrack(currentArmTrack);
+          setStatusMessage(
+            `⚡ 1. PŘESKOK HLAVY (Seek): Raménko mechanicky přeskakuje na ${currentArmTrack === 0 ? 'Vnější stopu 0' : 'Vnitřní stopu 1'}!`
+          );
 
           timerRef.current = setTimeout(() => {
-            // KROK 3: PŘEČTENÍ SEKTORU
-            setMechPhase('reading');
-            setCurrentReadingId(targetBlock.id);
-            setReadSectorIds((prev) => [...prev, targetBlock.id]);
+            // 2. FÁZE: Čekání na dotočení sektoru pod hlavu
+            waits++;
+            setWaitingCount(waits);
+            setMechPhase('rotating');
             setStatusMessage(
-              `📖 3. PŘEČTENÍ: Sektor #${targetBlock.id} (Část ${targetBlock.order}/4) byl právě načten!`
+              `🔄 2. ČEKÁNÍ NA SEKTOR: Hlava čeká nad stopou, plotna se točí a hledá sektor #${targetBlock.id}...`
             );
 
-            blockIndex++;
-            timerRef.current = setTimeout(processNextBlock, 700);
-          }, 800);
-        }, 800);
-      } else {
-        // Hlava už je na správné stopě!
-        // Zkontrolujeme, zda sektor bezprostředně navazuje (jako v defragmentovaném stavu)
-        const isImmediateNext = blockIndex > 0 && 
-          targetBlock.angleIndex === (fileBlocks[blockIndex - 1].angleIndex + 1) % 8;
+            currentAngle = getAngleForSector(targetBlock.angleIndex, currentAngle);
+            setPlatterAngle(currentAngle);
 
-        if (isImmediateNext) {
-          // Plynulé navazující čtení
-          setMechPhase('reading');
-          setStatusMessage(
-            `⚡ Plynulé čtení bez čekání: Sektor #${targetBlock.id} (Část ${targetBlock.order}/4) navazuje přímo za předchozím!`
-          );
+            timerRef.current = setTimeout(() => {
+              // 3. FÁZE: Načtení dat
+              setMechPhase('reading');
+              setCurrentReadingId(targetBlock.id);
+              setReadSectorIds((prev) => [...prev, targetBlock.id]);
+              setStatusMessage(
+                `📖 3. PŘEČTENÍ: Sektor #${targetBlock.id} (Část ${targetBlock.order}/4) byl načten!`
+              );
 
-          // Plotna se plynule posune o 1 krok (45°)
-          currentAngle += 45;
-          setPlatterAngle(currentAngle);
-          setCurrentReadingId(targetBlock.id);
-          setReadSectorIds((prev) => [...prev, targetBlock.id]);
+              blockIndex++;
+              timerRef.current = setTimeout(processNextBlock, 750);
+            }, 750);
+          }, 750);
 
-          blockIndex++;
-          timerRef.current = setTimeout(processNextBlock, 500);
         } else {
-          // Hlava je na stopě, ale sektor není hned pod ní -> dotočení
+          // Hlava je na správné stopě, ale sektor není hned pod ní -> plotna se musí dotočit
           waits++;
           setWaitingCount(waits);
           setMechPhase('rotating');
           setStatusMessage(
-            `🔄 Čekání na dotočení: Plotna se točí k sektoru #${targetBlock.id}...`
+            `🔄 Čekání na dotočení sektoru #${targetBlock.id} pod hlavu...`
           );
 
-          const targetBase = (360 - ((targetBlock.angleIndex * 45) % 360)) % 360;
-          const currentBase = ((currentAngle % 360) + 360) % 360;
-          let diff = (targetBase - currentBase + 360) % 360;
-          if (diff === 0) diff = 360;
-          currentAngle += diff;
+          currentAngle = getAngleForSector(targetBlock.angleIndex, currentAngle);
           setPlatterAngle(currentAngle);
 
           timerRef.current = setTimeout(() => {
@@ -255,8 +260,8 @@ export default function DefragGame({ onBack }: DefragGameProps) {
             );
 
             blockIndex++;
-            timerRef.current = setTimeout(processNextBlock, 700);
-          }, 700);
+            timerRef.current = setTimeout(processNextBlock, 750);
+          }, 750);
         }
       }
     };
