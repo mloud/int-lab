@@ -149,54 +149,148 @@ export default function FatChapter({
 
             <div className="mt-8 flex flex-col xl:flex-row gap-8">
               {/* Levá část: Adresář a FAT tabulka */}
-              <div className="xl:w-1/3 flex flex-col gap-4">
+              <div className="xl:w-[45%] flex flex-col gap-4">
                 
                 {/* Adresář (Hlavičky souborů) */}
                 <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col">
-                  <h4 className="font-bold text-slate-800 uppercase text-xs mb-3 flex items-center gap-2"><FolderOpen className="w-4 h-4 text-slate-500" /> Adresář (Seznam)</h4>
-                  <div className="text-xs w-full text-left rounded bg-slate-50 border border-slate-100 p-2">
-                    <div className="flex justify-between border-b pb-1 mb-1 font-bold text-slate-600"><span>Název souboru</span><span>Start cluster</span></div>
-                    <div className="flex justify-between text-sky-700 py-1"><span>zprava.txt</span><span className="font-mono font-bold">2</span></div>
-                    <div className="flex justify-between text-amber-700 py-1"><span>dovolena.jpg</span><span className="font-mono font-bold">7</span></div>
+                  <h4 className="font-bold text-slate-800 uppercase text-xs mb-3 flex items-center gap-2">
+                    <FolderOpen className="w-4 h-4 text-slate-500" /> Adresář (Seznam souborů)
+                  </h4>
+                  <div className="text-xs w-full text-left rounded-xl bg-slate-50 border border-slate-200 p-2.5">
+                    <div className="grid grid-cols-2 pb-1.5 mb-1.5 border-b border-slate-200 font-bold uppercase text-[10px] tracking-wider text-slate-500">
+                      <span>Název souboru</span>
+                      <span className="text-right">Počáteční cluster</span>
+                    </div>
+                    <div className="grid grid-cols-2 items-center text-sky-800 py-1 font-medium">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+                        zprava.txt
+                      </span>
+                      <span className="font-mono font-bold text-right text-sky-700 bg-sky-100/80 px-2 py-0.5 rounded ml-auto">
+                        Cluster #2
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 items-center text-amber-800 py-1 font-medium border-t border-slate-100">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                        dovolena.jpg
+                      </span>
+                      <span className="font-mono font-bold text-right text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded ml-auto">
+                        Cluster #7
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Samotná FAT tabulka */}
                 <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-sm flex-1 flex flex-col">
-                  <h4 className="font-bold text-slate-800 uppercase text-xs mb-3 flex items-center gap-2"><Table2 className="w-4 h-4 text-slate-500" /> FAT Tabulka (Řetězení)</h4>
-                  <div className="text-xs w-full rounded grid grid-cols-2 gap-1 text-center font-mono">
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[0] 0</div>
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[1] 0</div>
-                    
-                    <div className="bg-sky-50 text-sky-700 border border-sky-200 rounded py-1 font-bold">[2] 3</div>
-                    <div className="bg-sky-50 text-sky-700 border border-sky-200 rounded py-1 font-bold">[3] EOF</div>
-                    
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[4] 0</div>
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[5] 0</div>
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[6] 0</div>
-                    
-                    <div className="bg-amber-50 text-amber-700 border border-amber-200 rounded py-1 font-bold">[7] 8</div>
-                    <div className="bg-amber-50 text-amber-700 border border-amber-200 rounded py-1 font-bold">[8] 14</div>
-                    
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[9] 0</div>
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[10] 0</div>
-                    
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[11] 0</div>
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[12] 0</div>
-                    
-                    <div className="bg-slate-50 border border-slate-100 rounded py-1 text-slate-400">[13] 0</div>
-                    
-                    <div className="bg-amber-50 text-amber-700 border border-amber-200 rounded py-1 font-bold">[14] 15</div>
-                    <div className="bg-amber-50 text-amber-700 border border-amber-200 rounded py-1 font-bold">[15] EOF</div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-bold text-slate-800 uppercase text-xs flex items-center gap-2">
+                      <Table2 className="w-4 h-4 text-slate-500" /> FAT Tabulka (Řetězení clusterů)
+                    </h4>
+                    <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">
+                      Index ➔ Odkaz
+                    </span>
                   </div>
-                  <div className="mt-4 p-3 bg-slate-50 text-[11px] text-slate-600 border border-slate-200 rounded-lg leading-relaxed">
-                    <strong>EOF (End of File)</strong> znamená, že soubor v tomto clusteru končí. Číslo <strong>0</strong> znamená volný cluster. Všimněte si, jak je <em>dovolena.jpg</em> roztroušená.
+
+                  {/* Názvy sloupců (Hlavička tabulky) */}
+                  <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-[11px] font-black uppercase tracking-wider text-slate-700 mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-4 h-4 rounded bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold">1</span>
+                      <span>Číslo clusteru</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-4 h-4 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center text-[10px] font-bold">2</span>
+                      <span>Následující cluster</span>
+                    </div>
+                  </div>
+
+                  {/* Řádky tabulky */}
+                  <div className="space-y-1 font-mono text-xs max-h-[460px] overflow-y-auto pr-1">
+                    {[
+                      { cluster: 0, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 1, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 2, next: '3', file: 'zprava.txt', desc: '➔ ukazuje na #3' },
+                      { cluster: 3, next: 'EOF', file: 'zprava.txt', desc: 'Konec souboru' },
+                      { cluster: 4, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 5, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 6, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 7, next: '8', file: 'dovolena.jpg', desc: '➔ ukazuje na #8' },
+                      { cluster: 8, next: '14', file: 'dovolena.jpg', desc: '➔ ukazuje na #14' },
+                      { cluster: 9, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 10, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 11, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 12, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 13, next: '0', file: null, desc: 'Volno' },
+                      { cluster: 14, next: '15', file: 'dovolena.jpg', desc: '➔ ukazuje na #15' },
+                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg', desc: 'Konec souboru' },
+                    ].map((row) => {
+                      const isSky = row.file === 'zprava.txt';
+                      const isAmber = row.file === 'dovolena.jpg';
+
+                      return (
+                        <div
+                          key={row.cluster}
+                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${
+                            isSky
+                              ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
+                              : isAmber
+                              ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
+                              : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
+                          }`}
+                        >
+                          {/* 1. Sloupec: Číslo clusteru */}
+                          <div className="flex items-center gap-1.5 pl-1">
+                            <span
+                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${
+                                isSky
+                                  ? 'bg-sky-200 text-sky-950'
+                                  : isAmber
+                                  ? 'bg-amber-200 text-amber-950'
+                                  : 'bg-slate-200/80 text-slate-600'
+                              }`}
+                            >
+                              #{row.cluster}
+                            </span>
+                            {row.file && (
+                              <span className="text-[10px] font-sans font-medium opacity-75 truncate">
+                                ({row.file})
+                              </span>
+                            )}
+                          </div>
+
+                          {/* 2. Sloupec: Následující cluster */}
+                          <div className="flex items-center gap-1.5 pl-1">
+                            <span
+                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${
+                                isSky
+                                  ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
+                                  : isAmber
+                                  ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
+                                  : 'text-slate-400'
+                              }`}
+                            >
+                              {row.next}
+                            </span>
+                            <span className="text-[10px] font-sans font-normal opacity-70 truncate">
+                              {row.desc}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-4 p-3 bg-slate-50 text-[11px] text-slate-600 border border-slate-200 rounded-xl leading-relaxed">
+                    <strong>Jak číst FAT tabulku:</strong><br />
+                    • <strong>1. sloupec (Číslo clusteru):</strong> Fyzická adresa bloku na disku.<br />
+                    • <strong>2. sloupec (Následující cluster):</strong> Kam má systém skočit dál. Číslo <strong>0</strong> = volný cluster, <strong>číslo</strong> = odkaz na další cluster, <strong>EOF</strong> (End of File) = konec souboru.
                   </div>
                 </div>
               </div>
 
               {/* Pravá část: Mřížka disku */}
-              <div className="xl:w-2/3 bg-slate-50 p-6 sm:p-8 rounded-2xl border-2 border-slate-200">
+              <div className="xl:w-[55%] bg-slate-50 p-6 sm:p-8 rounded-2xl border-2 border-slate-200">
                 <h4 className="font-bold text-slate-800 uppercase text-center mb-4 text-sm tracking-widest">Fyzický stav na disku</h4>
                 
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
