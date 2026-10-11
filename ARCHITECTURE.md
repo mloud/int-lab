@@ -22,7 +22,9 @@ Naším cílem je **postavit robustní learningový portál pro základní a st�
 - `/doc` - Dokumentace k projektu
 
 ## 🖨️ Pracovní listy a testy k tisku
-Novou součástí výukového portálu jsou materiály určené primárně pro fyzický tisk (testy, pracovní listy):
+Novou součástí výukového portálu jsou materiály určené pro praktickou výuku a tisk (testy, pracovní listy):
+- **Pracovní listy (Worksheets):** Jsou pro žáky **přímo přístupné bez PINu**. Slouží jako interaktivní průvodce laboratorní prací (uložení stavu v `useLocalStorage`, export do Wordu `.doc` a tisk).
+- **Hodnocené testy (Tests):** Vyžadují PIN pro studenty (odemčení zadání) a PIN pro učitele (zobrazení vzorového řešení).
 - Architektura se spoléhá na CSS media query `@media print`, která skryje postranní menu a všechny digitální prvky (tlačítka pro kontrolu, navigaci).
 - Dokumenty (např. `OsSummaryWorksheet.tsx`) se formátují do velikosti A4 (`min-h-[297mm] max-w-[210mm]`).
 - Pro žáky jsou vytvořeny pomocné vizuální komponenty, jako např. `Lines` pro psaní textu a `DrawBox` pro náčrty a schémata.

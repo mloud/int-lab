@@ -427,7 +427,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 },
                 {
                   id: 'os-history',
-                  title: 'Vývoj a distribuce',
+                  title: 'Evoluce OS',
                   description: 'Historie operačních systémů, přehled distribucí a rodiny OS.',
                   tag: 'osh',
                   icon: 'Clock',
