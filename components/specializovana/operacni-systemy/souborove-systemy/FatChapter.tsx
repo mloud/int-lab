@@ -70,19 +70,19 @@ export default function FatChapter({
 
         <h2>1. Fyzický sektor, cluster a vnitřní fragmentace (čistě v GUI)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> <strong>Krok 1A:</strong> Stiskněte Win + R, zadejte <code>msinfo32</code> (Informace o systému) a spusťte jej. V otevřeném okně sami vyhledejte údaje o svém pevném disku a najděte parametr udávající velikost fyzického sektoru.</div>
-          <div class="question">Jakou velikost fyzického sektoru má váš disk (v bajtech)?</div>
+          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> Spusťte <code>msinfo32</code> (Informace o systému), v nabídce sami vyhledejte sekci o pevném disku a najděte parametr udávající velikost fyzického sektoru.</div>
+          <div class="question">Jakou velikost fyzického sektoru uvádí systém u vašeho disku (v bajtech)?</div>
           <div class="answer">${(answers['sector_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1b'] ? 'X' : ' '} ]</span> <strong>Krok 1B:</strong> V Poznámkovém bloku vytvořte soubor "znak.txt" obsahující jediné písmeno A. Uložte jej a v Průzkumníku otevřete jeho Vlastnosti.</div>
+          <div class="step"><span class="${checkedItems['sec_1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1b'] ? 'X' : ' '} ]</span> V Poznámkovém bloku vytvořte na <strong>flash disku</strong> (FAT32/exFAT) soubor <code>znak.txt</code> s jediným písmenem <code>A</code> a v Průzkumníku otevřete jeho Vlastnosti.</div>
           <div class="question">Jaké dvě hodnoty velikosti Průzkumník ukazuje? (Velikost vs. Velikost na disku)</div>
           <div class="answer">${(answers['file_size_compare'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="question">Otázka k zamyšlení: Proč soubor o reálné velikosti 1 bajt spotřeboval na disku celých 4 096 bajtů? Kam se zbytek poděl a jak se tomuto jevu odborně říká?</div>
+          <div class="question">Otázka k zamyšlení: Proč soubor o velikosti 1 bajt spotřeboval na flash disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ prozrazuje a jak se tomuto jevu odborně říká? (Poznámka k NTFS: Na disku C: s NTFS ukazuje Průzkumník 0 B, protože se data vejdou přímo do záznamu tabulky MFT).</div>
           <div class="answer">${(answers['internal_frag'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
@@ -93,21 +93,21 @@ export default function FatChapter({
 
         <h2>2. Formátování v praxi: Rychlé vs. Úplné</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2a'] ? 'X' : ' '} ]</span> <strong>Krok 2A (Rychlé formátování):</strong> Nahrajte na disk libovolný soubor a proveďte <em>Rychlé formátování</em>. Ověřte v Průzkumníku, že data z disku zmizela.</div>
-          <div class="question">Co se při Rychlém formátování vlastně pod kapotou stalo? (Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech?)</div>
+          <div class="step"><span class="${checkedItems['fmt_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2a'] ? 'X' : ' '} ]</span> Nahrajte na flash disk libovolný soubor, proveďte <em>Rychlé formátování</em> a ověřte v Průzkumníku, že data zmizela.</div>
+          <div class="question">Co se při Rychlém formátování vlastně pod kapotou stalo? (Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech disku?)</div>
           <div class="answer">${(answers['quick_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2b'] ? 'X' : ' '} ]</span> <strong>Krok 2B (Pomalé / úplné formátování):</strong> Na disk znovu nahrajte soubor. Spusťte formátování, tentokrát <em>zrušte zaškrtnutí</em> u položky Rychlé formátování. Ověřte, že data opět zmizela.</div>
+          <div class="step"><span class="${checkedItems['fmt_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2b'] ? 'X' : ' '} ]</span> Na flash disk znovu nahrajte soubor. Spusťte formátování, tentokrát <em>zrušte zaškrtnutí</em> u položky Rychlé formátování (úplné formátování) a ověřte, že data opět zmizela.</div>
           <div class="question">Co se stalo pod kapotou v tomto případě a v čem je zásadní rozdíl oproti rychlému? (Co všechno systém resetoval tentokrát?)</div>
           <div class="answer">${(answers['full_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
-        <h2>3. Limity FAT32 vs. exFAT (Bariéra 4 GB)</h2>
+        <h2>3. Limity FAT32 vs. exFAT (Bariéra 4 GB v praxi)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['lim_3a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3a'] ? 'X' : ' '} ]</span> <strong>Krok 3A:</strong> Naformátujte flash disk na systém souborů FAT32. Ověřte, že je na disku dostatek volného místa (více než 5 GB).</div>
-          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> <strong>Krok 3B:</strong> Ze sdíleného disku se pokuste zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
+          <div class="step"><span class="${checkedItems['lim_3a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3a'] ? 'X' : ' '} ]</span> Naformátujte flash disk na systém souborů FAT32 (rychlým formátováním) a ověřte dostatek volného místa.</div>
+          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> Ze sdíleného síťového disku (nebo od vyučujícího) se pokuste na flash disk zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
           <div class="question">Jaká přesná chybová hláška se zobrazila, ačkoliv je na flashce dostatek volného místa?</div>
           <div class="answer">${(answers['fat32_error_msg'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
@@ -118,8 +118,8 @@ export default function FatChapter({
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['lim_3c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3c'] ? 'X' : ' '} ]</span> <strong>Krok 3C:</strong> Přeformátujte flash disk na exFAT a zopakujte kopírování téhož velkého souboru.</div>
-          <div class="question">Prošel zápis úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a systémovému NTFS při použití na přenosných médiích?</div>
+          <div class="step"><span class="${checkedItems['lim_3c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3c'] ? 'X' : ' '} ]</span> Přeformátujte flash disk na exFAT a zopakujte kopírování téhož velkého souboru.</div>
+          <div class="question">Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a systémovému NTFS při použití na přenosných paměťových médiích?</div>
           <div class="answer">${(answers['exfat_benefits'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
       </body>
@@ -569,14 +569,14 @@ export default function FatChapter({
                 >
                   {checkedItems['sec_1a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 1A (Fyzický sektor):</strong> Stiskněte <kbd className="px-1.5 py-0.5 bg-white border rounded text-xs">Win + R</kbd>, napište <code>msinfo32</code> a spusťte jej. V otevřeném okně <em>Informace o systému</em> sami v nabídce vyhledejte sekci věnovanou vašemu disku a najděte parametr udávající velikost fyzického sektoru.
+                    Spusťte Informace o systému (<kbd className="px-1.5 py-0.5 bg-white border rounded text-xs">Win + R</kbd> → <code>msinfo32</code>), v nabídce sami vyhledejte sekci věnovanou vašemu disku a najděte parametr udávající velikost fyzického sektoru.
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.1 Jakou velikost fyzického sektoru uvádí systém u vašeho pevného disku (v bajtech)?
+                  1.1 Jakou velikost fyzického sektoru uvádí systém u vašeho disku (v bajtech)?
                 </label>
                 <textarea 
                   value={answers['sector_size'] || ''}
@@ -593,7 +593,7 @@ export default function FatChapter({
                 >
                   {checkedItems['sec_1b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 1B (Cluster a alokační jednotka):</strong> Otevřete Poznámkový blok, napište do něj jediné písmeno <code>A</code> a soubor uložte na disk jako <code>znak.txt</code>. V Průzkumníku souborů klikněte na soubor pravým tlačítkem → <strong>Vlastnosti</strong>.
+                    V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code> a uložte jej na <strong>flash disk</strong> (FAT32/exFAT) jako <code>znak.txt</code>. V Průzkumníku souborů otevřete jeho <strong>Vlastnosti</strong>.
                   </span>
                 </div>
               </div>
@@ -612,7 +612,7 @@ export default function FatChapter({
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.3 Otázka k zamyšlení: Proč soubor o reálné velikosti 1 bajt spotřeboval na disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ u malého souboru prozrazuje a jak se tomuto jevu odborně říká?
+                  1.3 Otázka k zamyšlení: Proč soubor o reálné velikosti 1 bajt spotřeboval na flash disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ u malého souboru prozrazuje a jak se tomuto jevu odborně říká? (Poznámka k NTFS: Na disku C: s NTFS ukáže Průzkumník 0 B, protože NTFS ukládá miniaturní soubory přímo do MFT záznamu jako rezidentní data bez přidělení samostatného clusteru).
                 </label>
                 <textarea 
                   value={answers['internal_frag'] || ''}
@@ -624,7 +624,7 @@ export default function FatChapter({
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.4 Výpočet: Z kolika fyzických sektorů (např. 512 B z kroku 1A) se skládá jeden cluster (4 096 B z kroku 1B) vašeho disku?
+                  1.4 Výpočet: Z kolika fyzických sektorů (např. 512 B z prvního úkolu) se skládá jeden cluster (4 096 B) vašeho disku?
                 </label>
                 <textarea 
                   value={answers['sectors_per_cluster'] || ''}
@@ -654,7 +654,7 @@ export default function FatChapter({
                 >
                   {checkedItems['fmt_2a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 2A (Rychlé formátování):</strong> Nahrajte na flash disk libovolný soubor. V Průzkumníku klikněte pravým tlačítkem na disk → <strong>Formátovat...</strong>, ponechte zaškrtnuté <em>Rychlé formátování</em> a potvrďte. V Průzkumníku ověřte, že data z disku zmizela.
+                    Nahrajte na flash disk libovolný soubor. V Průzkumníku klikněte pravým tlačítkem na disk → <strong>Formátovat...</strong>, ponechte zaškrtnuté <em>Rychlé formátování</em> a potvrďte. V Průzkumníku ověřte, že data z disku zmizela.
                   </span>
                 </div>
               </div>
@@ -678,7 +678,7 @@ export default function FatChapter({
                 >
                   {checkedItems['fmt_2b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 2B (Pomalé / úplné formátování):</strong> Na disk znovu nahrajte nějaký soubor. Otevřete okno formátování, tentokrát <strong>zrušte zaškrtnutí</strong> u položky <em>Rychlé formátování</em> a disk naformátujte. Po dokončení ověřte, že data opět zmizela.
+                    Na flash disk znovu nahrajte soubor. Otevřete okno formátování, tentokrát <strong>zrušte zaškrtnutí</strong> u položky <em>Rychlé formátování</em> (úplné formátování) a disk naformátujte. Po dokončení ověřte, že data opět zmizela.
                   </span>
                 </div>
               </div>
@@ -715,7 +715,7 @@ export default function FatChapter({
                 >
                   {checkedItems['lim_3a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 3A (Formátování na FAT32):</strong> V Průzkumníku naformátujte flash disk na systém souborů <strong>FAT32</strong> (použijte rychlé formátování). Zkontrolujte, že má disk dostatek volného místa (např. 16 GB nebo 32 GB).
+                    V Průzkumníku naformátujte flash disk na systém souborů <strong>FAT32</strong> (použijte rychlé formátování) a zkontrolujte, že má disk dostatek volného místa.
                   </span>
                 </div>
                 <div 
@@ -724,7 +724,7 @@ export default function FatChapter({
                 >
                   {checkedItems['lim_3b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 3B (Kopírování souboru &gt; 4 GB):</strong> Ze sdíleného síťového disku (nebo od vyučujícího) zkopírujte soubor o velikosti cca 4,3 GB (např. ISO instalační obraz Windows/Linuxu nebo video) na flash disk formátovaný na FAT32.
+                    Ze sdíleného síťového disku (nebo od vyučujícího) se pokuste zkopírovat soubor o velikosti cca 4,3 GB (např. ISO instalační obraz nebo video) na flash disk formátovaný na FAT32.
                   </span>
                 </div>
               </div>
@@ -760,7 +760,7 @@ export default function FatChapter({
                 >
                   {checkedItems['lim_3c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3c'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 3C (Záchrana pomocí exFAT):</strong> Přeformátujte flash disk na systém souborů <strong>exFAT</strong> a zopakujte kopírování téhož velkého souboru (&gt; 4 GB).
+                    Přeformátujte flash disk na systém souborů <strong>exFAT</strong> a zopakujte kopírování téhož velkého souboru (&gt; 4 GB).
                   </span>
                 </div>
               </div>
