@@ -68,48 +68,47 @@ export default function FatChapter({
           <strong>Předmět:</strong> Operační systémy — Souborové systémy</p>
         </div>
 
-        <h2>1. Fyzický sektor, cluster a vnitřní fragmentace</h2>
+        <h2>1. Velikost sektoru a clusteru</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> Spusťte Příkazový řádek nebo PowerShell jako správce a zadejte příkaz: <code>fsutil fsinfo sectorinfo C:</code> (Nápověda pro spuštění: Win → vyhledat "cmd" nebo "powershell" → kliknout pravým tlačítkem a zvolit "Spustit jako správce").</div>
-          <div class="question">Jakou fyzickou velikost sektoru (PhysicalBytesPerSector...) příkaz vypsal (v bajtech či KB)?</div>
+          <div class="step"><span class="${checkedItems['sec_1a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1a'] ? 'X' : ' '} ]</span> Spusťte Příkazový řádek nebo PowerShell jako správce a zadejte příkazy: <code>fsutil fsinfo sectorinfo C:</code> a <code>fsutil fsinfo ntfsinfo C:</code></div>
+          <div class="question">Jakou hodnotu fyzické velikosti sektoru (PhysicalBytesPerSector...) systém uvádí?</div>
           <div class="answer">${(answers['sector_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
-
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1b'] ? 'X' : ' '} ]</span> V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code>, uložte jej (na disk C: nebo na flash disk) jako <code>znak.txt</code> a v Průzkumníku otevřete jeho Vlastnosti.</div>
-          <div class="question">Jaké dvě hodnoty velikosti Průzkumník ukazuje? (Velikost vs. Velikost na disku)</div>
-          <div class="answer">${(answers['file_size_compare'] || '').replace(/\n/g, '<br/>')}</div>
+          <div class="question">Jakou velikost alokační jednotky / clusteru (Bytes Per Cluster) systém u disku uvádí?</div>
+          <div class="answer">${(answers['cluster_size'] || '').replace(/\n/g, '<br/>')}</div>
+        </div>
+
+        <h2>2. Test 1B souboru a formátování oddílu (FAT32 vs. NTFS)</h2>
+        <div class="task">
+          <div class="step"><span class="${checkedItems['sec_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_2a'] ? 'X' : ' '} ]</span> Naformátujte oddíl na systém souborů FAT32, uložte na něj soubor <code>znak.txt</code> o velikosti 1 bajt (písmeno A) a otevřete jeho Vlastnosti.</div>
+          <div class="question">Kolik místa na disku (Velikost na disku) zabral soubor v systému FAT32?</div>
+          <div class="answer">${(answers['fat32_1b_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="question">Pomocí libovolného zdroje zjistěte a vysvětlete: Proč je hodnota „Velikost na disku“ u tohoto souboru buď 0 B, nebo 4 KB (4 096 B)? Na jakém souborovém systému to závisí (NTFS vs. FAT32/exFAT)?</div>
-          <div class="answer">${(answers['internal_frag'] || '').replace(/\n/g, '<br/>')}</div>
-        </div>
-
-        <h2>2. Formátování v praxi: Rychlé vs. Úplné</h2>
-        <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2a'] ? 'X' : ' '} ]</span> Nahrajte na flash disk libovolný soubor, proveďte <em>Rychlé formátování</em> a ověřte v Průzkumníku, že data zmizela.</div>
-          <div class="question">Co se při Rychlém formátování vlastně pod kapotou stalo? (Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech disku?)</div>
-          <div class="answer">${(answers['quick_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
+          <div class="step"><span class="${checkedItems['sec_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_2b'] ? 'X' : ' '} ]</span> Přeformátujte tentýž oddíl na systém souborů NTFS, uložte na něj znovu soubor <code>znak.txt</code> o velikosti 1 bajt a otevřete jeho Vlastnosti.</div>
+          <div class="question">Kolik místa na disku (Velikost na disku) zabral soubor v systému NTFS?</div>
+          <div class="answer">${(answers['ntfs_1b_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2b'] ? 'X' : ' '} ]</span> Na flash disk znovu nahrajte soubor. Spusťte formátování, tentokrát <em>zrušte zaškrtnutí</em> u položky Rychlé formátování (úplné formátování) a ověřte, že data opět zmizela.</div>
-          <div class="question">Co se stalo pod kapotou v tomto případě a v čem je zásadní rozdíl oproti rychlému? (Co všechno systém resetoval tentokrát?)</div>
-          <div class="answer">${(answers['full_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
+          <div class="question">Pomocí libovolného zdroje vysvětlete příčinu rozdílu: Proč tentýž 1bajtový soubor zabírá v systému FAT32 a NTFS tak odlišné množství místa?</div>
+          <div class="answer">${(answers['fat_vs_ntfs_reason'] || '').replace(/\n/g, '<br/>')}</div>
+        </div>
+
+        <div class="task">
+          <div class="step"><span class="${checkedItems['sec_2c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_2c'] ? 'X' : ' '} ]</span> Na tomto oddílu vyzkoušejte oba způsoby formátování: Rychlé formátování i Pomalé (úplné) formátování.</div>
+          <div class="question">Co se děje se samotnými daty na disku a se strukturami souborového systému při Rychlém formátování a co při Pomalém (úplném) formátování?</div>
+          <div class="answer">${(answers['format_principles'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <h2>3. Limity FAT32 vs. exFAT (Bariéra 4 GB v praxi)</h2>
         <div class="task">
           <div class="step"><span class="${checkedItems['lim_3a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3a'] ? 'X' : ' '} ]</span> Naformátujte flash disk na systém souborů FAT32 (rychlým formátováním) a ověřte dostatek volného místa.</div>
-          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> Ze sdíleného síťového disku (nebo od vyučujícího) se pokuste na flash disk zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
+          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> Ze sdíleného síťového disku se pokuste na flash disk zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
           <div class="question">Jaká přesná chybová hláška se zobrazila, ačkoliv je na flashce dostatek volného místa?</div>
           <div class="answer">${(answers['fat32_error_msg'] || '').replace(/\n/g, '<br/>')}</div>
-        </div>
-
-        <div class="task">
-          <div class="question">Otázka k zamyšlení: Proč FAT32 neumí uložit soubor větší než 4 GB? Jak to souvisí s 32bitovým polem pro velikost souboru (2^32 - 1 bajtů)?</div>
-          <div class="answer">${(answers['fat32_32bit_limit'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
@@ -551,10 +550,10 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-sm font-black">1</span>
-                Fyzický sektor, cluster a vnitřní fragmentace
+                Velikost sektoru a clusteru
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Moderní disky fyzicky zapisují v blocích po 4 KB (Advanced Format). Zjistěte skutečnou geometrii svého disku přímo v systému a porovnejte ji s alokací souboru.
+                Zjistěte skutečnou geometrii a velikost alokačních jednotek disku přímo v systému Windows.
               </p>
 
               <div className="space-y-3 mb-6">
@@ -565,7 +564,7 @@ export default function FatChapter({
                   {checkedItems['sec_1a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <div className="flex-1">
                     <span className={`text-sm font-medium ${checkedItems['sec_1a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                      Spusťte Příkazový řádek (nebo PowerShell) jako správce a zadejte příkaz: <code className="bg-slate-200/80 text-indigo-700 px-1.5 py-0.5 rounded font-bold text-xs">fsutil fsinfo sectorinfo C:</code>
+                      Spusťte Příkazový řádek (nebo PowerShell) jako správce a zadejte diagnostické příkazy: <code className="bg-slate-200/80 text-indigo-700 px-1.5 py-0.5 rounded font-bold text-xs">fsutil fsinfo sectorinfo C:</code> a <code className="bg-slate-200/80 text-indigo-700 px-1.5 py-0.5 rounded font-bold text-xs">fsutil fsinfo ntfsinfo C:</code>
                     </span>
 
                     {/* Rozbalovací box s doplňkovými informacemi */}
@@ -586,52 +585,29 @@ export default function FatChapter({
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.1 Jakou hodnotu fyzické velikosti sektoru (PhysicalBytesPerSector...) příkaz vypsal?
-                </label>
-                <textarea 
-                  value={answers['sector_size'] || ''}
-                  onChange={(e) => handleAnswerChange('sector_size', e.target.value)}
-                  placeholder="Např. PhysicalBytesPerSectorForAtomicity: 4096 (což odpovídá 4 KB)..."
-                  className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
-
-              <div className="space-y-3 mb-6">
-                <div 
-                  onClick={() => toggleCheck('sec_1b')} 
-                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_1b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
-                >
-                  {checkedItems['sec_1b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code>, uložte jej (na disk C: nebo na flash disk) jako <code>znak.txt</code> a v Průzkumníku souborů otevřete jeho <strong>Vlastnosti</strong>.
-                  </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                    1.1 Fyzická velikost sektoru (PhysicalBytesPerSector...)
+                  </label>
+                  <textarea 
+                    value={answers['sector_size'] || ''}
+                    onChange={(e) => handleAnswerChange('sector_size', e.target.value)}
+                    placeholder="Zapište zjištěnou hodnotu..."
+                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  />
                 </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.2 Jaké dvě různé hodnoty velikosti Průzkumník v okně Vlastnosti zobrazuje?
-                </label>
-                <textarea 
-                  value={answers['file_size_compare'] || ''}
-                  onChange={(e) => handleAnswerChange('file_size_compare', e.target.value)}
-                  placeholder="Velikost: ... B vs. Velikost na disku: ... B"
-                  className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.3 Pomocí libovolného zdroje zjistěte a vysvětlete: Proč je hodnota „Velikost na disku“ u tohoto souboru buď 0 B, nebo 4 KB (4 096 B)? Na jakém souborovém systému to závisí (NTFS vs. FAT32/exFAT)?
-                </label>
-                <textarea 
-                  value={answers['internal_frag'] || ''}
-                  onChange={(e) => handleAnswerChange('internal_frag', e.target.value)}
-                  placeholder="Vysvětlete, jaký vliv má souborový systém disku, kam jste soubor uložili (alokace celého 4KB clusteru na FAT vs. uložení přímo v záznamu MFT na NTFS)..."
-                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                    1.2 Velikost alokační jednotky / clusteru (Bytes Per Cluster)
+                  </label>
+                  <textarea 
+                    value={answers['cluster_size'] || ''}
+                    onChange={(e) => handleAnswerChange('cluster_size', e.target.value)}
+                    placeholder="Zapište zjištěnou hodnotu..."
+                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  />
+                </div>
               </div>
             </div>
 
@@ -641,56 +617,96 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm font-black">2</span>
-                Formátování v praxi: Rychlé vs. Úplné
+                Test 1B souboru a formátování oddílu (FAT32 vs. NTFS)
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Vyzkoušejte si oba způsoby formátování, ověřte, že v obou případech data z disku zmizela, a popište, co přesně se stalo pod kapotou.
+                Na zvoleném disku či oddílu (např. na flash disku) porovnejte chování systémů FAT32 a NTFS při ukládání 1bajtového souboru a vyzkoušejte si oba způsoby formátování.
               </p>
 
-              <div className="space-y-3 mb-6">
+              {/* Část A: FAT32 */}
+              <div className="space-y-3 mb-4">
                 <div 
-                  onClick={() => toggleCheck('fmt_2a')} 
-                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['fmt_2a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                  onClick={() => toggleCheck('sec_2a')} 
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
-                  {checkedItems['fmt_2a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Nahrajte na flash disk libovolný soubor. V Průzkumníku klikněte pravým tlačítkem na disk → <strong>Formátovat...</strong>, ponechte zaškrtnuté <em>Rychlé formátování</em> a potvrďte. V Průzkumníku ověřte, že data z disku zmizela.
+                  {checkedItems['sec_2a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_2a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
+                    Naformátujte oddíl na systém souborů <strong>FAT32</strong>. V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code>, uložte jej na tento oddíl jako <code>znak.txt</code> a v Průzkumníku otevřete jeho <strong>Vlastnosti</strong>.
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.1 Co se při Rychlém formátování vlastně pod kapotou stalo? Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech disku?
+                  2.1 Kolik místa na disku (Velikost na disku) zabral soubor v systému FAT32?
                 </label>
                 <textarea 
-                  value={answers['quick_format_principle'] || ''}
-                  onChange={(e) => handleAnswerChange('quick_format_principle', e.target.value)}
-                  placeholder="Vysvětlete reset FAT/MFT tabulky (katalogu ukazatelů) vs. stav dat ve fyzických sektorech..."
+                  value={answers['fat32_1b_size'] || ''}
+                  onChange={(e) => handleAnswerChange('fat32_1b_size', e.target.value)}
+                  placeholder="Zapište zjištěnou hodnotu..."
+                  className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                />
+              </div>
+
+              {/* Část B: NTFS */}
+              <div className="space-y-3 mb-4">
+                <div 
+                  onClick={() => toggleCheck('sec_2b')} 
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                >
+                  {checkedItems['sec_2b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_2b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
+                    Přeformátujte tentýž oddíl na systém souborů <strong>NTFS</strong>. Uložte na něj znovu soubor <code>znak.txt</code> o velikosti 1 bajt (písmeno <code>A</code>) a otevřete jeho <strong>Vlastnosti</strong>.
+                  </span>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                  2.2 Kolik místa na disku (Velikost na disku) zabral soubor v systému NTFS?
+                </label>
+                <textarea 
+                  value={answers['ntfs_1b_size'] || ''}
+                  onChange={(e) => handleAnswerChange('ntfs_1b_size', e.target.value)}
+                  placeholder="Zapište zjištěnou hodnotu..."
+                  className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                />
+              </div>
+
+              {/* Otázka k zamyšlení */}
+              <div className="mb-6">
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                  2.3 Pomocí libovolného zdroje vysvětlete příčinu rozdílu: Proč tentýž 1bajtový soubor zabírá v systému FAT32 a NTFS tak odlišné množství místa?
+                </label>
+                <textarea 
+                  value={answers['fat_vs_ntfs_reason'] || ''}
+                  onChange={(e) => handleAnswerChange('fat_vs_ntfs_reason', e.target.value)}
+                  placeholder="Vysvětlete rozdíl mezi FAT32 a NTFS..."
                   className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
 
-              <div className="space-y-3 mb-6">
+              {/* Část C: Praktická práce s formátováním */}
+              <div className="space-y-3 mb-4">
                 <div 
-                  onClick={() => toggleCheck('fmt_2b')} 
-                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['fmt_2b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                  onClick={() => toggleCheck('sec_2c')} 
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2c'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
-                  {checkedItems['fmt_2b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Na flash disk znovu nahrajte soubor. Otevřete okno formátování, tentokrát <strong>zrušte zaškrtnutí</strong> u položky <em>Rychlé formátování</em> (úplné formátování) a disk naformátujte. Po dokončení ověřte, že data opět zmizela.
+                  {checkedItems['sec_2c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_2c'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
+                    Na tomto oddílu vyzkoušejte oba způsoby formátování: <strong>Rychlé formátování</strong> i <strong>Pomalé (úplné) formátování</strong> (se zrušeným zaškrtnutím Rychlé formátování).
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.2 Co se pod kapotou stalo v tomto případě a v čem je zásadní rozdíl oproti rychlému? Co všechno systém resetoval tentokrát?
+                  2.4 Co se děje se samotnými daty na disku a se strukturami souborového systému při Rychlém formátování a co při Pomalém (úplném) formátování?
                 </label>
                 <textarea 
-                  value={answers['full_format_principle'] || ''}
-                  onChange={(e) => handleAnswerChange('full_format_principle', e.target.value)}
-                  placeholder="Vysvětlete reset FAT tabulky + reset/fyzické přepsání sektorů nulami (Zero-fill)..."
+                  value={answers['format_principles'] || ''}
+                  onChange={(e) => handleAnswerChange('format_principles', e.target.value)}
+                  placeholder="Popište rozdíl mezi rychlým a pomalým formátováním..."
                   className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
@@ -741,18 +757,6 @@ export default function FatChapter({
                 />
               </div>
 
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  3.2 Otázka k zamyšlení: Proč FAT32 nedokáže uložit soubor větší než 4 GB? Jak to souvisí s 32bitovým číslem (2^32 - 1 bajtů) vyhrazeným pro velikost souboru v adresáři?
-                </label>
-                <textarea 
-                  value={answers['fat32_32bit_limit'] || ''}
-                  onChange={(e) => handleAnswerChange('fat32_32bit_limit', e.target.value)}
-                  placeholder="Vysvětlete matematickou příčinu: 2^32 bajtů = 4 294 967 295 bajtů = přesně 4 GiB..."
-                  className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
-
               <div className="space-y-3 mb-6">
                 <div 
                   onClick={() => toggleCheck('lim_3c')} 
@@ -767,13 +771,13 @@ export default function FatChapter({
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  3.3 Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a diskovému NTFS při použití na přenosných paměťových médiích (rychlost, podpora na macOS/Linuxu/TV)?
+                  3.2 Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a diskovému NTFS při použití na přenosných paměťových médiích (rychlost, podpora na macOS/Linuxu/TV)?
                 </label>
                 <textarea 
                   value={answers['exfat_benefits'] || ''}
                   onChange={(e) => handleAnswerChange('exfat_benefits', e.target.value)}
-                  placeholder="Zhodnoťte výhody exFAT: podpora velkých souborů, kompatibilita napříč platformami, absence režie žurnálování NTFS..."
-                  className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  placeholder="Zapište zjištěné výhody systému exFAT..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
             </div>
