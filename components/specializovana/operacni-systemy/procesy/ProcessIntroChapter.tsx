@@ -11,7 +11,8 @@ import {
   RefreshCw, 
   CheckCircle,
   Play,
-  RotateCcw
+  RotateCcw,
+  Lightbulb
 } from 'lucide-react';
 import { 
   FsChapterShell, 
@@ -251,6 +252,32 @@ export default function ProcessIntroChapter({ onBack }: ProcessIntroChapterProps
               Každý proces má přísně vymezený svůj vlastní paměťový prostor. 
               <strong>Proces 1 nesmí číst ani přepisovat data Procesu 2!</strong> Pokud by se Kalkulačka pokusila sáhnout do paměti Wordu, procesor vyvolá chybu (Segmentation Fault) a operační systém vadný proces okamžitě ukončí.
             </Callout>
+
+            {/* Věděli jste? Virtuální adresní prostor */}
+            <div className="mt-6 p-6 rounded-2xl bg-indigo-50/70 border-2 border-indigo-200">
+              <div className="flex items-center gap-2 text-indigo-900 font-black text-sm uppercase tracking-wider mb-2">
+                <Lightbulb className="w-5 h-5 text-indigo-600" />
+                <span>Věděli jste, že proces žije v iluzi? (Virtuální adresní prostor)</span>
+              </div>
+              <p className="text-sm text-indigo-950 leading-relaxed mb-3">
+                Když programátor píše program, <strong>vůbec netuší, kde v RAM bude zrovna volno</strong>, ani jak velkou RAM má uživatel v počítači. 
+                Operační systém proto každému procesu vytváří dokonalou „virtuální bublinu“:
+              </p>
+              <ul className="text-xs sm:text-sm text-indigo-900 space-y-2 leading-relaxed">
+                <li className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span><strong>Každý proces začíná od adresy 0:</strong> Proces si myslí, že celá paměť patří jen jemu. Programátor v kódu píše jednoduše např. <em>„ulož data na adresu 100“</em>.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span><strong>Překladatel v procesoru:</strong> Když Proces 1 čte ze své virtuální adresy 100, procesor to v tichosti přeloží na skutečný čip v RAM (např. buňka 10 500). Když se Proces 2 zeptá na svou adresu 100, procesor sáhne do úplně jiné buňky RAM (např. 85 200).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span><strong>Proč je to geniální:</strong> Můžete spustit stejný program (např. 3 okna kalkulačky) víckrát naráz, a žádná kalkulačka nepřepíše data té druhé!</span>
+                </li>
+              </ul>
+            </div>
           </TheoryCard>
 
           {/* BLOK D: Jak procesor střídá procesy (Přepnutí přes Program Counter) */}
@@ -343,6 +370,10 @@ export default function ProcessIntroChapter({ onBack }: ProcessIntroChapterProps
               {
                 q: 'Jak procesor s jediným čítačem instrukcí (PC) dokáže zpracovávat dva procesy?',
                 a: 'Během přepnutí kontextu OS uloží aktuální hodnotu PC prvního procesu do paměti a do registru PC v procesoru načte uloženou adresu druhého procesu. Tento cyklus se opakuje stovkykrát za sekundu.'
+              },
+              {
+                q: 'Proč říkáme, že proces žije v iluzi (Virtuální adresní prostor)?',
+                a: 'Každý proces si myslí, že má celou paměť od adresy 0 jen pro sebe. Nemusí řešit skutečné fyzické adresy čipů RAM. Operační systém a procesor jeho virtuální adresy automaticky a bezpečně překládají do skutečné fyzické paměti.'
               }
             ]}
           />
