@@ -330,20 +330,20 @@ export default function FatChapter({
                         <div
                           key={row.cluster}
                           className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${isSky
-                              ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
-                              : isAmber
-                                ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
-                                : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
+                            ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
+                            : isAmber
+                              ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
+                              : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
                             }`}
                         >
                           {/* 1. Sloupec: Číslo clusteru */}
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
                               className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${isSky
-                                  ? 'bg-sky-200 text-sky-950'
-                                  : isAmber
-                                    ? 'bg-amber-200 text-amber-950'
-                                    : 'bg-slate-200/80 text-slate-600'
+                                ? 'bg-sky-200 text-sky-950'
+                                : isAmber
+                                  ? 'bg-amber-200 text-amber-950'
+                                  : 'bg-slate-200/80 text-slate-600'
                                 }`}
                             >
                               #{row.cluster}
@@ -359,10 +359,10 @@ export default function FatChapter({
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
                               className={`px-1.5 py-0.5 rounded font-black text-[11px] ${isSky
-                                  ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
-                                  : isAmber
-                                    ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
-                                    : 'text-slate-400'
+                                ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
+                                : isAmber
+                                  ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
+                                  : 'text-slate-400'
                                 }`}
                             >
                               {row.next}
@@ -557,8 +557,8 @@ export default function FatChapter({
               </p>
 
               <div className="space-y-3 mb-6">
-                <div 
-                  onClick={() => toggleCheck('sec_1a')} 
+                <div
+                  onClick={() => toggleCheck('sec_1a')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_1a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['sec_1a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -568,8 +568,8 @@ export default function FatChapter({
                     </span>
 
                     {/* Rozbalovací box s doplňkovými informacemi */}
-                    <details 
-                      onClick={(e) => e.stopPropagation()} 
+                    <details
+                      onClick={(e) => e.stopPropagation()}
                       className="mt-3 text-xs bg-amber-50/90 border border-amber-200 rounded-xl p-3 cursor-pointer select-none group"
                     >
                       <summary className="font-bold text-amber-800 flex items-center gap-1.5 list-none hover:text-amber-900 transition-colors">
@@ -590,7 +590,7 @@ export default function FatChapter({
                   <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                     1.1 Fyzická velikost sektoru (PhysicalBytesPerSector...)
                   </label>
-                  <textarea 
+                  <textarea
                     value={answers['sector_size'] || ''}
                     onChange={(e) => handleAnswerChange('sector_size', e.target.value)}
                     placeholder="Zapište zjištěnou hodnotu..."
@@ -601,7 +601,7 @@ export default function FatChapter({
                   <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                     1.2 Velikost alokační jednotky / clusteru (Bytes Per Cluster)
                   </label>
-                  <textarea 
+                  <textarea
                     value={answers['cluster_size'] || ''}
                     onChange={(e) => handleAnswerChange('cluster_size', e.target.value)}
                     placeholder="Zapište zjištěnou hodnotu..."
@@ -625,8 +625,8 @@ export default function FatChapter({
 
               {/* Část A: FAT32 */}
               <div className="space-y-3 mb-4">
-                <div 
-                  onClick={() => toggleCheck('sec_2a')} 
+                <div
+                  onClick={() => toggleCheck('sec_2a')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['sec_2a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -640,7 +640,7 @@ export default function FatChapter({
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                   2.1 Kolik místa na disku (Velikost na disku) zabral soubor v systému FAT32?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['fat32_1b_size'] || ''}
                   onChange={(e) => handleAnswerChange('fat32_1b_size', e.target.value)}
                   placeholder="Zapište zjištěnou hodnotu..."
@@ -650,8 +650,8 @@ export default function FatChapter({
 
               {/* Část B: NTFS */}
               <div className="space-y-3 mb-4">
-                <div 
-                  onClick={() => toggleCheck('sec_2b')} 
+                <div
+                  onClick={() => toggleCheck('sec_2b')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['sec_2b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -665,7 +665,7 @@ export default function FatChapter({
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                   2.2 Kolik místa na disku (Velikost na disku) zabral soubor v systému NTFS?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['ntfs_1b_size'] || ''}
                   onChange={(e) => handleAnswerChange('ntfs_1b_size', e.target.value)}
                   placeholder="Zapište zjištěnou hodnotu..."
@@ -678,7 +678,7 @@ export default function FatChapter({
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                   2.3 Pomocí libovolného zdroje vysvětlete příčinu rozdílu: Proč tentýž 1bajtový soubor zabírá v systému FAT32 a NTFS tak odlišné množství místa?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['fat_vs_ntfs_reason'] || ''}
                   onChange={(e) => handleAnswerChange('fat_vs_ntfs_reason', e.target.value)}
                   placeholder="Vysvětlete rozdíl mezi FAT32 a NTFS..."
@@ -688,8 +688,8 @@ export default function FatChapter({
 
               {/* Část C: Praktická práce s formátováním */}
               <div className="space-y-3 mb-4">
-                <div 
-                  onClick={() => toggleCheck('sec_2c')} 
+                <div
+                  onClick={() => toggleCheck('sec_2c')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2c'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['sec_2c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -703,7 +703,7 @@ export default function FatChapter({
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                   2.4 Co se děje se samotnými daty na disku a se strukturami souborového systému při Rychlém formátování a co při Pomalém (úplném) formátování?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['format_principles'] || ''}
                   onChange={(e) => handleAnswerChange('format_principles', e.target.value)}
                   placeholder="Popište rozdíl mezi rychlým a pomalým formátováním..."
@@ -725,8 +725,8 @@ export default function FatChapter({
               </p>
 
               <div className="space-y-3 mb-6">
-                <div 
-                  onClick={() => toggleCheck('lim_3a')} 
+                <div
+                  onClick={() => toggleCheck('lim_3a')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['lim_3a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['lim_3a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -734,8 +734,8 @@ export default function FatChapter({
                     V Průzkumníku naformátujte flash disk na systém souborů <strong>FAT32</strong> (použijte rychlé formátování) a zkontrolujte, že má disk dostatek volného místa.
                   </span>
                 </div>
-                <div 
-                  onClick={() => toggleCheck('lim_3b')} 
+                <div
+                  onClick={() => toggleCheck('lim_3b')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['lim_3b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['lim_3b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -749,7 +749,7 @@ export default function FatChapter({
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                   3.1 Jaká přesná chybová hláška se v dialogu Windows zobrazila, ačkoliv je na disku mnoho gigabajtů volného místa?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['fat32_error_msg'] || ''}
                   onChange={(e) => handleAnswerChange('fat32_error_msg', e.target.value)}
                   placeholder="Zapište doslovné znění chybového hlášení..."
@@ -758,8 +758,8 @@ export default function FatChapter({
               </div>
 
               <div className="space-y-3 mb-6">
-                <div 
-                  onClick={() => toggleCheck('lim_3c')} 
+                <div
+                  onClick={() => toggleCheck('lim_3c')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['lim_3c'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['lim_3c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
@@ -771,9 +771,9 @@ export default function FatChapter({
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  3.2 Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a diskovému NTFS při použití na přenosných paměťových médiích (rychlost, podpora na macOS/Linuxu/TV)?
+                  3.2 Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32?
                 </label>
-                <textarea 
+                <textarea
                   value={answers['exfat_benefits'] || ''}
                   onChange={(e) => handleAnswerChange('exfat_benefits', e.target.value)}
                   placeholder="Zapište zjištěné výhody systému exFAT..."
