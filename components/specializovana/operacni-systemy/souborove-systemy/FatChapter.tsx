@@ -76,13 +76,13 @@ export default function FatChapter({
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1b'] ? 'X' : ' '} ]</span> V Poznámkovém bloku vytvořte na <strong>flash disku</strong> (FAT32/exFAT) soubor <code>znak.txt</code> s jediným písmenem <code>A</code> a v Průzkumníku otevřete jeho Vlastnosti.</div>
+          <div class="step"><span class="${checkedItems['sec_1b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_1b'] ? 'X' : ' '} ]</span> V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code>, uložte jej (na disk C: nebo na flash disk) jako <code>znak.txt</code> a v Průzkumníku otevřete jeho Vlastnosti.</div>
           <div class="question">Jaké dvě hodnoty velikosti Průzkumník ukazuje? (Velikost vs. Velikost na disku)</div>
           <div class="answer">${(answers['file_size_compare'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="question">Otázka k zamyšlení: Proč soubor o velikosti 1 bajt spotřeboval na flash disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ prozrazuje a jak se tomuto jevu odborně říká? (Poznámka k NTFS: Na disku C: s NTFS ukazuje Průzkumník 0 B, protože se data vejdou přímo do záznamu tabulky MFT).</div>
+          <div class="question">Pomocí libovolného zdroje zjistěte a vysvětlete: Proč je hodnota „Velikost na disku“ u tohoto souboru buď 0 B, nebo 4 KB (4 096 B)? Na jakém souborovém systému to závisí (NTFS vs. FAT32/exFAT)?</div>
           <div class="answer">${(answers['internal_frag'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
@@ -605,7 +605,7 @@ export default function FatChapter({
                 >
                   {checkedItems['sec_1b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['sec_1b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code> a uložte jej na <strong>flash disk</strong> (FAT32/exFAT) jako <code>znak.txt</code>. V Průzkumníku souborů otevřete jeho <strong>Vlastnosti</strong>.
+                    V Poznámkovém bloku vytvořte soubor s jediným písmenem <code>A</code>, uložte jej (na disk C: nebo na flash disk) jako <code>znak.txt</code> a v Průzkumníku souborů otevřete jeho <strong>Vlastnosti</strong>.
                   </span>
                 </div>
               </div>
@@ -624,13 +624,13 @@ export default function FatChapter({
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  1.3 Otázka k zamyšlení: Proč soubor o reálné velikosti 1 bajt spotřeboval na flash disku celé 4 KB (4 096 B)? Co hodnota „Velikost na disku“ u malého souboru prozrazuje a jak se tomuto jevu odborně říká? (Poznámka k NTFS: Na disku C: s NTFS ukáže Průzkumník 0 B, protože NTFS ukládá miniaturní soubory přímo do MFT záznamu jako rezidentní data bez přidělení samostatného clusteru).
+                  1.3 Pomocí libovolného zdroje zjistěte a vysvětlete: Proč je hodnota „Velikost na disku“ u tohoto souboru buď 0 B, nebo 4 KB (4 096 B)? Na jakém souborovém systému to závisí (NTFS vs. FAT32/exFAT)?
                 </label>
                 <textarea 
                   value={answers['internal_frag'] || ''}
                   onChange={(e) => handleAnswerChange('internal_frag', e.target.value)}
-                  placeholder="Vysvětlete pojem alokační jednotka / cluster a vnitřní fragmentace (slack space)..."
-                  className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  placeholder="Vysvětlete, jaký vliv má souborový systém disku, kam jste soubor uložili (alokace celého 4KB clusteru na FAT vs. uložení přímo v záznamu MFT na NTFS)..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
             </div>
