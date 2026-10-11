@@ -318,7 +318,49 @@ export default function FatChapter({
             </div>
           </TheoryCard>
 
-          <TheoryCard icon={HardDriveDownload} title="Moderní systémy v praxi" letter="D" tone="emerald">
+          <TheoryCard icon={Eraser} title="Formátování: Co to je a co vlastně dělá?" letter="D" tone="rose">
+            <p>
+              Když koupíte nový disk nebo chcete flashku vyčistit, musíte ji <strong>naformátovat</strong>. Formátování je proces, kterým se na diskovém oddílu vytvoří prázdná kostra zvoleného souborového systému (např. FAT32 nebo NTFS).
+            </p>
+            <p className="mt-4">
+              Při formátování systém:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 mt-2 ml-2 text-sm text-slate-600">
+              <li>Rozdělí prostor na <strong>clustery</strong> pevné velikosti (např. 4 KB).</li>
+              <li>Vytvoří <strong>prázdnou alokační tabulku</strong> (např. FAT tabulku plnou nul) a kořenový adresář složek.</li>
+              <li>Zapíše spouštěcí záznam (Boot Sector / Volume Boot Record).</li>
+            </ul>
+
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div className="bg-sky-50/70 border-2 border-sky-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-3 h-3 rounded-full bg-sky-500"></span>
+                  <h4 className="font-black text-sky-950 text-sm uppercase tracking-wide">Rychlé formátování (Quick Format)</h4>
+                </div>
+                <p className="text-xs text-sky-900 leading-relaxed">
+                  Trvá jen pár sekund. Pouze <strong>přepíše alokační tabulku a adresáře na nuly</strong>. Pro operační systém se disk jeví jako dokonale prázdný, ale samotná data ve fyzických sektorech disku stále leží. Lze je pomocí specializovaných programů často snadno obnovit.
+                </p>
+              </div>
+
+              <div className="bg-rose-50/70 border-2 border-rose-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-3 h-3 rounded-full bg-rose-500"></span>
+                  <h4 className="font-black text-rose-950 text-sm uppercase tracking-wide">Úplné / Pomalé formátování (Full Format)</h4>
+                </div>
+                <p className="text-xs text-rose-900 leading-relaxed">
+                  Trvá desítky minut až hodiny. Kromě vymazání tabulky systém <strong>fyzicky projde celý povrch disku</strong>, otestuje vadné sektory a ve moderních Windows přepisuje data nulami (Zero-fill). Původní data jsou nenávratně zničena a nelze je již běžně obnovit.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Callout kind="tip" title="Kdy zvolit které?">
+                Běžně vám stačí <strong>Rychlé formátování</strong> (při běžném použití či reinstalaci). <strong>Úplné formátování</strong> volte, pokud disk někomu prodáváte nebo darujete (ochrana soukromí) anebo máte podezření, že disk vykazuje chyby čtení a potřebujete otestovat jeho fyzický povrch.
+              </Callout>
+            </div>
+          </TheoryCard>
+
+          <TheoryCard icon={HardDriveDownload} title="Moderní systémy v praxi" letter="E" tone="emerald">
             <p>
               Jaký souborový systém (formát) zvolit pro váš disk či flashku?
             </p>
