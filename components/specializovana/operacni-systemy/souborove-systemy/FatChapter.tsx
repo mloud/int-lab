@@ -93,19 +93,14 @@ export default function FatChapter({
 
         <h2>2. Formátování v praxi: Rychlé vs. Úplné</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2a'] ? 'X' : ' '} ]</span> <strong>Krok 2A:</strong> Nahrajte na flash disk libovolný soubor a proveďte Rychlé formátování.</div>
-          <div class="question">Jak dlouho Rychlé formátování trvalo (v sekundách)?</div>
-          <div class="answer">${(answers['quick_format_time'] || '').replace(/\n/g, '<br/>')}</div>
-        </div>
-
-        <div class="task">
-          <div class="question">Otázka k zamyšlení: Disk se tváří jako prázdný. Přepsal systém za těch pár sekund opravdu všechny buňky nulami, nebo smazal jen alokační tabulku (katalog)? Proč jdou data obnovit?</div>
+          <div class="step"><span class="${checkedItems['fmt_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2a'] ? 'X' : ' '} ]</span> <strong>Krok 2A (Rychlé formátování):</strong> Nahrajte na disk libovolný soubor a proveďte <em>Rychlé formátování</em>. Ověřte v Průzkumníku, že data z disku zmizela.</div>
+          <div class="question">Co se při Rychlém formátování vlastně pod kapotou stalo? (Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech?)</div>
           <div class="answer">${(answers['quick_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['fmt_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2b'] ? 'X' : ' '} ]</span> <strong>Krok 2B:</strong> V dialogu formátování zrušte zaškrtnutí "Rychlé formátování" (Úplné formátování).</div>
-          <div class="question">V čem spočívá zásadní rozdíl Úplného formátování oproti Rychlému? Proč jsou po něm data definitivně ztracena a co systém dělá s povrchem disku?</div>
+          <div class="step"><span class="${checkedItems['fmt_2b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['fmt_2b'] ? 'X' : ' '} ]</span> <strong>Krok 2B (Pomalé / úplné formátování):</strong> Na disk znovu nahrajte soubor. Spusťte formátování, tentokrát <em>zrušte zaškrtnutí</em> u položky Rychlé formátování. Ověřte, že data opět zmizela.</div>
+          <div class="question">Co se stalo pod kapotou v tomto případě a v čem je zásadní rozdíl oproti rychlému? (Co všechno systém resetoval tentokrát?)</div>
           <div class="answer">${(answers['full_format_principle'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
@@ -646,10 +641,10 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm font-black">2</span>
-                Formátování v praxi: Rychlé vs. Úplné (Smaže se opravdu vše?)
+                Formátování v praxi: Rychlé vs. Úplné
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Vyzkoušejte si, jaký je skutečný rozdíl mezi rychlým smazáním katalogu a úplným přepsáním disku.
+                Vyzkoušejte si oba způsoby formátování, ověřte, že v obou případech data z disku zmizela, a popište, co přesně se stalo pod kapotou.
               </p>
 
               <div className="space-y-3 mb-6">
@@ -659,32 +654,20 @@ export default function FatChapter({
                 >
                   {checkedItems['fmt_2a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 2A (Rychlé formátování):</strong> Nahrajte na flash disk (nebo cvičný oddíl) libovolný testovací soubor. V Průzkumníku klikněte pravým tlačítkem na flash disk → <strong>Formátovat...</strong>. Ponechte zaškrtnutou volbu <em>Rychlé formátování</em> a potvrďte.
+                    <strong>Krok 2A (Rychlé formátování):</strong> Nahrajte na flash disk libovolný soubor. V Průzkumníku klikněte pravým tlačítkem na disk → <strong>Formátovat...</strong>, ponechte zaškrtnuté <em>Rychlé formátování</em> a potvrďte. V Průzkumníku ověřte, že data z disku zmizela.
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.1 Jak dlouho Rychlé formátování trvalo (v sekundách)?
-                </label>
-                <textarea 
-                  value={answers['quick_format_time'] || ''}
-                  onChange={(e) => handleAnswerChange('quick_format_time', e.target.value)}
-                  placeholder="Např. cca 2 sekundy..."
-                  className="w-full min-h-[60px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.2 Otázka k zamyšlení: Disk se tváří jako dokonale prázdný. Přepsal systém za těch pár sekund opravdu všechny gigabajty paměťových buněk nulami, nebo smazal jen alokační tabulku (katalog ukazatelů)? Proč jdou data obnovit záchranným softwarem?
+                  2.1 Co se při Rychlém formátování vlastně pod kapotou stalo? Co systém resetoval a co se stalo se samotnými daty ve fyzických sektorech disku?
                 </label>
                 <textarea 
                   value={answers['quick_format_principle'] || ''}
                   onChange={(e) => handleAnswerChange('quick_format_principle', e.target.value)}
-                  placeholder="Co se stalo s ukazateli ve FAT/MFT a co se stalo se samotnými daty ve fyzických sektorech?..."
-                  className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  placeholder="Vysvětlete reset FAT/MFT tabulky (katalogu ukazatelů) vs. stav dat ve fyzických sektorech..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
 
@@ -695,20 +678,20 @@ export default function FatChapter({
                 >
                   {checkedItems['fmt_2b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['fmt_2b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    <strong>Krok 2B (Úplné formátování):</strong> Znovu otevřete okno formátování flash disku a <strong>zrušte zaškrtnutí</strong> u položky <em>Rychlé formátování</em>. Spusťte jej a porovnejte rychlost průběhu (stačí nechat běžet několik desítek sekund a porovnat se zeleným ukazatelem).
+                    <strong>Krok 2B (Pomalé / úplné formátování):</strong> Na disk znovu nahrajte nějaký soubor. Otevřete okno formátování, tentokrát <strong>zrušte zaškrtnutí</strong> u položky <em>Rychlé formátování</em> a disk naformátujte. Po dokončení ověřte, že data opět zmizela.
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.3 V čem spočívá zásadní rozdíl Úplného formátování oproti Rychlému? Proč jsou po něm data definitivně zničena a co systém dělá s povrchem disku?
+                  2.2 Co se pod kapotou stalo v tomto případě a v čem je zásadní rozdíl oproti rychlému? Co všechno systém resetoval tentokrát?
                 </label>
                 <textarea 
                   value={answers['full_format_principle'] || ''}
                   onChange={(e) => handleAnswerChange('full_format_principle', e.target.value)}
-                  placeholder="Vysvětlete fyzickou kontrolu sektorů a přepisování nulami (Zero-fill)..."
-                  className="w-full min-h-[90px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  placeholder="Vysvětlete reset FAT tabulky + reset/fyzické přepsání sektorů nulami (Zero-fill)..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
             </div>
