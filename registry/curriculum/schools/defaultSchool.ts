@@ -389,8 +389,8 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   route: '/specializovana/operacni-systemy/hardware',
                   hasSubchapters: true,
                   subchapters: [
-                    { id: 'ram', title: 'Operační paměť RAM', description: 'Architektura paměťových buněk a adresace', tag: 'ram', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/hardware/ram' },
-                    { id: 'von-neumann', title: 'Von Neumannova architektura', description: 'Sběrnice, řadič a registry procesoru', tag: 'vna', icon: 'Cpu', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/operacni-systemy/hardware/von-neumann' }
+                    { id: 'von-neumann', title: 'Von Neumannova architektura', description: 'Sběrnice, řadič a registry procesoru', tag: 'vna', icon: 'Cpu', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/operacni-systemy/hardware/von-neumann' },
+                    { id: 'ram', title: 'Operační paměť RAM', description: 'Architektura paměťových buněk a adresace', tag: 'ram', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/hardware/ram' }
                   ]
                 },
                 {

@@ -23,8 +23,7 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
 
           <Question id="A1" title="Základní součásti počítače">
             <p>
-              Vyberte a popište <strong>3 základní hardwarové součásti</strong> počítače. Pro každou součást uveďte:
-              a) k čemu slouží, b) jak spolupracuje s ostatními součástmi.
+              Vyberte a popište <strong>3 základní hardwarové součásti</strong> počítače a uveďte, k čemu slouží.
             </p>
           </Question>
 
@@ -33,16 +32,26 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
               <div className="flex items-end gap-2 text-[11pt]">
                 <span className="font-bold whitespace-nowrap">Součást {n}:</span>
                 {showSolutions ? (
-                  <span className="text-rose-600 font-bold italic ml-2">Vzor: např. CPU, RAM, Disk</span>
+                  <span className="text-rose-600 font-bold italic ml-2">
+                    {n === 1 ? 'Vzor: Procesor (CPU)' : n === 2 ? 'Vzor: Operační paměť (RAM)' : 'Vzor: Pevný disk (SSD/HDD)'}
+                  </span>
                 ) : (
                   <span className="flex-1 border-b border-slate-700" style={{ height: '8mm' }} />
                 )}
               </div>
               <div className="text-[11pt]">
-                <p className="mt-2"><strong>a)</strong> K čemu slouží</p>
-                <Answer show={showSolutions} lines={2} solution="Uvést hlavní funkci dané součástky (např. CPU jako mozek PC, který provádí výpočty)." />
-                <p className="mt-2"><strong>b)</strong> Vztah k ostatním součástem</p>
-                <Answer show={showSolutions} lines={2} solution="Popsat, jak daná součástka komunikuje se zbytkem PC (např. přes sběrnici na desce načítá data z RAM)." />
+                <p className="mt-2"><strong>K čemu slouží:</strong></p>
+                <Answer 
+                  show={showSolutions} 
+                  lines={3} 
+                  solution={
+                    n === 1 
+                      ? 'Provádí veškeré výpočty, vykonává instrukce programu a řídí činnost ostatních komponent.' 
+                      : n === 2 
+                      ? 'Rychlé dočasné úložiště pro běžící programy, instrukce a data. Po vypnutí PC se maže.' 
+                      : 'Trvalé úložiště pro uložení operačního systému, programů a uživatelských souborů i po vypnutí PC.'
+                  } 
+                />
               </div>
             </section>
           ))}
@@ -56,28 +65,33 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
 
           <Question id="A3" title="Von Neumannova architektura">
             <Sub label="a)">Nakreslete blokové schéma Von Neumannovy architektury počítače obsahující všechny její základní bloky.</Sub>
-            <DrawBox height="60mm" />
+            {showSolutions ? (
+              <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex flex-col items-center justify-center text-rose-600 font-bold italic text-center gap-1.5" style={{ height: '60mm' }}>
+                <p className="text-xs uppercase tracking-wider font-black">Vzorové řešení schématu:</p>
+                <p className="text-sm">Nahoře: Společná paměť RAM (obsahuje instrukce i data)</p>
+                <p className="text-sm">Uprostřed: Procesor (CPU) rozdělený na Řadič (CU) a ALU (včetně registrů)</p>
+                <p className="text-sm">Vlevo: Vstupní jednotka  |  Vpravo: Výstupní jednotka</p>
+                <p className="text-xs text-rose-500 font-normal mt-1">Jednotlivé bloky jsou navzájem propojeny sběrnicemi (šipky Vstup → CPU, CPU ↔ Paměť, CPU → Výstup).</p>
+              </div>
+            ) : (
+              <DrawBox height="60mm" />
+            )}
           </Question>
 
           <section className="print-avoid-break mb-7 text-[11pt]">
             <Sub label="b)">Ke každému ze základních bloků stručně napište, jakou má funkci.</Sub>
             <Answer show={showSolutions} lines={6} solution="ALU - provádí matematické a logické operace. Řadič - řídí běh programu a ostatní bloky. Paměť - obsahuje instrukce i data. V/V zařízení - slouží k interakci s okolím (např. klávesnice, monitor)." />
-            <Sub label="c)">Slovně popište, jak se zpracovává program v této architektuře.</Sub>
-            <Answer show={showSolutions} lines={5} solution="Řadič načte instrukci z paměti, dekóduje ji, v případě potřeby načte vstupní data, předá je ALU k výpočtu, výsledek se uloží zpět do paměti a pokračuje další instrukcí." />
           </section>
 
-          <Question id="A4" title="Paměťová struktura procesu">
-            <ul className="list-none space-y-1">
-              <li>1) Nakreslete, jak vypadá spuštěný program v operační paměti.</li>
-              <li>2) Vyznačte, ze kterých dvou hlavních částí se skládá a co každá část obsahuje.</li>
-            </ul>
-            {showSolutions ? (
-               <div className="mt-2 border-2 border-slate-700 rounded-md w-full p-4 flex items-center justify-center text-rose-600 font-bold italic" style={{ height: '60mm' }}>
-                 ŘEŠENÍ: Nákres obdélníku rozděleného na Instrukce (Kód / povely CO se má dít) a Data (Proměnné / S ČÍM se to děje).
-               </div>
-            ) : (
-               <DrawBox height="60mm" />
-            )}
+          <Question id="A4" title="Uspořádání programu v operační paměti">
+            <p>
+              Spuštěný program je v paměti RAM rozdělen na <strong>dvě základní části</strong>. Napište, jak se tyto dvě části nazývají, a stručně uveďte, co která z nich obsahuje.
+            </p>
+            <Answer 
+              show={showSolutions} 
+              lines={4} 
+              solution="1. Instrukce (Kód) – obsahuje samotné příkazy a povely pro procesor (CO má dělat). 2. Data – obsahují hodnoty, čísla a proměnné, se kterými program počítá (S ČÍM se pracuje)." 
+            />
           </Question>
 
           {/* ========================= ČÁST B ========================= */}
@@ -147,12 +161,10 @@ export default function OsSummaryWorksheet({ onBack }: OsSummaryWorksheetProps) 
 
           <Question id="B4" title="Licence OS">
             <p className="border border-slate-400 bg-slate-50 p-3 italic">
-              Jan si koupil počítač s nainstalovaným OS Windows 11. Licenční klíč se nachází na štítku přilepeném na
-              základní desce. Počítač mu přestal vyhovovat, proto ho daroval kamarádovi a sestavil si zcela nový PC
-              z jiných součástek. Na nový PC nainstaloval Windows 11 a zadal licenční klíč ze svého původního počítače.
+              Jan si koupil hotový počítač s předinstalovaným OS Windows 11 s <strong>OEM licencí</strong> (licenční štítek byl přilepený přímo na původním počítači / základní desce). Počítač mu po čase přestal vyhovovat, proto ho daroval kamarádovi a sestavil si zcela nový PC z jiných součástek. Na nový PC nainstaloval Windows 11 a zadal licenční klíč ze svého původního počítače.
             </p>
             <p className="mt-3"><strong>Zachoval se Jan v souladu s licenční smlouvou? Svou odpověď zdůvodněte.</strong></p>
-            <Answer show={showSolutions} lines={6} solution="Nezachoval. Jedná se s největší pravděpodobností o OEM licenci (je levnější a typicky vázaná na hardware, se kterým byla zakoupena - nejčastěji na základní desku). Tuto licenci nelze legálně přenést na jiný počítač. Kamarád s původním PC může OS používat, Jan si pro nový PC musí zakoupit novou licenci." />
+            <Answer show={showSolutions} lines={6} solution="Nezachoval. OEM licence je ze své podstaty nevratně svázána s konkrétním hardwarem (nejčastěji se základní deskou), se kterým byla pořízena. Tuto licenci nelze legálně přenést na jiný počítač. Kamarád s původním PC může systém legálně dál používat, ale Jan si pro nový počítač musí zakoupit novou licenci." />
           </Question>
 
           <Question id="B5" title="Architektura OS">

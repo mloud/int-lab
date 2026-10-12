@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Cpu, MemoryStick, LogIn, LogOut, Play, RotateCcw, CheckCircle2, Calculator, Settings, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Cpu, MemoryStick, LogIn, LogOut, Play, RotateCcw, CheckCircle2, Calculator, Settings, AlertTriangle, BookOpen } from 'lucide-react';
+import { FsChapterShell, FsTab } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
+import VonNeumannTheory from './VonNeumannTheory';
 
 interface VonNeumannGameProps {
   onBack: () => void;
@@ -270,7 +272,13 @@ const BUILDER_MODULES = [
   { id: 'out', name: 'Výstup', icon: LogOut, desc: 'Zobrazuje výstup (monitor)' },
 ];
 
+const TABS: FsTab[] = [
+  { id: 'teorie', label: 'Teorie & Princip', icon: BookOpen },
+  { id: 'simulace', label: 'Interaktivní simulátor', icon: Cpu },
+];
+
 const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
+  const [activeTab, setActiveTab] = useState<'teorie' | 'simulace'>('teorie');
   const [phase, setPhase] = useState<'builder' | 'simple-sim' | 'simulator'>('builder');
   
   // Builder state
@@ -353,47 +361,48 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="max-w-6xl w-full mx-auto animate-in fade-in duration-1000 px-4 py-8 flex flex-col">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-gray-100 uppercase tracking-wider text-xs"
-        >
-          <ArrowLeft className="w-4 h-4" /> Zpět
-        </button>
-        <div className="flex flex-col items-center">
-          <h1 className="text-3xl font-black text-gray-800 uppercase tracking-tight flex items-center gap-3 mb-4">
-            <Cpu className="w-8 h-8 text-indigo-600" />
-            Von Neumannova architektura
-          </h1>
-          <div className="flex gap-2">
-            <button 
-              onClick={() => setPhase('builder')} 
-              className={`px-6 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'builder' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50 border-2 border-gray-100'}`}
+    <FsChapterShell
+      title="Von Neumannova"
+      highlight="architektura"
+      subtitle="Základní koncepční model moderních počítačů: procesor s řadičem a ALU, společná paměť a systém sběrnic."
+      tabs={TABS}
+      activeTab={activeTab}
+      onTabChange={(id) => setActiveTab(id as 'teorie' | 'simulace')}
+      onBack={onBack}
+    >
+      {activeTab === 'teorie' && <VonNeumannTheory />}
+
+      {activeTab === 'simulace' && (
+        <div className="flex flex-col gap-6 w-full animate-in fade-in duration-300">
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-black uppercase tracking-wider text-slate-500 mr-2">Režim simulace:</span>
+              <button 
+                onClick={() => setPhase('builder')} 
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'builder' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+              >
+                1. Skládačka HW
+              </button>
+              <button 
+                onClick={() => setPhase('simple-sim')} 
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'simple-sim' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+              >
+                2. Zjednodušený tok
+              </button>
+              <button 
+                onClick={() => setPhase('simulator')} 
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'simulator' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+              >
+                3. Pokročilý simulátor
+              </button>
+            </div>
+            <button
+              onClick={handleReset}
+              className="flex items-center gap-2 px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold rounded-xl border border-rose-200 uppercase tracking-wider text-xs transition-all"
             >
-              1. Skládačka HW
-            </button>
-            <button 
-              onClick={() => setPhase('simple-sim')} 
-              className={`px-6 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'simple-sim' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50 border-2 border-gray-100'}`}
-            >
-              2. Zjednodušený tok
-            </button>
-            <button 
-              onClick={() => setPhase('simulator')} 
-              className={`px-6 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${phase === 'simulator' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50 border-2 border-gray-100'}`}
-            >
-              3. Pokročilý simulátor
+              <RotateCcw className="w-3.5 h-3.5" /> Reset simulace
             </button>
           </div>
-        </div>
-        <button
-          onClick={handleReset}
-          className="flex items-center gap-2 px-6 py-3 bg-red-50 hover:bg-red-100 text-red-600 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-red-200 uppercase tracking-wider text-xs"
-        >
-          <RotateCcw className="w-4 h-4" /> Reset
-        </button>
-      </div>
 
       {phase === 'builder' && (
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-xl border-4 border-indigo-100 flex flex-col items-center">
@@ -876,7 +885,9 @@ const VonNeumannGame: React.FC<VonNeumannGameProps> = ({ onBack }) => {
         </div>
         </>
       )}
-    </div>
+        </div>
+      )}
+    </FsChapterShell>
   );
 };
 
