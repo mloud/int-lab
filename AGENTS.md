@@ -86,3 +86,13 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       - `doc/plan.md` – na čem se právě pracuje a jaká je plánovaná návaznost.
     - ZAJISTI, aby každé nové téma logicky a didakticky navazovalo na předchozí probíranou látku (žádné izolované "skoky" v pojmech).
     - Po dokončení práce nebo změně v kurikulu **VŽDY aktualizuj** záznam v `doc/history.md` a uprav stav v `doc/plan.md`.
+
+13. **Modulární architektura a zákaz monolitického kódu (Modular Code Architecture):**
+    - **Žádné monolity:** VŽDY se vyvaruj psaní obřích monolitických souborů (typicky nad 400–500 řádků).
+    - **Dekompozice kapitol:** Každou komplexní kapitolu s více záložkami nebo složitější logikou ihned čleň do dedikované podsložky (např. `procesy/`, `malware/`):
+      - **Orchestrátor kapitoly:** Hlavní soubor kapitoly (např. `MalwareDetectionChapter.tsx`) slouží pouze jako štíhlý orchestrátor (~50–200 řádků), který obaluje `FsChapterShell` a přepíná jednotlivé záložky.
+      - **Záložky v samostatných souborech:** Každá záložka musí být v samostatné komponentě (např. `*TheoryTab.tsx`, `*SimulatorsTab.tsx`, `*LabTab.tsx`, `*QuizTab.tsx`).
+      - **Samostatné simulátory:** Jednotlivé interaktivní simulátory (např. virus, ransomware, Process Explorer) musí mít vlastní izolované komponenty (např. v podsložce `simulators/`) s vlastním lokálním stavem.
+      - **Typy a data:** Sdílená rozhraní, datové modely a konstanty umisťuj do samostatného `*Types.ts`.
+    - **Udržitelnost:** Kód musí zůstat rozčleněný tak, aby byl v budoucnu snadno upravitelný po malých částech bez rizika poškození okolních funkcí.
+

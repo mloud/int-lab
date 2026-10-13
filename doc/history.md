@@ -84,41 +84,26 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 ### Blok 2: Bezpečnost 1 (Ochrana Windows 11)
 2. **Bezpečnost 1** (`/specializovana/operacni-systemy-2/bezpecnost`) – *Podkapitoly:*
    - **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`):
-     - **Komponenta:** `MalwareDetectionChapter.tsx` (obaleno v `FsChapterShell`, 3 záložky: Teorie, Simulátory, Kvíz).
-     - **Teorie:** Zjednodušený výklad – proč OS a CPU virus nepoznají (slepé vykonávání instrukcí v RAM dle PC, Security tokeny), přehledný katalog 6 typů malwaru (virus, červ, trojan, ransomware, spyware/keylogger, rootkit).
-     - **Simulátory:** 
-       1. Krokování instrukcí (Kalkulačka + FORMAT C: /Q) – CPU slepě smaže disk a pokračuje.
-       2. Simulace síťového červa (autonomní šíření).
-       3. Trojský kůň (skrytý proces).
-       4. Ransomware (šifrování uživatelských souborů).
-       5. Spyware & Keylogger (odposlech kláves před vykreslením na monitor).
-       6. Živá laboratoř SHA-256 hashů (lavinový efekt a princip otisku integrity).
-     - **Kvíz:** 5 kontrolních otázek na typologii malwaru a chování CPU.
-
+     - **Komponenta & Architektura:** `MalwareDetectionChapter.tsx` (štíhlý orchestrátor ~40 řádků obalený v `FsChapterShell`, 3 záložky: Teorie, Simulátory, Kvíz).
+     - **Modulární struktura (`malware/`):**
+       - `malwareTypes.ts`: Sdílené typy a metadata pro 6 simulačních modulů.
+       - `MalwareTheoryTab.tsx`: Samostatná záložka teorie (Von Neumann, CPU slepé vykonávání instrukcí, Security tokeny, katalog 6 hrozeb).
+       - `MalwareSimulatorsTab.tsx`: Centrální přepínač simulačních karet renderující specializované podkomponenty v `malware/simulators/`:
+         - `VirusSimulator.tsx`: Krokování instrukcí (Kalkulačka + FORMAT C: /Q).
+         - `WormSimulator.tsx`: Simulace síťového červa a autonomního šíření v LAN.
+         - `TrojanSimulator.tsx`: Trojský kůň (fasáda vs. dropper & backdoor).
+         - `RansomwareSimulator.tsx`: Ransomware a šifrování souborů.
+         - `SpywareSimulator.tsx`: Spyware & Keylogger s odposlechem hesel.
+         - `HashSimulator.tsx`: Živá laboratoř SHA-256 hashů a VirusTotal.
+       - `MalwareQuizTab.tsx`: 5 kontrolních otázek na typologii malwaru a chování CPU.
    - **BZ2 Správa procesů a digitální certifikáty** (`/bezpecnost/procesy-a-certifikaty`):
-     - **Komponenta:** `ProcessCertificatesChapter.tsx` (obaleno v `FsChapterShell`, 4 záložky: Teorie, Simulátory, Praktická laboratoř, Kvíz).
-     - **Teorie přizpůsobená SŠ:**
-       - Úvodní karty: 5 kontrolních kroků OS při spuštění souboru `.exe` a 4 pilíře rychlé analýzy procesů v systému (bezpečnostní forensics).
-       - Navázání na OSS 1 (program na disku vs. proces v RAM, PID, čítač PC).
-       - Proč procesy mohou lhát o názvu a proč běžný Task Manager nestačí (porovnání legitimního vs. falešného `svchost.exe`).
-       - Skutečný účel `svchost.exe` (univerzální hostitel služeb Windows, metafora autobusu a cestujících).
-       - Digitální podpisy Authenticode a certifikační autority (CA) – metafora královské pečeti, asymetrická kryptografie, kontrola shody hashů.
-       - Reputační ochrana (VirusTotal, Smart App Control ve Windows 11).
-       - Všechna technická témata obsahují rozbalovací dovysvětlovací rámce (`<details>/<summary>`).
-     - **Simulátory:**
-       1. *Sysinternals Process Explorer:* Interaktivní strom procesů, filtrování, barevná legenda, ověřené podpisy a skóre VirusTotal.
-       2. *Laboratoř digitálního podpisu:* Textový editor s interaktivním výpočtem SHA-256 v reálném čase a simulátor ověření integrity v OS.
-     - **Praktická laboratoř (Protokol):** Jednotná šablona `WorksheetLayout` s exportem do Wordu (.doc) a do schránky pro MS Teams. 8 samostatných úloh výhradně v `cmd.exe` a systémových nástrojích (žádný PowerShell), s kontextem "Proč to děláme", rozbalovací nápovědou; všechna vstupní pole mají prázdný placeholder bez nápovědy k řešení:
-       1. *Úloha 1:* Stopování procesu `explorer.exe` v CLI (`tasklist`, filtrace).
-       2. *Úloha 2:* Vyhledání paměťově náročných procesů nad 100 MB RAM (`tasklist /fi "MEMUSAGE gt 100000"`).
-       3. *Úloha 3:* Odhalení skrytých systémových služeb pod procesy (`tasklist /svc`).
-       4. *Úloha 4:* Forenzní export všech procesů do CSV a tabulková analýza anomálií v Excelu (`tasklist /FO CSV`).
-       5. *Úloha 5:* Odposlech a audit síťových spojení v `resmon.exe` (lustrace IP z Chrome přes Whois/IPinfo, hromadný export spojení Edge + Seznam.cz do Excelu, reflexe podezřelých webů).
-       6. *Úloha 6:* Inspekce procesního stromu v Sysinternals Process Explorer (Authenticode, VirusTotal).
-       7. *Úloha 7:* Výpočet SHA-256 přes `certutil -hashfile notepad.exe SHA256` a VirusTotal.
-       8. *Úloha 8:* Audit Smart App Control (SAC) ve Windows 11.
-       - Závěrečná reflexe a kontrolní otázky.
-     - **Kvíz:** 5 otázek na procesy, Authenticode, Process Explorer a SAC.
+     - **Komponenta & Architektura:** `ProcessCertificatesChapter.tsx` (štíhlý orchestrátor ~230 řádků obalený v `FsChapterShell`, 4 záložky: Teorie, Simulátory, Praktická laboratoř, Kvíz).
+     - **Modulární struktura (`procesy/`):**
+       - `processTypes.ts`: Sdílená data pro strom procesů (`PROCESS_TREE_DATA`), původní kód pro Authenticode a typ protokolu.
+       - `ProcessTheoryTab.tsx`: Samostatná záložka teorie (5 kroků OS, 4 pilíře analýzy, Authenticode, CA, Smart App Control).
+       - `ProcessSimulatorsTab.tsx`: Interaktivní Sysinternals Process Explorer strom procesů a živý inspektor integrity digitálního podpisu Authenticode s reálným SHA-256.
+       - `ProcessLabTab.tsx`: Praktický forenzní protokol ve `WorksheetLayout` s 8 reálnými úlohami (`tasklist`, `resmon.exe`, Excel analýza, Sysinternals, `certutil`, Smart App Control) a exportem do Wordu.
+       - `ProcessQuizTab.tsx`: 5 ověřovacích otázek na procesy a certifikáty.
 ---
 
 ## 4. Detailní stav kapitol – Programování 1 (PRG 1 – 1. Ročník)
