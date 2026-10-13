@@ -19,12 +19,19 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
   const [task2, setTask2] = useLocalStorage('cobian-task2', false);
   const [task3, setTask3] = useLocalStorage('cobian-task3', false);
   const [task4, setTask4] = useLocalStorage('cobian-task4', false);
+  const [task5, setTask5] = useLocalStorage('cobian-task5', false);
 
   // Stav simulátoru
   const [simDay, setSimDay] = useState(0);
   const [showRestore, setShowRestore] = useState(false);
 
-  // Odpovědi pro Úkol 4
+  // Odpovědi pro Úkol 5 (Podniková síťová záloha s plánovačem)
+  const [ansNetworkPath, setAnsNetworkPath] = useLocalStorage('cobian-ans-netpath', '');
+  const [ansScheduleSetting, setAnsScheduleSetting] = useLocalStorage('cobian-ans-sched', '');
+  const [ansDay1Log, setAnsDay1Log] = useLocalStorage('cobian-ans-day1', '');
+  const [ansDay2Log, setAnsDay2Log] = useLocalStorage('cobian-ans-day2', '');
+
+  // Odpovědi pro Úkol 6 (Závěrečné otázky)
   const [ansQ1, setAnsQ1] = useLocalStorage('cobian-ans-q1', '');
   const [ansQ2, setAnsQ2] = useLocalStorage('cobian-ans-q2', '');
   const [ansQ3, setAnsQ3] = useLocalStorage('cobian-ans-q3', '');
@@ -51,9 +58,16 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
           <li><strong>Úkol 2 (Inkrementální záloha):</strong> ${task2 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
           <li><strong>Úkol 3 (Diferenciální záloha):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
           <li><strong>Úkol 4 (Komplexní obnova projektu):</strong> ${task4 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 5 (Podniková síťová záloha s plánovačem):</strong> ${task5 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
         </ul>
 
-        <h2>Úkol 5: Shrnutí & Závěrečné otázky</h2>
+        <h2>Úkol 5: Záznam automatizované síťové zálohy</h2>
+        <p><strong>Cesta k síťovému disku:</strong><br/>${ansNetworkPath || 'Neuvedeno'}</p>
+        <p><strong>Nastavení plánovače v Cobianu:</strong><br/>${ansScheduleSetting || 'Neuvedeno'}</p>
+        <p><strong>Log z Dne 1 (Plná záloha s fsutil):</strong><br/>${ansDay1Log || 'Neuvedeno'}</p>
+        <p><strong>Log z Dne 2 (Inkrementální záloha):</strong><br/>${ansDay2Log || 'Neuvedeno'}</p>
+
+        <h2>Úkol 6: Shrnutí & Závěrečné otázky</h2>
         <p><strong>Otázka 1 (Proč by bylo špatné dělat každý den v 17:00 pouze Plnou zálohu na 1 TB disk?):</strong><br/>${ansQ1}</p>
         <p><strong>Otázka 2 (Který typ zálohy trvá nejkratší dobu při vytváření?):</strong><br/>${ansQ2}</p>
         <p><strong>Otázka 3 (Kde v prostředí Cobianu nastavím, aby se záloha ukládala na síťové úložiště NAS?):</strong><br/>${ansQ3}</p>
@@ -563,8 +577,122 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             {/* Úkol 5 */}
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
-                <span className="w-8 h-8 bg-fuchsia-100 text-fuchsia-700 rounded-full flex items-center justify-center text-sm">5</span>
-                Úkol 5: Shrnutí a závěrečné otázky
+                <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm font-bold">5</span>
+                Úkol 5: Podniková automatizace – Plánované zálohování na síťový disk
+              </h3>
+              <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
+                V reálné firemní síti administrátor nespouští zálohování ručně. Vytvoří automatizovaný plánovač (Schedule), který v pravidelných intervalech sám odesílá data na centrální <strong>síťový disk (NAS / serverový sdílený disk)</strong>. Pomocí nástroje <code>fsutil</code> nasimulujeme vícedenní vývoj velkého projektu a v praxi ověříme efektivitu síťového zálohování.
+              </p>
+              
+              <div className="pl-11 space-y-4">
+                <div className="bg-white border-l-4 border-indigo-400 p-4 rounded-r-xl shadow-sm space-y-2">
+                  <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">A</span>
+                    Příprava: Vytvoření úlohy s cílem na síťovém disku a nastavení plánovače
+                  </h4>
+                  <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                    <li>Vytvořte na svém disku <code>C:</code> novou složku projektu: <code>C:\Firemni_Projekt</code>.</li>
+                    <li>V Cobianu vytvořte novou úlohu <strong>5_Sitova_Automatizace</strong>.</li>
+                    <li>Jako <strong>Zdroj (Source)</strong> zadejte <code>C:\Firemni_Projekt</code>.</li>
+                    <li>Jako <strong>Cíl (Destination)</strong> nastavte složku na vašem <strong>připojeném síťovém disku</strong> (např. <code>Z:\Zalohy_Projektu</code> nebo přidělenou síťovou jednotku).</li>
+                    <li>Typ zálohy nastavte na <strong>Přírůstková (Inkrementální)</strong>.</li>
+                    <li>
+                      <strong>Aktivace automatického plánovače (Záložka Plánovač / Schedule):</strong><br/>
+                      Ve firmě se zálohuje typicky v noci. Pro účely školního cvičení však v záložce Plánovač nastavte typ <strong>Časovač (Timer)</strong> – např. opakovat každé <strong>2 až 3 minuty</strong> (případně zvolte <em>Denně</em> s časem za 2 minuty od aktuálního času).
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white border-l-4 border-blue-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">B</span>
+                    Den 1 (Pondělí): Výchozí stav projektu a velký binární soubor (fsutil)
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Ve složce <code>C:\Firemni_Projekt</code> vytvořte konfigurační textový soubor <code>nastaveni.ini</code> a velký 20MB soubor představující surový videozáznam nebo databázi. Spusťte Příkazový řádek (cmd) a zadejte:<br/>
+                    <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\video_master.raw" 20971520</code>
+                    Nechte plánovač v Cobianu automaticky odpočítat a provést první <strong>Plnou zálohu</strong> na síťový disk. V okně Cobianu v záložce <em>Protokol (Log)</em> zkontrolujte záznam o přenosu na síťový disk.
+                  </p>
+                </div>
+
+                <div className="bg-white border-l-4 border-emerald-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">C</span>
+                    Den 2 (Úterý): Běžná práce v projektu – drobný textový přírůstek
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Do projektu přidejte malý textový soubor se zápisem <code>zapis_ze_schuzky.txt</code>. Počkejte na další automatický interval plánovače (Inkrementální záloha). Podívejte se do protokolu i na síťový disk: všimněte si, že se přenesl <strong>pouze malý textový soubor</strong> (pár KB) a síťová linka nebyla zbytečně zatížena 20MB videosouborem!
+                  </p>
+                </div>
+
+                <div className="bg-white border-l-4 border-amber-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
+                  <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold">D</span>
+                    Den 3 (Středa): Nový velký render / export projektu (fsutil)
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Do složky projektu přidejte nový velký 10MB soubor simulující hotový export:<br/>
+                    <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\export_v1.mp4" 10485760</code>
+                    Plánovač provede další automatický inkrement na síťový disk, kam přenese pouze tento nový 10MB soubor.
+                  </p>
+                </div>
+
+                <div className="bg-purple-50/70 border border-purple-200 p-4 rounded-2xl space-y-3">
+                  <h4 className="font-bold text-purple-950 text-sm">Zjištěná data a záznam automatizované zálohy:</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Cesta / písmeno síťového disku:</label>
+                      <input
+                        type="text"
+                        value={ansNetworkPath}
+                        onChange={e => setAnsNetworkPath(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Nastavení plánovače v Cobianu (typ/čas):</label>
+                      <input
+                        type="text"
+                        value={ansScheduleSetting}
+                        onChange={e => setAnsScheduleSetting(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 1 (Plná):</label>
+                      <input
+                        type="text"
+                        value={ansDay1Log}
+                        onChange={e => setAnsDay1Log(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 2 (Inkrement):</label>
+                      <input
+                        type="text"
+                        value={ansDay2Log}
+                        onChange={e => setAnsDay2Log(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2">
+                    <label className="flex items-center gap-3 cursor-pointer bg-white p-3.5 rounded-xl border border-purple-200 hover:bg-purple-100/50 transition-colors w-max">
+                      <input type="checkbox" checked={task5} onChange={e => setTask5(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
+                      <span className="font-bold text-purple-950 text-xs">✅ Automatická síťová záloha s plánovačem byla úspěšně ověřena</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Úkol 6 */}
+            <div className="space-y-4 relative">
+              <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
+                <span className="w-8 h-8 bg-fuchsia-100 text-fuchsia-700 rounded-full flex items-center justify-center text-sm font-bold">6</span>
+                Úkol 6: Shrnutí a závěrečné otázky
               </h3>
               
               <div className="pl-11 space-y-6">

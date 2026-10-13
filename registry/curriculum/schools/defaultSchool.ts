@@ -670,6 +670,40 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     { id: 'bak-cloud', title: 'Cloudové zálohy', description: 'Synchronizace a vzdálená úložiště', tag: 'b4', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/cloud' },
                     { id: 'bak-cobian', title: 'Cobian Reflector', description: 'Konfigurace automatizovaného zálohování', tag: 'b5', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/cobian' }
                   ]
+                },
+                {
+                  id: 'bezpecnost',
+                  title: 'Bezpečnost 1',
+                  description: 'Zabezpečení Windows 11, analýza procesů, Sandbox, Defender, Firewall a šifrování.',
+                  tag: 'sec',
+                  icon: 'ShieldCheck',
+                  gradient: 'from-blue-600 to-cyan-600',
+                  route: '/specializovana/operacni-systemy-2/bezpecnost',
+                  hasSubchapters: true,
+                  subchapters: [
+                    {
+                      id: 'bezp-malware',
+                      title: 'Úvod do malwaru a principy nákazy',
+                      description: 'Proč CPU vykoná škodlivý kód, typologie 6 hrozeb, simulace mazání disku a chování v RAM.',
+                      tag: 'BZ1',
+                      icon: 'ShieldAlert',
+                      gradient: 'from-blue-600 to-indigo-600',
+                      route: '/specializovana/operacni-systemy-2/bezpecnost/malware',
+                      orderNumber: 1,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'bezp-procesy-certifikaty',
+                      title: 'Správa procesů a digitální certifikáty',
+                      description: 'Procesní strom, ověřování podpisů Authenticode, reputační cloud a praktická laboratoř v OS.',
+                      tag: 'BZ2',
+                      icon: 'FileCheck',
+                      gradient: 'from-blue-600 to-cyan-600',
+                      route: '/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty',
+                      orderNumber: 2,
+                      actionLabel: 'Otevřít kapitolu'
+                    }
+                  ]
                 }
               ]
             },

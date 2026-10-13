@@ -79,3 +79,10 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       - Má-li podkapitoly: použij `DynamicSubchapterHub` s definovanými podkapitolami.
       - Jde-li o přímou lekci: použij šablonu obsahu (`FsChapterShell`, `WorksheetLayout` nebo vlastní interaktivní komponentu).
     - **Krok 4 (Registry):** Zapiš lekci do `registry/lessons.ts`.
+
+12. **Správa Historie a Plánu Učiva (OSS 1, OSS 2, PRG 1, PRG 2 Tracking):**
+    - Vždy před zahájením práce na odborných předmětech **OSS 1, OSS 2, PRG 1 (Programování 1) a PRG 2 (Programování 2)** nebo před přidáním nového tématu **MUSÍŠ nejprve zkontrolovat**:
+      - `doc/history.md` – co už je hotové, jaká je struktura existujících kapitol, jaké pojmy žáci znají a jaké didaktické volby byly učiněny.
+      - `doc/plan.md` – na čem se právě pracuje a jaká je plánovaná návaznost.
+    - ZAJISTI, aby každé nové téma logicky a didakticky navazovalo na předchozí probíranou látku (žádné izolované "skoky" v pojmech).
+    - Po dokončení práce nebo změně v kurikulu **VŽDY aktualizuj** záznam v `doc/history.md` a uprav stav v `doc/plan.md`.

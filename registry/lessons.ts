@@ -2746,6 +2746,75 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy-2/zalohovani/BackupCloudChapter')
   },
   {
+    id: 'os2-bezpecnost-malware',
+    title: 'Úvod do malwaru a principy nákazy',
+    shortCode: '#bz1',
+    description: 'Proč CPU vykoná škodlivý kód, typologie 6 hrozeb, simulace mazání disku a chování v RAM.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy-2/bezpecnost/malware',
+    iconName: 'ShieldAlert',
+    keywords: ['malware', 'virus', 'cerv', 'trojan', 'ransomware', 'spyware', 'rootkit'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [2],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 2,
+      gradeLabel: '2. Ročník',
+      subject: 'Operační systémy 2',
+      thematicBlock: 'Bezpečnost operačních systémů',
+      chapter: 'Bezpečnost 1',
+      subchapter: '1. Úvod do malwaru a principy nákazy',
+      lesson: 'Úvod do malwaru a principy nákazy'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/MalwareDetectionChapter')
+  },
+  {
+    id: 'os2-bezpecnost-procesy-certifikaty',
+    title: 'Správa procesů a digitální certifikáty',
+    shortCode: '#bz2',
+    description: 'Procesní hierarchie, digitální podpisy Authenticode, forenzní audit v CLI a Process Exploreru.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty',
+    iconName: 'FileCheck',
+    keywords: ['procesy', 'certifikaty', 'authenticode', 'process explorer', 'tasklist', 'virustotal', 'smart app control'],
+    difficulty: 'hard',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [2],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 2,
+      gradeLabel: '2. Ročník',
+      subject: 'Operační systémy 2',
+      thematicBlock: 'Bezpečnost operačních systémů',
+      chapter: 'Bezpečnost 1',
+      subchapter: '2. Správa procesů a digitální certifikáty',
+      lesson: 'Správa procesů a digitální certifikáty'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: true,
+      worksheetType: 'worksheet'
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/ProcessCertificatesChapter')
+  },
+  {
     id: 'os-spec-virtualizace',
     title: 'Virtualizace a hypervizory',
     shortCode: '#osv',
