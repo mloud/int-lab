@@ -36,11 +36,36 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
   - [ ] Revize navigačního rozcestníku a sjednocení podkapitol do přehledného menu.
   - [ ] Přechod na mini-projekty v Pythonu (např. animovaný míček, Pong, vykreslování fraktálů).
 
-### 4. Operační systémy 2 (OSS 2 – 2. ročník) – ⏭️ DALŠÍ NA ŘADĚ V APLIKACI
-- **Téma: Bezpečnost Windows 11** (`/specializovana/operacni-systemy-2/bezpecnost`) – detail viz níže v roadmapě OSS 2, blok 2.
-  - [ ] Sdílené simulační komponenty (`WinWindow`, `TerminalEmulator`, `ProcessTable`, `EventViewerMini`, `FirewallRuleTable`, `AutorunsList`).
-  - [ ] Registrace kapitoly + podkapitol v `defaultSchool.ts` a `registry/lessons.ts`.
-  - [ ] BZ1 → BZ7 (postupně, jedna podkapitola po druhé).
+### 4. Operační systémy 2 (OSS 2 – 2. ročník)
+- **Téma: Bezpečnost Windows 11** (`/specializovana/operacni-systemy-2/bezpecnost`)
+  - [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`) – modulární architektura v `malware/` (hotovo).
+  - [x] **BZ2 Správa procesů a digitální certifikáty** (`/bezpecnost/procesy-a-certifikaty`) – modulární architektura v `procesy/` (hotovo).
+  - [ ] BZ3 Izolace a Sandbox (`/bezpecnost/izolace`) – další na řadě.
+  - [ ] BZ4 Konfigurace Antiviru Defender (`/bezpecnost/defender`).
+  - [ ] BZ5 Síťový Firewall (`/bezpecnost/firewall`).
+  - [ ] BZ6 Šifrování dat a BitLocker (`/bezpecnost/sifrovani`).
+  - [ ] BZ7 Účty a UAC (`/bezpecnost/uac`).
+  - [ ] BZ8 Mini-CTF závěrečná práce.
+
+### 5. Technický dluh & Refaktoring monolitů (Pravidlo 13 z AGENTS.md)
+- [x] **Rozdělení obřích monolitů v Bezpečnosti (OSS 2):**
+  - [x] `MalwareDetectionChapter.tsx` (3 492 řádků ➔ orchestrátor 42 řádků + podsložka `malware/` se 7 samostatnými komponentami).
+  - [x] `ProcessCertificatesChapter.tsx` (2 457 řádků ➔ orchestrátor 258 řádků + podsložka `procesy/` se 4 samostatnými záložkami).
+  - [x] Zavedení pravidla 13 (Modular Code Architecture) do `AGENTS.md`.
+- [ ] **Backlog kandidátů na budoucí dekompozici (zatím nerozdělovat, evidováno):**
+  - **Priorita 1 (nad 1 000 řádků):**
+    - [ ] `OsArchitectureChapter.tsx` (1 454 řádků, OSS 1) ➔ dekompozice na `architektura/` (`ArchitectureTheoryTab`, `SyscallsSimulator`, `KernelTypesTab`, `ArchitectureQuizTab`).
+    - [ ] `WindowsInstallGame.tsx` (1 352 řádků, OSS 1) ➔ dekompozice na `instalace/` (`UefiSetupSimulator`, `DiskPartitionWizard`, `OobeConfigWizard`, `installTypes.ts`).
+    - [ ] `ScratchRaycasterProject.tsx` (1 194 řádků, PRG 1) ➔ dekompozice na `raycaster/` (`RaycasterCanvas`, `RaycasterMapEditor`, `raycasterEngine.ts`).
+    - [ ] `OsEvolutionChapter.tsx` (1 091 řádků, OSS 1) ➔ dekompozice na `vyvoj/` (`EvolutionTimelineTab`, `FamilyTreeTab`, `evolutionData.ts`).
+    - [ ] `HuffmanGame.tsx` (1 024 řádků, INF) ➔ dekompozice na `huffman/` (`HuffmanTreeCanvas`, `HuffmanTable`, `huffmanLogic.ts`).
+  - **Priorita 2 (700–1 000 řádků):**
+    - [ ] `BarChartsChapter.tsx` (921 řádků, INF grafy)
+    - [ ] `VonNeumannGame.tsx` (895 řádků, OSS 1 hardware)
+    - [ ] `ScratchConditionsChapter.tsx` (815 řádků, PRG 1)
+    - [ ] `FatChapter.tsx` (791 řádků, OSS 1 FS)
+    - [ ] `DiskMediaChapter.tsx` (765 řádků, OSS 1 FS)
+    - [ ] `BackupCobianChapter.tsx` (740 řádků, OSS 2 zálohování)
 
 ---
 

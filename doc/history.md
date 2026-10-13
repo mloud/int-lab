@@ -234,5 +234,20 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Každá úloha má samostatný kontext "Proč to děláme", rozbalovací nápovědu a přímá vstupní pole s exportem do Wordu (`.doc`) a MS Teams.
     - Úloha 3 a 4 didakticky zjednodušeny pro SŠ s využitím přirovnání „Autobus a cestující“ (`svchost.exe` = autobus, služby = cestující, samostatné programy = `N/A`), doplněn praktický tahák zkratek služeb (`gpsvc`, `ClipSVC`, `Dnscache`, `wuauserv` atd.).
 
+---
+
+## 5. Globální systémová vylepšení portálu IntLab (UX & Použitelnost)
+- **Globální plynulé tlačítko „Zpět nahoru“ (`GlobalScrollToTop.tsx`):**
+  - Umístěno v kořenovém rozvržení (`app/layout.tsx`) – automaticky funguje na všech současných i nově přidaných stránkách portálu.
+  - Aktivuje se při odscrollování o více než 280 px.
+  - Obsahuje SVG kruhový ukazatel procentuálního postupu rolování stránky a hladkou animaci návratu nahoru (`window.scrollTo({ top: 0, behavior: 'smooth' })`).
+  - Vertikálně srovnáno nad globálním panelem lupy písma (`GlobalTextZoom`).
+- **Globální kopírování kódů a CLI příkazů jedním klikem (`GlobalCodeCopy.tsx`):**
+  - Implementováno přes delegovaný event listener na úrovni celého dokumentu – automaticky obsluhuje všechny `<code>` a `<pre>` elementy napříč celým webem bez nutnosti manuálních úprav v jednotlivých komponentách.
+  - Po kliknutí na libovolný kód (např. `tasklist /FO CSV`, `resmon.exe`, `certutil...`) se obsah okamžitě zkopíruje do schránky (`navigator.clipboard.writeText`).
+  - Kliknutý element zeleně problikne (`.intlab-code-copied`) a ve spodní části obrazovky se zobrazí toastová notifikace s ikonou fajfky a náhledem zkopírovaného textu.
+  - Respektuje označování textu (pokud žák označuje myší jen část řetězce, automatické kopírování se nespustí).
+
+
 
 

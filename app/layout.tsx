@@ -1,6 +1,8 @@
 import Script from 'next/script';
 import { CurriculumProvider } from '@/components/providers/CurriculumContext';
 import GlobalTextZoom from '@/components/ui/GlobalTextZoom';
+import GlobalScrollToTop from '@/components/ui/GlobalScrollToTop';
+import GlobalCodeCopy from '@/components/ui/GlobalCodeCopy';
 
 export const metadata = {
   title: 'IntLab | Interactive Learning Lab',
@@ -69,6 +71,8 @@ export default function RootLayout({
         <CurriculumProvider>
           {children}
           <GlobalTextZoom />
+          <GlobalScrollToTop />
+          <GlobalCodeCopy />
         </CurriculumProvider>
 
         {/* Cloudflare Web Analytics - měření návštěvnosti bez cookies */}
