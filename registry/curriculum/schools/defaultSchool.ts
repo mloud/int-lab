@@ -414,6 +414,17 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   hasSubchapters: false
                 },
                 {
+                  id: 'os-test-practice',
+                  title: 'Procvičování na test 1',
+                  description: 'Interaktivní příprava a procvičování: 11 otázek z hardwaru a základů OS s okamžitým vyhodnocením a vysvětlením.',
+                  tag: 'KVÍZ',
+                  icon: 'HelpCircle',
+                  gradient: 'from-emerald-500 to-teal-600',
+                  actionLabel: 'Spustit procvičování',
+                  route: '/specializovana/operacni-systemy/test01-rozbor',
+                  hasSubchapters: false
+                },
+                {
                   id: 'os-test',
                   title: 'Hodnocená práce',
                   description: 'Hardware, úvod do OS a architektura OS. 45 minut, 50 bodů. Odemčení na heslo.',

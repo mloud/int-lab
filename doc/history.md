@@ -38,25 +38,29 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - *Poznámka k návaznosti:* Von Neumann je řazen jako první (teoretický základ), RAM následuje jako detailnější pohled na paměťový subsystém.
 3. **Úvod do OS** (`/specializovana/operacni-systemy/uvod`)
    - **Komponenta:** `OsIntroChapter.tsx`
-   - **Obsah:** Kernel vs. User space, základní funkce a role operačního systému jako správce hardwaru a abstrakce pro aplikace.
+   - **Obsah:** Vrstvený model počítače (společný rámec Operační systém obalující User Space s aplikacemi i Kernel Space s jádrem a ovladači, pod nimi Hardware), základní funkce a role operačního systému.
 4. **Architektura OS** (`/specializovana/operacni-systemy/architektura`)
    - **Komponenta:** `OsArchitectureChapter.tsx`
-   - **Obsah:** Monolitické jádro, mikrojádro, hybridní OS, ovladače zařízení (drivers), systémová volání (syscalls).
+   - **Obsah:** Architektura OS jako stavební plán, spojovací schéma navazující na model z Úvodu (User Space vs. Kernel Space), architektonická otázka umístění modulů, monolitické jádro, mikrojádro, hybridní OS, ovladače zařízení (drivers), hardwarové kruhy (Protection Rings 0-3).
 
-### Hodnocení 1. bloku:
-5. **Hodnocená práce 01** (`/specializovana/operacni-systemy/test01`)
+### Příprava a hodnocení 1. bloku:
+5. **Procvičování na test 1** (`/specializovana/operacni-systemy/test01-rozbor`)
+   - **Komponenty & Architektura:** Modulární struktura v `components/specializovana/operacni-systemy/test01-rozbor/` (`TestReviewQuiz.tsx` a `testReviewData.ts`).
+   - **Obsah a didaktika:** 11 interaktivních reflexních otázek typu ABCD pokrývajících 1:1 témata z písemné práce (Hardware, UEFI, zjednodušený Von Neumann s CPU a sdílenou RAM, části programu v RAM, definice OS, 3 patra počítače, typologie OS, OEM licence, Monolit vs. Mikrojádro, Ring 0 vs. Ring 3, volba jádra letadlo vs. TV).
+   - **Funkce:** Okamžité vyhodnocení volby, barevná zpětná vazba (zelená/červená), vysvětlující didaktické karty u každé otázky, rychlá skoková lišta 1..11, přepínání mezi krokováním po jedné otázce a zobrazením všech otázek najednou, ukládání stavu do `localStorage`.
+6. **Hodnocená práce 01** (`/specializovana/operacni-systemy/test01`)
    - **Komponenta:** `OsSummaryWorksheet.tsx` (obaleno v `TestWorksheetShell`).
    - **Přístupové PINy:** Studentský PIN **`ZAK2026`**, Učitelský PIN **`OS2026`**.
    - **Prověřovaná témata:** Hardware & Von Neumann (CPU, RAM, disk; rozdělení RAM na instrukce a data/proměnné), role kernelu, licence se zvláštním důrazem na vlastnosti OEM licence.
 
 ### Blok 2: Evoluce a běh systému
-6. **Evoluce OS** (`/specializovana/operacni-systemy/vyvoj`) – `OsEvolutionChapter.tsx`: Historie OS, Unix rodina, DOS, Windows NT, Linux.
-7. **Start systému (Boot)** (`/specializovana/operacni-systemy/boot`) – `OsBootChapter.tsx`: BIOS/UEFI, POST test, MBR/GPT bootloader, předání řízení kernelu.
-8. **Virtualizace** (`/specializovana/operacni-systemy/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
+7. **Evoluce OS** (`/specializovana/operacni-systemy/vyvoj`) – `OsEvolutionChapter.tsx`: Historie OS, Unix rodina, DOS, Windows NT, Linux.
+8. **Start systému (Boot)** (`/specializovana/operacni-systemy/boot`) – `OsBootChapter.tsx`: BIOS/UEFI, POST test, MBR/GPT bootloader, předání řízení kernelu.
+9. **Virtualizace** (`/specializovana/operacni-systemy/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
 
 ### Blok 3: Souborové systémy a disky
-9. **Souborový systém a disky** (`/specializovana/operacni-systemy/souborove-systemy`) – *Podkapitoly:*
-   - **FS1 Úvod a architektura** (`/souborove-systemy/uvod`): Role FS, abstrakce souborů a složek.
+10. **Souborový systém a disky** (`/specializovana/operacni-systemy/souborove-systemy`) – *Podkapitoly:*
+   - **FS1 Úvod a architektura** (`/souborove-systemy/uvod`): Role FS, sjednocený vrstvený model OS (User Space -> Syscall -> Kernel Space s FS a ovladačem -> Hardware s mřížkou sektorů), abstrakce souborů a složek.
    - **FS2 Paměťová média** (`/souborove-systemy/media`): Plotnový HDD (stopy, sektory, cylindry) vs. SSD (NAND buňky).
    - **FS3 Dělení disku** (`/souborove-systemy/deleni-disku`): Oddíly, MBR vs. GPT, boot oddíl, svazky.
    - **FS4 Systém souborů (FAT)** (`/souborove-systemy/alokace-fat`): FAT tabulka, klastry, řetězení clusterů, vnitřní fragmentace, smazaná data.
@@ -81,6 +85,9 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - **B2 Manuální záloha** (`/zalohovani/manualni`): Struktura složek, archivace ZIP/TAR, lidský faktor.
    - **B3 Systémové nástroje** (`/zalohovani/system`): Historie souborů Windows, body obnovení (VSS), bitová kopie.
    - **B4 Cloudové zálohy** (`/zalohovani/cloud`): Synchronizace vs. skutečná záloha, riziko zašifrování ransomwarem.
+   - **B5 Automatizované zálohování – Cobian Reflector** (`/zalohovani/cobian`):
+     - **Komponenta:** `BackupCobianChapter.tsx` (Teorie, Interaktivní simulátor zálohovacích cyklů, Pracovní list s exportem do Wordu).
+     - **Pracovní list (7 úkolů):** Úkol 0 (Instalace jako Windows Služba pod systémovým účtem), Úkol 1 (Plná záloha), Úkol 2 (Inkrementální záloha), Úkol 3 (Diferenciální záloha), Úkol 4 (Šifrování AES-256 a komprese ZIP/7z), Úkol 5 (Podniková síťová záloha s plánovačem), Úkol 6 (Reflexe a otázky z praxe), **Úkol 7 (Archivní bit ve Windows)**: Hands-on experiment v GUI Průzkumníka (`Vlastnosti -> Upřesnit -> Soubor je připraven k archivaci`), automatické zapnutí bitu systémem při modifikaci, rozbalovací CMD alternativa (`attrib +/-a`) a návaznost na princip inkrementální zálohy.
 ### Blok 2: Bezpečnost 1 (Ochrana Windows 11)
 2. **Bezpečnost 1** (`/specializovana/operacni-systemy-2/bezpecnost`) – *Podkapitoly:*
    - **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`):

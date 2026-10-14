@@ -20,6 +20,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
   const [task3, setTask3] = useLocalStorage('cobian-task3', false);
   const [task4, setTask4] = useLocalStorage('cobian-task4', false);
   const [task5, setTask5] = useLocalStorage('cobian-task5', false);
+  const [task6, setTask6] = useLocalStorage('cobian-task6', false);
 
   // Stav simulátoru
   const [simDay, setSimDay] = useState(0);
@@ -35,6 +36,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
   const [ansQ1, setAnsQ1] = useLocalStorage('cobian-ans-q1', '');
   const [ansQ2, setAnsQ2] = useLocalStorage('cobian-ans-q2', '');
   const [ansQ3, setAnsQ3] = useLocalStorage('cobian-ans-q3', '');
+  const [ansArchiveBit, setAnsArchiveBit] = useLocalStorage('cobian-ans-archive-bit', '');
 
   const tabs: FsTab[] = [
     { id: 'teorie', label: 'Teorie', icon: BookOpen },
@@ -59,6 +61,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
           <li><strong>Úkol 3 (Diferenciální záloha):</strong> ${task3 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
           <li><strong>Úkol 4 (Komplexní obnova projektu):</strong> ${task4 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
           <li><strong>Úkol 5 (Podniková síťová záloha s plánovačem):</strong> ${task5 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
+          <li><strong>Úkol 7 (Archivní bit ve Windows):</strong> ${task6 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
         </ul>
 
         <h2>Úkol 5: Záznam automatizované síťové zálohy</h2>
@@ -71,6 +74,9 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
         <p><strong>Otázka 1 (Proč by bylo špatné dělat každý den v 17:00 pouze Plnou zálohu na 1 TB disk?):</strong><br/>${ansQ1}</p>
         <p><strong>Otázka 2 (Který typ zálohy trvá nejkratší dobu při vytváření?):</strong><br/>${ansQ2}</p>
         <p><strong>Otázka 3 (Kde v prostředí Cobianu nastavím, aby se záloha ukládala na síťové úložiště NAS?):</strong><br/>${ansQ3}</p>
+
+        <h2>Úkol 7: Archivní bit ve Windows</h2>
+        <p><strong>Otázka: Co udělá přírůstková záloha s archivním bitem poté, co soubor úspěšně zkopíruje?</strong><br/>${ansArchiveBit || 'Neuvedeno'}</p>
       </body>
       </html>
     `;
@@ -724,6 +730,78 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                     onChange={e => setAnsQ3(e.target.value)}
                     className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-fuchsia-500"
                   />
+                </div>
+              </div>
+            </div>
+
+            {/* Úkol 7 */}
+            <div className="space-y-4 relative">
+              <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
+                <span className="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">7</span>
+                Úkol 7: Archivní bit ve Windows (Jak systém pozná změnu)
+              </h3>
+              
+              <div className="pl-11 space-y-4">
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Operační systém Windows u každého souboru eviduje tzv. <strong>Archivní atribut (bit)</strong>. Kdykoliv soubor vytvoříte nebo upravíte, systém jej automaticky označí jako <em>„připraven k archivaci“</em>. Zálohovací programy podle tohoto příznaku poznají, co mají zazálohovat.
+                </p>
+
+                {/* Pokus v GUI */}
+                <div className="bg-white border-2 border-slate-200 p-5 rounded-2xl shadow-xs space-y-2">
+                  <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">A</span>
+                    Rychlý pokus v Průzkumníku Windows (GUI):
+                  </h4>
+                  <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1.5">
+                    <li>Na ploše vytvořte nový textový soubor (např. <code>pokus.txt</code>).</li>
+                    <li>
+                      Klikněte na něj pravým tlačítkem → <strong>Vlastnosti</strong> → záložka <em>Obecné</em> → tlačítko <strong>Upřesnit...</strong><br/>
+                      <span className="text-xs text-amber-800 font-semibold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                        Volba „Soubor je připraven k archivaci“ je automaticky zaškrtnutá!
+                      </span>
+                    </li>
+                    <li>Zaškrtnutí <strong>zrušte</strong> a potvrďte <em>OK</em> a <em>OK</em> (simulace proběhlé zálohy).</li>
+                    <li>Soubor otevřete, připište do něj jedno slovo a uložte (<kbd className="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-xs font-mono">Ctrl+S</kbd>).</li>
+                    <li>Znovu otevřete <em>Vlastnosti → Upřesnit...</em> – Windows zaškrtávátko <strong>samy okamžitě vrátily zpět</strong>!</li>
+                  </ol>
+                </div>
+
+                {/* Rozbalovací sekce pro CMD */}
+                <details className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs group transition-all">
+                  <summary className="font-bold text-slate-700 cursor-pointer flex items-center justify-between hover:text-purple-600">
+                    <span>⌨️ Pro pokročilé: Jak totéž zkontrolovat v Příkazovém řádku (CMD)</span>
+                    <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+                  </summary>
+                  <div className="mt-3 pt-3 border-t border-slate-200 space-y-2 text-slate-600">
+                    <p>Otevřete Příkazový řádek ve složce a vyzkoušejte příkaz <code>attrib</code>:</p>
+                    <ul className="list-disc pl-5 space-y-1 font-mono text-[11px]">
+                      <li><code>attrib pokus.txt</code> → zobrazí písmeno <strong>A</strong> (Archive bit je aktivní).</li>
+                      <li><code>attrib -a pokus.txt</code> → vypne archivní bit (soubor je označen jako „zazálohován“).</li>
+                      <li><code>attrib +a pokus.txt</code> → ručně zapne archivní bit.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                {/* Otázka */}
+                <div className="pt-2">
+                  <label className="block text-sm font-bold text-slate-800 mb-2">
+                    Otázka: Co udělá přírůstková (inkrementální) záloha s tímto zaškrtávátkem poté, co soubor úspěšně zkopíruje?
+                  </label>
+                  <input
+                    type="text"
+                    value={ansArchiveBit}
+                    onChange={e => setAnsArchiveBit(e.target.value)}
+                    placeholder="Napište svou odpověď..."
+                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-amber-500 focus:outline-none"
+                  />
+                </div>
+
+                {/* Checkbox */}
+                <div className="pt-1">
+                  <label className="flex items-center gap-3 cursor-pointer bg-amber-50/70 p-4 rounded-xl border border-amber-200 hover:bg-amber-100/60 transition-colors w-max">
+                    <input type="checkbox" checked={task6} onChange={e => setTask6(e.target.checked)} className="w-5 h-5 text-amber-600 rounded" />
+                    <span className="font-bold text-amber-950 text-sm">✅ Ověřeno: Windows při každé změně souboru samy zapnou archivní bit</span>
+                  </label>
                 </div>
               </div>
             </div>

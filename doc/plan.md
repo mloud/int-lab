@@ -79,7 +79,7 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 1. [x] **Úvod, Instalace Windows 11:** Požadavky, TPM 2.0, simulátor instalace (`/instalace`).
 2. [x] **Základní části PC pro OS:** CPU, RAM, SSD, HDD, sběrnice (`/hardware/von-neumann`, `/hardware/ram`).
 3. [x] **Úvod do OS a architektura:** Funkce OS, kernel vs. user space, licence (OEM), typy OS (`/uvod`, `/architektura`).
-4. [x] **Hodnocená práce 01:** Shrnutí hardwaru, architektury a licencí (`/test01`).
+4. [x] **Procvičování na test 1 & Hodnocená práce 01:** Interaktivní příprava (`/test01-rozbor`), shrnutí hardwaru, architektury a licencí (`/test01`).
 5. [x] **Evoluce operačních systémů:** Historie, rodiny OS, Unix/Windows (`/vyvoj`).
 6. [x] **Start systému (Boot) a Virtualizace:** UEFI, MBR/GPT, VirtualBox, snapshoty (`/boot`, `/virtualizace`).
 7. [x] **Struktura disku z pohledu OS:** Sektor, cluster (alokační jednotka), FAT tabulka, MBR/GPT, fragmentace, formátování (`/souborove-systemy`).

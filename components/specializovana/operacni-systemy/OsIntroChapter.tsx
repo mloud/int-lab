@@ -19,42 +19,52 @@ const THEORY_CONTENT = (
       </div>
 
       {/* Vrstvený model počítače */}
-      <div className="mt-10 flex flex-col items-center gap-1 max-w-2xl mx-auto">
-        <h3 className="font-black text-slate-400 uppercase tracking-widest text-xs mb-4">Vrstvený model počítače</h3>
-        
-        {/* Vrstva 1: Uživatel a Aplikace */}
-        <div className="w-full bg-blue-50 border-2 border-blue-200 hover:border-blue-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
-          <div className="flex gap-3 mb-3">
-            <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Monitor className="w-5 h-5" /></div>
-            <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Smartphone className="w-5 h-5" /></div>
+      <div className="mt-10 flex flex-col items-center gap-1 max-w-lg mx-auto">
+        <h3 className="font-black text-slate-400 uppercase tracking-widest text-xs mb-6">Vrstvený model počítače</h3>
+
+        {/* Společný rámec: Operační systém */}
+        <div className="w-full border-2 border-dashed border-emerald-500 bg-emerald-50/20 rounded-3xl p-4 sm:p-5 flex flex-col items-center relative pt-7">
+          <div className="absolute -top-3.5 bg-emerald-600 text-white text-xs font-black uppercase tracking-wider px-4 py-1 rounded-full shadow-sm flex items-center gap-2">
+            <Shield className="w-3.5 h-3.5" /> Operační systém
           </div>
-          <span className="font-black text-blue-900 uppercase tracking-wider">Uživatel a Aplikace (User Space)</span>
-          <span className="text-sm text-blue-700/80 font-medium mt-1">Webový prohlížeč, Hry, Textový editor, Uživatel</span>
+
+          {/* Vrstva 1: Aplikace a Uživatel (User Space) */}
+          <div className="w-full bg-blue-50 border-2 border-blue-200 hover:border-blue-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
+            <div className="flex gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Monitor className="w-5 h-5" /></div>
+              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Smartphone className="w-5 h-5" /></div>
+            </div>
+            <span className="font-black text-blue-900 uppercase tracking-wider">Aplikace a Uživatel (User Space)</span>
+            <span className="text-sm text-blue-600/80 font-medium mt-1">Hry, Prohlížeč, Kancelářský balík</span>
+          </div>
+
+          {/* Spojka */}
+          <div className="w-1.5 h-6 bg-slate-200 my-1"></div>
+
+          {/* Vrstva 2: Jádro (Kernel Space) */}
+          <div className="w-full bg-emerald-50 border-2 border-emerald-200 hover:border-emerald-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
+            <div className="flex gap-3 mb-3">
+              <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Shield className="w-5 h-5" /></div>
+            </div>
+            <span className="font-black text-emerald-900 uppercase tracking-wider">Jádro (Kernel Space)</span>
+            <div className="flex gap-3 mt-3 w-full justify-center text-sm text-emerald-800 font-bold">
+              <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Jádro (Kernel)</div>
+            </div>
+          </div>
+
+          {/* Spojka přes ovladače k HW */}
+          <div className="flex flex-col items-center -my-1">
+            <div className="w-1.5 h-4 bg-slate-200"></div>
+            <div className="bg-emerald-50 px-4 py-1.5 rounded-xl border-2 border-emerald-300 shadow-sm text-center relative z-20">
+              <div className="text-sm text-emerald-900 font-bold">Ovladače (Drivers)</div>
+              <div className="text-[10px] text-emerald-600 font-medium uppercase tracking-wider mt-0.5">Komunikace s HW</div>
+            </div>
+            <div className="w-1.5 h-4 bg-slate-200"></div>
+          </div>
         </div>
 
-        {/* Spojka */}
-        <div className="w-1.5 h-8 bg-slate-200"></div>
-
-        {/* Vrstva 2: OS a Jádro */}
-        <div className="w-full bg-emerald-50 border-2 border-emerald-200 hover:border-emerald-300 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
-          <div className="flex gap-3 mb-3">
-            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-sm"><Shield className="w-5 h-5" /></div>
-          </div>
-          <span className="font-black text-emerald-900 uppercase tracking-wider">Operační systém (Kernel Space)</span>
-          <div className="flex gap-3 mt-3 w-full justify-center text-sm text-emerald-800 font-bold">
-            <div className="bg-emerald-100 px-4 py-1.5 rounded-lg border border-emerald-200 shadow-sm">Jádro (Kernel)</div>
-          </div>
-        </div>
-
-        {/* Spojka přes ovladače k HW */}
-        <div className="flex flex-col items-center -my-1">
-          <div className="w-1.5 h-6 bg-slate-200"></div>
-          <div className="bg-emerald-50 px-4 py-1.5 rounded-xl border-2 border-emerald-300 shadow-sm text-center relative z-20">
-            <div className="text-sm text-emerald-900 font-bold">Ovladače (Drivers)</div>
-            <div className="text-[10px] text-emerald-600 font-medium uppercase tracking-wider mt-0.5">Komunikace s HW</div>
-          </div>
-          <div className="w-1.5 h-6 bg-slate-200"></div>
-        </div>
+        {/* Spojka k HW */}
+        <div className="w-1.5 h-6 bg-slate-200 my-1"></div>
 
         {/* Vrstva 3: Hardware */}
         <div className="w-full bg-slate-100 border-2 border-slate-300 hover:border-slate-400 transition-colors rounded-2xl p-5 flex flex-col items-center shadow-sm relative z-10">
@@ -70,7 +80,7 @@ const THEORY_CONTENT = (
 
     <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
       <h2 className="text-2xl font-black text-slate-800 mb-6 uppercase flex items-center gap-3">
-        <Cpu className="w-8 h-8 text-purple-500" /> Hlavní funkce
+        <Cpu className="w-8 h-8 text-purple-500" /> Hlavní funkce operačního systému
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
@@ -138,7 +148,7 @@ const THEORY_CONTENT = (
           <div className="text-[10px] font-mono text-slate-700 bg-slate-200 px-2 py-1 rounded w-full">FreeRTOS, QNX, WebOS</div>
         </div>
       </div>
-      
+
       <div className="mt-8 bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 overflow-x-auto">
         <table className="w-full text-left text-sm min-w-max">
           <thead className="bg-slate-200 text-slate-700">
@@ -482,7 +492,7 @@ const OsIntroChapter: React.FC<OsIntroChapterProps> = ({ onBack }) => {
 
   const checkAnswer = (q: QuizQuestion, userAns: AnswerType): boolean => {
     if (!userAns) return false;
-    
+
     if (q.type === 'single') {
       return q.correct === userAns;
     }
@@ -492,7 +502,7 @@ const OsIntroChapter: React.FC<OsIntroChapterProps> = ({ onBack }) => {
       // Ošetření specifik
       if (cText === 'vestavěný' && uText === 'embedded') return true;
       if (cText === 'souborový systém' && (uText === 'filesystem' || uText === 'file system')) return true;
-      
+
       return uText === cText || uText.replace('-', '') === cText.replace('-', '');
     }
     if (q.type === 'multi') {
@@ -557,7 +567,7 @@ const OsIntroChapter: React.FC<OsIntroChapterProps> = ({ onBack }) => {
                     {score === QUIZ_QUESTIONS.length ? 'Gratulujeme! Všechno správně.' : 'Něco se nepovedlo!'}
                   </h3>
                   <p className="font-medium text-sm">
-                    Tvoje skóre: {score} / {QUIZ_QUESTIONS.length}. 
+                    Tvoje skóre: {score} / {QUIZ_QUESTIONS.length}.
                     {score !== QUIZ_QUESTIONS.length && ' Doporučujeme se vrátit na záložku Teorie a zopakovat si probírané učivo. Níže najdeš rozbor svých chyb.'}
                   </p>
                 </div>
