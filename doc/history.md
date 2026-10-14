@@ -75,6 +75,44 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **PR3 Vlákna (Threads)** (`/procesy/vlakna`): `ProcessThreadsChapter.tsx` (Proces vs. vlákno, sdílená paměť, moderní vícejádrová CPU).
     - **PR-ADV Pokročilá témata** (`/procesy/pokrocile`): `AdvancedProcessTopicsChapter.tsx` (Plánování CPU: Round Robin, FIFO/FCFS, prioritní plánování, kontextové přepínání).
 
+### Blok 5: Grafické rozhraní Windows 11 (GUI a Průzkumník)
+11. **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy/gui`) – *Podkapitoly:*
+    - **GUI1 Anatomie GUI a proces Explorer** (`/gui/anatomie`): Správce oken DWM, kompozice plochy přes GPU, proces `explorer.exe` (plocha, taskbar, okna, správa souborů), praktický restart zamrzlého Průzkumníka v Task Manageru.
+    - **GUI2 Průzkumník a hierarchie disku C:** (`/gui/hierarchie`): Stromový model od kořene `C:\`, systémové složky (`Windows`, `System32`, `Program Files`, `ProgramData`, `Users`), uživatelský profil `%USERPROFILE%`, rozdíl mezi virtuální knihovnou a fyzickou diskovou složkou.
+    - **GUI3 Práce se soubory, přípony a atributy** (`/gui/soubory-atributy`): Registr přípon a nebezpečí skrytých přípon (např. malware `faktura.pdf.exe`), základní atributy souborů (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. fyzický soubor, asociace aplikací ve Windows.
+    - **GUI4 Konfigurace: Nastavení vs. Ovládací panely** (`/gui/konfigurace`): Dvě tváře administrace Win 11 (moderní UWP rozhraní vs. klasické Win32 applety), menu rychlých odkazů `Win+X`, přímé spouštění přes URI (`ms-settings:`) a `.cpl` applety (`sysdm.cpl`, `appwiz.cpl`).
+    - **GUI5 Ergonomie a efektivní práce** (`/gui/ergonomie`): Profesionální ovládání přes klávesové zkratky (`Win+E`, `Win+V`, `Alt+Tab`, `Win+L`, `Ctrl+Shift+Esc`), rozložení oken Snap Layouts a Snap Assist, virtuální plochy pro oddělení kontextu, integrace cloudového a lokálního úložiště.
+
+### Blok 6: Příkazová řádka a dávkové soubory (CLI a Automatizace)
+12. **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy/prikazova-radka`) – *Podkapitoly:*
+    - **CLI1 Orientace v systému a navigace** (`/prikazova-radka/navigace`): Spuštění CMD (práva Správce vs. běžný uživatel), přepínání disků (C:, D:), příkazy `cd` a `dir` (přepínače `/w`, `/p`, `/o:n`), absolutní vs. relativní cesta, význam `.` a `..`, doplňování přes klávesu `Tab`.
+    - **CLI2 Správa souborů a složek** (`/prikazova-radka/soubory`): Manipulace se složkami (`mkdir`, `rmdir /s /q`), práce se soubory (`ren`, `del /p /f /q`, `copy`, `move`, `xcopy`), zástupné znaky `*` a `?`, riziko nevratného smazání bez Koše.
+    - **CLI3 Roury, filtry a informace o systému** (`/prikazova-radka/proudy-a-filtry`): Výpis stromu `tree /f`, operátory přesměrování `>` a `>>`, roura (pipe `|`), textový filtr `findstr /i`, diagnostika systému `systeminfo` a systémové proměnné (`%USERNAME%`, `%USERPROFILE%`).
+    - **BAT1 Dávkové soubory a automatizace** (`/prikazova-radka/davky-zaklad`): Stavba skriptu `.bat`, potlačení echa `@echo off`, komentáře `REM`, zastavení běhu `pause`, interaktivní uživatelský vstup `set /p`, parametry skriptu `%1` až `%*`.
+    - **BAT2 Podmínky, skoky a cykly** (`/prikazova-radka/davky-logika`): Podmíněné větvení `if` a `if exist`, návěstí a skoky `goto`, tvorba interaktivního textového menu v CMD, proměnná `%ERRORLEVEL%`, cyklus `for` (číselná řada `for /L` i zpracování souborů).
+
+### Blok 7: Správa uživatelů a oprávnění (Účty, Skupiny a NTFS)
+13. **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy/uzivatele`) – *Podkapitoly:*
+    - **USR1 Uživatelské účty a autentizace** (`/uzivatele/ucty-autentizace`): Rozdíl mezi autentizací a autorizací, Místní (lokální) účet vs. Účet Microsoft, Standardní uživatel vs. Správce (Administrator) a princip nejmenších práv (PoLP), vestavěné účty (`Administrator`, `Guest`, `SYSTEM`), správa přes `lusrmgr.msc` a příkaz `net user`.
+    - **USR2 Zabezpečení účtů a přihlašování** (`/uzivatele/zabezpeceni-hesla`): Politika hesel (délka, expirace, historie), moderní autentizace přes Windows Hello (vazba PINu na hardwarový TPM 2.0 čip vs. heslo), okamžitý zámek stanice `Win+L`, mechanismus UAC (Secure Desktop), dialog `netplwiz`.
+    - **USR3 Uživatelské skupiny a role** (`/uzivatele/skupiny-a-role`): Princip hromadné správy (práva se nepřidělují jednotlivcům, ale skupinám), vestavěné skupiny (`Administrators`, `Users`, `Backup Operators`), tvorba vlastních skupin v `lusrmgr.msc` a CLI `net localgroup` (`/add`, zařazení členů).
+    - **USR4 Práva k souborům a složkám (NTFS)** (`/uzivatele/prava-soubory`): Proč NTFS podporuje ACL a FAT ne, základní NTFS oprávnění (Úplné řízení, Změnit, Číst a spouštět, Číst, Zápis), karta Zabezpečení v Průzkumníku, dědičnost (Inheritance), přednost explicitního zákazu (`Deny`), CLI nástroj `icacls`, finální automatizační skript v `.bat` pro hromadné vytvoření třídy a složky.
+
+### Blok 8: Správa aplikačního software
+14. **Správa aplikačního software** (`/specializovana/operacni-systemy/software`) – *Podkapitoly:*
+    - **SW1 Životní cyklus software a instalátory (EXE vs. MSI)** (`/software/instalatory`): Fáze životního cyklu aplikace (vývoj, instalace, běh, aktualizace, odinstalace), EXE instalátory vs. Windows Installer MSI balíčky, tichá instalace (`/qn`, `/silent`), registrace v systému (Registry, Odinstalovat program).
+    - **SW2 Moderní správa software přes balíčkovač Winget** (`/software/winget`): Princip package manageru ve Windows, vyhledávání `winget search`, instalace `winget install`, aktualizace aplikací `winget upgrade --all`, export a import seznamu SW pro rychlé znovunainstalování stanice (`winget export / import`).
+
+### Blok 9: Správa zařízení a ovladače (Drivers)
+15. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy/zarizeni`)
+    - **Formát:** Přímá lekce (Direct Lesson bez podkapitol, `hasSubchapters: false`).
+    - **Obsah:** Komunikace OS s hardwarem přes ovladače (Kernel Ring 0 vs. User Ring 3), Správce zařízení (`devmgmt.msc`), stavy zařízení (žlutý vykřičník, zakázáno, funkční), instalace a aktualizace ovladačů (Windows Update vs. inf soubory), digitální podpis ovladačů (WHQL).
+
+### Blok 10: Plánovač úloh a automatický provoz
+16. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy/planovac`)
+    - **Formát:** Přímá lekce (Direct Lesson bez podkapitol, `hasSubchapters: false`).
+    - **Obsah:** Automatizace údržby a periodických úloh, Správa úloh přes `taskschd.msc`, spouštěče (Triggers – časové, při startu, při přihlášení), akce (Actions – spuštění `.bat` skriptu nebo aplikace), bezpečnostní kontext (běh pod přihlášeným uživatelem vs. pod účtem `SYSTEM` bez nutnosti přihlášení).
+
 ---
 
 ## 3. Detailní stav kapitol – OSS 2 (2. Ročník)
@@ -107,7 +145,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
      - **Komponenta & Architektura:** `ProcessCertificatesChapter.tsx` (štíhlý orchestrátor ~230 řádků obalený v `FsChapterShell`, 4 záložky: Teorie, Simulátory, Praktická laboratoř, Kvíz).
      - **Modulární struktura (`procesy/`):**
        - `processTypes.ts`: Sdílená data pro strom procesů (`PROCESS_TREE_DATA`), původní kód pro Authenticode a typ protokolu.
-       - `ProcessTheoryTab.tsx`: Samostatná záložka teorie (5 kroků OS, 4 pilíře analýzy, Authenticode, CA, Smart App Control).
+       - `ProcessTheoryTab.tsx`: Samostatná záložka teorie (prověrky OS při spuštění souboru .exe, anatomie .exe s PE formátem a bezpečnostním blokem Authenticode/certifikátem, 4 indicie forenzní rychlokontroly, seznam procesů a zrádnost jména programu, forenzní arzenál nástrojů).
        - `ProcessSimulatorsTab.tsx`: Interaktivní Sysinternals Process Explorer strom procesů a živý inspektor integrity digitálního podpisu Authenticode s reálným SHA-256.
        - `ProcessLabTab.tsx`: Praktický forenzní protokol ve `WorksheetLayout` s 8 reálnými úlohami (`tasklist`, `resmon.exe`, Excel analýza, Sysinternals, `certutil`, Smart App Control) a exportem do Wordu.
        - `ProcessQuizTab.tsx`: 5 ověřovacích otázek na procesy a certifikáty.
@@ -253,7 +291,61 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
   - Implementováno přes delegovaný event listener na úrovni celého dokumentu – automaticky obsluhuje všechny `<code>` a `<pre>` elementy napříč celým webem bez nutnosti manuálních úprav v jednotlivých komponentách.
   - Po kliknutí na libovolný kód (např. `tasklist /FO CSV`, `resmon.exe`, `certutil...`) se obsah okamžitě zkopíruje do schránky (`navigator.clipboard.writeText`).
   - Kliknutý element zeleně problikne (`.intlab-code-copied`) a ve spodní části obrazovky se zobrazí toastová notifikace s ikonou fajfky a náhledem zkopírovaného textu.
-  - Respektuje označování textu (pokud žák označuje myší jen část řetězce, automatické kopírování se nespustí).
+- **2026-10-14 – Založení předmětu Operační systémy 3 (OSS 3) a rozšíření OSS 2:**
+  - **Architektura přehledových kapitol (High-level overview):**
+    - Vytvořena škálovatelná infrastruktura přehledových kapitol v `registry/curriculum/outlines/` (`outlineTypes.ts`, `oss2Outlines.ts`, `oss3Outlines.ts`, `index.ts`), která slouží jako jediný zdroj pravdy (SSOT) pro karty v kurikulu, přehledové stránky i centrální registr lekcí (`lessons.ts`).
+    - Vytvořena sdílená komponenta `ChapterOutlinePage.tsx` v souladu s design systémem IntLab (`FsChapterShell` styl s fixním bílým skleněným rámcem, kartami Teorie vs. Simulace a praxe, vazbou „Navazuje na“ a odznaky).
+  - **OSS 3 (3. ročník, `/specializovana/operacni-systemy-3`, subjectId: `ops3`):**
+    - Vytvořena stránka předmětu s didaktickým rozborem a 4 hlavními kapitolami:
+      1. **Linux** (LX1–LX8, ~24 h): Distribuce, Terminál & souborový systém, Text & roury, Uživatelé & oprávnění rwx, Balíčky apt, Procesy & systemd, Logy & cron, Síť & SSH.
+      2. **Git a verzování** (GT1–GT4, ~8 h): Principy & 3 zóny, Základní cyklus add/commit, Větve & merge, GitHub & pull requesty.
+      3. **Kyberbezpečnost** (KB1–KB6, ~20 h): Myšlení útočníka & právo, Průzkum OSINT & Nmap v laboratoři, Zranitelnosti CVE/CVSS, Bezpečnost webu OWASP, Útoky na AD & logy, Závěrečné CTF: Red vs. Blue.
+      4. **Týmová spolupráce a nástroje** (TM1–TM4, ~10 h): Kanban & Scrum, Harmonogram & Ganttův diagram, Komunikační nástroje, Závěrečný týmový projekt.
+    - Všech 22 podkapitol má funkční přehledové stránky se stručným didaktickým výkladem, co se v nich bude učit.
+  - **OSS 2 (2. ročník, rozšíření po Bezpečnosti):**
+    - K existujícímu Zálohování (B1–B5) a Bezpečnosti (BZ1–BZ2) byly v kurikulu i routování doplněny přehledové stránky pro zbývající bloky:
+      1. **Bezpečnost 1:** BZ3 (Sandbox & Autoruns) až BZ9 (Závěrečná detektivka Mini-CTF).
+      2. **Pokročilá konfigurace Windows:** PK1 (MMC a Správa PC), PK2 (Služby Windows), PK3 (Prohlížeč událostí), PK4 (Pokročilá NTFS práva), PK5 (Místní zásady secpol.msc).
+      3. **Active Directory a doména:** AD1 (Server a doména), AD2 (DNS a řadič), AD3 (Uživatelé, skupiny, OU), AD4 (Klient v doméně), AD5 (Sdílení a práva přes skupiny), AD6 (Group Policy GPO), AD7 (Záloha AD a mini projekt).
+      4. **Serverové služby:** SL1 (SMB sdílení), SL2 (Vzdálená správa RDP/SSH), SL3 (Webový server IIS), SL4 (Tiskový server), SL-V (Volitelné: DHCP, SQL, pošta).
+    - Vše plně validováno produkčním sestavením (`npm run build` s 240 předvygenerovanými statickými stránkami bez chyb).
+  - **2026-10-14 – Doplnění kapitoly GUI Windows 11 do OSS 1 (1. ročník):**
+    - Do kurikula OSS 1 byla za téma *Procesy a paměť* vložena nová přehledová kapitola **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy/gui`) s 5 podkapitolami:
+      1. **GUI1: Anatomie GUI a proces Explorer** (`/gui/anatomie`) – role Desktop Window Manageru (DWM), proces `explorer.exe`, kompozice plochy, restart v Task Manageru.
+      2. **GUI2: Průzkumník a hierarchie disku C:** (`/gui/hierarchie`) – stromový model, systémové složky (`Windows`, `System32`, `Program Files`, `Users`), profil `%USERPROFILE%`, knihovny vs. fyzické složky.
+      3. **GUI3: Práce se soubory, přípony a atributy** (`/gui/soubory-atributy`) – registr přípon souborů, nebezpečí skrytých přípon, atributy (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. cíl, asociace programů.
+      4. **GUI4: Konfigurace: Nastavení vs. Ovládací panely** (`/gui/konfigurace`) – duální administrace Win 11, `Win+X` Power Menu, přímé příkazy `ms-settings:` a `.cpl` applety.
+      5. **GUI5: Ergonomie a efektivní práce** (`/gui/ergonomie`) – efektivní klávesové zkratky, Snap Layouts / Snap Assist, virtuální plochy a integrace schránky (`Win+V`).
+    - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (246 statických stránek).
+  - **2026-10-14 – Doplnění kapitoly Příkazová řádka a dávkové soubory do OSS 1 (1. ročník):**
+    - Do kurikula OSS 1 byla za téma *Grafické rozhraní Windows 11* vložena nová přehledová kapitola **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy/prikazova-radka`) s 5 podkapitolami:
+      1. **CLI1: Orientace v systému a navigace** (`/prikazova-radka/navigace`) – spuštění CMD, práva Správce, disky C:/D:, příkazy `cd` a `dir`, relativní vs. absolutní cesta, `.` a `..`, klávesa `Tab`.
+      2. **CLI2: Správa souborů a složek** (`/prikazova-radka/soubory`) – vytváření a mazání (`mkdir`, `rmdir`), práce se soubory (`ren`, `del`, `copy`, `move`, `xcopy`), zástupné znaky `*` a `?`, nevratnost smazání v CLI.
+      3. **CLI3: Roury, filtry a informace o systému** (`/prikazova-radka/proudy-a-filtry`) – strom `tree /f`, přesměrování `>` a `>>`, roura `|`, textový filtr `findstr`, `systeminfo` a systémové proměnné.
+      4. **BAT1: Dávkové soubory a automatizace** (`/prikazova-radka/davky-zaklad`) – stavba `.bat` skriptu, `@echo off`, komentáře `REM`, `pause`, vstup od uživatele `set /p`, parametry skriptu `%1` až `%*`.
+      5. **BAT2: Podmínky, skoky a cykly** (`/prikazova-radka/davky-logika`) – větvení `if` a `if exist`, návěstí a `goto`, interaktivní menu, `%ERRORLEVEL%`, cyklus `for`.
+    - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (252 statických stránek).
+  - **2026-10-14 – Doplnění kapitoly Správa uživatelů a oprávnění do OSS 1 (1. ročník):**
+    - Do kurikula OSS 1 byla za téma *Příkazová řádka a dávkové soubory* vložena nová přehledová kapitola **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy/uzivatele`) se 4 podkapitolami:
+      1. **USR1: Uživatelské účty a autentizace** (`/uzivatele/ucty-autentizace`) – autentizace vs. autorizace, lokální vs. Microsoft účet, Standard vs. Administrator, systémové účty, `lusrmgr.msc` a `net user`.
+      2. **USR2: Zabezpečení účtů a přihlašování** (`/uzivatele/zabezpeceni-hesla`) – politika hesel, Windows Hello (PIN a TPM 2.0), zámek `Win+L`, UAC (Secure Desktop) a `netplwiz`.
+      3. **USR3: Uživatelské skupiny a role** (`/uzivatele/skupiny-a-role`) – hromadná správa, vestavěné skupiny (`Administrators`, `Users`), vlastní skupiny v `lusrmgr.msc` a CLI `net localgroup`.
+      4. **USR4: Práva k souborům a složkám (NTFS)** (`/uzivatele/prava-soubory`) – NTFS oprávnění, karta Zabezpečení v Průzkumníku, dědičnost a přednost Deny, CLI `icacls`, hromadný automatizační skript v `.bat`.
+    - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (257 statických stránek).
+  - **2026-10-14 – Doplnění kapitol Správa software, Zařízení a Plánovač úloh do OSS 1 (1. ročník):**
+    - Do kurikula OSS 1 byly za téma *Správa uživatelů a oprávnění* přidány 3 nové kapitoly podle Varianty A (jednotný fialový styl OSS 1):
+      1. **Správa aplikačního software** (`/specializovana/operacni-systemy/software`) – hub se 2 podkapitolami (`hasSubchapters: true`, `accentCorner: true`):
+         - **SW1: Životní cyklus software a instalátory (EXE vs. MSI)** (`/software/instalatory`) – životní cyklus aplikace, EXE vs. MSI, tichá instalace, registrace v systému.
+         - **SW2: Moderní správa software přes balíčkovač Winget** (`/software/winget`) – moderní balíčkovač, `winget search / install / upgrade`, hromadný export a import software.
+      2. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy/zarizeni`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), Správce zařízení (`devmgmt.msc`), role ovladačů v jádře, digitální podpisy WHQL, řešení konfliktů.
+      3. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy/planovac`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), `taskschd.msc`, plánování spouštění `.bat` zálohovacích a údržbových skriptů, triggery a spouštění pod účtem `SYSTEM`.
+    - Přizpůsobena komponenta `ChapterOutlinePage` pro podporu přímých lekcí s návratovou cestou do hubu OSS 1 (`parent` prop).
+  - **2026-10-14 – Didaktické zpřesnění BZ2 (Anatomie .EXE souboru a Authenticode):**
+    - V teorii kapitoly Procesy a certifikáty (`ProcessTheoryTab.tsx`, Blok 2) byl původní abstraktní text nahrazen konkrétním **schématem vnitřní struktury .EXE souboru na disku** (Sekce 1: Instrukce pro CPU, Sekce 2: Data a resources, Sekce 3: Bezpečnostní blok na konci souboru s digitálním podpisem = zašifrovaným hashem a digitálním certifikátem notáře DigiCert).
+    - Doplněno přímé vysvětlení kontroly při spuštění a matematického principu „rozbití podpisu“ virem (`hash instrukcí ≠ zašifrovaný hash na konci`).
+
+
+
 
 
 

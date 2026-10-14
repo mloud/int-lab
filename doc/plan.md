@@ -17,12 +17,13 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 ## 🔥 Aktuálně rozpracováno (In Progress)
 
 ### 1. Operační systémy 1 (OSS 1 – 1. ročník)
-- **Stav výuky:** polovina roku – právě se učí *Struktura disku* (na portálu hotovo). Další na řadě: **Správa souborů a složek** → **Příkazová řádka**.
-- **Téma: Procesy** (`/specializovana/operacni-systemy/procesy`) – vytvořeno s předstihem, ve výuce přijde až po dávkových souborech.
-  - [x] PR1 Úvod a vznik procesu, PR2 Stavy, PR3 Vlákna, PR-ADV Plánování CPU.
-  - [ ] **Doplnit podle sylabu:** virtuální paměť (stránkování, `pagefile.sys`), Správce úloh, programy po spuštění, `tasklist` / `taskkill` (navazuje na CMD).
-  - [ ] Provázat s RAM a Von Neumannem (instrukce a data v paměťových buňkách).
-  - [ ] Kvíz / minihra na stavy procesu, pracovní list (PID, kód vs. data, vlákna).
+- **Stav výuky a kurikula:** Portál má kompletně připravenou a provázanou strukturu témat pro celý 1. ročník:
+  - [x] 1. polovina: Instalace ➔ Hardware ➔ Architektura ➔ Test 01 ➔ Evoluce ➔ Boot & Virtualizace ➔ Struktura disku.
+  - [x] 2. polovina (Struktura, navigace & rozcestníky): Procesy ➔ GUI Win 11 (GUI1–GUI5) ➔ CLI a BAT (CLI1–CLI3, BAT1–BAT2) ➔ Správa uživatelů a NTFS (USR1–USR4) ➔ Správa software (SW1–SW2) ➔ Správa zařízení (DEV) ➔ Plánovač úloh (SCH).
+  - [x] Znalostní profil předmětu a vazba na RVP v `doc/curriculum/OSS1.md`.
+- **Další krok ve vývoji OSS 1:**
+  - Postupné doplňování hloubkových interaktivních simulátorů, kvízů a laboratorních pracovních listů do vytvořených podkapitol (zejména terminálový trenažér CMD, ladicí trenažér .bat skriptů a manipulace s NTFS právy).
+  - Příprava závěrečného bloku klientských sítí (Síťové pojmy, SMB sdílení, Wi-Fi a konfigurace routeru).
 
 ### 2. Programování 1 (PRG 1 – 1. ročník)
 - **Téma: Blokové programování ve Scratchi & Herní logika**
@@ -86,48 +87,58 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 ---
 
-#### 2. Část: Správa systému a automatizace (⏳ Následující témata k tvorbě)
+#### 2. Část: Správa systému a automatizace (✅ Struktura a navigace na portálu HOTOVA)
 
-8. [ ] **Správa souborů a složek (Průzkumník / GUI):**
-   - Hierarchie FS, typy souborů a přípony, asociace aplikací, operace se soubory/složkami, filtrování, řazení, atributy (`R`, `H`, `A`), zástupci (`.lnk`).
-   - 🧪 Interaktivní simulátor průzkumníka / filtrování a atributů.
-9. [ ] **Příkazová řádka (CMD 1 – Orientace a pohyb):**
-   - Spuštění CMD, syntaxe příkazů, orientace v souborovém systému: `cd`, `dir`, `tree`, `mklink`, relativní vs. absolutní cesty, význam `.` a `..`.
-   - 🧪 Webový terminálový trenažér CMD (krokování a výzvy).
-10. [ ] **Příkazová řádka (CMD 2 – Práce se soubory a složkami):**
-   - Manipulace se soubory v CLI: `mkdir`, `rmdir`, `ren`, `del`, `move`, `copy`, `xcopy`.
-   - 🧪 Interaktivní výzvy (přesuň, přejmenuj, vytvoř strukturu v terminálu).
-11. [ ] **Příkazová řádka (CMD 3 – Správa počítače a roury):**
-   - Práce s výstupy a textem: přesměrování (`>`, `>>`), roura (`|`), `findstr`, zjištění stavu PC (`systeminfo`), `echo`, proměnné prostředí (`%PATH%`).
-   - 🧪 Simulátor řetězení příkazů přes rouru.
-12. [ ] **Dávkové soubory (.BAT 1 – Hromadná správa):**
-   - Co je skript `.bat` / `.cmd`, spouštění, hromadné vytváření a úklid složek, komentáře `REM`, vypnutí echa (`@echo off`).
-   - 🧪 Editor a krokovací simulátor dávkového souboru.
-13. [ ] **Dávkové soubory (.BAT 2 – Logika a větvení):**
-   - Podmínky `if`, `if exist`, skoky `goto`, návěstí (`:START`), parametry skriptu (`%1`), jednoduchý cyklus `for`.
-   - 🧪 Interaktivní ladicí nástroj skriptu.
-14. [ ] **Správa procesů a paměti:** *(Na portálu předpřipraveno v `/procesy`, zbývá doplnit:)*
-   - Proces, vlákno, PID, program v RAM, **virtuální paměť** (paging, `pagefile.sys`), Správce úloh (Task Manager), programy po spuštění, CLI příkazy `tasklist` a `taskkill`.
-   - 🧪 Simulátor Správce úloh a správy procesů.
-15. [ ] **Správa uživatelských účtů:**
-   - Typy účtů (lokální vs. Microsoft účet, Standard vs. Administrator), autentizace a autorizace, vytváření účtů, profil uživatele, CLI příkaz `net user`.
-   - 🧪 Simulátor vytváření účtů a přihlašování.
-16. [ ] **Správa uživatelských skupin a oprávnění:**
-   - Proč skupiny, vestavěné skupiny (Administrators, Users), CLI příkaz `net localgroup`, základy práv k souborům a složkám (NTFS), CLI příkaz `icacls`.
-   - 🧪 Drag & drop správa skupin + kalkulátor základních práv.
-17. [ ] **Správa aplikačního software:**
-   - Životní cyklus aplikace, instalátory `.msi` vs. `.exe`, zdroje SW, moderní balíčkovač Windows `winget`, verzování a aktualizace.
-   - 🧪 Simulátor instalace a balíčkování přes winget.
-18. [ ] **Správa zařízení a ovladače:**
-   - Periferní zařízení, architektura ovladačů (Drivers), Správce zařízení (`devmgmt.msc`), Plug and Play, řešení konfliktů (vykřičník ve správci).
-   - 🧪 Simulátor diagnostiky hardwarových konfliktů.
-19. [ ] **Plánovač úloh (Task Scheduler):**
-   - Spouštění programů a `.bat` skriptů podle času a událostí, `taskschd.msc`, triggery a akce.
-   - 🧪 Simulátor nastavení automatické úlohy.
+8. [x] **Správa procesů a paměti:** (`/specializovana/operacni-systemy/procesy`)
+   - PR1 Úvod a vznik procesu, PR2 Stavy, PR3 Vlákna, PR-ADV Plánování CPU.
+   - ⏳ *K doplnění do budoucna:* virtuální paměť (paging, `pagefile.sys`), Správce úloh, `tasklist` / `taskkill`.
+9. [x] **Grafické rozhraní Windows 11 (GUI & Průzkumník):** (`/specializovana/operacni-systemy/gui`)
+   - **GUI1 – Anatomie GUI a proces Explorer:** DWM (Desktop Window Manager), `explorer.exe` (plocha, taskbar, okna), restart procesu v Task Manageru.
+   - **GUI2 – Průzkumník a hierarchie disku C::** Stromová struktura, systémové složky (`Windows`, `Program Files`, `Users`), profil `%USERPROFILE%`, knihovny vs. diskové složky.
+   - **GUI3 – Práce se soubory, přípony a atributy:** Registr přípon souborů, nebezpečí skrytých přípon, atributy (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. reálný soubor, asociace aplikací.
+   - **GUI4 – Konfigurace: Nastavení vs. Ovládací panely:** Duální konfigurace Win 11 (moderní UWP Settings vs. win32 Control Panel), `Win+X` Power Menu, `ms-settings:` URI a `.cpl` applety.
+   - **GUI5 – Ergonomie a efektivní práce:** Klávesové zkratky (`Win+E`, `Win+V`, `Alt+Tab`, `Win+L`, `Ctrl+Shift+Esc`), Snap Layouts, virtuální plochy, integrace schránky.
+   - *(Všech 5 podkapitol vytvořeno jako přehledové kapitoly s vazbami, připraveno pro plné simulátory a pracovní listy).*
 
 ---
 
-#### 3. Část: Správa síťového připojení Windows 11 (Závěr roku)
+#### 3. Část: Příkazová řádka, automatizace a správa (⏳ Následující témata k tvorbě)
+
+12. [x] **Příkazová řádka a dávkové soubory:** (`/specializovana/operacni-systemy/prikazova-radka`)
+   - **CLI1 – Orientace v systému a navigace:** Spuštění CMD (UAC), přepínání disků, `cd`, `dir` (/w, /p, /o:n), absolutní a relativní cesta, `.` a `..`, doplňování přes Tab.
+   - **CLI2 – Správa souborů a složek:** `mkdir`, `rmdir`, `ren`, `del`, `copy`, `move`, `xcopy`, zástupné znaky `*` a `?`, bezpečnost mazání bez Koše.
+   - **CLI3 – Roury, filtry a informace o systému:** `tree`, přesměrování `>` a `>>`, roura `|`, vyhledávání `findstr`, `systeminfo`, proměnné `%USERNAME%`, `%USERPROFILE%`.
+   - **BAT1 – Dávkové soubory a automatizace:** Stavba `.bat` skriptu, `@echo off`, `REM`, `pause`, proměnné `set /p`, parametry `%1`.
+   - **BAT2 – Podmínky, skoky a cykly:** `if`, `if exist`, návěstí a `goto`, stavba textového menu v CMD, `%ERRORLEVEL%`, cyklus `for`.
+   - *(Všech 5 podkapitol vytvořeno jako přehledové kapitoly s vazbami, připraveno pro plné simulátory a pracovní listy).*
+
+---
+
+#### 4. Část: Správa systému a automatizace v praxi (⏳ Následující témata k tvorbě)
+
+13. [x] **Správa uživatelů a oprávnění:** (`/specializovana/operacni-systemy/uzivatele`)
+   - **USR1 – Uživatelské účty a autentizace:** Autentizace vs. autorizace, lokální účet vs. Účet Microsoft, Standard vs. Správce (PoLP), systémové účty, `lusrmgr.msc` a `net user`.
+   - **USR2 – Zabezpečení účtů a přihlašování:** Politika hesel, Windows Hello (PIN svázaný s TPM 2.0), zámek `Win+L`, UAC (Secure Desktop) a `netplwiz`.
+   - **USR3 – Uživatelské skupiny a role:** Proč skupiny, vestavěné skupiny (`Administrators`, `Users`), tvorba vlastních skupin v `lusrmgr.msc` a CLI `net localgroup`.
+   - **USR4 – Práva k souborům a složkám (NTFS):** NTFS práva vs. FAT, dědičnost (Inheritance), přednost Deny, karta Zabezpečení v GUI, CLI `icacls`, finální automatizační skript v `.bat`.
+   - *(Všech 4 podkapitol vytvořeno jako přehledové kapitoly s vazbami, připraveno pro plné simulátory a pracovní listy).*
+
+14. [x] **Správa aplikačního software:** (`/specializovana/operacni-systemy/software`)
+   - **SW1 – Životní cyklus software a instalátory (EXE vs. MSI):** Životní cyklus, umístění na disku (`Program Files`, `AppData`), registr Windows (`regedit`), parametry tiché instalace, transakční balíčky `.msi` a `msiexec`.
+   - **SW2 – Moderní správa software přes balíčkovač Winget:** Repozitář Microsoftu, `winget search`, `winget install --silent`, `winget list`, hromadná aktualizace `winget upgrade --all`, bezobslužný instalační skript `post-install.bat`.
+   - *(Vytvořeno jako kapitola se 2 podkapitolami s vazbami).*
+
+15. [x] **Správa zařízení a ovladače (Drivers):** (`/specializovana/operacni-systemy/zarizeni`)
+   - Architektura ovladačů (Ring 0), Plug and Play (PnP), Hardware ID (VID/PID), digitální podpisy WHQL, Správce zařízení (`devmgmt.msc`), řešení konfliktů (Kód 28), správa tiskáren a tiskové fronty (`spoolsv.exe`), záloha a export ovladačů přes `pnputil`.
+   - *(Vytvořeno jako přímá přehledová kapitola).*
+
+16. [x] **Plánovač úloh a automatický provoz:** (`/specializovana/operacni-systemy/planovac`)
+   - Autonomní provoz OS 24/7, struktura úlohy v `taskschd.msc`, Spouštěče (triggery – čas, událost, přihlášení, start PC), Akce (spuštění `.bat` skriptu), běh pod účtem `SYSTEM` bez nutnosti přihlášení, správa přes CLI `schtasks`.
+   - *(Vytvořeno jako přímá přehledová kapitola).*
+
+---
+
+#### 5. Část: Správa síťového připojení Windows 11 (Závěr roku)
 
 20. [ ] **Základní síťové pojmy v OS:**
    - Paket, IP adresa (IPv4 / IPv6), maska sítě, výchozí brána, MAC adresa, DNS, role routeru, příkazy `ipconfig`, `ping`, `tracert`.
@@ -266,79 +277,51 @@ Každá podkapitola: `FsChapterShell` se záložkami **Teorie | Simulátor | Lab
 
 ---
 
-### Blok 3: Rozšířená správa Windows
-**Navazuje na:** PowerShell minimum a Event Viewer z Bezpečnosti, procesy a služby (OSS 1).
-- [ ] **SP1 – PowerShell do hloubky:** cmdlety, Verb-Noun, pipeline a objekty, `Get-Help`, proměnné, skripty `.ps1`, Execution Policy.
-  - 🧪 PowerShell emulátor s úlohami (pipeline `Get-Process | Sort | Select`).
-- [ ] **SP2 – Služby Windows:** `services.msc`, `Get-Service`, typy spuštění, účty služeb (LocalSystem, NetworkService), závislosti.
-  - 🧪 Simulátor služeb (zastav službu → co přestane fungovat).
-- [ ] **SP3 – Plánovač úloh:** triggery, akce, spuštění pod jiným účtem – napojení na zálohovací skript z bloku 1.
-- [ ] **SP4 – Události a logy (Event Viewer do hloubky):** protokoly System / Application / Security, úrovně, filtry, vlastní zobrazení, klíčová ID (4624, 4625, 4720, 7045), audit policy.
-  - 🧪 Log Detective (brute force = řada 4625 → 4624 → nová služba 7045).
-  - 🔐 *Bezpečnostní okénko:* jak poznat útok z logů.
-- [ ] **SP5 – Vzdálená správa:** RDP, OpenSSH Server ve Windows, přihlášení klíčem (`ssh-keygen`), WinRM / PowerShell Remoting (`Enter-PSSession`).
-  - 🧪 Simulátor SSH klíčů (veřejný × soukromý klíč – navazuje na asymetrii z BZ5).
+### Blok 3: Pokročilá konfigurace Windows (nástroje správce – 5 h)
+**Role bloku:** Most propojující Bezpečnost s Active Directory.
+- [x] **Přehledové stránky kapitol PK1–PK5 vytvořeny** (v kurikulu i v aplikaci):
+  - **PK1 – MMC a Správa počítače:** Princip snap-inů, tvorba vlastní konzole, most k AD konzolím.
+  - **PK2 – Služby Windows:** Typy spuštění (auto/manual/disabled), účty služeb, závislosti.
+  - **PK3 – Prohlížeč událostí:** Protokoly System/Application/Security, filtrace, audit přihlášení (4624/4625).
+  - **PK4 – Pokročilá NTFS oprávnění:** Dědičnost práv, explicitní vs. zděděná, přednost Deny, kalkulátor efektivních práv.
+  - **PK5 – Místní zásady zabezpečení (`secpol.msc`):** Zásady hesel a zámek účtu na lokálním PC (předobraz GPO).
 
 ---
 
-### Blok 4: Active Directory a doména
-**Navazuje na:** lokální účty a NTFS (BZ6), PowerShell a vzdálená správa (blok 3).
-- [ ] **AD1 – Workgroup × doména:** proč centrální správa, DC, Windows Server ve VM, role a funkce.
-- [ ] **AD2 – Instalace a povýšení DC:** AD DS, DNS jako základ domény (proč AD bez DNS nefunguje).
-  - 🧪 Simulátor vyhledání DC přes DNS (SRV záznamy).
-- [ ] **AD3 – Uživatelé, skupiny, OU:** struktura OU, typy a rozsahy skupin, model AGDLP, správa přes `Active Directory Users and Computers` i PowerShell (`New-ADUser`).
-  - 🧪 Drag & drop návrh OU struktury fiktivní firmy.
-- [ ] **AD4 – Připojení PC do domény, profily, sdílené složky:** z lokálního sdílení (OSS 1) na doménové – práva přes doménové skupiny (AGDLP), mapování disků přes GPO, cestovní profily.
-  - 🧪 Kalkulačka efektivních práv (share + NTFS + vnořené skupiny) – rozšíření NTFS Labu z OSS 1 a BZ6.
-- [ ] **AD5 – Group Policy (GPO):** pořadí aplikace LSDOU, dědičnost, `gpupdate` / `gpresult`.
-  - 🔐 *Bezpečnostní okénko:* zásady hesel a uzamčení účtu, vynucení Defenderu, BitLockeru a firewallu přes GPO, zakázání USB.
-  - 🧪 GPO simulátor (která politika vyhraje).
+### Blok 4: Active Directory a doména (16 h)
+**Role bloku:** Přechod od správy jednoho PC k centrální správě celé sítě / firmy.
+- [x] **Přehledové stránky kapitol AD1–AD7 vytvořeny** (v kurikulu i v aplikaci):
+  - **AD1 – Server a doména:** Lokální pracovní skupina vs. doména, role Windows Serveru.
+  - **AD2 – DNS a řadič domény:** Instalace role AD DS, povýšení na DC, DNS jako nutná jmenná služba.
+  - **AD3 – Uživatelé, skupiny a OU:** Organizační jednotky, typy skupin, model AGDLP, konzole ADUC.
+  - **AD4 – Klient v doméně:** Připojení Windows 11 do domény, doménový profil, časté chyby (DNS/čas).
+  - **AD5 – Sdílení a práva přes skupiny:** Sdílení na serveru, kombinace práv sdílení a NTFS přes doménové skupiny.
+  - **AD6 – Group Policy (GPO):** Aplikace zásad LSDOU, dědičnost, vynucení hesel, zákaz USB, mapování disků, `gpupdate` / `gpresult`.
+  - **AD7 – Záloha AD a závěrečný mini projekt:** Záloha řadiče, obnova smazaného objektu, samostatný projekt „Firma se třemi odděleními“.
 
 ---
 
-### Blok 5: Serverové služby (Windows Server)
-**Navazuje na:** doména a DNS (blok 4), firewall a porty (BZ4), služby (SP2), zálohování (blok 1).
-- [ ] **SL1 – DNS a DHCP:** typy záznamů (A, CNAME, MX, SRV), zóny, DHCP rozsahy a rezervace, DORA proces.
-  - 🧪 DHCP DORA animace, DNS resolver krok za krokem.
-- [ ] **SL2 – Souborový server (SMB):** navazuje na sdílení z OSS 1 – nově kvóty, stínové kopie (VSS – navazuje na zálohování), Access-Based Enumeration, DFS (přehledově).
-- [ ] **SL3 – Webový server (IIS):** instalace role, weby, bindings (IP / port / host header), virtuální adresáře, aplikační pooly, logy IIS.
-  - 🔐 *Bezpečnostní okénko:* HTTPS a certifikát (self-signed), pravidlo firewallu 80/443, minimální oprávnění app poolu.
-  - 🧪 Simulátor HTTP požadavku (DNS → TCP → HTTP → odpověď, stavové kódy).
-- [ ] **SL4 – Databázový server (SQL Server Express + SSMS):** instance, režimy autentizace (Windows × SQL), databáze, tabulky, základní SQL (`SELECT`, `INSERT`), loginy × uživatelé × role.
-  - 🔐 *Bezpečnostní okénko:* port 1433 jen z interní sítě, zálohování databáze (`BACKUP DATABASE`) – navazuje na blok 1.
-  - 🧪 SQL pískoviště v prohlížeči.
-- [ ] **SL5 – Poštovní server:** SMTP / IMAP / POP3, MX záznam, poštovní klient, cesta e-mailu (MUA → MTA → MDA).
-  - 🔐 *Bezpečnostní okénko:* SPF / DKIM / DMARC (proč phishing z BZ6 může projít).
-  - 🧪 Animace cesty e-mailu + analýza hlaviček e-mailu.
-  - *Software upřesnit* (např. hMailServer / MailEnable ve VM).
-- [ ] **SL6 – Závěrečný projekt ročníku:** mini-firma ve VirtualBoxu – DC + DNS + DHCP + web + SQL + záloha, zabezpečená podle bloku 2 (firewall, GPO, BitLocker).
+### Blok 5: Serverové služby (Windows Server – 9 h)
+**Role bloku:** Jednotný vzorec klient-server aplikovaný na klíčové služby.
+- [x] **Přehledové stránky kapitol SL1–SL4 a SL-V vytvořeny** (v kurikulu i v aplikaci):
+  - **SL1 – Souborový server (SMB):** Vzorec služby (server, port 445, firewall, práva, klient), mapování disků.
+  - **SL2 – Vzdálená správa (RDP a SSH):** Vzdálená plocha, OpenSSH Server, přihlášení klíčem, zabezpečení portů.
+  - **SL3 – Webový server (IIS):** Instalace role IIS, weby, bindings (IP/port/header), HTTPS certifikát, porty 80/443.
+  - **SL4 – Tiskový server:** Sdílení tiskárny, ovladače, oprávnění pro skupiny, distribuce klientům.
+  - **SL-V – Volitelné služby:** DHCP, databázový server, poštovní server (rezerva dle časových možností).
 
 ---
 
-## 🔭 Výhled: 3. ročník – Linux a Kyberbezpečnost
-**Princip ročníku:** z role *správce Windows* do role *správce Linuxu* a *bezpečnostního analytika organizace*. Stejné pojmy jako ve 2. ročníku o úroveň výš (spirála) – **neduplikovat**, vždy odkázat na 2. ročník.
+## 🔭 Výhled: 3. ročník – Operační systémy 3 (OSS 3)
+**Princip ročníku:** z role *správce Windows* do role *správce Linuxu* a *bezpečnostního analytika organizace*, doplněné o verzování v Gitu a týmovou spolupráci v projektech.
 
-### Část A – Linux (protějšek Windows z 2. ročníku)
-- CLI a souborový systém (FHS), práce s textem (`grep`, `pipe`).
-- Uživatelé, skupiny, oprávnění `rwx`, `chmod`/`chown`, `sudo` – **srovnání s NTFS a UAC**.
-- Balíčky (`apt`) – srovnání s `winget`.
-- Služby a systemd (`systemctl`) – srovnání se `services.msc`.
-- Logy: `journalctl`, `/var/log` – srovnání s Event Viewerem.
-- SSH hardening (`sshd_config`, zákaz root loginu, fail2ban) – navazuje na SSH ve Windows.
-- Firewall `ufw` / `iptables` – srovnání s `wf.msc`.
-- Web (Apache/Nginx), databáze (MariaDB) – srovnání s IIS a SQL Serverem.
-
-### Část B – Kyberbezpečnost (zastřešení Windows + Linux)
-1. Myšlení útočníka: CIA triáda do hloubky, kill chain, MITRE ATT&CK, typy útočníků.
-2. Právo a etika: zákon o kybernetické bezpečnosti (NIS2), NÚKIB, GDPR, § 230–232 TrZ, responsible disclosure.
-3. Průzkum: OSINT, Google Dorks, Shodan, Nmap (jen izolovaná síť).
-4. Zranitelnosti: CVE, CVSS, NVD, skenery (OpenVAS), řízení záplat v organizaci.
-5. Bezpečnost webu: OWASP Top 10, SQL injection a XSS – **útok na vlastní IIS/SQL z 2. ročníku** (DVWA ve VirtualBoxu).
-6. Kryptografie v praxi: PKI, certifikační autority, TLS, Wireshark, MITM.
-7. Útoky na AD a obrana (password spraying, Kerberos – koncepčně) – navazuje na AD z 2. ročníku.
-8. Centrální logování a SIEM (Windows + Linux).
-9. Incident response podle NIST v plné šíři, forenzika.
-10. Velké Red vs. Blue CTF na smíšené síti (Windows + Linux).
+- **Předmět:** `Operační systémy 3` (`/specializovana/operacni-systemy-3`, subjectId: `ops3`) – integrován do 3. ročníku kurikula.
+- **Rozpad témat:**
+  1. **Linux (~24 h):** LX1 (Distribuce & instalace), LX2 (Terminál & FS strom), LX3 (Text & roury), LX4 (Uživatelé & rwx), LX5 (Balíčky apt), LX6 (Procesy & systemd), LX7 (Logy & cron), LX8 (Síť & SSH).
+  2. **Git a verzování (~8 h):** GT1 (Principy & 3 zóny), GT2 (Základní cyklus add/commit), GT3 (Větve & merge konflikty), GT4 (GitHub & pull requesty).
+  3. **Kyberbezpečnost (~20 h):** KB1 (Útočník & právo NIS2/TrZ), KB2 (Průzkum OSINT & Nmap v laboratoři), KB3 (Zranitelnosti CVE & CVSS), KB4 (Bezpečnost webu & OWASP), KB5 (Útoky na AD & logy), KB6 (Závěrečné CTF: Red vs. Blue).
+  4. **Týmová spolupráce a nástroje (~10 h):** TM1 (Kanban & Scrum), TM2 (Harmonogram & Ganttův diagram), TM3 (Komunikační nástroje & Teams/Slack), TM4 (Závěrečný týmový projekt).
+- [x] **Všech 22 kapitol a podkapitol OSS 3 vytvořeno v kurikulu i routování s přehledovými stránkami.**
 
 ### Tabulka anti-duplicity (2. ročník → 3. ročník)
 | Téma | 2. ročník | 3. ročník |

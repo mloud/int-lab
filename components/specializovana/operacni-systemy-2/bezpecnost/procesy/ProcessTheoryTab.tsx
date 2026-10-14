@@ -22,7 +22,8 @@ import {
   Search,
   ShieldCheck,
   FileCheck,
-  Network
+  Network,
+  FileCode
 } from 'lucide-react';
 
 export default function ProcessTheoryTab() {
@@ -122,7 +123,133 @@ export default function ProcessTheoryTab() {
           </div>
 
           {/* =========================================================================
-              KLÍČOVÝ BOD 2: JAK UDĚLAT RYCHLOU ANALÝZU SYSTÉMU NA SPUŠTĚNÉ PROCESY?
+              ANATOMIE .EXE SOUBORU A DIGITÁLNÍ PODPIS (AUTHENTICODE)
+              ========================================================================= */}
+          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 font-black text-base flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </span>
+              <div>
+                <h3 className="text-xl font-black text-slate-800">
+                  Anatomie .EXE souboru a digitální podpis (Authenticode)
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Jak je spustitelný program poskládán na disku a jak Windows pozná nedovolenou úpravu
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Když se podíváme na soubor <code>.exe</code> pod rentgenem, neobsahuje jen samotný kód programu. 
+              Na samém konci souboru je speciální bezpečnostní přihrádka, kam autor přibalil digitální podpis a svůj certifikát:
+            </p>
+
+            {/* JEDNODUCHÉ GRAFICKÉ SCHÉMA .EXE SOUBORU NA DISKU */}
+            <div className="max-w-2xl mx-auto rounded-3xl border-2 border-slate-300 bg-slate-900 text-white p-5 shadow-xl space-y-3 font-sans">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-xs">
+                <span className="font-mono text-cyan-400 font-black flex items-center gap-2">
+                  <FileCode className="w-4 h-4 text-cyan-400" /> Soubor programu na disku: kalkulacka.exe
+                </span>
+                <span className="text-[10px] text-slate-400 font-mono">PE formát (Portable Executable)</span>
+              </div>
+
+              {/* Sekce 1: Instrukce */}
+              <div className="p-3.5 bg-slate-800/90 rounded-2xl border border-slate-700 space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <strong className="text-slate-100 flex items-center gap-1.5 font-black">
+                    <Cpu className="w-3.5 h-3.5 text-cyan-400" /> 1. Instrukce programu (Kód)
+                  </strong>
+                  <span className="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded font-mono font-bold">Kód pro CPU</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Výkonný strojový kód, který procesor čte a vykonává (výpočty, otevření okna, komunikace po síti).
+                </p>
+              </div>
+
+              {/* Sekce 2: Data a zdroje */}
+              <div className="p-3.5 bg-slate-800/90 rounded-2xl border border-slate-700 space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <strong className="text-slate-100 flex items-center gap-1.5 font-black">
+                    <Layers className="w-3.5 h-3.5 text-indigo-400" /> 2. Data a zdroje (Resources)
+                  </strong>
+                  <span className="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded font-mono font-bold">Data</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Obrázky, ikony, texty v nabídkách, grafické dialogy a konfigurace aplikace.
+                </p>
+              </div>
+
+              {/* Sekce 3: Bezpečnostní přihrádka na konci souboru */}
+              <div className="p-4 bg-gradient-to-br from-blue-950/90 to-indigo-950/90 rounded-2xl border-2 border-blue-500/80 space-y-3">
+                <div className="flex items-center justify-between text-xs">
+                  <strong className="text-blue-200 flex items-center gap-2 font-black text-sm">
+                    <ShieldCheck className="w-4 h-4 text-blue-400" /> 3. Část na konci souboru: Bezpečnostní blok (Authenticode)
+                  </strong>
+                  <span className="text-[10px] bg-blue-500 text-white font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    Připojeno k souboru
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  {/* Zašifrovaný hash (Podpis) */}
+                  <div className="p-3 bg-black/40 rounded-xl border border-blue-400/40 space-y-1">
+                    <div className="text-cyan-300 font-bold flex items-center gap-1.5 text-[11px]">
+                      <Key className="w-3.5 h-3.5 text-cyan-400" /> Podpis = Zašifrovaný hash
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      Autor vzal hash instrukcí a dat a <strong>zašifroval ho svým tajným klíčem</strong>. Nikdo jiný na světě tento podpis neumí vyrobit.
+                    </p>
+                  </div>
+
+                  {/* Certifikát (Notář) */}
+                  <div className="p-3 bg-black/40 rounded-xl border border-emerald-400/40 space-y-1">
+                    <div className="text-emerald-300 font-bold flex items-center gap-1.5 text-[11px]">
+                      <FileCheck className="w-3.5 h-3.5 text-emerald-400" /> Digitální certifikát
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      Úřední doklad od certifikační autority (např. DigiCert): <em>„Ověřili jsme totožnost, klíč skutečně patří Microsoftu.“</em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* JAK WINDOWS KONTROLUJE SOUBOR PŘI SPUŠTĚNÍ */}
+            <div className="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 space-y-3 text-xs text-slate-700 leading-relaxed">
+              <h4 className="font-black text-sm text-blue-950 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-blue-600" /> Jak Windows soubor zkontroluje, když na něj kliknete?
+              </h4>
+              <ol className="list-decimal list-inside space-y-1.5 text-slate-600">
+                <li><strong>Spočte aktuální hash:</strong> Windows vezme instrukce a data programu a spočte z nich kontrolní hash (např. <code>a7f3...</code>).</li>
+                <li><strong>Dešifruje podpis z konce souboru:</strong> Pomocí veřejného klíče dešifruje zašifrovaný hash ukrytý v podpisu (vyjde <code>a7f3...</code>).</li>
+                <li><strong>Porovná obě čísla:</strong> Pokud se obě hodnoty přesně shodují, Windows má 100% jistotu, že kód nikdo nezměnil a program je pravý!</li>
+              </ol>
+            </div>
+
+            {/* CO SE STANE, KDYŽ DO PROGRAMU VLEZE VIRUS */}
+            <div className="p-5 bg-rose-50/80 rounded-3xl border border-rose-200 text-xs text-rose-950 space-y-2 leading-relaxed">
+              <div className="font-bold flex items-center gap-2 text-rose-900 text-sm">
+                <AlertTriangle className="w-4 h-4 text-rose-600" />
+                Co přesně znamená, že se „pečeť rozbije“, když do programu vleze virus?
+              </div>
+              <p>
+                Virus se připíše do sekce instrukcí ➔ tím se <strong>změní aktuální hash souboru</strong> (např. na <code>9e4a...</code>). 
+                Na konci souboru je ale stále starý zašifrovaný hash (<code>a7f3...</code>).
+              </p>
+              <div className="p-3 bg-white/90 rounded-2xl border border-rose-300 font-mono text-[11px] text-rose-900 font-bold flex items-center justify-between">
+                <span>Nový hash instrukcí: 9e4a...</span>
+                <span className="text-rose-600 text-base">≠</span>
+                <span>Původní hash v podpisu: a7f3...</span>
+              </div>
+              <p className="font-semibold text-rose-900">
+                💥 Čísla nesouhlasí! A protože virus nemá tajný klíč Microsoftu z Redmondu, nemůže podpis přepočítat. Windows ihned ohlásí neplatný podpis a Smart App Control soubor zablokuje!
+              </p>
+            </div>
+          </div>
+
+          {/* =========================================================================
+              JAK UDĚLAT RYCHLOU ANALÝZU SYSTÉMU NA SPUŠTĚNÉ PROCESY?
               ========================================================================= */}
           <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
@@ -184,12 +311,12 @@ export default function ProcessTheoryTab() {
           </div>
 
           {/* =========================================================================
-              BLOK 1: SEZNAM PROCESŮ V SYSTÉMU A PROČ JE JMÉNO PROCESU TAK DŮLEŽITÉ
+              SEZNAM PROCESŮ V SYSTÉMU A PROČ JE JMÉNO PROCESU TAK DŮLEŽITÉ
               ========================================================================= */}
           <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 font-black text-base flex items-center justify-center shrink-0">
-                1
+              <span className="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 font-black text-base flex items-center justify-center shrink-0">
+                <Layers className="w-5 h-5" />
               </span>
               <div>
                 <h3 className="text-xl font-black text-slate-800">
@@ -251,79 +378,11 @@ export default function ProcessTheoryTab() {
             </div>
           </div>
 
-          {/* BLOK 2: DIGITÁLNÍ PODPISY (AUTHENTICODE) A CERTIFIKÁTY */}
-          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 font-black text-base flex items-center justify-center shrink-0">
-                2
-              </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Digitální podpisy (Authenticode): Otisk prstu a úřední pečeť
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Jak Windows pozná, že program skutečně vyrobil Microsoft a cestou ho nikdo neupravil?
-                </p>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Představte si <strong>dopis s královskou voskovou pečetí ověřený státním notářem</strong>. 
-              Dokud je pečeť neporušená, víte, že dopis napsal král a po cestě z něj nikdo nevytrhl ani písmeno. 
-              V počítačovém světě se tato pečeť jmenuje <strong>Digitální podpis (Microsoft Authenticode)</strong>.
-            </p>
-
-            {/* 3 kroky bez kryptografických rovnic */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-2xl bg-blue-50/60 border border-blue-200/80 space-y-2">
-                <div className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
-                  <Fingerprint className="w-4 h-4" />
-                </div>
-                <h4 className="font-black text-sm text-blue-950">1. Otisk prstu (Hash)</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Každý soubor má jedinečný 64znakový kód (SHA-256). Když v programu změníte jedinou tečku, otisk se totálně změní (lavinový efekt).
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-indigo-50/60 border border-indigo-200/80 space-y-2">
-                <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">
-                  <FileCheck className="w-4 h-4" />
-                </div>
-                <h4 className="font-black text-sm text-indigo-950">2. Úřední pečeť (Podpis)</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Autor (např. Microsoft nebo Google) vezme tento otisk a připevní k souboru svou nerozbitnou digitální pečeť.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-2">
-                <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <h4 className="font-black text-sm text-emerald-950">3. Notář (Certifikát)</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Nezávislá autorita (notář) v přiloženém certifikátu potvrdí: <em>„Ano, zaručuji, že tato pečeť skutečně patří Microsoftu.“</em>
-                </p>
-              </div>
-            </div>
-
-            {/* Co se stane při nákaze virem */}
-            <div className="p-4 bg-amber-50/80 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
-              <div className="font-bold flex items-center gap-1.5 text-amber-900">
-                <AlertTriangle className="w-4 h-4 text-amber-600" />
-                Co se stane, když do podepsaného programu vleze virus?
-              </div>
-              <p>
-                Virus přidá do programu svůj škodlivý kód ➔ tím se <strong>změní otisk souboru</strong> ➔ původní pečeť k novému otisku nepasuje a rozbije se ➔ 
-                Windows okamžitě zobrazí varování <strong>„Neznámý vydavatel / Integrita souboru byla porušena“</strong> a chytrá ochrana Smart App Control spuštění zablokuje!
-              </p>
-            </div>
-          </div>
-
-          {/* BLOK 3: DIAGNOSTICKÉ NÁSTROJE VE WINDOWS */}
+          {/* DIAGNOSTICKÉ NÁSTROJE VE WINDOWS */}
           <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <span className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-black text-base flex items-center justify-center shrink-0">
-                3
+                <Terminal className="w-5 h-5" />
               </span>
               <div>
                 <h3 className="text-xl font-black text-slate-800">

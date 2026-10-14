@@ -1,4 +1,20 @@
 import { SchoolConfig } from '../types';
+import {
+  OSS1_GUI,
+  OSS1_CLI,
+  OSS1_USERS,
+  OSS1_SOFTWARE,
+  OSS2_BEZPECNOST,
+  OSS2_POKROCILA,
+  OSS2_AD,
+  OSS2_SLUZBY,
+  OSS3_LINUX,
+  OSS3_GIT,
+  OSS3_CYBER,
+  OSS3_TEAM,
+  outlineToChapter,
+  outlineToSubchapters
+} from '../outlines';
 
 export const DEFAULT_SCHOOL: SchoolConfig = {
   id: 'zs-vimperk',
@@ -610,6 +626,30 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       actionLabel: 'Otevřít kapitolu'
                     }
                   ]
+                },
+                outlineToChapter(OSS1_GUI),
+                outlineToChapter(OSS1_CLI),
+                outlineToChapter(OSS1_USERS),
+                outlineToChapter(OSS1_SOFTWARE),
+                {
+                  id: 'os-devices',
+                  title: 'Správa zařízení a ovladače',
+                  description: 'Architektura ovladačů, Plug and Play, Správce zařízení, tiskárny a nástroj pnputil.',
+                  tag: 'dev',
+                  icon: 'Cpu',
+                  gradient: 'from-purple-600 to-indigo-600',
+                  route: '/specializovana/operacni-systemy/zarizeni',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'os-scheduler',
+                  title: 'Plánovač úloh a automatický provoz',
+                  description: 'Konzole taskschd.msc, spouštěče a akce, běh pod účtem SYSTEM a příkaz schtasks.',
+                  tag: 'plan',
+                  icon: 'Clock',
+                  gradient: 'from-purple-600 to-indigo-600',
+                  route: '/specializovana/operacni-systemy/planovac',
+                  hasSubchapters: false
                 }
               ]
             },
@@ -660,7 +700,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               id: 'ops2',
               title: 'Operační systémy 2',
               tag: 'ops2',
-              description: 'Pokročilá správa, zálohování dat, cloudové technologie a údržba.',
+              description: 'Zálohování, bezpečnost Windows 11, pokročilá konfigurace, Active Directory a serverové služby.',
               icon: 'Cpu',
               gradient: 'from-blue-600 to-cyan-600',
               route: '/specializovana/operacni-systemy-2',
@@ -713,9 +753,14 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       route: '/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty',
                       orderNumber: 2,
                       actionLabel: 'Otevřít kapitolu'
-                    }
+                    },
+                    // BZ3–BZ9: zatím přehledové stránky (viz registry/curriculum/outlines)
+                    ...outlineToSubchapters(OSS2_BEZPECNOST)
                   ]
-                }
+                },
+                outlineToChapter(OSS2_POKROCILA),
+                outlineToChapter(OSS2_AD),
+                outlineToChapter(OSS2_SLUZBY)
               ]
             },
             {
@@ -788,6 +833,57 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
           gradeLabel: '3. Ročník',
           pillColor: 'bg-emerald-600',
           subjects: [
+            {
+              id: 'ops3',
+              title: 'Operační systémy 3',
+              tag: 'ops3',
+              description: 'Linux a jeho správa, verzování v Gitu, kyberbezpečnost a týmová spolupráce.',
+              icon: 'Terminal',
+              gradient: 'from-slate-700 to-slate-900',
+              route: '/specializovana/operacni-systemy-3',
+              analysis: {
+                goal: 'Přejít z role správce Windows do role správce Linuxu a bezpečnostního analytika, ovládat verzování v Gitu a pracovat v týmu s plánovacími a komunikačními nástroji.',
+                targetProfile: 'Absolvent 3. ročníku spravuje Linuxový server z příkazové řádky, pracuje s repozitářem v Gitu, rozumí útokům i obraně a umí se podílet na týmovém projektu.',
+                expectedOutcomes: [
+                  'Orientace v Linuxu: souborový systém, oprávnění, balíčky, služby, logy a plánování úloh.',
+                  'Vzdálená správa serveru přes SSH a nastavení firewallu.',
+                  'Práce s Gitem: commity, větve, slučování a GitHub.',
+                  'Pochopení útoků a obrany: kill chain, OSINT, zranitelnosti a bezpečnost webu.',
+                  'Znalost právních a etických pravidel kybernetické bezpečnosti.',
+                  'Plánování a komunikace v týmu (Kanban, harmonogram, týmové nástroje).'
+                ],
+                steps: [
+                  {
+                    step: '1. Linux (~24 h)',
+                    description: 'Příkazová řádka, souborový systém, oprávnění, balíčky, služby, logy a SSH.',
+                    why: 'Stejné pojmy jako ve Windows z 2. ročníku, jen v jiném prostředí – studenti vidí, že principy jsou obecné.'
+                  },
+                  {
+                    step: '2. Git (~8 h)',
+                    description: 'Verzování, větve a spolupráce přes GitHub.',
+                    why: 'Navazuje na příkazovou řádku z Linuxu a je potřeba pro závěrečný týmový projekt.'
+                  },
+                  {
+                    step: '3. Kyberbezpečnost (~20 h)',
+                    description: 'Útočník, právo, průzkum, zranitelnosti, web, útoky na AD a závěrečné CTF.',
+                    why: 'Zastřešuje Windows i Linux a staví na Bezpečnosti a Active Directory z 2. ročníku.'
+                  },
+                  {
+                    step: '4. Týmová spolupráce (~10 h)',
+                    description: 'Kanban, harmonogram, komunikační nástroje a závěrečný týmový projekt.',
+                    why: 'Propojí Git, plánování a komunikaci v jednom projektu a připraví na práci v IT týmu.'
+                  }
+                ],
+                hardwareRequirements: ['Počítače s VirtualBoxem', 'Virtuální stroje s Linuxem a Windows'],
+                softwareStack: ['Ubuntu Server', 'Git a GitHub', 'Nmap', 'Trello / Jira (plánování)', 'Teams / Slack (komunikace)']
+              },
+              chapters: [
+                outlineToChapter(OSS3_LINUX),
+                outlineToChapter(OSS3_GIT),
+                outlineToChapter(OSS3_CYBER),
+                outlineToChapter(OSS3_TEAM)
+              ]
+            },
             {
               id: 'rob3',
               title: 'Robotika 1',

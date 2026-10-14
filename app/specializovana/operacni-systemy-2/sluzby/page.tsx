@@ -1,0 +1,16 @@
+'use client';
+import React from 'react';
+import DynamicSubchapterHub from '@/components/curriculum/DynamicSubchapterHub';
+import CategoryLayout from '@/components/layout/CategoryLayout';
+
+export default function Page() {
+  return (
+    <CategoryLayout 
+      title="Serverové služby" 
+      category="specializovana"
+      parent={{ title: 'Operační systémy 2', path: '/specializovana/operacni-systemy-2' }}
+    >
+      <DynamicSubchapterHub chapterId="os2-sluzby" />
+    </CategoryLayout>
+  );
+}

@@ -96,3 +96,14 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       - **Typy a data:** Sdílená rozhraní, datové modely a konstanty umisťuj do samostatného `*Types.ts`.
     - **Udržitelnost:** Kód musí zůstat rozčleněný tak, aby byl v budoucnu snadno upravitelný po malých částech bez rizika poškození okolních funkcí.
 
+14. **Kurikulární znalostní databáze (ŠVP, RVP a Tematické plány):**
+    - Ve složce `doc/curriculum/` je vedena trvalá znalostní databáze pro všechny odborné předměty (**OSS 1, OSS 2, OSS 3, PRG 1, PRG 2, ROB 3, ROB 4**) a informatiku ZŠ.
+    - Každý předmět má dedikovaný profil (např. `doc/curriculum/OSS1.md`), který obsahuje:
+      1. **Identifikaci:** Kód předmětu, ročník, hodinová dotace (týdenní / roční).
+      2. **Napojení na RVP:** Kód oboru (např. 18-20-M/01 Informační technologie), klíčové a odborné kompetence, očekávané výstupy RVP.
+      3. **Školní vzdělávací program (ŠVP):** Cíle předmětu, profil absolventa, uplatnění v praxi.
+      4. **Tematický plán:** Rozpis tematických celků a bloků, hodinová dotace (teorie vs. cvičení/laboratoř), výstupy žáka, hodnocení a testy.
+      5. **Mezipředmětové vztahy a didaktická gradace:** Návaznost mezi ročníky (vertikální) a souvisejícími předměty (horizontální).
+      6. **Mapování na IntLab:** Seznam odpovídajících kapitol, rout, interaktivních simulátorů a laboratorních protokolů.
+    - Kdykoliv uživatel požaduje generování tematického plánu, podkladů pro ŠVP, inspekci, akreditaci nebo globální dotazy napříč předměty, **VŽDY čerpej z `doc/curriculum/`** a při změnách v kurikulu tyto dokumenty aktualizuj.
+

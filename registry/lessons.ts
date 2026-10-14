@@ -1,4 +1,8 @@
 import { LessonUnit } from './types';
+import { ALL_OUTLINE_GROUPS, outlineToLessons } from './curriculum/outlines';
+
+/** Přehledové podkapitoly OSS 2 a OSS 3 (zatím jen stručná teorie) – generováno z outline dat. */
+const OUTLINE_LESSONS: LessonUnit[] = outlineToLessons(ALL_OUTLINE_GROUPS);
 
 export const LESSON_REGISTRY: LessonUnit[] = [
   // =========================================================================
@@ -3552,5 +3556,6 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       worksheetType: 'worksheet'
     },
     componentLoader: () => import('@/components/informatika/compression/HuffmanGame')
-  }
+  },
+  ...OUTLINE_LESSONS
 ];
