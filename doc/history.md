@@ -354,7 +354,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         - **Úkol 12: Hádání čísla (1 pokus):** Jednoduchá jednorázová příprava (didaktický můstek) před přechodem na cykly.
       - *3. Blok (Cyklus s podmínkou `opakuj dokud nenastane`):* Úkoly 13–14:
         - **Úkol 13: Hádání čísla vylepšené (`HadaniCisla2.sb3`):** Rozšíření Úkolu 12 o cyklus `opakuj dokud nenastane`, počítadlo pokusů a nápovědu větší/menší.
-        - **Úkol 14: Bankomat (ATM) a bezpečnostní trezor (`Bankomat.sb3`):** Závěrečný syntetický projekt propojující cyklus s podmínkou (ochrana PINu, max 3 pokusy), 3 bezpečnostní kontroly před výběrem (zůstatek, bankovky přes modulo 100, jednorázový limit) a operátory `a`.
+        - **Úkol 14: Bankomat (ATM) a bezpečnostní trezor (`Bankomat.sb3`):** Závěrečný syntetický projekt propojující cyklus s podmínkou (ochrana PINu, max 3 pokusy), 3 bezpečnostní kontroly před výběrem (zůstatek, bankovky přes modulo 100, jednorázový limit) a operátory `a`. Obsahuje bonusovou výzvu: na konci každého výběru (ať už úspěšného, či neúspěšného) se bankomat vždy zeptá, zda si uživatel přeje pokračovat (ano/ne) – při "ano" se volba částky a kontrola pravidel opakuje v cyklu s novým zůstatkem, jinak se proces korektně ukončí s poděkováním a výzvou k odebrání karty.
   - **2026-10-15 – Zpřesnění Úkolu 5 v kapitole Zálohování Cobian (OSS 2 – 2. ročník):**
     - Cíl zálohy na síťovém disku upřesněn na formát `Z:\Zalohy_Projektu\Jmeno_Studenta` (každý student má vlastní složku se svým jménem).
     - Zavedena realistická simulace vícedenního zápisu ze schůzek do souboru `zapis_ze_schuzky.txt`:

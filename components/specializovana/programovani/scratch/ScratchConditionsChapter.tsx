@@ -899,6 +899,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   <li>Výběr peněz: Dotaz na částku do proměnné <code>vyber</code>.</li>
                   <li>Tři kontroly: <code>vyber &lt;= zustatek</code> A <code>vyber &lt;= limit</code> A <code>(zbytek vyber děleno 100) = 0</code>.</li>
                   <li>Při úspěchu odečíst ze zůstatku a ohlásit úspěch, jinak vysvětlit chybu.</li>
+                  <li><strong>Bonusové opakování:</strong> Na konci výběru (ať už byl úspěšný, nebo neúspěšný) se bankomat vždy zeptá <code>Přejete si pokračovat? (ano / ne)</code>. Pokud uživatel odpoví <code>ano</code>, cyklus volby částky a kontroly pravidel se zopakuje (při úspěchu se pracuje s již sníženým zůstatkem); při odpovědi <code>ne</code> se bankomat rozloučí a ukončí.</li>
                 </ol>
               </div>
             }
@@ -949,17 +950,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 <h4 className="text-xs font-bold text-amber-800 uppercase tracking-wider">
                   Klíčové bloky k sestavení:
                 </h4>
-                <div className="flex flex-wrap gap-3 items-center">
+                <div className="flex flex-wrap gap-4 items-center">
                   <ScratchCBlock
                     category="control"
                     topLabel={
                       <>
-                        opakuj dokud nenastane
-                        <span className="mx-1">
-                          <ScratchHexagon category="operators">
-                            <ScratchHexagon isSlot /> nebo <ScratchHexagon isSlot />
-                          </ScratchHexagon>
-                        </span>
+                        opakuj dokud nenastane <ScratchHexagon isSlot category="control" />
                       </>
                     }
                   >
@@ -967,21 +963,34 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </ScratchCBlock>
 
                   <ScratchHexagon category="operators">
-                    <ScratchBlock category="operators">
-                      zbytek <ScratchBlock category="variables">vyber</ScratchBlock> děleno <ScratchInput>100</ScratchInput>
-                    </ScratchBlock>
-                    {" = "}
-                    <ScratchInput>0</ScratchInput>
+                    ne <ScratchHexagon isSlot />
                   </ScratchHexagon>
 
-                  <ScratchHexagon category="operators">
-                    <ScratchHexagon isSlot /> a <ScratchHexagon isSlot />
-                  </ScratchHexagon>
+                  <ScratchBlock category="operators">
+                    zbytek <ScratchInput> </ScratchInput> děleno <ScratchInput> </ScratchInput>
+                  </ScratchBlock>
                 </div>
               </div>
 
-              <div className="p-3 bg-slate-100 rounded-lg text-xs text-slate-500 italic">
-                💡 <strong>Bonusová výzva:</strong> Zabalte celou obsluhu po přihlášení do hlavní nabídky (<code>1 = Zůstatek</code>, <code>2 = Výběr</code>, <code>3 = Vklad</code>, <code>4 = Konec</code>) s opakováním, dokud uživatel nezvolí ukončení!
+              <div className="p-4 bg-amber-50/80 rounded-2xl border-2 border-amber-300 text-xs text-slate-700 space-y-2.5">
+                <div className="font-bold text-amber-900 flex items-center gap-2 text-sm">
+                  <span className="text-base">💡</span>
+                  <span>Bonusová výzva: Pokračování v transakcích (opakování výběru)</span>
+                </div>
+                <p className="leading-relaxed">
+                  Na konci výběru – <strong>ať už byl úspěšný, nebo neúspěšný</strong> (např. z důvodu nedostatku financí, špatných bankovek či překročení limitu) – se bankomat vždy zeptá:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 leading-relaxed">
+                  <li>
+                    Otázka pro uživatele: <strong>„Přejete si pokračovat? (ano / ne)“</strong>.
+                  </li>
+                  <li>
+                    Pokud uživatel odpoví <strong>„ano“</strong>, celý proces zadání částky a ověření pravidel se <strong>zopakuje</strong> (využijte cyklus <code>opakuj dokud nenastane (odpověď = ne)</code>). Pokud byl předchozí výběr úspěšný, počítá se samozřejmě s novým, sníženým zůstatkem!
+                  </li>
+                  <li>
+                    Pokud uživatel odpoví <strong>„ne“</strong> (nebo cokoliv jiného), bankomat vypíše: <em>„Děkujeme za návštěvu, nezapomeňte si vzít svou platební kartu.“</em> a program se korektně ukončí.
+                  </li>
+                </ul>
               </div>
             </div>
           </TaskCard>

@@ -109,7 +109,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
     >
       {activeTab === 'teorie' && (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          
+
           <div className="bg-purple-50/50 p-6 sm:p-8 rounded-[2rem] border border-purple-100 flex flex-col md:flex-row gap-6 items-start">
             <div className="w-16 h-16 shrink-0 bg-purple-100 rounded-2xl flex items-center justify-center">
               <Download className="w-8 h-8 text-purple-600" />
@@ -130,9 +130,9 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               <h3 className="text-lg font-black text-slate-800 mb-2">Tajemství v pozadí: Atribut "Archivovat"</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-2">Jak zálohovací program pozná, který soubor je nový nebo se změnil od včerejška? Nečte celý jejich obsah. Windows ke každému souboru lepí skrytý štítek (bit) zvaný <strong>Archivovat (A)</strong>.</p>
               <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-4 space-y-1">
-                <li>Když soubor vytvoříte nebo upravíte, Windows mu zvednou štítek <code>A</code>.</li>
+                <li>Když soubor vytvoříte nebo upravíte, Windows mu nastaví štítek <code>A</code>.</li>
                 <li><strong>Plná a Inkrementální záloha</strong> štítky <code>A</code> po zkopírování <strong>vynulují</strong>.</li>
-                <li><strong>Rozdílová záloha</strong> data zkopíruje, ale štítek <code>A</code> nechá zvednutý. Další den se tedy stejný soubor zkopíruje znovu.</li>
+                <li><strong>Rozdílová záloha</strong> data zkopíruje, ale štítek <code>A</code> nechá nastavený. Další den se tedy stejný soubor zkopíruje znovu.</li>
               </ul>
             </div>
             <div className="bg-white border-2 border-slate-200 p-6 rounded-3xl shadow-sm">
@@ -153,7 +153,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               </div>
               <h3 className="text-lg font-black text-slate-800 mb-2">Plná (Full)</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-4">Vždy zkopíruje <strong>úplně všechny</strong> vybrané soubory znovu.</p>
-              
+
               {/* Schema: Full */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -195,7 +195,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               </div>
               <h3 className="text-lg font-black text-slate-800 mb-2">Přírůstková (Incremental)</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-4">Zkopíruje jen soubory, které se změnily od <strong>POSLEDNÍ (jakékoliv) zálohy</strong>.</p>
-              
+
               {/* Schema: Incremental */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -235,7 +235,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               </div>
               <h3 className="text-lg font-black text-slate-800 mb-2">Rozdílová (Differential)</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-4">Zkopíruje soubory, které se změnily od <strong>POSLEDNÍ PLNÉ zálohy</strong>.</p>
-              
+
               {/* Schema: Differential */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -275,7 +275,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
 
       {activeTab === 'simulace' && (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          
+
           <div className="bg-slate-900 p-6 sm:p-8 rounded-[2rem] text-white flex flex-col shadow-xl">
             <h2 className="text-3xl font-black mb-2 flex items-center gap-3">
               <Calculator className="w-8 h-8 text-purple-400" /> Krokovací simulátor celého týdne
@@ -283,11 +283,11 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             <p className="text-slate-300 leading-relaxed mb-8 max-w-3xl">
               Základní projekt má <strong>100 GB</strong>. Každý další den přibude <strong>5 GB</strong> nových dat. Pomocí tlačítek postupujte dny v týdnu a sledujte, jak se chovají jednotlivé typy záloh – co kopírují v daný den, kolik místa celkem polykají a jak těžká by byla obnova.
             </p>
-            
+
             {/* Ovladač dnů (Kalendář) */}
             <div className="flex gap-2 w-full mb-6">
               {['Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota', 'Neděle'].map((day, i) => (
-                <button 
+                <button
                   key={day}
                   onClick={() => setSimDay(i)}
                   className={`flex-1 py-3 px-1 text-center rounded-xl font-bold transition-all text-xs sm:text-sm ${simDay === i ? 'bg-purple-600 text-white shadow-lg scale-105 z-10' : (simDay > i ? 'bg-purple-900/40 text-purple-200' : 'bg-slate-800 text-slate-500 hover:bg-slate-700')}`}
@@ -302,7 +302,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                 onClick={() => setShowRestore(!showRestore)}
                 className={`px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border-2 ${showRestore ? 'bg-rose-600 text-white border-rose-500 shadow-rose-900/50 shadow-lg animate-pulse' : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'}`}
               >
-                <Activity className="w-5 h-5" /> 
+                <Activity className="w-5 h-5" />
                 {showRestore ? 'Skrýt simulátor obnovy' : 'Simulovat Havárii v tento den!'}
               </button>
             </div>
@@ -315,19 +315,19 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                 { type: 'diff', name: 'Rozdílová', icon: Layers, color: 'amber' }
               ].map(cfg => {
                 const Icon = cfg.icon;
-                
+
                 // Součty pro aktuální simDay
                 let currentCumulative = 0;
                 let currentSteps = 0;
-                
+
                 if (cfg.type === 'full') {
-                  for(let j = 0; j <= simDay; j++) currentCumulative += (100 + (j * 5));
+                  for (let j = 0; j <= simDay; j++) currentCumulative += (100 + (j * 5));
                   currentSteps = 1;
                 } else if (cfg.type === 'inc') {
                   currentCumulative = 100 + (simDay * 5);
                   currentSteps = simDay + 1;
                 } else if (cfg.type === 'diff') {
-                  currentCumulative = 100 + Array.from({length: simDay}).reduce((acc: any, _, j) => acc + ((j + 1) * 5), 0);
+                  currentCumulative = 100 + Array.from({ length: simDay }).reduce((acc: any, _, j) => acc + ((j + 1) * 5), 0);
                   currentSteps = simDay === 0 ? 1 : 2;
                 }
 
@@ -340,7 +340,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                         </div>
                         <h3 className="text-xl font-black text-slate-800">{cfg.name}</h3>
                       </div>
-                      
+
                       <div className="flex gap-4">
                         <div className={`px-4 py-2 rounded-xl ${cfg.color === 'blue' ? 'bg-blue-50 text-blue-900' : (cfg.color === 'emerald' ? 'bg-emerald-50 text-emerald-900' : 'bg-amber-50 text-amber-900')}`}>
                           <span className="text-[10px] font-bold uppercase tracking-wider block mb-0.5 opacity-70">Zabráno na disku celkem</span>
@@ -389,7 +389,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
 
                           {cfg.type === 'inc' && (
                             <div className="flex flex-wrap items-center gap-2">
-                              {Array.from({length: simDay + 1}).map((_, idx) => (
+                              {Array.from({ length: simDay + 1 }).map((_, idx) => (
                                 <React.Fragment key={idx}>
                                   <div className="flex items-center gap-2">
                                     <span className="text-slate-400 font-bold text-xs">Krok {idx + 1}:</span>
@@ -439,7 +439,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
           onDownload={handleDownload}
         >
           <div className="space-y-12">
-            
+
             <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100">
               <h3 className="font-bold text-purple-900 mb-2 text-lg">Cíl hodiny</h3>
               <p className="text-sm text-purple-800 leading-relaxed">Student rozumí principům typů záloh, dokáže nakonfigurovat úlohy a na vlastní oči ověřit rozdíl mezi Plnou, Inkrementální a Diferenciální zálohou.</p>
@@ -548,18 +548,18 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
                 Simulujeme vývoj projektu napříč týdnem, který nakonec zničí havárie disku. Vaším úkolem je jej z Inkrementálních záloh <strong>zcela přesně a bezpečně obnovit</strong>!
               </p>
-              
+
               <div className="pl-11 space-y-4">
                 <div className="bg-white border-l-4 border-blue-400 p-4 rounded-r-xl shadow-sm">
                   <h4 className="font-bold text-slate-800 text-sm mb-1">Den 1: (Plná)</h4>
-                  <p className="text-sm text-slate-600">V čisté složce <code>Muj_Projekt</code> vytvořte velký 10MB soubor simulující film. Spusťte Příkazový řádek a zadejte:<br/><code>fsutil file createnew "C:\Cesta\K\Slozce\Muj_Projekt\film.mp4" 10485760</code><br/>(Cestu nahraďte svou vlastní). Pak v Cobianu vytvořte úlohu typu <strong>Inkrementální</strong> s cílem <code>Zaloha\Projekt</code> a spusťte ji.</p>
+                  <p className="text-sm text-slate-600">V čisté složce <code>Muj_Projekt</code> vytvořte velký 10MB soubor simulující film. Spusťte Příkazový řádek a zadejte:<br /><code>fsutil file createnew "C:\Cesta\K\Slozce\Muj_Projekt\film.mp4" 10485760</code><br />(Cestu nahraďte svou vlastní). Pak v Cobianu vytvořte úlohu typu <strong>Inkrementální</strong> s cílem <code>Zaloha\Projekt</code> a spusťte ji.</p>
                 </div>
-                
+
                 <div className="bg-white border-l-4 border-emerald-400 p-4 rounded-r-xl shadow-sm">
                   <h4 className="font-bold text-slate-800 text-sm mb-1">Den 2: (Inkrement)</h4>
                   <p className="text-sm text-slate-600">Do složky přidejte malý textový soubor <code>denik.txt</code> (s nějakým textem). Spusťte zálohu. Povšimněte si, jak bleskově se provedla a jak malá je cílová složka.</p>
                 </div>
-                
+
                 <div className="bg-white border-l-4 border-amber-400 p-4 rounded-r-xl shadow-sm">
                   <h4 className="font-bold text-slate-800 text-sm mb-1">Den 3: (Inkrement)</h4>
                   <p className="text-sm text-slate-600">Přidejte soubor <code>kniha.txt</code>. Spusťte zálohu.</p>
@@ -569,12 +569,12 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                   <h4 className="font-bold text-slate-800 text-sm mb-1">Den 4: (Změna - Inkrement)</h4>
                   <p className="text-sm text-slate-600">Otevřete <code>denik.txt</code>, připište do něj další řádku textu a uložte. Spusťte zálohu.</p>
                 </div>
-                
+
                 <div className="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-xl shadow-sm">
                   <h4 className="font-bold text-rose-800 text-sm mb-1">Den 5: Katastrofa!</h4>
                   <p className="text-sm text-rose-700">Smažte celou původní složku <code>Muj_Projekt</code>! Nyní musíte z cílových 4 složek složit svůj projekt stoprocentně zpět do původního stavu.</p>
                 </div>
-                
+
                 <div className="mt-6">
                   <label className="flex items-center gap-3 cursor-pointer bg-slate-50 p-4 rounded-xl border border-slate-200 hover:bg-slate-100 transition-colors w-max">
                     <input type="checkbox" checked={task4} onChange={e => setTask4(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
@@ -593,7 +593,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
               <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
                 V reálné firemní síti administrátor nespouští zálohování ručně. Vytvoří automatizovaný plánovač (Schedule), který v pravidelných intervalech sám odesílá data na centrální <strong>síťový disk (NAS / serverový sdílený disk)</strong>. Pomocí nástroje <code>fsutil</code> a postupného doplňování denních zápisů ze schůzek nasimulujeme vícedenní vývoj velkého firemního projektu a v praxi ověříme efektivitu síťového zálohování i následnou kompletní obnovu projektu po smazání.
               </p>
-              
+
               <div className="pl-11 space-y-4">
                 <div className="bg-white border-l-4 border-indigo-400 p-4 rounded-r-xl shadow-sm space-y-2">
                   <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
@@ -605,13 +605,13 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                     <li>V Cobianu vytvořte novou úlohu <strong>5_Sitova_Automatizace</strong>.</li>
                     <li>Jako <strong>Zdroj (Source)</strong> zadejte <code>C:\Firemni_Projekt</code>.</li>
                     <li>
-                      Jako <strong>Cíl (Destination)</strong> nastavte složku na vašem <strong>připojeném síťovém disku</strong> přesně ve tvaru:<br/>
-                      <strong className="text-indigo-700 font-mono text-xs bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">Z:\Zalohy_Projektu\Jmeno_Studenta</strong><br/>
+                      Jako <strong>Cíl (Destination)</strong> nastavte složku na vašem <strong>připojeném síťovém disku</strong> přesně ve tvaru:<br />
+                      <strong className="text-indigo-700 font-mono text-xs bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">Z:\Zalohy_Projektu\Jmeno_Studenta</strong><br />
                       <span className="text-xs text-slate-500 italic">Místo textu „Jmeno_Studenta“ vytvořte podložku se svým jménem a příjmením (např. <code>Z:\Zalohy_Projektu\Jan_Novak</code>).</span>
                     </li>
                     <li>Typ zálohy nastavte na <strong>Přírůstková (Inkrementální)</strong>.</li>
                     <li>
-                      <strong>Aktivace automatického plánovače (Záložka Plánovač / Schedule):</strong><br/>
+                      <strong>Aktivace automatického plánovače (Záložka Plánovač / Schedule):</strong><br />
                       Ve firmě se zálohuje typicky v noci. Pro účely školního cvičení v záložce Plánovač nastavte typ <strong>Časovač (Timer)</strong> – např. opakovat každé <strong>2 až 3 minuty</strong> (případně zvolte <em>Denně</em> s časem za 2 minuty od aktuálního času).
                     </li>
                   </ul>
@@ -627,11 +627,11 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                   </p>
                   <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1">
                     <li>
-                      Velký 20MB soubor představující surový videozáznam z kamery. Spusťte Příkazový řádek (cmd) a zadejte:<br/>
+                      Velký 20MB soubor představující surový videozáznam z kamery. Spusťte Příkazový řádek (cmd) a zadejte:<br />
                       <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\video_master.raw" 20971520</code>
                     </li>
                     <li>
-                      Textový dokument <code>zapis_ze_schuzky.txt</code> a napište do něj první řádek:<br/>
+                      Textový dokument <code>zapis_ze_schuzky.txt</code> a napište do něj první řádek:<br />
                       <code className="bg-blue-50 text-blue-900 border border-blue-200 px-2.5 py-1 rounded text-xs font-mono block my-1 w-max">Pondělí: Zahájení projektu, nahrání surového videa a schválení rozpočtu.</code>
                     </li>
                   </ol>
@@ -675,7 +675,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                       </div>
                     </li>
                     <li>
-                      Do složky projektu přidejte nový velký 10MB soubor simulující hotový export videa:<br/>
+                      Do složky projektu přidejte nový velký 10MB soubor simulující hotový export videa:<br />
                       <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\export_v1.mp4" 10485760</code>
                     </li>
                   </ol>
@@ -697,7 +697,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                       <strong>Simulace havárie:</strong> Přejděte na disk <code>C:</code> a celou složku <code>C:\Firemni_Projekt</code> <strong>kompletně smažte ze svého počítače</strong> (Shift + Delete). Představte si havárii disku nebo zašifrování ransomwarem!
                     </li>
                     <li>
-                      <strong>Postupná obnova ze síťového disku (<code>Z:\Zalohy_Projektu\Jmeno_Studenta</code>):</strong><br/>
+                      <strong>Postupná obnova ze síťového disku (<code>Z:\Zalohy_Projektu\Jmeno_Studenta</code>):</strong><br />
                       Při přírůstkové záloze musíte data rekonstruovat ve správném pořadí:
                       <ul className="list-disc pl-5 mt-1 space-y-1 text-xs">
                         <li>Nejprve do nové složky <code>C:\Firemni_Projekt</code> zkopírujte obsah <strong>Plné zálohy z Pondělí</strong> (získáte 20MB video a pondělní stav zápisu).</li>
@@ -775,7 +775,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                       />
                     </div>
                   </div>
-                  
+
                   <div className="pt-2">
                     <label className="flex items-center gap-3 cursor-pointer bg-white p-3.5 rounded-xl border border-purple-200 hover:bg-purple-100/50 transition-colors w-max">
                       <input type="checkbox" checked={task5} onChange={e => setTask5(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
@@ -792,7 +792,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                 <span className="w-8 h-8 bg-fuchsia-100 text-fuchsia-700 rounded-full flex items-center justify-center text-sm font-bold">6</span>
                 Úkol 6: Shrnutí a závěrečné otázky
               </h3>
-              
+
               <div className="pl-11 space-y-6">
                 <div>
                   <label className="block text-sm font-bold text-slate-800 mb-2">Proč by bylo špatné dělat každý den v 17:00 pouze Plnou zálohu na 1 TB disk?</label>
@@ -803,7 +803,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                     className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-fuchsia-500"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-bold text-slate-800 mb-2">Který typ zálohy trvá nejkratší dobu při vytváření?</label>
                   <input
@@ -813,7 +813,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                     className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-fuchsia-500"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-bold text-slate-800 mb-2">Kde v prostředí Cobianu nastavím, aby se záloha ukládala na síťové úložiště NAS?</label>
                   <input
@@ -832,7 +832,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                 <span className="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">7</span>
                 Úkol 7: Archivní bit ve Windows (Jak systém pozná změnu)
               </h3>
-              
+
               <div className="pl-11 space-y-4">
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Operační systém Windows u každého souboru eviduje tzv. <strong>Archivní atribut (bit)</strong>. Kdykoliv soubor vytvoříte nebo upravíte, systém jej automaticky označí jako <em>„připraven k archivaci“</em>. Zálohovací programy podle tohoto příznaku poznají, co mají zazálohovat.
@@ -847,7 +847,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                   <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1.5">
                     <li>Na ploše vytvořte nový textový soubor (např. <code>pokus.txt</code>).</li>
                     <li>
-                      Klikněte na něj pravým tlačítkem → <strong>Vlastnosti</strong> → záložka <em>Obecné</em> → tlačítko <strong>Upřesnit...</strong><br/>
+                      Klikněte na něj pravým tlačítkem → <strong>Vlastnosti</strong> → záložka <em>Obecné</em> → tlačítko <strong>Upřesnit...</strong><br />
                       <span className="text-xs text-amber-800 font-semibold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                         Volba „Soubor je připraven k archivaci“ je automaticky zaškrtnutá!
                       </span>
