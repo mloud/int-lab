@@ -362,6 +362,9 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - **Úterý:** Přidání nového řádku zápisu za úterý ➔ Inkrementální záloha (přenos pouze několika bajtů textu, 20MB video se nepřenáší).
       - **Středa:** Přidání nového řádku zápisu za středu + vytvoření velkého 10MB souboru `export_v1.mp4` přes `fsutil` ➔ Inkrementální záloha (přenos 10 MB exportu a upraveného zápisu).
     - **Simulace havárie a obnova (Disaster Recovery):** Do zadání přidán krok E – žáci kompletně smažou `C:\Firemni_Projekt` ze svého disku a následně jej ze síťového disku zrekonstruují (Plná záloha z pondělí ➔ Inkrement z úterý ➔ Inkrement ze středy) s ověřením, že v obnoveném textovém souboru jsou všechny 3 dny (Po, Út, St) a jsou přítomny oba videosoubory. Formulář i export do Wordu byly rozšířeny o středeční log a záznam z obnovy.
+  - **2026-10-15 – Kompletní registrace všech 20 kapitol Pythonu v PRG 2:**
+    - Při dřívější migraci rozcestníků na `DynamicSubjectHub` bylo v `registry/curriculum/schools/defaultSchool.ts` u předmětu `prg2` uvedeno pouze 5 zkušebních kapitol místo celého kurikula.
+    - Všech 20 hotových interaktivních kapitol Pythonu (`py1` až `py20`) bylo doplněno do konfigurace školy `defaultSchool.ts` a jsou nyní plně viditelné a dostupné v hlavním rozcestníku `/specializovana/programovani-2`.
 
 
 
