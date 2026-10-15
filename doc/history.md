@@ -125,7 +125,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - **B4 Cloudové zálohy** (`/zalohovani/cloud`): Synchronizace vs. skutečná záloha, riziko zašifrování ransomwarem.
    - **B5 Automatizované zálohování – Cobian Reflector** (`/zalohovani/cobian`):
      - **Komponenta:** `BackupCobianChapter.tsx` (Teorie, Interaktivní simulátor zálohovacích cyklů, Pracovní list s exportem do Wordu).
-     - **Pracovní list (7 úkolů):** Úkol 0 (Instalace jako Windows Služba pod systémovým účtem), Úkol 1 (Plná záloha), Úkol 2 (Inkrementální záloha), Úkol 3 (Diferenciální záloha), Úkol 4 (Šifrování AES-256 a komprese ZIP/7z), Úkol 5 (Podniková síťová záloha s plánovačem), Úkol 6 (Reflexe a otázky z praxe), **Úkol 7 (Archivní bit ve Windows)**: Hands-on experiment v GUI Průzkumníka (`Vlastnosti -> Upřesnit -> Soubor je připraven k archivaci`), automatické zapnutí bitu systémem při modifikaci, rozbalovací CMD alternativa (`attrib +/-a`) a návaznost na princip inkrementální zálohy.
+     - **Pracovní list (7 úkolů):** Úkol 0 (Instalace jako Windows Služba pod systémovým účtem), Úkol 1 (Plná záloha), Úkol 2 (Inkrementální záloha), Úkol 3 (Diferenciální záloha), Úkol 4 (Šifrování AES-256 a komprese ZIP/7z), **Úkol 5 (Podniková síťová záloha na Z:\Zalohy_Projektu\Jmeno_Studenta s plánovačem, denním zápisem schůzek Po/Út/St, středečním exportem videa a simulací havárie s kompletní obnovou projektu)**, Úkol 6 (Reflexe a otázky z praxe), **Úkol 7 (Archivní bit ve Windows)**: Hands-on experiment v GUI Průzkumníka (`Vlastnosti -> Upřesnit -> Soubor je připraven k archivaci`), automatické zapnutí bitu systémem při modifikaci, rozbalovací CMD alternativa (`attrib +/-a`) a návaznost na princip inkrementální zálohy.
 ### Blok 2: Bezpečnost 1 (Ochrana Windows 11)
 2. **Bezpečnost 1** (`/specializovana/operacni-systemy-2/bezpecnost`) – *Podkapitoly:*
    - **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`):
@@ -355,6 +355,13 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - *3. Blok (Cyklus s podmínkou `opakuj dokud nenastane`):* Úkoly 13–14:
         - **Úkol 13: Hádání čísla vylepšené (`HadaniCisla2.sb3`):** Rozšíření Úkolu 12 o cyklus `opakuj dokud nenastane`, počítadlo pokusů a nápovědu větší/menší.
         - **Úkol 14: Bankomat (ATM) a bezpečnostní trezor (`Bankomat.sb3`):** Závěrečný syntetický projekt propojující cyklus s podmínkou (ochrana PINu, max 3 pokusy), 3 bezpečnostní kontroly před výběrem (zůstatek, bankovky přes modulo 100, jednorázový limit) a operátory `a`.
+  - **2026-10-15 – Zpřesnění Úkolu 5 v kapitole Zálohování Cobian (OSS 2 – 2. ročník):**
+    - Cíl zálohy na síťovém disku upřesněn na formát `Z:\Zalohy_Projektu\Jmeno_Studenta` (každý student má vlastní složku se svým jménem).
+    - Zavedena realistická simulace vícedenního zápisu ze schůzek do souboru `zapis_ze_schuzky.txt`:
+      - **Pondělí:** Vytvoření souboru se záznamem za pondělí + velký 20MB soubor `video_master.raw` přes `fsutil` ➔ první Plná záloha.
+      - **Úterý:** Přidání nového řádku zápisu za úterý ➔ Inkrementální záloha (přenos pouze několika bajtů textu, 20MB video se nepřenáší).
+      - **Středa:** Přidání nového řádku zápisu za středu + vytvoření velkého 10MB souboru `export_v1.mp4` přes `fsutil` ➔ Inkrementální záloha (přenos 10 MB exportu a upraveného zápisu).
+    - **Simulace havárie a obnova (Disaster Recovery):** Do zadání přidán krok E – žáci kompletně smažou `C:\Firemni_Projekt` ze svého disku a následně jej ze síťového disku zrekonstruují (Plná záloha z pondělí ➔ Inkrement z úterý ➔ Inkrement ze středy) s ověřením, že v obnoveném textovém souboru jsou všechny 3 dny (Po, Út, St) a jsou přítomny oba videosoubory. Formulář i export do Wordu byly rozšířeny o středeční log a záznam z obnovy.
 
 
 

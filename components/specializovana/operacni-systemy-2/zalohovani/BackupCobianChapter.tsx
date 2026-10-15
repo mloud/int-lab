@@ -31,6 +31,8 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
   const [ansScheduleSetting, setAnsScheduleSetting] = useLocalStorage('cobian-ans-sched', '');
   const [ansDay1Log, setAnsDay1Log] = useLocalStorage('cobian-ans-day1', '');
   const [ansDay2Log, setAnsDay2Log] = useLocalStorage('cobian-ans-day2', '');
+  const [ansDay3Log, setAnsDay3Log] = useLocalStorage('cobian-ans-day3', '');
+  const [ansRestoreLog, setAnsRestoreLog] = useLocalStorage('cobian-ans-restore', '');
 
   // Odpovědi pro Úkol 6 (Závěrečné otázky)
   const [ansQ1, setAnsQ1] = useLocalStorage('cobian-ans-q1', '');
@@ -64,11 +66,13 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
           <li><strong>Úkol 7 (Archivní bit ve Windows):</strong> ${task6 ? 'Splněno ✅' : 'Nesplněno ❌'}</li>
         </ul>
 
-        <h2>Úkol 5: Záznam automatizované síťové zálohy</h2>
+        <h2>Úkol 5: Záznam automatizované síťové zálohy a obnovy projektu</h2>
         <p><strong>Cesta k síťovému disku:</strong><br/>${ansNetworkPath || 'Neuvedeno'}</p>
         <p><strong>Nastavení plánovače v Cobianu:</strong><br/>${ansScheduleSetting || 'Neuvedeno'}</p>
-        <p><strong>Log z Dne 1 (Plná záloha s fsutil):</strong><br/>${ansDay1Log || 'Neuvedeno'}</p>
-        <p><strong>Log z Dne 2 (Inkrementální záloha):</strong><br/>${ansDay2Log || 'Neuvedeno'}</p>
+        <p><strong>Log z Dne 1 (Pondělí – Plná záloha s fsutil a pondělním zápisem):</strong><br/>${ansDay1Log || 'Neuvedeno'}</p>
+        <p><strong>Log z Dne 2 (Úterý – Inkrementální záloha + úterní zápis):</strong><br/>${ansDay2Log || 'Neuvedeno'}</p>
+        <p><strong>Log z Dne 3 (Středa – Inkrementální záloha + export_v1.mp4 a středeční zápis):</strong><br/>${ansDay3Log || 'Neuvedeno'}</p>
+        <p><strong>Záznam z obnovy po smazání projektu (Restore):</strong><br/>${ansRestoreLog || 'Neuvedeno'}</p>
 
         <h2>Úkol 6: Shrnutí & Závěrečné otázky</h2>
         <p><strong>Otázka 1 (Proč by bylo špatné dělat každý den v 17:00 pouze Plnou zálohu na 1 TB disk?):</strong><br/>${ansQ1}</p>
@@ -584,10 +588,10 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
             <div className="space-y-4 relative">
               <h3 className="text-xl font-black text-slate-800 flex items-center gap-3">
                 <span className="w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-sm font-bold">5</span>
-                Úkol 5: Podniková automatizace – Plánované zálohování na síťový disk
+                Úkol 5: Podniková automatizace – Plánované zálohování na síťový disk a obnova po havárii
               </h3>
               <p className="text-sm text-slate-600 pl-11 leading-relaxed mb-4">
-                V reálné firemní síti administrátor nespouští zálohování ručně. Vytvoří automatizovaný plánovač (Schedule), který v pravidelných intervalech sám odesílá data na centrální <strong>síťový disk (NAS / serverový sdílený disk)</strong>. Pomocí nástroje <code>fsutil</code> nasimulujeme vícedenní vývoj velkého projektu a v praxi ověříme efektivitu síťového zálohování.
+                V reálné firemní síti administrátor nespouští zálohování ručně. Vytvoří automatizovaný plánovač (Schedule), který v pravidelných intervalech sám odesílá data na centrální <strong>síťový disk (NAS / serverový sdílený disk)</strong>. Pomocí nástroje <code>fsutil</code> a postupného doplňování denních zápisů ze schůzek nasimulujeme vícedenní vývoj velkého firemního projektu a v praxi ověříme efektivitu síťového zálohování i následnou kompletní obnovu projektu po smazání.
               </p>
               
               <div className="pl-11 space-y-4">
@@ -600,11 +604,15 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                     <li>Vytvořte na svém disku <code>C:</code> novou složku projektu: <code>C:\Firemni_Projekt</code>.</li>
                     <li>V Cobianu vytvořte novou úlohu <strong>5_Sitova_Automatizace</strong>.</li>
                     <li>Jako <strong>Zdroj (Source)</strong> zadejte <code>C:\Firemni_Projekt</code>.</li>
-                    <li>Jako <strong>Cíl (Destination)</strong> nastavte složku na vašem <strong>připojeném síťovém disku</strong> (např. <code>Z:\Zalohy_Projektu</code> nebo přidělenou síťovou jednotku).</li>
+                    <li>
+                      Jako <strong>Cíl (Destination)</strong> nastavte složku na vašem <strong>připojeném síťovém disku</strong> přesně ve tvaru:<br/>
+                      <strong className="text-indigo-700 font-mono text-xs bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">Z:\Zalohy_Projektu\Jmeno_Studenta</strong><br/>
+                      <span className="text-xs text-slate-500 italic">Místo textu „Jmeno_Studenta“ vytvořte podložku se svým jménem a příjmením (např. <code>Z:\Zalohy_Projektu\Jan_Novak</code>).</span>
+                    </li>
                     <li>Typ zálohy nastavte na <strong>Přírůstková (Inkrementální)</strong>.</li>
                     <li>
                       <strong>Aktivace automatického plánovače (Záložka Plánovač / Schedule):</strong><br/>
-                      Ve firmě se zálohuje typicky v noci. Pro účely školního cvičení však v záložce Plánovač nastavte typ <strong>Časovač (Timer)</strong> – např. opakovat každé <strong>2 až 3 minuty</strong> (případně zvolte <em>Denně</em> s časem za 2 minuty od aktuálního času).
+                      Ve firmě se zálohuje typicky v noci. Pro účely školního cvičení v záložce Plánovač nastavte typ <strong>Časovač (Timer)</strong> – např. opakovat každé <strong>2 až 3 minuty</strong> (případně zvolte <em>Denně</em> s časem za 2 minuty od aktuálního času).
                     </li>
                   </ul>
                 </div>
@@ -612,45 +620,106 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                 <div className="bg-white border-l-4 border-blue-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
                   <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
                     <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">B</span>
-                    Den 1 (Pondělí): Výchozí stav projektu a velký binární soubor (fsutil)
+                    Den 1 (Pondělí): Výchozí stav projektu, velký soubor (fsutil) a pondělní zápis
                   </h4>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Ve složce <code>C:\Firemni_Projekt</code> vytvořte konfigurační textový soubor <code>nastaveni.ini</code> a velký 20MB soubor představující surový videozáznam nebo databázi. Spusťte Příkazový řádek (cmd) a zadejte:<br/>
-                    <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\video_master.raw" 20971520</code>
-                    Nechte plánovač v Cobianu automaticky odpočítat a provést první <strong>Plnou zálohu</strong> na síťový disk. V okně Cobianu v záložce <em>Protokol (Log)</em> zkontrolujte záznam o přenosu na síťový disk.
+                    Ve složce <code>C:\Firemni_Projekt</code> vytvořte:
+                  </p>
+                  <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1">
+                    <li>
+                      Velký 20MB soubor představující surový videozáznam z kamery. Spusťte Příkazový řádek (cmd) a zadejte:<br/>
+                      <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\video_master.raw" 20971520</code>
+                    </li>
+                    <li>
+                      Textový dokument <code>zapis_ze_schuzky.txt</code> a napište do něj první řádek:<br/>
+                      <code className="bg-blue-50 text-blue-900 border border-blue-200 px-2.5 py-1 rounded text-xs font-mono block my-1 w-max">Pondělí: Zahájení projektu, nahrání surového videa a schválení rozpočtu.</code>
+                    </li>
+                  </ol>
+                  <p className="text-sm text-slate-600 leading-relaxed mt-2">
+                    Nechte plánovač v Cobianu automaticky odpočítat a provést první <strong>Plnou zálohu</strong> na síťový disk <code>Z:\Zalohy_Projektu\Jmeno_Studenta</code>. V okně Cobianu v záložce <em>Protokol (Log)</em> zkontrolujte záznam o přenosu na síťový disk (přeneslo se cca 20 MB).
                   </p>
                 </div>
 
                 <div className="bg-white border-l-4 border-emerald-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
                   <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
                     <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">C</span>
-                    Den 2 (Úterý): Běžná práce v projektu – drobný textový přírůstek
+                    Den 2 (Úterý): Průběžná práce v projektu – přidání úterního zápisu
                   </h4>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Do projektu přidejte malý textový soubor se zápisem <code>zapis_ze_schuzky.txt</code>. Počkejte na další automatický interval plánovače (Inkrementální záloha). Podívejte se do protokolu i na síťový disk: všimněte si, že se přenesl <strong>pouze malý textový soubor</strong> (pár KB) a síťová linka nebyla zbytečně zatížena 20MB videosouborem!
+                    Na konci úterý proběhla další porada. Otevřete existující soubor <code>C:\Firemni_Projekt\zapis_ze_schuzky.txt</code> v Poznámkovém bloku a <strong>na nový řádek připište záznam za úterý</strong>:
+                  </p>
+                  <div className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-xs font-mono text-emerald-950 space-y-0.5">
+                    <div className="text-slate-400">Pondělí: Zahájení projektu, nahrání surového videa a schválení rozpočtu.</div>
+                    <div className="font-bold text-emerald-800">Úterý: Schůzka s týmem, schválený hrubý střih videa a úprava barev.</div>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed mt-2">
+                    Soubor uložte (Ctrl + S). Počkejte na další automatický interval plánovače (Inkrementální záloha). Podívejte se do protokolu i na síťový disk: všimněte si, že se přenesl <strong>pouze tento drobný změněný textový soubor</strong> (pár KB) a síťová linka nebyla zbytečně zatížena 20MB videosouborem!
                   </p>
                 </div>
 
                 <div className="bg-white border-l-4 border-amber-400 p-4 rounded-r-xl shadow-sm space-y-1.5">
                   <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
                     <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold">D</span>
-                    Den 3 (Středa): Nový velký render / export projektu (fsutil)
+                    Den 3 (Středa): Středeční zápis a nový velký render/export videa (fsutil)
                   </h4>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Do složky projektu přidejte nový velký 10MB soubor simulující hotový export:<br/>
-                    <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\export_v1.mp4" 10485760</code>
-                    Plánovač provede další automatický inkrement na síťový disk, kam přenese pouze tento nový 10MB soubor.
+                    Ve středu projekt finišuje. Proveďte dvě změny:
+                  </p>
+                  <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1">
+                    <li>
+                      Otevřete <code>zapis_ze_schuzky.txt</code> a <strong>přidejte další řádek za středu</strong>:
+                      <div className="bg-amber-50 border border-amber-200 p-2.5 rounded-lg text-xs font-mono text-amber-950 space-y-0.5 my-1">
+                        <div className="text-slate-400">Pondělí: Zahájení projektu, nahrání surového videa a schválení rozpočtu.</div>
+                        <div className="text-slate-400">Úterý: Schůzka s týmem, schválený hrubý střih videa a úprava barev.</div>
+                        <div className="font-bold text-amber-900">Středa: Finální render videa, kontrola zvuku a příprava na předání.</div>
+                      </div>
+                    </li>
+                    <li>
+                      Do složky projektu přidejte nový velký 10MB soubor simulující hotový export videa:<br/>
+                      <code className="bg-slate-100 px-2 py-1 rounded text-xs font-mono font-bold block my-1 w-max">fsutil file createnew "C:\Firemni_Projekt\export_v1.mp4" 10485760</code>
+                    </li>
+                  </ol>
+                  <p className="text-sm text-slate-600 leading-relaxed mt-2">
+                    Plánovač provede další automatický inkrement na síťový disk, kam přenese pouze tento nový 10MB export a upravený soubor zápisu.
                   </p>
                 </div>
 
+                <div className="bg-white border-l-4 border-rose-400 p-4 rounded-r-xl shadow-sm space-y-2">
+                  <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold">E</span>
+                    Havárie disku a kompletní obnova (Disaster Recovery): Smazání a obnova ze sítě
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Nyní otestujeme to nejdůležitější – zda dokážete projekt z inkrementálních síťových záloh bezpečně zachránit:
+                  </p>
+                  <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1.5">
+                    <li>
+                      <strong>Simulace havárie:</strong> Přejděte na disk <code>C:</code> a celou složku <code>C:\Firemni_Projekt</code> <strong>kompletně smažte ze svého počítače</strong> (Shift + Delete). Představte si havárii disku nebo zašifrování ransomwarem!
+                    </li>
+                    <li>
+                      <strong>Postupná obnova ze síťového disku (<code>Z:\Zalohy_Projektu\Jmeno_Studenta</code>):</strong><br/>
+                      Při přírůstkové záloze musíte data rekonstruovat ve správném pořadí:
+                      <ul className="list-disc pl-5 mt-1 space-y-1 text-xs">
+                        <li>Nejprve do nové složky <code>C:\Firemni_Projekt</code> zkopírujte obsah <strong>Plné zálohy z Pondělí</strong> (získáte 20MB video a pondělní stav zápisu).</li>
+                        <li>Následně zkopírujte obsah <strong>Inkrementu z Úterý</strong> a potvrďte přepsání souborů (zápis se aktualizuje na stav po úterku).</li>
+                        <li>Následně zkopírujte obsah <strong>Inkrementu ze Středy</strong> a potvrďte přepsání (získá se 10MB export a finální zápis).</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Kontrola integrity:</strong> Otevřete obnovený soubor <code>C:\Firemni_Projekt\zapis_ze_schuzky.txt</code>. Ověřte, že v něm jsou <strong>všechny 3 řádky (Pondělí, Úterý, Středa)</strong> a ve složce jsou oba videosoubory (20 MB + 10 MB)!
+                    </li>
+                  </ol>
+                </div>
+
                 <div className="bg-purple-50/70 border border-purple-200 p-4 rounded-2xl space-y-3">
-                  <h4 className="font-bold text-purple-950 text-sm">Zjištěná data a záznam automatizované zálohy:</h4>
+                  <h4 className="font-bold text-purple-950 text-sm">Zjištěná data a záznam automatizované zálohy & obnovy:</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Cesta / písmeno síťového disku:</label>
+                      <label className="font-bold text-slate-700 block mb-1">Cesta na síťovém disku (včetně vaší podsložky):</label>
                       <input
                         type="text"
                         value={ansNetworkPath}
+                        placeholder="Z:\Zalohy_Projektu\Jmeno_Prijmeni"
                         onChange={e => setAnsNetworkPath(e.target.value)}
                         className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
                       />
@@ -660,25 +729,48 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                       <input
                         type="text"
                         value={ansScheduleSetting}
+                        placeholder="Časovač / opakovat každé 2 minuty"
                         onChange={e => setAnsScheduleSetting(e.target.value)}
                         className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 1 (Plná):</label>
+                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 1 (Pondělí – Plná):</label>
                       <input
                         type="text"
                         value={ansDay1Log}
+                        placeholder="např. 20,98 MB"
                         onChange={e => setAnsDay1Log(e.target.value)}
                         className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 2 (Inkrement):</label>
+                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 2 (Úterý – Inkrement):</label>
                       <input
                         type="text"
                         value={ansDay2Log}
+                        placeholder="např. 1,2 KB (pouze text)"
                         onChange={e => setAnsDay2Log(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Objem přenesených dat z logu v Den 3 (Středa – Inkrement):</label>
+                      <input
+                        type="text"
+                        value={ansDay3Log}
+                        placeholder="např. 10,49 MB (export + text)"
+                        onChange={e => setAnsDay3Log(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">Výsledek kontroly po obnově projektu po smazání:</label>
+                      <input
+                        type="text"
+                        value={ansRestoreLog}
+                        placeholder="např. Úspěšně obnoveno, soubor obsahuje 3 řádky Po+Út+St"
+                        onChange={e => setAnsRestoreLog(e.target.value)}
                         className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
                       />
                     </div>
@@ -687,7 +779,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                   <div className="pt-2">
                     <label className="flex items-center gap-3 cursor-pointer bg-white p-3.5 rounded-xl border border-purple-200 hover:bg-purple-100/50 transition-colors w-max">
                       <input type="checkbox" checked={task5} onChange={e => setTask5(e.target.checked)} className="w-5 h-5 text-purple-600 rounded" />
-                      <span className="font-bold text-purple-950 text-xs">✅ Automatická síťová záloha s plánovačem byla úspěšně ověřena</span>
+                      <span className="font-bold text-purple-950 text-xs">✅ Automatická síťová záloha s plánovačem i následná obnova projektu po smazání byla úspěšně ověřena</span>
                     </label>
                   </div>
                 </div>
