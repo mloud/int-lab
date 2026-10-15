@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Blocks, Lock, Unlock, CheckCircle, Save } from 'lucide-react';
+import { Blocks, Lock, Unlock, CheckCircle, Save, KeyRound, Landmark, ShieldCheck } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { ScratchBlock, ScratchInput, ScratchCBlock, ScratchHexagon, ScratchCElseBlock, ScratchSpeechBubble } from './ScratchBlocks';
@@ -99,7 +99,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
 
   return (
     <FsChapterShell
-      title="Podmíněný příkaz (Lekce 6)"
+      title="Podmíněný příkaz (Lekce 5)"
       icon={<Blocks className="w-8 h-8 text-white" />}
       accentColor="border-amber-500"
       onBack={onBack}
@@ -698,8 +698,85 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
 
           <TaskCard
             number="11"
-            title="Hádání čísla"
+            title="Validátor síly hesla"
             taskId="cond-11"
+            showTeacher={teacherMode}
+            teacherNote={
+              <div className="space-y-2">
+                <p><strong>Cíl úlohy:</strong> Kombinace práce s řetězci (kategorie <em>Operátory</em>), inkrementace skóre a závěrečného třístupňového větvení <code>když – jinak</code>.</p>
+                <p>Žáci si vytvoří proměnnou <code>skore</code> nastavenou na 0 a proměnnou <code>heslo</code>, kam uloží <code>odpověď</code>. Postupně testují:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li><code>délka heslo &gt; 7</code> (alespoň 8 znaků) ➔ změň skóre o 1.</li>
+                  <li><code>ne (heslo = 123456 nebo heslo = heslo)</code> (ochrana proti triviálním heslům) ➔ změň skóre o 1.</li>
+                  <li><code>heslo obsahuje @ nebo heslo obsahuje ! nebo heslo obsahuje 1</code> (speciální znak či číslo) ➔ změň skóre o 1.</li>
+                </ul>
+                <p>Na závěr porovnají: <code>když skore &gt;= 3</code> ➔ Silné, <code>jinak když skore = 2</code> ➔ Střední, <code>jinak</code> ➔ Slabé.</p>
+              </div>
+            }
+            saveAs="ValidatorHesla.sb3"
+          >
+            <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
+              <p>
+                Vytvořte program, který otestuje bezpečnost hesla zadaného uživatelem a na základě splněných bezpečnostních kritérií ohodnotí jeho sílu.
+              </p>
+
+              <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-5 space-y-3">
+                <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                  <KeyRound className="w-4 h-4 text-amber-600" />
+                  Kritéria pro hodnocení hesla (přičtěte 1 bod za každé splněné):
+                </h4>
+                <ol className="list-decimal pl-5 space-y-2">
+                  <li>
+                    <strong>Délka hesla:</strong> Heslo musí mít alespoň 8 znaků (operátor <code>délka &gt; 7</code>).
+                  </li>
+                  <li>
+                    <strong>Zákaz triviálních hesel:</strong> Heslo nesmí být rovno <code>"123456"</code> ani <code>"heslo"</code> ani <code>"admin"</code>.
+                  </li>
+                  <li>
+                    <strong>Speciální znak nebo číslice:</strong> Heslo musí obsahovat alespoň jeden speciální znak nebo číslici (např. <code>@</code>, <code>!</code>, <code>#</code>, <code>1</code>).
+                  </li>
+                </ol>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-slate-800 mb-2">Závěrečné vyhodnocení kocourem:</h4>
+                <ul className="list-disc pl-5 space-y-1.5">
+                  <li><strong className="text-emerald-700">Skóre 3 body:</strong> Kocour řekne <em>„Vynikající bezpečné heslo! 🔒“</em></li>
+                  <li><strong className="text-amber-700">Skóre 2 body:</strong> Kocour řekne <em>„Průměrné heslo, zvaž vylepšení! ⚠️“</em></li>
+                  <li><strong className="text-rose-700">Skóre 0 nebo 1 bod:</strong> Kocour řekne <em>„Slabé a nebezpečné heslo! ❌“</em></li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <h4 className="font-bold text-slate-800 mb-4">Nápověda pro kontrolní podmínky:</h4>
+                <div className="flex flex-col gap-3 items-start">
+                  <ScratchHexagon category="operators">
+                    <ScratchBlock category="operators">délka <ScratchBlock category="variables">heslo</ScratchBlock></ScratchBlock>
+                    {" > "}
+                    <ScratchInput>7</ScratchInput>
+                  </ScratchHexagon>
+
+                  <ScratchHexagon category="operators">
+                    ne
+                    <span className="mx-1">
+                      <ScratchHexagon isSlot>
+                        <ScratchBlock category="variables">heslo</ScratchBlock> {" = "} <ScratchInput type="text">123456</ScratchInput>
+                      </ScratchHexagon>
+                    </span>
+                  </ScratchHexagon>
+
+                  <ScratchHexagon category="operators">
+                    <ScratchBlock category="variables">heslo</ScratchBlock> obsahuje <ScratchInput type="text">@</ScratchInput> ?
+                  </ScratchHexagon>
+                </div>
+              </div>
+            </div>
+          </TaskCard>
+
+          <TaskCard
+            number="12"
+            title="Hádání čísla"
+            taskId="cond-12"
             showTeacher={teacherMode}
             teacherNote={<p>Klasická hra vyšší/nižší by k tomuto zadání seděla lépe, ale zadání zmiňuje jen "správná / nesprávná odpověď". Aplikujte zadání 1:1, žáci si vyzkouší porovnávání vygenerované proměnné s odpovědí.</p>}
             saveAs="HadaniCisla.sb3"
@@ -780,9 +857,9 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
           </div>
 
           <TaskCard
-            number="12"
+            number="13"
             title="Hádání čísla (vylepšené)"
-            taskId="cond-12"
+            taskId="cond-13"
             showTeacher={teacherMode}
             teacherNote={<p>Zde žáci přidají cyklus "opakuj dokud nenastane". Podmínka v cyklu bude (odpověď = hádané číslo). Nápověda vyšší/nižší vyžaduje navíc vložit podmínku když-jinak.</p>}
             saveAs="HadaniCisla2.sb3"
@@ -803,6 +880,109 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   Extra Bonus - Přidejte ještě opakování celého hádání - do doby než uživatel nepotvrdí, že chce skončit.
                 </li>
               </ul>
+            </div>
+          </TaskCard>
+
+          <TaskCard
+            number="14"
+            title="Bankomat (ATM) a bezpečnostní trezor"
+            taskId="cond-14"
+            showTeacher={teacherMode}
+            teacherNote={
+              <div className="space-y-2">
+                <p><strong>Cíl závěrečné syntetické úlohy:</strong> Propojení cyklu s podmínkou (ochrana PINu před brute-force útokem), složených logických podmínek se spojkou <code>a</code> a operátoru modulo (zbytek po dělení) pro výdej reálných bankovek.</p>
+                <p><strong>Struktura scénáře:</strong></p>
+                <ol className="list-decimal pl-5 space-y-1">
+                  <li>Proměnné: <code>PIN = 1234</code>, <code>zustatek = 5000</code>, <code>pokusy = 0</code>, <code>limit = 3000</code>.</li>
+                  <li>Ověření PINu: <code>opakuj dokud nenastane (odpověď = PIN nebo pokusy = 3)</code>. V těle: zeptej se na PIN, pokud špatně ➔ <code>změň pokusy o 1</code>.</li>
+                  <li>Blokace karty: <code>když pokusy = 3 tak zastav všechno</code>.</li>
+                  <li>Výběr peněz: Dotaz na částku do proměnné <code>vyber</code>.</li>
+                  <li>Tři kontroly: <code>vyber &lt;= zustatek</code> A <code>vyber &lt;= limit</code> A <code>(zbytek vyber děleno 100) = 0</code>.</li>
+                  <li>Při úspěchu odečíst ze zůstatku a ohlásit úspěch, jinak vysvětlit chybu.</li>
+                </ol>
+              </div>
+            }
+            saveAs="Bankomat.sb3"
+          >
+            <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
+              <p className="font-bold text-slate-800">
+                Závěrečný komplexní projekt: Vytvořte inteligentní bankomat, který spravuje uživatelský účet, brání neoprávněnému vniknutí a dohlíží na pravidla výdeje hotovosti.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <KeyRound className="w-4 h-4 text-amber-600" />
+                    1. Fáze: Bezpečnostní přihlášení
+                  </h4>
+                  <ul className="list-disc pl-5 space-y-1 text-xs">
+                    <li>Správný PIN je uložen v proměnné (např. <code>1234</code>).</li>
+                    <li>Uživatel má maximálně <strong>3 pokusy</strong> na zadání správného PINu (použijte cyklus <code>opakuj dokud nenastane</code>).</li>
+                    <li>Pokud zadá 3× špatný PIN, bankomat ohlásí <em>„Karta zablokována! 🚨“</em> a program se zastaví.</li>
+                  </ul>
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <Landmark className="w-4 h-4 text-emerald-600" />
+                    2. Fáze: Pravidla výběru hotovosti
+                  </h4>
+                  <ul className="list-disc pl-5 space-y-1 text-xs">
+                    <li>Počáteční <code>zustatek</code> je 5 000 Kč a jednorázový <code>limit</code> je 3 000 Kč.</li>
+                    <li><strong>Pravidlo 1 (Dostatek peněz):</strong> Částka nesmí být vyšší než zůstatek.</li>
+                    <li><strong>Pravidlo 2 (Bankovky):</strong> Bankomat vydává pouze stovky (zbytek po dělení 100 musí být 0).</li>
+                    <li><strong>Pravidlo 3 (Limit):</strong> Částka nesmí překročit limit 3 000 Kč.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-slate-800 mb-2">3. Fáze: Provedení transakce</h4>
+                <p>
+                  Pokud jsou všechna pravidla splněna, odečtěte požadovanou částku ze zůstatku a vypište:
+                  <strong className="text-slate-800 block mt-1">„Výběr schválen! Zůstatek na vašem účtu je: [zustatek] Kč.“</strong>
+                  Pokud některé pravidlo splněno není, bankomat musí uživateli jasně říct, v čem nastala chyba.
+                </p>
+              </div>
+
+              <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 flex flex-col gap-3">
+                <h4 className="text-xs font-bold text-amber-800 uppercase tracking-wider">
+                  Klíčové bloky k sestavení:
+                </h4>
+                <div className="flex flex-wrap gap-3 items-center">
+                  <ScratchCBlock
+                    category="control"
+                    topLabel={
+                      <>
+                        opakuj dokud nenastane
+                        <span className="mx-1">
+                          <ScratchHexagon category="operators">
+                            <ScratchHexagon isSlot /> nebo <ScratchHexagon isSlot />
+                          </ScratchHexagon>
+                        </span>
+                      </>
+                    }
+                  >
+                    <div className="h-4"></div>
+                  </ScratchCBlock>
+
+                  <ScratchHexagon category="operators">
+                    <ScratchBlock category="operators">
+                      zbytek <ScratchBlock category="variables">vyber</ScratchBlock> děleno <ScratchInput>100</ScratchInput>
+                    </ScratchBlock>
+                    {" = "}
+                    <ScratchInput>0</ScratchInput>
+                  </ScratchHexagon>
+
+                  <ScratchHexagon category="operators">
+                    <ScratchHexagon isSlot /> a <ScratchHexagon isSlot />
+                  </ScratchHexagon>
+                </div>
+              </div>
+
+              <div className="p-3 bg-slate-100 rounded-lg text-xs text-slate-500 italic">
+                💡 <strong>Bonusová výzva:</strong> Zabalte celou obsluhu po přihlášení do hlavní nabídky (<code>1 = Zůstatek</code>, <code>2 = Výběr</code>, <code>3 = Vklad</code>, <code>4 = Konec</code>) s opakováním, dokud uživatel nezvolí ukončení!
+              </div>
             </div>
           </TaskCard>
         </div>

@@ -70,13 +70,13 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
           />
 
           <TechnicalCard
-            tag="scr6"
-            title="Lekce 6: Podmínky"
+            tag="scr5"
+            title="Lekce 5: Podmínky"
             description="Podmíněný příkaz (když - tak) a interaktivní chování programu na podněty."
             icon={BookOpen}
             gradient="from-amber-500 to-orange-500"
             actionLabel="Otevřít lekci"
-            onClick={() => onSelectChapter(6)}
+            onClick={() => onSelectChapter(5)}
             accentCorner={false}
           />
         </div>
@@ -108,7 +108,7 @@ export default function ScratchPage() {
   if (activeChapter === 4) {
     return <ScratchSubprogramsChapter onBack={() => setActiveChapter(null)} />;
   }
-  if (activeChapter === 6) {
+  if (activeChapter === 5 || activeChapter === 6) {
     return <ScratchConditionsChapter onBack={() => setActiveChapter(null)} />;
   }
 

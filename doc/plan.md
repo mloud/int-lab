@@ -27,7 +27,8 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 ### 2. Programování 1 (PRG 1 – 1. ročník)
 - **Téma: Blokové programování ve Scratchi & Herní logika**
-  - [x] Základní sada témat hotova (Sekvence, Proměnné, Cykly, Podmínky, Podprogramy).
+  - [x] Základní sada 5 témat sjednocena (Sekvence ➔ Proměnné ➔ Cykly ➔ Podprogramy ➔ Podmínky jako Lekce 5).
+  - [x] Rozšíření a didaktická gradace kapitoly Podmínky (celkem 14 úloh): Úkol 11 (Validátor síly hesla jako vrchol 2. bloku), Úkol 12 (Hádání 1 pokus), Úkol 13 (Hádání v cyklu), Úkol 14 (Bankomat ATM jako syntetický závěr).
   - [x] Retro projekt Raycaster 3D funkční.
   - [ ] Příprava dalších herních šablon (např. 2D bludiště, sběr mincí, skákačka).
 

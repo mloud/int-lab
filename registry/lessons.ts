@@ -3244,7 +3244,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   {
     id: 'scratch-podminky',
     title: 'Scratch: Podmínky a rozhodování',
-    shortCode: '#sc2',
+    shortCode: '#sc5',
     description: 'Bloky když, tak a když, jinak: reakce na dotyk okraje, barev a klávesnice.',
     domain: 'informatika-specializovana',
     category: 'programovani-scratch',
@@ -3265,7 +3265,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Programování 1',
       thematicBlock: 'Vizuální programování ve Scratch',
       chapter: 'Vizuální programování ve Scratch',
-      subchapter: '2. Podmínky a detekce kolizí',
+      subchapter: '5. Podmínky a rozhodování',
       lesson: 'Podmínky a rozhodování'
     },
     tabs: {
@@ -3279,7 +3279,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   {
     id: 'scratch-promenne',
     title: 'Scratch: Proměnné a herní skóre',
-    shortCode: '#sc3',
+    shortCode: '#sc2',
     description: 'Vytváření proměnných, počítadla bodů, životů a časomíry ve hře.',
     domain: 'informatika-specializovana',
     category: 'programovani-scratch',
@@ -3300,7 +3300,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Programování 1',
       thematicBlock: 'Vizuální programování ve Scratch',
       chapter: 'Vizuální programování ve Scratch',
-      subchapter: '3. Herní stav a proměnné',
+      subchapter: '2. Herní stav a proměnné',
       lesson: 'Proměnné a herní skóre'
     },
     tabs: {
@@ -3314,7 +3314,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   {
     id: 'scratch-cykly',
     title: 'Scratch: Cykly a počítadla',
-    shortCode: '#sc4',
+    shortCode: '#sc3',
     description: 'Nekonečné cykly, cykly s podmínkou a kombinace proměnných v animacích.',
     domain: 'informatika-specializovana',
     category: 'programovani-scratch',
@@ -3335,7 +3335,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Programování 1',
       thematicBlock: 'Vizuální programování ve Scratch',
       chapter: 'Vizuální programování ve Scratch',
-      subchapter: '4. Cykly a herní smyčka',
+      subchapter: '3. Cykly a herní smyčka',
       lesson: 'Cykly a počítadla'
     },
     tabs: {
@@ -3349,7 +3349,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   {
     id: 'scratch-podprogramy',
     title: 'Scratch: Vlastní bloky (Moje bloky)',
-    shortCode: '#sc5',
+    shortCode: '#sc4',
     description: 'Tvorba vlastních procedur a zrychlení běhu pomocí „běžet bez obnovení obrazovky“.',
     domain: 'informatika-specializovana',
     category: 'programovani-scratch',
@@ -3370,7 +3370,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       subject: 'Programování 1',
       thematicBlock: 'Vizuální programování ve Scratch',
       chapter: 'Vizuální programování ve Scratch',
-      subchapter: '5. Vlastní procedury a bloky',
+      subchapter: '4. Vlastní procedury a bloky',
       lesson: 'Vlastní bloky (Moje bloky)'
     },
     tabs: {

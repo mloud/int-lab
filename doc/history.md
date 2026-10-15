@@ -341,8 +341,20 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       3. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy/planovac`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), `taskschd.msc`, plánování spouštění `.bat` zálohovacích a údržbových skriptů, triggery a spouštění pod účtem `SYSTEM`.
     - Přizpůsobena komponenta `ChapterOutlinePage` pro podporu přímých lekcí s návratovou cestou do hubu OSS 1 (`parent` prop).
   - **2026-10-14 – Didaktické zpřesnění BZ2 (Anatomie .EXE souboru a Authenticode):**
-    - V teorii kapitoly Procesy a certifikáty (`ProcessTheoryTab.tsx`, Blok 2) byl původní abstraktní text nahrazen konkrétním **schématem vnitřní struktury .EXE souboru na disku** (Sekce 1: Instrukce pro CPU, Sekce 2: Data a resources, Sekce 3: Bezpečnostní blok na konci souboru s digitálním podpisem = zašifrovaným hashem a digitálním certifikátem notáře DigiCert).
-    - Doplněno přímé vysvětlení kontroly při spuštění a matematického principu „rozbití podpisu“ virem (`hash instrukcí ≠ zašifrovaný hash na konci`).
+  - **2026-10-15 – Sjednocení číslování lekcí Scratche a rozšíření kapitoly Podmínky (PRG 1 – 1. ročník):**
+    - **Sjednocení číslování v menu a kurikulu:** Kapitola Podmínky byla v rozcestníku (`app/specializovana/programovani/scratch/page.tsx`), v záhlaví komponenty (`ScratchConditionsChapter.tsx`) i v registru (`registry/lessons.ts`) sjednocena jako **Lekce 5** (tag `scr5`, `#sc5`). Byla odstraněna nesrovnalost (dříve chybějící 5 a skok rovnou na lekci 6). Nyní posloupnost lekcí tvoří logickou řadu: Lekce 1: Sekvence ➔ Lekce 2: Proměnné ➔ Lekce 3: Cykly ➔ Lekce 4: Podprogramy ➔ Lekce 5: Podmínky.
+    - **Didaktická gradace a uspořádání 14 úloh v lekci Podmínky:**
+      - *1. Blok (Neúplná podmínka když–tak):* Úkoly 1–5 (číslo > 100, sudost, uložení vstupu do proměnné, pohyb a okraje x, y, Pac-Man efekt).
+      - *2. Blok (Úplná podmínka když–jinak):* Úkoly 6–12:
+        - Úkol 6: Sudé/liché
+        - Úkol 7: Porovnání dvou čísel (vnořené podmínky pro shodu)
+        - Úkoly 8–9: Geometrie a kreslení perem (Polsko, Francie, Německo, Japonsko)
+        - Úkol 10: Malá násobilka (10 otázek, počítadlo bodů, třístupňové známkování)
+        - **Úkol 11: Validátor síly hesla (`ValidatorHesla.sb3`):** Vrchol 2. bloku – žáci aplikují princip bodování a třístupňového větvení z násobilky na analýzu řetězce (operátory `délka`, `obsahuje`, složená negace `ne (heslo = ... nebo ...)`), bez nutnosti cyklu.
+        - **Úkol 12: Hádání čísla (1 pokus):** Jednoduchá jednorázová příprava (didaktický můstek) před přechodem na cykly.
+      - *3. Blok (Cyklus s podmínkou `opakuj dokud nenastane`):* Úkoly 13–14:
+        - **Úkol 13: Hádání čísla vylepšené (`HadaniCisla2.sb3`):** Rozšíření Úkolu 12 o cyklus `opakuj dokud nenastane`, počítadlo pokusů a nápovědu větší/menší.
+        - **Úkol 14: Bankomat (ATM) a bezpečnostní trezor (`Bankomat.sb3`):** Závěrečný syntetický projekt propojující cyklus s podmínkou (ochrana PINu, max 3 pokusy), 3 bezpečnostní kontroly před výběrem (zůstatek, bankovky přes modulo 100, jednorázový limit) a operátory `a`.
 
 
 
