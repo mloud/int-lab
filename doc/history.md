@@ -364,7 +364,14 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Simulace havárie a obnova (Disaster Recovery):** Do zadání přidán krok E – žáci kompletně smažou `C:\Firemni_Projekt` ze svého disku a následně jej ze síťového disku zrekonstruují (Plná záloha z pondělí ➔ Inkrement z úterý ➔ Inkrement ze středy) s ověřením, že v obnoveném textovém souboru jsou všechny 3 dny (Po, Út, St) a jsou přítomny oba videosoubory. Formulář i export do Wordu byly rozšířeny o středeční log a záznam z obnovy.
   - **2026-10-15 – Kompletní registrace všech 20 kapitol Pythonu v PRG 2:**
     - Při dřívější migraci rozcestníků na `DynamicSubjectHub` bylo v `registry/curriculum/schools/defaultSchool.ts` u předmětu `prg2` uvedeno pouze 5 zkušebních kapitol místo celého kurikula.
-    - Všech 20 hotových interaktivních kapitol Pythonu (`py1` až `py20`) bylo doplněno do konfigurace školy `defaultSchool.ts` a jsou nyní plně viditelné a dostupné v hlavním rozcestníku `/specializovana/programovani-2`.
+  - **2026-10-16 – Didaktická zpřesnění a oprava vizuálu v lekci Scratch: Podmínky (PRG 1):**
+    - **Oprava vnoření bloků v ukázkách:** V komponentě `ScratchConditionsChapter.tsx` byla opravena ukázka neúplné (`když – tak`) i úplné podmínky (`když – jinak`), aby se příkaz `bublina "Jsem bohatý"` vykresloval uvnitř těla podmínky (čelistí C-bloku), nikoliv v jeho záhlaví.
+    - **Rozdělení nápovědy v Úkolu 2 (Je sudé?):** Složený blok byl didakticky rozdělen na dva samostatné nesestavené stavební kameny: operátor zbytku `zbytek [odpověď] děleno (2)` a relační porovnání `< [ ] = (0) >`.
+    - **Nový blok v knihovně ScratchBlocks (`ScratchDistanceBlock`):** Do `ScratchBlocks.tsx` přidána komponenta pro blok měření vzdálenosti z kategorie Vnímání (`vzdálenost k [cíl ▼]`).
+    - **Otevřený tip pro vlajku Japonska v Úkolu 9:** Nápověda byla upravena na otevřený didaktický podnět (využití další postavy na plátně a bloku `vzdálenost k [ukazateli myši ▼]`) bez přímého prozrazování konkrétních souřadnic, poloměru a kódu, aby žáci samostatně domysleli geometrické řešení.
+    - **Vnoření bloků spoj v Úkolu 10 (Malá násobilka):** Přidána otevřená vizuální nápověda vysvětlující obecný princip vnoření jednoho bloku `spoj` do druhého (`spoj jablko (spoj hruška banán)`) a samostatný blok `otázka [ ] a čekej`, bez přímého prozrazování konkrétního výsledného sestavení s proměnnými násobilky.
+
+
 
 
 

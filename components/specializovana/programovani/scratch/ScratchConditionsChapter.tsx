@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Blocks, Lock, Unlock, CheckCircle, Save, KeyRound, Landmark, ShieldCheck } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
-import { ScratchBlock, ScratchInput, ScratchCBlock, ScratchHexagon, ScratchCElseBlock, ScratchSpeechBubble } from './ScratchBlocks';
+import { ScratchBlock, ScratchInput, ScratchCBlock, ScratchHexagon, ScratchCElseBlock, ScratchSpeechBubble, ScratchDistanceBlock, ScratchReporter } from './ScratchBlocks';
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
   <div className="mt-4 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
@@ -187,15 +187,21 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-sm w-full">
               <h4 className="font-bold text-slate-800 mb-4 text-center">Ukázka:</h4>
               <div className="flex justify-center">
-                <ScratchCBlock category="control">
-                  když
-                  <span className="mx-1">
-                    <ScratchHexagon category="operators">
-                      <ScratchBlock category="variables">penez</ScratchBlock> {">"} <ScratchInput>1000000</ScratchInput>
-                    </ScratchHexagon>
-                  </span>
-                  tak
-                  <div className="mt-2 ml-4">
+                <ScratchCBlock
+                  category="control"
+                  topLabel={
+                    <>
+                      když
+                      <span className="mx-1">
+                        <ScratchHexagon category="operators">
+                          <ScratchBlock category="variables">penez</ScratchBlock> {">"} <ScratchInput>1000000</ScratchInput>
+                        </ScratchHexagon>
+                      </span>
+                      tak
+                    </>
+                  }
+                >
+                  <div className="py-1">
                     <ScratchBlock category="looks">bublina <ScratchInput type="text">Jsem bohatý</ScratchInput></ScratchBlock>
                   </div>
                 </ScratchCBlock>
@@ -229,14 +235,15 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
               Napište scénář, který se zeptá na číslo a vypíše "Číslo je sudé", pokud je číslo dělitelné 2.
             </p>
             <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 w-fit">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Nápověda k matematice</h4>
-              <ScratchHexagon category="operators">
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Nápověda k matematice (potřebné bloky):</h4>
+              <div className="flex flex-wrap items-center gap-3">
                 <ScratchBlock category="operators">
                   zbytek <ScratchBlock category="sensing">odpověď</ScratchBlock> děleno <ScratchInput>2</ScratchInput>
                 </ScratchBlock>
-                {" = "}
-                <ScratchInput>0</ScratchInput>
-              </ScratchHexagon>
+                <ScratchHexagon category="operators">
+                  <ScratchInput> </ScratchInput> {"="} <ScratchInput>0</ScratchInput>
+                </ScratchHexagon>
+              </div>
             </div>
           </TaskCard>
 
@@ -367,18 +374,20 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   topLabel="když"
                   midLabel="jinak"
                   bottomLabel="tak"
+                  condition={
+                    <span className="mx-1">
+                      <ScratchHexagon category="operators">
+                        <ScratchBlock category="variables">penez</ScratchBlock> {">"} <ScratchInput>1000000</ScratchInput>
+                      </ScratchHexagon>
+                    </span>
+                  }
                   elseChildren={
-                    <div className="ml-4 mt-2 mb-2">
+                    <div className="py-1">
                       <ScratchBlock category="looks">bublina <ScratchInput type="text">chudý</ScratchInput></ScratchBlock>
                     </div>
                   }
                 >
-                  <span className="mx-1">
-                    <ScratchHexagon category="operators">
-                      <ScratchBlock category="variables">penez</ScratchBlock> {">"} <ScratchInput>1000000</ScratchInput>
-                    </ScratchHexagon>
-                  </span>
-                  <div className="ml-4 mt-2 mb-2">
+                  <div className="py-1">
                     <ScratchBlock category="looks">bublina <ScratchInput type="text">Jsem bohatý</ScratchInput></ScratchBlock>
                   </div>
                 </ScratchCElseBlock>
@@ -525,7 +534,12 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Generování dalších vlajek"
             taskId="cond-9"
             showTeacher={teacherMode}
-            teacherNote={<p>Žáci rozšiřují předchozí program. Francie vyžaduje složitější testování osy X s vnořenými podmínkami. Japonsko je bonus vyžadující výpočet vzdálenosti od středu (kruh).</p>}
+            teacherNote={
+              <div className="space-y-1">
+                <p>Žáci rozšiřují předchozí program. Francie vyžaduje testování osy X s vnořenými podmínkami (3 svislé pruhy), Německo testování osy Y (3 vodorovné pruhy).</p>
+                <p><strong>Japonsko:</strong> Elegantně lze vyřešit přidáním prázdné postavy <code>Střed</code> na pozici <code>x: 0, y: 0</code> a použitím bloku <code>vzdálenost k Střed</code> z kategorie Vnímání. Pokud je vzdálenost menší než poloměr (např. 60), barvíme červeně, jinak bíle.</p>
+              </div>
+            }
             saveAs="Vlajky.sb3"
           >
             <div className="space-y-6">
@@ -568,14 +582,27 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 </div>
               </div>
 
+              <div className="p-4 bg-amber-50/80 rounded-2xl border-2 border-amber-300 text-xs text-slate-700 space-y-2">
+                <div className="font-bold text-amber-900 flex items-center gap-2 text-sm">
+                  <span className="text-base">💡</span>
+                  <span>Tip pro vlajku Japonska:</span>
+                </div>
+                <p className="leading-relaxed">
+                  Jak v programu poznat, zda náhodně vygenerovaná tečka leží uvnitř červeného kruhu?
+                </p>
+                <p className="leading-relaxed">
+                  Zkuste využít <strong>další postavu na plátně</strong> a blok vnímání <ScratchDistanceBlock target="ukazateli myši" /> (který umí měřit vzdálenost nejen k myši, ale i k jiné zvolené postavě). Zbytek geometrie a podmínek už jistě zvládnete domyslet sami!
+                </p>
+              </div>
+
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
                 <h4 className="font-bold text-slate-800 mb-6">Nápověda (použijte tyto příkazy):</h4>
 
                 <div className="flex flex-col md:flex-row gap-x-12 gap-y-8 items-start">
 
                   {/* První sloupec: Pero a proměnné s operátorem */}
-                  <div className="flex flex-col gap-8">
-                    <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-8 items-start">
+                    <div className="flex flex-col gap-2 items-start">
                       <ScratchBlock category="pen">pero zapni</ScratchBlock>
                       <div className="flex items-center gap-2">
                         <ScratchBlock category="pen">pero vypni</ScratchBlock>
@@ -583,7 +610,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-4 mt-auto">
+                    <div className="flex flex-col gap-4 mt-auto items-start">
                       <div className="flex gap-2">
                         <ScratchBlock category="motion">x</ScratchBlock>
                         <ScratchBlock category="motion">y</ScratchBlock>
@@ -595,7 +622,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
 
                   {/* Druhý sloupec: Cyklus */}
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-4 items-start">
                     <ScratchCBlock category="control">
                       opakuj <ScratchInput>100</ScratchInput> krát
                       <div className="h-8"></div>
@@ -603,7 +630,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
 
                   {/* Třetí sloupec: Ostatní bloky */}
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-4 items-start">
                     <ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock>
 
                     <ScratchCElseBlock
@@ -620,6 +647,8 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                       nastav barvu pera na
                       <span className="inline-block w-4 h-4 rounded-full bg-red-600 border-2 border-white shadow-sm ml-2"></span>
                     </ScratchBlock>
+
+                    <ScratchDistanceBlock target="ukazateli myši" />
                   </div>
 
                 </div>
@@ -632,7 +661,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Zkoušení malé násobilky"
             taskId="cond-10"
             showTeacher={teacherMode}
-            teacherNote={<p>Žáci si musí vygenerovaná čísla uložit do dvou proměnných, aby mohli spočítat správný výsledek pro kontrolu. Dále potřebují třetí proměnnou na počítání správných odpovědí. Známkování na konci vyžaduje složené větvení (když-jinak s dalším vloženým když-jinak).</p>}
+            teacherNote={<p>Žáci si musí vygenerovaná čísla uložit do dvou proměnných, aby mohli spočítat správný výsledek pro kontrolu. Dále potřebují třetí proměnnou na počítání správných odpovědí. Pro složení otázky se do sebe vkládají dva bloky <code>spoj</code> (např. <code>spoj a (spoj &quot; × &quot; b)</code>). Známkování na konci vyžaduje složené větvení (když-jinak s dalším vloženým když-jinak).</p>}
             saveAs="ZkouseniMaleNasobilky.sb3"
           >
             <div className="space-y-6">
@@ -681,16 +710,26 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   </div>
                 </div>
 
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-center gap-4">
-                  <h4 className="font-bold text-slate-800 mb-2">Nápověda k vytvoření otázky:</h4>
-                  <div className="flex flex-col gap-4 items-start">
-                    <ScratchBlock category="operators">
-                      spoj <ScratchInput type="text">jablko </ScratchInput> <ScratchInput type="text">banán</ScratchInput>
-                    </ScratchBlock>
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-center gap-4 text-xs text-slate-600 leading-relaxed">
+                  <h4 className="font-bold text-slate-800 text-sm">💡 Nápověda k vytvoření otázky:</h4>
+                  <p>
+                    Zelený blok <code>spoj</code> má pouze 2 vstupní pole. Pokud potřebujete spojit více hodnot (např. text a proměnné), můžete do sebe <strong>vložit dva bloky spoj</strong>:
+                  </p>
+                  <div className="flex flex-col gap-3 items-start overflow-x-auto py-1">
+                    <ScratchReporter category="operators">
+                      spoj <ScratchInput>jablko</ScratchInput>{" "}
+                      <ScratchReporter category="operators" className="border border-black/20">
+                        spoj <ScratchInput>hruška</ScratchInput> <ScratchInput>banán</ScratchInput>
+                      </ScratchReporter>
+                    </ScratchReporter>
+
                     <ScratchBlock category="sensing">
-                      otázka <ScratchInput type="text"></ScratchInput> a čekej
+                      otázka <ScratchInput> </ScratchInput> a čekej
                     </ScratchBlock>
                   </div>
+                  <p>
+                    Spojením bloků a vložením do modrého příkazu <code>otázka a čekej</code> pak sestavíte libovolně dlouhý dotaz. Konkrétní poskládání s proměnnými už jistě zvládnete sami!
+                  </p>
                 </div>
               </div>
             </div>

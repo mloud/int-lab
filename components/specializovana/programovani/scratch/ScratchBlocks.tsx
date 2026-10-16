@@ -28,15 +28,35 @@ export const ScratchBlock = ({ category, children }: ScratchBlockProps) => {
   );
 };
 
+export const ScratchReporter = ({ category = 'sensing', children, className = '' }: { category?: ScratchCategory, children: React.ReactNode, className?: string }) => {
+  return (
+    <span className={`inline-flex items-center px-3 py-1.5 m-0.5 rounded-full text-white font-bold text-sm border-b-2 shadow-sm leading-none whitespace-nowrap ${categoryColors[category]} ${className}`}>
+      {children}
+    </span>
+  );
+};
+
+export const ScratchDistanceBlock = ({ target = "ukazateli myši" }: { target?: string }) => {
+  return (
+    <span className="inline-flex items-center pl-3 pr-1.5 py-1 m-0.5 rounded-full text-white font-bold text-sm border-b-2 shadow-sm leading-none whitespace-nowrap bg-[#5CB1D6] border-[#2E8EB8]">
+      <span className="mr-2">vzdálenost k</span>
+      <span className="inline-flex items-center bg-[#469fc2] text-white px-3 py-1 rounded-full text-sm font-bold shadow-inner relative pr-5 border border-white/20">
+        {target}
+        <span className="absolute right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[3.5px] border-r-[3.5px] border-t-[4.5px] border-transparent border-t-white"></span>
+      </span>
+    </span>
+  );
+};
+
 export const ScratchInput = ({ children, type = 'number' }: { children: React.ReactNode, type?: 'number' | 'text' | 'dropdown' | 'empty' }) => {
   let roundedClass = 'rounded-full'; // default pro čísla (kulatý)
   if (type === 'text') roundedClass = 'rounded'; // obdélník pro text
   if (type === 'dropdown') roundedClass = 'rounded-md pr-4 relative'; // rozbalovací šipka
   if (type === 'empty') roundedClass = 'rounded-full bg-white/20 shadow-none border-none';
   
-  // Detekce prázdného místa (mezery) - pro zakulacené velké díry v operátorech
+  // Detekce prázdného místa (mezery) - sjednocený tvar se zbytkem vstupů
   const isEmptyHole = typeof children === 'string' && children.trim() === '';
-  const paddingClass = isEmptyHole ? 'min-w-[32px] min-h-[32px] w-8 h-8' : 'min-w-[20px] px-2 py-0.5';
+  const paddingClass = isEmptyHole ? 'min-w-[24px] h-[22px] px-1.5' : 'min-w-[20px] h-[22px] px-2';
   const borderClass = type === 'empty' ? '' : 'border border-black/20';
 
   return (
@@ -110,7 +130,7 @@ export const ScratchSpeechBubble = ({ children }: { children: React.ReactNode })
   );
 };
 
-export const ScratchHexagon = ({ category = 'operators', children, isSlot = false }: { category?: ScratchCategory, children?: React.ReactNode, isSlot?: boolean }) => {
+export const ScratchHexagon = ({ category = 'operators', children, isSlot = false, className = '' }: { category?: ScratchCategory, children?: React.ReactNode, isSlot?: boolean, className?: string }) => {
   const mainBg = categoryColors[category].split(' ')[0];
   const mainBorder = categoryColors[category].split(' ')[1].replace('border-', 'bg-');
   
@@ -119,12 +139,12 @@ export const ScratchHexagon = ({ category = 'operators', children, isSlot = fals
   
   return (
     <div 
-      className={`inline-flex ${borderClass} p-[1.5px] mx-1 drop-shadow-sm`} 
-      style={{ clipPath: 'polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%)' }}
+      className={`inline-flex self-start w-fit items-center shrink-0 ${borderClass} p-[1.5px] mx-1 drop-shadow-sm ${className}`} 
+      style={{ clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0 50%)' }}
     >
       <span 
-        className={`inline-flex items-center justify-center px-4 py-1.5 min-w-[32px] min-h-[36px] text-white font-bold text-lg leading-none whitespace-nowrap ${bgClass}`}
-        style={{ clipPath: 'polygon(13px 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 13px 100%, 0 50%)' }}
+        className={`inline-flex items-center justify-center px-3.5 py-1 min-w-[28px] min-h-[30px] text-white font-bold text-sm leading-none whitespace-nowrap ${bgClass}`}
+        style={{ clipPath: 'polygon(11px 0, calc(100% - 11px) 0, 100% 50%, calc(100% - 11px) 100%, 11px 100%, 0 50%)' }}
       >
         {children}
       </span>

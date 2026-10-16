@@ -33,10 +33,20 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sourceImageRef = useRef<HTMLImageElement | null>(null);
+  const urlRefA = useRef<string>('');
+  const urlRefB = useRef<string>('');
 
   // Načtení výchozího obrázku
   useEffect(() => {
     loadDefaultImage();
+    return () => {
+      if (urlRefA.current && urlRefA.current.startsWith('blob:')) {
+        URL.revokeObjectURL(urlRefA.current);
+      }
+      if (urlRefB.current && urlRefB.current.startsWith('blob:')) {
+        URL.revokeObjectURL(urlRefB.current);
+      }
+    };
   }, []);
 
   const loadDefaultImage = () => {
@@ -150,7 +160,8 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
     format: CompFormat, 
     quality: number, 
     setResultSrc: React.Dispatch<React.SetStateAction<string>>, 
-    setSize: React.Dispatch<React.SetStateAction<number>>
+    setSize: React.Dispatch<React.SetStateAction<number>>,
+    urlRef: React.MutableRefObject<string>
   ) => {
     if (!sourceImageRef.current || !canvasRef.current) return;
     const canvas = canvasRef.current;
@@ -171,20 +182,32 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
       mimeType = 'image/png'; // Prohlížeč nenativně nepodporuje BMP s kompresí, použijeme PNG k vykreslení
     }
 
+    const handleNewBlob = (blob: Blob | null, calculatedSize?: number) => {
+      if (blob) {
+        if (calculatedSize !== undefined) {
+          setSize(calculatedSize);
+        } else {
+          setSize(blob.size);
+        }
+        const newUrl = URL.createObjectURL(blob);
+        if (urlRef.current && urlRef.current.startsWith('blob:')) {
+          URL.revokeObjectURL(urlRef.current);
+        }
+        urlRef.current = newUrl;
+        setResultSrc(newUrl);
+      }
+    };
+
     if (format === 'raw') {
       // Vynutíme RAW velikost
-      setSize(sourceImageRef.current.width * sourceImageRef.current.height * 3);
-      // I pro raw vygenerujeme vizuál přes toBlob (asynchronně)
+      const rawCalculatedSize = sourceImageRef.current.width * sourceImageRef.current.height * 3;
       canvas.toBlob((blob) => {
-        if (blob) setResultSrc(URL.createObjectURL(blob));
+        handleNewBlob(blob, rawCalculatedSize);
       }, mimeType);
     } else {
       // Použijeme toBlob pro přesnou velikost zkomprimovaných binárních dat
       canvas.toBlob((blob) => {
-        if (blob) {
-          setSize(blob.size);
-          setResultSrc(URL.createObjectURL(blob));
-        }
+        handleNewBlob(blob);
       }, mimeType, quality / 100);
     }
   };
@@ -192,14 +215,14 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
   // Reakce na změnu nastavení pro Panel A
   useEffect(() => {
     if (!loading) {
-      processImagePanel(formatA, qualityA, setResultSrcA, setSizeA);
+      processImagePanel(formatA, qualityA, setResultSrcA, setSizeA, urlRefA);
     }
   }, [loading, formatA, qualityA, rawSize]);
 
   // Reakce na změnu nastavení pro Panel B
   useEffect(() => {
     if (!loading) {
-      processImagePanel(formatB, qualityB, setResultSrcB, setSizeB);
+      processImagePanel(formatB, qualityB, setResultSrcB, setSizeB, urlRefB);
     }
   }, [loading, formatB, qualityB, rawSize]);
 
@@ -296,7 +319,7 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
     return new Blob([buffer], { type: 'image/bmp' });
   };
 
-  const handleDownload = (src: string, format: CompFormat) => {
+  const handleDownload = (src: string, format: CompFormat, quality: number) => {
     if (!src) return;
     
     if (format === 'raw' && canvasRef.current) {
@@ -314,7 +337,7 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
     }
 
     const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
-    const filename = `komprimovany_${qualityA}q.${ext}`;
+    const filename = `komprimovany_${quality}q.${ext}`;
     
     const a = document.createElement('a');
     a.href = src;
@@ -381,7 +404,7 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
           onMouseLeave={handleMouseUp}
           style={{ cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
         >
-          {loading ? (
+          {loading || !resultSrc ? (
             <div className="text-gray-400 font-bold uppercase tracking-widest text-xs animate-pulse">
               Načítám...
             </div>
@@ -397,7 +420,7 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
               draggable={false}
             />
           )}
-          {showQualitySlider && quality < 15 && !loading && (
+          {showQualitySlider && quality < 15 && !loading && !!resultSrc && (
             <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full font-black tracking-widest uppercase text-[10px] backdrop-blur-md shadow-lg pointer-events-none z-10">
               Ztráty
             </div>
@@ -431,8 +454,9 @@ const JpegSimGame: React.FC<JpegSimGameProps> = ({ onBack }) => {
             </div>
 
             <button 
-              onClick={() => handleDownload(resultSrc, format)}
-              className="w-full py-3 mt-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg transition-colors uppercase tracking-widest text-xs flex justify-center items-center gap-2"
+              onClick={() => handleDownload(resultSrc, format, quality)}
+              disabled={loading || !resultSrc}
+              className="w-full py-3 mt-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg transition-colors uppercase tracking-widest text-xs flex justify-center items-center gap-2"
             >
               <Download className="w-4 h-4" /> Stáhnout soubor
             </button>
