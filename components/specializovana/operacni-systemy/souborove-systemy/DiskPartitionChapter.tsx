@@ -324,7 +324,7 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
             tone="rose" 
             onClick={() => {
                if(onOpenBoot) onOpenBoot();
-               else router.push('/specializovana/operacni-systemy/boot');
+               else router.push('/specializovana/operacni-systemy-1/boot');
             }} 
           />
         </div>

@@ -13,7 +13,7 @@
 | **Týdenní hodinová dotace** | 2 hodiny týdně |
 | **Celková roční dotace** | 68 vyučovacích hodin (34 týdnů výuky) |
 | **Forma výuky** | Teoreticko-praktická (cca 40 % výklad/teorie, 60 % cvičení a práce v labu / VirtualBoxu) |
-| **Výchozí routa v IntLab** | `/specializovana/operacni-systemy` |
+| **Výchozí routa v IntLab** | `/specializovana/operacni-systemy-1` |
 
 ---
 
@@ -93,6 +93,6 @@ Absolvent OSS 1 dokáže samostatně:
 ## 6. Mapování na portál IntLab
 
 Všechny kapitoly v kurikulu mají odpovídající interaktivní ekvivalent na webu:
-- Rozcestník předmětu: [`/specializovana/operacni-systemy`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/operacni-systemy/page.tsx)
+- Rozcestník předmětu: [`/specializovana/operacni-systemy-1`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/operacni-systemy-1/page.tsx)
 - Jednotné vizuální téma: Fialovo-indigový gradient (`from-purple-600 to-indigo-600`)
-- Písemné práce: Modul [`test01`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/operacni-systemy/test01/page.tsx) se studentským PINem `ZAK2026` a učitelským PINem `OS2026`.
+- Písemné práce: Modul [`test01`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/operacni-systemy-1/test01/page.tsx) se studentským PINem `ZAK2026` a učitelským PINem `OS2026`.

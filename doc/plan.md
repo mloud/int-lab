@@ -39,7 +39,7 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
   - [ ] Přechod na mini-projekty v Pythonu (např. animovaný míček, Pong, vykreslování fraktálů).
 
 ### 4. Operační systémy 2 (OSS 2 – 2. ročník)
-- **Téma: Bezpečnost Windows 11** (`/specializovana/operacni-systemy-2/bezpecnost`)
+- **Téma: Bezpečnost Windows 11** (`/specializovana/operacni-systemy-1-2/bezpecnost`)
   - [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`) – modulární architektura v `malware/` (hotovo).
   - [x] **BZ2 Správa procesů a digitální certifikáty** (`/bezpecnost/procesy-a-certifikaty`) – modulární architektura v `procesy/` (hotovo).
   - [ ] BZ3 Izolace a Sandbox (`/bezpecnost/izolace`) – další na řadě.
@@ -90,10 +90,10 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 #### 2. Část: Správa systému a automatizace (✅ Struktura a navigace na portálu HOTOVA)
 
-8. [x] **Správa procesů a paměti:** (`/specializovana/operacni-systemy/procesy`)
+8. [x] **Správa procesů a paměti:** (`/specializovana/operacni-systemy-1/procesy`)
    - PR1 Úvod a vznik procesu, PR2 Stavy, PR3 Vlákna, PR-ADV Plánování CPU.
    - ⏳ *K doplnění do budoucna:* virtuální paměť (paging, `pagefile.sys`), Správce úloh, `tasklist` / `taskkill`.
-9. [x] **Grafické rozhraní Windows 11 (GUI & Průzkumník):** (`/specializovana/operacni-systemy/gui`)
+9. [x] **Grafické rozhraní Windows 11 (GUI & Průzkumník):** (`/specializovana/operacni-systemy-1/gui`)
    - **GUI1 – Anatomie GUI a proces Explorer:** DWM (Desktop Window Manager), `explorer.exe` (plocha, taskbar, okna), restart procesu v Task Manageru.
    - **GUI2 – Průzkumník a hierarchie disku C::** Stromová struktura, systémové složky (`Windows`, `Program Files`, `Users`), profil `%USERPROFILE%`, knihovny vs. diskové složky.
    - **GUI3 – Práce se soubory, přípony a atributy:** Registr přípon souborů, nebezpečí skrytých přípon, atributy (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. reálný soubor, asociace aplikací.
@@ -105,7 +105,7 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 #### 3. Část: Příkazová řádka, automatizace a správa (⏳ Následující témata k tvorbě)
 
-12. [x] **Příkazová řádka a dávkové soubory:** (`/specializovana/operacni-systemy/prikazova-radka`)
+12. [x] **Příkazová řádka a dávkové soubory:** (`/specializovana/operacni-systemy-1/prikazova-radka`)
    - **CLI1 – Orientace v systému a navigace:** Spuštění CMD (UAC), přepínání disků, `cd`, `dir` (/w, /p, /o:n), absolutní a relativní cesta, `.` a `..`, doplňování přes Tab.
    - **CLI2 – Správa souborů a složek:** `mkdir`, `rmdir`, `ren`, `del`, `copy`, `move`, `xcopy`, zástupné znaky `*` a `?`, bezpečnost mazání bez Koše.
    - **CLI3 – Roury, filtry a informace o systému:** `tree`, přesměrování `>` a `>>`, roura `|`, vyhledávání `findstr`, `systeminfo`, proměnné `%USERNAME%`, `%USERPROFILE%`.
@@ -117,23 +117,23 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 #### 4. Část: Správa systému a automatizace v praxi (⏳ Následující témata k tvorbě)
 
-13. [x] **Správa uživatelů a oprávnění:** (`/specializovana/operacni-systemy/uzivatele`)
+13. [x] **Správa uživatelů a oprávnění:** (`/specializovana/operacni-systemy-1/uzivatele`)
    - **USR1 – Uživatelské účty a autentizace:** Autentizace vs. autorizace, lokální účet vs. Účet Microsoft, Standard vs. Správce (PoLP), systémové účty, `lusrmgr.msc` a `net user`.
    - **USR2 – Zabezpečení účtů a přihlašování:** Politika hesel, Windows Hello (PIN svázaný s TPM 2.0), zámek `Win+L`, UAC (Secure Desktop) a `netplwiz`.
    - **USR3 – Uživatelské skupiny a role:** Proč skupiny, vestavěné skupiny (`Administrators`, `Users`), tvorba vlastních skupin v `lusrmgr.msc` a CLI `net localgroup`.
    - **USR4 – Práva k souborům a složkám (NTFS):** NTFS práva vs. FAT, dědičnost (Inheritance), přednost Deny, karta Zabezpečení v GUI, CLI `icacls`, finální automatizační skript v `.bat`.
    - *(Všech 4 podkapitol vytvořeno jako přehledové kapitoly s vazbami, připraveno pro plné simulátory a pracovní listy).*
 
-14. [x] **Správa aplikačního software:** (`/specializovana/operacni-systemy/software`)
+14. [x] **Správa aplikačního software:** (`/specializovana/operacni-systemy-1/software`)
    - **SW1 – Životní cyklus software a instalátory (EXE vs. MSI):** Životní cyklus, umístění na disku (`Program Files`, `AppData`), registr Windows (`regedit`), parametry tiché instalace, transakční balíčky `.msi` a `msiexec`.
    - **SW2 – Moderní správa software přes balíčkovač Winget:** Repozitář Microsoftu, `winget search`, `winget install --silent`, `winget list`, hromadná aktualizace `winget upgrade --all`, bezobslužný instalační skript `post-install.bat`.
    - *(Vytvořeno jako kapitola se 2 podkapitolami s vazbami).*
 
-15. [x] **Správa zařízení a ovladače (Drivers):** (`/specializovana/operacni-systemy/zarizeni`)
+15. [x] **Správa zařízení a ovladače (Drivers):** (`/specializovana/operacni-systemy-1/zarizeni`)
    - Architektura ovladačů (Ring 0), Plug and Play (PnP), Hardware ID (VID/PID), digitální podpisy WHQL, Správce zařízení (`devmgmt.msc`), řešení konfliktů (Kód 28), správa tiskáren a tiskové fronty (`spoolsv.exe`), záloha a export ovladačů přes `pnputil`.
    - *(Vytvořeno jako přímá přehledová kapitola).*
 
-16. [x] **Plánovač úloh a automatický provoz:** (`/specializovana/operacni-systemy/planovac`)
+16. [x] **Plánovač úloh a automatický provoz:** (`/specializovana/operacni-systemy-1/planovac`)
    - Autonomní provoz OS 24/7, struktura úlohy v `taskschd.msc`, Spouštěče (triggery – čas, událost, přihlášení, start PC), Akce (spuštění `.bat` skriptu), běh pod účtem `SYSTEM` bez nutnosti přihlášení, správa přes CLI `schtasks`.
    - *(Vytvořeno jako přímá přehledová kapitola).*
 
@@ -316,7 +316,7 @@ Každá podkapitola: `FsChapterShell` se záložkami **Teorie | Simulátor | Lab
 ## 🔭 Výhled: 3. ročník – Operační systémy 3 (OSS 3)
 **Princip ročníku:** z role *správce Windows* do role *správce Linuxu* a *bezpečnostního analytika organizace*, doplněné o verzování v Gitu a týmovou spolupráci v projektech.
 
-- **Předmět:** `Operační systémy 3` (`/specializovana/operacni-systemy-3`, subjectId: `ops3`) – integrován do 3. ročníku kurikula.
+- **Předmět:** `Operační systémy 3` (`/specializovana/operacni-systemy-1-3`, subjectId: `ops3`) – integrován do 3. ročníku kurikula.
 - **Rozpad témat:**
   1. **Linux (~24 h):** LX1 (Distribuce & instalace), LX2 (Terminál & FS strom), LX3 (Text & roury), LX4 (Uživatelé & rwx), LX5 (Balíčky apt), LX6 (Procesy & systemd), LX7 (Logy & cron), LX8 (Síť & SSH).
   2. **Git a verzování (~8 h):** GT1 (Principy & 3 zóny), GT2 (Základní cyklus add/commit), GT3 (Větve & merge konflikty), GT4 (GitHub & pull requesty).

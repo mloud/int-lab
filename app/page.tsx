@@ -4,19 +4,19 @@ import { useRouter } from 'next/navigation';
 import SubjectSelection from '@/components/common/SubjectSelection';
 
 const SHORT_LINKS: Record<string, string> = {
-  'win': '/specializovana/operacni-systemy/instalace',
-  'osh': '/specializovana/operacni-systemy/hardware',
-  'osi': '/specializovana/operacni-systemy/uvod',
-  'osa': '/specializovana/operacni-systemy/architektura',
-  'ose': '/specializovana/operacni-systemy/vyvoj',
-  'osv': '/specializovana/operacni-systemy/virtualizace',
-  'osb': '/specializovana/operacni-systemy/boot',
-  'pmm': '/specializovana/operacni-systemy/procesy',
-  'fsm': '/specializovana/operacni-systemy/souborove-systemy',
-  'fs1': '/specializovana/operacni-systemy/souborove-systemy/media',
-  'fs2': '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
-  'fs3': '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
-  'fs4': '/specializovana/operacni-systemy/souborove-systemy/fragmentace'
+  'win': '/specializovana/operacni-systemy-1/instalace',
+  'osh': '/specializovana/operacni-systemy-1/hardware',
+  'osi': '/specializovana/operacni-systemy-1/uvod',
+  'osa': '/specializovana/operacni-systemy-1/architektura',
+  'ose': '/specializovana/operacni-systemy-1/vyvoj',
+  'osv': '/specializovana/operacni-systemy-1/virtualizace',
+  'osb': '/specializovana/operacni-systemy-1/boot',
+  'pmm': '/specializovana/operacni-systemy-1/procesy',
+  'fsm': '/specializovana/operacni-systemy-1/souborove-systemy',
+  'fs1': '/specializovana/operacni-systemy-1/souborove-systemy/media',
+  'fs2': '/specializovana/operacni-systemy-1/souborove-systemy/deleni-disku',
+  'fs3': '/specializovana/operacni-systemy-1/souborove-systemy/alokace-fat',
+  'fs4': '/specializovana/operacni-systemy-1/souborove-systemy/fragmentace'
 };
 
 export default function Page() {

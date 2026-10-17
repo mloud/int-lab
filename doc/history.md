@@ -15,8 +15,8 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 
 | Kód | Předmět | Ročník | Výchozí routa v aplikaci | Registr v kurikulu |
 |---|---|---|---|---|
-| **OSS 1** | Operační systémy 1 | 1. Ročník SŠ | `/specializovana/operacni-systemy` | `id: 'ops1'` |
-| **OSS 2** | Operační systémy 2 | 2. Ročník SŠ | `/specializovana/operacni-systemy-2` | `id: 'ops2'` |
+| **OSS 1** | Operační systémy 1 | 1. Ročník SŠ | `/specializovana/operacni-systemy-1` | `id: 'ops1'` |
+| **OSS 2** | Operační systémy 2 | 2. Ročník SŠ | `/specializovana/operacni-systemy-1-2` | `id: 'ops2'` |
 | **PRG 1** | Programování a hry 1 | 1. Ročník SŠ | `/specializovana/programovani` | `id: 'prg1'` |
 | **PRG 2** | Programování a hry 2 | 2. Ročník SŠ | `/specializovana/programovani-2` | `id: 'prg2'` |
 
@@ -25,10 +25,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 ## 2. Detailní stav kapitol – OSS 1 (1. Ročník)
 
 ### Blok 1: Úvod do počítače a OS
-1. **Instalace OS** (`/specializovana/operacni-systemy/instalace`)
+1. **Instalace OS** (`/specializovana/operacni-systemy-1/instalace`)
    - **Formát:** Interaktivní simulátor instalace Windows 11 (`Win11InstallSimulator.tsx`).
    - **Didaktika:** Žáci si projdou UEFI volby, rozdělení disku při instalaci, licence a prvotní nastavení.
-2. **Základy hardwaru pro OS** (`/specializovana/operacni-systemy/hardware`) – *Podkapitoly:*
+2. **Základy hardwaru pro OS** (`/specializovana/operacni-systemy-1/hardware`) – *Podkapitoly:*
    - **2.1 Von Neumannova architektura** (`/hardware/von-neumann`):
      - **Komponenty:** `VonNeumannGame.tsx` + `VonNeumannTheory.tsx`
      - **Obsah:** Přehledový centrální diagram architektury (CPU, ALU, Řadič, RAM, Vstup, Výstup), sběrnice (zjednodušené na datovou a adresní), zřetelné kontrastní popisky spojů, rozbalovací blok Fetch-Decode-Execute cyklu pro pokročilé žáky, interaktivní simulátor krokování instrukce.
@@ -36,30 +36,30 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
      - **Komponenta:** `RamSimulatorChapter.tsx`
      - **Obsah:** Adresace paměťových buněk, uložení instrukcí a proměnných v paměti.
    - *Poznámka k návaznosti:* Von Neumann je řazen jako první (teoretický základ), RAM následuje jako detailnější pohled na paměťový subsystém.
-3. **Úvod do OS** (`/specializovana/operacni-systemy/uvod`)
+3. **Úvod do OS** (`/specializovana/operacni-systemy-1/uvod`)
    - **Komponenta:** `OsIntroChapter.tsx`
    - **Obsah:** Vrstvený model počítače (společný rámec Operační systém obalující User Space s aplikacemi i Kernel Space s jádrem a ovladači, pod nimi Hardware), základní funkce a role operačního systému.
-4. **Architektura OS** (`/specializovana/operacni-systemy/architektura`)
+4. **Architektura OS** (`/specializovana/operacni-systemy-1/architektura`)
    - **Komponenta:** `OsArchitectureChapter.tsx`
    - **Obsah:** Architektura OS jako stavební plán, spojovací schéma navazující na model z Úvodu (User Space vs. Kernel Space), architektonická otázka umístění modulů, monolitické jádro, mikrojádro, hybridní OS, ovladače zařízení (drivers), hardwarové kruhy (Protection Rings 0-3).
 
 ### Příprava a hodnocení 1. bloku:
-5. **Procvičování na test 1** (`/specializovana/operacni-systemy/test01-rozbor`)
-   - **Komponenty & Architektura:** Modulární struktura v `components/specializovana/operacni-systemy/test01-rozbor/` (`TestReviewQuiz.tsx` a `testReviewData.ts`).
+5. **Procvičování na test 1** (`/specializovana/operacni-systemy-1/test01-rozbor`)
+   - **Komponenty & Architektura:** Modulární struktura v `components/specializovana/operacni-systemy-1/test01-rozbor/` (`TestReviewQuiz.tsx` a `testReviewData.ts`).
    - **Obsah a didaktika:** 11 interaktivních reflexních otázek typu ABCD pokrývajících 1:1 témata z písemné práce (Hardware, UEFI, zjednodušený Von Neumann s CPU a sdílenou RAM, části programu v RAM, definice OS, 3 patra počítače, typologie OS, OEM licence, Monolit vs. Mikrojádro, Ring 0 vs. Ring 3, volba jádra letadlo vs. TV).
    - **Funkce:** Okamžité vyhodnocení volby, barevná zpětná vazba (zelená/červená), vysvětlující didaktické karty u každé otázky, rychlá skoková lišta 1..11, přepínání mezi krokováním po jedné otázce a zobrazením všech otázek najednou, ukládání stavu do `localStorage`.
-6. **Hodnocená práce 01** (`/specializovana/operacni-systemy/test01`)
+6. **Hodnocená práce 01** (`/specializovana/operacni-systemy-1/test01`)
    - **Komponenta:** `OsSummaryWorksheet.tsx` (obaleno v `TestWorksheetShell`).
    - **Přístupové PINy:** Studentský PIN **`ZAK2026`**, Učitelský PIN **`OS2026`**.
    - **Prověřovaná témata:** Hardware & Von Neumann (CPU, RAM, disk; rozdělení RAM na instrukce a data/proměnné), role kernelu, licence se zvláštním důrazem na vlastnosti OEM licence.
 
 ### Blok 2: Evoluce a běh systému
-7. **Evoluce OS** (`/specializovana/operacni-systemy/vyvoj`) – `OsEvolutionChapter.tsx`: Historie OS, Unix rodina, DOS, Windows NT, Linux.
-8. **Start systému (Boot)** (`/specializovana/operacni-systemy/boot`) – `OsBootChapter.tsx`: BIOS/UEFI, POST test, MBR/GPT bootloader, předání řízení kernelu.
-9. **Virtualizace** (`/specializovana/operacni-systemy/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
+7. **Evoluce OS** (`/specializovana/operacni-systemy-1/vyvoj`) – `OsEvolutionChapter.tsx`: Historie OS, Unix rodina, DOS, Windows NT, Linux.
+8. **Start systému (Boot)** (`/specializovana/operacni-systemy-1/boot`) – `OsBootChapter.tsx`: BIOS/UEFI, POST test, MBR/GPT bootloader, předání řízení kernelu.
+9. **Virtualizace** (`/specializovana/operacni-systemy-1/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
 
 ### Blok 3: Souborové systémy a disky
-10. **Souborový systém a disky** (`/specializovana/operacni-systemy/souborove-systemy`) – *Podkapitoly:*
+10. **Souborový systém a disky** (`/specializovana/operacni-systemy-1/souborove-systemy`) – *Podkapitoly:*
    - **FS1 Úvod a architektura** (`/souborove-systemy/uvod`): Role FS, sjednocený vrstvený model OS (User Space -> Syscall -> Kernel Space s FS a ovladačem -> Hardware s mřížkou sektorů), abstrakce souborů a složek.
    - **FS2 Paměťová média** (`/souborove-systemy/media`): Plotnový HDD (stopy, sektory, cylindry) vs. SSD (NAND buňky).
    - **FS3 Dělení disku** (`/souborove-systemy/deleni-disku`): Oddíly, MBR vs. GPT, boot oddíl, svazky.
@@ -69,14 +69,14 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - **FS-ADV Pokročilá témata** (`/souborove-systemy/pokrocile`): Alokační strategie (First Fit, Best Fit, Worst Fit).
 
 ### Blok 4: Procesy a správa paměti
-10. **Procesy a paměť** (`/specializovana/operacni-systemy/procesy`) – *Podkapitoly:*
+10. **Procesy a paměť** (`/specializovana/operacni-systemy-1/procesy`) – *Podkapitoly:*
     - **PR1 Úvod a vznik procesu** (`/procesy/uvod`): `ProcessIntroChapter.tsx` (Program na disku vs. proces v RAM, identifikace PID, kód a data).
     - **PR2 Životní cyklus a stavy** (`/procesy/stavy`): `ProcessStatesChapter.tsx` (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený).
     - **PR3 Vlákna (Threads)** (`/procesy/vlakna`): `ProcessThreadsChapter.tsx` (Proces vs. vlákno, sdílená paměť, moderní vícejádrová CPU).
     - **PR-ADV Pokročilá témata** (`/procesy/pokrocile`): `AdvancedProcessTopicsChapter.tsx` (Plánování CPU: Round Robin, FIFO/FCFS, prioritní plánování, kontextové přepínání).
 
 ### Blok 5: Grafické rozhraní Windows 11 (GUI a Průzkumník)
-11. **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy/gui`) – *Podkapitoly:*
+11. **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy-1/gui`) – *Podkapitoly:*
     - **GUI1 Anatomie GUI a proces Explorer** (`/gui/anatomie`): Správce oken DWM, kompozice plochy přes GPU, proces `explorer.exe` (plocha, taskbar, okna, správa souborů), praktický restart zamrzlého Průzkumníka v Task Manageru.
     - **GUI2 Průzkumník a hierarchie disku C:** (`/gui/hierarchie`): Stromový model od kořene `C:\`, systémové složky (`Windows`, `System32`, `Program Files`, `ProgramData`, `Users`), uživatelský profil `%USERPROFILE%`, rozdíl mezi virtuální knihovnou a fyzickou diskovou složkou.
     - **GUI3 Práce se soubory, přípony a atributy** (`/gui/soubory-atributy`): Registr přípon a nebezpečí skrytých přípon (např. malware `faktura.pdf.exe`), základní atributy souborů (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. fyzický soubor, asociace aplikací ve Windows.
@@ -84,7 +84,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **GUI5 Ergonomie a efektivní práce** (`/gui/ergonomie`): Profesionální ovládání přes klávesové zkratky (`Win+E`, `Win+V`, `Alt+Tab`, `Win+L`, `Ctrl+Shift+Esc`), rozložení oken Snap Layouts a Snap Assist, virtuální plochy pro oddělení kontextu, integrace cloudového a lokálního úložiště.
 
 ### Blok 6: Příkazová řádka a dávkové soubory (CLI a Automatizace)
-12. **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy/prikazova-radka`) – *Podkapitoly:*
+12. **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy-1/prikazova-radka`) – *Podkapitoly:*
     - **CLI1 Orientace v systému a navigace** (`/prikazova-radka/navigace`): Spuštění CMD (práva Správce vs. běžný uživatel), přepínání disků (C:, D:), příkazy `cd` a `dir` (přepínače `/w`, `/p`, `/o:n`), absolutní vs. relativní cesta, význam `.` a `..`, doplňování přes klávesu `Tab`.
     - **CLI2 Správa souborů a složek** (`/prikazova-radka/soubory`): Manipulace se složkami (`mkdir`, `rmdir /s /q`), práce se soubory (`ren`, `del /p /f /q`, `copy`, `move`, `xcopy`), zástupné znaky `*` a `?`, riziko nevratného smazání bez Koše.
     - **CLI3 Roury, filtry a informace o systému** (`/prikazova-radka/proudy-a-filtry`): Výpis stromu `tree /f`, operátory přesměrování `>` a `>>`, roura (pipe `|`), textový filtr `findstr /i`, diagnostika systému `systeminfo` a systémové proměnné (`%USERNAME%`, `%USERPROFILE%`).
@@ -92,24 +92,24 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **BAT2 Podmínky, skoky a cykly** (`/prikazova-radka/davky-logika`): Podmíněné větvení `if` a `if exist`, návěstí a skoky `goto`, tvorba interaktivního textového menu v CMD, proměnná `%ERRORLEVEL%`, cyklus `for` (číselná řada `for /L` i zpracování souborů).
 
 ### Blok 7: Správa uživatelů a oprávnění (Účty, Skupiny a NTFS)
-13. **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy/uzivatele`) – *Podkapitoly:*
+13. **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy-1/uzivatele`) – *Podkapitoly:*
     - **USR1 Uživatelské účty a autentizace** (`/uzivatele/ucty-autentizace`): Rozdíl mezi autentizací a autorizací, Místní (lokální) účet vs. Účet Microsoft, Standardní uživatel vs. Správce (Administrator) a princip nejmenších práv (PoLP), vestavěné účty (`Administrator`, `Guest`, `SYSTEM`), správa přes `lusrmgr.msc` a příkaz `net user`.
     - **USR2 Zabezpečení účtů a přihlašování** (`/uzivatele/zabezpeceni-hesla`): Politika hesel (délka, expirace, historie), moderní autentizace přes Windows Hello (vazba PINu na hardwarový TPM 2.0 čip vs. heslo), okamžitý zámek stanice `Win+L`, mechanismus UAC (Secure Desktop), dialog `netplwiz`.
     - **USR3 Uživatelské skupiny a role** (`/uzivatele/skupiny-a-role`): Princip hromadné správy (práva se nepřidělují jednotlivcům, ale skupinám), vestavěné skupiny (`Administrators`, `Users`, `Backup Operators`), tvorba vlastních skupin v `lusrmgr.msc` a CLI `net localgroup` (`/add`, zařazení členů).
     - **USR4 Práva k souborům a složkám (NTFS)** (`/uzivatele/prava-soubory`): Proč NTFS podporuje ACL a FAT ne, základní NTFS oprávnění (Úplné řízení, Změnit, Číst a spouštět, Číst, Zápis), karta Zabezpečení v Průzkumníku, dědičnost (Inheritance), přednost explicitního zákazu (`Deny`), CLI nástroj `icacls`, finální automatizační skript v `.bat` pro hromadné vytvoření třídy a složky.
 
 ### Blok 8: Správa aplikačního software
-14. **Správa aplikačního software** (`/specializovana/operacni-systemy/software`) – *Podkapitoly:*
+14. **Správa aplikačního software** (`/specializovana/operacni-systemy-1/software`) – *Podkapitoly:*
     - **SW1 Životní cyklus software a instalátory (EXE vs. MSI)** (`/software/instalatory`): Fáze životního cyklu aplikace (vývoj, instalace, běh, aktualizace, odinstalace), EXE instalátory vs. Windows Installer MSI balíčky, tichá instalace (`/qn`, `/silent`), registrace v systému (Registry, Odinstalovat program).
     - **SW2 Moderní správa software přes balíčkovač Winget** (`/software/winget`): Princip package manageru ve Windows, vyhledávání `winget search`, instalace `winget install`, aktualizace aplikací `winget upgrade --all`, export a import seznamu SW pro rychlé znovunainstalování stanice (`winget export / import`).
 
 ### Blok 9: Správa zařízení a ovladače (Drivers)
-15. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy/zarizeni`)
+15. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy-1/zarizeni`)
     - **Formát:** Přímá lekce (Direct Lesson bez podkapitol, `hasSubchapters: false`).
     - **Obsah:** Komunikace OS s hardwarem přes ovladače (Kernel Ring 0 vs. User Ring 3), Správce zařízení (`devmgmt.msc`), stavy zařízení (žlutý vykřičník, zakázáno, funkční), instalace a aktualizace ovladačů (Windows Update vs. inf soubory), digitální podpis ovladačů (WHQL).
 
 ### Blok 10: Plánovač úloh a automatický provoz
-16. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy/planovac`)
+16. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy-1/planovac`)
     - **Formát:** Přímá lekce (Direct Lesson bez podkapitol, `hasSubchapters: false`).
     - **Obsah:** Automatizace údržby a periodických úloh, Správa úloh přes `taskschd.msc`, spouštěče (Triggers – časové, při startu, při přihlášení), akce (Actions – spuštění `.bat` skriptu nebo aplikace), bezpečnostní kontext (běh pod přihlášeným uživatelem vs. pod účtem `SYSTEM` bez nutnosti přihlášení).
 
@@ -118,7 +118,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 ## 3. Detailní stav kapitol – OSS 2 (2. Ročník)
 
 ### Blok 1: Správa dat a zálohování
-1. **Zálohování dat** (`/specializovana/operacni-systemy-2/zalohovani`) – *Podkapitoly:*
+1. **Zálohování dat** (`/specializovana/operacni-systemy-1-2/zalohovani`) – *Podkapitoly:*
    - **B1 Úvod do zálohování** (`/zalohovani/uvod`): Význam záloh, pravidlo 3-2-1 (3 kopie, 2 média, 1 offsite).
    - **B2 Manuální záloha** (`/zalohovani/manualni`): Struktura složek, archivace ZIP/TAR, lidský faktor.
    - **B3 Systémové nástroje** (`/zalohovani/system`): Historie souborů Windows, body obnovení (VSS), bitová kopie.
@@ -127,7 +127,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
      - **Komponenta:** `BackupCobianChapter.tsx` (Teorie, Interaktivní simulátor zálohovacích cyklů, Pracovní list s exportem do Wordu).
      - **Pracovní list (7 úkolů):** Úkol 0 (Instalace jako Windows Služba pod systémovým účtem), Úkol 1 (Plná záloha), Úkol 2 (Inkrementální záloha), Úkol 3 (Diferenciální záloha), Úkol 4 (Šifrování AES-256 a komprese ZIP/7z), **Úkol 5 (Podniková síťová záloha na Z:\Zalohy_Projektu\Jmeno_Studenta s plánovačem, denním zápisem schůzek Po/Út/St, středečním exportem videa a simulací havárie s kompletní obnovou projektu)**, Úkol 6 (Reflexe a otázky z praxe), **Úkol 7 (Archivní bit ve Windows)**: Hands-on experiment v GUI Průzkumníka (`Vlastnosti -> Upřesnit -> Soubor je připraven k archivaci`), automatické zapnutí bitu systémem při modifikaci, rozbalovací CMD alternativa (`attrib +/-a`) a návaznost na princip inkrementální zálohy.
 ### Blok 2: Bezpečnost 1 (Ochrana Windows 11)
-2. **Bezpečnost 1** (`/specializovana/operacni-systemy-2/bezpecnost`) – *Podkapitoly:*
+2. **Bezpečnost 1** (`/specializovana/operacni-systemy-1-2/bezpecnost`) – *Podkapitoly:*
    - **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`):
      - **Komponenta & Architektura:** `MalwareDetectionChapter.tsx` (štíhlý orchestrátor ~40 řádků obalený v `FsChapterShell`, 3 záložky: Teorie, Simulátory, Kvíz).
      - **Modulární struktura (`malware/`):**
@@ -228,7 +228,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
   - **Oficiální sylabus OSS 1 (1. ročník):** Portál má plně hotovou 1. polovinu (Instalace → Hardware → Úvod/Architektura → Test 01 → Vývoj → Boot/VirtualBox → **Struktura disku**). 2. polovina postupuje: Správa souborů/složek GUI → Příkazová řádka (CMD 1–3) → Dávkové soubory (.bat) → Procesy & virtuální paměť (na portálu předpřipraveno) → Uživatelské účty & skupiny (icacls) → Správa SW (winget) → Zařízení & ovladače → Plánovač úloh → Síť & Wi-Fi router.
   - **Finální struktura kapitoly Bezpečnost OS (OSS 2 – 8 bloků):** Přijat kompletní 8blokový model: BZ1 (Škodlivý kód & Process Explorer/SHA-256) ➔ BZ2 (Sandbox & Autoruns) ➔ BZ3 (Defender GUI/CLI & EICAR) ➔ BZ4 (Firewall & netstat) ➔ BZ5 (BitLocker, TPM & CFA proti ransomwaru) ➔ BZ6 (UAC, pokročilá práva & winget) ➔ BZ7 (Phishing, hesla & CyberChef) ➔ BZ8 (Mini-CTF Incident Response). Vše s webovými simulátory a laboratorními listy pro VirtualBox. Organizace/Linux/NIS2/CVE posunuty do 3. ročníku.
 - **2026-10-12 – Implementace BZ1 (Jak poznat škodlivý kód):**
-  - Vytvořena úvodní podkapitola Bezpečnosti v OSS 2 (`MalwareDetectionChapter.tsx` na `/specializovana/operacni-systemy-2/bezpecnost/malware`).
+  - Vytvořena úvodní podkapitola Bezpečnosti v OSS 2 (`MalwareDetectionChapter.tsx` na `/specializovana/operacni-systemy-1-2/bezpecnost/malware`).
   - Didaktické zjednodušení teorie: Procesor slepě vykonává instrukce z paměti RAM a nerozlišuje dobro a zlo, práva určuje bezpečnostní token spouštějícího uživatele. Katalog 6 typů malwaru (virus, červ, trojan, ransomware, spyware, rootkit) + obrana Windows (Authenticode a Smart App Control).
   - **Simulace 1 (Virus - Kalkulačka):** Krokování pseudoinstrukcí číslovaných od 1 (calc.exe). Možnost infikovat kód vložením `FORMAT C: /Q` na řádek 3. CPU vykoná smazání disku a následně dokončí výpočet `10 + 32 = 42`. Uživatel vidí kalkulačku fungovat a netuší, že disk je smazán.
   - **Simulace 2 (Síťový červ - 4 počítače na stole):** Na přání učitele byl switch zcela odstraněn (přílišná složitost). Nahrazeno čistou scénou stolu se 4 počítači v síti LAN: PC 1 (původce nákazy – infikován z USB disku), PC 2 (chráněný stanicí se zapnutým firewallem, dotaz zahodí), PC 3 (zranitelný cíl bez firewallu – PC 1 ho při skenování najde a červ do něj skočí do paměti RAM zcela bez kliknutí uživatele na jakýkoliv soubor), PC 4 (další stanice na stole, cíl řetězového lavinového šíření z nově nakaženého PC 3). Z vizualizace stolu byly na žádost učitele odebrány stylizované klávesnice a odstraněny veškeré fiktivní činnosti žáků (psaní úkolů apod.), aby se simulace soustředila ryze na technickou podstatu OS a síťové chování. Skenování je vysvětleno lidsky jako posílání dotazů a zjišťování dostupnosti („Haló, jsi tam?“).
@@ -250,8 +250,8 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
   - Nastavení se ukládá do `localStorage` a škáluje kořenový `rem` prvek dokumentu (`document.documentElement.style.fontSize`), takže proporcionálně zvětšuje veškeré texty a karty napříč celým webem (homepage, rozcestníky, teorie, simulace i protokoly) s ohledem na promítání na projektor ve třídě.
 - **2026-10-13 – Rozdělení kapitoly Bezpečnost na BZ1 a BZ2 a didaktické zjednodušení pro SŠ:**
   - Původní obsáhlá kapitola Malware byla po dohodě s vyučujícím rozdělena na dvě samostatné, věkově adekvátní podkapitoly:
-    1. **BZ1: Úvod do malwaru a principy nákazy** (`/specializovana/operacni-systemy-2/bezpecnost/malware`) – soustředěno na slepé vykonávání instrukcí procesorem, 6 typů malwaru, interaktivní simulace (Kalkulačka s `FORMAT C:`, Síťový červ bez switche, Trojský kůň, Ransomware, Spyware/EduPortal, SHA-256 hash s lavinovým efektem) a ověřovací kvíz.
-    2. **BZ2: Správa procesů a digitální certifikáty** (`/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty`) – soustředěno na procesní hierarchii, digitální podpisy a forenzní audit systému.
+    1. **BZ1: Úvod do malwaru a principy nákazy** (`/specializovana/operacni-systemy-1-2/bezpecnost/malware`) – soustředěno na slepé vykonávání instrukcí procesorem, 6 typů malwaru, interaktivní simulace (Kalkulačka s `FORMAT C:`, Síťový červ bez switche, Trojský kůň, Ransomware, Spyware/EduPortal, SHA-256 hash s lavinovým efektem) a ověřovací kvíz.
+    2. **BZ2: Správa procesů a digitální certifikáty** (`/specializovana/operacni-systemy-1-2/bezpecnost/procesy-a-certifikaty`) – soustředěno na procesní hierarchii, digitální podpisy a forenzní audit systému.
   - **Didaktické zjednodušení teorie pro středoškoláky (2. ročník):**
     - Vynechán zbytečný matematický a kryptografický aparát (asymetrické klíče) i koncept systémových relací (Session / Session 0 / Session 1), který byl ze všech částí kapitoly (teorie, simulátor, protokol i kvíz) zcela odstraněn pro zachování věkové srozumitelnosti.
     - **Úvod teorie přestavěn na 2 zásadní pilíře:**
@@ -295,7 +295,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
   - **Architektura přehledových kapitol (High-level overview):**
     - Vytvořena škálovatelná infrastruktura přehledových kapitol v `registry/curriculum/outlines/` (`outlineTypes.ts`, `oss2Outlines.ts`, `oss3Outlines.ts`, `index.ts`), která slouží jako jediný zdroj pravdy (SSOT) pro karty v kurikulu, přehledové stránky i centrální registr lekcí (`lessons.ts`).
     - Vytvořena sdílená komponenta `ChapterOutlinePage.tsx` v souladu s design systémem IntLab (`FsChapterShell` styl s fixním bílým skleněným rámcem, kartami Teorie vs. Simulace a praxe, vazbou „Navazuje na“ a odznaky).
-  - **OSS 3 (3. ročník, `/specializovana/operacni-systemy-3`, subjectId: `ops3`):**
+  - **OSS 3 (3. ročník, `/specializovana/operacni-systemy-1-3`, subjectId: `ops3`):**
     - Vytvořena stránka předmětu s didaktickým rozborem a 4 hlavními kapitolami:
       1. **Linux** (LX1–LX8, ~24 h): Distribuce, Terminál & souborový systém, Text & roury, Uživatelé & oprávnění rwx, Balíčky apt, Procesy & systemd, Logy & cron, Síť & SSH.
       2. **Git a verzování** (GT1–GT4, ~8 h): Principy & 3 zóny, Základní cyklus add/commit, Větve & merge, GitHub & pull requesty.
@@ -310,7 +310,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       4. **Serverové služby:** SL1 (SMB sdílení), SL2 (Vzdálená správa RDP/SSH), SL3 (Webový server IIS), SL4 (Tiskový server), SL-V (Volitelné: DHCP, SQL, pošta).
     - Vše plně validováno produkčním sestavením (`npm run build` s 240 předvygenerovanými statickými stránkami bez chyb).
   - **2026-10-14 – Doplnění kapitoly GUI Windows 11 do OSS 1 (1. ročník):**
-    - Do kurikula OSS 1 byla za téma *Procesy a paměť* vložena nová přehledová kapitola **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy/gui`) s 5 podkapitolami:
+    - Do kurikula OSS 1 byla za téma *Procesy a paměť* vložena nová přehledová kapitola **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy-1/gui`) s 5 podkapitolami:
       1. **GUI1: Anatomie GUI a proces Explorer** (`/gui/anatomie`) – role Desktop Window Manageru (DWM), proces `explorer.exe`, kompozice plochy, restart v Task Manageru.
       2. **GUI2: Průzkumník a hierarchie disku C:** (`/gui/hierarchie`) – stromový model, systémové složky (`Windows`, `System32`, `Program Files`, `Users`), profil `%USERPROFILE%`, knihovny vs. fyzické složky.
       3. **GUI3: Práce se soubory, přípony a atributy** (`/gui/soubory-atributy`) – registr přípon souborů, nebezpečí skrytých přípon, atributy (`R`, `H`, `A`, `S`), zástupce `.lnk` vs. cíl, asociace programů.
@@ -318,7 +318,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       5. **GUI5: Ergonomie a efektivní práce** (`/gui/ergonomie`) – efektivní klávesové zkratky, Snap Layouts / Snap Assist, virtuální plochy a integrace schránky (`Win+V`).
     - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (246 statických stránek).
   - **2026-10-14 – Doplnění kapitoly Příkazová řádka a dávkové soubory do OSS 1 (1. ročník):**
-    - Do kurikula OSS 1 byla za téma *Grafické rozhraní Windows 11* vložena nová přehledová kapitola **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy/prikazova-radka`) s 5 podkapitolami:
+    - Do kurikula OSS 1 byla za téma *Grafické rozhraní Windows 11* vložena nová přehledová kapitola **Příkazová řádka a dávkové soubory** (`/specializovana/operacni-systemy-1/prikazova-radka`) s 5 podkapitolami:
       1. **CLI1: Orientace v systému a navigace** (`/prikazova-radka/navigace`) – spuštění CMD, práva Správce, disky C:/D:, příkazy `cd` a `dir`, relativní vs. absolutní cesta, `.` a `..`, klávesa `Tab`.
       2. **CLI2: Správa souborů a složek** (`/prikazova-radka/soubory`) – vytváření a mazání (`mkdir`, `rmdir`), práce se soubory (`ren`, `del`, `copy`, `move`, `xcopy`), zástupné znaky `*` a `?`, nevratnost smazání v CLI.
       3. **CLI3: Roury, filtry a informace o systému** (`/prikazova-radka/proudy-a-filtry`) – strom `tree /f`, přesměrování `>` a `>>`, roura `|`, textový filtr `findstr`, `systeminfo` a systémové proměnné.
@@ -326,7 +326,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       5. **BAT2: Podmínky, skoky a cykly** (`/prikazova-radka/davky-logika`) – větvení `if` a `if exist`, návěstí a `goto`, interaktivní menu, `%ERRORLEVEL%`, cyklus `for`.
     - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (252 statických stránek).
   - **2026-10-14 – Doplnění kapitoly Správa uživatelů a oprávnění do OSS 1 (1. ročník):**
-    - Do kurikula OSS 1 byla za téma *Příkazová řádka a dávkové soubory* vložena nová přehledová kapitola **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy/uzivatele`) se 4 podkapitolami:
+    - Do kurikula OSS 1 byla za téma *Příkazová řádka a dávkové soubory* vložena nová přehledová kapitola **Správa uživatelů a oprávnění** (`/specializovana/operacni-systemy-1/uzivatele`) se 4 podkapitolami:
       1. **USR1: Uživatelské účty a autentizace** (`/uzivatele/ucty-autentizace`) – autentizace vs. autorizace, lokální vs. Microsoft účet, Standard vs. Administrator, systémové účty, `lusrmgr.msc` a `net user`.
       2. **USR2: Zabezpečení účtů a přihlašování** (`/uzivatele/zabezpeceni-hesla`) – politika hesel, Windows Hello (PIN a TPM 2.0), zámek `Win+L`, UAC (Secure Desktop) a `netplwiz`.
       3. **USR3: Uživatelské skupiny a role** (`/uzivatele/skupiny-a-role`) – hromadná správa, vestavěné skupiny (`Administrators`, `Users`), vlastní skupiny v `lusrmgr.msc` a CLI `net localgroup`.
@@ -334,11 +334,11 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Všechny podkapitoly integrovány do `oss1Outlines.ts`, hubu předmětu `ops1` v `defaultSchool.ts`, registru `lessons.ts` a validovány přes produkční `npm run build` (257 statických stránek).
   - **2026-10-14 – Doplnění kapitol Správa software, Zařízení a Plánovač úloh do OSS 1 (1. ročník):**
     - Do kurikula OSS 1 byly za téma *Správa uživatelů a oprávnění* přidány 3 nové kapitoly podle Varianty A (jednotný fialový styl OSS 1):
-      1. **Správa aplikačního software** (`/specializovana/operacni-systemy/software`) – hub se 2 podkapitolami (`hasSubchapters: true`, `accentCorner: true`):
+      1. **Správa aplikačního software** (`/specializovana/operacni-systemy-1/software`) – hub se 2 podkapitolami (`hasSubchapters: true`, `accentCorner: true`):
          - **SW1: Životní cyklus software a instalátory (EXE vs. MSI)** (`/software/instalatory`) – životní cyklus aplikace, EXE vs. MSI, tichá instalace, registrace v systému.
          - **SW2: Moderní správa software přes balíčkovač Winget** (`/software/winget`) – moderní balíčkovač, `winget search / install / upgrade`, hromadný export a import software.
-      2. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy/zarizeni`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), Správce zařízení (`devmgmt.msc`), role ovladačů v jádře, digitální podpisy WHQL, řešení konfliktů.
-      3. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy/planovac`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), `taskschd.msc`, plánování spouštění `.bat` zálohovacích a údržbových skriptů, triggery a spouštění pod účtem `SYSTEM`.
+      2. **Správa zařízení a ovladače (Drivers)** (`/specializovana/operacni-systemy-1/zarizeni`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), Správce zařízení (`devmgmt.msc`), role ovladačů v jádře, digitální podpisy WHQL, řešení konfliktů.
+      3. **Plánovač úloh a automatický provoz** (`/specializovana/operacni-systemy-1/planovac`) – přímá lekce (`hasSubchapters: false`, `accentCorner: false`), `taskschd.msc`, plánování spouštění `.bat` zálohovacích a údržbových skriptů, triggery a spouštění pod účtem `SYSTEM`.
     - Přizpůsobena komponenta `ChapterOutlinePage` pro podporu přímých lekcí s návratovou cestou do hubu OSS 1 (`parent` prop).
   - **2026-10-14 – Didaktické zpřesnění BZ2 (Anatomie .EXE souboru a Authenticode):**
   - **2026-10-15 – Sjednocení číslování lekcí Scratche a rozšíření kapitoly Podmínky (PRG 1 – 1. ročník):**
@@ -370,6 +370,18 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Nový blok v knihovně ScratchBlocks (`ScratchDistanceBlock`):** Do `ScratchBlocks.tsx` přidána komponenta pro blok měření vzdálenosti z kategorie Vnímání (`vzdálenost k [cíl ▼]`).
     - **Otevřený tip pro vlajku Japonska v Úkolu 9:** Nápověda byla upravena na otevřený didaktický podnět (využití další postavy na plátně a bloku `vzdálenost k [ukazateli myši ▼]`) bez přímého prozrazování konkrétních souřadnic, poloměru a kódu, aby žáci samostatně domysleli geometrické řešení.
     - **Vnoření bloků spoj v Úkolu 10 (Malá násobilka):** Přidána otevřená vizuální nápověda vysvětlující obecný princip vnoření jednoho bloku `spoj` do druhého (`spoj jablko (spoj hruška banán)`) a samostatný blok `otázka [ ] a čekej`, bez přímého prozrazování konkrétního výsledného sestavení s proměnnými násobilky.
+  - **2026-10-17 – Sjednocení routingu a složky Operační systémy 1 (operacni-systemy-1):**
+    - Složka routy `app/specializovana/operacni-systemy` byla přejmenována na `app/specializovana/operacni-systemy-1`, čímž se sjednotila konvence se strukturou 2. ročníku (`operacni-systemy-2`) a 3. ročníku (`operacni-systemy-3`).
+    - Byly aktualizovány všechny cesty a routy v kurikulu a registrech:
+      - `registry/curriculum/schools/defaultSchool.ts` – cesty předmětu `ops1` a všech jeho kapitol a podkapitol změněny na `/specializovana/operacni-systemy-1/...`
+      - `registry/curriculum/outlines/oss1Outlines.ts` – základní bázové cesty (GUI, CLI, USERS, SW, DEVICES, SCHEDULER) nastaveny na `/specializovana/operacni-systemy-1/...`
+      - `registry/lessons.ts` – všech 27 záznamů `defaultPath` aktualizováno na `/specializovana/operacni-systemy-1/...`
+      - `app/page.tsx` – mapování zkratek `SHORT_LINKS` nasměrováno na novou routu `operacni-systemy-1`
+      - Všechny stránky v `app/specializovana/operacni-systemy-1` – aktualizovány odkazy `router.push`, `BASE` konstanty a sjednoceny popisy rodičovského uzlu na `title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1'`
+      - `components/specializovana/operacni-systemy/souborove-systemy/DiskPartitionChapter.tsx` – tlačítko pro spuštění bootovacího simulátoru aktualizováno na novou routu
+      - `doc/curriculum/OSS1.md`, `doc/history.md`, `doc/plan.md` – sjednocena dokumentace a záznamy
+    - Vše validováno a zkompilováno přes produkční `npm run build` (všech 257 statických stránek vygenerováno bez chyb).
+
 
 
 

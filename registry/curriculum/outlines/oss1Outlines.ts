@@ -1,7 +1,7 @@
 import type { OutlineGroup } from './outlineTypes';
 
 const SUBJECT = 'Operační systémy 1';
-const BASE = '/specializovana/operacni-systemy/gui';
+const BASE = '/specializovana/operacni-systemy-1/gui';
 
 /** Grafické rozhraní Windows 11 (~10 h) – anatomie, souborový strom, atributy, konfigurace a ergonomie. */
 export const OSS1_GUI: OutlineGroup = {
@@ -115,7 +115,7 @@ export const OSS1_GUI: OutlineGroup = {
   ]
 };
 
-const CLI_BASE = '/specializovana/operacni-systemy/prikazova-radka';
+const CLI_BASE = '/specializovana/operacni-systemy-1/prikazova-radka';
 
 /** Příkazová řádka a dávkové soubory (~10 h) – navigace, manipulace se soubory, roury, skriptování .bat a logika. */
 export const OSS1_CLI: OutlineGroup = {
@@ -234,7 +234,7 @@ export const OSS1_CLI: OutlineGroup = {
   ]
 };
 
-const USERS_BASE = '/specializovana/operacni-systemy/uzivatele';
+const USERS_BASE = '/specializovana/operacni-systemy-1/uzivatele';
 
 /** Správa uživatelů, skupin a oprávnění (~8 h) – autentizace, zabezpečení a hesla, skupiny a NTFS práva. */
 export const OSS1_USERS: OutlineGroup = {
@@ -334,7 +334,7 @@ export const OSS1_USERS: OutlineGroup = {
   ]
 };
 
-const SW_BASE = '/specializovana/operacni-systemy/software';
+const SW_BASE = '/specializovana/operacni-systemy-1/software';
 
 /** Správa aplikačního software (~4 h) – životní cyklus, instalátory EXE vs. MSI, registry a balíčkovač winget. */
 export const OSS1_SOFTWARE: OutlineGroup = {
@@ -393,7 +393,7 @@ export const OSS1_SOFTWARE: OutlineGroup = {
   ]
 };
 
-const DEV_BASE = '/specializovana/operacni-systemy/zarizeni';
+const DEV_BASE = '/specializovana/operacni-systemy-1/zarizeni';
 
 /** Správa zařízení a ovladače (~2 h) – architektura ovladačů, Plug and Play, Správce zařízení, tiskárny a pnputil. */
 export const OSS1_DEVICES: OutlineGroup = {
@@ -432,7 +432,7 @@ export const OSS1_DEVICES: OutlineGroup = {
   ]
 };
 
-const SCH_BASE = '/specializovana/operacni-systemy/planovac';
+const SCH_BASE = '/specializovana/operacni-systemy-1/planovac';
 
 /** Plánovač úloh a automatický provoz (~2 h) – konzole taskschd.msc, spouštěče, akce, kontext SYSTEM a schtasks. */
 export const OSS1_SCHEDULER: OutlineGroup = {

@@ -382,7 +382,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               description: 'Základy architektury OS, bootování, simulátory a souborové systémy.',
               icon: 'Cpu',
               gradient: 'from-purple-600 to-indigo-600',
-              route: '/specializovana/operacni-systemy',
+              route: '/specializovana/operacni-systemy-1',
               chapters: [
                 {
                   id: 'win-install',
@@ -392,7 +392,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   icon: 'MonitorUp',
                   gradient: 'from-purple-600 to-indigo-600',
                   actionLabel: 'Spustit simulátor',
-                  route: '/specializovana/operacni-systemy/instalace',
+                  route: '/specializovana/operacni-systemy-1/instalace',
                   hasSubchapters: false
                 },
                 {
@@ -402,11 +402,11 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'osh',
                   icon: 'Cpu',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/hardware',
+                  route: '/specializovana/operacni-systemy-1/hardware',
                   hasSubchapters: true,
                   subchapters: [
-                    { id: 'von-neumann', title: 'Von Neumannova architektura', description: 'Sběrnice, řadič a registry procesoru', tag: 'vna', icon: 'Cpu', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/operacni-systemy/hardware/von-neumann' },
-                    { id: 'ram', title: 'Operační paměť RAM', description: 'Architektura paměťových buněk a adresace', tag: 'ram', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy/hardware/ram' }
+                    { id: 'von-neumann', title: 'Von Neumannova architektura', description: 'Sběrnice, řadič a registry procesoru', tag: 'vna', icon: 'Cpu', gradient: 'from-indigo-600 to-purple-700', route: '/specializovana/operacni-systemy-1/hardware/von-neumann' },
+                    { id: 'ram', title: 'Operační paměť RAM', description: 'Architektura paměťových buněk a adresace', tag: 'ram', icon: 'Cpu', gradient: 'from-purple-600 to-indigo-600', route: '/specializovana/operacni-systemy-1/hardware/ram' }
                   ]
                 },
                 {
@@ -416,7 +416,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'osi',
                   icon: 'Monitor',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/uvod',
+                  route: '/specializovana/operacni-systemy-1/uvod',
                   hasSubchapters: false
                 },
                 {
@@ -426,7 +426,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'osa',
                   icon: 'Layers',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/architektura',
+                  route: '/specializovana/operacni-systemy-1/architektura',
                   hasSubchapters: false
                 },
                 {
@@ -437,7 +437,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   icon: 'HelpCircle',
                   gradient: 'from-emerald-500 to-teal-600',
                   actionLabel: 'Spustit procvičování',
-                  route: '/specializovana/operacni-systemy/test01-rozbor',
+                  route: '/specializovana/operacni-systemy-1/test01-rozbor',
                   hasSubchapters: false
                 },
                 {
@@ -448,7 +448,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   icon: 'ShieldCheck',
                   gradient: 'from-rose-500 to-red-600',
                   actionLabel: 'Otevřít zadání',
-                  route: '/specializovana/operacni-systemy/test01',
+                  route: '/specializovana/operacni-systemy-1/test01',
                   hasSubchapters: false,
                   isTest: true
                 },
@@ -459,7 +459,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'osh',
                   icon: 'Clock',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/vyvoj',
+                  route: '/specializovana/operacni-systemy-1/vyvoj',
                   hasSubchapters: false
                 },
                 {
@@ -469,7 +469,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'osb',
                   icon: 'Hourglass',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/boot',
+                  route: '/specializovana/operacni-systemy-1/boot',
                   hasSubchapters: false
                 },
                 {
@@ -479,7 +479,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'vrt',
                   icon: 'Layers',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/virtualizace',
+                  route: '/specializovana/operacni-systemy-1/virtualizace',
                   hasSubchapters: false
                 },
                 {
@@ -489,7 +489,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'fs',
                   icon: 'HardDrive',
                   gradient: 'from-purple-600 to-indigo-500',
-                  route: '/specializovana/operacni-systemy/souborove-systemy',
+                  route: '/specializovana/operacni-systemy-1/souborove-systemy',
                   hasSubchapters: true,
                   subchapters: [
                     {
@@ -499,7 +499,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS1',
                       icon: 'Layers',
                       gradient: 'from-blue-500 to-indigo-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/uvod',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/uvod',
                       orderNumber: 1,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -510,7 +510,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS2',
                       icon: 'Disc3',
                       gradient: 'from-sky-500 to-cyan-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/media',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/media',
                       orderNumber: 2,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -521,7 +521,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS3',
                       icon: 'PieChart',
                       gradient: 'from-emerald-500 to-teal-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/deleni-disku',
                       orderNumber: 3,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -532,7 +532,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS4',
                       icon: 'Table2',
                       gradient: 'from-purple-500 to-fuchsia-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/alokace-fat',
                       orderNumber: 4,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -543,7 +543,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS5',
                       icon: 'Wrench',
                       gradient: 'from-amber-500 to-orange-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/fragmentace',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/fragmentace',
                       orderNumber: 5,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -554,7 +554,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS6',
                       icon: 'AppWindow',
                       gradient: 'from-rose-500 to-red-500',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/cteni-souboru',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/cteni-souboru',
                       orderNumber: 6,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -565,7 +565,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'FS-ADV',
                       icon: 'Database',
                       gradient: 'from-slate-600 to-slate-800',
-                      route: '/specializovana/operacni-systemy/souborove-systemy/pokrocile',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/pokrocile',
                       orderNumber: 99,
                       actionLabel: 'Otevřít kapitolu'
                     }
@@ -578,7 +578,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'pm',
                   icon: 'Cpu',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/procesy',
+                  route: '/specializovana/operacni-systemy-1/procesy',
                   hasSubchapters: true,
                   subchapters: [
                     {
@@ -588,7 +588,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'PR1',
                       icon: 'Layers',
                       gradient: 'from-blue-500 to-indigo-500',
-                      route: '/specializovana/operacni-systemy/procesy/uvod',
+                      route: '/specializovana/operacni-systemy-1/procesy/uvod',
                       orderNumber: 1,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -599,7 +599,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'PR2',
                       icon: 'Activity',
                       gradient: 'from-purple-500 to-indigo-500',
-                      route: '/specializovana/operacni-systemy/procesy/stavy',
+                      route: '/specializovana/operacni-systemy-1/procesy/stavy',
                       orderNumber: 2,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -610,7 +610,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'PR3',
                       icon: 'GitBranch',
                       gradient: 'from-emerald-500 to-teal-500',
-                      route: '/specializovana/operacni-systemy/procesy/vlakna',
+                      route: '/specializovana/operacni-systemy-1/procesy/vlakna',
                       orderNumber: 3,
                       actionLabel: 'Otevřít kapitolu'
                     },
@@ -621,7 +621,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       tag: 'PR-ADV',
                       icon: 'Database',
                       gradient: 'from-slate-600 to-slate-800',
-                      route: '/specializovana/operacni-systemy/procesy/pokrocile',
+                      route: '/specializovana/operacni-systemy-1/procesy/pokrocile',
                       orderNumber: 99,
                       actionLabel: 'Otevřít kapitolu'
                     }
@@ -638,7 +638,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'dev',
                   icon: 'Cpu',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/zarizeni',
+                  route: '/specializovana/operacni-systemy-1/zarizeni',
                   hasSubchapters: false
                 },
                 {
@@ -648,7 +648,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   tag: 'plan',
                   icon: 'Clock',
                   gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy/planovac',
+                  route: '/specializovana/operacni-systemy-1/planovac',
                   hasSubchapters: false
                 }
               ]
