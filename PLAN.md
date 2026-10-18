@@ -4,7 +4,7 @@ Tento dokument slouží jako hlavní rozcestník a to-do list pro náš projekt.
 
 ## 📝 Aktuální cíle
 - [x] Dokumentace architektury a vize (viz `ARCHITECTURE.md`) ✅
-- [x] Dynamické kurikulum s podporou více škol (SŠ Nerudovka Vimperk + Základní škola) ✅
+- [x] Dynamické kurikulum s podporou více škol (Gymnázium & SOŠ IT + Základní škola) ✅
 - [x] Sjednocený brand "INTERAKTIVNÍ LAB" a červený testovací styl karet (`isTest: true`) ✅
 - [x] Důkladné vyčištění kódu a odstranění zastaralých statických menu ✅
 - [ ] **PLÁNOVANÝ DALŠÍ KROK: Přesun dat na server & Administrační rozhraní (CMS)** ⏳

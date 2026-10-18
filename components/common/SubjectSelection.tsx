@@ -8,6 +8,7 @@ import SearchModal from './SearchModal';
 import SchoolDivisionCard from '@/components/ui/SchoolDivisionCard';
 import { useCurriculum } from '@/components/providers/CurriculumContext';
 import { getCurriculumIcon } from '@/registry/curriculum';
+import LandingFooter from './LandingFooter';
 
 interface SubjectSelectionProps {
   onSelectInformatika?: () => void;
@@ -41,7 +42,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-slate-50 overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-indigo-500/30">
+    <div className="relative min-h-screen w-full bg-slate-50 overflow-hidden flex flex-col items-center justify-between font-sans selection:bg-indigo-500/30">
       
       {/* Background Animated Gradients & Textures */}
       <div className="absolute inset-0 w-full h-full">
@@ -70,7 +71,7 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
         />
       </div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-12 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 pt-12 pb-8 flex flex-col items-center flex-1 justify-center">
         
         {/* Global Actions Container */}
         <div className="absolute top-8 right-8 z-50 flex items-center gap-3">
@@ -225,23 +226,11 @@ const SubjectSelection: React.FC<SubjectSelectionProps> = ({
         )}
       </div>
       
-      {/* Footer Info Button */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="relative z-20 mt-12 mb-12 flex justify-center w-full"
-      >
-        <button
-          onClick={() => setShowTechStack(true)}
-          className="group flex items-center gap-3 px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md rounded-full text-slate-500 hover:text-slate-800 font-bold text-xs uppercase tracking-widest transition-all"
-        >
-          <div className="p-1 bg-slate-100 rounded-full group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
-            <Info className="w-4 h-4" />
-          </div>
-          Jak tento web funguje?
-        </button>
-      </motion.div>
+      {/* Elegantní patička s chráněným kontaktem a informacemi */}
+      <LandingFooter 
+        onOpenTechStack={() => setShowTechStack(true)}
+        onOpenVersion={() => setShowVersion(true)}
+      />
 
       <AnimatePresence>
         {showTechStack && (

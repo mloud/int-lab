@@ -17,9 +17,9 @@ import {
 } from '../outlines';
 
 export const DEFAULT_SCHOOL: SchoolConfig = {
-  id: 'zs-vimperk',
-  name: 'Gymnázium Vimperk',
-  shortName: 'Gymnázium Vimperk',
+  id: 'gymnazium-sos-it',
+  name: 'Gymnázium a Střední odborná škola IT',
+  shortName: 'Gymnázium & SOŠ IT',
   description: 'Kompletní výukový portál všeobecné i odborné informatiky pro základní i střední školy',
   divisions: [
     // =========================================================================
