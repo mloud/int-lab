@@ -6,7 +6,7 @@ interface FATGameProps {
   onBack: () => void;
 }
 
-type LevelId = 1 | 2 | 3;
+type LevelId = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface FileItem {
   name: string;
@@ -34,7 +34,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
 
   // --- DATA PRO LEVELY ---
   
-  // LEVEL 1: Čtení z FAT (Student kliká na řetězec zprava.txt: 2 -> 3 -> EOF, přesně jako v teorii)
+  // LEVEL 1: Základní čtení z FAT (Student kliká na řetězec zprava.txt: 2 -> 3 -> EOF)
   const level1Files: FileItem[] = [
     { name: 'zprava.txt', startCluster: 2, size: 2, color: 'text-sky-600', borderColor: 'border-sky-500', bgColor: 'bg-sky-50', shadowColor: 'shadow-sky-100' },
     { name: 'dovolena.jpg', startCluster: 7, size: 4, color: 'text-amber-600', borderColor: 'border-amber-500', bgColor: 'bg-amber-50', shadowColor: 'shadow-amber-100' },
@@ -58,12 +58,65 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
     { id: 15, fatVal: 'EOF' }, // dovolena.jpg konec souboru
   ];
 
-  // LEVEL 2: Oprava FAT (Student doplňuje FAT[1] = 8 a FAT[8] = 12 pro hra.exe: 1 -> 8 -> 12)
+  // LEVEL 2: Vyhledání delšího souboru v adresáři s více soubory (video.mp4: 5 -> 9 -> 1 -> 13 -> 10 -> EOF, 5 clusterů)
   const level2Files: FileItem[] = [
+    { name: 'dokument.docx', startCluster: 2, size: 2, color: 'text-blue-600', borderColor: 'border-blue-500', bgColor: 'bg-blue-50', shadowColor: 'shadow-blue-100' },
+    { name: 'video.mp4', startCluster: 5, size: 5, color: 'text-emerald-600', borderColor: 'border-emerald-500', bgColor: 'bg-emerald-50', shadowColor: 'shadow-emerald-100' },
+    { name: 'foto.png', startCluster: 7, size: 3, color: 'text-amber-600', borderColor: 'border-amber-500', bgColor: 'bg-amber-50', shadowColor: 'shadow-amber-100' },
+    { name: 'zaloha.zip', startCluster: 14, size: 2, color: 'text-indigo-600', borderColor: 'border-indigo-500', bgColor: 'bg-indigo-50', shadowColor: 'shadow-indigo-100' },
+  ];
+  const level2Clusters: ClusterState[] = [
+    { id: 0, fatVal: 'FREE' },
+    { id: 1, fatVal: 13 },    // video.mp4 (3. cluster) -> 13
+    { id: 2, fatVal: 6 },     // dokument.docx start -> 6
+    { id: 3, fatVal: 'FREE' },
+    { id: 4, fatVal: 'EOF' },  // zaloha.zip end
+    { id: 5, fatVal: 9 },     // video.mp4 start (1. cluster) -> 9
+    { id: 6, fatVal: 'EOF' }, // dokument.docx end
+    { id: 7, fatVal: 11 },    // foto.png start -> 11
+    { id: 8, fatVal: 'FREE' },
+    { id: 9, fatVal: 1 },     // video.mp4 (2. cluster) -> 1
+    { id: 10, fatVal: 'EOF' }, // video.mp4 end (5. cluster)
+    { id: 11, fatVal: 15 },   // foto.png -> 15
+    { id: 12, fatVal: 'FREE' },
+    { id: 13, fatVal: 10 },   // video.mp4 (4. cluster) -> 10
+    { id: 14, fatVal: 4 },    // zaloha.zip start -> 4
+    { id: 15, fatVal: 'EOF' }, // foto.png end
+  ];
+
+  // LEVEL 3: Sledování silně fragmentovaného souboru v plném adresáři (databaze.db: 4 -> 8 -> 15 -> 2 -> 11 -> 7 -> EOF, 6 clusterů)
+  const level3Files: FileItem[] = [
+    { name: 'system.log', startCluster: 0, size: 2, color: 'text-slate-600', borderColor: 'border-slate-500', bgColor: 'bg-slate-50', shadowColor: 'shadow-slate-100' },
+    { name: 'ikona.ico', startCluster: 6, size: 1, color: 'text-pink-600', borderColor: 'border-pink-500', bgColor: 'bg-pink-50', shadowColor: 'shadow-pink-100' },
+    { name: 'databaze.db', startCluster: 4, size: 6, color: 'text-violet-600', borderColor: 'border-violet-500', bgColor: 'bg-violet-50', shadowColor: 'shadow-violet-100' },
+    { name: 'hudba.mp3', startCluster: 9, size: 3, color: 'text-cyan-600', borderColor: 'border-cyan-500', bgColor: 'bg-cyan-50', shadowColor: 'shadow-cyan-100' },
+    { name: 'poznamky.txt', startCluster: 13, size: 2, color: 'text-teal-600', borderColor: 'border-teal-500', bgColor: 'bg-teal-50', shadowColor: 'shadow-teal-100' },
+  ];
+  const level3Clusters: ClusterState[] = [
+    { id: 0, fatVal: 5 },     // system.log start -> 5
+    { id: 1, fatVal: 'FREE' },
+    { id: 2, fatVal: 11 },    // databaze.db (4. cluster) -> 11
+    { id: 3, fatVal: 'EOF' },  // poznamky.txt end
+    { id: 4, fatVal: 8 },     // databaze.db start (1. cluster) -> 8
+    { id: 5, fatVal: 'EOF' }, // system.log end
+    { id: 6, fatVal: 'EOF' }, // ikona.ico (jediný cluster)
+    { id: 7, fatVal: 'EOF' }, // databaze.db end (6. cluster)
+    { id: 8, fatVal: 15 },    // databaze.db (2. cluster) -> 15
+    { id: 9, fatVal: 12 },    // hudba.mp3 start -> 12
+    { id: 10, fatVal: 'FREE' },
+    { id: 11, fatVal: 7 },    // databaze.db (5. cluster) -> 7
+    { id: 12, fatVal: 14 },   // hudba.mp3 -> 14
+    { id: 13, fatVal: 3 },    // poznamky.txt start -> 3
+    { id: 14, fatVal: 'EOF' }, // hudba.mp3 end
+    { id: 15, fatVal: 2 },    // databaze.db (3. cluster) -> 2
+  ];
+
+  // LEVEL 4: Zápis FAT 1 (Student doplňuje FAT[1] = 8 a FAT[8] = 12 pro hra.exe: 1 -> 8 -> 12 -> EOF)
+  const level4Files: FileItem[] = [
     { name: 'hra.exe', startCluster: 1, size: 3, color: 'text-orange-600', borderColor: 'border-orange-500', bgColor: 'bg-orange-50', shadowColor: 'shadow-orange-100' },
     { name: 'data.dat', startCluster: 3, size: 2, color: 'text-slate-500', borderColor: 'border-slate-400', bgColor: 'bg-slate-50', shadowColor: 'shadow-slate-100' },
   ];
-  const level2Clusters: ClusterState[] = [
+  const level4Clusters: ClusterState[] = [
     { id: 0, fatVal: 'FREE' },
     { id: 1, fatVal: '?' }, // hra start (odkaz na 8)
     { id: 2, fatVal: 'FREE' },
@@ -82,11 +135,62 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
     { id: 15, fatVal: 'FREE' },
   ];
 
-  // LEVEL 3: Fragmentace a vadné clustery (zprava.pdf: 3 -> 7 -> 12 -> 14)
-  const level3Files: FileItem[] = [
+  // LEVEL 5: Zápis FAT 2 (Student propojuje prezentace.pptx: 2 -> 11 -> 5 -> 14 -> EOF, 4 clustery)
+  const level5Files: FileItem[] = [
+    { name: 'fotka.raw', startCluster: 0, size: 2, color: 'text-sky-600', borderColor: 'border-sky-500', bgColor: 'bg-sky-50', shadowColor: 'shadow-sky-100' },
+    { name: 'prezentace.pptx', startCluster: 2, size: 4, color: 'text-amber-600', borderColor: 'border-amber-500', bgColor: 'bg-amber-50', shadowColor: 'shadow-amber-100' },
+    { name: 'zaloha.bak', startCluster: 9, size: 2, color: 'text-slate-500', borderColor: 'border-slate-400', bgColor: 'bg-slate-50', shadowColor: 'shadow-slate-100' },
+  ];
+  const level5Clusters: ClusterState[] = [
+    { id: 0, fatVal: 7 },     // fotka start -> 7
+    { id: 1, fatVal: 'FREE' },
+    { id: 2, fatVal: '?' },   // prezentace start -> 11
+    { id: 3, fatVal: 'FREE' },
+    { id: 4, fatVal: 'FREE' },
+    { id: 5, fatVal: '?' },   // prezentace -> 14
+    { id: 6, fatVal: 'FREE' },
+    { id: 7, fatVal: 'EOF' }, // fotka end
+    { id: 8, fatVal: 'FREE' },
+    { id: 9, fatVal: 13 },    // zaloha start -> 13
+    { id: 10, fatVal: 'FREE' },
+    { id: 11, fatVal: '?' },  // prezentace -> 5
+    { id: 12, fatVal: 'FREE' },
+    { id: 13, fatVal: 'EOF' }, // zaloha end
+    { id: 14, fatVal: 'EOF' }, // prezentace end
+    { id: 15, fatVal: 'FREE' },
+  ];
+
+  // LEVEL 6: Zápis FAT 3 (Student zřetězuje film.mkv: 6 -> 1 -> 13 -> 9 -> 4 -> EOF, 5 clusterů)
+  const level6Files: FileItem[] = [
+    { name: 'hudba.wav', startCluster: 3, size: 2, color: 'text-cyan-600', borderColor: 'border-cyan-500', bgColor: 'bg-cyan-50', shadowColor: 'shadow-cyan-100' },
+    { name: 'film.mkv', startCluster: 6, size: 5, color: 'text-rose-600', borderColor: 'border-rose-500', bgColor: 'bg-rose-50', shadowColor: 'shadow-rose-100' },
+    { name: 'pozn.txt', startCluster: 10, size: 1, color: 'text-teal-600', borderColor: 'border-teal-500', bgColor: 'bg-teal-50', shadowColor: 'shadow-teal-100' },
+    { name: 'system.bin', startCluster: 12, size: 2, color: 'text-slate-500', borderColor: 'border-slate-400', bgColor: 'bg-slate-50', shadowColor: 'shadow-slate-100' },
+  ];
+  const level6Clusters: ClusterState[] = [
+    { id: 0, fatVal: 'FREE' },
+    { id: 1, fatVal: '?' },   // film (2. cluster) -> 13
+    { id: 2, fatVal: 'FREE' },
+    { id: 3, fatVal: 8 },     // hudba start -> 8
+    { id: 4, fatVal: 'EOF' }, // film end (5. cluster)
+    { id: 5, fatVal: 'FREE' },
+    { id: 6, fatVal: '?' },   // film start (1. cluster) -> 1
+    { id: 7, fatVal: 'FREE' },
+    { id: 8, fatVal: 'EOF' }, // hudba end
+    { id: 9, fatVal: '?' },   // film (4. cluster) -> 4
+    { id: 10, fatVal: 'EOF' }, // pozn.txt
+    { id: 11, fatVal: 'FREE' },
+    { id: 12, fatVal: 15 },   // system start -> 15
+    { id: 13, fatVal: '?' },  // film (3. cluster) -> 9
+    { id: 14, fatVal: 'FREE' },
+    { id: 15, fatVal: 'EOF' }, // system end
+  ];
+
+  // LEVEL 7: Fragmentace a vadné clustery (zprava.pdf: 3 -> 7 -> 12 -> 14)
+  const level7Files: FileItem[] = [
     { name: 'zprava.pdf', startCluster: 3, size: 4, color: 'text-purple-600', borderColor: 'border-purple-500', bgColor: 'bg-purple-50', shadowColor: 'shadow-purple-100' },
   ];
-  const level3Clusters: ClusterState[] = [
+  const level7Clusters: ClusterState[] = [
     { id: 0, fatVal: 'FREE' },
     { id: 1, fatVal: 'FREE' },
     { id: 2, fatVal: 'FREE' },
@@ -109,15 +213,79 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
   const getLevelData = () => {
     switch (level) {
       case 1:
-        return { files: level1Files, clusters: level1Clusters, targetChain: [2, 3], targetFile: 'zprava.txt' };
+        return { 
+          files: level1Files, 
+          clusters: level1Clusters, 
+          targetChain: [2, 3], 
+          targetFile: 'zprava.txt',
+          mode: 'click' as const,
+          editableClusterIds: [],
+          expectedAnswers: {},
+        };
       case 2:
-        return { files: level2Files, clusters: level2Clusters, targetChain: [1, 8, 12], targetFile: 'hra.exe' };
+        return { 
+          files: level2Files, 
+          clusters: level2Clusters, 
+          targetChain: [5, 9, 1, 13, 10], 
+          targetFile: 'video.mp4',
+          mode: 'click' as const,
+          editableClusterIds: [],
+          expectedAnswers: {},
+        };
       case 3:
-        return { files: level3Files, clusters: level3Clusters, targetChain: [3, 7, 12, 14], targetFile: 'zprava.pdf' };
+        return { 
+          files: level3Files, 
+          clusters: level3Clusters, 
+          targetChain: [4, 8, 15, 2, 11, 7], 
+          targetFile: 'databaze.db',
+          mode: 'click' as const,
+          editableClusterIds: [],
+          expectedAnswers: {},
+        };
+      case 4:
+        return { 
+          files: level4Files, 
+          clusters: level4Clusters, 
+          targetChain: [1, 8, 12], 
+          targetFile: 'hra.exe',
+          mode: 'write' as const,
+          editableClusterIds: [1, 8],
+          expectedAnswers: { 1: 8, 8: 12 },
+        };
+      case 5:
+        return { 
+          files: level5Files, 
+          clusters: level5Clusters, 
+          targetChain: [2, 11, 5, 14], 
+          targetFile: 'prezentace.pptx',
+          mode: 'write' as const,
+          editableClusterIds: [2, 11, 5],
+          expectedAnswers: { 2: 11, 11: 5, 5: 14 },
+        };
+      case 6:
+        return { 
+          files: level6Files, 
+          clusters: level6Clusters, 
+          targetChain: [6, 1, 13, 9, 4], 
+          targetFile: 'film.mkv',
+          mode: 'write' as const,
+          editableClusterIds: [6, 1, 13, 9],
+          expectedAnswers: { 6: 1, 1: 13, 13: 9, 9: 4 },
+        };
+      case 7:
+        return { 
+          files: level7Files, 
+          clusters: level7Clusters, 
+          targetChain: [3, 7, 12, 14], 
+          targetFile: 'zprava.pdf',
+          mode: 'click' as const,
+          editableClusterIds: [],
+          expectedAnswers: {},
+        };
     }
   };
 
-  const { files, clusters, targetChain, targetFile } = getLevelData();
+  const { files, clusters, targetChain, targetFile, mode, editableClusterIds, expectedAnswers } = getLevelData();
 
   // --- LOGIKA HRY ---
 
@@ -129,7 +297,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
   };
 
   const nextLevel = () => {
-    if (level < 3) {
+    if (level < 7) {
       setLevel((prev) => (prev + 1) as LevelId);
       setClickedChain([]);
       setInputs({});
@@ -139,14 +307,14 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
       setIsCompleted(true);
       setFeedback({
         type: 'success',
-        text: 'Gratulujeme! Úspěšně jsi dokončil všechny úrovně souborového systému FAT!',
+        text: 'Gratulujeme! Úspěšně jsi dokončil všech 7 úrovní souborového systému FAT!',
       });
     }
   };
 
-  // Zpracování kliknutí na diskový cluster (Level 1 a Level 3)
+  // Zpracování kliknutí na diskový cluster (pro úrovně s mode === 'click')
   const handleClusterClick = (clusterId: number) => {
-    if (level === 2 || isCompleted) return; // V levelu 2 se klikáním nehraje
+    if (mode === 'write' || isCompleted) return; // V režimu zápisu se klikáním nehraje
 
     // Pokud už byl vybrán, resetovat kliknutí od tohoto bodu dále
     if (clickedChain.includes(clusterId)) {
@@ -189,7 +357,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
     }
   };
 
-  // Zpracování změny vstupu (Level 2)
+  // Zpracování změny vstupu (Zápisové úrovně 4, 5, 6)
   const handleInputChange = (clusterId: number, value: string) => {
     setInputs({
       ...inputs,
@@ -197,21 +365,23 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
     });
   };
 
-  // Kontrola vyplněné FAT tabulky (Level 2)
-  const checkLevel2Answers = () => {
-    const val1 = parseInt(inputs[1] || '');
-    const val8 = parseInt(inputs[8] || '');
+  // Kontrola vyplněné FAT tabulky (Zápisové úrovně 4, 5, 6)
+  const checkWriteAnswers = () => {
+    const isAllCorrect = Object.entries(expectedAnswers).every(([cIdStr, expectedVal]) => {
+      const cId = parseInt(cIdStr);
+      return parseInt(inputs[cId] || '') === expectedVal;
+    });
 
-    if (val1 === 8 && val8 === 12) {
+    if (isAllCorrect) {
       setFeedback({
         type: 'success',
-        text: 'Správně! Vyplnil jsi FAT tabulku tak, že soubor hra.exe je správně zřetězen z 1 ➔ 8 ➔ 12 a ukončen EOF.',
+        text: `Správně! Vyplnil jsi FAT tabulku tak, že soubor ${targetFile} je správně zřetězen (${targetChain.join(' ➔ ')} ➔ EOF).`,
       });
       setIsCompleted(true);
     } else {
       setFeedback({
         type: 'error',
-        text: 'Některé hodnoty ve FAT nejsou správné. Zkontroluj, aby první cluster (1) odkazoval na druhý (8) a ten na třetí (12).',
+        text: `Některé hodnoty ve FAT nejsou správné. Zkontroluj, aby clustery souboru ${targetFile} na sebe přesně navazovaly v pořadí: ${targetChain.join(' ➔ ')}.`,
       });
     }
   };
@@ -276,14 +446,52 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
             <HardDrive className="w-6 h-6 animate-pulse" />
           </div>
           <div>
-            <span className="text-xs font-black text-purple-600 uppercase tracking-widest">Úroveň {level} ze 3</span>
+            <span className="text-xs font-black text-purple-600 uppercase tracking-widest">Úroveň {level} z 7</span>
             <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
               {level === 1 && 'Načítání souboru z disku'}
-              {level === 2 && 'Zápis a propojení souboru'}
-              {level === 3 && 'Fragmentace a vadné clustery'}
+              {level === 2 && 'Vyhledání delšího souboru'}
+              {level === 3 && 'Sledování fragmentovaného souboru'}
+              {level === 4 && 'Zápis a propojení souboru'}
+              {level === 5 && 'Zápis vazeb prezentace'}
+              {level === 6 && 'Zápis fragmentovaného videa'}
+              {level === 7 && 'Fragmentace a vadné clustery'}
             </h2>
           </div>
         </div>
+
+        {/* Zpětná vazba a řešení – přímo nahoře na začátku stránky pro okamžitou viditelnost */}
+        <AnimatePresence>
+          {feedback && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className={`mb-6 p-5 sm:p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 shadow-lg transition-all ${
+                feedback.type === 'success'
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-950 shadow-emerald-100 ring-4 ring-emerald-100/60'
+                  : 'bg-red-50 border-red-300 text-red-950 shadow-red-100 ring-4 ring-red-100/60'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md shrink-0 ${
+                  feedback.type === 'success' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'
+                }`}>
+                  {feedback.type === 'success' ? <Trophy className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
+                </div>
+                <p className="font-extrabold text-sm sm:text-base leading-snug">{feedback.text}</p>
+              </div>
+
+              {feedback.type === 'success' && (
+                <button
+                  onClick={nextLevel}
+                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap shrink-0"
+                >
+                  {level < 7 ? 'Pokračovat do další úrovně ➔' : 'Dokončit hru 🏆'}
+                </button>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Zadání úkolu */}
         <div className="bg-slate-50 border-2 border-slate-100 rounded-3xl p-5 mb-8 text-sm sm:text-base text-gray-700 font-medium">
@@ -295,11 +503,35 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
           )}
           {level === 2 && (
             <p>
+              V adresáři přibylo více položek. Vyhledej v tabulce adresáře soubor <span className="font-extrabold text-emerald-600 uppercase bg-emerald-50 px-2 py-0.5 rounded-lg">video.mp4</span>, 
+              zjisti jeho počáteční cluster a vyklikej celý jeho řetězec <strong>5 clusterů</strong> ve správném pořadí až po značku <span className="font-extrabold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-lg">EOF</span>.
+            </p>
+          )}
+          {level === 3 && (
+            <p>
+              Soubor <span className="font-extrabold text-violet-600 uppercase bg-violet-50 px-2 py-0.5 rounded-lg">databaze.db</span> je na disku silně rozházen (fragmentován) do <strong>6 clusterů</strong>. 
+              Najdi v adresáři jeho startovní cluster a podle odkazů ve FAT tabulce postupně zrekonstruuj celý soubor.
+            </p>
+          )}
+          {level === 4 && (
+            <p>
               Soubor <span className="font-extrabold text-orange-600 uppercase bg-orange-50 px-2 py-0.5 rounded-lg">hra.exe</span> je fyzicky uložen v clusterech <strong>1, 8 a 12</strong> (v tomto pořadí). 
               Doplň do FAT tabulky správná čísla clusterů, aby byl soubor správně zřetězen a na konci ukončen.
             </p>
           )}
-          {level === 3 && (
+          {level === 5 && (
+            <p>
+              Soubor <span className="font-extrabold text-amber-600 uppercase bg-amber-50 px-2 py-0.5 rounded-lg">prezentace.pptx</span> je rozložen ve 4 clusterech: <strong>2, 11, 5 a 14</strong> (v tomto pořadí). 
+              Doplň chybějící vazby do FAT tabulky pro clustery 2, 11 a 5, aby na sebe bloky navazovaly a soubor končil značkou EOF.
+            </p>
+          )}
+          {level === 6 && (
+            <p>
+              Velký multimediální soubor <span className="font-extrabold text-rose-600 uppercase bg-rose-50 px-2 py-0.5 rounded-lg">film.mkv</span> je rozprostřen do 5 clusterů: <strong>6, 1, 13, 9 a 4</strong>. 
+              Doplň do FAT tabulky všechny chybějící ukazatele (pro clustery 6, 1, 13 a 9), aby operační systém soubor bezpečně sestavil.
+            </p>
+          )}
+          {level === 7 && (
             <p>
               Označ clustery souboru <span className="font-extrabold text-purple-600 uppercase bg-purple-50 px-2 py-0.5 rounded-lg">zprava.pdf</span>, který začíná na clusteru <strong>3</strong>. 
               Postupuj podle FAT tabulky. Všimni si, že clustery 4 a 10 jsou označeny jako <span className="font-extrabold text-red-600 bg-red-50 px-2 py-0.5 rounded-lg">BAD</span> (vadné) a OS se jim musel při ukládání vyhnout.
@@ -352,6 +584,8 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                 {Array.from({ length: 8 }).map((_, i) => {
                   const leftClust = clusters[i];
                   const rightClust = clusters[i + 8];
+                  const isLeftEditable = editableClusterIds.includes(leftClust.id);
+                  const isRightEditable = editableClusterIds.includes(rightClust.id);
                   
                   return (
                     <React.Fragment key={i}>
@@ -363,15 +597,17 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                         leftClust.fatVal === 'EOF' ? 'bg-gray-100 border-gray-200 text-gray-600' :
                         leftClust.fatVal === 'BAD' ? 'bg-red-50 border-red-200 text-red-600' :
                         leftClust.fatVal === 'FREE' ? 'bg-slate-50 border-slate-100 text-slate-300' :
+                        isLeftEditable ? 'bg-orange-50/50 border-orange-200' :
                         'bg-purple-50 border-purple-200 text-purple-700'
                       }`}>
-                        {level === 2 && leftClust.id === 1 ? (
+                        {isLeftEditable ? (
                           <input
                             type="text"
                             maxLength={2}
-                            value={inputs[1] || ''}
-                            onChange={(e) => handleInputChange(1, e.target.value)}
+                            value={inputs[leftClust.id] || ''}
+                            onChange={(e) => handleInputChange(leftClust.id, e.target.value)}
                             className="w-8 text-center bg-white border border-orange-300 text-orange-600 font-extrabold rounded-md py-0.5 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="?"
                           />
                         ) : (
                           leftClust.fatVal
@@ -386,15 +622,17 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                         rightClust.fatVal === 'EOF' ? 'bg-gray-100 border-gray-200 text-gray-600' :
                         rightClust.fatVal === 'BAD' ? 'bg-red-50 border-red-200 text-red-600' :
                         rightClust.fatVal === 'FREE' ? 'bg-slate-50 border-slate-100 text-slate-300' :
+                        isRightEditable ? 'bg-orange-50/50 border-orange-200' :
                         'bg-purple-50 border-purple-200 text-purple-700'
                       }`}>
-                        {level === 2 && rightClust.id === 8 ? (
+                        {isRightEditable ? (
                           <input
                             type="text"
                             maxLength={2}
-                            value={inputs[8] || ''}
-                            onChange={(e) => handleInputChange(8, e.target.value)}
+                            value={inputs[rightClust.id] || ''}
+                            onChange={(e) => handleInputChange(rightClust.id, e.target.value)}
                             className="w-8 text-center bg-white border border-orange-300 text-orange-600 font-extrabold rounded-md py-0.5 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            placeholder="?"
                           />
                         ) : (
                           rightClust.fatVal
@@ -405,9 +643,9 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                 })}
               </div>
               
-              {level === 2 && (
+              {mode === 'write' && (
                 <button
-                  onClick={checkLevel2Answers}
+                  onClick={checkWriteAnswers}
                   className="w-full mt-4 py-3 bg-orange-500 hover:bg-orange-600 text-white font-black rounded-2xl shadow-lg shadow-orange-100 transition-all hover:scale-[1.02] active:scale-95 text-sm uppercase tracking-wider"
                 >
                   Zkontrolovat FAT tabulku
@@ -428,10 +666,10 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                 {clusters.map((c) => {
                   const isSelected = clickedChain.includes(c.id);
                   const selectOrder = clickedChain.indexOf(c.id);
-                  const isTargetStart = c.id === targetChain[0];
                   
-                  // Styl pro level 2 (vizualizace rozložení souboru)
-                  const isL2Active = level === 2 && targetChain.includes(c.id);
+                  // Styl pro zápisové levely (vizualizace rozložení souboru)
+                  const isWriteActive = mode === 'write' && targetChain.includes(c.id);
+                  const writeOrder = targetChain.indexOf(c.id);
                   
                   // Barva pozadí a ohraničení na základě stavu
                   let borderClass = 'border-gray-200 hover:border-purple-300';
@@ -446,10 +684,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                     borderClass = 'border-purple-500 ring-4 ring-purple-100';
                     bgClass = 'bg-purple-500';
                     textClass = 'text-white';
-                  } else if (isTargetStart && level !== 2) {
-                    borderClass = 'border-dashed border-purple-400 border-2';
-                    bgClass = 'bg-purple-50/30';
-                  } else if (isL2Active) {
+                  } else if (isWriteActive) {
                     borderClass = 'border-orange-500 ring-2 ring-orange-100';
                     bgClass = 'bg-orange-50';
                     textClass = 'text-orange-700 font-black';
@@ -458,10 +693,10 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                   return (
                     <button
                       key={c.id}
-                      disabled={c.isBad || level === 2 || isCompleted}
+                      disabled={c.isBad || mode === 'write' || isCompleted}
                       onClick={() => handleClusterClick(c.id)}
                       className={`relative flex flex-col items-center justify-center border-4 rounded-3xl transition-all font-black text-lg sm:text-xl shadow-md select-none ${borderClass} ${bgClass} ${textClass} ${
-                        level === 2 || c.isBad || isCompleted ? 'cursor-default' : 'hover:scale-105 active:scale-95'
+                        mode === 'write' || c.isBad || isCompleted ? 'cursor-default' : 'hover:scale-105 active:scale-95'
                       }`}
                     >
                       {/* Číslo clusteru */}
@@ -481,10 +716,10 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                         </span>
                       )}
 
-                      {/* Label pro level 2 */}
-                      {isL2Active && (
-                        <span className="absolute bottom-1 text-[10px] uppercase font-black tracking-widest text-orange-400">
-                          {c.id === 1 ? 'Start' : c.id === 12 ? 'Konec' : 'Data'}
+                      {/* Label pro zápisový mód s pořadím bloku */}
+                      {isWriteActive && (
+                        <span className="absolute bottom-1 text-[9px] uppercase font-black tracking-wider text-orange-600 bg-orange-100/90 px-1.5 py-0.5 rounded-md">
+                          {writeOrder === 0 ? '1. Start' : writeOrder === targetChain.length - 1 ? `${writeOrder + 1}. Konec` : `${writeOrder + 1}. Blok`}
                         </span>
                       )}
                     </button>
@@ -498,7 +733,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                   <span className="w-4 h-4 bg-white border-2 border-gray-200 rounded-md"></span>
                   <span>Volný cluster</span>
                 </div>
-                {level !== 2 ? (
+                {mode === 'click' ? (
                   <div className="flex items-center gap-1.5">
                     <span className="w-4 h-4 bg-purple-500 rounded-md"></span>
                     <span>Vybraný cluster</span>
@@ -509,7 +744,7 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
                     <span>Clustery souboru</span>
                   </div>
                 )}
-                {level === 3 && (
+                {level === 7 && (
                   <div className="flex items-center gap-1.5">
                     <span className="w-4 h-4 bg-red-50 border-2 border-red-300 rounded-md flex items-center justify-center text-[8px] text-red-500 font-black"><AlertTriangle className="w-3 h-3" /></span>
                     <span>Vadný (BAD) cluster</span>
@@ -519,40 +754,6 @@ const FATGame: React.FC<FATGameProps> = ({ onBack }) => {
             </div>
           </div>
         </div>
-
-        {/* Sekce pro zpětnou vazbu a pokračování */}
-        <AnimatePresence>
-          {feedback && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className={`mt-8 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 shadow-lg ${
-                feedback.type === 'success'
-                  ? 'bg-emerald-50 border-emerald-200 text-emerald-900 shadow-emerald-50'
-                  : 'bg-red-50 border-red-200 text-red-900 shadow-red-50'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md ${
-                  feedback.type === 'success' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'
-                }`}>
-                  {feedback.type === 'success' ? <Trophy className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
-                </div>
-                <p className="font-bold text-sm sm:text-base">{feedback.text}</p>
-              </div>
-
-              {feedback.type === 'success' && (
-                <button
-                  onClick={nextLevel}
-                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap"
-                >
-                  {level < 3 ? 'Pokračovat do další úrovně' : 'Dokončit hru'}
-                </button>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   );

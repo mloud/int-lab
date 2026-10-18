@@ -79,7 +79,7 @@ export default function FatChapter({
           <div class="answer">${(answers['cluster_size'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
-        <h2>2. Test 1B souboru a formátování oddílu (FAT32 vs. NTFS)</h2>
+        <h2>2. Test 1B souboru (FAT32 vs. NTFS)</h2>
         <div class="task">
           <div class="step"><span class="${checkedItems['sec_2a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_2a'] ? 'X' : ' '} ]</span> Naformátujte oddíl na systém souborů FAT32, uložte na něj soubor <code>znak.txt</code> o velikosti 1 bajt (písmeno A) a otevřete jeho Vlastnosti.</div>
           <div class="question">Kolik místa na disku (Velikost na disku) zabral soubor v systému FAT32?</div>
@@ -97,24 +97,40 @@ export default function FatChapter({
           <div class="answer">${(answers['fat_vs_ntfs_reason'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
+        <h2>3. Limity FAT32 vs. NTFS (Bariéra 4 GB v praxi)</h2>
         <div class="task">
-          <div class="step"><span class="${checkedItems['sec_2c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['sec_2c'] ? 'X' : ' '} ]</span> Na tomto oddílu vyzkoušejte oba způsoby formátování: Rychlé formátování i Pomalé (úplné) formátování.</div>
-          <div class="question">Co se děje se samotnými daty na disku a se strukturami souborového systému při Rychlém formátování a co při Pomalém (úplném) formátování?</div>
-          <div class="answer">${(answers['format_principles'] || '').replace(/\n/g, '<br/>')}</div>
-        </div>
-
-        <h2>3. Limity FAT32 vs. exFAT (Bariéra 4 GB v praxi)</h2>
-        <div class="task">
-          <div class="step"><span class="${checkedItems['lim_3a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3a'] ? 'X' : ' '} ]</span> Naformátujte flash disk na systém souborů FAT32 (rychlým formátováním) a ověřte dostatek volného místa.</div>
-          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> Ze sdíleného síťového disku se pokuste na flash disk zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
-          <div class="question">Jaká přesná chybová hláška se zobrazila, ačkoliv je na flashce dostatek volného místa?</div>
+          <div class="step"><span class="${checkedItems['lim_3a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3a'] ? 'X' : ' '} ]</span> Naformátujte diskový oddíl <code>D:</code> na systém souborů FAT32 (příkazem <code>format D: /FS:FAT32 /Q</code> nebo v Průzkumníku) a ověřte dostatek volného místa.</div>
+          <div class="step"><span class="${checkedItems['lim_3b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3b'] ? 'X' : ' '} ]</span> Ze sdíleného síťového disku se pokuste na diskový oddíl <code>D:</code> zkopírovat soubor větší než 4 GB (např. 4,3 GB ISO obraz).</div>
+          <div class="question">Jaká přesná chybová hláška se zobrazila, ačkoliv je na oddílu D: dostatek volného místa? Proč FAT32 soubor větší než 4 GB nedokáže uložit?</div>
           <div class="answer">${(answers['fat32_error_msg'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
 
         <div class="task">
-          <div class="step"><span class="${checkedItems['lim_3c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3c'] ? 'X' : ' '} ]</span> Přeformátujte flash disk na exFAT a zopakujte kopírování téhož velkého souboru.</div>
-          <div class="question">Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32 a systémovému NTFS při použití na přenosných paměťových médiích?</div>
-          <div class="answer">${(answers['exfat_benefits'] || '').replace(/\n/g, '<br/>')}</div>
+          <div class="step"><span class="${checkedItems['lim_3c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['lim_3c'] ? 'X' : ' '} ]</span> Přeformátujte diskový oddíl <code>D:</code> v Průzkumníku na systém souborů NTFS a zopakujte kopírování téhož velkého souboru.</div>
+          <div class="question">Prošel zápis na NTFS úspěšně? Jaké jsou maximální limity velikosti souboru v systému NTFS oproti starému FAT32?</div>
+          <div class="answer">${(answers['ntfs_benefits'] || answers['exfat_benefits'] || '').replace(/\n/g, '<br/>')}</div>
+        </div>
+
+        <h2>4. Obnova smazaných dat po Shift+Delete a po Rychlém formátování</h2>
+        <div class="task">
+          <div class="step"><span class="${checkedItems['rec_4a'] ? 'checked' : 'unchecked'}">[ ${checkedItems['rec_4a'] ? 'X' : ' '} ]</span> Instalace nástroje <code>Windows File Recovery</code> (winfr) z Microsoft Store, příprava oddílu <code>D:</code> (NTFS) a stažení testovacího obrázku jako <code>D:\\hora.jpg</code>.</div>
+        </div>
+
+        <div class="task">
+          <div class="step"><span class="${checkedItems['rec_4b'] ? 'checked' : 'unchecked'}">[ ${checkedItems['rec_4b'] ? 'X' : ' '} ]</span> Trvalé smazání souboru klávesami Shift+Delete a obnova příkazem: <code>winfr D: C:\\Obnova /regular /n *.jpg</code>.</div>
+          <div class="question">4.1 Podařilo se soubor v režimu /regular úspěšně obnovit a otevřít? Zůstal zachován původní název a velikost souboru?</div>
+          <div class="answer">${(answers['rec_shift_del_result'] || '').replace(/\n/g, '<br/>')}</div>
+        </div>
+
+        <div class="task">
+          <div class="step"><span class="${checkedItems['rec_4c'] ? 'checked' : 'unchecked'}">[ ${checkedItems['rec_4c'] ? 'X' : ' '} ]</span> Zkopírování souboru zpět na D:, Rychlé formátování oddílu D: a následná obnova hloubkovým režimem: <code>winfr D: C:\\Obnova2 /extensive /n *.jpg</code>.</div>
+          <div class="question">4.2 Podařilo se soubor po rychlém formátování obnovit pomocí parametru /extensive? Proč tato obnova funguje i tehdy, když byl celý souborový systém zformátován?</div>
+          <div class="answer">${(answers['rec_format_result'] || '').replace(/\n/g, '<br/>')}</div>
+        </div>
+
+        <div class="task">
+          <div class="question">4.3 Co z tohoto pokusu vyplývá pro bezpečnost dat? Proč pouhé smazání souborů ani Rychlé formátování nestačí, pokud disk prodáváte nebo vyřazujete? Jaký způsob formátování či vymazání byste museli použít pro bezpečné odstranění dat?</div>
+          <div class="answer">${(answers['rec_security_conclusion'] || '').replace(/\n/g, '<br/>')}</div>
         </div>
       </body>
       </html>
@@ -153,10 +169,10 @@ export default function FatChapter({
 
           <TheoryCard icon={HardDrive} title="Od hardwaru k softwaru" letter="A" tone="slate">
             <p>
-              Zatím jsme se pohybovali na úrovni hardwaru. Víme, že disk je fyzicky rozdělen na <strong>sektory</strong> (typicky o velikosti 4 KB) a že tyto sektory umíme sdružit do logických <strong>oddílů</strong>.
+              Fyzický disk je členěn na základní <strong>sektory</strong> (typicky 4 KB), které se sdružují do logických <strong>diskových oddílů</strong>.
             </p>
             <p className="mt-4">
-              Kdyby ale operační systém musel hledat fotky sektor po sektoru napříč gigabajty dat, zbláznil by se. Proto musíme prázdný oddíl <strong>naformátovat</strong> = vypálit na něj logickou mřížku a vytvořit katalog. Teprve tomu říkáme <strong>Souborový systém</strong> (File System) a teprve do něj umí Windows zapisovat složky a soubory.
+              Samotný oddíl je však pouze nestrukturovaný prostor. Teprve <strong>formátováním</strong> se na něm inicializuje <strong>souborový systém</strong> (File System), který vytváří <strong>katalog clusterů</strong> nezbytný pro zápis souborů a složek.
             </p>
           </TheoryCard>
 
@@ -306,50 +322,55 @@ export default function FatChapter({
                   {/* Řádky tabulky */}
                   <div className="space-y-1 font-mono text-xs max-h-[460px] overflow-y-auto pr-1">
                     {[
-                      { cluster: 0, next: '0', file: null },
-                      { cluster: 1, next: '0', file: null },
-                      { cluster: 2, next: '3', file: 'zprava.txt' },
-                      { cluster: 3, next: 'EOF', file: 'zprava.txt' },
-                      { cluster: 4, next: '0', file: null },
-                      { cluster: 5, next: '0', file: null },
-                      { cluster: 6, next: '0', file: null },
-                      { cluster: 7, next: '8', file: 'dovolena.jpg' },
-                      { cluster: 8, next: '14', file: 'dovolena.jpg' },
-                      { cluster: 9, next: '0', file: null },
-                      { cluster: 10, next: '0', file: null },
-                      { cluster: 11, next: '0', file: null },
-                      { cluster: 12, next: '0', file: null },
-                      { cluster: 13, next: '0', file: null },
-                      { cluster: 14, next: '15', file: 'dovolena.jpg' },
-                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg' },
+                      { cluster: 0, next: 'RES', file: 'FAT tabulka', isSystem: true },
+                      { cluster: 1, next: 'RES', file: 'Záloha FAT', isSystem: true },
+                      { cluster: 2, next: '3', file: 'zprava.txt', isSystem: false },
+                      { cluster: 3, next: 'EOF', file: 'zprava.txt', isSystem: false },
+                      { cluster: 4, next: '0', file: null, isSystem: false },
+                      { cluster: 5, next: '0', file: null, isSystem: false },
+                      { cluster: 6, next: '0', file: null, isSystem: false },
+                      { cluster: 7, next: '8', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 8, next: '14', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 9, next: '0', file: null, isSystem: false },
+                      { cluster: 10, next: '0', file: null, isSystem: false },
+                      { cluster: 11, next: '0', file: null, isSystem: false },
+                      { cluster: 12, next: '0', file: null, isSystem: false },
+                      { cluster: 13, next: '0', file: null, isSystem: false },
+                      { cluster: 14, next: '15', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg', isSystem: false },
                     ].map((row) => {
                       const isSky = row.file === 'zprava.txt';
                       const isAmber = row.file === 'dovolena.jpg';
+                      const isSystem = row.isSystem;
 
                       return (
                         <div
                           key={row.cluster}
-                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${isSky
-                            ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
-                            : isAmber
-                              ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
-                              : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
+                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${isSystem
+                            ? 'bg-indigo-50/90 border-indigo-200 text-indigo-900 font-bold'
+                            : isSky
+                              ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
+                              : isAmber
+                                ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
+                                : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
                             }`}
                         >
                           {/* 1. Sloupec: Číslo clusteru */}
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
-                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${isSky
-                                ? 'bg-sky-200 text-sky-950'
-                                : isAmber
-                                  ? 'bg-amber-200 text-amber-950'
-                                  : 'bg-slate-200/80 text-slate-600'
+                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${isSystem
+                                ? 'bg-indigo-200 text-indigo-950 font-black'
+                                : isSky
+                                  ? 'bg-sky-200 text-sky-950'
+                                  : isAmber
+                                    ? 'bg-amber-200 text-amber-950'
+                                    : 'bg-slate-200/80 text-slate-600'
                                 }`}
                             >
                               #{row.cluster}
                             </span>
                             {row.file && (
-                              <span className="text-[10px] font-sans font-medium opacity-75 truncate">
+                              <span className="text-[10px] font-sans font-medium opacity-85 truncate">
                                 ({row.file})
                               </span>
                             )}
@@ -358,11 +379,13 @@ export default function FatChapter({
                           {/* 2. Sloupec: Následující cluster */}
                           <div className="flex items-center gap-1.5 pl-1">
                             <span
-                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${isSky
-                                ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
-                                : isAmber
-                                  ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
-                                  : 'text-slate-400'
+                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${isSystem
+                                ? 'bg-white border border-indigo-300 text-indigo-700 shadow-xs'
+                                : isSky
+                                  ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
+                                  : isAmber
+                                    ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
+                                    : 'text-slate-400'
                                 }`}
                             >
                               {row.next}
@@ -375,8 +398,9 @@ export default function FatChapter({
 
                   <div className="mt-4 p-3 bg-slate-50 text-[11px] text-slate-600 border border-slate-200 rounded-xl leading-relaxed">
                     <strong>Jak číst FAT tabulku:</strong><br />
-                    • <strong>1. sloupec (Číslo clusteru):</strong> Fyzická adresa bloku na disku.<br />
-                    • <strong>2. sloupec (Následující cluster):</strong> Kam má systém skočit dál. Číslo <strong>0</strong> = volný cluster, <strong>číslo</strong> = odkaz na další cluster, <strong>EOF</strong> (End of File) = konec souboru.
+                    • <strong>#0 a #1:</strong> FAT tabulka a její záloha (uživatelská data začínají od #2).<br />
+                    • <strong>Číslo:</strong> Odkaz na další navazující cluster souboru.<br />
+                    • <strong>EOF (End of File):</strong> Poslední blok – soubor zde končí. Číslo <strong>0</strong> = volný cluster.
                   </div>
                 </div>
               </div>
@@ -387,13 +411,21 @@ export default function FatChapter({
 
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                   {[...Array(24)].map((_, i) => {
+                    const isFat = i === 0;
+                    const isBackup = i === 1;
                     const isSky = i === 2 || i === 3;
                     const isAmber = i === 7 || i === 8 || i === 14 || i === 15;
 
                     let bgClass = 'bg-white border-slate-200 text-slate-400';
                     let textTop = 'text-slate-300';
 
-                    if (isSky) {
+                    if (isFat) {
+                      bgClass = 'bg-indigo-100 border-indigo-300 text-indigo-900 shadow-xs';
+                      textTop = 'text-indigo-600 font-black';
+                    } else if (isBackup) {
+                      bgClass = 'bg-indigo-50 border-indigo-200 text-indigo-900 shadow-xs';
+                      textTop = 'text-indigo-500 font-bold';
+                    } else if (isSky) {
                       bgClass = 'bg-sky-500 border-sky-600 shadow-sm';
                       textTop = 'text-sky-100';
                     } else if (isAmber) {
@@ -407,7 +439,15 @@ export default function FatChapter({
                         className={`aspect-square rounded-xl flex flex-col items-center justify-center p-1 border-2 transition-transform hover:scale-105 relative ${bgClass}`}
                       >
                         <div className={`absolute top-1 left-1.5 text-[9px] font-mono opacity-80 ${textTop}`}>#{i}</div>
-                        {isSky ? (
+                        {isFat ? (
+                          <div className="text-[8px] sm:text-[9px] font-black mt-2 text-indigo-900 tracking-tight uppercase text-center px-0.5 leading-tight">
+                            FAT<br />tabulka
+                          </div>
+                        ) : isBackup ? (
+                          <div className="text-[8px] sm:text-[9px] font-black mt-2 text-indigo-800 tracking-tight uppercase text-center px-0.5 leading-tight">
+                            Záloha<br />FAT
+                          </div>
+                        ) : isSky ? (
                           <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>zprava<br />.txt</div>
                         ) : isAmber ? (
                           <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>dovolena<br />.jpg</div>
@@ -417,6 +457,38 @@ export default function FatChapter({
                       </div>
                     );
                   })}
+                </div>
+
+                {/* Legenda a vysvětlení rozložení na disku */}
+                <div className="mt-6 space-y-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-medium text-slate-600">
+                    <div className="flex items-center gap-1.5 p-2 bg-indigo-50 rounded-lg border border-indigo-200">
+                      <span className="w-3 h-3 rounded bg-indigo-500 shrink-0"></span>
+                      <span><strong>#0:</strong> FAT tabulka</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-indigo-50/60 rounded-lg border border-indigo-100">
+                      <span className="w-3 h-3 rounded bg-indigo-300 shrink-0"></span>
+                      <span><strong>#1:</strong> Záloha FAT</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-sky-50 rounded-lg border border-sky-200">
+                      <span className="w-3 h-3 rounded bg-sky-500 shrink-0"></span>
+                      <span><strong>#2, #3:</strong> zprava.txt</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-amber-50 rounded-lg border border-amber-200">
+                      <span className="w-3 h-3 rounded bg-amber-500 shrink-0"></span>
+                      <span><strong>#7, #8...:</strong> dovolena.jpg</span>
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 bg-white rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed shadow-xs flex items-start gap-2.5">
+                    <HardDrive className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-800 text-[11px] uppercase tracking-wider block mb-0.5">FAT tabulka a její záloha:</strong>
+                      <p className="text-slate-600">
+                        V prvním sektoru (<strong>#0</strong>) se nachází hlavní <strong>FAT tabulka</strong> a hned v dalším (<strong>#1</strong>) její <strong>záloha</strong>. Kdyby se první sektor poškodil, systém nepřijde o data a použije záložní tabulku. Uživatelská data proto začínají až od sektoru <strong>#2</strong>.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -432,7 +504,6 @@ export default function FatChapter({
             <ul className="list-disc list-inside space-y-1.5 mt-2 ml-2 text-sm text-slate-600">
               <li>Rozdělí prostor na <strong>clustery</strong> pevné velikosti (např. 4 KB).</li>
               <li>Vytvoří <strong>prázdnou alokační tabulku</strong> (např. FAT tabulku plnou nul) a kořenový adresář složek.</li>
-              <li>Zapíše spouštěcí záznam (Boot Sector / Volume Boot Record).</li>
             </ul>
 
             <div className="grid md:grid-cols-2 gap-6 mt-6">
@@ -617,10 +688,10 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm font-black">2</span>
-                Test 1B souboru a formátování oddílu (FAT32 vs. NTFS)
+                Test 1B souboru (FAT32 vs. NTFS)
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Na zvoleném disku či oddílu (např. na flash disku) porovnejte chování systémů FAT32 a NTFS při ukládání 1bajtového souboru a vyzkoušejte si oba způsoby formátování.
+                Na připraveném diskovém oddílu <strong>D:</strong> porovnejte chování systémů FAT32 a NTFS při ukládání 1bajtového souboru a alokaci clusterů.
               </p>
 
               {/* Část A: FAT32 */}
@@ -685,31 +756,6 @@ export default function FatChapter({
                   className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
-
-              {/* Část C: Praktická práce s formátováním */}
-              <div className="space-y-3 mb-4">
-                <div
-                  onClick={() => toggleCheck('sec_2c')}
-                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['sec_2c'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
-                >
-                  {checkedItems['sec_2c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['sec_2c'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Na tomto oddílu vyzkoušejte oba způsoby formátování: <strong>Rychlé formátování</strong> i <strong>Pomalé (úplné) formátování</strong> (se zrušeným zaškrtnutím Rychlé formátování).
-                  </span>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  2.4 Co se děje se samotnými daty na disku a se strukturami souborového systému při Rychlém formátování a co při Pomalém (úplném) formátování?
-                </label>
-                <textarea
-                  value={answers['format_principles'] || ''}
-                  onChange={(e) => handleAnswerChange('format_principles', e.target.value)}
-                  placeholder="Popište rozdíl mezi rychlým a pomalým formátováním..."
-                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
-                />
-              </div>
             </div>
 
             <hr className="border-slate-200" />
@@ -718,10 +764,10 @@ export default function FatChapter({
             <div>
               <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-black">3</span>
-                Limity FAT32 vs. exFAT (Bariéra 4 GB v praxi)
+                Limity FAT32 vs. NTFS (Bariéra 4 GB v praxi)
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Prozkoumejte limity 32bitového souborového systému při práci s velkými moderními soubory.
+                Prozkoumejte limity 32bitového souborového systému (FAT32) při práci se soubory většími než 4 GB a porovnejte jej s moderním systémem NTFS na disku <strong>D:</strong>.
               </p>
 
               <div className="space-y-3 mb-6">
@@ -730,30 +776,36 @@ export default function FatChapter({
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['lim_3a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['lim_3a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
-                  <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3a'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    V Průzkumníku naformátujte flash disk na systém souborů <strong>FAT32</strong> (použijte rychlé formátování) a zkontrolujte, že má disk dostatek volného místa.
-                  </span>
+                  <div className="text-sm font-medium flex-1 text-slate-700 space-y-1">
+                    <p className={checkedItems['lim_3a'] ? 'line-through opacity-70 text-emerald-900' : ''}>
+                      Naformátujte diskový oddíl <strong>D:</strong> na systém souborů <strong>FAT32</strong>:
+                    </p>
+                    <p className="text-xs text-slate-500 font-normal">
+                      V Příkazovém řádku zadejte: <code className="bg-slate-200 px-2 py-0.5 rounded text-[11px] font-mono text-slate-900 font-bold">format D: /FS:FAT32 /Q</code> (případně v Průzkumníku zvolte FAT32, je-li v nabídce) a zkontrolujte, že má oddíl dostatek volného místa.
+                    </p>
+                  </div>
                 </div>
+
                 <div
                   onClick={() => toggleCheck('lim_3b')}
                   className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['lim_3b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
                 >
                   {checkedItems['lim_3b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3b'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Ze sdíleného síťového disku (nebo od vyučujícího) se pokuste zkopírovat soubor o velikosti cca 4,3 GB (např. ISO instalační obraz nebo video) na flash disk formátovaný na FAT32.
+                    Ze sdíleného síťového disku (nebo od vyučujícího) se pokuste zkopírovat soubor o velikosti cca 4,3 GB (např. ISO instalační obraz nebo video) na oddíl <strong>D:</strong> formátovaný na FAT32.
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  3.1 Jaká přesná chybová hláška se v dialogu Windows zobrazila, ačkoliv je na disku mnoho gigabajtů volného místa?
+                  3.1 Jaká přesná chybová hláška se v dialogu Windows zobrazila, ačkoliv je na oddílu D: mnoho gigabajtů volného místa? Proč FAT32 takto velký soubor nedokáže uložit?
                 </label>
                 <textarea
                   value={answers['fat32_error_msg'] || ''}
                   onChange={(e) => handleAnswerChange('fat32_error_msg', e.target.value)}
-                  placeholder="Zapište doslovné znění chybového hlášení..."
-                  className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                  placeholder="Zapište doslovné znění chybového hlášení a vysvětlete limit 32bitového adresování (2^32 bajtů = 4 GB)..."
+                  className="w-full min-h-[75px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>
 
@@ -764,19 +816,186 @@ export default function FatChapter({
                 >
                   {checkedItems['lim_3c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
                   <span className={`text-sm font-medium flex-1 ${checkedItems['lim_3c'] ? 'text-emerald-900 line-through opacity-70' : 'text-slate-700'}`}>
-                    Přeformátujte flash disk na systém souborů <strong>exFAT</strong> a zopakujte kopírování téhož velkého souboru (&gt; 4 GB).
+                    V Průzkumníku klikněte pravým tlačítkem na diskový oddíl <strong>D:</strong> $\rightarrow$ <strong>Formátovat...</strong> $\rightarrow$ přeformátujte jej na moderní systém souborů <strong>NTFS</strong> a zopakujte kopírování téhož velkého souboru (&gt; 4 GB).
                   </span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                  3.2 Prošel zápis na exFAT úspěšně? Jaké jsou hlavní výhody exFAT oproti starému FAT32?
+                  3.2 Prošel zápis na NTFS úspěšně? Jaké jsou maximální limity velikosti souboru v systému NTFS oproti starému FAT32?
                 </label>
                 <textarea
-                  value={answers['exfat_benefits'] || ''}
-                  onChange={(e) => handleAnswerChange('exfat_benefits', e.target.value)}
-                  placeholder="Zapište zjištěné výhody systému exFAT..."
+                  value={answers['ntfs_benefits'] || answers['exfat_benefits'] || ''}
+                  onChange={(e) => handleAnswerChange('ntfs_benefits', e.target.value)}
+                  placeholder="Zapište zjištěné poznatky o možnostech NTFS..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                />
+              </div>
+            </div>
+
+            <hr className="border-slate-200" />
+
+            {/* ÚKOL 4 */}
+            <div>
+              <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-2 flex items-center gap-2">
+                <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm font-black">4</span>
+                Obnova smazaných dat (Shift + Delete a Rychlé formátování)
+              </h3>
+              
+              <div className="bg-rose-50/70 p-4 rounded-xl border border-rose-200 text-xs text-rose-900 leading-relaxed mb-6 space-y-1">
+                <strong>Cíl úlohy:</strong>
+                <p>
+                  Ověřit v praxi, jak souborový systém NTFS nakládá se smazanými daty. Vyzkoušíte trvalé smazání souboru pomocí <code>Shift + Delete</code> (které zcela vynechá systémový Koš) a následně i situaci po provedení Rychlého formátování oddílu. K obnově použijeme oficiální nástroj Microsoftu <code>winfr</code> (Windows File Recovery).
+                </p>
+              </div>
+
+              {/* Krok 1: Příprava */}
+              <div className="space-y-3 mb-6">
+                <div
+                  onClick={() => toggleCheck('rec_4a')}
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['rec_4a'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                >
+                  {checkedItems['rec_4a'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <div className="text-sm font-medium flex-1 text-slate-700 space-y-2">
+                    <p className={checkedItems['rec_4a'] ? 'line-through opacity-70 text-emerald-900' : ''}>
+                      <strong>1. Krok – Příprava nástroje a testovacího souboru:</strong>
+                    </p>
+                    <ul className="text-xs text-slate-600 list-disc pl-5 space-y-1 font-normal">
+                      <li>
+                        Otevřete aplikaci <strong>Microsoft Store</strong> ve Windows, vyhledejte bezplatnou oficiální aplikaci <strong>Windows File Recovery</strong> (od <em>Microsoft Corporation</em>) a klikněte na <strong>Získat / Nainstalovat</strong>.
+                        <br />
+                        <span className="block text-[11px] text-slate-500 mt-0.5">
+                          (Přímý odkaz: <a href="https://apps.microsoft.com/detail/9N26S50LN705" target="_blank" rel="noreferrer" className="text-indigo-600 underline hover:text-indigo-800">Microsoft Store – Windows File Recovery</a>).
+                        </span>
+                      </li>
+                      <li>
+                        Připravte si oddíl nebo virtuální disk <strong>D:</strong> naformátovaný na <strong>NTFS</strong>.
+                      </li>
+                      <li>
+                        Stáhněte testovací fotografii (např. klikněte pravým tlačítkem a <em>Uložit odkaz jako...</em>):
+                        <br />
+                        <a 
+                          href="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Fronalpstock_big.jpg/1920px-Fronalpstock_big.jpg" 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="text-indigo-600 underline text-xs font-mono break-all inline-block mt-0.5 hover:text-indigo-800"
+                        >
+                          https://thumb.wikimedia.org/.../1920px-Fronalpstock_big.jpg
+                        </a>
+                        <br />
+                        a uložte soubor přímo do kořene disku jako <code>D:\hora.jpg</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Krok 2: Shift + Delete a obnova /regular */}
+                <div
+                  onClick={() => toggleCheck('rec_4b')}
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['rec_4b'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                >
+                  {checkedItems['rec_4b'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <div className="text-sm font-medium flex-1 text-slate-700 space-y-2">
+                    <p className={checkedItems['rec_4b'] ? 'line-through opacity-70 text-emerald-900' : ''}>
+                      <strong>2. Krok – Trvalé smazání (Shift + Delete) a rychlá obnova:</strong>
+                    </p>
+                    <ul className="text-xs text-slate-600 list-disc pl-5 space-y-1 font-normal">
+                      <li>
+                        Označte soubor <code>D:\hora.jpg</code> a smažte jej klávesovou zkratkou <strong>Shift + Delete</strong>.
+                        <br />
+                        <span className="text-slate-500 italic">
+                          (Tato zkratka obejde Koš <code>$Recycle.Bin</code> – soubor se nepřesouvá do koše, ale v tabulce MFT je jeho záznam označen jako volný k přepsání).
+                        </span>
+                      </li>
+                      <li>
+                        Spusťte Příkazový řádek (nebo Terminál) <strong>jako správce</strong> a spusťte připravený příkaz pro obnovu:
+                        <br />
+                        <code className="bg-slate-900 text-emerald-400 px-2.5 py-1 rounded text-xs font-mono inline-block mt-1.5 shadow-sm">
+                          winfr D: C:\Obnova /regular /n *.jpg
+                        </code>
+                        <span className="block text-[11px] text-slate-500 mt-1">
+                          (Při dotazu stiskněte klávesu <code>y</code> pro potvrzení pokračování).
+                        </span>
+                      </li>
+                      <li>
+                        Po dokončení otevřete cílovou složku <code>C:\Obnova</code> (nebo podsložku s datem obnovy) a zkontrolujte obnovený obrázek.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                  4.1 Podařilo se soubor v režimu /regular úspěšně obnovit a zobrazit? Zůstal zachován původní název a velikost souboru? Proč byl proces tak rychlý?
+                </label>
+                <textarea
+                  value={answers['rec_shift_del_result'] || ''}
+                  onChange={(e) => handleAnswerChange('rec_shift_del_result', e.target.value)}
+                  placeholder="Popište výsledek obnovy po Shift+Delete a chování MFT..."
+                  className="w-full min-h-[75px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                />
+              </div>
+
+              {/* Krok 3: Rychlé formátování a obnova /extensive */}
+              <div className="space-y-3 mb-6">
+                <div
+                  onClick={() => toggleCheck('rec_4c')}
+                  className={`flex items-start gap-4 p-4 cursor-pointer rounded-2xl border-2 transition-all ${checkedItems['rec_4c'] ? 'bg-emerald-50 border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                >
+                  {checkedItems['rec_4c'] ? <CheckSquare className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" /> : <Square className="w-6 h-6 text-slate-400 shrink-0 mt-0.5" />}
+                  <div className="text-sm font-medium flex-1 text-slate-700 space-y-2">
+                    <p className={checkedItems['rec_4c'] ? 'line-through opacity-70 text-emerald-900' : ''}>
+                      <strong>3. Krok – Rychlé formátování oddílu a hloubková obnova (/extensive):</strong>
+                    </p>
+                    <ul className="text-xs text-slate-600 list-disc pl-5 space-y-1 font-normal">
+                      <li>
+                        Zkopírujte obnovený obrázek zpět na disk <strong>D:\hora.jpg</strong>.
+                      </li>
+                      <li>
+                        V Průzkumníku klikněte na jednotku <strong>D:</strong> pravým tlačítkem $\rightarrow$ <strong>Formátovat...</strong> $\rightarrow$ ujistěte se, že je zaškrtnuto <strong>Rychlé formátování</strong> a klikněte na <em>Spustit</em>.
+                        <br />
+                        <span className="text-slate-500 italic">
+                          (Rychlé formátování vytvoří novou prázdnou tabulku MFT. Původní katalog souborů zanikl!).
+                        </span>
+                      </li>
+                      <li>
+                        V Příkazovém řádku správce zadejte příkaz pro hloubkovou signaturní obnovu (režim <code>/extensive</code>):
+                        <br />
+                        <code className="bg-slate-900 text-emerald-400 px-2.5 py-1 rounded text-xs font-mono inline-block mt-1.5 shadow-sm">
+                          winfr D: C:\Obnova2 /extensive /n *.jpg
+                        </code>
+                      </li>
+                      <li>
+                        Po dokončení prohledání sektorů zkontrolujte složku <code>C:\Obnova2</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                  4.2 Podařilo se soubor po rychlém formátování obnovit pomocí parametru /extensive? Proč tato obnova funguje i tehdy, když byl celý souborový systém zformátován?
+                </label>
+                <textarea
+                  value={answers['rec_format_result'] || ''}
+                  onChange={(e) => handleAnswerChange('rec_format_result', e.target.value)}
+                  placeholder="Vysvětlete, jak režim /extensive (carving) hledá data v surových sektorech bez pomoci MFT tabulky..."
+                  className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
+                />
+              </div>
+
+              {/* Závěr a bezpečnost */}
+              <div className="mb-6">
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                  4.3 Závěr k bezpečnosti dat: Proč pouhé smazání souborů ani Rychlé formátování nestačí, pokud disk prodáváte nebo vyřazujete? Jaký postup je nutné zvolit pro bezpečné vymazání dat?
+                </label>
+                <textarea
+                  value={answers['rec_security_conclusion'] || ''}
+                  onChange={(e) => handleAnswerChange('rec_security_conclusion', e.target.value)}
+                  placeholder="Zapište závěrečné zhodnocení (rozdíl oproti úplnému/pomalému formátování se zápisem nul nebo specializovaným wiperům)..."
                   className="w-full min-h-[85px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-700 resize-none shadow-inner"
                 />
               </div>

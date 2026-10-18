@@ -63,10 +63,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - **FS1 Úvod a architektura** (`/souborove-systemy/uvod`): Role FS, sjednocený vrstvený model OS (User Space -> Syscall -> Kernel Space s FS a ovladačem -> Hardware s mřížkou sektorů), abstrakce souborů a složek.
    - **FS2 Paměťová média** (`/souborove-systemy/media`): Plotnový HDD (stopy, sektory, cylindry) vs. SSD (NAND buňky).
    - **FS3 Dělení disku** (`/souborove-systemy/deleni-disku`): Oddíly, MBR vs. GPT, boot oddíl, svazky.
-   - **FS4 Systém souborů (FAT)** (`/souborove-systemy/alokace-fat`): FAT tabulka, klastry, řetězení clusterů, vnitřní fragmentace, smazaná data.
-   - **FS5 Fragmentace a údržba** (`/souborove-systemy/fragmentace`): Vnější fragmentace HDD, defragmentace, proč se SSD nedefragmentuje (TRIM), oprava sektorů (`chkdsk`).
-   - **FS6 Architektura v praxi** (`/souborove-systemy/cteni-souboru`): Simulace toku dat při čtení (Aplikace -> OS -> FAT -> Čtení klastrů z disku).
-   - **FS-ADV Pokročilá témata** (`/souborove-systemy/pokrocile`): Alokační strategie (First Fit, Best Fit, Worst Fit).
+   - **FS4 Systém souborů (FAT)** (`/souborove-systemy/alokace-fat`): FAT tabulka, klastry, řetězení clusterů, vnitřní fragmentace, zjednodušená fyzická mřížka (#0 FAT tabulka, #1 Záloha FAT bez rušivých detailů). Interaktivní simulátor `FATGame.tsx` rozdělen do 7 gradovaných úrovní (3x vyhledávání souborů s plným adresářem, 3x zápis a propojování řetězců clusterů, 1x BAD clustery). Součástí je praktický list s novým **Úkolem 4**: instalace `winfr` z Microsoft Store, obnova souboru `hora.jpg` po trvalém smazání `Shift + Delete` (`/regular`) a následně i po Rychlém formátování svazku (`/extensive`), včetně exportu protokolu do Wordu.
+   - **FS-FMT Formátování disku** (`/souborove-systemy/formatovani`): Interaktivní trenažér `FormattingGame.tsx` srovnávající Rychlé formátování (pouze okamžitý výmaz FAT tabulky) a Úplné/Pomalé formátování (postupný fyzický přepis všech sektorů/clusterů nulami – Zero-fill) se zpomalenou vizualizací zápisu nul.
+   - **FS5 Architektura v praxi** (`/souborove-systemy/cteni-souboru`): Simulace toku dat při čtení (Aplikace -> OS -> FAT -> Čtení klastrů z disku).
+   - **FS-ADV Pokročilá témata a údržba disku** (`/souborove-systemy/pokrocile`): Sloučená kapitola obsahující teorii fragmentace a defragmentace (HDD vs. SSD a TRIM), mazání a mýtus o prázdném disku, alokační strategie (First Fit, Best Fit, Worst Fit) a 4 simulátory/hry: Defragmentace disku, Oprava chyb (CHKDSK), Alokační strategie a Velikost clusteru.
 
 ### Blok 4: Procesy a správa paměti
 10. **Procesy a paměť** (`/specializovana/operacni-systemy-1/procesy`) – *Podkapitoly:*

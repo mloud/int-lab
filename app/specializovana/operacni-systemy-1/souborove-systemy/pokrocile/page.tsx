@@ -14,6 +14,8 @@ export default function Page() {
           onBack={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy')} 
           onOpenAllocationGame={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy/alokace')}
           onOpenClusterSizeGame={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy/velikost-clusteru')}
+          onOpenDefragGame={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy/defrag')}
+          onOpenChkdskGame={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy/chkdsk')}
         />
       </div>
     </ChapterLayout>
