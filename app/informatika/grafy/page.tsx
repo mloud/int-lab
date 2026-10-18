@@ -1,14 +1,16 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import BarChartsChapter from '@/components/informatika/grafy/BarChartsChapter';
+import DynamicSubchapterHub from '@/components/curriculum/DynamicSubchapterHub';
+import CategoryLayout from '@/components/layout/CategoryLayout';
 
-export default function Page() {
-  const router = useRouter();
-
+export default function GrafyHubPage() {
   return (
-    <div className="w-full h-full min-h-screen bg-slate-50">
-      <BarChartsChapter onBack={() => router.push('/informatika')} />
-    </div>
+    <CategoryLayout 
+      title="Grafy a vizualizace" 
+      category="informatika"
+      parent={{ title: 'Informatika 9', path: '/informatika/9' }}
+    >
+      <DynamicSubchapterHub chapterId="grafy" />
+    </CategoryLayout>
   );
 }

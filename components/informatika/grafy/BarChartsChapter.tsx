@@ -80,8 +80,8 @@ const BarChartsChapter: React.FC<BarChartsChapterProps> = ({ onBack }) => {
   return (
     <FsChapterShell
       title="Sloupcové grafy"
-      description="Naučte se pracovat s normálními a skládanými sloupcovými grafy."
-      icon={BarChart3}
+      subtitle="Naučte se pracovat s normálními a skládanými sloupcovými grafy."
+      icon={<BarChart3 className="w-8 h-8" />}
       tabs={tabs}
       activeTab={activeTab}
       onTabChange={setActiveTab}

@@ -381,6 +381,32 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - `components/specializovana/operacni-systemy/souborove-systemy/DiskPartitionChapter.tsx` – tlačítko pro spuštění bootovacího simulátoru aktualizováno na novou routu
       - `doc/curriculum/OSS1.md`, `doc/history.md`, `doc/plan.md` – sjednocena dokumentace a záznamy
     - Vše validováno a zkompilováno přes produkční `npm run build` (všech 257 statických stránek vygenerováno bez chyb).
+  - **2026-10-17 – Přestavba tématu Grafy v Informatice 9 na kapitolu s podkapitolami:**
+    - V kurikulu školy (`defaultSchool.ts` u předmětu `inf-9`) bylo téma **Grafy** povýšeno na hlavní kapitolu (`hasSubchapters: true`, `route: '/informatika/grafy'`).
+    - Stávající interaktivní lekce **Sloupcové grafy** byla přesunuta jako první podkapitola (`route: '/informatika/grafy/sloupcove'`, tag `GR1`).
+    - Stránka `app/informatika/grafy/page.tsx` byla přestavěna na rozcestník s `CategoryLayout` a `DynamicSubchapterHub` (připraveno pro okamžité doplnění dalších typů grafů).
+    - Vytvořena nová stránka `app/informatika/grafy/sloupcove/page.tsx` s obalem a navigací zpět do rozcestníku grafů.
+    - Záznam v `registry/lessons.ts` (`grafy-sloupcove`) aktualizován na novou výchozí cestu `/informatika/grafy/sloupcove` a zanořen pod kapitolu Grafy.
+    - Validováno přes produkční sestavení `npm run build` (258 statických stránek zkompilováno bez chyb).
+  - **2026-10-18 – Vytvoření podkapitoly Spojnicové grafy (Informatika 9):**
+    - Do kurikula školy (`defaultSchool.ts` v kapitole `grafy` pro 9. ročník) přidána druhá podkapitola **Spojnicové grafy** (`route: '/informatika/grafy/spojnicove'`, tag `GR2`, ikona `LineChart`, gradient `from-blue-500 to-indigo-600`).
+    - Vytvořena nová modulární komponenta v `components/informatika/grafy/spojnicove/`:
+      - `lineChartTypes.ts` – datové modely pro 1 a 2 řady a šablony dat.
+      - `LineChartsTheoryTab.tsx` – výklad časových řad, sledování trendů, kdy spojnicový graf použít a kdy je to chyba, a interaktivní detektor manipulace s ustřiženou osou Y (přepínač mezi poctivou osou od 0 °C a dramatickým zoomem).
+      - `LineChartsSimulatorTab.tsx` – dva živé interaktivní SVG simulátory: 1. Jedna řada s editovatelnou tabulkou, šablonami (teplota, návštěvnost, cena) a přepínačem ořezu osy Y; 2. Porovnání dvou řad s legendou a detekcí bodu křížení.
+      - `LineChartsWorksheetTab.tsx` – 4krokový badatelský úkol: Lovci časových dat ➔ Tabulka s chronologickou osou X ➔ Vizualizace a checklist ➔ Analýza trendu a kritické zhodnocení.
+    - **Didaktické a vizuální zpřesnění (Křížení křivek & Manipulace s osou Y):**
+      - **Jediný a přesný bod křížení:** Opraven diagram křížení trendů – modrá křivka (Kanál A) a fialová přímka (Kanál B) mají striktně jediný průsečík ve Středu na souřadnicích `(160, 55)`. Červený bod `Bod křížení` leží exaktně na tomto průsečíku a osa X obsahuje přehledné dny `Po, Út, St, Čt, Pá`.
+      - **Realistický příklad ustřižené osy Y (Trik e-shopu):** Původní příklad nahrazen reálným tématem pro 9. ročník – vývoj ceny herní konzole v e-shopu (12 890 Kč až 13 190 Kč). Při poctivé ose od 0 Kč žáci vidí, že cena je téměř stejná (výkyv jen 2,3 %). Při přepnutí na ustřiženou osu od 12 700 Kč křivka padá přes celou výšku grafu, což demonstruje optickou manipulaci slevami.
+    - Úspěšně validováno přes produkční sestavení `npm run build` (všech 259 statických stránek vygenerováno bez chyb).
+  - **2026-10-18 – Přesná harmonizace PRG 2 Lekce 11 (Program s opakováním) podle PDF:**
+    - Kapitola `Program s opakováním` (`/specializovana/programovani-2/python-cyklus`) byla detailně zkontrolována a zrevidována podle oficiální učebnice *Programování v jazyce Python pro střední školy (Lekce 11, iMyšlení PRIM)*.
+    - Odstraněny všechny uměle vytvořené názvy úloh a parafrázované či přidané texty.
+    - Znění všech 15 úloh (Úlohy 1 až 15*) bylo 1:1 sjednoceno s originálním PDF zadáním (včetně původního grafického náčrtu GPS bodů, ukázek terminálových výstupů, diagramu for cyklu s vysvětlivkami a žlutě zvýrazněného parametru font).
+    - Metodické poznámky pro učitele (zpřístupněné pod PINem) byly doplněny o přesná autorská řešení a didaktické pokyny.
+    - Komponenty `PythonLoopChapter.tsx` a `PythonLoopsChapter.tsx` byly sjednoceny.
+
+
 
 
 

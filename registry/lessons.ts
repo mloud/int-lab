@@ -1315,12 +1315,12 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   {
     id: 'grafy-sloupcove',
     title: 'Sloupcové grafy a vizualizace dat',
-    shortCode: '#gra',
+    shortCode: '#gra1',
     description: 'Tvorba, čtení a interpretace datových grafů a diagramů.',
     domain: 'informatika-obecna',
     category: 'grafika-a-multimedia',
     contentType: 'interactive-chapter',
-    defaultPath: '/informatika/grafy',
+    defaultPath: '/informatika/grafy/sloupcove',
     iconName: 'BarChart3',
     keywords: ['grafy', 'sloupce', 'data', 'statistika', 'vizualizace'],
     difficulty: 'medium',
@@ -1334,8 +1334,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       grade: 9,
       gradeLabel: '9. Třída',
       subject: 'Informatika',
-      thematicBlock: 'Sloupcové grafy',
-      chapter: 'Čtení a tvorba sloupcových grafů',
+      thematicBlock: 'Grafy a vizualizace dat',
+      chapter: 'Grafy',
+      subchapter: 'Sloupcové grafy',
       lesson: 'Sloupcové grafy a vizualizace dat'
     },
     tabs: {
@@ -1345,6 +1346,41 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       worksheetType: 'worksheet'
     },
     componentLoader: () => import('@/components/informatika/grafy/BarChartsChapter')
+  },
+  {
+    id: 'grafy-spojnicove',
+    title: 'Spojnicové grafy a časové řady',
+    shortCode: '#gra2',
+    description: 'Sledování vývoje v čase, čtení trendů, porovnání křivek a odhalení manipulací měřítkem.',
+    domain: 'informatika-obecna',
+    category: 'grafika-a-multimedia',
+    contentType: 'interactive-chapter',
+    defaultPath: '/informatika/grafy/spojnicove',
+    iconName: 'LineChart',
+    keywords: ['grafy', 'spojnice', 'časové řady', 'trend', 'manipulace', 'osa y', 'statistika', 'vizualizace'],
+    difficulty: 'medium',
+    targetAudience: ['zs-2-stupen'],
+    recommendedGrades: [9],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'zs',
+      schoolName: 'Základní škola',
+      trackName: 'Základní vzdělávání',
+      grade: 9,
+      gradeLabel: '9. Třída',
+      subject: 'Informatika',
+      thematicBlock: 'Grafy a vizualizace dat',
+      chapter: 'Grafy',
+      subchapter: 'Spojnicové grafy',
+      lesson: 'Spojnicové grafy a časové řady'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: true,
+      worksheetType: 'worksheet'
+    },
+    componentLoader: () => import('@/components/informatika/grafy/spojnicove/LineChartsChapter')
   },
 
   // =========================================================================

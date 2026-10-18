@@ -282,13 +282,37 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 },
                 {
                   id: 'grafy',
-                  title: 'Sloupcové grafy',
-                  description: 'Čtení, vizualizace a interpretace datových řad pomocí sloupcových grafů.',
+                  title: 'Grafy',
+                  description: 'Tvorba, čtení, vizualizace a interpretace datových řad pomocí různých typů grafů.',
                   tag: 'gra',
                   icon: 'BarChart3',
                   gradient: 'from-emerald-500 to-green-600',
                   route: '/informatika/grafy',
-                  hasSubchapters: false,
+                  hasSubchapters: true,
+                  subchapters: [
+                    {
+                      id: 'grafy-sloupcove',
+                      title: 'Sloupcové grafy',
+                      description: 'Čtení, vizualizace a interpretace datových řad pomocí sloupcových grafů.',
+                      tag: 'GR1',
+                      icon: 'BarChart3',
+                      gradient: 'from-emerald-500 to-green-600',
+                      route: '/informatika/grafy/sloupcove',
+                      orderNumber: 1,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'grafy-spojnicove',
+                      title: 'Spojnicové grafy',
+                      description: 'Sledování vývoje a trendů v čase, čtení časových řad a odhalení manipulací měřítkem.',
+                      tag: 'GR2',
+                      icon: 'LineChart',
+                      gradient: 'from-blue-500 to-indigo-600',
+                      route: '/informatika/grafy/spojnicove',
+                      orderNumber: 2,
+                      actionLabel: 'Otevřít kapitolu'
+                    }
+                  ]
                 },
                 {
                   id: 'ar',
