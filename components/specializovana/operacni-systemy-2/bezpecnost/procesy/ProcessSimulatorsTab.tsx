@@ -405,7 +405,7 @@ export default function ProcessSimulatorsTab() {
                         </p>
                         <div className="pt-1 flex items-center gap-2 text-[11px] font-bold text-emerald-900">
                           <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                          Smart App Control: Spuštění povoleno bez varování
+                          Lokální kontrola: Integrita ověřena, podpis je platný. Kód nebyl pozměněn.
                         </div>
                       </div>
                     ) : (
@@ -418,14 +418,14 @@ export default function ProcessSimulatorsTab() {
                           Změna jediného znaku vyvolala lavinový efekt. Živý hash se neshoduje s pečetí v certifikátu.
                         </p>
                         
-                        {/* Simulované varování Windows SmartScreen */}
+                        {/* Lokální reakce operačního systému */}
                         <div className="p-3 bg-white rounded-xl border border-rose-200 text-xs shadow-xs space-y-1">
                           <div className="flex items-center gap-1.5 font-bold text-rose-900 text-[11px]">
                             <Shield className="w-3.5 h-3.5 text-rose-600" />
-                            Reakce Windows (Smart App Control & SmartScreen):
+                            Reakce operačního systému (Lokální kontrola):
                           </div>
                           <div className="text-[11px] text-slate-700 bg-rose-50/50 p-2 rounded border border-rose-100 font-medium">
-                            ⚠️ <strong>„Systém Windows ochránil váš počítač:</strong> Spuštění aplikace bylo zablokováno. Integrita souboru byla porušena nebo je vydavatel neznámý.“
+                            ⚠️ <strong>Lokální kontrola integrity selhala:</strong> Spuštění aplikace bylo okamžitě zablokováno přímo v počítači. Kód souboru byl změněn a pečeť je neplatná. K navazující cloudové kontrole se soubor ani nedostane.
                           </div>
                         </div>
                       </div>

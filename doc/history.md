@@ -71,7 +71,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 ### Blok 4: Procesy a správa paměti
 10. **Procesy a paměť** (`/specializovana/operacni-systemy-1/procesy`) – *Podkapitoly:*
     - **PR1 Úvod a vznik procesu** (`/procesy/uvod`): Modulární struktura (`ProcessIntroChapter.tsx`, `intro/ProcessIntroTheoryTab.tsx`, `intro/ProcessIntroWorksheetTab.tsx`). Program vs. proces v RAM, identifikace PID a PPID (rodič/potomek), sjednocené schéma paměti RAM z Von Neumannovy architektury, PCB, izolace paměti a ochrana. Integrován interaktivní praktický list s Task Managerem, CLI `tasklist` a Process Explorerem z Sysinternals s exportem do Wordu. V teoretickém bloku paměti procesu sjednocen program (1: VÝSLEDEK = 5 + 7, 2: ULOŽ VÝSLEDEK, 3: PRINT VÝSLEDEK a v datech VÝSLEDEK = 12) v zelených blocích, s explicitním vysvětlením přenosu výsledku z procesoru do RAM.
-      - *Didaktická revize listu:* Opravena mylná představa, že ukončení rodiče ukončí potomky (Windows potomky nezabíjí – nahrazeno bodem „Kdo koho spustil“). Otázka 4.1 sjednocena na `lt 10000` = 10 MB. Přidány reflexní otázky 2.1 (srovnání měření Edge před videem a při něm) a 3.2 (calc.exe vs. CalculatorApp.exe), tipy na klávesu Ctrl (úkol 1), zobrazení sloupce PID (úkol 2) a upozornění na rozdílné metriky RAM ve Správci úloh a v `tasklist` (úkol 7*). Úkol 5* ponechán beze změny. Na učebních PC s Win 11 je potřeba ověřit chování Notepadu (záložky, aplikace ze Storu).
+      - *Didaktická revize listu:* Zadání všech úloh zkrácena a zacílena na středoškolské studenty (vynecháno zbytečné vodění za ruku, odstraněn zbytný rozbalovací blok o architektuře Edge, zkráceny kroky a metodický přehled). Úkoly 1–4 i rozšiřující úkoly 5*–7* formulovány přímočaře (stručný cíl, 2–3 přímé kroky, kompaktní tip). Formulace sjednoceny v UI i v HTML šabloně pro export do Wordu.
     - **PR2 Střídání procesů (Multitasking)** (`/procesy/stridani`): Modulární struktura (`ProcessSwitchingChapter.tsx`, `stridani/`). Time-sharing, časová kvanta (10–30 ms), registr PC (čítač instrukcí), uložení stavu registrů do PCB a přepnutí kontextu (Context Switch). Interaktivní SVG krokovací trenažér střídání Wordu a Kalkulačky na CPU.
     - **PR3 Životní cyklus a stavy** (`/procesy/stavy`): `ProcessStatesChapter.tsx` (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený). Rychlostní propast CPU (nanosekundy) vs. disk (milisekundy).
     - **PR4 Vlákna (Threads)** (`/procesy/vlakna`): `ProcessThreadsChapter.tsx` (Těžký proces vs. lehká vlákna, sdílená paměť, vícevláknový běh her, vícejádrová CPU).
@@ -429,6 +429,39 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
          - Teoretický rozbor jednotky MMU, iluze souvislého adresního prostoru od 0, 4kB stránkování a odkládacího souboru `pagefile.sys`.
          - Interaktivní simulátor překladu adres a výpadku stránky (Page Fault): demonstrace omezené fyzické RAM (2 rámce), mapování přes Tabulku stránek a odkládání nepoužívaných dat do `pagefile.sys` s počítadlem Page Hits / Faults.
     - Přečíslovány návazné kapitoly: Životní cyklus na PR3 a Vlákna na PR4.
+  - **2026-10-19 – Bezpečnost OS (OSS 2 – 2. ročník): Úprava teorie digitálních podpisů a integrity:**
+    - V kapitole **BZ2: Správa procesů a certifikáty** (`components/specializovana/operacni-systemy-2/bezpecnost/procesy/ProcessTheoryTab.tsx`):
+      - Ze 4krokového filtru spouštění souborů byl odebrán krok 4 (Přidělení práv UAC), mřížka sjednocena na 3 kroky (Ověření hashe ➔ Kontrola certifikátu ➔ Omezení spuštění).
+      - Původní textové vysvětlení rozbití pečeti bylo nahrazeno **názorným srovnáním dvou procesů/programů vedle sebe**:
+        1. **Čistý originál (`kalkulacka.exe`):** Běžné instrukce (`1: VÝPOČET = 5 + 7`, `2: ULOŽ VÝSLEDEK`, `3: VYPÍŠ VÝSLEDEK`) a platný podpis Microsoftu (sekce dat vynechána pro čistotu výkladu kódu). Dole kontrola integrity se shodou hashů (`a7f3b2c1... == a7f3b2c1...`, spuštění povoleno).
+        2. **Infikovaný program:** Původní instrukce kalkulačky doplněné o škodlivou instrukci viru (`4: UKRADNI_HESLA_A_ODESLI()`) se starým původním podpisem. Dole kontrola integrity s neshodou hashů (`9e4a8f10... ≠ a7f3b2c1...`, pečeť rozbita, systém program zablokuje lokálně).
+      - **Didaktické sjednocení pojmů (Lokální kontrola vs. Cloudová kontrola):**
+        - V teorii i simulátoru odstraněny zavádějící formulace, které přisuzovaly detekci rozbité integrity cloudu / SmartScreenu.
+        - Zavedeno striktní dělení: **Krok 1: Lokální kontrola integrity & podpisu** (100% offline, provádí CPU přímo na zařízení) ➔ **Krok 2: Cloudová kontrola reputace** (online dotaz, nastupuje pouze tehdy, pokud podpis neselhal) ➔ **Krok 3: Antivirová kontrola** (lokální analýza kódu).
+        - V simulátoru rozbité pečeti opraveno hlášení: zablokování provádí lokální kontrola integrity v Kroku 1 bez účasti cloudu.
+  - **2026-10-19 – Rozšíření Laboratorního protokolu o inspekci certifikátu aplikace (OSS 2 – 2. ročník):**
+    - V kapitole **BZ2: Správa procesů a digitální certifikáty** v záložce *Praktická laboratoř (Protokol)* (`ProcessLabTab.tsx`):
+      - Před inspekci v Process Exploreru byla vložena nová **Úloha 5: Inspekce digitálního podpisu a certifikátu aplikace v Průzkumníku Windows (např. `vlc.exe`)**:
+        - Žáci vyhledají binární soubor (VLC, Notepad++, Chrome atd.) a ve Vlastnostech prozkoumají záložku Digitální podpisy.
+        - Zaznamenávají hlavní údaje certifikátu: Prověřovaný program a cestu, Subjekt (Vystaveno pro), Vystavitele (Certifikační autoritu CA – např. DigiCert/Sectigo), Dobu platnosti (od – do), Algoritmus a kryptografický otisk (Thumbprint hash) a Certifikační cestu (hierarchii řetězce důvěry Root CA ➔ Intermediate CA ➔ program s ověřením hlášení „Tento certifikát je v pořádku“).
+      - Následné úlohy byly přečíslovány na **Úlohu 6** (Process Explorer), **Úlohu 7** (certutil SHA-256 a VirusTotal), **Úlohu 8** (Smart App Control) a **Úlohu 9\*\*** (`tasklist /svc`).
+      - Synchronizován stav v `processTypes.ts`, ukládání do `localStorage` a exporty (kopírování do schránky i generování Word .doc) v `ProcessCertificatesChapter.tsx`.
+    - **Didaktické zkrácení a zjednodušení zadání úloh (SŠ úroveň):**
+      - Z celého protokolu (`ProcessLabTab.tsx`) byly odstraněny zdlouhavé textové bloky „Bezpečnostní kontext“, banální kroky (otevírání Win+R, psaní cmd) a rozsáhlé rozbalovací nápovědy.
+      - Každá úloha má nyní jednotnou a údernou strukturu: 1 výstižná věta s cílem, 2–3 konkrétní odborné odrážky a kompaktní tip se syntaxí příkazu. Protokol je přehledný, rychlý na čtení a plně odpovídá úrovni 2. ročníku střední školy.
+    - **Didaktické zpřesnění zadání a odstranění spoilerů v odpovědních polích:**
+      - V Úloze 1 byl odstraněn box s doslovným příkazem `tasklist /fi "IMAGENAME eq explorer.exe"`.
+      - V Úloze 2 a 3 bylo zadání upraveno tak, aby nevypisovalo hotové příkazy, ale po vzoru Úlohy 1 naznačovalo parametry (filtr `/FI` s pamětí `MEMUSAGE` a operátorem `gt`, resp. formát výstupu `/FO` a přesměrování `>`).
+      - Všechna předvyplněná ukázková textová pole (`placeholder="..."`) byla vyprázdněna (`placeholder=""`), žáci již nemají v polích nápovědy a musí odpovědi vypracovat sami.
+    - **Zjednodušení Úlohy 6 (Inspekce certifikátu aplikace) – ponechání klíčových polí:**
+      - Z původních 6 polí byly odstraněny zbytečné technické detaily (doba platnosti od-do a šifrovací algoritmus/otisk certifikátu).
+      - Ponechány 4 klíčové pilíře:
+        - **6.1 Prověřovaný program a cesta k souboru**
+        - **6.2 Vystaveno pro (Subjekt / Vlastník podpisu)**
+        - **6.3 Vystavitel certifikátu (Certifikační autorita CA)**
+        - **6.4 Celkový stav podpisu a řetězec důvěry (Certifikační cesta)**
+      - Pole jsou elegantně uspořádána (první 3 v přehledném 3sloupcovém gridu, čtvrté pole pro vyhodnocení stavu a důvěryhotnosti řetězce). Synchronizovány exporty i protokoly.
+
 
 
 

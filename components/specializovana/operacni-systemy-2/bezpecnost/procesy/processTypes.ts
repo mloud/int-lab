@@ -171,8 +171,13 @@ export interface ProcessProtocolState {
   task4SvchostAnomaly: string;
   task5ChromeIp: string;
   task5IpOwner: string;
-  task5BulkMethod: string;
-  task5SuspiciousReflection: string;
+  taskSeznamIp?: string;
+  taskSeznamOwner?: string;
+  taskSeznamAiPrompt?: string;
+  taskSeznamIdentifiedWebs?: string;
+  taskSeznamReflection?: string;
+  task5BulkMethod?: string;
+  task5SuspiciousReflection?: string;
   task5Process?: string;
   task5RemoteIp?: string;
   task5RemotePort?: string;
@@ -186,6 +191,12 @@ export interface ProcessProtocolState {
   task7VtScore: string;
   task8SacStatus: string;
   task8SacReason: string;
+  taskCertProgram?: string;
+  taskCertSubject?: string;
+  taskCertIssuer?: string;
+  taskCertValidity?: string;
+  taskCertAlgorithm?: string;
+  taskCertChainStatus?: string;
   qVirusWorm: string;
   qRunAsAdmin: string;
 }
