@@ -48,8 +48,8 @@ export default function ProcessStatesChapter({ onBack }: ProcessStatesChapterPro
 
   return (
     <FsChapterShell
-      chapterNumber={2}
-      totalChapters={3}
+      chapterNumber={3}
+      totalChapters={5}
       title="Životní cyklus a stavy:"
       highlight="Stavový diagram procesu"
       subtitle="Proč proces většinu času nepočítá na CPU, co dělá při čekání na disk a jak funguje 5 základních stavů."

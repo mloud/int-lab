@@ -46,8 +46,8 @@ export default function ProcessThreadsChapter({ onBack }: ProcessThreadsChapterP
 
   return (
     <FsChapterShell
-      chapterNumber={3}
-      totalChapters={3}
+      chapterNumber={4}
+      totalChapters={5}
       title="Vlákna (Threads):"
       highlight="Dělníci uvnitř procesu"
       subtitle="Proč je proces těžkopádný, co je to vlákno a jak sdílená paměť umožňuje plynulý běh her a moderních aplikací."

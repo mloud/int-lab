@@ -606,25 +606,47 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       actionLabel: 'Otevřít kapitolu'
                     },
                     {
+                      id: 'proc-switching',
+                      title: 'Střídání procesů (Multitasking)',
+                      description: 'Jak jeden procesor obslouží desítky programů naráz: časová kvanta, registr PC a přepínání kontextu.',
+                      tag: 'PR2',
+                      icon: 'RefreshCw',
+                      gradient: 'from-indigo-500 to-purple-600',
+                      route: '/specializovana/operacni-systemy-1/procesy/stridani',
+                      orderNumber: 2,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
                       id: 'proc-states',
                       title: 'Životní cyklus a stavy',
                       description: 'Stavový diagram procesu: Běžící, Připravený a Čekající na I/O operace disku.',
-                      tag: 'PR2',
+                      tag: 'PR3',
                       icon: 'Activity',
                       gradient: 'from-purple-500 to-indigo-500',
                       route: '/specializovana/operacni-systemy-1/procesy/stavy',
-                      orderNumber: 2,
+                      orderNumber: 3,
                       actionLabel: 'Otevřít kapitolu'
                     },
                     {
                       id: 'proc-threads',
                       title: 'Vlákna (Threads)',
                       description: 'Rozdíl mezi těžkým procesem a lehkým vláknem, sdílená paměť a moderní multitasking.',
-                      tag: 'PR3',
+                      tag: 'PR4',
                       icon: 'GitBranch',
                       gradient: 'from-emerald-500 to-teal-500',
                       route: '/specializovana/operacni-systemy-1/procesy/vlakna',
-                      orderNumber: 3,
+                      orderNumber: 4,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'proc-virtual-mem',
+                      title: 'Virtuální paměť a stránkování',
+                      description: 'Jak systém řeší nedostatek RAM: MMU, virtuální adresy, stránkování a odkládací soubor pagefile.sys.',
+                      tag: 'PR5',
+                      icon: 'HardDrive',
+                      gradient: 'from-amber-500 to-orange-600',
+                      route: '/specializovana/operacni-systemy-1/procesy/virtualni-pamet',
+                      orderNumber: 5,
                       actionLabel: 'Otevřít kapitolu'
                     },
                     {

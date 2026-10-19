@@ -20,6 +20,13 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 - **Stav výuky a kurikula:** Portál má kompletně připravenou a provázanou strukturu témat pro celý 1. ročník:
   - [x] 1. polovina: Instalace ➔ Hardware ➔ Architektura ➔ Test 01 ➔ Evoluce ➔ Boot & Virtualizace ➔ Struktura disku.
   - [x] 2. polovina (Struktura, navigace & rozcestníky): Procesy ➔ GUI Win 11 (GUI1–GUI5) ➔ CLI a BAT (CLI1–CLI3, BAT1–BAT2) ➔ Správa uživatelů a NTFS (USR1–USR4) ➔ Správa software (SW1–SW2) ➔ Správa zařízení (DEV) ➔ Plánovač úloh (SCH).
+  - [x] **Téma Procesy a paměť (`/specializovana/operacni-systemy-1/procesy`):**
+    - [x] PR1: Úvod a vznik procesu (`/procesy/uvod`) – teorie RAM, badatelský list s Task Managerem, CLI `tasklist` a Process Explorerem z Sysinternals.
+    - [x] PR2: Střídání procesů (Multitasking) (`/procesy/stridani`) – time-sharing, časová kvanta, registr PC, přepnutí kontextu, interaktivní krokovací simulátor CPU a PCB.
+    - [x] PR3: Životní cyklus a stavy (`/procesy/stavy`) – 5 stavů (Běžící, Připravený, Čekající na I/O).
+    - [x] PR4: Vlákna (Threads) (`/procesy/vlakna`) – proces vs. vlákno, sdílená paměť, vícevláknový běh.
+    - [x] PR5: Virtuální paměť a stránkování (`/procesy/virtualni-pamet`) – MMU, virtuální adresy, stránky a rámce, `pagefile.sys`, simulátor výpadku stránky (Page Fault).
+    - [x] PR-ADV: Pokročilá témata (`/procesy/pokrocile`) – algoritmy Round Robin, FIFO, prioritizace a alokátory paměti.
   - [x] Znalostní profil předmětu a vazba na RVP v `doc/curriculum/OSS1.md`.
 - **Další krok ve vývoji OSS 1:**
   - Postupné doplňování hloubkových interaktivních simulátorů, kvízů a laboratorních pracovních listů do vytvořených podkapitol (zejména terminálový trenažér CMD, ladicí trenažér .bat skriptů a manipulace s NTFS právy).

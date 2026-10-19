@@ -70,10 +70,13 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 
 ### Blok 4: Procesy a správa paměti
 10. **Procesy a paměť** (`/specializovana/operacni-systemy-1/procesy`) – *Podkapitoly:*
-    - **PR1 Úvod a vznik procesu** (`/procesy/uvod`): `ProcessIntroChapter.tsx` (Program na disku vs. proces v RAM, identifikace PID, kód a data).
-    - **PR2 Životní cyklus a stavy** (`/procesy/stavy`): `ProcessStatesChapter.tsx` (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený).
-    - **PR3 Vlákna (Threads)** (`/procesy/vlakna`): `ProcessThreadsChapter.tsx` (Proces vs. vlákno, sdílená paměť, moderní vícejádrová CPU).
-    - **PR-ADV Pokročilá témata** (`/procesy/pokrocile`): `AdvancedProcessTopicsChapter.tsx` (Plánování CPU: Round Robin, FIFO/FCFS, prioritní plánování, kontextové přepínání).
+    - **PR1 Úvod a vznik procesu** (`/procesy/uvod`): Modulární struktura (`ProcessIntroChapter.tsx`, `intro/ProcessIntroTheoryTab.tsx`, `intro/ProcessIntroWorksheetTab.tsx`). Program vs. proces v RAM, identifikace PID a PPID (rodič/potomek), sjednocené schéma paměti RAM z Von Neumannovy architektury, PCB, izolace paměti a ochrana. Integrován interaktivní praktický list s Task Managerem, CLI `tasklist` a Process Explorerem z Sysinternals s exportem do Wordu. V teoretickém bloku paměti procesu sjednocen program (1: VÝSLEDEK = 5 + 7, 2: ULOŽ VÝSLEDEK, 3: PRINT VÝSLEDEK a v datech VÝSLEDEK = 12) v zelených blocích, s explicitním vysvětlením přenosu výsledku z procesoru do RAM.
+      - *Didaktická revize listu:* Opravena mylná představa, že ukončení rodiče ukončí potomky (Windows potomky nezabíjí – nahrazeno bodem „Kdo koho spustil“). Otázka 4.1 sjednocena na `lt 10000` = 10 MB. Přidány reflexní otázky 2.1 (srovnání měření Edge před videem a při něm) a 3.2 (calc.exe vs. CalculatorApp.exe), tipy na klávesu Ctrl (úkol 1), zobrazení sloupce PID (úkol 2) a upozornění na rozdílné metriky RAM ve Správci úloh a v `tasklist` (úkol 7*). Úkol 5* ponechán beze změny. Na učebních PC s Win 11 je potřeba ověřit chování Notepadu (záložky, aplikace ze Storu).
+    - **PR2 Střídání procesů (Multitasking)** (`/procesy/stridani`): Modulární struktura (`ProcessSwitchingChapter.tsx`, `stridani/`). Time-sharing, časová kvanta (10–30 ms), registr PC (čítač instrukcí), uložení stavu registrů do PCB a přepnutí kontextu (Context Switch). Interaktivní SVG krokovací trenažér střídání Wordu a Kalkulačky na CPU.
+    - **PR3 Životní cyklus a stavy** (`/procesy/stavy`): `ProcessStatesChapter.tsx` (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený). Rychlostní propast CPU (nanosekundy) vs. disk (milisekundy).
+    - **PR4 Vlákna (Threads)** (`/procesy/vlakna`): `ProcessThreadsChapter.tsx` (Těžký proces vs. lehká vlákna, sdílená paměť, vícevláknový běh her, vícejádrová CPU).
+    - **PR5 Virtuální paměť a stránkování** (`/procesy/virtualni-pamet`): Modulární struktura (`VirtualMemoryChapter.tsx`, `pamet/`). Proč proces nesmí přímo do fyzické RAM, jednotka MMU a překlad virtuálních adres přes Tabulku stránek, 4kB stránky a rámce, odkládací soubor `pagefile.sys` (Swap) na disku a interaktivní simulátor Page Fault (výpadek stránky).
+    - **PR-ADV Pokročilá témata** (`/procesy/pokrocile`): `AdvancedProcessTopicsChapter.tsx` (Plánování CPU: Round Robin, FIFO/FCFS, prioritní plánování, alokátory paměti).
 
 ### Blok 5: Grafické rozhraní Windows 11 (GUI a Průzkumník)
 11. **Grafické rozhraní Windows 11** (`/specializovana/operacni-systemy-1/gui`) – *Podkapitoly:*
@@ -399,12 +402,34 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - **Jediný a přesný bod křížení:** Opraven diagram křížení trendů – modrá křivka (Kanál A) a fialová přímka (Kanál B) mají striktně jediný průsečík ve Středu na souřadnicích `(160, 55)`. Červený bod `Bod křížení` leží exaktně na tomto průsečíku a osa X obsahuje přehledné dny `Po, Út, St, Čt, Pá`.
       - **Realistický příklad ustřižené osy Y (Trik e-shopu):** Původní příklad nahrazen reálným tématem pro 9. ročník – vývoj ceny herní konzole v e-shopu (12 890 Kč až 13 190 Kč). Při poctivé ose od 0 Kč žáci vidí, že cena je téměř stejná (výkyv jen 2,3 %). Při přepnutí na ustřiženou osu od 12 700 Kč křivka padá přes celou výšku grafu, což demonstruje optickou manipulaci slevami.
     - Úspěšně validováno přes produkční sestavení `npm run build` (všech 259 statických stránek vygenerováno bez chyb).
-  - **2026-10-18 – Přesná harmonizace PRG 2 Lekce 11 (Program s opakováním) podle PDF:**
-    - Kapitola `Program s opakováním` (`/specializovana/programovani-2/python-cyklus`) byla detailně zkontrolována a zrevidována podle oficiální učebnice *Programování v jazyce Python pro střední školy (Lekce 11, iMyšlení PRIM)*.
-    - Odstraněny všechny uměle vytvořené názvy úloh a parafrázované či přidané texty.
-    - Znění všech 15 úloh (Úlohy 1 až 15*) bylo 1:1 sjednoceno s originálním PDF zadáním (včetně původního grafického náčrtu GPS bodů, ukázek terminálových výstupů, diagramu for cyklu s vysvětlivkami a žlutě zvýrazněného parametru font).
-    - Metodické poznámky pro učitele (zpřístupněné pod PINem) byly doplněny o přesná autorská řešení a didaktické pokyny.
-    - Komponenty `PythonLoopChapter.tsx` a `PythonLoopsChapter.tsx` byly sjednoceny.
+  - **2026-10-19 – Vytvoření a didaktické doladění kapitoly Úvod do procesů (OSS 1 – 1. ročník):**
+    - Vytvořena úvodní lekce tématu Procesy: `/specializovana/operacni-systemy-1/procesy/uvod` (komponenta `ProcessIntroChapter.tsx` a podsložka `intro/`).
+    - **Teoretická část (`ProcessIntroTheoryTab.tsx`):**
+      - Zavedena vizuální návaznost na kapitolu *Hardware – Von Neumannova architektura*: použita identická struktura a barvy paměťové karty RAM (zelený PCB podklad, zlaté piny, buňky s indexy a obsahem).
+      - Všechny adresy paměti převedeny do **desítkového formátu** (Adresa 0, 1, 2... 1048576) pro maximální srozumitelnost v 1. ročníku.
+      - V Schématu zrození procesu z disku do RAM je paměť znázorněna čistě s blokem procesu (PID) bez zbytečné vnitřní dekompozice na instrukce a data.
+      - Blok izolace procesů a ochrany paměti používá stejnou RAM kartu a demonstruje dynamické přidělování PID i ochranu paměťového prostoru.
+    - **Praktický badatelský list (`ProcessIntroWorksheetTab.tsx`):**
+      - Přidán přehledový stromový diagram dvou cest správy procesů v OS:
+        - **GUI větev:** Správce úloh (`taskmgr`, `Ctrl + Shift + Esc`).
+        - **CLI větev:** Příkazový řádek (`tasklist`, nápověda přes `tasklist /?`).
+      - Struktura 5 navazujících praktických úkolů:
+        - **Úkol 1 (Identifikace procesů a PID):** Zjištění PID vybraných aplikací v GUI i CLI.
+        - **Úkol 2 (Dvě instance stejného programu):** Spuštění dvou oken `notepad.exe`, vyhledání jejich PID výhradně v Příkazovém řádku pomocí příkazu `tasklist`, ověření, že systém vytvoří 2 nezávislé procesy s unikátními PID, a zdůvodnění nezávislosti a stability.
+        - **Úkol 3 (Filtrování procesů nad 300 MB):** Samostatný úkol na nápovědu `tasklist /?` a parametr `/FI` – vyfiltrování procesů v RAM s operátorem `gt` (`tasklist /FI "MEMUSAGE gt 300000"`), záznam 3 procesů s nejvyšší spotřebou RAM do tabulky a příklad s operátorem `lt`.
+        - **Úkol 4 (Program na disku vs. Proces v paměti RAM):** Porovnání velikosti `notepad.exe` na disku s využitím RAM po čistém spuštění a po vložení velkého textu (využití generátoru 1MB textového souboru z textfilegenerator.com; zvětšení datového segmentu vs. neměnnost instrukcí kódu).
+        - **Úkol 5 (Rodičovský proces PPID a strom v Process Exploreru):** Využití oficiálního nástroje Microsoft Sysinternals Process Explorer (`procexp.exe`) pro prozkoumání reálného rodokmenu procesů (Process Tree), porovnání rodiče a PPID instance z plochy (`explorer.exe`) a z CMD (`cmd.exe`) s tabulkou a závěrečné 3bodové vysvětlení role rodiče (dědění práv, úklid potomků, návratové kódy).
+      - Kompletní export do Wordu (`.doc`) zachovávající všech 5 úkolů, zaškrtnuté checklisty i zadané odpovědi studenta.
+  - **2026-10-19 – Rozšíření tématu Procesy o dvě stěžejní kapitoly (PR2 a PR5):**
+    - Do kurikula OSS 1 zařazeny dvě nové, plně modulární kapitoly s interaktivními simulátory:
+      1. **PR2: Střídání procesů (Multitasking)** (`/specializovana/operacni-systemy-1/procesy/stridani`):
+         - Teoretický rozbor časových kvant (Time Slicing), přirovnání k filmovému plátnu (60 FPS), pojem kontext procesu a registr PC.
+         - Interaktivní simulátor přepnutí kontextu na CPU: animované propojení CPU, registrů a jádra OS ukládajícího PCB pro Word a Kalkulačku s automatickým přehráváním a krokováním.
+      2. **PR5: Virtuální paměť a stránkování** (`/specializovana/operacni-systemy-1/procesy/virtualni-pamet`):
+         - Teoretický rozbor jednotky MMU, iluze souvislého adresního prostoru od 0, 4kB stránkování a odkládacího souboru `pagefile.sys`.
+         - Interaktivní simulátor překladu adres a výpadku stránky (Page Fault): demonstrace omezené fyzické RAM (2 rámce), mapování přes Tabulku stránek a odkládání nepoužívaných dat do `pagefile.sys` s počítadlem Page Hits / Faults.
+    - Přečíslovány návazné kapitoly: Životní cyklus na PR3 a Vlákna na PR4.
+
 
 
 
