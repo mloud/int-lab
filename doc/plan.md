@@ -98,8 +98,12 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 #### 2. Část: Správa systému a automatizace (✅ Struktura a navigace na portálu HOTOVA)
 
 8. [x] **Správa procesů a paměti:** (`/specializovana/operacni-systemy-1/procesy`)
-   - PR1 Úvod a vznik procesu, PR2 Stavy, PR3 Vlákna, PR-ADV Plánování CPU.
-   - ⏳ *K doplnění do budoucna:* virtuální paměť (paging, `pagefile.sys`), Správce úloh, `tasklist` / `taskkill`.
+   - **PR1 – Úvod a vznik procesu:** (`/procesy/uvod`) – Teorie Von Neumann (Instrukce vs. Data), PCB, paměťová izolace; kompletní 7-úlohový badatelský pracovní list (Task Manager, Edge multimédia, CLI `tasklist`, filtrování `gt`/`lt`, dvě instance, Process Explorer strom PPID, program vs. proces v RAM).
+   - **PR2 – Střídání procesů (Multitasking):** (`/procesy/stridani`) – Time-sharing, časová kvanta, registr PC, Context Switch, interaktivní krokovací simulátor CPU & PCB.
+   - **PR3 – Životní cyklus a stavy:** (`/procesy/stavy`) – 5 stavů procesu (Běžící, Připravený, Čekající na I/O...).
+   - **PR4 – Vlákna (Threads):** (`/procesy/vlakna`) – Těžký proces vs. lehká vlákna, sdílená paměť, vícevláknový běh her.
+   - **PR5 – Virtuální paměť a stránkování:** (`/procesy/virtualni-pamet`) – Virtuální adresní prostor, MMU, stránky a rámce, `pagefile.sys`, simulátor výpadku stránky (Page Fault).
+   - **PR-ADV – Pokročilá témata:** (`/procesy/pokrocile`) – Algoritmy plánování (Round Robin, FIFO), prioritizace procesů.
 9. [x] **Grafické rozhraní Windows 11 (GUI & Průzkumník):** (`/specializovana/operacni-systemy-1/gui`)
    - **GUI1 – Anatomie GUI a proces Explorer:** DWM (Desktop Window Manager), `explorer.exe` (plocha, taskbar, okna), restart procesu v Task Manageru.
    - **GUI2 – Průzkumník a hierarchie disku C::** Stromová struktura, systémové složky (`Windows`, `Program Files`, `Users`), profil `%USERPROFILE%`, knihovny vs. diskové složky.
