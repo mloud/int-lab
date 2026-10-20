@@ -55,11 +55,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 
 ### Blok 2: Evoluce a běh systému
 7. **Evoluce OS** (`/specializovana/operacni-systemy-1/vyvoj`) – `OsEvolutionChapter.tsx`: Historie OS, Unix rodina, DOS, Windows NT, Linux.
-8. **Start systému (Boot)** (`/specializovana/operacni-systemy-1/boot`) – `OsBootChapter.tsx`: BIOS/UEFI, POST test, MBR/GPT bootloader, předání řízení kernelu.
-9. **Virtualizace** (`/specializovana/operacni-systemy-1/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
+8. **Virtualizace** (`/specializovana/operacni-systemy-1/virtualizace`) – `VirtualizationChapter.tsx`: Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery.
 
 ### Blok 3: Souborové systémy a disky
-10. **Souborový systém a disky** (`/specializovana/operacni-systemy-1/souborove-systemy`) – *Podkapitoly:*
+9. **Souborový systém a disky** (`/specializovana/operacni-systemy-1/souborove-systemy`) – *Podkapitoly:*
    - **FS1 Úvod a architektura** (`/souborove-systemy/uvod`): Role FS, sjednocený vrstvený model OS (User Space -> Syscall -> Kernel Space s FS a ovladačem -> Hardware s mřížkou sektorů), abstrakce souborů a složek.
    - **FS2 Paměťová média** (`/souborove-systemy/media`): Plotnový HDD (stopy, sektory, cylindry) vs. SSD (NAND buňky).
    - **FS3 Dělení disku** (`/souborove-systemy/deleni-disku`): Oddíly, MBR vs. GPT, boot oddíl, svazky.
@@ -67,6 +66,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - **FS-FMT Formátování disku** (`/souborove-systemy/formatovani`): Interaktivní trenažér `FormattingGame.tsx` srovnávající Rychlé formátování (pouze okamžitý výmaz FAT tabulky) a Úplné/Pomalé formátování (postupný fyzický přepis všech sektorů/clusterů nulami – Zero-fill) se zpomalenou vizualizací zápisu nul.
    - **FS5 Architektura v praxi** (`/souborove-systemy/cteni-souboru`): Simulace toku dat při čtení (Aplikace -> OS -> FAT -> Čtení klastrů z disku).
    - **FS-ADV Pokročilá témata a údržba disku** (`/souborove-systemy/pokrocile`): Sloučená kapitola obsahující teorii fragmentace a defragmentace (HDD vs. SSD a TRIM), mazání a mýtus o prázdném disku, alokační strategie (First Fit, Best Fit, Worst Fit) a 4 simulátory/hry: Defragmentace disku, Oprava chyb (CHKDSK), Alokační strategie a Velikost clusteru.
+   - **FS6 Start systému (Boot)** (`/souborove-systemy/boot`): `OsBootChapter.tsx` – BIOS/UEFI, POST test, MBR/GPT bootloader a předání řízení kernelu (přesunuto z původní samostatné kapitoly na konec bloku disků a oddílů v souladu s tematickým plánem).
 
 ### Blok 4: Procesy a správa paměti
 10. **Procesy a paměť** (`/specializovana/operacni-systemy-1/procesy`) – *Podkapitoly:*
@@ -116,6 +116,13 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Formát:** Přímá lekce (Direct Lesson bez podkapitol, `hasSubchapters: false`).
     - **Obsah:** Automatizace údržby a periodických úloh, Správa úloh přes `taskschd.msc`, spouštěče (Triggers – časové, při startu, při přihlášení), akce (Actions – spuštění `.bat` skriptu nebo aplikace), bezpečnostní kontext (běh pod přihlášeným uživatelem vs. pod účtem `SYSTEM` bez nutnosti přihlášení).
 
+### Blok 11: Síťová konfigurace a lokální sítě (LAN)
+17. **Síťová konfigurace a lokální sítě (LAN)** (`/specializovana/operacni-systemy-1/site`) – *Podkapitoly:*
+    - **NET1 Síťové adaptéry, MAC vs. IP a ipconfig** (`/site/adaptery-a-ip`): Správce zařízení (`devmgmt.msc`), síťová připojení `ncpa.cpl`, fyzická MAC adresa (48bit unikátní otisk) vs. logická IPv4 adresa, maska podsítě (oddělení ID sítě a ID stanice), dynamické DHCP vs. statická IP adresa, inspekce adaptérů v CLI (`ipconfig`, `ipconfig /all`, `/release`, `/renew`).
+    - **NET2 Diagnostika spojení a cesta paketu (Ping & Tracert)** (`/site/diagnostika-a-ping`): Vrstvený diagnostický žebříček pingu (1. loopback `127.0.0.1` -> 2. vlastní IP -> 3. výchozí brána routeru -> 4. veřejná IP `8.8.8.8` -> 5. DNS doména `seznam.cz`), interpretace doby odezvy (RTT v ms), ztráty paketů a TTL, mapování směrovačů na trase pomocí `tracert`, identifikace výpadků kabelu, brány, DNS a firewallu.
+    - **NET3 Profily sítě Windows, Wi-Fi a sdílení v LAN** (`/site/profily-sdileni-wifi`): Rozdíl mezi profilem Veřejná síť (Public - blokování pingů a zjišťování firewallem) a Privátní síť (Private - důvěryhodná LAN), sdílení složek a mapování disků, připojení síťové tiskárny přes SMB a IP, Wi-Fi standardy a pásma 2.4/5 GHz, SSID a šifrování WPA2-Personal vs. WPA3-SAE, inspekce přes `netsh wlan show interfaces / networks`.
+    - **NET4 Praktická laboratoř: Konfigurace Wi-Fi routeru** (`/site/router-laborator`): SOHO Wi-Fi router (4 v 1: router, switch, AP, firewall/NAT), fyzické zapojení a hard reset do továrního nastavení, vyhledání IP brány a přihlášení do webového managementu, změna hesla správce, nastavení rozsahu DHCP a statických rezervací, zabezpečení Wi-Fi (WPA2-PSK AES / WPA3), izolovaná síť pro hosty (Guest Network) a limitace MAC filteringu.
+
 ---
 
 ## 3. Detailní stav kapitol – OSS 2 (2. Ročník)
@@ -152,6 +159,34 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
        - `ProcessSimulatorsTab.tsx`: Interaktivní Sysinternals Process Explorer strom procesů a živý inspektor integrity digitálního podpisu Authenticode s reálným SHA-256.
        - `ProcessLabTab.tsx`: Praktický forenzní protokol ve `WorksheetLayout` s 8 reálnými úlohami (`tasklist`, `resmon.exe`, Excel analýza, Sysinternals, `certutil`, Smart App Control) a exportem do Wordu.
        - `ProcessQuizTab.tsx`: 5 ověřovacích otázek na procesy a certifikáty.
+
+### Blok 3: Pokročilá konfigurace Windows a PowerShell
+3. **Pokročilá konfigurace Windows a PowerShell** (`/specializovana/operacni-systemy-2/pokrocila-konfigurace`) – *Podkapitoly:*
+   - **PK1 Konzole správce (MMC) a Služby Windows** (`/pokrocila-konfigurace/mmc`): Sjednocené rozhraní snap-inů, správa služeb Windows pod účtem SYSTEM, typy spouštění, závislosti a zotavení po chybě (`sc`, `net start/stop`).
+   - **PK2 PowerShell: Základy, objekty a roury** (`/pokrocila-konfigurace/powershell`): Objektový model .NET vs. text CMD, syntaxe Sloveso-PodstatnéJméno, cmdlety `Get-Command`, `Get-Help`, `Get-Member`, objektová roura (`|`), filtrace `Where-Object` a `Select-Object`.
+   - **PK3 Automatizace správy v PowerShellu** (`/pokrocila-konfigurace/powershell-sprava`): Hromadná správa služeb a procesů, práce se soubory, psaní a spouštění skriptů `.ps1`, bezpečnostní politika `ExecutionPolicy`, export do CSV a HTML.
+   - **PK4 Systémový registr a řešení chyb** (`/pokrocila-konfigurace/registry`): Účel registru, hives v `System32\config`, větve HKLM a HKCU, typy hodnot REG_SZ a REG_DWORD, zálohování do `.reg` a obnova po havárii.
+   - **PK5 Prohlížeč událostí a audit (Event Viewer)** (`/pokrocila-konfigurace/udalosti`): Protokoly System, Application a Security, úrovně událostí, klíčová Event ID (4624 login, 4625 neúspěšné přihlášení, 6006 vypnutí), tvorba vlastních zobrazení a filtrů.
+
+### Blok 4: Síťové serverové služby a infrastruktura
+4. **Síťové serverové služby a infrastruktura** (`/specializovana/operacni-systemy-2/sluzby`) – *Podkapitoly:*
+   - **SL1 DHCP server: Automatická konfigurace sítě** (`/sluzby/dhcp`): Proces DORA, instalace role DHCP Server na Windows Serveru, konfigurace rozsahu (Scope), doba zapůjčení (Lease time) a statické rezervace pro tiskárny podle MAC adresy.
+   - **SL2 DNS server: Překlad jmen a páteř sítě** (`/sluzby/dns`): Hierarchie DNS, dopředné zóny, klíčové záznamy A, CNAME, PTR, předávání dotazů (Forwarders), diagnostika `nslookup` a `ipconfig /flushdns`, role DNS pro Active Directory.
+   - **SL3 Souborový server a síťové disky (SMB)** (`/sluzby/smb`): Protokol SMB, UNC cesty `\\Server\Slozka`, kombinace oprávnění sdílení a NTFS, mapování disku `net use Z:`, skrytá administrativní sdílení (`C$`, `ADMIN$`).
+   - **SL4 Vzdálená správa: RDP a OpenSSH** (`/sluzby/vzdalena-sprava`): Protokol RDP na portu 3389, zabezpečení NLA, nástroj `mstsc.exe`, OpenSSH server na Windows, konfigurace Windows Firewallu.
+   - **SL5 Webový server (IIS)** (`/sluzby/iis`): Instalace role Web Server IIS, výchozí kořen `C:\inetpub\wwwroot`, vazby portů 80 (HTTP) a 443 (HTTPS), self-signed certifikáty a pravidla firewallu.
+   - **SL6 Databázový server (MS SQL Server)** (`/sluzby/sql`): Instalace instance SQL Server Express, role služby MSSQLSERVER a účty služeb, konfigurace sítě přes SQL Server Configuration Manager (TCP/IP port 1433), pravidla firewallu, Windows Authentication a tvorba zálohy do `.bak`.
+
+### Blok 5: Active Directory a centrální správa
+5. **Active Directory a centrální správa** (`/specializovana/operacni-systemy-2/active-directory`) – *Podkapitoly:*
+   - **AD1 Windows Server a co je doména** (`/active-directory/server-a-domena`): Limity pracovní skupiny, princip centrální domény a AD DS, role řadiče domény (DC), seznámení se Správcem serveru.
+   - **AD2 Povýšení na řadič domény (DC)** (`/active-directory/dns-a-radic`): Průvodce povýšením, vytvoření lesa a domény (FQDN), heslo DSRM, vazba na DNS a automatická tvorba SRV záznamů ve složce `_msdcs`.
+   - **AD3 Organizační jednotky (OU) a doménové účty** (`/active-directory/uzivatele-skupiny`): Konzole `dsa.msc`, logická struktura firmy do OU, tvorba doménových uživatelů, politika hesel a uzamčení účtu (Account Lockout).
+   - **AD4 Skupiny a přístupová práva (Prakticky)** (`/active-directory/sdileni-a-prava`): Praktický model *Uživatel ➔ Bezpečnostní skupina oddělení ➔ Oprávnění na sdílenou složku*, kombinace SMB a NTFS bez zbytečné teorie.
+   - **AD5 Připojení klientského PC do domény** (`/active-directory/klient-v-domene`): Konfigurace DNS klienta na DC, dialog připojení stanice do domény, vznik účtu počítače v AD, přihlášení doménovým účtem, doménový uživatelský profil.
+   - **AD6 Skupinové politiky (Group Policy – GPO)** (`/active-directory/gpo`): Konzole `gpmc.msc`, rozsah Computer vs. User Configuration, propojení s OU, klíčové politiky (zákaz USB, jednotná tapeta, mapování síťového disku), vynucení `gpupdate /force` a výpis `gpresult /r`.
+   - **AD7 Závěrečný integrující projekt: Podniková síť** (`/active-directory/zaloha-a-projekt`): Samostatné zprovoznění malé firmy (Server s DHCP + DNS + AD DS ➔ připojený klient Win 11 ➔ 2 oddělení ➔ zabezpečené síťové složky ➔ funkční GPO restrikce) přesně podle modelu SŠ Horažďovice.
+
 ---
 
 ## 4. Detailní stav kapitol – Programování 1 (PRG 1 – 1. Ročník)
@@ -298,13 +333,14 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
   - **Architektura přehledových kapitol (High-level overview):**
     - Vytvořena škálovatelná infrastruktura přehledových kapitol v `registry/curriculum/outlines/` (`outlineTypes.ts`, `oss2Outlines.ts`, `oss3Outlines.ts`, `index.ts`), která slouží jako jediný zdroj pravdy (SSOT) pro karty v kurikulu, přehledové stránky i centrální registr lekcí (`lessons.ts`).
     - Vytvořena sdílená komponenta `ChapterOutlinePage.tsx` v souladu s design systémem IntLab (`FsChapterShell` styl s fixním bílým skleněným rámcem, kartami Teorie vs. Simulace a praxe, vazbou „Navazuje na“ a odznaky).
-  - **OSS 3 (3. ročník, `/specializovana/operacni-systemy-1-3`, subjectId: `ops3`):**
-    - Vytvořena stránka předmětu s didaktickým rozborem a 4 hlavními kapitolami:
-      1. **Linux** (LX1–LX8, ~24 h): Distribuce, Terminál & souborový systém, Text & roury, Uživatelé & oprávnění rwx, Balíčky apt, Procesy & systemd, Logy & cron, Síť & SSH.
-      2. **Git a verzování** (GT1–GT4, ~8 h): Principy & 3 zóny, Základní cyklus add/commit, Větve & merge, GitHub & pull requesty.
-      3. **Kyberbezpečnost** (KB1–KB6, ~20 h): Myšlení útočníka & právo, Průzkum OSINT & Nmap v laboratoři, Zranitelnosti CVE/CVSS, Bezpečnost webu OWASP, Útoky na AD & logy, Závěrečné CTF: Red vs. Blue.
-      4. **Týmová spolupráce a nástroje** (TM1–TM4, ~10 h): Kanban & Scrum, Harmonogram & Ganttův diagram, Komunikační nástroje, Závěrečný týmový projekt.
-    - Všech 22 podkapitol má funkční přehledové stránky se stručným didaktickým výkladem, co se v nich bude učit.
+  - **OSS 3 (3. ročník, `/specializovana/operacni-systemy-3`, subjectId: `ops3`, 66 h):**
+    - Kompletně přizpůsobeno hodinové dotaci 66 hodin (33 týdnů × 2 h) s pokrytím témat SŠ Horažďovice (Apache, Samba, Bash skripty) a zeštíhlením nepodstatné teorie (vyřazen Ganttův diagram a webové aplikační zranitelnosti):
+      1. **Linux: Instalace a správa** (LX1–LX7, 16 h): Instalace & GRUB, Terminál & FHS, Text & roury, Uživatelé & POSIX práva, Balíčky apt, Procesy & systemd, Logy journalctl & cron.
+      2. **Linux: Sítě, služby a Bash** (LX8–LX13, 16 h): Sítě & SSH/UFW, Webový server Apache, Sdílení souborů Samba (Linux ↔ Windows), Bash základy & proměnné, Bash podmínky & zálohovací skripty, Praktická prověrka.
+      3. **Git a verzování kódu** (GT1–GT4, 8 h): Principy & 3 zóny, Pracovní cyklus add/commit, Větve & merge konflikty, GitHub & pull requesty.
+      4. **Kybernetická bezpečnost** (KB1–KB4, 12 h): Právo v IT & Kill Chain, Skenování sítě Nmap & CVE zranitelnosti, Analýza provozu Wireshark (TCP handshake, nešifrovaná hesla), Incident response & obrana (mini-CTF).
+      5. **Týmový projekt a agilní řízení** (TM1–TM3, 10 h): Agilní organizace úkolů v Kanbanu (GitHub Projects / Trello), Závěrečný integrující týmový projekt (Linux + Windows + Git + automatizace), Prezentace a obhajoby.
+    - 4 hodiny vyčleněny jako rezerva na odpadlé hodiny a uzavření klasifikace.
   - **OSS 2 (2. ročník, rozšíření po Bezpečnosti):**
     - K existujícímu Zálohování (B1–B5) a Bezpečnosti (BZ1–BZ2) byly v kurikulu i routování doplněny přehledové stránky pro zbývající bloky:
       1. **Bezpečnost 1:** BZ3 (Sandbox & Autoruns) až BZ9 (Závěrečná detektivka Mini-CTF).
@@ -453,25 +489,68 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - V Úloze 1 byl odstraněn box s doslovným příkazem `tasklist /fi "IMAGENAME eq explorer.exe"`.
       - V Úloze 2 a 3 bylo zadání upraveno tak, aby nevypisovalo hotové příkazy, ale po vzoru Úlohy 1 naznačovalo parametry (filtr `/FI` s pamětí `MEMUSAGE` a operátorem `gt`, resp. formát výstupu `/FO` a přesměrování `>`).
       - Všechna předvyplněná ukázková textová pole (`placeholder="..."`) byla vyprázdněna (`placeholder=""`), žáci již nemají v polích nápovědy a musí odpovědi vypracovat sami.
-    - **Zjednodušení Úlohy 6 (Inspekce certifikátu aplikace) – ponechání klíčových polí:**
-      - Z původních 6 polí byly odstraněny zbytečné technické detaily (doba platnosti od-do a šifrovací algoritmus/otisk certifikátu).
-      - Ponechány 4 klíčové pilíře:
+    - **Zjednodušení Úlohy 6 (Inspekce certifikátu aplikace) – ponechání 3 klíčových polí:**
+      - Z původních polí byly odstraněny zbytečné technické detaily a následně i pole 6.4 (stav podpisu a řetězec důvěry).
+      - Ponechány 3 klíčové pilíře uspořádané do čistého 3sloupcového gridu:
         - **6.1 Prověřovaný program a cesta k souboru**
         - **6.2 Vystaveno pro (Subjekt / Vlastník podpisu)**
         - **6.3 Vystavitel certifikátu (Certifikační autorita CA)**
-        - **6.4 Celkový stav podpisu a řetězec důvěry (Certifikační cesta)**
-      - Pole jsou elegantně uspořádána (první 3 v přehledném 3sloupcovém gridu, čtvrté pole pro vyhodnocení stavu a důvěryhotnosti řetězce). Synchronizovány exporty i protokoly.
+      - Synchronizovány exporty do schránky i do Wordu.
+    - **Sjednocení terminologie:**
+      - Záložka a dokument přejmenovány z „Praktická laboratoř (Protokol)“ / „Laboratorní protokol“ na jednotný název **„Praktický list“** v souladu se zbytkem kurikula.
+    - **Přeuspořádání a didaktická návaznost Úloh 6 a 7 (Process Explorer):**
+      - **Úloha 6 (Process Explorer – legitimní VLC):** Nástroj Sysinternals Process Explorer je představen hned v úvodu Úlohy 6 (aktivace *Verify Image Signatures* a *Check VirusTotal.com*). Žáci analyzují legitimní aplikaci VLC (`vlc.exe`), kde zaznamenávají cestu k souboru (6.1), ověřený podpis *Verified Signer* (6.2) a skóre na VirusTotal (6.3).
+      - **Úloha 7 (Vlastní nepodepsaný program v Pythonu):** Z této úlohy bylo zcela odstraněno opakování VLC. Úloha se zaměřuje čistě na vytvoření vlastního programu `test_app.py`, kompilaci do `.exe` přes PyInstaller a zjištění stavu chybějícího podpisu `(V subjektu nebyl podpis)` (7.1) a stavu VirusTotal `Unknown` ➔ odeslání k analýze (7.2).
+      - Synchronizovány exporty do schránky i do Wordu.
 
+---
 
+## 7. Generování a implementace Tematických plánů (OSS 1, OSS 2, OSS 3)
 
-
-
-
-
-
-
-
-
+### Hlavní úpravy a novinky:
+1. **Odstranění Didaktického rozboru z OSS 3:**
+   - Ze subjektu `ops3` v `defaultSchool.ts` byla odstraněna vlastnost `analysis`. Stránka předmětu OSS 3 je nyní čistá a neobsahuje spodní výkladový rozbor.
+2. **Nový centrální registr tematických plánů:**
+   - Vytvořen soubor `registry/curriculum/thematicPlans.ts` s kompletní datovou strukturou pro všechny 3 ročníky:
+     - **OSS 1 (1. Ročník, 66 h / 33 týdnů):** 10 tematických celků (Hardware, Boot, Souborové systémy, Procesy, Test 01 & GUI, Příkazový řádek & .bat skripty, Uživatelé & NTFS, Správa zařízení & Winget, Sítě v OS, Závěrečný projekt).
+     - **OSS 2 (2. Ročník, 66 h / 33 týdnů):** 5 tematických bloků (Zálohování 8 h, Bezpečnost 1 & Forenzní analýza 22 h, Pokročilá správa & PowerShell 10 h, Síťové služby 12 h, Active Directory 14 h).
+     - **OSS 3 (3. Ročník, 66 h / 33 týdnů):** 5 tematických bloků (Linux správa 16 h, Linux služby & Bash 16 h, Git 8 h, Kyberbezpečnost 12 h, Týmový projekt 10 h, rezerva 4 h).
+   - Každé hlavní téma má pevně alokované hodiny, rozpad na teorii a praxi, vazbu na RVP kompetenci a podrobný seznam podtémat s odhadem hodin (2–4 h), typem výuky a konkrétní praktickou činností žáka.
+3. **Decentní kompaktní tlačítko na rozcestníku předmětů:**
+   - V komponentě `DynamicSubjectHub.tsx` byl původní velký banner nahrazen **decentním, kompaktním bílým tlačítkem** (ikona kalendáře, text „Tematický plán předmětu“, odznáček „66 h“ a šipka) umístěným čistě pod popisem předmětu a nad gridem kapitol.
+4. **Jednoduchá přehledná tabulka (SimplePlanTable):**
+   - Vytvořena odlehčená komponenta `SimplePlanTable.tsx` bez filtrů a rozbalovátek – čistá školní HTML tabulka (sloupce: Měsíc, Hlavní téma, Podtéma/Učivo, Hodin, Poznámka) s tiskovým tlačítkem a součtem 66 hodin.
+5. **Samostatné a snadno editovatelné stránky v aplikaci:**
+   - Každá stránka obsahuje přímo své pole dat `PLAN_OSS1`, `PLAN_OSS2` a `PLAN_OSS3` pro bleskovou ruční editaci v kódu:
+     - `/specializovana/operacni-systemy-1/tematicky-plan`
+     - `/specializovana/operacni-systemy-2/tematicky-plan`
+     - `/specializovana/operacni-systemy-3/tematicky-plan`
+6. **Tematický plán OSS 1 (Definitivní verze, přesně 66 h / 33 týdnů):**
+   - Na základě didaktického rozvržení učitele a alokace hodin:
+     - **Září (8 h):** Úvod do OS a HW pro OS (Instalace OS Win 11 2 h, Von Neumann 2 h, Úvod do OS 1 h, Evoluce 1 h, Architektura OS 1 h, Virtualizace 1 h).
+     - **Říjen (10 h):** Souborový systém, disky a start systému (Architektura FS 1 h, Média 1 h, Dělení disku 2 h, FAT a fragmentace 2 h, Praktické úlohy 2 h, Start systému / Boot proces 2 h).
+     - **Listopad – Prosinec (6 h):** Procesy a paměť (Úvod a vznik 2 h, Střídání procesů 1 h, Životní cyklus a stavy 1 h, Vlákna 1 h, Virtuální paměť a stránkování 1 h).
+     - **Leden (4 h):** Grafické rozhraní Windows 11 – GUI (Architektura GUI a Explorer 1 h, Hierarchie disku C: 1 h, Práce se soubory a konfigurace 2 h). Uzavření 1. pololetí (28 h).
+     - **Únor (6 h):** Příkazová řádka a dávkové soubory bez složité logiky (Orientace a navigace 2 h, Správa souborů a složek 2 h, Roury a filtry 2 h).
+     - **Březen (8 h):** Správa uživatelů a oprávnění (Účty a autentizace 2 h, Zabezpečení a UAC 2 h, Skupiny a role 2 h, NTFS práva 2 h).
+     - **Duben (4 h):** Správa software (Životní cyklus a instalátory 2 h, Aplikace a Winget 2 h).
+     - **Květen (4 h):** Správa zařízení a Plánovač úloh (Správce zařízení a ovladače Ring 0 2 h, Plánovač úloh taskschd.msc pod SYSTEM 2 h).
+     - **Květen (8 h):** Síťová konfigurace a lokální sítě – LAN (Adaptéry a ipconfig 2 h, Diagnostika ping/tracert 2 h, Profily sítě a Wi-Fi 2 h, Praktické úlohy 2 h).
+     - **Červen (8 h):** Závěrečný projekt a hodnocení (Konfigurace stanice 2 h, Síť a automatizace 2 h, Ladění a testování 2 h, Obhajoba projektu a hodnocení 2 h). Celkem = 66 h.
+7. **Harmonizace tematického plánu OSS 2 (Září–Červen, 66 h):**
+   - Po ruční úpravě Září (2 h: Wargame - CTF jako opakování OS 1) a Září–Říjen (10 h: Zálohování a ochrana dat – typy záloh 1 h, copy/xcopy/robocopy 3 h, cloud Google Drive 2 h, Cobian Reflector 4 h) byl zbytek roku harmonizován na přesných 66 hodin:
+     - **Listopad – Leden (18 h):** Bezpečnost 1 (Ochrana Windows 11 a forenzní analýza – 9 podtémat po 2 h: Malware typologie, Process Explorer & Authenticode, Windows Sandbox & Autoruns, Defender & EICAR, Firewall & netstat, BitLocker & TPM 2.0, UAC & winget, Phishing & MFA, Mini-CTF Incident Response). Přesně uzavírá 1. pololetí na 30 hodinách (2 + 10 + 18 h).
+     - **Únor – Březen (10 h):** Pokročilá správa Windows a PowerShell (MMC & services.msc, syntaxe a roury objektů, skripty .ps1 a ExecutionPolicy, registr regedit, Event Viewer logy).
+     - **Duben – Květen (12 h):** Síťové serverové služby (DHCP DORA/Scope, DNS zóny/A/PTR, SMB sdílení, RDP & SSH, web IIS HTTPS, SQL Server Express .bak).
+     - **Květen – Červen (14 h):** Active Directory a centrální správa (AD DS řadič DC, organizační jednotky OU, doménoví uživatelé a skupiny, připojení klienta Win 11, GPO restrikce a mapování, integrující podnikový projekt). 2. pololetí = 36 hodin (10 + 12 + 14 h). Celkem ročník = 66 h.
+8. **Přesun kapitoly Start systému (Boot) do Souborového systému a disků:**
+   - V souladu s didaktickou návazností (diskové oddíly MBR/GPT ➔ zavaděč a předání řízení kernelu) a tematickým plánem pro říjen byla kapitola `Start systému (Boot)` odebrána ze samostatných kapitol na hlavní stránce OSS 1 a zařazena jako závěrečná podkapitola **FS6** do rozcestníku `Souborový systém a disky` (`/specializovana/operacni-systemy-1/souborove-systemy/boot`).
+   - Původní routa `/specializovana/operacni-systemy-1/boot` byla ponechána pro zpětnou kompatibilitu se správnou navigací zpět do souborového systému. Zaktualizovány záznamy v `defaultSchool.ts`, `config/curriculum.ts` i `registry/lessons.ts`.
+9. **Implementace Školního vzdělávacího programu (ŠVP) pro InspIS (OSS 1, OSS 2, OSS 3):**
+   - Vytvořen oficiální kurikulární datový registr `registry/curriculum/svpData.ts` a souhrnný dokument `doc/curriculum/SVP_INSPIS.md` v přesné 3sloupcové struktuře InspIS ŠVP podle vzoru Horažďovice (*Výsledky vzdělávání Žák:* × *Rozpis učiva s kódy PT* × *Hodinová dotace*).
+   - Z obsahu byla důsledně vyřazena příliš teoretická či vysokoškolská témata (plánovací algoritmy CPU Round Robin a FIFO, paměťové alokátory Best/Worst Fit, složitá logika a větvení v `.bat` skriptech, složité podnikové topologie doménových lesů).
+   - Vypracována společná část ŠVP pro InspIS: pravidla hodnocení žáků, klíčové kompetence (k učení, komunikativní, k řešení problémů, digitální, pracovní) a průřezová témata (`PT - ČDS`, `PT - ČSP`, `PT - ODS`).
+   - Komponenta `SimplePlanTable.tsx` byla rozšířena o čistý dvouzáložkový přepínač (*Měsíční plán výuky 66 h* vs. *ŠVP pro InspIS 66 h*) a specializovanou komponentu `SvpInspisTable.tsx` s rozbalovací společnou charakteristikou, okamžitým kopírováním do schránky pro InspIS a tiskem. Nasazeno na OSS 1, OSS 2 i OSS 3.
 
 
 

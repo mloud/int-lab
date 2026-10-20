@@ -164,13 +164,13 @@ export const CURRICULUM: Chapter[] = [
   },
   {
     id: 'os-boot',
-    title: 'Bootování',
-    path: '/specializovana/operacni-systemy/boot',
+    title: 'Start systému (Boot)',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy/boot',
     icon: Server,
-        description: 'Jak startuje počítač (BIOS, UEFI).',
+    description: 'Jak startuje počítač (BIOS, UEFI) a zavedení OS z disku.',
     keywords: ['boot', 'start', 'bios', 'uefi', 'zavaděč'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy-1/souborove-systemy' }
   },
   {
     id: 'os-fs',

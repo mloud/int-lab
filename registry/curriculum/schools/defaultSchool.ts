@@ -4,11 +4,13 @@ import {
   OSS1_CLI,
   OSS1_USERS,
   OSS1_SOFTWARE,
+  OSS1_NETWORKS,
   OSS2_BEZPECNOST,
   OSS2_POKROCILA,
   OSS2_AD,
   OSS2_SLUZBY,
-  OSS3_LINUX,
+  OSS3_LINUX_SPRAVA,
+  OSS3_LINUX_SLUZBY,
   OSS3_GIT,
   OSS3_CYBER,
   OSS3_TEAM,
@@ -487,16 +489,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   hasSubchapters: false
                 },
                 {
-                  id: 'os-boot-seq',
-                  title: 'Start systému (Boot)',
-                  description: 'Průběh startu počítače od BIOSu po spuštění operačního systému.',
-                  tag: 'osb',
-                  icon: 'Hourglass',
-                  gradient: 'from-purple-600 to-indigo-600',
-                  route: '/specializovana/operacni-systemy-1/boot',
-                  hasSubchapters: false
-                },
-                {
                   id: 'os-virt',
                   title: 'Virtualizace',
                   description: 'Hypervisory, virtuální stroje a izolace prostředí.',
@@ -580,6 +572,17 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       gradient: 'from-slate-700 to-slate-900',
                       route: '/specializovana/operacni-systemy-1/souborove-systemy/pokrocile',
                       orderNumber: 99,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-boot',
+                      title: 'Start systému (Boot)',
+                      description: 'Průběh startu počítače od BIOSu a UEFI po zavedení operačního systému z disku.',
+                      tag: 'FS6',
+                      icon: 'Hourglass',
+                      gradient: 'from-purple-600 to-indigo-600',
+                      route: '/specializovana/operacni-systemy-1/souborove-systemy/boot',
+                      orderNumber: 6,
                       actionLabel: 'Otevřít kapitolu'
                     }
                   ]
@@ -685,7 +688,8 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   gradient: 'from-purple-600 to-indigo-600',
                   route: '/specializovana/operacni-systemy-1/planovac',
                   hasSubchapters: false
-                }
+                },
+                outlineToChapter(OSS1_NETWORKS)
               ]
             },
             {
@@ -794,8 +798,8 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   ]
                 },
                 outlineToChapter(OSS2_POKROCILA),
-                outlineToChapter(OSS2_AD),
-                outlineToChapter(OSS2_SLUZBY)
+                outlineToChapter(OSS2_SLUZBY),
+                outlineToChapter(OSS2_AD)
               ]
             },
             {
@@ -1026,44 +1030,9 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               icon: 'Terminal',
               gradient: 'from-slate-700 to-slate-900',
               route: '/specializovana/operacni-systemy-3',
-              analysis: {
-                goal: 'Přejít z role správce Windows do role správce Linuxu a bezpečnostního analytika, ovládat verzování v Gitu a pracovat v týmu s plánovacími a komunikačními nástroji.',
-                targetProfile: 'Absolvent 3. ročníku spravuje Linuxový server z příkazové řádky, pracuje s repozitářem v Gitu, rozumí útokům i obraně a umí se podílet na týmovém projektu.',
-                expectedOutcomes: [
-                  'Orientace v Linuxu: souborový systém, oprávnění, balíčky, služby, logy a plánování úloh.',
-                  'Vzdálená správa serveru přes SSH a nastavení firewallu.',
-                  'Práce s Gitem: commity, větve, slučování a GitHub.',
-                  'Pochopení útoků a obrany: kill chain, OSINT, zranitelnosti a bezpečnost webu.',
-                  'Znalost právních a etických pravidel kybernetické bezpečnosti.',
-                  'Plánování a komunikace v týmu (Kanban, harmonogram, týmové nástroje).'
-                ],
-                steps: [
-                  {
-                    step: '1. Linux (~24 h)',
-                    description: 'Příkazová řádka, souborový systém, oprávnění, balíčky, služby, logy a SSH.',
-                    why: 'Stejné pojmy jako ve Windows z 2. ročníku, jen v jiném prostředí – studenti vidí, že principy jsou obecné.'
-                  },
-                  {
-                    step: '2. Git (~8 h)',
-                    description: 'Verzování, větve a spolupráce přes GitHub.',
-                    why: 'Navazuje na příkazovou řádku z Linuxu a je potřeba pro závěrečný týmový projekt.'
-                  },
-                  {
-                    step: '3. Kyberbezpečnost (~20 h)',
-                    description: 'Útočník, právo, průzkum, zranitelnosti, web, útoky na AD a závěrečné CTF.',
-                    why: 'Zastřešuje Windows i Linux a staví na Bezpečnosti a Active Directory z 2. ročníku.'
-                  },
-                  {
-                    step: '4. Týmová spolupráce (~10 h)',
-                    description: 'Kanban, harmonogram, komunikační nástroje a závěrečný týmový projekt.',
-                    why: 'Propojí Git, plánování a komunikaci v jednom projektu a připraví na práci v IT týmu.'
-                  }
-                ],
-                hardwareRequirements: ['Počítače s VirtualBoxem', 'Virtuální stroje s Linuxem a Windows'],
-                softwareStack: ['Ubuntu Server', 'Git a GitHub', 'Nmap', 'Trello / Jira (plánování)', 'Teams / Slack (komunikace)']
-              },
               chapters: [
-                outlineToChapter(OSS3_LINUX),
+                outlineToChapter(OSS3_LINUX_SPRAVA),
+                outlineToChapter(OSS3_LINUX_SLUZBY),
                 outlineToChapter(OSS3_GIT),
                 outlineToChapter(OSS3_CYBER),
                 outlineToChapter(OSS3_TEAM)

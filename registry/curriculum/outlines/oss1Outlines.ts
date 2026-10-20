@@ -471,11 +471,111 @@ export const OSS1_SCHEDULER: OutlineGroup = {
   ]
 };
 
+const NET_BASE = '/specializovana/operacni-systemy-1/site';
+
+/** Síťová konfigurace a lokální sítě (~8 h) – adaptéry, MAC vs. IP, ipconfig, diagnostika ping & tracert, síťové profily, sdílení v LAN a Wi-Fi router. */
+export const OSS1_NETWORKS: OutlineGroup = {
+  chapterId: 'os-networks',
+  chapterTitle: 'Síťová konfigurace a lokální sítě (LAN)',
+  chapterDescription: 'Síťové adaptéry v OS, fyzická MAC vs. logická IP adresa, diagnostika příkazy ipconfig a ping, profily sítě, sdílení v LAN a konfigurace Wi-Fi routeru.',
+  chapterTag: 'net',
+  chapterPath: NET_BASE,
+  subjectTitle: SUBJECT,
+  grade: 1,
+  gradeLabel: '1. Ročník',
+  thematicBlock: 'Síťová konfigurace a lokální sítě',
+  icon: 'Network',
+  gradient: 'from-purple-600 to-indigo-600',
+  items: [
+    {
+      slug: 'adaptery-a-ip',
+      tag: 'NET1',
+      title: 'Síťové adaptéry, MAC vs. IP a ipconfig',
+      hours: '2 h',
+      subtitle: 'Správce zařízení, ncpa.cpl, fyzická MAC vs. logická IPv4 adresa, maska podsítě a DHCP.',
+      intro: 'Jak operační systém komunikuje s okolním světem? Prozkoumáme síťové adaptéry (Ethernet, Wi-Fi), rozdíl mezi neměnnou fyzickou MAC adresou síťové karty a dynamicky přidělenou logickou IP adresou, masku podsítě a zjišťování údajů přes GUI i příkaz ipconfig /all.',
+      topics: [
+        'Fyzické a virtuální síťové adaptéry: Správce zařízení (devmgmt.msc) a Síťová připojení (ncpa.cpl)',
+        'Fyzická adresa MAC (Media Access Control) – 48bitový unikátní otisk síťové karty vypálený výrobcem',
+        'Logická adresa IPv4 a maska podsítě (Subnet Mask) – identifikace sítě a konkrétní stanice (např. 255.255.255.0)',
+        'Způsoby přidělení IP: dynamické z DHCP serveru vs. ruční statická konfigurace pro servery a tiskárny',
+        'Inspekce síťových adaptérů v CLI: ipconfig, ipconfig /all, ipconfig /release a /renew'
+      ],
+      practice: [
+        'Simulace: Inspekce síťové karty – dekódování MAC adresy, výpočet síťové a hostitelské části z masky podsítě',
+        'Praxe v OS: Zjištění kompletní síťové konfigurace pomocí GUI (Nastavení / ncpa.cpl) a ověření přes ipconfig /all v terminálu'
+      ],
+      builds: 'Správa zařízení (DEV – adaptéry ve Správci zařízení) a Příkazová řádka (CLI1).'
+    },
+    {
+      slug: 'diagnostika-a-ping',
+      tag: 'NET2',
+      title: 'Diagnostika spojení a cesta paketu (Ping & Tracert)',
+      hours: '2 h',
+      subtitle: 'Vrstvený test konektivity, loopback 127.0.0.1, výchozí brána, zpoždění odezvy a trasování tracert.',
+      intro: 'Když nefunguje internet, nepanikaříme, ale postupujeme systematicky po vrstvách. Naučíme se diagnostický žebříček příkazu ping – od vnitřní smyčky TCP/IP přes výchozí bránu až do internetu – a zmapujeme skoky paketu pomocí tracert.',
+      topics: [
+        'Diagnostický žebříček ping: 1. Loopback (127.0.0.1), 2. vlastní IP, 3. výchozí brána (Default Gateway), 4. veřejná IP (8.8.8.8), 5. doménové jméno (DNS překlad)',
+        'Parametry příkazu ping v praxi: trvalý ping (-t), omezení počtu paketů (-n) a velikost paketu (-l)',
+        'Interpretace výsledků: doba odezvy v milisekundách (RTT), ztráta paketů (Packet Loss) a TTL (Time to Live)',
+        'Mapování cesty k cíli přes uzly a směrovače: příkaz tracert (Traceroute) a zjištění místa výpadku',
+        'Simulace a identifikace příčin výpadků: odpojený kabel, špatná brána, výpadek DNS vs. blokování firewallu'
+      ],
+      practice: [
+        'Simulace: Síťový detektiv – diagnostika poruchy konektivity krok za krokem podle symptomů v síti',
+        'Praxe v OS: Provedení kompletního žebříčku pingu v příkazové řádce a trasování cesty k serveru Seznam.cz / Google.com pomocí tracert'
+      ],
+      builds: 'Síťové adaptéry (NET1) a Příkazová řádka (CLI2).'
+    },
+    {
+      slug: 'profily-sdileni-wifi',
+      tag: 'NET3',
+      title: 'Profily sítě Windows, Wi-Fi a sdílení v LAN',
+      hours: '2 h',
+      subtitle: 'Veřejná vs. privátní síť, chování brány Windows Firewall, sdílení složek a tiskáren, Wi-Fi sítě.',
+      intro: 'Proč vás ve veřejné kavárně nesmí nikdo v síti vidět a proč doma naopak potřebujete sdílet tiskárnu a složky? Objasníme síťové profily Windows, nastavení sdílení v lokální síti, bezdrátové Wi-Fi sítě a zabezpečení WPA2/WPA3.',
+      topics: [
+        'Síťové profily ve Windows 11: Veřejná síť (Public - blokování zjišťování a pingu firewallem) vs. Privátní síť (Private - důvěryhodná domácí/firemní síť)',
+        'Sdílení prostředků v lokální síti: sdílení složek (oprávnění ke sdílení vs. NTFS práva), mapování síťové jednotky (písmeno disku)',
+        'Sdílení a připojení síťové tiskárny přes IP adresu a protokol SMB',
+        'Bezdrátové sítě Wi-Fi: pásma 2.4 GHz vs. 5 GHz, šíření SSID (Beacon frames), bezpečnostní standardy WPA2-Personal vs. WPA3-SAE',
+        'Inspekce Wi-Fi sítí v příkazovém řádku: příkazy netsh wlan show interfaces a netsh wlan show networks'
+      ],
+      practice: [
+        'Simulace: Konfigurátor firewallu a sdílení – nastavení profilu stanice a nasdílení složky pro vybranou skupinu uživatelů',
+        'Praxe v OS: Změna profilu sítě v Nastavení, nasdílení zkušební složky s oprávněním pro Čtení a inspekce Wi-Fi parametrů přes netsh'
+      ],
+      builds: 'Správa uživatelů a NTFS (USR3, USR4) a Síťové adaptéry (NET1).'
+    },
+    {
+      slug: 'router-laborator',
+      tag: 'NET4',
+      title: 'Praktická laboratoř: Konfigurace Wi-Fi routeru',
+      hours: '2 h',
+      subtitle: 'Hard reset, webová administrace, WAN vs. LAN, DHCP rozsah, WPA2/WPA3, MAC filtering a Guest síť.',
+      intro: 'Vyzkoušíme si kompletní roli síťového technika na skutečném SOHO Wi-Fi routeru. Od hardwarového resetu do továrního nastavení přes webovou administraci, zabezpečení Wi-Fi, izolovanou síť pro hosty až po konfiguraci DHCP a rodičovskou kontrolu.',
+      topics: [
+        'Architektura domácího Wi-Fi routeru (SOHO): propojení 4 zařízení v jednom (Router, Switch, Wi-Fi AP, Firewall/NAT)',
+        'Fyzické zapojení a tovární reset (Hard reset tlačítkem Reset) a výchozí IP adresa routeru (192.168.0.1 / 192.168.1.1)',
+        'Přihlášení do webové administrace: změna výchozích přihlašovacích údajů správce (admin/admin) jako prevence útoku',
+        'Konfigurace LAN a DHCP serveru: definice rozsahu přidělovaných IP adres a rezervace statické IP pro vybranou MAC adresu',
+        'Zabezpečení bezdrátové sítě: nastavení SSID, silného hesla WPA2-PSK (AES) / WPA3, izolovaná síť pro hosty (Guest Network) a proč je filtrování MAC adres snadno obelstitelné'
+      ],
+      practice: [
+        'Simulace: Virtuální webové rozhraní routeru – kompletní konfigurace od resetu po nastavení zabezpečené Wi-Fi a Guest zóny',
+        'Praxe v laboratoři / cvičení: Fyzické zapojení kabelu do LAN portu, vyhledání výchozí brány přes ipconfig, přihlášení do web managementu a konfigurace parametrů routeru'
+      ],
+      builds: 'Síťové adaptéry (NET1), Diagnostika (NET2) a Profily a Wi-Fi (NET3).'
+    }
+  ]
+};
+
 export const OSS1_GROUPS: OutlineGroup[] = [
   OSS1_GUI,
   OSS1_CLI,
   OSS1_USERS,
   OSS1_SOFTWARE,
   OSS1_DEVICES,
-  OSS1_SCHEDULER
+  OSS1_SCHEDULER,
+  OSS1_NETWORKS
 ];

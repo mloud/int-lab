@@ -54,6 +54,10 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
     task5RemoteIp: '',
     task5RemotePort: '',
     task5IpType: '',
+    task6VlcSigner: '',
+    task6VlcScore: '',
+    task6PySigner: '',
+    task6PyScore: '',
     task6ExplorerSigner: '',
     task6SvchostScore: '',
     task6PinkMeaning: '',
@@ -81,7 +85,7 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   };
 
   const copyProtocolToClipboard = () => {
-    const text = `=== LABORATORNÍ PROTOKOL: SPRÁVA PROCESŮ A DIGITÁLNÍ CERTIFIKÁTY ===
+    const text = `=== PRAKTICKÝ LIST: SPRÁVA PROCESŮ A DIGITÁLNÍ CERTIFIKÁTY ===
 Jméno studenta: ${studentName || 'Neuvedeno'}
 Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 
@@ -111,18 +115,14 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 - Identifikované weby a organizace: ${protocol.taskSeznamIdentifiedWebs || '-'}
 - Závěr šetření (infrastruktura webu): ${protocol.taskSeznamReflection || '-'}
 
-[Úloha 6: Inspekce digitálního podpisu a certifikátu aplikace (např. VLC)]
+[Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru]
 - Prověřovaný program a cesta: ${protocol.taskCertProgram || '-'}
-- Vystaveno pro (Subjekt): ${protocol.taskCertSubject || '-'}
-- Vystavitel (Certifikační autorita CA): ${protocol.taskCertIssuer || '-'}
-- Celkový stav podpisu a řetězec důvěry: ${protocol.taskCertChainStatus || '-'}
+- Ověřený podpis (Verified Signer / Vlastník): ${protocol.taskCertSubject || '-'}
+- VirusTotal skóre procesu: ${protocol.taskCertIssuer || protocol.task6VlcScore || '-'}
 
-[Úloha 7: Inspekce stromu v Sysinternals Process Explorer]
-- Ověřený podpis explorer.exe: ${protocol.task6ExplorerSigner || '-'}
-- VirusTotal skóre svchost.exe: ${protocol.task6SvchostScore || '-'}
-- Význam růžové barvy: ${protocol.task6PinkMeaning || '-'}
-- Význam fialové barvy: ${protocol.task6PurpleMeaning || '-'}
-- Kontrolovaná aplikace: ${protocol.task6BonusApp || '-'}
+[Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu]
+- Stav podpisu vlastního programu (Verified Signer): ${protocol.task6PySigner || protocol.task6BonusApp || '-'}
+- VirusTotal stav a skóre vlastního programu: ${protocol.task6PyScore || protocol.task6PurpleMeaning || '-'}
 
 [Úloha 8: Výpočet SHA-256 v CMD (certutil) a VirusTotal]
 - Vypočtený hash notepad.exe: ${protocol.task7Hash || '-'}
@@ -149,7 +149,7 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
   const handleDownloadWord = () => {
     const content = `
       <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-      <head><meta charset='utf-8'><title>Laboratorní protokol - Správa procesů a certifikáty</title>
+      <head><meta charset='utf-8'><title>Praktický list - Správa procesů a certifikáty</title>
       <style>
         body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.4; color: #1e293b; }
         h1 { color: #0284c7; font-size: 18pt; border-bottom: 2pt solid #0284c7; padding-bottom: 4pt; }
@@ -162,7 +162,7 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
       </style>
       </head>
       <body>
-        <h1>Laboratorní protokol: Správa procesů a digitální certifikáty v OS</h1>
+        <h1>Praktický list: Správa procesů a digitální certifikáty v OS</h1>
         <div class="meta">
           <strong>Student:</strong> ${studentName || 'Neuvedeno'}<br/>
           <strong>Předmět:</strong> Operační systémy 2 (2. Ročník SŠ)<br/>
@@ -195,18 +195,14 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
         <div class="item"><span class="label">Identifikované weby a organizace:</span> <span class="val">${protocol.taskSeznamIdentifiedWebs || '-'}</span></div>
         <div class="item"><span class="label">Závěr šetření (infrastruktura webu):</span> <span class="val">${protocol.taskSeznamReflection || '-'}</span></div>
 
-        <h2>Úloha 6: Inspekce digitálního podpisu a certifikátu aplikace (např. VLC)</h2>
+        <h2>Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru</h2>
         <div class="item"><span class="label">Prověřovaný program a cesta:</span> <span class="val">${protocol.taskCertProgram || '-'}</span></div>
-        <div class="item"><span class="label">Vystaveno pro (Subjekt):</span> <span class="val">${protocol.taskCertSubject || '-'}</span></div>
-        <div class="item"><span class="label">Vystavitel (Certifikační autorita CA):</span> <span class="val">${protocol.taskCertIssuer || '-'}</span></div>
-        <div class="item"><span class="label">Celkový stav podpisu a řetězec důvěry:</span> <span class="val">${protocol.taskCertChainStatus || '-'}</span></div>
+        <div class="item"><span class="label">Ověřený podpis (Verified Signer / Vlastník):</span> <span class="val">${protocol.taskCertSubject || '-'}</span></div>
+        <div class="item"><span class="label">VirusTotal skóre procesu:</span> <span class="val">${protocol.taskCertIssuer || protocol.task6VlcScore || '-'}</span></div>
 
-        <h2>Úloha 7: Inspekce stromu v Sysinternals Process Explorer</h2>
-        <div class="item"><span class="label">Ověřený podpis explorer.exe:</span> <span class="val">${protocol.task6ExplorerSigner || '-'}</span></div>
-        <div class="item"><span class="label">VirusTotal skóre svchost.exe:</span> <span class="val">${protocol.task6SvchostScore || '-'}</span></div>
-        <div class="item"><span class="label">Význam růžové barvy:</span> <span class="val">${protocol.task6PinkMeaning || '-'}</span></div>
-        <div class="item"><span class="label">Význam fialové barvy:</span> <span class="val">${protocol.task6PurpleMeaning || '-'}</span></div>
-        <div class="item"><span class="label">Zkontrolovaná aplikace:</span> <span class="val">${protocol.task6BonusApp || '-'}</span></div>
+        <h2>Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu</h2>
+        <div class="item"><span class="label">Stav podpisu vlastního programu (Verified Signer):</span> <span class="val">${protocol.task6PySigner || protocol.task6BonusApp || '-'}</span></div>
+        <div class="item"><span class="label">VirusTotal stav a skóre vlastního programu:</span> <span class="val">${protocol.task6PyScore || protocol.task6PurpleMeaning || '-'}</span></div>
 
         <h2>Úloha 8: Výpočet SHA-256 v CMD (certutil) a VirusTotal</h2>
         <div class="item"><span class="label">SHA-256 hash notepad.exe:</span> <span class="val">${protocol.task7Hash || '-'}</span></div>
@@ -248,7 +244,7 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
   const tabs = [
     { id: 'teorie', label: 'Teorie & Schémata', icon: Layers },
     { id: 'simulator', label: 'Interaktivní simulátory', icon: Activity },
-    { id: 'laborator', label: 'Praktická laboratoř (Protokol)', icon: FileText },
+    { id: 'laborator', label: 'Praktický list', icon: FileText },
     { id: 'kviz', label: 'Ověřovací kvíz', icon: HelpCircle }
   ];
 

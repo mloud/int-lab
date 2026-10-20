@@ -43,6 +43,7 @@ import {
   Search,
   GitBranch,
   RefreshCw,
+  Wifi,
   LucideIcon
 } from 'lucide-react';
 
@@ -89,6 +90,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   AppWindow,
   ArrowUpDown,
   Search,
+  Wifi,
 };
 
 /**

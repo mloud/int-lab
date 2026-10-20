@@ -1600,7 +1600,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
-    defaultPath: '/specializovana/operacni-systemy-1/boot',
+    defaultPath: '/specializovana/operacni-systemy-1/souborove-systemy/boot',
     iconName: 'Power',
     keywords: ['uefi', 'bios', 'bootloader', 'post', 'zavaděč'],
     difficulty: 'hard',
@@ -1614,8 +1614,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       grade: 1,
       gradeLabel: '1. Ročník',
       subject: 'Operační systémy 1',
-      thematicBlock: 'Start OS (Boot)',
-      chapter: 'Start OS (Boot)',
+      thematicBlock: 'Souborové systémy a disky',
+      chapter: 'Souborové systémy a disky',
+      subchapter: '6. Start systému (Boot)',
       lesson: 'BIOS, UEFI a zavaděč'
     },
     tabs: {

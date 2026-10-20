@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <ChapterLayout chapterId="os-boot">
       <div className="flex flex-col items-center justify-center relative w-full h-full min-h-[60vh]">
-      <OsBootChapter onBack={() => router.push('/specializovana/operacni-systemy-1')} />
+        <OsBootChapter onBack={() => router.push('/specializovana/operacni-systemy-1/souborove-systemy')} />
     </div>
     </ChapterLayout>
   );

@@ -36,6 +36,7 @@
 8. **Spravuje místní uživatelské účty a skupiny**, nastavuje přístupová oprávnění NTFS a chápe význam dědičnosti a explicitního zákazu (Deny).
 9. **Instaluje software** pomocí klasických instalátorů (EXE, MSI) i moderního balíčkovače (Winget) a rozumí registraci aplikací v OS.
 10. **Diagnostikuje hardware přes Správce zařízení** (`devmgmt.msc`) a konfiguruje automatické spouštění úloh v Plánovači úloh (`taskschd.msc`).
+11. **Nakonfiguruje a otestuje síťové připojení stanice v LAN**, rozliší MAC a IP adresu, provede diagnostiku pomocí `ipconfig`, `ping` a `tracert`, nastaví síťové profily a provede základní konfiguraci SOHO Wi-Fi routeru.
 
 ---
 
@@ -69,7 +70,8 @@ Absolvent OSS 1 dokáže samostatně:
 | **8** | **Správa aplikačního software a Winget** | 4 h (1 h / 3 h) | Životní cyklus software, instalátory EXE vs. Windows Installer MSI, tichá instalace (`/qn`, `/silent`), registrace v registru a Odinstalovat program, balíčkovač Winget (`winget search`, `install`, `upgrade --all`), export a import balíčků. | `/software/*` (SW1–SW2) |
 | **9** | **Správa zařízení a ovladače (Drivers)** | 4 h (1 h / 3 h) | Komunikace OS s hardwarem, role ovladačů v jádře (Ring 0), Správce zařízení (`devmgmt.msc`), diagnostika stavů zařízení, instalace přes Windows Update a `.inf` soubory, digitální podpis WHQL, řešení hardwarových konfliktů. | `/zarizeni` |
 | **10** | **Plánovač úloh a automatický provoz** | 4 h (1 h / 3 h) | Automatizace údržby stanice, Plánovač úloh (`taskschd.msc`), konfigurace triggerů (čas, spuštění systému, přihlášení), konfigurace akcí (spuštění `.bat` údržby), bezpečnostní kontext (účet `SYSTEM` vs. přihlášený uživatel). | `/planovac` |
-| **–** | **Závěrečné hodnocení a rezerva** | 4 h (1 h / 3 h) | Praktické ověření dovedností (rekonfigurace stanice, dávkový skript na míru, nastavení NTFS práv), závěrečná reflexe ročníku. | — |
+| **11** | **Síťová konfigurace a lokální sítě (LAN)** | 8 h (2 h / 6 h) | Fyzické a virtuální adaptéry, Správce zařízení a `ncpa.cpl`, fyzická MAC adresa vs. logická IPv4, maska podsítě, DHCP vs. statická IP, zjišťování přes `ipconfig /all`. Diagnostický žebříček `ping` (127.0.0.1 -> brána -> DNS), interpretace RTT a ztrát, trasování `tracert`. Profily sítě (Veřejná vs. Privátní), Windows Firewall, sdílení složek a tiskáren v LAN, Wi-Fi pásma a zabezpečení WPA2/WPA3, příkazy `netsh wlan`. Praktická laboratoř: tovární reset a konfigurace SOHO Wi-Fi routeru (LAN, DHCP rozsah, zabezpečení Wi-Fi, Guest síť). | `/site/*` (NET1–NET4) |
+| **–** | **Závěrečné hodnocení a rezerva** | 4 h (1 h / 3 h) | Praktické ověření dovedností (rekonfigurace stanice, dávkový skript na míru, nastavení NTFS práv, diagnostika sítě), závěrečná reflexe ročníku. | — |
 | **Σ** | **Celkem** | **68 h (24 h T / 44 h C)** | **Pravidelná 2hodinová týdenní dotace** | |
 
 ---

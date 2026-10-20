@@ -18,7 +18,7 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 ### 1. Operační systémy 1 (OSS 1 – 1. ročník)
 - **Stav výuky a kurikula:** Portál má kompletně připravenou a provázanou strukturu témat pro celý 1. ročník:
-  - [x] 1. polovina: Instalace ➔ Hardware ➔ Architektura ➔ Test 01 ➔ Evoluce ➔ Boot & Virtualizace ➔ Struktura disku.
+  - [x] 1. polovina: Instalace ➔ Hardware ➔ Architektura ➔ Test 01 ➔ Evoluce ➔ Virtualizace ➔ Struktura disku & Boot.
   - [x] 2. polovina (Struktura, navigace & rozcestníky): Procesy ➔ GUI Win 11 (GUI1–GUI5) ➔ CLI a BAT (CLI1–CLI3, BAT1–BAT2) ➔ Správa uživatelů a NTFS (USR1–USR4) ➔ Správa software (SW1–SW2) ➔ Správa zařízení (DEV) ➔ Plánovač úloh (SCH).
   - [x] **Téma Procesy a paměť (`/specializovana/operacni-systemy-1/procesy`):**
     - [x] PR1: Úvod a vznik procesu (`/procesy/uvod`) – teorie RAM, badatelský list s Task Managerem, CLI `tasklist` a Process Explorerem z Sysinternals.
@@ -90,8 +90,8 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 3. [x] **Úvod do OS a architektura:** Funkce OS, kernel vs. user space, licence (OEM), typy OS (`/uvod`, `/architektura`).
 4. [x] **Procvičování na test 1 & Hodnocená práce 01:** Interaktivní příprava (`/test01-rozbor`), shrnutí hardwaru, architektury a licencí (`/test01`).
 5. [x] **Evoluce operačních systémů:** Historie, rodiny OS, Unix/Windows (`/vyvoj`).
-6. [x] **Start systému (Boot) a Virtualizace:** UEFI, MBR/GPT, VirtualBox, snapshoty (`/boot`, `/virtualizace`).
-7. [x] **Struktura disku z pohledu OS:** Sektor, cluster (alokační jednotka), FAT tabulka, MBR/GPT, fragmentace, formátování (`/souborove-systemy`).
+6. [x] **Virtualizace:** Typ 1 a 2 Hypervisory, virtuální stroje vs. kontejnery (`/virtualizace`).
+7. [x] **Struktura disku a Start systému (Boot) z pohledu OS:** Sektor, cluster (alokační jednotka), FAT tabulka, MBR/GPT, fragmentace, formátování a start systému / Boot (`/souborove-systemy`, `/souborove-systemy/boot`).
 
 ---
 
@@ -150,19 +150,14 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 
 ---
 
-#### 5. Část: Správa síťového připojení Windows 11 (Závěr roku)
+#### 5. Část: Správa síťového připojení a LAN (✅ Struktura a navigace na portálu HOTOVA)
 
-20. [ ] **Základní síťové pojmy v OS:**
-   - Paket, IP adresa (IPv4 / IPv6), maska sítě, výchozí brána, MAC adresa, DNS, role routeru, příkazy `ipconfig`, `ping`, `tracert`.
-   - 🧪 Síťový vizualizér toku paketů a konfigurace adaptéru.
-21. [ ] **Síťové služby a sdílení souborů:**
-   - Síťové profily (Veřejná vs. Privátní síť a dopad na zjišťování), sdílení složek v síti (SMB), UNC cesta `\\PC\Slozka`, připojení síťového disku (`net use`).
-   - 🧪 Simulátor sdílení a připojení síťové jednotky.
-22. [ ] **Bezdrátové sítě Wi-Fi:**
-   - Standardy 802.11 (Wi-Fi 4/5/6), pásma 2.4 GHz vs. 5 GHz, šíření signálu a rušení, SSID.
-23. [ ] **Konfigurace a optimalizace Wi-Fi routeru:**
-   - Webová administrace routeru, nastavení WAN/LAN, DHCP server na routeru, zabezpečení WPA2/WPA3 Personal, volba optimálního kanálu.
-   - 🧪 Interaktivní webové rozhraní virtuálního routeru.
+17. [x] **Síťová konfigurace a lokální sítě (LAN):** (`/specializovana/operacni-systemy-1/site`)
+   - **NET1 – Síťové adaptéry, MAC vs. IP a ipconfig:** (`/site/adaptery-a-ip`) – Správce zařízení (`devmgmt.msc`), síťová připojení `ncpa.cpl`, fyzická MAC adresa vs. logická IPv4, maska podsítě, dynamické DHCP vs. statická IP, CLI `ipconfig`, `ipconfig /all`, `/release`, `/renew`.
+   - **NET2 – Diagnostika spojení a cesta paketu (Ping & Tracert):** (`/site/diagnostika-a-ping`) – Vrstvený diagnostický žebříček pingu (`127.0.0.1` -> vlastní IP -> brána -> `8.8.8.8` -> DNS doména), RTT zpoždění v ms, ztráta paketů, TTL, trasování cesty `tracert`, diagnostika příčin výpadků.
+   - **NET3 – Profily sítě Windows, Wi-Fi a sdílení v LAN:** (`/site/profily-sdileni-wifi`) – Veřejná vs. Privátní síť, chování Windows Firewallu, sdílení složek a tiskáren, Wi-Fi pásma (2.4/5 GHz), SSID beaconing, WPA2-Personal vs. WPA3-SAE, CLI `netsh wlan show interfaces / networks`.
+   - **NET4 – Praktická laboratoř: Konfigurace Wi-Fi routeru:** (`/site/router-laborator`) – SOHO Wi-Fi router (4 v 1), hard reset do továrního nastavení, webová administrace, změna hesla správce, DHCP rozsah a statické rezervace, WPA2/WPA3 zabezpečení, izolovaná Guest síť a limity MAC filteringu.
+   - *(Všech 4 podkapitol s rozcestníkem vytvořeno dle standardních šablon portálu IntLab).*
 
 ---
 
@@ -289,51 +284,54 @@ Každá podkapitola: `FsChapterShell` se záložkami **Teorie | Simulátor | Lab
 
 ---
 
-### Blok 3: Pokročilá konfigurace Windows (nástroje správce – 5 h)
-**Role bloku:** Most propojující Bezpečnost s Active Directory.
+### Blok 3: Pokročilá konfigurace Windows a PowerShell (10 h)
+**Role bloku:** Nástroje administrátora – přechod od klikání k PowerShellu, registr a diagnostika.
 - [x] **Přehledové stránky kapitol PK1–PK5 vytvořeny** (v kurikulu i v aplikaci):
-  - **PK1 – MMC a Správa počítače:** Princip snap-inů, tvorba vlastní konzole, most k AD konzolím.
-  - **PK2 – Služby Windows:** Typy spuštění (auto/manual/disabled), účty služeb, závislosti.
-  - **PK3 – Prohlížeč událostí:** Protokoly System/Application/Security, filtrace, audit přihlášení (4624/4625).
-  - **PK4 – Pokročilá NTFS oprávnění:** Dědičnost práv, explicitní vs. zděděná, přednost Deny, kalkulátor efektivních práv.
-  - **PK5 – Místní zásady zabezpečení (`secpol.msc`):** Zásady hesel a zámek účtu na lokálním PC (předobraz GPO).
+  - **PK1 – MMC a Služby Windows:** Princip snap-inů, tvorba vlastní konzole, správa služeb na pozadí pod účtem SYSTEM, typy spouštění, obnova po havárii.
+  - **PK2 – PowerShell základy a roury:** Objektový model .NET, syntaxe Sloveso-PodstatnéJméno, cmdlety `Get-Command`/`Get-Help`, roura objektů `|`, filtrace `Where-Object` a `Select-Object`.
+  - **PK3 – Automatizace správy v PowerShellu:** Hromadná správa služeb a procesů, práce se soubory, psaní a spouštění skriptů `.ps1`, bezpečnostní politika `ExecutionPolicy`.
+  - **PK4 – Systémový registr a řešení chyb:** Účel registru, soubory hives v System32, větve HKLM a HKCU, typy hodnot REG_SZ a REG_DWORD, zálohování a export `.reg`.
+  - **PK5 – Prohlížeč událostí a audit (Event Viewer):** Protokoly System, Application a Security, úrovně událostí, klíčová Event ID (4624 login, 4625 brute-force, 6006 vypnutí), tvorba vlastních filtrů.
 
 ---
 
-### Blok 4: Active Directory a doména (16 h)
-**Role bloku:** Přechod od správy jednoho PC k centrální správě celé sítě / firmy.
+### Blok 4: Síťové serverové služby a infrastruktura (12 h)
+**Role bloku:** Základní infrastruktura podnikové sítě – nezbytný základ před instalací domény.
+- [x] **Přehledové stránky kapitol SL1–SL6 vytvořeny** (v kurikulu i v aplikaci):
+  - **SL1 – DHCP server (Automatická konfigurace sítě):** 4fázový proces DORA, instalace role DHCP Server na Windows Serveru, konfigurace rozsahu (Scope), Lease time a statické rezervace pro tiskárny.
+  - **SL2 – DNS server (Překlad jmen a páteř sítě):** Hierarchie DNS, dopředné zóny, záznamy A, CNAME, PTR, diagnostika `nslookup`, vymazání cache `ipconfig /flushdns`, nezbytnost pro Active Directory.
+  - **SL3 – Souborový server (SMB):** Protokol SMB, UNC cesty `\\Server\Slozka`, kombinace oprávnění sdílení a NTFS, mapování jednotky `net use`, administrativní sdílení `C$`.
+  - **SL4 – Vzdálená správa (RDP a OpenSSH):** Vzdálená plocha RDP na portu 3389, NLA autentizace, OpenSSH Server na Windows, pravidla firewallu pro vzdálený přístup.
+  - **SL5 – Webový server (IIS):** Instalace role Web Server IIS, výchozí kořen `C:\inetpub\wwwroot`, vazby portů 80 (HTTP) a 443 (HTTPS), SSL/TLS certifikát.
+  - **SL6 – Databázový server (MS SQL Server):** Instalace SQL Server Express, služba MSSQLSERVER a účty služeb, povolení TCP/IP na portu 1433 v SQL Configuration Manageru, Windows Authentication a zálohování do `.bak`.
+
+---
+
+### Blok 5: Active Directory a centrální správa (14 h)
+**Role bloku:** Přechod od správy jednoho PC k centrální správě celé podnikové sítě.
 - [x] **Přehledové stránky kapitol AD1–AD7 vytvořeny** (v kurikulu i v aplikaci):
-  - **AD1 – Server a doména:** Lokální pracovní skupina vs. doména, role Windows Serveru.
-  - **AD2 – DNS a řadič domény:** Instalace role AD DS, povýšení na DC, DNS jako nutná jmenná služba.
-  - **AD3 – Uživatelé, skupiny a OU:** Organizační jednotky, typy skupin, model AGDLP, konzole ADUC.
-  - **AD4 – Klient v doméně:** Připojení Windows 11 do domény, doménový profil, časté chyby (DNS/čas).
-  - **AD5 – Sdílení a práva přes skupiny:** Sdílení na serveru, kombinace práv sdílení a NTFS přes doménové skupiny.
-  - **AD6 – Group Policy (GPO):** Aplikace zásad LSDOU, dědičnost, vynucení hesel, zákaz USB, mapování disků, `gpupdate` / `gpresult`.
-  - **AD7 – Záloha AD a závěrečný mini projekt:** Záloha řadiče, obnova smazaného objektu, samostatný projekt „Firma se třemi odděleními“.
-
----
-
-### Blok 5: Serverové služby (Windows Server – 9 h)
-**Role bloku:** Jednotný vzorec klient-server aplikovaný na klíčové služby.
-- [x] **Přehledové stránky kapitol SL1–SL4 a SL-V vytvořeny** (v kurikulu i v aplikaci):
-  - **SL1 – Souborový server (SMB):** Vzorec služby (server, port 445, firewall, práva, klient), mapování disků.
-  - **SL2 – Vzdálená správa (RDP a SSH):** Vzdálená plocha, OpenSSH Server, přihlášení klíčem, zabezpečení portů.
-  - **SL3 – Webový server (IIS):** Instalace role IIS, weby, bindings (IP/port/header), HTTPS certifikát, porty 80/443.
-  - **SL4 – Tiskový server:** Sdílení tiskárny, ovladače, oprávnění pro skupiny, distribuce klientům.
-  - **SL-V – Volitelné služby:** DHCP, databázový server, poštovní server (rezerva dle časových možností).
+  - **AD1 – Windows Server a co je doména:** Limity pracovní skupiny, princip domény a AD DS, role řadiče domény (DC), prostředí Správce serveru.
+  - **AD2 – Povýšení na řadič domény (DC):** Průvodce povýšením, vytvoření lesa a domény (FQDN), heslo DSRM, vazba na DNS a automatická tvorba SRV záznamů ve složce `_msdcs`.
+  - **AD3 – Organizační jednotky (OU) a doménové účty:** Konzole `dsa.msc`, logická struktura firmy do OU, tvorba doménových uživatelů, politika hesel a uzamčení účtu (Account Lockout).
+  - **AD4 – Skupiny a přístupová práva (Prakticky):** Srozumitelný model *Uživatel ➔ Skupina ➔ Práva na sdílení* (bez teoretického AGDLP), efektivní přístup k datům oddělení.
+  - **AD5 – Připojení klienta Windows 11 do domény:** Konfigurace DNS klienta na DC, dialog připojení stanice do domény, přihlášení doménovým účtem, doménový uživatelský profil.
+  - **AD6 – Group Policy (GPO):** Aplikace zásad na OU, zákaz USB flash disků, jednotná tapeta plochy, automatické připojení síťového disku oddělení, `gpupdate /force` a `gpresult /r`.
+  - **AD7 – Závěrečný integrující projekt: Podniková síť:** Samostatné zprovoznění malé firmy (Server s DHCP + DNS + AD ➔ připojený klient ➔ 2 oddělení ➔ zabezpečené složky ➔ funkční GPO restrikce) přesně dle modelu SŠ Horažďovice.
 
 ---
 
 ## 🔭 Výhled: 3. ročník – Operační systémy 3 (OSS 3)
 **Princip ročníku:** z role *správce Windows* do role *správce Linuxu* a *bezpečnostního analytika organizace*, doplněné o verzování v Gitu a týmovou spolupráci v projektech.
 
-- **Předmět:** `Operační systémy 3` (`/specializovana/operacni-systemy-1-3`, subjectId: `ops3`) – integrován do 3. ročníku kurikula.
-- **Rozpad témat:**
-  1. **Linux (~24 h):** LX1 (Distribuce & instalace), LX2 (Terminál & FS strom), LX3 (Text & roury), LX4 (Uživatelé & rwx), LX5 (Balíčky apt), LX6 (Procesy & systemd), LX7 (Logy & cron), LX8 (Síť & SSH).
-  2. **Git a verzování (~8 h):** GT1 (Principy & 3 zóny), GT2 (Základní cyklus add/commit), GT3 (Větve & merge konflikty), GT4 (GitHub & pull requesty).
-  3. **Kyberbezpečnost (~20 h):** KB1 (Útočník & právo NIS2/TrZ), KB2 (Průzkum OSINT & Nmap v laboratoři), KB3 (Zranitelnosti CVE & CVSS), KB4 (Bezpečnost webu & OWASP), KB5 (Útoky na AD & logy), KB6 (Závěrečné CTF: Red vs. Blue).
-  4. **Týmová spolupráce a nástroje (~10 h):** TM1 (Kanban & Scrum), TM2 (Harmonogram & Ganttův diagram), TM3 (Komunikační nástroje & Teams/Slack), TM4 (Závěrečný týmový projekt).
-- [x] **Všech 22 kapitol a podkapitol OSS 3 vytvořeno v kurikulu i routování s přehledovými stránkami.**
+- **Předmět:** `Operační systémy 3` (`/specializovana/operacni-systemy-3`, subjectId: `ops3`, 66 h) – integrován do 3. ročníku kurikula.
+- **Rozpad témat (Celkem 66 h = 33 týdnů × 2 h):**
+  1. **Linux – Instalace a základní správa (16 h):** LX1 (Instalace, disky ext4/swap a GRUB), LX2 (Terminál & FHS strom), LX3 (Text & roury), LX4 (Uživatelé & POSIX práva), LX5 (Balíčky apt), LX6 (Procesy & systemd), LX7 (Logy journalctl & cron).
+  2. **Linux – Sítě, serverové služby a Bash (16 h):** LX8 (Sítě & SSH/UFW), LX9 (Webový server Apache), LX10 (Sdílení souborů Samba Linux ↔ Windows), LX11 (Bash základy, shebang & proměnné), LX12 (Bash podmínky & zálohovací skript), LX13 (Praktická prověrka správy Linuxu).
+  3. **Git a verzování kódu (8 h):** GT1 (Principy & 3 zóny), GT2 (Základní cyklus add/commit), GT3 (Větve & merge konflikty), GT4 (GitHub & pull requesty).
+  4. **Kybernetická bezpečnost (12 h):** KB1 (Právo v IT & Kill Chain), KB2 (Skenování sítě Nmap & CVE zranitelnosti), KB3 (Analýza síťového provozu Wireshark – TCP handshake, nešifrovaná hesla), KB4 (Praktický bezpečnostní incident a reakce).
+  5. **Týmový projekt a agilní řízení (10 h):** TM1 (Agilní organizace úkolů v Kanbanu – GitHub Projects / Trello), TM2 (Závěrečný integrující týmový projekt – Linux + Windows + Git + automatizace), TM3 (Prezentace a obhajoby).
+- **Rezerva na svátky a uzavření klasifikace:** 4 h.
+- [x] **Všech 5 hlavních kapitol a 20 podkapitol OSS 3 vytvořeno v kurikulu, routování i v aplikaci s přehledovými stránkami.**
 
 ### Tabulka anti-duplicity (2. ročník → 3. ročník)
 | Téma | 2. ročník | 3. ročník |

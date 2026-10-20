@@ -41,7 +41,7 @@ export default function ProcessLabTab({
 }: ProcessLabTabProps) {
   return (
         <WorksheetLayout
-          title="Laboratorní protokol: Správa procesů a digitální certifikáty v OS"
+          title="Praktický list: Správa procesů a digitální certifikáty v OS"
           studentName={studentName}
           onStudentNameChange={setStudentName}
           onDownload={handleDownloadWord}
@@ -74,7 +74,7 @@ export default function ProcessLabTab({
               <p>
                 Každá úloha představuje <strong>reálný bezpečnostní incident nebo vyšetřovací postup</strong>, který správci a bezpečnostní analytici provádějí při podezření na infekci. 
                 Všechny úlohy řešte v <strong>Příkazovém řádku (cmd.exe)</strong>, vestavěných systémových diagnostických nástrojích nebo v Excelu. 
-                Odpovědi vyplňujte přímo do formulářových polí u konkrétní úlohy. Po dokončení si dole stáhněte vyplněný protokol ve Wordu (.doc).
+                Odpovědi vyplňujte přímo do formulářových polí u konkrétní úlohy. Po dokončení si dole stáhněte vyplněný praktický list ve Wordu (.doc).
               </p>
             </div>
 
@@ -570,7 +570,7 @@ export default function ProcessLabTab({
             </div>
 
             {/* =========================================================================
-                ÚLOHA 6: INSPEKCE DIGITÁLNÍHO PODPISU A CERTIFIKÁTU APLIKACE (VLC)
+                ÚLOHA 6: FORENZNÍ INSPEKCE PROCESU VLC V SYSINTERNALS PROCESS EXPLORERU
                 ========================================================================= */}
             <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
               checkedTasks['taskCert'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
@@ -582,10 +582,10 @@ export default function ProcessLabTab({
                   </span>
                   <div>
                     <h3 className={`text-base font-black ${checkedTasks['taskCert'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 6: Inspekce digitálního podpisu a certifikátu aplikace v Průzkumníku Windows (např. vlc.exe)
+                      Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru
                     </h3>
                     <p className="text-xs text-slate-500 font-medium">
-                      Zkoumání kryptografické pečeti v Průzkumníku Windows, řetězce důvěry (CA) a detailů certifikátu
+                      Představení nástroje, ověření digitálního podpisu Authenticode a cloudová reputace VirusTotal
                     </p>
                   </div>
                 </div>
@@ -608,16 +608,27 @@ export default function ProcessLabTab({
               </div>
 
               {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  Ověřte kryptografický rodný list spustitelného souboru v Průzkumníku Windows (např. <code>vlc.exe</code>, <code>notepad++.exe</code> či <code>chrome.exe</code>).
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
+                <p className="text-slate-900 leading-relaxed">
+                  <strong>Sysinternals Process Explorer</strong> je profesionální, vylepšený diagnostický nástroj na analýzu procesů od Microsoftu (oproti běžnému Správci úloh zobrazuje hierarchický strom procesů rodič-potomek, přímo v reálném čase ověřuje digitální podpisy spustitelných souborů a integruje celosvětovou antivirovou cloudovou databázi <strong>VirusTotal</strong>).
                 </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Otevřete <strong>Vlastnosti</strong> programu ➔ záložka <strong>Digitální podpisy</strong> ➔ <strong>Podrobnosti</strong> ➔ <strong>Zobrazit certifikát</strong>.</li>
-                  <li>Zkontrolujte hlášení o platnosti podpisu a z jednotlivých záložek certifikátu vyčtěte níže uvedené parametry.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Certifikační cesta:</strong> Zobrazuje řetězec důvěry (Root CA ➔ Intermediate CA ➔ Vlastní certifikát). Chybějící záložka značí nepodepsaný soubor.
+
+                <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-200 text-blue-950 space-y-1">
+                  <span className="font-bold text-xs text-blue-900 block">⚙️ Příprava nástroje:</span>
+                  <p className="text-[11px] text-slate-600">
+                    V horním menu Process Exploreru aktivujte volby <strong>Options ➔ Verify Image Signatures</strong> a <strong>Options ➔ Check VirusTotal.com</strong> (při prvním spuštění odsouhlaste podmínky služby).
+                  </p>
+                </div>
+
+                <div className="space-y-1 pt-1">
+                  <p className="font-bold text-slate-900">
+                    Postup analýzy přehrávače VLC:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+                    <li>Spusťte program <code>vlc.exe</code> (nebo jinou nainstalovanou aplikaci).</li>
+                    <li>V Process Exploreru vyhledejte jeho proces a odečtěte hodnoty ve sloupcích <strong>Verified Signer</strong> a <strong>VirusTotal</strong>.</li>
+                    <li>Dvojklikem na proces můžete otevřít okno <em>Properties</em> ➔ záložka <em>Image</em>, kde lze vyčíst přesnou cestu a kliknutím na <em>Verify</em> zkontrolovat podrobnosti certifikátu.</li>
+                  </ul>
                 </div>
               </div>
 
@@ -641,7 +652,7 @@ export default function ProcessLabTab({
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      6.2 Vystaveno pro (Subjekt / Vlastník podpisu):
+                      6.2 Ověřený podpis (Verified Signer / Vlastník):
                     </label>
                     <input
                       type="text"
@@ -653,35 +664,22 @@ export default function ProcessLabTab({
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      6.3 Vystavitel certifikátu (Certifikační autorita CA):
+                      6.3 VirusTotal skóre procesu:
                     </label>
                     <input
                       type="text"
                       value={protocol.taskCertIssuer || ''}
                       onChange={(e) => setProtocol({ ...protocol, taskCertIssuer: e.target.value })}
                       placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    6.4 Celkový stav podpisu a řetězec důvěry (Certifikační cesta):
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.taskCertChainStatus || ''}
-                    onChange={(e) => setProtocol({ ...protocol, taskCertChainStatus: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
                 </div>
               </div>
             </div>
 
             {/* =========================================================================
-                ÚLOHA 7: INSPEKCE STROMU V PROCESS EXPLORERU
+                ÚLOHA 7: VYTVOŘENÍ A ANALÝZA VLASTNÍHO NEPODEPANÉHO PROGRAMU
                 ========================================================================= */}
             <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
               checkedTasks['task6'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
@@ -693,10 +691,10 @@ export default function ProcessLabTab({
                   </span>
                   <div>
                     <h3 className={`text-base font-black ${checkedTasks['task6'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 7: Inspekce procesního stromu v Sysinternals Process Explorer
+                      Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu
                     </h3>
                     <p className="text-xs text-slate-500 font-medium">
-                      Ověřování digitálních podpisů Authenticode a cloudová detekce VirusTotal
+                      Kompilace Python skriptu do .exe, detekce chybějícího podpisu Authenticode a odeslání na VirusTotal
                     </p>
                   </div>
                 </div>
@@ -719,18 +717,34 @@ export default function ProcessLabTab({
               </div>
 
               {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
                 <p className="font-semibold text-slate-900">
-                  V nástroji <strong>Sysinternals Process Explorer</strong> ověřte běžící procesy a cloudovou reputaci VirusTotal.
+                  V tomto úkolu si vytvoříme vlastní nepodepsaný program.
                 </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>V horním menu aktivujte volby <strong>Options ➔ Verify Image Signatures</strong> a <strong>Check VirusTotal.com</strong>.</li>
-                  <li>Zkontrolujte sloupec <em>Verified Signer</em> u <code>explorer.exe</code> a skóre VirusTotal u vybraného <code>svchost.exe</code>.</li>
-                  <li>V <em>Options ➔ Configure Colors</em> zjistěte význam růžové (systémové služby) a fialové barvy.</li>
+                <ul className="list-decimal list-inside space-y-2 text-slate-600 pl-1">
+                  <li>
+                    Vytvořte skript <code>test_app.py</code> se smyčkou, aby proces po spuštění zůstal běžet v paměti:
+                    <div className="my-1.5 p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg">
+                      import time<br/>
+                      print(&quot;Moje aplikace bezi...&quot;)<br/>
+                      while True:<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)
+                    </div>
+                  </li>
+                  <li>
+                    V Příkazovém řádku nainstalujte PyInstaller a zkompilujte skript do samostatného <code>.exe</code>:
+                    <div className="my-1.5 p-2 bg-slate-900 text-slate-200 font-mono text-[11px] rounded-lg">
+                      <span className="text-slate-400">pip install pyinstaller</span><br/>
+                      <span className="text-blue-300">python -m PyInstaller --onefile test_app.py</span>
+                    </div>
+                  </li>
+                  <li>
+                    Spusťte vytvořený program <code>dist\test_app.exe</code>.
+                  </li>
+                  <li>
+                    V Process Exploreru vyhledejte běžící <code>test_app.exe</code>. Zkontrolujte stav v kolonce <strong>Verified Signer</strong> a u položky <strong>VirusTotal</strong> klikněte na odkaz <em>Unknown</em> (nebo <em>Submit</em>) pro odeslání souboru k bezpečnostní analýze.
+                  </li>
                 </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Fialová barva (Packed Images):</strong> Označuje kompresi/šifrování packerem (např. UPX) – typická technika autorů malwaru pro zakrytí kódu.
-                </div>
               </div>
 
               {/* Formulářová pole úlohy 7 */}
@@ -738,68 +752,30 @@ export default function ProcessLabTab({
                 <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                   <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.1 Ověřený podpis explorer.exe (Verified Signer):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task6ExplorerSigner || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6ExplorerSigner: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.2 VirusTotal skóre svchost.exe:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task6SvchostScore || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6SvchostScore: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.3 Další prověřená aplikace ze systému:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task6BonusApp || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6BonusApp: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.4 Co v Process Exploreru značí RŮŽOVÁ barva řádku?:
+                      7.1 Stav podpisu vlastního programu (Verified Signer):
                     </label>
-                    <textarea
-                      rows={2}
-                      value={protocol.task6PinkMeaning || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6PinkMeaning: e.target.value })}
+                    <input
+                      type="text"
+                      value={protocol.task6PySigner || protocol.task6BonusApp || ''}
+                      onChange={(e) => setProtocol({ ...protocol, task6PySigner: e.target.value, task6BonusApp: e.target.value })}
                       placeholder=""
-                      className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
+                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.5 Co značí FIALOVÁ barva řádku (Packed Images) a proč je podezřelá?:
+                      7.2 Výsledek VirusTotal vlastního programu (Unknown ➔ skóre po analýze):
                     </label>
-                    <textarea
-                      rows={2}
-                      value={protocol.task6PurpleMeaning || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6PurpleMeaning: e.target.value })}
+                    <input
+                      type="text"
+                      value={protocol.task6PyScore || protocol.task6PurpleMeaning || ''}
+                      onChange={(e) => setProtocol({ ...protocol, task6PyScore: e.target.value, task6PurpleMeaning: e.target.value })}
                       placeholder=""
-                      className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
+                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                     />
                   </div>
                 </div>
