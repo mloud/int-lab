@@ -14,7 +14,7 @@ import { SVP_OSS2_DATA } from '@/registry/curriculum/svpData';
 const PLAN_OSS2: PlanTopic[] = [
   {
     month: 'Září – Říjen',
-    topic: '1. Správa podnikových dat a zálohování',
+    topic: 'Správa podnikových dat a zálohování',
     topicHours: 10,
     subtopics: [
       { name: 'Wargame – prověrka administrátorských dovedností z 1. ročníku', hours: 2, note: 'Diagnostika sítě, správa přístupových oprávnění NTFS a práce v textovém rozhraní' },
@@ -25,8 +25,8 @@ const PLAN_OSS2: PlanTopic[] = [
     ]
   },
   {
-    month: 'Listopad – Leden',
-    topic: '2. Bezpečnost koncových zařízení, audit a forenzní analýza',
+    month: 'Říjen – Leden',
+    topic: 'Bezpečnost koncových zařízení, audit a forenzní analýza',
     topicHours: 20,
     subtopics: [
       { name: 'Typologie malwaru a proč CPU nepozná zlý úmysl', hours: 2, note: '6 hrozeb: virus, červ, trojan, ransomware, spyware; zneužití uživatelských tokenů' },
@@ -42,8 +42,8 @@ const PLAN_OSS2: PlanTopic[] = [
     ]
   },
   {
-    month: 'Únor – Březen',
-    topic: '3. Systémové služby a administrační skriptování (PowerShell)',
+    month: 'Únor – Duben',
+    topic: 'Systémové služby a administrační skriptování (PowerShell)',
     topicHours: 18,
     subtopics: [
       { name: 'Systémové služby Windows na pozadí a jejich životní cyklus', hours: 4, note: 'Účet SYSTEM, typy spouštění, systémové závislosti a automatický restart po selhání' },
@@ -55,7 +55,7 @@ const PLAN_OSS2: PlanTopic[] = [
   },
   {
     month: 'Duben – Červen',
-    topic: '4. Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
+    topic: 'Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
     topicHours: 18,
     subtopics: [
       { name: 'Síťové sdílení složek a efektivní přístupová práva (SMB)', hours: 4, note: 'UNC cesty, kombinovaná práva sdílení a NTFS, mapování síťové jednotky' },

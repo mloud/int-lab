@@ -17,13 +17,13 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 
 ## 📊 Stav realizace na portálu IntLab (4 ucelené bloky, 66 h)
 
-| Blok | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
-|:---:|---|:---:|:---:|---|
-| **1** | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
-| **2** | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h | ✅ 10 podtémat (BZ1 a BZ2 plné moduly, BZ3–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
-| **3** | **Systémové služby a administrační skriptování v PowerShellu** | 18 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
-| **4** | **Síťové sdílení prostředků, vzdálená správa a doména** | 18 h | ✅ 6 kapitol s osnovami (SMB, RDP, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD6) |
-| **Σ** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
+| Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
+|:---:|:---:|---|:---:|:---:|---|
+| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
+| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h | ✅ 10 podtémat (BZ1 a BZ2 plné moduly, BZ3–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
+| **3** | **Únor – Duben** (16.–24. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 18 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
+| **4** | **Duben – Červen** (25.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 18 h | ✅ 6 kapitol s osnovami (SMB, RDP, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD6) |
+| **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
 
 ---
 

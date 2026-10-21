@@ -601,8 +601,8 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
       {
         id: 'oss2-b2',
         order: 2,
-        month: 'Listopad – Leden',
-        monthKey: 'listopad',
+        month: 'Říjen – Leden',
+        monthKey: 'rijen',
         weeks: '6.–15. týden',
         title: 'Bezpečnost koncových zařízení, audit a forenzní analýza',
         hours: 20,
@@ -706,7 +706,7 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
       {
         id: 'oss2-b3',
         order: 3,
-        month: 'Únor – Březen',
+        month: 'Únor – Duben',
         monthKey: 'unor',
         weeks: '16.–24. týden',
         title: 'Systémové služby a administrační skriptování (PowerShell)',

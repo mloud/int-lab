@@ -642,3 +642,12 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Tyto dokumenty byly synchronizovány s reálným stavem aplikace: OSS 2 je striktně koncipován jako pokročilá administrace klientských stanic Windows 11 Pro, endpoint bezpečnost a uplatňování doménových politik (GPO na klientovi).
     - Znalostní báze je nyní 100% konsistentní napříč všemi soubory.
 
+19. **Korekce časového harmonogramu měsíců v Tematickém plánu OSS 2:**
+    - Opraveny měsíční intervaly u všech 4 bloků OSS 2, aby přesně odpovídaly týdenním dotacím (2 h týdně, 33 týdnů) a kalendářnímu roku:
+      - Blok 1 (10 h, 1.–5. týden): **Září – Říjen**
+      - Blok 2 (20 h, 6.–15. týden): **Říjen – Leden** (opraveno z chybného *Listopad – Leden*, kde scházel říjen)
+      - Blok 3 (18 h, 16.–24. týden): **Únor – Duben** (opraveno z chybného *Únor – Březen*, 18 h zasahuje do dubna)
+      - Blok 4 (18 h, 25.–33. týden): **Duben – Červen**
+    - Odstraněno duplicitní číslování z názvů témat v `PLAN_OSS2` (komponenta `SimplePlanTable` již automaticky generuje index bloku).
+    - Změny sjednoceny v `app/.../operacni-systemy-2/tematicky-plan/page.tsx`, `thematicPlans.ts`, `PLAN_OSS2.md` i `doc/plan.md`.
+
