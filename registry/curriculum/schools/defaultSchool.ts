@@ -163,6 +163,16 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     { id: 'mod-rozvrh', title: 'Graf rozvrhu', description: 'Barvení grafů a kolize hodin', tag: 'm4', icon: 'Network', gradient: 'from-violet-500 to-purple-600', route: '/informatika/modely/graf-rozvrhu' },
                     { id: 'mod-paralel', title: 'Paralelní procesy', description: 'Petriho sítě a synchronizace úloh', tag: 'm5', icon: 'Network', gradient: 'from-purple-600 to-indigo-600', route: '/informatika/modely/paralelni-procesy' }
                   ]
+                },
+                {
+                  id: 'informacni-systemy',
+                  title: 'Informační systémy',
+                  description: 'Co je informační systém, z čeho se skládá, uživatelské účty, profily, role a interaktivní žákovská knížka.',
+                  tag: 'is',
+                  icon: 'Database',
+                  gradient: 'from-teal-600 to-cyan-600',
+                  route: '/informatika/informacni-systemy',
+                  hasSubchapters: false
                 }
               ]
             }

@@ -18,6 +18,7 @@ export type LessonCategory =
   | 'operacni-systemy'       // Principy OS, Správa procesů, Paměť, Souborové systémy, Zálohování
   | 'komprese-dat'           // Ztrátová a bezeztrátová komprese, JPEG, Huffman, RLE
   | 'algoritmy-a-modely'     // Grafy, Hledání cesty, Paralelní procesy, Modely
+  | 'informacni-systemy'     // Informační systémy, Databáze, Uživatelské účty a role
   | 'programovani-python'    // Python od základů po pokročilé struktury
   | 'programovani-scratch'   // Scratch vizuální bloky a 3D herní enginy
   | 'budoucnost-technologii' // IoT, AI, Průmysl 4.0, VR/AR

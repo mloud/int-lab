@@ -421,6 +421,39 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   // ZÁKLADNÍ ŠKOLA – 7. TŘÍDA (Předmět: Informatika)
   // =========================================================================
   {
+    id: 'informacni-systemy',
+    title: 'Informační systémy a role uživatelů',
+    shortCode: '#inf-is',
+    description: 'Co je informační systém, z čeho se skládá, uživatel, profil, role a interaktivní simulátor elektronické žákovské knížky.',
+    domain: 'informatika-obecna',
+    category: 'informacni-systemy',
+    contentType: 'simulation',
+    defaultPath: '/informatika/informacni-systemy',
+    iconName: 'Database',
+    keywords: ['informační systém', 'databáze', 'uživatel', 'profil', 'role', 'žákovská knížka', 'práva'],
+    difficulty: 'easy',
+    targetAudience: ['zs-2-stupen'],
+    recommendedGrades: [7],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'zs',
+      schoolName: 'Základní škola',
+      trackName: 'Základní vzdělávání',
+      grade: 7,
+      gradeLabel: '7. Třída',
+      subject: 'Informatika',
+      thematicBlock: 'Informační systémy a data',
+      chapter: 'Informační systémy',
+      lesson: 'Informační systémy a role uživatelů'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/informatika/informacni-systemy/InformationSystemsChapter')
+  },
+  {
     id: 'modely-blatov',
     title: 'Problém Blátov (Eulerovský tah)',
     shortCode: '#mod-blatov',

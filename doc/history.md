@@ -651,3 +651,21 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Odstraněno duplicitní číslování z názvů témat v `PLAN_OSS2` (komponenta `SimplePlanTable` již automaticky generuje index bloku).
     - Změny sjednoceny v `app/.../operacni-systemy-2/tematicky-plan/page.tsx`, `thematicPlans.ts`, `PLAN_OSS2.md` i `doc/plan.md`.
 
+20. **Vytvoření kapitoly Informační systémy a role uživatelů pro 7. třídu ZŠ (Informatika 7):**
+    - **Zařazení:** Předmět *Informatika 7* (`inf-7`), routa `/informatika/informacni-systemy`.
+    - **Registrace:** Zaregistrováno v `registry/curriculum/schools/defaultSchool.ts` (7. ročník, tag `#is`, ikona `Database`) a `registry/lessons.ts` (kategorie `informacni-systemy`).
+    - **Didaktická stavba teorie (Záložka Teorie):** Sestavena didakticky pro sedmáky dle metodiky:
+      - Co je informační systém a jeho 4 pilíře (Hardware, Software, Data/Databáze, Lidé/Uživatelé).
+      - Kdo je uživatel a jak ho systém rozezná (osobní smartphone vs. sdílený počítač v učebně, uživatelský účet, profil, autentizace).
+      - Proč se vyžaduje uživatelský účet – model školní jídelny (*LunchSys*) s čipem, proces ověření objednávky a zásada minimalizace osobních údajů.
+      - Uživatelské role a přístupová práva: podrobná porovnávací tabulka 4 rolí (Žák, Vyučující, Zákonný zástupce, Administrátor).
+      - Rozšíření: Státní registr obyvatel a důvody pro nejvyšší stupeň zabezpečení.
+      - Interaktivní minikvíz se 4 otázkami pro rychlé ověření znalostí přímo v hodině.
+    - **Simulátor žákovské knížky (Záložka Simulátory):** Kompletní interaktivní aplikace znovunapsaná do React 19 + TypeScript s plnohodnotnou českou diakritikou:
+      - Žák: prohlížení známek, výpočet vážených průměrů předmětů a celkového průměru.
+      - Rodič: přehled hodnocení svých dětí, přepínání mezi dětmi (např. Petra a Tomáš Krásní).
+      - Učitel: správa třídy 7.A, interaktivní zápis nové známky (předmět, známka 1-5, váha 1-10, téma) a mazání záznamů.
+      - Administrátor: plná správa známek + panel správy uživatelů (přidávání/mazání žáků a rodičů s relacemi dětí).
+      - Možnost resetu dat do výchozího stavu.
+    - **Architektura:** Striktně dodrženo Pravidlo 13 (žádný monolit), modulární struktura v `components/informatika/informacni-systemy/` a `gradebook/`.
+
