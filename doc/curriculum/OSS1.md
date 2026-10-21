@@ -11,7 +11,7 @@
 | **Cílový ročník** | 1. Ročník SŠ (Střední odborná škola) |
 | **Obor vzdělání** | 18-20-M/01 Informační technologie |
 | **Týdenní hodinová dotace** | 2 hodiny týdně |
-| **Celková roční dotace** | 68 vyučovacích hodin (34 týdnů výuky) |
+| **Celková roční dotace** | 66 vyučovacích hodin (33 týdnů výuky) |
 | **Forma výuky** | Teoreticko-praktická (cca 40 % výklad/teorie, 60 % cvičení a práce v labu / VirtualBoxu) |
 | **Výchozí routa v IntLab** | `/specializovana/operacni-systemy-1` |
 
@@ -28,7 +28,7 @@
 Žák na konci 1. ročníku:
 1. **Vysvětlí princip Von Neumannovy architektury** a tok instrukcí a dat mezi procesorem (CPU) a operační pamětí (RAM).
 2. **Definuje roli operačního systému** a rozliší uživatelský prostor (User Space / Ring 3) od prostoru jádra (Kernel Space / Ring 0).
-3. **Nainstaluje a nakonfiguruje klientský operační systém** (Windows 11) včetně nastavení diskových oddílů (MBR vs. GPT, UEFI boot).
+3. **Nainstaluje a nakonfiguruje klientský operační systém** (Windows 11) včetně nastavení diskových oddílů (tabulka oddílů GPT, UEFI boot).
 4. **Charakterizuje souborové systémy** (FAT32, NTFS, exFAT), vysvětlí alokaci clusterů, fragmentaci a vliv na výkon médií HDD vs. SSD.
 5. **Popíše životní cyklus procesu**, rozpozná stavy procesu (Running, Ready, Blocked) a analyzuje běžící procesy v Task Manageru.
 6. **Ovládá rozhraní příkazové řádky (CMD)**, naviguje v souborovém stromu, filtruje data pomocí rour a filtrů (`findstr`).
@@ -55,24 +55,22 @@ Absolvent OSS 1 dokáže samostatně:
 
 ---
 
-## 4. Tematický plán předmětu (Rozpis 68 hodin)
+## 4. Tematický plán předmětu (Rozpis 66 hodin)
 
 | Blok | Tematický celek | Dotace (Teorie / Cvičení) | Konkrétní učivo a činnosti žáka | Vazba na IntLab |
 |:---:|---|:---:|---|---|
-| **1** | **Architektura počítače a základy OS** | 8 h (4 h / 4 h) | Von Neumannova architektura, CPU cyklus Fetch-Decode-Execute, adresace RAM, vrstvy OS (Hardware -> Kernel Space -> User Space), systémová volání (Syscalls), Rings 0-3, typy jader (Monolit, Mikrojádro, Hybrid). | `/hardware/von-neumann`, `/hardware/ram`, `/uvod`, `/architektura` |
-| **2** | **Instalace, boot a virtualizace** | 6 h (2 h / 4 h) | Historie a evoluce OS (Unix, DOS, NT, Linux), BIOS vs. UEFI, POST test, MBR vs. GPT, fázový průběh bootu. Virtualizace (Hypervisor Typ 1 vs. Typ 2, instalace Win 11 ve VirtualBoxu). | `/instalace`, `/vyvoj`, `/boot`, `/virtualizace` |
-| **3** | **Souborové systémy a správa disků** | 8 h (3 h / 5 h) | Plotnové HDD vs. SSD (NAND buňky, TRIM), dělení disků a oddíly, souborový systém FAT (FAT tabulka, clustery, řetězení), fragmentace HDD a defragmentace, oprava sektorů `chkdsk`, přehled NTFS a exFAT. | `/souborove-systemy/*` (FS1–FS6) |
-| **4** | **Procesy a správa paměti** | 6 h (3 h / 3 h) | Program na disku vs. proces v RAM, střídání procesů (multitasking a registr PC), stavy procesu (Nový, Běžící, Připravený, Blokovaný), vlákna (threads), virtuální paměť (MMU, stránkování a pagefile.sys), plánování CPU (Round Robin, FIFO). | `/procesy/*` (PR1–PR5, ADV) |
-| **–** | **Hodnocení 1. pololetí (Test 01)** | 4 h (1 h / 3 h) | Opakování a reflexe otázek ABCD na simulátoru, hodnocená písemná práce (Von Neumann, licence OEM/FPP, Rings, souborové systémy). | `/test01-rozbor`, `/test01` (PINy: `ZAK2026` / `OS2026`) |
-| **5** | **Grafické rozhraní Windows 11 (GUI)** | 8 h (2 h / 6 h) | Kompozice plochy přes DWM, proces `explorer.exe` a jeho restart, hierarchie disku `C:\` (`Windows`, `System32`, `Users`, profil `%USERPROFILE%`), atributy souborů (`R`, `H`, `A`, `S`), přípony a jejich zástupci, duální konfigurace (Nastavení vs. Ovládací panely, `.cpl`), ergonomie (Snap, virtuální plochy). | `/gui/*` (GUI1–GUI5) |
-| **6** | **Příkazová řádka (CMD) a dávkové soubory** | 12 h (3 h / 9 h) | Práva Správce vs. uživatel, navigace disky (`cd`, `dir`, relativní/absolutní cesty), správa souborů (`mkdir`, `del`, `ren`, `copy`, `move`, `xcopy`), zástupné znaky `*` a `?`, roury (`\|`), filtry (`findstr`), diagnostika `systeminfo`, stavba `.bat` skriptu, `@echo off`, proměnné `set /p`, parametry `%1`, podmínky `if`, skoky `goto`, menu, cykly `for`. | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
-| **7** | **Správa uživatelů a oprávnění (Účty, Skupiny, NTFS)** | 8 h (2 h / 6 h) | Autentizace vs. autorizace, lokální účet vs. účet Microsoft, Standardní uživatel vs. Správce, princip PoLP, správa přes `lusrmgr.msc` a `net user`, bezpečnost hesel a TPM čip (Windows Hello), mechanismus UAC, uživatelské skupiny (`net localgroup`), přístupová práva NTFS, karta Zabezpečení, dědičnost a Deny, nástroj `icacls`, hromadný skript třídy. | `/uzivatele/*` (USR1–USR4) |
-| **8** | **Správa aplikačního software a Winget** | 4 h (1 h / 3 h) | Životní cyklus software, instalátory EXE vs. Windows Installer MSI, tichá instalace (`/qn`, `/silent`), registrace v registru a Odinstalovat program, balíčkovač Winget (`winget search`, `install`, `upgrade --all`), export a import balíčků. | `/software/*` (SW1–SW2) |
-| **9** | **Správa zařízení a ovladače (Drivers)** | 4 h (1 h / 3 h) | Komunikace OS s hardwarem, role ovladačů v jádře (Ring 0), Správce zařízení (`devmgmt.msc`), diagnostika stavů zařízení, instalace přes Windows Update a `.inf` soubory, digitální podpis WHQL, řešení hardwarových konfliktů. | `/zarizeni` |
-| **10** | **Plánovač úloh a automatický provoz** | 4 h (1 h / 3 h) | Automatizace údržby stanice, Plánovač úloh (`taskschd.msc`), konfigurace triggerů (čas, spuštění systému, přihlášení), konfigurace akcí (spuštění `.bat` údržby), bezpečnostní kontext (účet `SYSTEM` vs. přihlášený uživatel). | `/planovac` |
-| **11** | **Síťová konfigurace a lokální sítě (LAN)** | 8 h (2 h / 6 h) | Fyzické a virtuální adaptéry, Správce zařízení a `ncpa.cpl`, fyzická MAC adresa vs. logická IPv4, maska podsítě, DHCP vs. statická IP, zjišťování přes `ipconfig /all`. Diagnostický žebříček `ping` (127.0.0.1 -> brána -> DNS), interpretace RTT a ztrát, trasování `tracert`. Profily sítě (Veřejná vs. Privátní), Windows Firewall, sdílení složek a tiskáren v LAN, Wi-Fi pásma a zabezpečení WPA2/WPA3, příkazy `netsh wlan`. Praktická laboratoř: tovární reset a konfigurace SOHO Wi-Fi routeru (LAN, DHCP rozsah, zabezpečení Wi-Fi, Guest síť). | `/site/*` (NET1–NET4) |
-| **–** | **Závěrečné hodnocení a rezerva** | 4 h (1 h / 3 h) | Praktické ověření dovedností (rekonfigurace stanice, dávkový skript na míru, nastavení NTFS práv, diagnostika sítě), závěrečná reflexe ročníku. | — |
-| **Σ** | **Celkem** | **68 h (24 h T / 44 h C)** | **Pravidelná 2hodinová týdenní dotace** | |
+| **1** | **Architektura počítače a základy OS** | 8 h (3 h / 5 h) | Von Neumannova architektura, procesor a paměť RAM (instrukce vs. data), vrstvy OS (Hardware -> Kernel Space -> User Space), systémová volání (Syscalls), Rings 0-3, typy jader (Monolit, Mikrojádro, Hybrid), licence (OEM, Retail). | `/hardware/von-neumann`, `/hardware/ram`, `/uvod`, `/architektura` |
+| **2** | **Souborové systémy, správa disků a Boot** | 10 h (3 h / 7 h) | Paměťová média (HDD vs. SSD, propustnost), dělení disků a oddíly (tabulka oddílů GPT, systémový oddíl), architektura souborových systémů (alokační tabulky, clustery, řetězení, fragmentace), formátování (rychlé vs. přepis nulami), Start systému a Boot proces (POST test, firmware UEFI, zavaděč OS, předání řízení jádru). | `/souborove-systemy/*` (FS1–FS6, `/souborove-systemy/boot`) |
+| **3** | **Procesy a správa paměti** | 6 h (2 h / 4 h) | Program na disku vs. proces v RAM, identifikátory PID a PPID, střídání procesů (multitasking, časová kvanta, stav CPU, přepnutí kontextu), stavy procesu (Běžící, Připravený, Čekající na I/O), vlákna (threads), virtuální paměť a stránkování (princip virtuální paměti, swap / odkládací prostor, izolace aplikací). | `/procesy/*` (PR1–PR5) |
+| **4** | **Grafické rozhraní klientského OS (GUI)** | 4 h (1 h / 3 h) | Kompozice plochy a správce oken, řešení zamrznutí prostředí, hierarchie systémového disku (systémové složky, profily v Users), atributy souborů, registrace přípon a výchozí aplikace, konfigurační nástroje OS, ergonomie (organizace oken, virtuální plochy). | `/gui/*` (GUI1–GUI5) |
+| **5** | **Příkazový řádek (CLI) a dávkové soubory** | 6 h (2 h / 4 h) | Uživatelská vs. administrátorská práva, navigace v adresářovém stromu (relativní/absolutní cesty), správa souborů a složek, zástupné znaky, přesměrování I/O, roury, textové filtry, diagnostika stanice, tvorba dávkových skriptů pro automatizaci rutinních úkonů. | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
+| **6** | **Správa uživatelů a přístupových oprávnění** | 8 h (2 h / 6 h) | Autentizace vs. autorizace, lokální účet vs. centrální/online identita, role standardního uživatele a správce, princip PoLP, bezpečnost hesel a hardwarově vázané ověřování, mechanismus elevace práv, uživatelské skupiny a role, souborová přístupová práva (ACL), dědičnost a pravidlo explicitního zákazu. | `/uzivatele/*` (USR1–USR4) |
+| **7** | **Správa aplikačního software a balíčkovače** | 4 h (1 h / 3 h) | Životní cyklus software, instalační formáty a balíčky, princip tiché bezobslužné instalace, registrace aplikací a čistá odinstalace, moderní správa software přes správce balíčků (vyhledávání, instalace, hromadné aktualizace). | `/software/*` (SW1–SW2) |
+| **8** | **Správa zařízení a Plánovač úloh** | 4 h (1 h / 3 h) | Komunikace OS s perifériemi, role ovladačů v režimu jádra, diagnostika stavů zařízení, instalace a digitální podpis ovladačů, automatizace údržby v Plánovači úloh (časové a událostní spouštěče, servisní účty). | `/zarizeni`, `/planovac` |
+| **9** | **Síťová konfigurace a lokální sítě (LAN)** | 8 h (2 h / 6 h) | Fyzické adaptéry Ethernet a Wi-Fi, MAC adresa vs. logická IPv4, maska podsítě, DHCP vs. statická IP konfigurace, diagnostika konektivity a sledování trasy paketu, síťové profily (Veřejná vs. Privátní), sdílení v LAN, Wi-Fi standardy a šifrování WPA2/WPA3, konfigurace SOHO směrovače. | `/site/*` (NET1–NET4) |
+| **10** | **Závěrečný integrující projekt stanice a hodnocení** | 8 h (1 h / 7 h) | Samostatné zprovoznění klientské stanice od rozdělení disku a instalace OS, instalace ovladačů a softwaru správcem balíčků, konfigurace uživatelů a přístupových práv, tvorba údržbového skriptu, křížová diagnostika chyb a obhajoba projektu. | Projektový blok |
+| **Σ** | **Celkem** | **66 h (19 h T / 47 h C)** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** | |
+
 
 ---
 

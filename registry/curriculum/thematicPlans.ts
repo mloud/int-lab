@@ -60,7 +60,7 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
         hours: 8,
         theoryHours: 4,
         practiceHours: 4,
-        description: 'Vnitřní fungování počítače z pohledu OS: sběrnice, procesorový instrukční cyklus, adresace RAM a BIOS/UEFI.',
+        description: 'Vnitřní fungování počítače z pohledu OS: sběrnice, procesorový instrukční cyklus, adresace RAM a firmware UEFI.',
         rvpCompetence: 'Popíše princip Von Neumannovy architektury, chápe instrukční cyklus CPU a hierarchii pamětí v počítači.',
         subtopics: [
           {
@@ -92,10 +92,10 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
           },
           {
             id: 'oss1-b1-4',
-            title: 'Firmware: BIOS, UEFI, POST test a Secure Boot',
+            title: 'Firmware: UEFI, POST test a Secure Boot',
             hours: 2,
             type: 'laborator',
-            description: 'Rozdíl mezi legacy BIOS a moderním UEFI, inicializační test POST, konfigurace bootovací priority a Secure Boot.',
+            description: 'Moderní firmware UEFI, inicializační test POST, konfigurace bootovací priority a Secure Boot.',
             practice: 'Praktická konfigurace nastavení UEFI na školních PC a řešení diagnostických beep kódů.',
             route: '/specializovana/operacni-systemy-1/boot'
           }
@@ -162,8 +162,8 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
         hours: 8,
         theoryHours: 3,
         practiceHours: 5,
-        description: 'Magnetická HDD vs. polovodičová SSD, oddíly MBR/GPT, alokace klastrů ve FAT a NTFS a správa svazků.',
-        rvpCompetence: 'Rozděluje disky na oddíly GPT/MBR, formátuje svazky do NTFS/FAT32, provádí defragmentaci a kontrolu disku.',
+        description: 'Magnetická HDD vs. polovodičová SSD, oddíly disku (standard GPT), alokace klastrů ve FAT a NTFS a správa svazků.',
+        rvpCompetence: 'Rozděluje disky na oddíly GPT, formátuje svazky do NTFS/FAT32, provádí defragmentaci a kontrolu disku.',
         subtopics: [
           {
             id: 'oss1-b3-1',
@@ -176,10 +176,10 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
           },
           {
             id: 'oss1-b3-2',
-            title: 'Diskové oddíly MBR vs. GPT a souborový systém FAT',
+            title: 'Diskové oddíly GPT a souborový systém FAT',
             hours: 2,
             type: 'teorie',
-            description: 'Tabulka oddílů MBR (limit 2 TB) vs. moderní GPT s redundancí. Princip alokace ve FAT: boot sektor, FAT tabulka, řetězení klastrů.',
+            description: 'Moderní tabulka oddílů GPT s redundancí. Princip alokace ve FAT: boot sektor, FAT tabulka, řetězení klastrů.',
             practice: 'Interaktivní trenažér řetězení klastrů ve FAT tabulce a řešení ztracených alokačních jednotek.',
             route: '/specializovana/operacni-systemy-1/souborove-systemy/struktura'
           },
@@ -248,7 +248,7 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
             title: 'Vlákna (Threads) a Virtuální paměť se stránkováním',
             hours: 2,
             type: 'kombinovane',
-            description: 'Proces vs. vlákno (sdílená paměť), jednotka MMU, stránkování do pagefile.sys a výpadek stránky (Page Fault).',
+            description: 'Proces vs. vlákno (sdílená paměť), princip virtuální paměti a odkládání dat na disk (swap).',
             practice: 'Simulátor jednovláknového záseku hry vs. vícevláknové plynulosti a simulátor stránkování RAM v IntLabu.',
             route: '/specializovana/operacni-systemy-1/procesy/vlakna'
           }
@@ -272,7 +272,7 @@ export const THEMATIC_PLANS: Record<string, ThematicPlan> = {
             title: 'Příprava a Hodnocená práce 1. pololetí (Test 01)',
             hours: 2,
             type: 'test',
-            description: 'Písemné a interaktivní ověření znalostí: Von Neumann, BIOS/UEFI, disky, FAT/NTFS a procesy.',
+            description: 'Písemné a interaktivní ověření znalostí: Von Neumann, firmware UEFI, disky, FAT/NTFS a procesy.',
             practice: 'Vypracování hodnocené práce v modulu Test01 v IntLabu (autentizace PINem) a rozbor chyb.',
             route: '/specializovana/operacni-systemy-1/test01'
           },

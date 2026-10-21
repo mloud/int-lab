@@ -20,14 +20,15 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
 - **Stav výuky a kurikula:** Portál má kompletně připravenou a provázanou strukturu témat pro celý 1. ročník:
   - [x] 1. polovina: Instalace ➔ Hardware ➔ Architektura ➔ Test 01 ➔ Evoluce ➔ Virtualizace ➔ Struktura disku & Boot.
   - [x] 2. polovina (Struktura, navigace & rozcestníky): Procesy ➔ GUI Win 11 (GUI1–GUI5) ➔ CLI a BAT (CLI1–CLI3, BAT1–BAT2) ➔ Správa uživatelů a NTFS (USR1–USR4) ➔ Správa software (SW1–SW2) ➔ Správa zařízení (DEV) ➔ Plánovač úloh (SCH).
-  - [x] **Téma Procesy a paměť (`/specializovana/operacni-systemy-1/procesy`):**
-    - [x] PR1: Úvod a vznik procesu (`/procesy/uvod`) – teorie RAM, badatelský list s Task Managerem, CLI `tasklist` a Process Explorerem z Sysinternals.
-    - [x] PR2: Střídání procesů (Multitasking) (`/procesy/stridani`) – time-sharing, časová kvanta, registr PC, přepnutí kontextu, interaktivní krokovací simulátor CPU a PCB.
-    - [x] PR3: Životní cyklus a stavy (`/procesy/stavy`) – 5 stavů (Běžící, Připravený, Čekající na I/O).
-    - [x] PR4: Vlákna (Threads) (`/procesy/vlakna`) – proces vs. vlákno, sdílená paměť, vícevláknový běh.
-    - [x] PR5: Virtuální paměť a stránkování (`/procesy/virtualni-pamet`) – MMU, virtuální adresy, stránky a rámce, `pagefile.sys`, simulátor výpadku stránky (Page Fault).
-    - [x] PR-ADV: Pokročilá témata (`/procesy/pokrocile`) – algoritmy Round Robin, FIFO, prioritizace a alokátory paměti.
-  - [x] Znalostní profil předmětu a vazba na RVP v `doc/curriculum/OSS1.md`.
+  - [x] **Oficiální kurikulum ŠVP pro InspIS a Tematický plán (66 h):**
+    - [x] Dvouzáložkový přepínač na portálu: Měsíční plán výuky (66 h) + ŠVP pro InspIS (66 h) pro OSS 1, OSS 2 i OSS 3.
+    - [x] Společná charakteristika předmětu v InspIS: pravidla hodnocení žáků, klíčové kompetence, průřezová témata (`PT - ČDS`, `PT - ČSP`, `PT - ODS`).
+    - [x] Vyřazení příliš teoretických témat (Round Robin, paměťové alokátory, složitá logika v .bat).
+    - [x] Univerzalizace ŠVP OSS 1: vyčištění přílišných technologických specifikací (odstranění konkrétních verzí Win 11, interních názvů konzolí .msc, příkazových přepínačů a CLI výčtů ve prospěch stabilních vzdělávacích cílů).
+    - [x] Trvalé uložení referenčního ŠVP SŠ Horažďovice v `doc/curriculum/HORAZDOVICE_SVP_OS.md`.
+    - [x] Znalostní profily předmětů a vazba na RVP v `doc/curriculum/OSS1.md`, `OSS2.md`, `OSS3.md` a `SVP_INSPIS.md`.
+    - [x] Odstranění legacy technologií MBR a BIOSu z InspIS i tematických plánů (ponechán výhradně standard tabulky oddílů GPT a firmware UEFI).
+    - [x] 10. blok (Závěrečný integrující projekt klientské stanice – 8 h): Vytvořen rozcestník `/projekt` i 4 podkapitoly PRJ1–PRJ4 a zařazeno do školního kurikula v `defaultSchool.ts`. 100% soulad webu s ŠVP InspIS.
 - **Další krok ve vývoji OSS 1:**
   - Postupné doplňování hloubkových interaktivních simulátorů, kvízů a laboratorních pracovních listů do vytvořených podkapitol (zejména terminálový trenažér CMD, ladicí trenažér .bat skriptů a manipulace s NTFS právy).
   - Příprava závěrečného bloku klientských sítí (Síťové pojmy, SMB sdílení, Wi-Fi a konfigurace routeru).
@@ -46,7 +47,12 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
   - [ ] Přechod na mini-projekty v Pythonu (např. animovaný míček, Pong, vykreslování fraktálů).
 
 ### 4. Operační systémy 2 (OSS 2 – 2. ročník)
-- **Téma: Bezpečnost Windows 11** (`/specializovana/operacni-systemy-1-2/bezpecnost`)
+- **Koncepce:** Pokročilá správa a endpoint bezpečnost na **Windows 11 Pro** (66 h / 4 tematické bloky).
+- [x] **Oficiální kurikulum ŠVP pro InspIS a Tematický plán (66 h):**
+  - [x] 4 ucelené bloky: Správa podnikových dat a zálohování (10 h vč. diagnostického Wargame v září), Bezpečnost koncových zařízení & forenzní audit (20 h), Systémové služby & PowerShell (18 h), Síťové sdílení & centrální správa v doméně (18 h).
+  - [x] Zobecněné vzdělávací cíle a výstupy bez brandových fixací pro trvalou inspekční odolnost (přenesení 2 h z opakování do PowerShellu, zjednodušení šifrování záloh na ochranu archivů heslem a šifrováním).
+  - [x] Integrováno v `registry/curriculum/svpData.ts`, `doc/curriculum/SVP_INSPIS.md`, `doc/curriculum/OSS2.md` a v tematickém plánu `/specializovana/operacni-systemy-2/tematicky-plan`.
+- **Kapitoly na portálu:**
   - [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`) – modulární architektura v `malware/` (hotovo).
   - [x] **BZ2 Správa procesů a digitální certifikáty** (`/bezpecnost/procesy-a-certifikaty`) – modulární architektura v `procesy/` (hotovo).
   - [ ] BZ3 Izolace a Sandbox (`/bezpecnost/izolace`) – další na řadě.
@@ -55,6 +61,13 @@ Tento dokument slouží jako **pracovní plán a záznamník aktuálně rozpraco
   - [ ] BZ6 Šifrování dat a BitLocker (`/bezpecnost/sifrovani`).
   - [ ] BZ7 Účty a UAC (`/bezpecnost/uac`).
   - [ ] BZ8 Mini-CTF závěrečná práce.
+
+### 5. Operační systémy 3 (OSS 3 – 3. ročník)
+- **Koncepce:** Serverový Linux, shell automatizace, síťová kyberbezpečnost, Git a agilní týmový projekt (66 h / 5 tematických bloků).
+- [x] **Oficiální kurikulum ŠVP pro InspIS a Tematický plán (66 h):**
+  - [x] 5 ucelených bloků: Linux správa systému (16 h), Linux sítě, služby & automatizace v shellu (16 h), Kybernetická bezpečnost & síťový audit (12 h), Verzovací systémy, týmová kooperace & infrastrukturní projekt (18 h: Git 6 h + Kanban/komunikace 2 h + projekt 8 h + obhajoba 2 h), Závěrečná reflexe & rezerva (4 h).
+  - [x] Zahrnutí verzovacího systému (Git) a nástrojů pro plánování a týmovou komunikaci (Kanban, backlog).
+  - [x] Integrováno v `registry/curriculum/svpData.ts`, `doc/curriculum/SVP_INSPIS.md`, `doc/curriculum/OSS3.md` a v tematickém plánu `/specializovana/operacni-systemy-3/tematicky-plan`.
 
 ### 5. Technický dluh & Refaktoring monolitů (Pravidlo 13 z AGENTS.md)
 - [x] **Rozdělení obřích monolitů v Bezpečnosti (OSS 2):**

@@ -35,7 +35,7 @@ const PLAN_OSS1: PlanTopic[] = [
       { name: 'Dělení disku', hours: 2, note: 'Logické a fyzické oddíly' },
       { name: 'Systém souborů', hours: 2, note: 'Princip FAT, fragmentace, klastry' },
       { name: 'Systém souborů', hours: 2, note: 'Praktické úlohy' },
-      { name: 'Start systému (Boot proces)', hours: 2, note: 'POST test, BIOS vs. UEFI, MBR vs. GPT boot, zavaděč OS' },
+      { name: 'Start systému (Boot proces)', hours: 2, note: 'POST test, firmware UEFI, tabulka oddílů GPT a zavaděč OS' },
     ]
   },
   {
@@ -47,12 +47,12 @@ const PLAN_OSS1: PlanTopic[] = [
       { name: 'Střídání procesů', hours: 1, note: 'Iluze současného běhu, časová kvanta' },
       { name: 'Životní cyklus a stavy', hours: 1, note: 'Stavy procesů (Běžící, Připravený, Blokovaný), čekání na I/O' },
       { name: 'Vlákna (Threads)', hours: 1, note: 'Rozdíl mezi procesem a vláknem, sdílená paměť' },
-      { name: 'Virtuální paměť a stránkování', hours: 1, note: 'Jednotka MMU, stránkování do pagefile.sys, Page Fault' },
+      { name: 'Virtuální paměť a stránkování', hours: 1, note: 'Princip virtuální paměti, odkládání na disk (swap), izolace aplikací' },
     ]
   },
   {
     month: 'Leden',
-    topic: 'Grafické rozhraní Windows 11 (GUI)',
+    topic: 'Grafické rozhraní klientského OS (GUI)',
     topicHours: 4,
     subtopics: [
       { name: 'Architektura GUI a proces Explorer', hours: 1, note: 'Desktop Window Manager (dwm.exe), plocha, restart explorer.exe' },

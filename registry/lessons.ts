@@ -1594,9 +1594,9 @@ export const LESSON_REGISTRY: LessonUnit[] = [
   },
   {
     id: 'os-spec-boot',
-    title: 'Start systému: BIOS, UEFI a zavaděč',
+    title: 'Start systému: UEFI a zavaděč',
     shortCode: '#osb',
-    description: 'Hloubkový rozbor spouštění PC: POST, MBR/GPT tabulky, EFI oddíl a zavaděč jádra.',
+    description: 'Hloubkový rozbor spouštění PC: POST, tabulka oddílů GPT, EFI oddíl a zavaděč jádra.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
@@ -1738,13 +1738,13 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     id: 'fs-deleni',
     title: '3. Dělení disku',
     shortCode: '#fs3',
-    description: 'Oddíly a svazky, MBR vs. GPT, formátování a co je na disku potřeba ke startu OS.',
+    description: 'Oddíly a svazky, standard GPT, formátování a co je na disku potřeba ke startu OS.',
     domain: 'informatika-specializovana',
     category: 'operacni-systemy',
     contentType: 'interactive-chapter',
     defaultPath: '/specializovana/operacni-systemy-1/souborove-systemy/deleni-disku',
     iconName: 'Columns',
-    keywords: ['oddíly', 'mbr', 'gpt', 'partition', 'svazek'],
+    keywords: ['oddíly', 'gpt', 'partition', 'svazek'],
     difficulty: 'hard',
     targetAudience: ['ss-odborna'],
     recommendedGrades: [1],
@@ -1759,7 +1759,7 @@ export const LESSON_REGISTRY: LessonUnit[] = [
       thematicBlock: 'Souborové systémy a disky',
       chapter: 'Souborové systémy a disky',
       subchapter: '3. Dělení disku',
-      lesson: 'Dělení disku (MBR vs GPT)'
+      lesson: 'Dělení disku (GPT)'
     },
     tabs: {
       hasTheory: true,

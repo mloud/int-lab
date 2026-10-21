@@ -5,6 +5,7 @@ import {
   OSS1_USERS,
   OSS1_SOFTWARE,
   OSS1_NETWORKS,
+  OSS1_PROJECT,
   OSS2_BEZPECNOST,
   OSS2_POKROCILA,
   OSS2_AD,
@@ -533,7 +534,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     {
                       id: 'fs-deleni',
                       title: 'Dělení disku',
-                      description: 'Oddíly a svazky, MBR vs. GPT, formátování a co je na disku potřeba ke startu OS.',
+                      description: 'Oddíly a svazky, standard GPT, formátování a co je na disku potřeba ke startu OS.',
                       tag: 'FS3',
                       icon: 'PieChart',
                       gradient: 'from-emerald-500 to-teal-500',
@@ -577,7 +578,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     {
                       id: 'fs-boot',
                       title: 'Start systému (Boot)',
-                      description: 'Průběh startu počítače od BIOSu a UEFI po zavedení operačního systému z disku.',
+                      description: 'Průběh startu počítače od firmware UEFI po zavedení operačního systému z disku.',
                       tag: 'FS6',
                       icon: 'Hourglass',
                       gradient: 'from-purple-600 to-indigo-600',
@@ -644,7 +645,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     {
                       id: 'proc-virtual-mem',
                       title: 'Virtuální paměť a stránkování',
-                      description: 'Jak systém řeší nedostatek RAM: MMU, virtuální adresy, stránkování a odkládací soubor pagefile.sys.',
+                      description: 'Jak systém řeší nedostatek RAM: virtuální paměť, stránkování a odkládací prostor (swap).',
                       tag: 'PR5',
                       icon: 'HardDrive',
                       gradient: 'from-amber-500 to-orange-600',
@@ -689,7 +690,8 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   route: '/specializovana/operacni-systemy-1/planovac',
                   hasSubchapters: false
                 },
-                outlineToChapter(OSS1_NETWORKS)
+                outlineToChapter(OSS1_NETWORKS),
+                outlineToChapter(OSS1_PROJECT)
               ]
             },
             {

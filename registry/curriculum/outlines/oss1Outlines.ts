@@ -570,6 +570,101 @@ export const OSS1_NETWORKS: OutlineGroup = {
   ]
 };
 
+const PROJECT_BASE = '/specializovana/operacni-systemy-1/projekt';
+
+/** Závěrečný integrující projekt klientské stanice (~8 h) – instalace, uživatelé, síť, skripty, diagnostika a obhajoba. */
+export const OSS1_PROJECT: OutlineGroup = {
+  chapterId: 'os-project',
+  chapterTitle: 'Závěrečný integrující projekt klientské stanice',
+  chapterDescription: 'Samostatná instalace a konfigurace stanice, síťové zapojení, automatizace údržby, diagnostika poruch a technická obhajoba.',
+  chapterTag: 'prj',
+  chapterPath: PROJECT_BASE,
+  subjectTitle: SUBJECT,
+  grade: 1,
+  gradeLabel: '1. Ročník',
+  thematicBlock: 'Závěrečný projekt a hodnocení',
+  icon: 'FolderKanban',
+  gradient: 'from-purple-600 to-indigo-600',
+  items: [
+    {
+      slug: 'konfigurace',
+      tag: 'PRJ1',
+      title: 'Komplexní instalace a konfigurace stanice',
+      hours: '2 h',
+      subtitle: 'Rozdělení disků GPT, instalace operačního systému a vytvoření uživatelských profilů.',
+      intro: 'Základní kámen projektu. Žák samostatně připraví diskové úložiště, provede čistou instalaci operačního systému a vytvoří oddělené uživatelské účty podle principu nejmenších nutných oprávnění (PoLP).',
+      topics: [
+        'Příprava disku a rozdělení oddílů podle moderního standardu GPT',
+        'Instalace klientského operačního systému a počáteční nastavení stanice (OOBE)',
+        'Vytvoření administrátorského a standardního uživatelského účtu',
+        'Zabezpečení přístupu, politika hesel a nastavení řízení uživatelských účtů (UAC)'
+      ],
+      practice: [
+        'Praktická instalace OS do virtuálního stroje nebo na vyhrazené cvičné PC',
+        'Ověření oddělení uživatelských práv a konfigurace účtů'
+      ],
+      builds: 'Instalace OS, Dělení disku (FS3) a Správa uživatelů (USR1–USR2).'
+    },
+    {
+      slug: 'automatizace',
+      tag: 'PRJ2',
+      title: 'Síťové připojení, balíčky a údržbový skript',
+      hours: '2 h',
+      subtitle: 'Konfigurace LAN, tichá instalace software a automatizační dávkový skript.',
+      intro: 'Správce neinstaluje aplikace ručně po jedné. Zapojíme stanici do sítě, nasadíme aplikační software pomocí balíčkovače a vytvoříme dávkový skript pro automatizovanou údržbu a zálohu dat.',
+      topics: [
+        'Konfigurace síťového adaptéru v LAN (IP adresace, maska, výchozí brána, DNS servery)',
+        'Hromadná a bezobslužná instalace aplikací pomocí balíčkovače (Winget)',
+        'Tvorba údržbového dávkového skriptu (.bat) pro zálohování a úklid stanice',
+        'Zařazení údržbového skriptu do Plánovače úloh pro automatický periodický běh'
+      ],
+      practice: [
+        'Zprovoznění síťového spojení a otestování konektivity diagnostickými příkazy',
+        'Napsání a otestování údržbového skriptu a jeho zařazení do Plánovače úloh'
+      ],
+      builds: 'Správa software (SW2), Plánovač úloh (SCH) a Síťová konfigurace (NET1–NET2).'
+    },
+    {
+      slug: 'testovani',
+      tag: 'PRJ3',
+      title: 'Křížové testování a diagnostika simulovaných závad',
+      hours: '2 h',
+      subtitle: 'Detekce poruch, oprava poškozených přístupových práv a síťové konektivity.',
+      intro: 'Test odolnosti v praxi. Žáci si navzájem vymění své nakonfigurované stanice se simulovanými administrátorskými závadami. Úkolem je závady systematicky identifikovat a odstranit.',
+      topics: [
+        'Systematická metodika diagnostiky závad operačního systému (od hardware po aplikace)',
+        'Odstranění chyb síťové konfigurace a obnovení DNS překladu',
+        'Diagnostika a oprava odepřeného přístupu (Access Denied) v souborových právech NTFS',
+        'Kontrola systémových protokolů a spuštění naplánovaných úloh'
+      ],
+      practice: [
+        'Křížová inspekce cizí stanice a vyřešení 3 simulovaných technických poruch',
+        'Zápis diagnostického protokolu s popisem zjištěné příčiny a postupu opravy'
+      ],
+      builds: 'Diagnostika sítě (NET2), Práva souborů (USR4) a Roury a filtry (CLI3).'
+    },
+    {
+      slug: 'obhajoba',
+      tag: 'PRJ4',
+      title: 'Technická dokumentace a ústní obhajoba projektu',
+      hours: '2 h',
+      subtitle: 'Zpracování protokolu stanice, předvedení funkčnosti a celoroční reflexe.',
+      intro: 'Schopnost vysvětlit a obhájit technické řešení je klíčovou kompetencí technika. Žák prezentuje svou stanici, předvede funkčnost nastavených politik, skriptů i zálohování a zodpoví technické dotazy.',
+      topics: [
+        'Struktura technické dokumentace klientské stanice a předávací protokol',
+        'Předvedení konfigurace: uživatelé, disky, síť a automatizovaná údržba',
+        'Zdůvodnění zvolených administrátorských postupů a bezpečnostních voleb',
+        'Závěrečná reflexe dovedností z 1. ročníku a příprava na návazný předmět OSS 2'
+      ],
+      practice: [
+        'Předvedení plně funkční stanice vyučujícímu a kolegům ve třídě',
+        'Ústní obhajoba technického řešení a závěrečné hodnocení ročníku'
+      ],
+      builds: 'Završení celého kurikula 1. ročníku (OSS 1).'
+    }
+  ]
+};
+
 export const OSS1_GROUPS: OutlineGroup[] = [
   OSS1_GUI,
   OSS1_CLI,
@@ -577,5 +672,7 @@ export const OSS1_GROUPS: OutlineGroup[] = [
   OSS1_SOFTWARE,
   OSS1_DEVICES,
   OSS1_SCHEDULER,
-  OSS1_NETWORKS
+  OSS1_NETWORKS,
+  OSS1_PROJECT
 ];
+

@@ -81,8 +81,8 @@ export const SVP_SHARED_INFO: SvpSharedInfo = {
     {
       title: 'Digitální kompetence',
       description:
-        'Rozvíjena prostřednictvím přímé práce s klientskými i serverovými operačními systémy (Windows 11, Windows Server, ' +
-        'Linux/Ubuntu), grafickým rozhraním i příkazovou řádkou (CMD, PowerShell, Bash). Žáci efektivně využívají digitální nástroje, ' +
+        'Rozvíjena prostřednictvím přímé práce s klientskými i serverovými operačními systémy (Windows, Linux), ' +
+        'grafickým uživatelským rozhraním i moderními příkazovými shelly (PowerShell, Bash). Žáci efektivně využívají digitální nástroje, ' +
         'chápou jejich vnitřní fungování, důsledně dbají na kybernetickou bezpečnost, ochranu integrity a důvěrnosti dat, ' +
         'šifrování a verzování konfiguračních skriptů.'
     },
@@ -120,7 +120,7 @@ export const SVP_SHARED_INFO: SvpSharedInfo = {
   interdisciplinaryRelations:
     'Předmět úzce navazuje na výuku Hardwaru a číslicové techniky (fyzická architektura CPU, sběrnic a pamětí). ' +
     'Poskytuje praktickou platformu pro předmět Počítačové sítě (konfigurace adaptérů, IP adresace, směrování, síťové služby) ' +
-    'a doplňuje předmět Programování (přenos algoritmického myšlení do skriptování v .bat, PowerShellu a Bashi).'
+    'a doplňuje předmět Programování (přenos algoritmického myšlení do skriptování v dávkových souborech, PowerShellu a Bashi).'
 };
 
 // -------------------------------------------------------------------------
@@ -149,7 +149,7 @@ export const SVP_OSS1_DATA: SvpGradeData = {
         'Architektura hardware z pohledu OS (Von Neumannovo schéma, procesor, operační paměť RAM – data vs. instrukce)',
         'Ochranné kruhy procesoru (Protection Rings), systémová volání (Syscalls) a oddělení aplikací od jádra',
         'Typologie jader (monolitické jádro, hybridní jádro, mikrojádro)',
-        'Licenční modely operačních systémů (OEM licence a vazba na hardware, krabicové Retail/FPP licence, multilicence, open-source)'
+        'Licenční modely operačních systémů (OEM licence, krabicové Retail licence, multilicence, open-source)'
       ]
     },
     {
@@ -160,18 +160,18 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       outcomes: [
         'nainstaluje klientský operační systém a provede jeho počáteční konfiguraci',
         'rozliší paměťová média a porovná jejich parametry z hlediska rychlosti a spolehlivosti',
-        'rozdělí pevný disk na oddíly s využitím moderních standardů MBR a GPT',
-        'vysvětlí princip alokace dat v souborovém systému FAT, vznik fragmentace a metody údržby disku',
+        'rozdělí pevný disk na oddíly s využitím standardu GPT',
+        'vysvětlí princip alokace dat v souborovém systému, vznik fragmentace a metody údržby disku',
         'rozliší rychlé a úplné formátování disku a popíše proces nevratného mazání dat',
         'popíše jednotlivé fáze startu počítače od zapnutí napájení po předání řízení jádru operačního systému'
       ],
       content: [
-        'Instalace operačního systému Windows 11 (systémové požadavky, TPM 2.0, UEFI instalace, simulátor)',
-        'Paměťová média (mechanické HDD vs. polovodičové SSD, NAND buňky, měření propustnosti)',
-        'Dělení disku (fyzické disky, logické oddíly, tabulky MBR vs. GPT, EFI systémový oddíl)',
-        'Souborový systém FAT (FAT tabulka, clustery, řetězení clusterů, vnitřní a vnější fragmentace dat)',
+        'Instalace klientského operačního systému (systémové a hardwarové požadavky, proces instalace a prvotní nastavení stanice)',
+        'Paměťová média (mechanické disky vs. polovodičová média SSD, měření a porovnání propustnosti)',
+        'Dělení disku (fyzické disky, logické oddíly, tabulka oddílů GPT, systémový oddíl)',
+        'Architektura souborových systémů (alokační tabulky, clustery, řetězení clusterů, fragmentace dat a údržba disku)',
         'Formátování disku (rozdíl mezi rychlým smazáním metadat a přepisem sektorů nulami)',
-        'Start systému a Boot proces (inicializace hardware, POST test, firmware BIOS vs. UEFI, MBR/GPT zavaděč OS, předání řízení jádru)'
+        'Start systému a Boot proces (inicializace hardware, POST test, firmware UEFI, zavaděč OS, předání řízení jádru)'
       ]
     },
     {
@@ -188,31 +188,31 @@ export const SVP_OSS1_DATA: SvpGradeData = {
         'objasní princip virtuální paměti a stránkování pro ochranu integrity systému'
       ],
       content: [
-        'Pojem proces (program vs. proces, načtení do RAM, deskriptor PCB, identifikátor PID a rodičovský PPID)',
-        'Multitasking a střídání procesů (časová kvanta, registr čítače instrukcí PC, uložení stavu registrů a přepnutí kontextu)',
+        'Pojem proces (program vs. proces, zavedení do RAM, deskriptor procesu PCB, identifikátory PID a PPID)',
+        'Multitasking a střídání procesů (časová kvanta, stav procesoru, přepnutí kontextu a plánování)',
         'Stavy procesu (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený)',
-        'Vlákna (proces vs. vlákno, sdílení adresního prostoru, vícevláknové aplikace na vícejádrových CPU)',
-        'Virtuální paměť a stránkování (paměťová jednotka MMU, virtuální stránky a fyzické rámce, odkládací soubor pagefile.sys, výpadek stránky Page Fault)'
+        'Vlákna (proces vs. vlákno, sdílení adresního prostoru, vícevláknové aplikace)',
+        'Virtuální paměť a stránkování (princip virtuální paměti, izolace paměti aplikací, odkládací prostor / swap)'
       ]
     },
     {
       id: 'oss1-b4',
-      topic: '4. Grafické uživatelské rozhraní Windows 11 (GUI)',
+      topic: '4. Grafické uživatelské rozhraní klientského OS (GUI)',
       hours: 4,
       crossThemes: ['PT - ČSP'],
       outcomes: [
         'popíše kompozici grafického rozhraní a restartuje klíčové procesy grafického prostředí',
         'orientuje se v adresářovém stromu systémového disku a struktuře uživatelských profilů',
-        'nastavuje základní atributy souborů a asociace aplikací',
-        'konfiguruje systém prostřednictvím moderního rozhraní Nastavení i klasických appletů Ovládacích panelů',
-        'aplikuje zásady ergonomie a produktivity práce při správě oken a ploch'
+        'nastavuje základní atributy souborů a asociace aplikací k příponám',
+        'konfiguruje operační systém prostřednictvím standardních konfiguračních rozhraní a ovládacích nástrojů',
+        'aplikuje zásady ergonomie a produktivity práce při správě oken a pracovních ploch'
       ],
       content: [
-        'Architektura GUI (správce oken DWM, proces explorer.exe a řešení jeho zamrznutí)',
-        'Hierarchie disku C: (systémové složky Windows, System32, Program Files, struktura profilů v Users)',
-        'Práce se soubory a atributy (atributy Jen pro čtení, Skrytý, Systémový, Archivní, zástupci .lnk, registr přípon souborů)',
-        'Konfigurace systému (aplikace Nastavení vs. klasické Ovládací panely a spouštění apletů .cpl)',
-        'Ergonomie ovládání OS (klávesové zkratky, rozvržení Snap Layouts, virtuální plochy)'
+        'Architektura GUI (správce oken a kompozice plochy, obnova a řešení nestandardních stavů grafického prostředí)',
+        'Hierarchie systémového disku (systémové složky, programové soubory, struktura uživatelských profilů a data aplikací)',
+        'Práce se soubory a atributy (atributy souborů, zástupci, vazba typů souborů na výchozí aplikace)',
+        'Konfigurace operačního systému (správa systémových voleb, centrální konfigurační nástroje a ovládací panely)',
+        'Ergonomie a efektivita práce v GUI (klávesové zkratky, organizace oken na obrazovce, virtuální plochy)'
       ]
     },
     {
@@ -221,36 +221,36 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       hours: 6,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'ovládá operační systém v textovém rozhraní Příkazového řádku (CMD)',
+        'ovládá operační systém v textovém rozhraní příkazového řádku',
         'naviguje v adresářové struktuře disku pomocí absolutních i relativních cest',
         'provádí správu souborů a složek pomocí standardních textových příkazů',
         'využívá přesměrování vstupů a výstupů, roury a textové filtry',
-        'vytváří jednoduché dávkové skripty (.bat) pro rutinní správu a údržbu stanice'
+        'vytváří jednoduché dávkové skripty pro rutinní správu a údržbu stanice'
       ],
       content: [
-        'Orientace a navigace v CLI (práva běžného uživatele vs. Správce, přepínání diskových jednotek, příkazy dir, cd, relativní a absolutní cesty)',
-        'Správa souborů a složek (příkazy mkdir, rmdir, copy, move, del, využití zástupných znaků * a ?)',
-        'Roury a proudové filtry (operátory přesměrování >, >>, roura |, filtr findstr, diagnostický příkaz systeminfo)',
-        'Dávkové soubory (.bat) pro automatizaci rutinních úkonů (@echo off, komentáře REM, pozastavení pause, jednoduché proměnné set /p, argumenty %1)'
+        'Orientace a navigace v CLI (uživatelská vs. administrátorská oprávnění, přepínání diskových jednotek, relativní a absolutní cesty)',
+        'Správa souborů a složek (příkazy pro práci se soubory a složkami, využití zástupných znaků)',
+        'Roury a proudové filtry (přesměrování standardních proudů vstupu a výstupu, zřetězení příkazů, textové filtry a diagnostika)',
+        'Tvorba dávkových skriptů pro automatizaci rutinních úkonů a údržbu stanice'
       ]
     },
     {
       id: 'oss1-b6',
-      topic: '6. Správa uživatelů a přístupových oprávnění (NTFS)',
+      topic: '6. Správa uživatelů a přístupových oprávnění',
       hours: 8,
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'rozliší autentizaci od autorizace a porovná místní účet s online účtem',
         'spravuje uživatelské účty a skupiny podle principu nejmenších nutných oprávnění (PoLP)',
-        'aplikuje zásady bezpečnosti hesel, uzamčení stanice a mechanismu Řízení uživatelských účtů (UAC)',
-        'nastavuje přístupová oprávnění k souborům a složkám v souborovém systému NTFS',
-        'vysvětlí princip dědičnosti oprávnění a prioritu explicitního zákazu (Deny)'
+        'aplikuje zásady bezpečnosti hesel, uzamčení stanice a mechanismu řízení uživatelských účtů',
+        'nastavuje přístupová oprávnění k souborům a složkám v souborovém systému',
+        'vysvětlí princip dědičnosti oprávnění a prioritu explicitního zákazu'
       ],
       content: [
-        'Uživatelské účty a autentizace (lokální účet vs. účet Microsoft, Standardní uživatel vs. Správce, systémová konzole lusrmgr.msc, příkaz net user)',
-        'Zabezpečení účtů (politika hesel, přihlašovací PIN vázaný na TPM čip, okamžitý zámek Win+L, mechanismus UAC)',
-        'Uživatelské skupiny (princip hromadné správy, vestavěné skupiny Administrators a Users, příkaz net localgroup)',
-        'Souborová oprávnění NTFS (karta Zabezpečení, základní práva pro čtení a zápis, dědičnost oprávnění, pravidlo explicitního zákazu Deny, nástroj icacls)'
+        'Uživatelské účty a autentizace (lokální účet vs. centrální/online identita, role standardního uživatele a správce, nástroje pro správu účtů)',
+        'Zabezpečení účtů a pracovní stanice (politika hesel, hardwarově vázané ověřování, uzamčení relace, řízení přístupových práv a elevace oprávnění)',
+        'Uživatelské skupiny (princip hromadné správy, základní vestavěné skupiny, správa členství ve skupinách)',
+        'Souborová přístupová práva (oprávnění souborového systému, řízení přístupu ACL, čtení, zápis, dědičnost a pravidlo explicitního zákazu)'
       ]
     },
     {
@@ -260,14 +260,14 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'popíše fáze životního cyklu aplikačního software v operačním systému',
-        'rozliší standardní formáty instalátorů EXE a MSI balíčků',
+        'rozliší standardní formáty instalátorů a instalačních balíčků',
         'provede bezobslužnou (tichou) instalaci software',
         'vyhledává, instaluje a hromadně aktualizuje aplikace pomocí moderního správce balíčků'
       ],
       content: [
         'Životní cyklus software (instalace, registrace v systému, spouštění, aktualizace a čistá odinstalace)',
-        'Instalátory a balíčky (klasické EXE instalátory vs. balíčky Windows Installer MSI, parametry tiché instalace /qn a /silent)',
-        'Správa software přes balíčkovač Winget (vyhledávání aplikací, instalace, hromadný upgrade softwaru na stanici, export a import seznamu balíčků)'
+        'Instalátory a balíčky (spustitelné instalátory vs. instalační balíčky, princip a parametry bezobslužné tiché instalace)',
+        'Správa software prostřednictvím správce balíčků (vyhledávání aplikací, instalace, hromadný upgrade softwaru, export a import konfigurace)'
       ]
     },
     {
@@ -276,14 +276,14 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       hours: 4,
       crossThemes: ['PT - ČSP'],
       outcomes: [
-        'diagnostikuje stavy připojených hardwarových komponent v konzoli Správce zařízení',
+        'diagnostikuje stavy připojených hardwarových komponent v konzoli správce zařízení',
         'vysvětlí úlohu ovladačů zařízení běžících v jádře operačního systému',
         'instaluje a aktualizuje ovladače a ověřuje jejich digitální podpis',
-        'nakonfiguruje automatické spouštění údržbových úloh v Plánovači úloh'
+        'nakonfiguruje automatické spouštění údržbových úloh v plánovači úloh'
       ],
       content: [
-        'Správa zařízení a ovladače (komunikace OS s hardwarem, role ovladačů v Ring 0, konzole devmgmt.msc, stavy zařízení, instalace přes .inf soubory a Windows Update, digitální podpis ovladačů WHQL)',
-        'Plánovač úloh (automatizace systémové údržby, konzole taskschd.msc, časové a událostní spouštěče, konfigurace akcí, běh pod systémovým účtem SYSTEM)'
+        'Správa hardware a ovladače (komunikace OS s perifériemi, role ovladačů v režimu jádra, diagnostika stavů zařízení, instalace, aktualizace a digitální podpis ovladačů)',
+        'Plánovač úloh (automatizace systémové údržby, časové a událostní spouštěče, konfigurace akcí, běh pod servisním účtem)'
       ]
     },
     {
@@ -293,16 +293,16 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'rozliší fyzickou MAC adresu od logické IP adresy a nakonfiguruje parametry síťového adaptéru',
-        'ověří a diagnostikuje síťové spojení pomocí vrstveného žebříčku diagnostických příkazů',
+        'ověří a diagnostikuje síťové spojení pomocí diagnostických nástrojů a příkazů',
         'nastaví síťové profily a provede sdílení prostředků v lokální síti',
         'nakonfiguruje a zabezpečí bezdrátovou síť Wi-Fi v prostředí klientského operačního systému',
-        'provede základní nastavení parametrů a zabezpečení přístupového bodu / Wi-Fi směrovače'
+        'provede základní nastavení parametrů a zabezpečení síťového směrovače / přístupového bodu'
       ],
       content: [
-        'Síťové adaptéry a adresace (fyzické adaptéry Ethernet a Wi-Fi, MAC adresa vs. IPv4 adresa, maska podsítě, dynamické DHCP vs. statická IP, příkaz ipconfig)',
-        'Diagnostika síťového spojení (žebříček testu ping – loopback 127.0.0.1, vlastní karta, brána, DNS; sledování trasy paketu tracert)',
-        'Síťové profily a sdílení (profil Veřejná vs. Privátní síť, sdílení složek, bezdrátové Wi-Fi sítě, SSID, šifrování WPA2 a WPA3, příkazy netsh wlan)',
-        'Praktická konfigurace směrovače (tovární reset, webová administrace SOHO routeru, zabezpečení Wi-Fi, izolovaná síť pro hosty Guest Network)'
+        'Síťové adaptéry a adresace (fyzické adaptéry Ethernet a Wi-Fi, MAC adresa vs. IPv4 adresa, maska podsítě, dynamické přidělování DHCP vs. statická IP konfigurace, nástroje pro zjištění konfigurace)',
+        'Diagnostika síťového spojení (ověření lokálního rozhraní, dostupnost výchozí brány a DNS serverů, sledování trasy paketu)',
+        'Síťové profily a sdílení (veřejný vs. privátní síťový profil, sdílení složek v LAN, bezdrátové sítě Wi-Fi, SSID, standardy šifrování WPA2 a WPA3)',
+        'Praktická konfigurace směrovače (tovární reset, webová administrace SOHO routeru, zabezpečení Wi-Fi, izolovaná síť pro hosty)'
       ]
     },
     {
@@ -318,9 +318,9 @@ export const SVP_OSS1_DATA: SvpGradeData = {
         'prezentuje a obhájí zvolené technické řešení před třídou'
       ],
       content: [
-        'Komplexní instalace stanice (rozdělení disků, instalace operačního systému, doinstalování ovladačů a základního softwaru balíčkovačem)',
-        'Bezpečnostní a uživatelská konfigurace (lokální účty, NTFS práva ke složkám, síťové nastavení a profil sítě)',
-        'Automatizace a údržba (vytvoření údržbového .bat skriptu a jeho zařazení do Plánovače úloh)',
+        'Komplexní instalace stanice (rozdělení disků, instalace operačního systému, instalace ovladačů a softwaru správcem balíčků)',
+        'Bezpečnostní a uživatelská konfigurace (uživatelské účty, přístupová práva ke složkám, síťové nastavení a profil sítě)',
+        'Automatizace a údržba (vytvoření údržbového skriptu a jeho zařazení do plánovače úloh)',
         'Křížové testování a diagnostika chyb (simulace závady na disku, síti nebo právech a její systematické odstranění)',
         'Technická dokumentace a ústní obhajoba projektu'
       ]
@@ -329,8 +329,9 @@ export const SVP_OSS1_DATA: SvpGradeData = {
 };
 
 // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
 // 2. ROČNÍK: OPERAČNÍ SYSTÉMY 2 (OSS 2 – 66 HODIN)
-// Správa podnikových dat, zálohování, bezpečnost, PowerShell, servery a Active Directory
+// Správa podnikových dat, zálohování, bezpečnost koncových zařízení, PowerShell a správa v doméně
 // -------------------------------------------------------------------------
 export const SVP_OSS2_DATA: SvpGradeData = {
   gradeLabel: '2. Ročník',
@@ -339,125 +340,102 @@ export const SVP_OSS2_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'oss2-b1',
-      topic: '1. Diagnostická prověrka a opakování administrace',
-      hours: 2,
-      crossThemes: ['PT - ČSP'],
+      topic: '1. Správa podnikových dat a zálohování',
+      hours: 10,
+      crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'samostatně analyzuje zadaný systémový stav a vyřeší administrátorské úlohy klientského operačního systému'
+        'navrhne a zdůvodní strategii zálohování dat podle oborového pravidla 3-2-1',
+        'porovná plnou, přírůstkovou a rozdílovou zálohu z hlediska časové náročnosti a kapacity úložiště',
+        'vysvětlí funkci archivního atributu souborů a stínových kopií svazku',
+        'provádí skriptovanou synchronizaci a zrcadlení složek pomocí systémových nástrojů',
+        'rozliší cloudovou synchronizaci od nezávislé a neměnné zálohy dat',
+        'nakonfiguruje automatizované šifrované zálohování na síťové úložiště s během na pozadí jako systémová služba'
       ],
       content: [
-        'Praktické ověření znalostí z 1. ročníku (diagnostika sítě, správa uživatelských práv NTFS, práce v CLI)'
+        'Zásady a strategie zálohování (pravidlo 3-2-1, typy záloh – plná, přírůstková/inkrementální, rozdílová/diferenciální, archivní atribut souborů, stínové kopie svazku)',
+        'Skriptovaná synchronizace a zrcadlení dat v textovém rozhraní (příkazy pro synchronizaci složek a logování průběhu)',
+        'Cloudová úložiště a synchronizace (rozdíl mezi online cloudovým diskem a neměnnou zálohou, rizika synchronizace napadených či zašifrovaných dat)',
+        'Automatizované zálohování (využití specializovaného software běžícího na pozadí jako služba, ochrana záložních archivů šifrováním a heslem, plánování zálohovacích úloh)',
+        'Testování obnovy dat ze zálohy a tvorba zálohovacího plánu a protokolu'
       ]
     },
     {
       id: 'oss2-b2',
-      topic: '2. Správa podnikových dat a zálohování',
-      hours: 10,
-      crossThemes: ['PT - ČDS', 'PT - ČSP'],
+      topic: '2. Bezpečnost koncových zařízení, audit a forenzní analýza',
+      hours: 20,
+      crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
-        'navrhne strategii zálohování podle oborového pravidla 3-2-1',
-        'porovná plnou, inkrementální a diferenciální zálohu z hlediska rychlosti a nároků na úložiště',
-        'vysvětlí funkci archivního bitu a stínových kopií svazku (VSS)',
-        'provádí skriptované zálohování pomocí systémových nástrojů příkazového řádku',
-        'rozliší cloudovou synchronizaci od nezávislé zálohy dat',
-        'nakonfiguruje automatizované šifrované zálohování na síťové úložiště ve specializovaném software'
+        'charakterizuje hlavní kategorie škodlivého kódu a objasní princip vykonávání instrukcí procesorem bez rozlišení úmyslu',
+        'provádí forenzní audit běžících procesů, analyzuje jejich hierarchii a spotřebu systémových prostředků',
+        'ověřuje digitální certifikáty spustitelných souborů a integritu dat pomocí kryptografických kontrolních součtů',
+        'vyhledává a analyzuje mechanismy automatického spouštění aplikací a záznamy v systémovém registru',
+        'vyhledává, filtruje a interpretuje systémové a bezpečnostní záznamy v žurnálu událostí',
+        'bezpečně testuje podezřelé soubory v izolovaném prostředí a konfiguruje aktivní systémovou ochranu proti škodlivému kódu',
+        'konfiguruje pravidla paketového firewallu pro příchozí i odchozí komunikaci a monitoruje aktivní síťová spojení stanice',
+        'aplikuje diskové šifrování s hardwarovou ochranou kryptografických klíčů a bezpečně spravuje obnovovací klíče',
+        'analyzuje techniky sociálního inženýrství a phishingu a aplikuje zásady bezpečné správy hesel a vícefaktorového ověřování',
+        'vyřeší simulovaný bezpečnostní incident na stanici, provede forenzní analýzu a vypracuje závěrečný incident report'
       ],
       content: [
-        'Zásady a strategie zálohování (pravidlo 3-2-1, typy záloh – plná, přírůstková/inkrementální, rozdílová/diferenciální, archivní bit souborů)',
-        'Zálohování pomocí CLI (příkazy xcopy a robocopy pro synchronizaci zrcadel složek)',
-        'Cloudová úložiště a synchronizace (rozdíl mezi cloudovým diskem a neměnnou zálohou, riziko synchronizace zašifrovaných dat ransomwarem)',
-        'Automatizované zálohování (instalace a běh aplikace Cobian Reflector jako služby Windows pod systémovým účtem, šifrování záloh AES, plánovač úloh)'
+        'Typologie malwaru a principy nákazy (viry, červi, trojské koně, ransomware, spyware; zneužití uživatelských tokenů, hashovací funkce a online analýza)',
+        'Forenzní analýza běžících procesů (nástroje pro inspekci procesů, procesní stromy, skryté procesy, ověřování digitálních certifikátů a integrity)',
+        'Systémový registr a persistence útoků (hierarchie klíčů pro počítač a uživatele, klíče pro automatické spouštění po startu, export a import konfigurace)',
+        'Systémový žurnál událostí a bezpečnostní audit (architektura systémových protokolů, záznamy o úspěšných a neúspěšných pokusech o přihlášení, filtrace chybových stavů)',
+        'Izolované prostředí a systémový antivirus (prostředí sandboxu, signatury, heuristika, standardizované testovací vzorky)',
+        'Paketový firewall na koncovém zařízení (filtrace příchozího a odchozího provozu, pravidla pro porty a aplikace, sledování aktivních síťových spojení)',
+        'Šifrování disků a hardwarová ochrana klíčů (šifrování systémových i přenosných disků, bezpečnostní čip TPM, správa záchranných klíčů)',
+        'Správa systémových aktualizací a zranitelnosti (servisní cykly záplat, princip zranitelností nultého dne 0-day, hromadné aktualizace aplikací)',
+        'Sociální inženýrství, phishing a ochrana identity (analýza podvodných e-mailů a hlaviček zpráv, vícefaktorové ověřování MFA, správci hesel)',
+        'Vyšetřování bezpečnostního incidentu (detekce neoprávněné aktivity na stanici, izolace systému, odstranění perzistentní hrozby a tvorba protokolu Incident Response)'
       ]
     },
     {
       id: 'oss2-b3',
-      topic: '3. Bezpečnost operačního systému a forenzní analýza',
+      topic: '3. Systémové služby a administrační skriptování (PowerShell)',
       hours: 18,
-      crossThemes: ['PT - ČDS', 'PT - ODS'],
+      crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
-        'charakterizuje typy škodlivého kódu a objasní způsob vykonávání instrukcí procesorem',
-        'provádí audit běžících procesů pomocí pokročilých forenzních nástrojů',
-        'ověřuje digitální podpisy spustitelných souborů a kontrolní součty SHA-256',
-        'konfiguruje a testuje vestavěnou antivirovou ochranu a izolované prostředí sandboxu',
-        'nastavuje pravidla paketového firewallu pro příchozí i odchozí komunikaci a monitoruje otevřené porty',
-        'aplikuje diskové šifrování s vazbou na hardwarový čip TPM',
-        'rozpozná techniky sociálního inženýrství, phishingu a navrhne opatření pro ochranu hesel',
-        'vyřeší simulovaný bezpečnostní incident a provede forenzní vyčištění kompromitované stanice'
+        'popíše architekturu a životní cyklus systémových služeb běžících na pozadí operačního systému',
+        'diagnostikuje a odstraňuje nestandardní stavy a zamrznutí systémových služeb',
+        'ovládá syntaxi a objektový model moderního příkazového shellu',
+        'efektivně filtruje, třídí a transformuje systémové objekty v rourách',
+        'vytváří přehledné administrační skripty s ošetřením bezpečnostní politiky spouštění',
+        'využívá pokročilé skriptovací techniky pro automatizaci správy souborů, registru a komponent stanice',
+        'generuje automatizované reporty o stavu hardware, software a konfigurace stanice'
       ],
       content: [
-        'Typologie malwaru (viry, červi, trojské koně, ransomware, spyware; zneužití tokenů oprávnění, hashovací funkce a online skenery)',
-        'Forenzní analýza procesů (nástroj Sysinternals Process Explorer, strom procesů, digitální certifikáty Authenticode, autorun klíče v registru)',
-        'Izolace a antivirus (Windows Sandbox, antivirový systém Windows Defender, signatury, heuristika, standardní testovací vzorek EICAR)',
-        'Paketový firewall operačního systému (konzole wf.msc, příchozí a odchozí pravidla, filtrace portů a aplikací, sledování spojení netstat)',
-        'Šifrování dat a BitLocker (šifrování systémového i výměnného disku, bezpečnostní čip TPM 2.0, záchranný obnovovací klíč)',
-        'Správa účtů a bezpečnost autentizace (mechanismus UAC a Secure Desktop, vícefaktorové ověřování MFA, správci hesel, phishing a rozbor podvodných zpráv)',
-        'Reakce na bezpečnostní incidenty (detekce neoprávněné aktivity, izolace stanice, odstranění hrozby, závěrečný protokol Incident Response)'
+        'Systémové služby na pozadí (koncepce služeb bez interaktivního přihlášení uživatele, systémové běhové účty, typy spouštění služeb, závislosti)',
+        'Diagnostika a obnova služeb (řešení chyb a pádů kritických služeb, konfigurace automatického restartu po selhání, nástroje pro správu služeb)',
+        'Objektový shell a syntaxe cmdletů (rozdíl mezi textovým a objektovým rozhraním, syntaxe příkazů, nápověda a zjišťování vlastností a metod objektů)',
+        'Práce s objektovou rourou (předávání celých datových struktur rourou, výběr vlastností, filtrování podle podmínek a řazení dat)',
+        'Administrační skriptování (tvorba skriptů, práce s proměnnými, cykly pro hromadné operace, bezpečnostní zásady a politiky spouštění skriptů)',
+        'Automatizovaná správa systému (manipulace s klíči registru, správa oprávnění a systémových komponent skriptem)',
+        'Inspekční reporty a stav stanice (automatizovaný sběr diagnostických dat, export stavových reportů do formátů CSV a HTML)'
       ]
     },
     {
       id: 'oss2-b4',
-      topic: '4. Pokročilá správa Windows a skriptování v PowerShellu',
-      hours: 10,
+      topic: '4. Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
+      hours: 18,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
-        'vytváří přizpůsobené konzoly pro správu systému a řídí běh systémových služeb',
-        'ovládá syntaxi a objektové roury prostředí PowerShell',
-        'filtruje a třídí systémové objekty v rourách',
-        'vytváří jednoduché administrační skripty (.ps1) s ohledem na zásady spouštění ExecutionPolicy',
-        'orientuje se ve struktuře systémového registru Windows a provádí zálohu a import klíčů',
-        'vyhledává a analyzuje systémové a bezpečnostní záznamy v Prohlížeči událostí'
+        'nakonfiguruje sdílení složek v lokální síti a nastaví kombinovaná oprávnění sdílení a souborového systému',
+        'připojí síťové úložiště klientské stanici jako trvalou síťovou jednotku',
+        'zabezpečí a realizuje vzdálený přístup k pracovní ploše stanice',
+        'vysvětlí rozdíl mezi decentralizovanou pracovní skupinou a centralizovanou podnikovou doménou',
+        'připojí klientskou stanici do podnikové domény a provede přihlášení doménovým profilem',
+        'vysvětlí význam a mechanismus uplatňování centrálních bezpečnostních politik (GPO) na klientské stanici',
+        'samostatně integruje a obhájí komplexní konfiguraci a zabezpečení klientské stanice'
       ],
       content: [
-        'Konzola pro správu (MMC) a systémové služby (konfigurace snap-inů, typy spouštění služeb, běhové účty, automatický restart po selhání)',
-        'Objektový shell PowerShell (syntaxe cmdletů Sloveso-PodstatnéJméno, nápověda Get-Help, předávání objektů rourou, filtrování Where-Object a výběr vlastností Select-Object)',
-        'Automatizace v PowerShellu (tvorba skriptů .ps1, politika spouštění ExecutionPolicy, generování zpráv o stavu stanice)',
-        'Systémový registr Windows (struktura hives HKLM a HKCU, klíče, hodnoty, zálohování a hromadné úpravy přes soubory .reg)',
-        'Prohlížeč událostí a audit (Event Viewer, protokoly Application, System a Security, klíčové ID událostí úspěšného a neúspěšného přihlášení, filtry)'
-      ]
-    },
-    {
-      id: 'oss2-b5',
-      topic: '5. Síťové serverové služby a podniková infrastruktura',
-      hours: 12,
-      crossThemes: ['PT - ČDS', 'PT - ČSP'],
-      outcomes: [
-        'nainstaluje a nakonfiguruje službu pro automatické přidělování síťových adres (DHCP)',
-        'vytváří a spravuje zóny a záznamy pro překlad doménových jmen (DNS)',
-        'nakonfiguruje souborový server SMB a nastaví sdílené složky s kombinovanými právy',
-        'realizuje zabezpečenou vzdálenou správu serveru přes grafické i textové rozhraní',
-        'zprovozní webový server a zabezpečí webovou službu šifrováním HTTPS',
-        'nainstaluje instanci databázového serveru a provede zálohování databáze'
-      ],
-      content: [
-        'Služba DHCP (fáze procesu DORA, konfigurace rozsahu Scope, zápůjční doba Lease time, statické rezervace adres pro tiskárny a servery)',
-        'Služba DNS (hierarchie doménových jmen, dopředné zóny, záznamy typu A, CNAME, PTR, diagnostika nslookup)',
-        'Souborový server SMB (vytvoření sdílení, UNC cesty, rozdíl mezi oprávněním sdílení a oprávněním NTFS, mapování disku příkazem net use)',
-        'Vzdálená správa (Vzdálená plocha RDP s ověřením na úrovni sítě NLA, bezpečný terminál OpenSSH pro správu Windows Serveru)',
-        'Webový server IIS (instalace role, kořenový adresář webu, vazby portů 80 a 443, nasazení certifikátu pro šifrovaný protokol HTTPS)',
-        'Databázový server SQL Server Express (instalace instance, firewallové pravidlo portu 1433, ověřování uživatelů, záloha databáze do souboru .bak)'
-      ]
-    },
-    {
-      id: 'oss2-b6',
-      topic: '6. Active Directory, doménová správa a závěrečný projekt',
-      hours: 14,
-      crossThemes: ['PT - ČSP', 'PT - ČDS'],
-      outcomes: [
-        'vysvětlí princip centralizované správy sítě a rozdíl mezi pracovní skupinou a doménou',
-        'nainstaluje doménovou službu Active Directory a povýší server na řadič domény (DC)',
-        'navrhne organizační strukturu společnosti a vytvoří organizační jednotky, uživatelské účty a skupiny',
-        'připojí klientskou stanici Windows 11 do podnikové domény',
-        'nakonfiguruje centrální bezpečnostní a uživatelská pravidla prostřednictvím Skupinových politik (GPO)',
-        'samostatně realizuje a obhájí komplexní projekt podnikové síťové infrastruktury'
-      ],
-      content: [
-        'Úvod do domény Active Directory (pracovní skupina vs. doména, řadič domény DC, databáze objektů)',
-        'Instalace a konfigurace AD DS (instalace role, vytvoření nového doménového lesa, provázání s DNS serverem)',
-        'Organizační jednotky a doménové účty (struktura firmy v OU, hromadná správa, doménové zásady hesel)',
-        'Doménové skupiny a řízení přístupu (bezpečnostní skupiny, model přiřazení práv ke sdíleným složkám přes skupiny)',
-        'Připojení klienta do domény (nastavení síťového DNS klienta, připojení Windows 11, přihlášení doménovým profilem)',
-        'Skupinové politiky GPO (centrální správa nastavení stanic, zákaz používání výměnných USB disků, automatické mapování síťových jednotek)',
-        'Závěrečný integrující projekt (kompletní zprovoznění malé podnikové sítě: Server DC + DHCP/DNS + Klientská stanice + GPO, prezentace a obhajoba)'
+        'Sdílení souborů v lokální síti (protokol SMB, síťové cesty UNC, konfigurace oprávnění sdílené složky)',
+        'Efektivní přístupová práva (kombinace oprávnění sdílení a souborového systému, pravidlo restriktivnějšího přístupu)',
+        'Mapování síťových disků (připojení síťové jednotky v grafickém i textovém rozhraní, trvalé připojení po přihlášení)',
+        'Vzdálená správa pracovní plochy (protokol RDP, autorizace vzdálených uživatelů, zabezpečení na úrovni sítě)',
+        'Koncept podnikové infrastruktury (pracovní skupina vs. doménové prostředí, centralizovaná autentizace, role doménového řadiče)',
+        'Klientská stanice v podnikové doméně (připojení stanice do domény, profil doménového uživatele, oddělení lokálních a doménových práv)',
+        'Skupinové politiky na stanici (princip centrální distribuce nastavení a bezpečnostních restrikcí na klientské počítače, zákaz výměnných médií, jednotná konfigurace)',
+        'Závěrečný integrující projekt administrace a zabezpečení stanice (komplexní instalace, konfigurace uživatelů, nastavení zálohování, firewallu, auditních pravidel a obhajoba řešení)'
       ]
     }
   ]
@@ -484,102 +462,89 @@ export const SVP_OSS3_DATA: SvpGradeData = {
         'spravuje uživatelské účty a nastavuje přístupová práva POSIX (UGO) v osmičkové i symbolické notaci',
         'pracuje s textovými proudy, rourami, regulárními filtry a editory',
         'spravuje diskové oddíly a připojování svazků do souborového stromu',
-        'monitoruje a řídí běžící procesy a systémové démony přes systemd',
-        'instaluje a aktualizuje software pomocí balíčkovacího systému APT'
+        'monitoruje a řídí běžící procesy a systémové démony',
+        'instaluje a aktualizuje software pomocí balíčkovacího systému'
       ],
       content: [
-        'Architektura Linuxu a instalace (distribuce Debian/Ubuntu, rozdělení disku na oddíly ext4 a swap, zavaděč GRUB, instalace headless serveru)',
-        'Souborový systém FHS a terminál (hierarchie složek /etc, /var, /home, /dev; navigační a manipulační příkazy pwd, cd, ls, cp, mv, rm)',
-        'Uživatelé a POSIX oprávnění (model vlastník-skupina-ostatní, osmičková notace chmod 755/644, změna vlastníka chown, práva správce sudo a /etc/sudoers)',
-        'Textové proudy a editory (přesměrování výstupu, roury |, proudový filtr grep, práce v textových editorech nano a vim)',
-        'Správa disků (oddíly fdisk, formátování mkfs.ext4, připojování mount a trvalý zápis v konfiguračním souboru /etc/fstab)',
-        'Správa procesů (výpis ps, interaktivní monitory top a htop, ukončování procesů kill)',
-        'Balíčkovací systém APT (repozitáře, aktualizace indexů apt update, instalace balíčků a řešení závislostí)',
-        'Systémové služby systemd a logování (řízení démonů systemctl, analýza žurnálu událostí journalctl)'
+        'Architektura Linuxu a instalace (význam distribucí, rozdělení disku na oddíly a odkládací prostor swap, zavaděč systému, instalace serveru bez grafického rozhraní)',
+        'Souborový systém FHS a terminál (standardizovaná hierarchie složek, navigační a manipulační příkazy v textovém prostředí)',
+        'Uživatelé a POSIX oprávnění (model vlastník-skupina-ostatní, osmičková notace práv, změna vlastníka a skupiny, delegování administrátorských práv)',
+        'Textové proudy a editory (přesměrování výstupu, proudové roury, regulární filtry a vyhledávání textu, práce v terminálových textových editorech)',
+        'Správa disků a souborových systémů (tvorba oddílů, formátování svazků, přípojné body a trvalá konfigurace připojování svazků)',
+        'Správa procesů (sledování běžících úloh, interaktivní systémové monitory, řízení priorit a ukončování procesů)',
+        'Správa software a balíčků (repozitáře aplikací, aktualizace indexů, instalace software a řešení knihovních závislostí)',
+        'Systémové služby a logování (architektura řízení démonů, správa stavu služeb, analýza žurnálu systémových událostí)'
       ]
     },
     {
       id: 'oss3-b2',
-      topic: '2. Linux: Sítě, serverové služby a Bash skriptování',
+      topic: '2. Linux: Sítě, serverové služby a automatizace v shellu',
       hours: 16,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'nakonfiguruje síťové rozhraní Linuxu a zabezpečí server pomocí paketového firewallu',
-        'zprovozní zabezpečenou vzdálenou správu přes SSH pomocí asymetrických klíčů a zamezí neoprávněnému přístupu',
-        'nainstaluje a nakonfiguruje webový server Apache a zabezpečí přenos dat certifikátem HTTPS',
-        'zajistí heterogenní sdílení souborů mezi Linuxem a stanicemi Windows pomocí služby Samba',
-        'píše skripty v Bashi pro automatizaci administrátorských úkonů a zálohování',
-        'nastaví automatické periodické spouštění úloh pomocí plánovače cron'
+        'nakonfiguruje síťové rozhraní serveru a zabezpečí systém pomocí paketového firewallu',
+        'zprovozní zabezpečenou vzdálenou správu přes šifrovaný terminál s autentizací asymetrickými klíči',
+        'nainstaluje a nakonfiguruje webový server a zabezpečí přenos dat šifrováním HTTPS',
+        'zajistí heterogenní sdílení souborů mezi servery a klientskými stanicemi Windows',
+        'píše skripty v shellu pro automatizaci administrátorských úkonů a zálohování',
+        'nastaví automatické periodické spouštění úloh pomocí plánovače'
       ],
       content: [
-        'Síťová konfigurace a firewall (konfigurace rozhraní ip a, diagnostika, paketový firewall UFW a povolování portů)',
-        'Zabezpečená vzdálená správa SSH (konfigurace démona, autentizace párem asymetrických klíčů Ed25519, zákaz přihlášení heslem)',
-        'Webový server Apache (instalace webserveru, struktura webového kořene /var/www/html, virtuální hostitelé VirtualHost, nasazení SSL certifikátu)',
-        'Heterogenní sdílení souborů Samba (konfigurace smb.conf, sdílené adresáře, mapování z Windows přes UNC cesty)',
-        'Programování v Bashi (shebang #!/bin/bash, proměnné, argumenty skriptu $1, podmíněné větvení if, cykly for)',
-        'Automatizace údržby a zálohování (komprese a archivace nástrojem tar, automatické plánování úloh v cronu a syntaxe crontab)'
+        'Síťová konfigurace a paketový firewall (konfigurace síťových rozhraní, diagnostika konektivity, paketový firewall a pravidla pro povolování portů)',
+        'Zabezpečená vzdálená správa (konfigurace šifrovaného vzdáleného terminálu SSH, autentizace párem asymetrických klíčů, restrikce přihlášení administrátora)',
+        'Webový server (instalace webové služby, kořenový adresář, virtuální hostitelé, nasazení bezpečnostních certifikátů pro šifrovaný protokol HTTPS)',
+        'Heterogenní sdílení souborů v síti (služba sdílení dat, konfigurace sdílených adresářů, autentizace a mapování z klientských systémů)',
+        'Administrační skriptování v shellu (struktura skriptu, řízení práv spuštění, proměnné, parametry z příkazové řádky, podmíněné větvení a cykly)',
+        'Automatizace údržby a periodické plánování (komprese a archivace dat, automatické plánování pravidelných úloh v plánovači cron)'
       ]
     },
     {
       id: 'oss3-b3',
-      topic: '3. Verzovací systém Git a spolupráce na GitHubu',
-      hours: 8,
-      crossThemes: ['PT - ČSP', 'PT - ČDS'],
+      topic: '3. Kybernetická bezpečnost, síťový audit a obrana',
+      hours: 12,
+      crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
-        'vysvětlí význam verzování a popíše architekturu třístupňového pracovního prostoru Gitu',
-        'samostatně ovládá základní pracovní cyklus verzování konfiguračních skriptů a dokumentace',
-        'vytváří větve, slučuje změny a manuálně řeší kolize při sloučení',
-        'spolupracuje na projektu prostřednictvím vzdáleného repozitáře na GitHubu s využitím Pull Requestů'
+        'orientuje se v právním rámci kybernetické bezpečnosti v ČR a zásadách mezinárodních směrnic (NIS 2)',
+        'provede bezpečnostní průzkum sítě a identifikuje otevřené síťové porty a verze běžících služeb',
+        'vyhledá zjištěné zranitelnosti ve veřejných databázích (CVE) a vyhodnotí jejich závažnost (CVSS)',
+        'analyzuje nešifrovaný a šifrovaný síťový provoz pomocí analyzátoru paketů',
+        'vysvětlí princip ukládání přístupových hesel ve formě hashů a otestuje jejich odolnost vůči slovníkovým útokům',
+        'provede bezpečnostní nápravu a odstraní zranitelnost na kompromitovaném systému'
       ],
       content: [
-        'Architektura verzovacího systému Git (tři zóny – Working Directory, Staging Area, Repository, tvorba revizí commit)',
-        'Základní pracovní cyklus (příkazy git status, add, commit, log, porovnání změn diff, ignorování souborů .gitignore)',
-        'Práce s větvemi (tvorba větví git branch, přepínání checkout/switch, sloučení merge, detekce a ruční řešení konfliktů)',
-        'Vzdálené repozitáře a týmová spolupráce (klonování repozitáře clone, odesílání změn push, stahování pull, týmový proces Pull Request a revize kódu)'
+        'Právní a etický rámec (trestní zákoník – neoprávněný přístup k počítačovému systému, směrnice NIS 2, fáze kybernetického útoku Cyber Kill Chain)',
+        'Síťový audit a mapování zranitelností (skenování síťových portů, detekce verzí služeb, práce s mezinárodními databázemi zranitelností CVE a hodnocení rizik CVSS)',
+        'Analýza síťového provozu (odposlech a filtrace síťových paketů, analýza spojení, srovnání nešifrovaných protokolů se šifrovanými tunely)',
+        'Ochrana hesel a autentizace (ukládání hesel ve formě kryptografických hashů se solí, slovníkové útoky a testování síly hesel)',
+        'Reakce na incident a náprava (analýza kompromitovaného systému, identifikace neoprávněné aktivity, zablokování útočníka firewallem a oprava konfigurace)'
       ]
     },
     {
       id: 'oss3-b4',
-      topic: '4. Kybernetická bezpečnost, audit zranitelností a obrana',
-      hours: 12,
-      crossThemes: ['PT - ČDS', 'PT - ODS'],
+      topic: '4. Verzovací systémy, týmová kooperace a infrastrukturní projekt',
+      hours: 18,
+      crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
-        'orientuje se v právním rámci kybernetické bezpečnosti v ČR a zásadách směrnice NIS 2',
-        'provede bezpečnostní průzkum sítě a identifikuje otevřené síťové porty a verze služeb',
-        'vyhledá zjištěné zranitelnosti ve veřejných databázích a vyhodnotí jejich závažnost',
-        'analyzuje nešifrovaný a šifrovaný síťový provoz pomocí analyzátoru paketů',
-        'vysvětlí princip ukládání přístupových hesel a otestuje jejich odolnost vůči slovníkovým útokům',
-        'provede bezpečnostní nápravu a odstraní zranitelnost na kompromitovaném systému'
+        'vysvětlí význam verzování a samostatně ovládá pracovní cyklus verzovacího systému (Git)',
+        'vytváří větve, slučuje změny a řeší kolize v kódu a konfiguračních souborech',
+        'spolupracuje na projektu prostřednictvím vzdálených repozitářů s využitím týmových procesů',
+        'organizuje a řídí práci v týmu s využitím agilních nástrojů pro plánování úkolů (Kanban) a týmovou komunikaci',
+        'navrhne a zprovozní komplexní smíšenou infrastrukturu propojující servery a klientské stanice',
+        'zabezpečí síťové služby, otestuje funkčnost záloh a obhájí technické řešení infrastruktury před odbornou komisí'
       ],
       content: [
-        'Právní rámec a metodika (trestní zákoník § 230–232 neoprávněný přístup k počítačovému systému, směrnice NIS 2, fáze kybernetického útoku Cyber Kill Chain)',
-        'Síťový audit a skenování (skenování portů nástrojem Nmap, databáze zranitelností CVE a mezinárodní skórovací systém zranitelností CVSS)',
-        'Analýza síťového provozu (odposlech síťových paketů ve Wiresharku, analýza TCP handshake, srovnání nešifrovaného HTTP provozu s šifrovaným HTTPS a SSH)',
-        'Ochrana hesel a autentizace (ukládání hesel ve formě kryptografických hashů, slovníkové útoky a lámání hesel, zásady volby silných hesel)',
-        'Reakce na incident a náprava (analýza kompromitovaného systému, zablokování útočníka firewallem, oprava chybné konfigurace)'
+        'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů)',
+        'Práce s větvemi a řešení konfliktů (izolovaný vývoj ve větvích, slučování změn, detekce a manuální řešení kolizí)',
+        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, proces Pull Requestů, revize změn kódu a konfigurací)',
+        'Nástroje pro agilní plánování úkolů (Kanban), týmovou komunikaci a koordinaci projektu (nástěnka úkolů, backlog, rozdělení rolí v týmu)',
+        'Realizace podnikové infrastruktury (propojení linuxových serverů a stanic Windows, sdílení dat, webové služby, centrální správa a verzování konfigurací v repozitáři)',
+        'Křížové testování a bezpečnostní audit (ověření odolnosti sítě, kontrola funkčnosti záloh a systémových logů)',
+        'Zpracování technické dokumentace a ústní obhajoba projektu'
       ]
     },
     {
       id: 'oss3-b5',
-      topic: '5. Týmový infrastrukturní projekt a agilní řízení (Kanban)',
-      hours: 10,
-      crossThemes: ['PT - ČSP', 'PT - ČDS'],
-      outcomes: [
-        'organizuje práci týmu s využitím agilní metodiky Kanban a nástěnky úkolů',
-        'navrhne a zprovozní komplexní smíšenou infrastrukturu propojující Linux a Windows',
-        'zabezpečí síťové služby, otestuje jejich odolnost a provede zálohování',
-        'obhájí technické řešení infrastruktury a zpracuje přehlednou technickou dokumentaci'
-      ],
-      content: [
-        'Agilní organizace práce (metodika Kanban, nástěnka úkolů, backlog, rozdělení rolí v týmu)',
-        'Realizace podnikové infrastruktury (propojení linuxových a windows serverů, sdílení dat přes Sambu, webový intranet, správa uživatelů a verzování v Gitu)',
-        'Testování a zabezpečení (křížový audit mezi týmy, test odolnosti sítě a funkčnosti záloh)',
-        'Technická dokumentace a ústní obhajoba projektu před odbornou komisí'
-      ]
-    },
-    {
-      id: 'oss3-b6',
-      topic: '6. Závěrečná reflexe tříletého kurikula a rezerva',
+      topic: '5. Závěrečná reflexe tříletého kurikula a rezerva',
       hours: 4,
       crossThemes: ['PT - ČSP'],
       outcomes: [
@@ -587,7 +552,7 @@ export const SVP_OSS3_DATA: SvpGradeData = {
         'samostatně vyřeší typové komplexní maturitní úlohy ze správy operačních systémů a sítí'
       ],
       content: [
-        'Srovnání administrátorských přístupů (komparace Windows Server vs. Linux, konfigurace přes GUI vs. konfigurační soubory a skripty)',
+        'Komparace administrátorských přístupů (srovnání platforem Windows a Linux, správa přes grafické rozhraní vs. konfigurační soubory a skripty)',
         'Časová rezerva (prostor pro řešení individuálních dotazů, školní akce, uzavření klasifikace)'
       ]
     }

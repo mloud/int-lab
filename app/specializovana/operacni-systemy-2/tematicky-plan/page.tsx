@@ -13,77 +13,58 @@ import { SVP_OSS2_DATA } from '@/registry/curriculum/svpData';
 
 const PLAN_OSS2: PlanTopic[] = [
   {
-    month: 'Září',
-    topic: 'Opakování',
-    topicHours: 2,
-    subtopics: [
-      { name: 'Wargame - CTF', hours: 2, note: 'Opakování OS 1' }
-    ]
-  },
-  {
     month: 'Září – Říjen',
-    topic: 'Zálohování a ochrana dat',
+    topic: '1. Správa podnikových dat a zálohování',
     topicHours: 10,
     subtopics: [
-      { name: 'Typy záloh a principy zálohování', hours: 1, note: 'Pravidlo 3-2-1, plná, inkrementální a diferenciální záloha' },
-      { name: 'Manuální záloha, struktura složek', hours: 3, note: 'Zálohování dat pomocí copy, xcopy, robocopy' },
-      { name: 'Cloudová synchronizace dat', hours: 2, note: 'Google Drive' },
-      { name: 'Automatizované zálohování v Cobian Reflectoru', hours: 4, note: 'Běh jako služba a záloha na síťový disk' },
+      { name: 'Wargame – prověrka administrátorských dovedností z 1. ročníku', hours: 2, note: 'Diagnostika sítě, správa přístupových oprávnění NTFS a práce v textovém rozhraní' },
+      { name: 'Zásady zálohování a oborové pravidlo 3-2-1', hours: 2, note: 'Plná, přírůstková a rozdílová záloha, archivní atribut a stínové kopie svazku VSS' },
+      { name: 'Skriptovaná synchronizace dat v příkazovém rozhraní', hours: 2, note: 'Zrcadlení složek a logování v systémových nástrojích (robocopy)' },
+      { name: 'Cloudová synchronizace vs. nezávislá neměnná záloha', hours: 2, note: 'Rizika synchronizace při napadení ransomwarem a ochrana verzí' },
+      { name: 'Automatizované zálohování jako systémová služba', hours: 2, note: 'Běh pod systémovým účtem, ochrana záložních archivů šifrováním a heslem, zálohování na síťový disk a test obnovy' },
     ]
   },
   {
     month: 'Listopad – Leden',
-    topic: 'Bezpečnost 1: Ochrana Windows 11 a forenzní analýza',
-    topicHours: 18,
+    topic: '2. Bezpečnost koncových zařízení, audit a forenzní analýza',
+    topicHours: 20,
     subtopics: [
-      { name: 'Typologie malwaru a principy nákazy: Proč CPU nepozná zlý úmysl', hours: 2, note: 'Spuštění 6 interaktivních simulátorů' },
-      { name: 'Správa procesů, Process Explorer a ověřování podpisů Authenticode', hours: 2, note: 'Forenzní laboratoř a VirusTotal.com' },
-      { name: 'Izolované prostředí: Windows Sandbox a skryté spouštění Autoruns', hours: 2, note: 'Audit automatického startu a klíčů Run' },
-      { name: 'Antivirový systém Windows Defender a standardní test EICAR', hours: 2, note: 'Signatury, heuristika a CLI v PowerShellu' },
-      { name: 'Windows Firewall: porty, protokoly a pravidla ve wf.msc (netstat)', hours: 2, note: 'Blokace pingu a odchozí komunikace aplikací' },
-      { name: 'Šifrování disků BitLocker, čip TPM 2.0 a ochrana proti ransomwaru', hours: 2, note: 'Šifrování USB disku a záchranný klíč' },
-      { name: 'Správa účtů, UAC v hloubce a hromadné aktualizace winget', hours: 2, note: 'Zabezpečení tokenů a hromadný update' },
-      { name: 'Síťová kyberhygiena: Phishing, správci hesel a ověření MFA', hours: 2, note: 'Analýza podvodných e-mailů a HaveIBeenPwned' },
-      { name: 'Závěrečná bezpečnostní detektivka (Mini-CTF Incident Response)', hours: 2, note: 'Vyčištění kompromitovaného PC a protokol' },
+      { name: 'Typologie malwaru a proč CPU nepozná zlý úmysl', hours: 2, note: '6 hrozeb: virus, červ, trojan, ransomware, spyware; zneužití uživatelských tokenů' },
+      { name: 'Forenzní analýza procesů a ověřování podpisů Authenticode', hours: 2, note: 'Procesní stromy, inspekční nástroje, kontrolní součty a reputační cloud' },
+      { name: 'Systémový registr a persistence škodlivého kódu', hours: 2, note: 'Hierarchie klíčů pro počítač a uživatele, autorun spouštění po startu, export/import .reg' },
+      { name: 'Systémový žurnál událostí a bezpečnostní audit', hours: 2, note: 'Prohlížeč událostí, auditní logy úspěšných a neúspěšných přihlášení, filtrace chyb' },
+      { name: 'Izolované testovací prostředí (Sandbox) a systémový antivirus', hours: 2, note: 'Signatury, heuristika, chování programu v paměti a standardní testovací vzorek EICAR' },
+      { name: 'Paketový firewall na koncovém zařízení', hours: 2, note: 'Příchozí a odchozí pravidla, filtrace portů a sledování aktivních spojení (netstat)' },
+      { name: 'Diskové šifrování a hardwarový bezpečnostní čip TPM', hours: 2, note: 'Šifrování systémového i výměnného disku (BitLocker) a záchranné obnovovací klíče' },
+      { name: 'Správa systémových aktualizací a zranitelnosti (0-day)', hours: 2, note: 'Servisní cykly záplat, princip zranitelností nultého dne a hromadná údržba aplikací' },
+      { name: 'Sociální inženýrství, phishing a ochrana identity', hours: 2, note: 'Analýza podvodných e-mailů a hlaviček, vícefaktorové ověřování MFA a správci hesel' },
+      { name: 'Vyšetřování bezpečnostního incidentu (Mini-CTF)', hours: 2, note: 'Detekce neoprávněné aktivity, izolace stanice, odstranění perzistentní hrozby a incident report' },
     ]
   },
   {
     month: 'Únor – Březen',
-    topic: 'Pokročilá správa Windows a skriptování v PowerShellu',
-    topicHours: 10,
+    topic: '3. Systémové služby a administrační skriptování (PowerShell)',
+    topicHours: 18,
     subtopics: [
-      { name: 'Konzole správce (MMC) a systémové služby na pozadí (services.msc)', hours: 2, note: 'Vlastní konzole a restart po chybě' },
-      { name: 'PowerShell: Syntaxe, objekty a roury (Where-Object, Select-Object)', hours: 2, note: 'Filtrování a třídění objektů v rourách' },
-      { name: 'Automatizace správy v PowerShellu (skripty .ps1 a ExecutionPolicy)', hours: 2, note: 'Tvorba HTML reportu o stavu stanice' },
-      { name: 'Systémový registr Windows: Hives, klíče, hodnoty a soubory .reg', hours: 2, note: 'Záloha a hromadné úpravy nastavení OS' },
-      { name: 'Prohlížeč událostí (Event Viewer) a auditní bezpečnostní logy', hours: 2, note: 'Sledování neoprávněných pokusů o přihlášení' },
+      { name: 'Systémové služby na pozadí a jejich životní cyklus', hours: 2, note: 'Účet SYSTEM, typy spouštění, systémové závislosti a automatický restart po selhání' },
+      { name: 'Diagnostika a centrální správa služeb v konzoli MMC', hours: 2, note: 'Vlastní konzole snap-inů, řešení pádů služeb a zamrznutí' },
+      { name: 'PowerShell: Objektový shell, syntaxe cmdletů a roury', hours: 4, note: 'Syntaxe Sloveso-PodstatnéJméno, Get-Help, předávání objektů rourou, Where-Object a Select-Object' },
+      { name: 'Administrační skriptování v PowerShellu (.ps1)', hours: 4, note: 'Proměnné, cykly foreach, bezpečnostní politika ExecutionPolicy a podepisování' },
+      { name: 'Pokročilá skriptová automatizace: Registr a správa oprávnění', hours: 2, note: 'Manipulace s klíči systémového registru, správa oprávnění ACL a systémových komponent skriptem' },
+      { name: 'Automatizace sběru dat a generování stavových reportů', hours: 4, note: 'Diagnostika hardware/software stanice a export do formátů CSV a HTML' },
     ]
   },
   {
-    month: 'Duben – Květen',
-    topic: 'Síťové serverové služby a podniková infrastruktura',
-    topicHours: 12,
+    month: 'Duben – Červen',
+    topic: '4. Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
+    topicHours: 18,
     subtopics: [
-      { name: 'DHCP server: Proces DORA, rozsah Scope a statické rezervace', hours: 2, note: 'Zprovoznění DHCP na serveru ve VirtualBoxu' },
-      { name: 'DNS server: Dopředné zóny, záznamy A, CNAME a PTR dotazy', hours: 2, note: 'Tvorba primární doménové zóny a nslookup' },
-      { name: 'Souborový server SMB: Sdílené složky, UNC cesty a práva sdílení', hours: 2, note: 'Oddělené firemní složky a mapování disků' },
-      { name: 'Vzdálená správa: RDP a OpenSSH na Windows Serveru', hours: 2, note: 'Vzdálená plocha NLA a správa serveru v SSH' },
-      { name: 'Webový server IIS: Virtuální adresáře, porty a HTTPS certifikát', hours: 2, note: 'Nasazení intranetu a SSL zabezpečení' },
-      { name: 'Databázový server MS SQL Server Express: Instalace a zálohování', hours: 2, note: 'Instalace, port 1433 a záloha do .bak' },
-    ]
-  },
-  {
-    month: 'Květen – Červen',
-    topic: 'Active Directory, doménová správa a závěrečný projekt',
-    topicHours: 14,
-    subtopics: [
-      { name: 'Úvod do domény: Rozdíl mezi pracovní skupinou a doménou AD', hours: 2, note: 'Centralizovaná databáze objektů a řadič DC' },
-      { name: 'Instalace AD DS a povýšení serveru na řadič domény (DC)', hours: 2, note: 'Vytvoření nového doménového lesa a DNS' },
-      { name: 'Organizační jednotky (OU) a tvorba doménových uživatelských účtů', hours: 2, note: 'Struktura oddělení firmy a zásady hesel' },
-      { name: 'Doménové skupiny a efektivní řízení přístupových práv k datům', hours: 2, note: 'Přiřazení práv ke složkám přes skupiny' },
-      { name: 'Připojení klientské stanice Windows 11 do domény', hours: 2, note: 'Konfigurace DNS klienta a doménové přihlášení' },
-      { name: 'Skupinové politiky GPO: Centrální konfigurace a restrikce stanic', hours: 2, note: 'Zákaz USB disků a automatické mapování disků' },
-      { name: 'Závěrečný integrující projekt: Zprovoznění podnikové infrastruktury', hours: 2, note: 'Předvedení sítě: Server + Klient + GPO' },
+      { name: 'Síťové sdílení složek a efektivní přístupová práva (SMB)', hours: 4, note: 'UNC cesty, kombinovaná práva sdílení a NTFS, mapování síťové jednotky' },
+      { name: 'Zabezpečená vzdálená správa pracovní plochy (RDP)', hours: 2, note: 'Autorizace vzdálených uživatelů a zabezpečení na úrovni sítě (NLA)' },
+      { name: 'Koncept podnikové infrastruktury a domény', hours: 2, note: 'Pracovní skupina vs. doménové prostředí, centralizovaná autentizace, role DNS a řadiče domény' },
+      { name: 'Klientská stanice v podnikové doméně a uživatelské profily', hours: 4, note: 'Připojení klientského PC do domény, profil doménového uživatele, oddělení lokálních a doménových práv' },
+      { name: 'Skupinové politiky (Group Policy – uplatnění na stanici)', hours: 4, note: 'Distribuce centrálních nastavení, zákaz výměnných USB disků a bezpečnostní restrikce stanic' },
+      { name: 'Závěrečný integrující projekt administrace a zabezpečení stanice', hours: 2, note: 'Komplexní konfigurace, křížový audit odolnosti a technická obhajoba' },
     ]
   }
 ];

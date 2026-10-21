@@ -11,7 +11,7 @@
 | **Cílový ročník** | 2. Ročník SŠ (Střední odborná škola) |
 | **Obor vzdělání** | 18-20-M/01 Informační technologie |
 | **Týdenní hodinová dotace** | 2 hodiny týdně |
-| **Celková roční dotace** | 68 vyučovacích hodin (34 týdnů výuky) |
+| **Celková roční dotace** | 66 vyučovacích hodin (33 týdnů výuky) |
 | **Forma výuky** | Praktická administrace a laboratorní cvičení (cca 30 % výklad, 70 % cvičení ve VirtualBoxu a na portálu IntLab) |
 | **Výchozí routa v IntLab** | `/specializovana/operacni-systemy-2` |
 
@@ -21,43 +21,45 @@
 
 ### 2.1 Odborné kompetence a očekávané výstupy RVP
 Žák na konci 2. ročníku:
-1. **Navrhuje a realizuje strategii zálohování** podnikových dat podle pravidla 3-2-1, rozlišuje plnou, inkrementální a diferenciální zálohu, chápe význam archivního bitu a stínových kopií (VSS).
-2. **Analyzuje bezpečnostní hrozby a škodlivý kód** (viry, červy, trojské koně, ransomware, spyware), chápe slepé vykonávání instrukcí procesorem a princip bezpečnostních tokenů.
-3. **Provádí forenzní audit běžících procesů** pomocí nástrojů Sysinternals (Process Explorer), ověřuje digitální podpisy Authenticode a kontrolní součty SHA-256.
-4. **Konfiguruje aktivní bezpečnostní mechanismy Windows 11**: Defender (GUI a CLI), Windows Firewall (filtrace portů a aplikací, sledování spojení `netstat`), diskové šifrování BitLocker s hardwarovým TPM 2.0 čipem.
-5. **Aplikuje zásady obhajoby proti sociálnímu inženýrství** a analyzuje phishingové útoky, dešifruje data v CyberChefu a řeší bezpečnostní incidenty (Incident Response).
-6. **Ovládá pokročilou správu Windows** pomocí objektového prostředí PowerShell (cmdlety, roury objektů), spravuje systémový registr (`regedit`) a auditní záznamy událostí (Event Viewer).
-7. **Zprovozňuje a konfiguruje síťové serverové služby**: automatické přidělování adres DHCP, překlad jmen DNS, sdílení souborů SMB, vzdálenou správu (RDP a OpenSSH) a webový server IIS.
-8. **Instaluje a spravuje doménové prostředí Active Directory (AD DS)**: řadič domény (DC), organizační jednotky (OU), doménoví uživatelé a skupiny, připojení klientských stanic a skupinové politiky (GPO).
-9. **Realizuje integrující podnikový projekt**: zprovozní kompletní podnikovou infrastrukturu (server s DHCP + DNS + AD, klientské stanice, oddělená data oddělení a bezpečnostní restrikce přes GPO).
+1. **Navrhuje a realizuje strategii zálohování** podnikových dat podle oborového pravidla 3-2-1, porovnává plnou, přírůstkovou a rozdílovou zálohu, chápe význam archivního atributu a stínových kopií svazku a konfiguruje automatizované šifrované zálohování na síťová úložiště.
+2. **Analyzuje bezpečnostní hrozby a škodlivý kód** (viry, červi, trojské koně, ransomware, spyware), chápe vykonávání instrukcí procesorem a princip uživatelských tokenů oprávnění.
+3. **Provádí forenzní audit běžících procesů a systémových komponent** pomocí inspekčních nástrojů, ověřuje digitální certifikáty Authenticode, kontrolní součty a analyzuje mechanismy automatického spouštění aplikací v systémovém registru.
+4. **Konfiguruje a audituje bezpečnostní mechanismy klientského operačního systému**: filtruje a interpretuje žurnály událostí v Prohlížeči událostí, konfiguruje pravidla paketového firewallu a monitoruje aktivní síťová spojení stanice.
+5. **Aplikuje diskové šifrování s hardwarovou ochranou klíčů** (TPM čip), bezpečně spravuje záchranné obnovovací klíče a analyzuje techniky sociálního inženýrství a phishingu s nasazením MFA.
+6. **Řeší bezpečnostní incidenty na koncovém zařízení (Incident Response)**: identifikuje neoprávněnou aktivitu, izoluje systém, provede forenzní vyčištění perzistentní hrozby a zpracuje incident report.
+7. **Spravuje systémové služby a automatizuje administraci v PowerShellu**: diagnostikuje stavy služeb na pozadí, ovládá objektový model a roury cmdletů, vytváří administrační skripty (.ps1) s ošetřením politiky spouštění a generuje stavové reporty.
+8. **Konfiguruje síťové sdílení prostředků a vzdálenou správu**: nastavuje efektivní kombinovaná oprávnění sdílení (SMB) a souborového systému (NTFS), mapuje síťové jednotky a zabezpečuje vzdálený přístup k ploše (RDP).
+9. **Integrovat klientskou stanici do podnikové domény**: rozlišuje pracovní skupinu a doménové prostředí, připojuje klientskou stanici k doméně, vysvětluje roli DNS a doménového řadiče a uplatňuje centrální bezpečnostní a konfigurační politiky (GPO).
+10. **Realizuje integrující projekt administrace a zabezpečení klientské stanice**: samostatně zprovozní a zabezpečí stanici v síťovém prostředí a své technické řešení obhájí.
 
 ---
 
 ## 3. Školní vzdělávací program (ŠVP)
 
 ### 3.1 Cíle předmětu
-Předmět posouvá studenta z role lokálního správce (OSS 1) do role **podnikového administrátora a bezpečnostního technika**. Těžiště výuky leží v zabezpečení klientských stanic, automatizaci přes PowerShell a centrální správě v doméně Active Directory.
+Předmět posouvá studenta z role lokálního správce (OSS 1) do role **pokročilého administrátora klientských systémů (Windows 11 Pro) a bezpečnostního technika**. Těžiště výuky leží v zabezpečení koncových zařízení (endpoint security), forenzní analýze procesů, registru a logů, automatizaci přes objektový shell (PowerShell), síťovém sdílení a integraci klientské stanice do podnikové domény.
 
 ### 3.2 Profil absolventa předmětu
 Absolvent OSS 2 dokáže samostatně:
-- Zabezpečit stanice proti moderním vektorům malwaru a ransomwaru.
-- Nakonfigurovat automatické šifrované zálohování stanic a serverů.
-- Spravovat uživatele, počítače a skupinové politiky (GPO) v podnikové doméně Active Directory.
-- Administrovat stanice na dálku a nasazovat serverové role.
+- Zabezpečit klientskou stanici proti moderním vektorům malwaru a ransomwaru.
+- Provést forenzní audit běžících procesů, perzistentních klíčů v registru a systémových logů.
+- Nakonfigurovat automatické šifrované zálohování stanic na síťové úložiště podle pravidla 3-2-1.
+- Automatizovat rutinní správu systému pomocí skriptů v PowerShellu a generovat stavové reporty.
+- Nastavit sdílení dat v lokální síti s bezpečnou kombinací sdílených a souborových práv.
+- Připojit stanici do podnikové domény a aplikovat centrální restrikce a nastavení prostřednictvím skupinových politik (GPO).
 
 ---
 
-## 4. Tematický plán předmětu (Rozpis 68 hodin)
+## 4. Tematický plán předmětu (Rozpis 66 hodin)
 
 | Blok | Tematický celek | Dotace (Teorie / Cvičení) | Konkrétní učivo a laboratorní práce | Vazba na IntLab |
 |:---:|---|:---:|---|---|
-| **1** | **Správa dat a zálohování** | 8 h (2 h / 6 h) | Pravidlo 3-2-1, typy záloh (plná, inkrementální, diferenciální), archivní bit (`attrib +/-a`), stínové kopie (VSS), cloudové zálohy vs. synchronizace. Automatizace v Cobian Reflector (instalace jako služba, šifrování AES-256, plánovač). | `/zalohovani/*` (B1–B5, protokol s exportem do Wordu) |
-| **2** | **Bezpečnost 1: Ochrana Windows 11 (8 podkapitol)** | 22 h (6 h / 16 h) | **BZ1:** Úvod do malwaru, CPU princip, 6 hrozeb, simulátory (Kalkulačka, Červ, Trojan, Ransomware, Spyware, SHA-256 hash).<br>**BZ2:** Správa procesů, Sysinternals Process Explorer, digitální podpisy Authenticode, autorun.<br>**BZ3:** Windows Defender (GUI/CLI), EICAR test.<br>**BZ4:** Firewall & sítě, porty, `netstat`, odchozí/příchozí pravidla.<br>**BZ5:** BitLocker, TPM 2.0 čip, Controlled Folder Access proti ransomwaru.<br>**BZ6:** UAC v hloubce, Secure Desktop, pokročilá práva.<br>**BZ7:** Phishing, analýza hlaviček, hesla a CyberChef.<br>**BZ8:** Mini-CTF Incident Response (analýza kompromitovaného PC). | `/bezpecnost/*` (BZ1–BZ8) |
-| **3** | **Pokročilá správa Windows a PowerShell** | 10 h (3 h / 7 h) | **PK1:** MMC a Služby Windows (snap-iny, typy spouštění, účet SYSTEM, restart po chybě).<br>**PK2:** PowerShell základy (syntaxe Sloveso-PodstatnéJméno, `Get-Command`, `Get-Help`, roura s objekty `\|`, `Where-Object`, `Select-Object`).<br>**PK3:** Automatizace správy v PowerShellu (správa služeb, procesů, souborů, skripty `.ps1`, ExecutionPolicy).<br>**PK4:** Systémový registr a řešení chyb (`regedit`, hives HKLM/HKCU, klíče, hodnoty, export/import `.reg`).<br>**PK5:** Prohlížeč událostí a audit (Event Viewer – protokoly System, Application, Security, klíčová Event ID 4624/4625, tvorba vlastních filtrů). | `/pokrocila-konfigurace/*` (PK1–PK5) |
-| **4** | **Síťové serverové služby a infrastruktura** | 12 h (4 h / 8 h) | **SL1:** DHCP server (proces DORA, konfigurace rozsahu Scope, zapůjčení Lease time, statické rezervace pro tiskárny a servery).<br>**SL2:** DNS server (hierarchie DNS, dopředné zóny, záznamy A, CNAME, PTR, `nslookup`, podpora pro doménu).<br>**SL3:** Souborový server SMB (sdílené složky, UNC cesty, oprávnění sdílení vs. NTFS, mapování jednotky `net use`).<br>**SL4:** Vzdálená správa RDP a OpenSSH (správa portů 3389 a 22, NLA zabezpečení, správa bez fyzického přístupu k serveru).<br>**SL5:** Webový server IIS (instalace role, kořenový adresář, vazby portů 80 a 443, nasazení certifikátu pro HTTPS).<br>**SL6:** Databázový server SQL (instalace instance MS SQL Server Express, služba MSSQLSERVER pod dedikovaným účtem, síťový port 1433 a Firewall, Windows Authentication, zálohování databáze do `.bak`). | `/sluzby/*` (SL1–SL6) |
-| **5** | **Active Directory a centrální správa** | 14 h (4 h / 10 h) | **AD1:** Úvod do domény (pracovní skupina vs. doména, řadič DC, Správce serveru).<br>**AD2:** Povýšení na řadič domény (instalace AD DS, vytvoření lesa, registrace SRV záznamů v DNS).<br>**AD3:** Organizační jednotky (OU) a doménové účty (struktura firmy, zásady hesel).<br>**AD4:** Skupiny a přístupová práva (srozumitelný model: Uživatel ➔ Skupina ➔ Práva na sdílení bez složitého AGDLP).<br>**AD5:** Připojení klienta Windows 11 do domény (DNS konfigurace, doménový profil).<br>**AD6:** Skupinové politiky GPO (zákaz USB, bezpečnost hesel, jednotná plocha, mapování disků).<br>**AD7:** Závěrečný integrující projekt: Podniková síť (kompletní malá firma: DHCP + DNS + AD + Klient + GPO). | `/active-directory/*` (AD1–AD7) |
-| **–** | **Závěrečné hodnocení a rezerva** | 2 h (0 h / 2 h) | Obhajoby závěrečných projektů, odstranění chyb, rezerva pro školní akce. | — |
-| **Σ** | **Celkem** | **68 h (19 h T / 49 h C)** | **Pravidelná 2hodinová týdenní dotace** | |
+| **1** | **Správa podnikových dat a zálohování** | 10 h (2 h / 8 h) | Strategie zálohování (pravidlo 3-2-1, typy záloh – plná, přírůstková, rozdílová, archivní atribut, stínové kopie svazku VSS), skriptovaná synchronizace v CLI (`robocopy`), cloudová úložiště vs. neměnná záloha, automatizované zálohování specializovaným softwarem běžícím jako služba, ochrana záložních archivů šifrováním a heslem, obnova dat a tvorba plánu. | `/zalohovani/*` |
+| **2** | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h (6 h / 14 h) | Typologie malwaru a principy nákazy, forenzní audit běžících procesů a ověřování Authenticode certifikátů, systémový registr a mechanismy persistence po startu, Prohlížeč událostí a auditní záznamy přihlášení, testování v izolovaném sandboxu a systémový antivirus, paketový firewall koncového zařízení a sledování spojení, diskové šifrování s TPM čipem, správa aktualizací a 0-day zranitelnosti, phishing a ochrana identity (MFA), vyšetřování incidentu (Incident Response). | `/bezpecnost/*` |
+| **3** | **Systémové služby a administrační skriptování (PowerShell)** | 18 h (4 h / 14 h) | Systémové služby na pozadí (koncepce, účet SYSTEM, typy spouštění, závislosti a automatický restart), objektový shell PowerShell (syntaxe cmdletů Sloveso-PodstatnéJméno, nápověda, objektová roura `\|`, filtrování `Where-Object` a výběr `Select-Object`), administrační skriptování (.ps1 skripty, proměnné, cykly, politika ExecutionPolicy), automatizace správy registru a komponent skriptem, automatizace sběru diagnostických dat a generování stavových reportů v CSV/HTML. | `/pokrocila-konfigurace/*` |
+| **4** | **Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně** | 18 h (4 h / 14 h) | Síťové sdílení složek v LAN (protokol SMB, UNC cesty, kombinovaná práva sdílení a NTFS, mapování síťových jednotek), vzdálená správa pracovní plochy (protokol RDP, autorizace a zabezpečení NLA), koncept podnikové infrastruktury (pracovní skupina vs. doménové prostředí, role DNS a doménového řadiče), klientská stanice v doméně (připojení klienta, doménový uživatelský profil), skupinové politiky (GPO na stanici – zákaz USB, bezpečnost hesel, jednotná konfigurace), závěrečný integrující projekt administrace a zabezpečení stanice a obhajoba. | `/active-directory/*` |
+| **Σ** | **Celkem** | **66 h (16 h T / 50 h C)** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** | |
+
 
 ---
 

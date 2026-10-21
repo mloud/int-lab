@@ -551,6 +551,43 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
    - Z obsahu byla důsledně vyřazena příliš teoretická či vysokoškolská témata (plánovací algoritmy CPU Round Robin a FIFO, paměťové alokátory Best/Worst Fit, složitá logika a větvení v `.bat` skriptech, složité podnikové topologie doménových lesů).
    - Vypracována společná část ŠVP pro InspIS: pravidla hodnocení žáků, klíčové kompetence (k učení, komunikativní, k řešení problémů, digitální, pracovní) a průřezová témata (`PT - ČDS`, `PT - ČSP`, `PT - ODS`).
    - Komponenta `SimplePlanTable.tsx` byla rozšířena o čistý dvouzáložkový přepínač (*Měsíční plán výuky 66 h* vs. *ŠVP pro InspIS 66 h*) a specializovanou komponentu `SvpInspisTable.tsx` s rozbalovací společnou charakteristikou, okamžitým kopírováním do schránky pro InspIS a tiskem. Nasazeno na OSS 1, OSS 2 i OSS 3.
-
-
-
+10. **Synchronizace kurikulární databáze a trvalé uchování ŠVP SŠ Horažďovice:**
+    - Profily `doc/curriculum/OSS1.md` i `doc/curriculum/OSS2.md` byly aktualizovány a sjednoceny na přesnou 66hodinovou roční dotaci s novými tematickými bloky.
+    - Vytvořen dedikovaný trvalý referenční dokument `doc/curriculum/HORAZDOVICE_SVP_OS.md` obsahující kompletní doslovné znění ŠVP předmětu Operační systémy ze Střední školy Horažďovice (ŠVP Vývoj aplikací a her, 126 h pro ročníky 1, 3 a 4), detailní srovnávací analýzu s naším IntLabem (198 h) a didaktické postřehy pro další rozvoj oboru.
+11. **Univerzalizace ŠVP OSS 1 a odstranění přílišných technologických specifikací:**
+    - V oficiálních kurikulárních podkladech (`registry/curriculum/svpData.ts`, `doc/curriculum/OSS1.md`, `doc/curriculum/SVP_INSPIS.md` a na stránce tematického plánu) byly vyčištěny příliš konkrétní, implementační a marketingové pojmy:
+      - Odstraněny konkrétní verze OS (např. *Windows 11* v názvu témat a učivu nahrazeno *klientským operačním systémem*).
+      - Odstraněny interní názvy konzolí a spustitelných nástrojů (`lusrmgr.msc`, `devmgmt.msc`, `taskschd.msc`, `.cpl`, `.inf`, `net user`, `net localgroup`, `icacls`, `Win+L`, `WHQL`, `DWM`, `explorer.exe`).
+      - Nahrazeny konkrétní CLI přepínače a výčty příkazů (`@echo off`, `REM`, `pause`, `set /p`, `%1`, `/qn`, `/silent`, `dir`, `cd`, `mkdir`, `rmdir`, `copy`, `move`, `del`, `ipconfig`, `netsh wlan`) obecnými formulacemi pokrývajícími principy (tvorba dávkových skriptů, přesměrování standardních proudů, tichá instalace, konfigurace síťového adaptéru).
+      - Nahrazeny proprietární pojmy a marketingové názvy (`Snap Layouts`, `odkládací soubor pagefile.sys` nahrazen obecným `swap / odkládací prostor`, `Winget` zobecněn na moderního *správce balíčků*).
+      - Zjednodušeno téma virtuální paměti (odstraněna jednotka MMU, fyzické rámce a Page Fault – ponechán čistý koncept: *„princip virtuální paměti, izolace paměti aplikací, odkládací prostor / swap“*).
+    - Výsledkem je dlouhodobě stabilní, vůči kontrolám ČŠI i inovacím technologií odolné ŠVP, přičemž veškerá detailní praktická výuka v IntLabu zůstává plnohodnotně zachována.
+12. **Zobecnění a harmonizace ŠVP pro OSS 2 a OSS 3 (66 h + 66 h):**
+    - Na základě srovnání se SŠ Horažďovice a odstranění předimenzovaného učiva byla provedena zásadní strukturální a kurikulární úprava 2. a 3. ročníku:
+      - **OSS 2 (2. Ročník SŠ – 66 hodin):**
+        - Plně ukotveno na **Windows 11 Pro** (zrušena virtuální instalace plného Windows Serveru, doménového lesa AD DS, SQL Serveru a IIS v 2. ročníku, což zbytečně přetěžovalo školní PC i žáky a duplikovalo linuxové služby).
+        - Přerozděleno do **4 ucelených bloků**:
+          1. *Správa podnikových dat a zálohování* (10 h – vč. zahajovacího diagnostického Wargame v září; strategie 3-2-1, robocopy, cloud vs. neměnná záloha, ochrana záložních archivů šifrováním a heslem)
+          2. *Bezpečnost koncových zařízení, audit a forenzní analýza* (20 h – typologie malwaru, forenzní audit procesů, registr a autorun persistence, žurnál událostí, sandbox a antivirus, firewall, diskové šifrování s TPM, aktualizace a 0-day, phishing a MFA, Mini-CTF Incident Response)
+          3. *Systémové služby a administrační skriptování (PowerShell)* (18 h – posíleno o 2 h z opakování; životní cyklus služeb, MMC snap-iny, syntaxe cmdletů, roury objektů, .ps1 skripty a ExecutionPolicy, pokročilá automatizace registru a ACL, generování inspekčních CSV/HTML reportů)
+          4. *Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně* (18 h – sdílení složek SMB a kombinovaná práva NTFS, vzdálená plocha RDP, koncept podnikové domény a DNS z pohledu stanice, připojení klienta do domény a profily, uplatnění politik GPO na stanici, závěrečný integrující projekt administrace stanice)
+      - **OSS 3 (3. Ročník SŠ – 66 hodin):**
+        - Serverové a síťové role soustředěny čistě na platformu **Linux** (žádné duplicity).
+        - Přerozděleno do **5 ucelených bloků**:
+          1. *Linux: Architektura, instalace a základní správa systému* (16 h – headless server, FHS, POSIX práva UGO a sudo, proudy a roury, disky a fstab, procesy a systemd, repozitáře APT)
+          2. *Linux: Sítě, serverové služby a automatizace v shellu* (16 h – síťová rozhraní a UFW firewall, SSH s asymetrickými klíči, webový server HTTPS, sdílení dat Samba pro stanice Windows, skriptování v shellu, komprese a periodické úlohy v plánovači cron)
+          3. *Kybernetická bezpečnost, síťový audit a obrana* (12 h – právo v IT, NIS 2 a Kill Chain, audit portů a zranitelností CVE/CVSS, analýza provozu ve Wiresharku, hashování a odolnost hesel, reakce na incident CTF)
+          4. *Verzovací systémy, týmová kooperace a infrastrukturní projekt* (18 h – verzování v Gitu 6 h, nástroje pro agilní plánování úkolů Kanban a týmovou komunikaci 2 h, realizace smíšené firemní infrastruktury Linux + Windows 8 h, křížový audit a obhajoba 2 h)
+          5. *Závěrečná reflexe tříletého kurikula a rezerva* (4 h – syntéza tříleté výuky, maturitní úlohy a rezerva)
+      - **Zobecnění textů a odstranění brandových závislostí:**
+        - Stejně jako v OSS 1 byly v oficiálních textech pro ČŠI a InspIS odstraněny konkrétní proprietární názvy nástrojů (Cobian, BitLocker, Process Explorer, EICAR, atd.) a nahrazeny stabilními oborovými pojmy (specializovaný software běžící jako služba, diskové šifrování s hardwarovým modulem, inspekční nástroje procesů, standardizované testovací vzorky).
+        - Vše synchronizováno napříč `registry/curriculum/svpData.ts`, `doc/curriculum/SVP_INSPIS.md`, `doc/curriculum/OSS2.md`, `doc/curriculum/OSS3.md` a v tematických plánech `app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx` a `app/specializovana/operacni-systemy-3/tematicky-plan/page.tsx`.
+13. **Odstranění legacy technologií MBR a BIOS z kurikula OSS 1:**
+    - V souladu s moderními technologickými požadavky klientských systémů (Windows 11 nativně vyžaduje Secure Boot, firmware UEFI a diskovou tabulku GPT) byly z oficiálních kurikulárních dokumentů pro InspIS (`registry/curriculum/svpData.ts`, `doc/curriculum/SVP_INSPIS.md`), tematických plánů OSS 1 (`app/.../operacni-systemy-1/tematicky-plan/page.tsx`, `thematicPlans.ts`), profilu předmětu `doc/curriculum/OSS1.md`, konfigurace školy `defaultSchool.ts` i centrálního registru lekcí `registry/lessons.ts` zcela odstraněny zmínky o zastaralém standardu **MBR** a **legacy BIOSu**.
+    - Výuka se soustředí přímo na současný průmyslový standard **tabulky oddílů GPT** (s redundancí, GUID identifikátory a podporou disků nad 2 TB) a **firmware UEFI** (včetně bezpečného startu Secure Boot a EFI systémového oddílu ESP).
+14. **Doplnění 10. bloku – Závěrečný integrující projekt klientské stanice (8 h) do OSS 1:**
+    - Na základě srovnávací analýzy ŠVP a webu byl vytvořen chybějící 10. blok předmětu Operační systémy 1 pro měsíc červen (8 h).
+    - V `registry/curriculum/outlines/oss1Outlines.ts` byla definována skupina `OSS1_PROJECT` (`os-project`) se 4 podkapitolami (PRJ1 Komplexní instalace stanice, PRJ2 Síťové připojení a údržbový skript, PRJ3 Křížové testování a diagnostika, PRJ4 Technická dokumentace a obhajoba).
+    - Vytvořena hlavní stránka rozcestníku `app/.../operacni-systemy-1/projekt/page.tsx` a 4 odpovídající podstránky.
+    - Karta byla zařazena do kurikula školy v `defaultSchool.ts` a lekce se automaticky propisují do centrálního registru `registry/lessons.ts`.
+    - Tím má 1. ročník OSS 1 kompletní 100% zrcadlové pokrytí všech 10 bloků ŠVP a 66 hodin výuky na webu.
