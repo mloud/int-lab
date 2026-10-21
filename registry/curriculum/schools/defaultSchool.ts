@@ -9,7 +9,6 @@ import {
   OSS2_BEZPECNOST,
   OSS2_POKROCILA,
   OSS2_AD,
-  OSS2_SLUZBY,
   OSS3_LINUX_SPRAVA,
   OSS3_LINUX_SLUZBY,
   OSS3_GIT,
@@ -741,7 +740,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
               id: 'ops2',
               title: 'Operační systémy 2',
               tag: 'ops2',
-              description: 'Zálohování, bezpečnost Windows 11, pokročilá konfigurace, Active Directory a serverové služby.',
+              description: 'Zálohování podnikových dat, bezpečnost Windows 11, PowerShell a centrální správa v doméně.',
               icon: 'Cpu',
               gradient: 'from-blue-600 to-cyan-600',
               route: '/specializovana/operacni-systemy-2',
@@ -800,7 +799,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   ]
                 },
                 outlineToChapter(OSS2_POKROCILA),
-                outlineToChapter(OSS2_SLUZBY),
                 outlineToChapter(OSS2_AD)
               ]
             },

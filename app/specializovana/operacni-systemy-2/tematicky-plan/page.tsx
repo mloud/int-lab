@@ -46,12 +46,11 @@ const PLAN_OSS2: PlanTopic[] = [
     topic: '3. Systémové služby a administrační skriptování (PowerShell)',
     topicHours: 18,
     subtopics: [
-      { name: 'Systémové služby na pozadí a jejich životní cyklus', hours: 2, note: 'Účet SYSTEM, typy spouštění, systémové závislosti a automatický restart po selhání' },
-      { name: 'Diagnostika a centrální správa služeb v konzoli MMC', hours: 2, note: 'Vlastní konzole snap-inů, řešení pádů služeb a zamrznutí' },
+      { name: 'Systémové služby Windows na pozadí a jejich životní cyklus', hours: 4, note: 'Účet SYSTEM, typy spouštění, systémové závislosti a automatický restart po selhání' },
+      { name: 'Konzole správce (MMC) a centrální diagnostika', hours: 4, note: 'Vlastní konzole snap-inů, řešení pádů služeb a zamrznutí' },
       { name: 'PowerShell: Objektový shell, syntaxe cmdletů a roury', hours: 4, note: 'Syntaxe Sloveso-PodstatnéJméno, Get-Help, předávání objektů rourou, Where-Object a Select-Object' },
-      { name: 'Administrační skriptování v PowerShellu (.ps1)', hours: 4, note: 'Proměnné, cykly foreach, bezpečnostní politika ExecutionPolicy a podepisování' },
-      { name: 'Pokročilá skriptová automatizace: Registr a správa oprávnění', hours: 2, note: 'Manipulace s klíči systémového registru, správa oprávnění ACL a systémových komponent skriptem' },
-      { name: 'Automatizace sběru dat a generování stavových reportů', hours: 4, note: 'Diagnostika hardware/software stanice a export do formátů CSV a HTML' },
+      { name: 'Administrační skriptování v PowerShellu (.ps1)', hours: 4, note: 'Proměnné, cykly foreach, bezpečnostní politika ExecutionPolicy, automatizace a správa' },
+      { name: 'Automatizovaný sběr dat a generování stavových reportů', hours: 2, note: 'Diagnostika hardware/software stanice a export do formátů CSV a HTML' },
     ]
   },
   {

@@ -7,256 +7,332 @@ const BASE = '/specializovana/operacni-systemy-2';
  * Bezpečnost 1 – pokračování za hotovými BZ1 a BZ2 (ty mají plnou stránku, proto zde nejsou).
  * Pořadí odpovídá učitelově osnově: Sandbox → Antivir → Firewall → Šifrování → Účty → Síť a hesla → CTF.
  */
+/**
+ * Bezpečnost 1 – pokračování za hotovými BZ1 a BZ2 (ty mají plnou interaktivní stránku, proto zde nejsou).
+ * Pořadí odpovídá osnově: Registr a persistence → Žurnál událostí → Sandbox a Antivir → Firewall → Šifrování → Účty → Síť a hesla → CTF.
+ */
 export const OSS2_BEZPECNOST: OutlineGroup = {
   chapterId: 'os2-bezpecnost',
   chapterTitle: 'Bezpečnost 1',
-  chapterDescription: 'Zabezpečení Windows 11, analýza procesů, Sandbox, Defender, Firewall a šifrování.',
+  chapterDescription: 'Zabezpečení Windows 11, forenzní analýza procesů, registr, žurnál událostí, Sandbox, Defender, Firewall a šifrování.',
   chapterTag: 'sec',
   chapterPath: `${BASE}/bezpecnost`,
   subjectTitle: SUBJECT,
   grade: 2,
   gradeLabel: '2. Ročník',
-  thematicBlock: 'Bezpečnost operačních systémů',
+  thematicBlock: 'Bezpečnost koncových zařízení, audit a forenzní analýza',
   icon: 'ShieldCheck',
   gradient: 'from-blue-600 to-cyan-600',
   items: [
     {
-      slug: 'izolace', tag: 'BZ3', order: 3, icon: 'Layers', title: 'Izolované prostředí a Sandbox', hours: '2 h',
-      subtitle: 'Bezpečné spuštění podezřelého programu a hledání skrytého spouštění po startu.',
-      intro: 'Podezřelý program nemusíme spouštět na vlastním počítači – stačí ho zavřít do izolovaného prostředí. Ukážeme také, kde se škodlivý kód ukrývá, aby se spustil po každém startu.',
-      topics: ['Princip izolace a karantény, Windows Sandbox', 'Kde se programy spouští po startu (složka Po spuštění, naplánované úlohy, klíče Run v registru)', 'Nástroj Autoruns', 'Co sandbox neochrání'],
-      practice: ['Simulace: Sandbox vs. hostitelský počítač', 'Praxe: test skriptu ve Windows Sandboxu a kontrola spouštění po startu'],
-      builds: 'BZ1 a BZ2 (malware, procesy), Virtualizace (OSS 1).',
+      slug: 'registr',
+      tag: 'BZ3',
+      order: 3,
+      icon: 'FileCode',
+      title: 'Systémový registr a persistence škodlivého kódu',
+      hours: '2 h',
+      subtitle: 'Hierarchie klíčů pro počítač a uživatele, autorun spouštění po startu a soubory .reg.',
+      intro: 'Téměř každý škodlivý kód se potřebuje v systému udržet i po restartu. Prozkoumáme hierarchii registru, klíčové větve HKLM a HKCU a místa, kam útočníci ukrývají mechanismy persistence (klíče Run, RunOnce a úlohy po startu).',
+      topics: [
+        'Účel a hierarchie registru Windows: soubory úlů (Hives) v System32\\config a uživatelském profilu',
+        'Větve HKEY_LOCAL_MACHINE (stroj) vs. HKEY_CURRENT_USER (přihlášený uživatel)',
+        'Kde se malware ukrývá po startu: klíče Run, RunOnce, Winlogon a nástroj Sysinternals Autoruns',
+        'Datové typy hodnot: REG_SZ (text), REG_DWORD (čísla/přepínače 0/1) a nebezpečné binární payloady',
+        'Záloha, export a import konfigurace (.reg soubory pro hromadnou distribuci nastavení i záchranu)'
+      ],
+      practice: [
+        'Simulace: Rentgen registru – odhalení podezřelé persistence zapsané škodlivým skriptem',
+        'Praxe v OS: Bezpečný export vybrané větve do .reg, analýza klíčů Run v regedit.exe a odstranění neautorizované položky'
+      ],
+      builds: 'BZ1 (malware), BZ2 (procesy).'
     },
     {
-      slug: 'defender', tag: 'BZ4', order: 4, icon: 'ShieldCheck', title: 'Antivirový systém (Defender)', hours: '2 h',
-      subtitle: 'Jak antivir hledá hrozby a jak ho správně nastavit.',
-      intro: 'Antivir není jen hledání známých virů. Podíváme se na tři způsoby detekce, ochranu v cloudu a na to, proč jsou výjimky riziko.',
-      topics: ['Signatury, heuristika a chování programu', 'Ochrana v reálném čase a cloud', 'Výjimky a jejich rizika', 'Testovací soubor EICAR'],
-      practice: ['Simulace: která detekce zachytí jaký typ hrozby', 'Praxe: nastavení Defenderu v grafice a v příkazové řádce, bezpečný test EICAR'],
-      builds: 'BZ2 (digitální podpisy, reputace).',
+      slug: 'udalosti',
+      tag: 'BZ4',
+      order: 4,
+      icon: 'Eye',
+      title: 'Systémový žurnál událostí a bezpečnostní audit',
+      hours: '2 h',
+      subtitle: 'Prohlížeč událostí: auditní logy přihlášení, detekce útoků brute-force a filtrace stop.',
+      intro: 'Když útočník zkouší prolomit heslo nebo malware selže, zanechá záznam v systémovém žurnálu událostí. Naučíme se číst bezpečnostní protokoly a filtrovat klíčová Event ID pro odhalení incidentu.',
+      topics: [
+        'Architektura Windows Event Log (služba eventlog) a bezpečnostní audit',
+        'Tři základní protokoly: Systém (hardware, ovladače), Aplikace (pády programů), Zabezpečení (audity)',
+        'Klíčová Event ID pro bezpečnostního technika: úspěšné přihlášení (4624), neúspěšné přihlášení / brute-force (4625), smazání logu (1102)',
+        'Filtrování a tvorba vlastních zobrazení (Custom Views) v eventvwr.msc',
+        'Napojení automatické reakce (úlohy v Task Scheduleru) na výskyt konkrétní bezpečnostní události'
+      ],
+      practice: [
+        'Simulace: Stopař incidentů – odhalení pokusu o neoprávněné přihlášení v časové ose logu',
+        'Praxe v OS: Vyfiltrování neúspěšných přihlášení v protokolu Zabezpečení a vytvoření vlastního auditního filtru'
+      ],
+      builds: 'BZ2 (procesy), BZ3 (registr).'
     },
     {
-      slug: 'firewall', tag: 'BZ5', order: 5, icon: 'Network', title: 'Firewall ve Windows', hours: '2 h',
-      subtitle: 'Pravidla pro příchozí a odchozí komunikaci, porty a protokoly.',
-      intro: 'Firewall rozhoduje, které pakety projdou. Naučíme se číst porty, propojit je s procesy a psát vlastní pravidla.',
-      topics: ['Stavový firewall, příchozí vs. odchozí směr', 'Porty a protokoly (TCP, UDP, ICMP)', 'Propojení portu s procesem: netstat -ano', 'Vlastní pravidla v konzoli wf.msc'],
-      practice: ['Simulace: stavba pravidel a průchod paketů', 'Praxe: zablokování pingu a odchozího programu'],
-      builds: 'Síť (OSS 1), BZ1 (síťový červ).',
+      slug: 'izolace',
+      tag: 'BZ5',
+      order: 5,
+      icon: 'Layers',
+      title: 'Izolované testovací prostředí (Sandbox) a antivirus',
+      hours: '2 h',
+      subtitle: 'Bezpečné spuštění podezřelého programu v Sandboxu a ochrana systémovým antivirem.',
+      intro: 'Podezřelý soubor nikdy nespouštíme na ostrém počítači – uzavřeme ho do jednorázového Windows Sandboxu. Seznámíme se s principy detekce antiviru (signatury, heuristika, cloud) a bezpečným testem EICAR.',
+      topics: [
+        'Princip izolace a karantény: technologie Windows Sandbox (lehký Hyper-V kontejner)',
+        'Tři pilíře antivirové detekce: signatury známých hrozeb, heuristika a behaviorální analýza v reálném čase',
+        'Cloudová ochrana a reputační cloud Microsoft Defender SmartScreen',
+        'Bezpečný testovací soubor EICAR pro ověření funkčnosti antiviru',
+        'Správa výjimek a rizik jejich zneužití'
+      ],
+      practice: [
+        'Simulace: Sandbox vs. hostitelský počítač – test zachycení škodlivého chování',
+        'Praxe v OS: Otestování reakce Defenderu pomocí řetězce EICAR a konfigurace základních pravidel ochrany'
+      ],
+      builds: 'BZ1 (malware), BZ2 (Authenticode).'
     },
     {
-      slug: 'sifrovani', tag: 'BZ6', order: 6, icon: 'Lock', title: 'Šifrování dat a ochrana proti ransomwaru', hours: '2 h',
-      subtitle: 'BitLocker, čip TPM a obrana proti zašifrování souborů.',
-      intro: 'Ztracený notebook nesmí znamenat únik dat. Šifrování disku to řeší – a spolu se zálohou chrání i před ransomwarem.',
-      topics: ['Ochrana dat v klidu a šifrování disku', 'BitLocker, čip TPM a záchranný klíč', 'Řízený přístup ke složkám', 'Záloha jako poslední obrana'],
-      practice: ['Simulace: odcizený disk s BitLockerem a bez něj', 'Praxe: BitLocker To Go na USB a uložení záchranného klíče'],
-      builds: 'Zálohování (OSS 2), ransomware v BZ1.',
+      slug: 'firewall',
+      tag: 'BZ6',
+      order: 6,
+      icon: 'Network',
+      title: 'Paketový firewall na koncovém zařízení',
+      hours: '2 h',
+      subtitle: 'Pravidla pro příchozí a odchozí komunikaci, porty a sledování aktivních spojení.',
+      intro: 'Firewall rozhoduje, které pakety projdou ze sítě do počítače a naopak. Naučíme se číst porty, propojit síťový port s konkrétním procesem a psát vlastní ochranná pravidla.',
+      topics: [
+        'Stavový paketový firewall, příchozí vs. odchozí směr komunikace',
+        'Porty a transportní protokoly (TCP, UDP, ICMP pro ping)',
+        'Propojení síťového portu s konkrétním procesem v CLI: příkaz netstat -ano',
+        'Tvorba vlastních bezpečnostních pravidel v pokročilé konzoli wf.msc'
+      ],
+      practice: [
+        'Simulace: Stavba pravidel firewallu a průchod síťových paketů',
+        'Praxe v OS: Zablokování odezvy na ping (ICMP echo) a zablokování odchozí komunikace vybraného programu'
+      ],
+      builds: 'Sítě (OSS 1), BZ1 (síťový červ).'
     },
     {
-      slug: 'ucty', tag: 'BZ7', order: 7, icon: 'Cog', title: 'Správa účtů, UAC a aktualizace', hours: '2 h',
-      subtitle: 'Princip nejmenších práv, řízení UAC a udržování systému aktuální.',
-      intro: 'Většina škod vznikne proto, že program běží s příliš velkými právy. UAC a správné účty to omezují a aktualizace zalepují známé díry.',
-      topics: ['Princip nejmenších práv', 'Jak funguje UAC (omezený a plný token)', 'Aktualizace systému a aplikací (winget)', 'Správce vs. standardní uživatel'],
-      practice: ['Simulace: jak UAC rozhodne o výzvě', 'Praxe: nastavení UAC a hromadná aktualizace'],
-      builds: 'Správa uživatelů a skupin a winget (OSS 1).',
+      slug: 'sifrovani',
+      tag: 'BZ7',
+      order: 7,
+      icon: 'Lock',
+      title: 'Diskové šifrování BitLocker a TPM čip',
+      hours: '2 h',
+      subtitle: 'Ochrana dat v klidu: BitLocker, čip TPM 2.0 a obrana proti ransomwaru.',
+      intro: 'Odcizený disk nesmí znamenat únik citlivých dat. Šifrování disku pomocí BitLockeru sváže data s bezpečnostním čipem TPM a spolu s ochranou složek brání neautorizovaným zásahům ransomwaru.',
+      topics: [
+        'Ochrana dat v klidu (Data at Rest) vs. šifrování komunikace v síti',
+        'BitLocker, hardwarový bezpečnostní čip TPM 2.0 a generování záchranného obnovovacího klíče',
+        'Šifrování výměnných USB disků (BitLocker To Go)',
+        'Řízený přístup ke složkám (Controlled Folder Access) jako obrana proti ransomwaru'
+      ],
+      practice: [
+        'Simulace: Odcizený disk s BitLockerem vs. nechráněný disk',
+        'Praxe v OS: Zašifrování USB flash disku s exportem záchranného klíče a konfigurace ochrany složek'
+      ],
+      builds: 'Zálohování (Blok 1), ransomware v BZ1.'
     },
     {
-      slug: 'sit-hesla', tag: 'BZ8', order: 8, icon: 'Search', title: 'Síť, hesla a základy etického hackingu', hours: '2 h',
-      subtitle: 'Phishing, silná hesla, dvoufázové ověření a první kroky etického hackera.',
-      intro: 'Nejslabším článkem bývá člověk. Naučíme se poznat podvodný e-mail, vytvořit odolné heslo a pochopit, jak uvažuje etický hacker.',
-      topics: ['Phishing a sociální inženýrství', 'Síla hesla a správce hesel', 'Vícefázové ověření (MFA)', 'Co je etický hacking (úvod)'],
-      practice: ['Simulace: rozpoznej podvodný e-mail', 'Praxe: kontrola uniklých hesel a nastavení MFA'],
-      builds: 'BZ1 (spyware a keylogger).',
+      slug: 'ucty',
+      tag: 'BZ8',
+      order: 8,
+      icon: 'Cog',
+      title: 'Správa uživatelských účtů, UAC a aktualizace (0-day)',
+      hours: '2 h',
+      subtitle: 'Princip nejmenších práv (PoLP), řízení UAC, servisní cykly záplat a hromadná údržba.',
+      intro: 'Většina škod vznikne proto, že program běží s právy správce. Mechanismy UAC omezují práva aplikací a pravidelné servisní aktualizace zalepují známé zranitelnosti systému.',
+      topics: [
+        'Princip nejmenších nutných oprávnění (PoLP) a oddělení správcovských úkonů',
+        'Fungování řízení uživatelských účtů UAC (omezený standardní token vs. plný token správce)',
+        'Servisní cykly aktualizací, záplaty a princip zranitelností nultého dne (0-day)',
+        'Hromadná aktualizace nainstalovaného softwaru přes správce balíčků (winget upgrade --all)'
+      ],
+      practice: [
+        'Simulace: Jak tokeny UAC rozhodují o zobrazení výzvy k povýšení oprávnění',
+        'Praxe v OS: Nastavení úrovně UAC a spuštění hromadného bezpečnostního auditu a updatu přes winget'
+      ],
+      builds: 'Správa uživatelů (OSS 1 – USR1), BZ2 (procesy).'
     },
     {
-      slug: 'ctf', tag: 'BZ9', order: 9, icon: 'Eye', title: 'Závěrečná detektivka (Mini-CTF)', hours: '2 h',
-      subtitle: 'Vyčištění napadeného počítače – postup incident response krok za krokem.',
-      intro: 'Na závěr bloku si všechno zopakujeme v praxi. Napadený počítač najdeme, izolujeme, vyčistíme a sepíšeme protokol.',
-      topics: ['Postup při incidentu: detekce, izolace, odstranění, čištění', 'Procesy, síť, firewall a spouštění po startu na jednom místě', 'Sepsání protokolu incidentu', 'Spolupráce ve dvojici'],
-      practice: ['Simulace: napadený počítač s úkoly (FLAGy)', 'Praxe: vyčištění připraveného virtuálního stroje'],
-      builds: 'BZ1 až BZ8.',
+      slug: 'sit-hesla',
+      tag: 'BZ9',
+      order: 9,
+      icon: 'Search',
+      title: 'Sociální inženýrství, phishing a ochrana identity',
+      hours: '2 h',
+      subtitle: 'Phishing, silná hesla, vícefaktorové ověřování MFA a etický hacking.',
+      intro: 'Nejslabším článkem bezpečnosti bývá lidský faktor. Naučíme se rozpoznat podvodný phishingový e-mail v hlavičkách zpráv, vytvářet odolná hesla a zabezpečit identitu vícefaktorovým ověřením.',
+      topics: [
+        'Metody sociálního inženýrství a analýza podvodných e-mailů (hlavičky, podvržené domény)',
+        'Síla hesla, entropie a bezpečné ukládání v offline správcích hesel',
+        'Vícefaktorové ověřování (MFA / 2FA): autentizační aplikace vs. hardwarové FIDO2 klíče',
+        'Základní principy uvažování etického hackera při obraně podnikové infrastruktury'
+      ],
+      practice: [
+        'Simulace: Forenzní detektiv – rozbor reálného podvodného e-mailu a nalezení podvržené adresy',
+        'Praxe v OS: Kontrola kompromitovaných přihlašovacích údajů a konfigurace vícefaktorového ověření'
+      ],
+      builds: 'BZ1 (spyware a keyloggery).'
     },
-  ],
+    {
+      slug: 'ctf',
+      tag: 'BZ10',
+      order: 10,
+      icon: 'Eye',
+      title: 'Vyšetřování bezpečnostního incidentu (Mini-CTF)',
+      hours: '2 h',
+      subtitle: 'Komplexní incident response: detekce, izolace, vyčištění a sepsání Incident Reportu.',
+      intro: 'Vyvrcholení celého bezpečnostního bloku. Na připraveném simulovaném systému žák v roli bezpečnostního technika detekuje útok, izoluje stanici na firewallu, dohledá stopy v registru a logu a vypracuje incident report.',
+      topics: [
+        'Čtyři fáze reakce na incident (Incident Response): Detekce ➔ Izolace ➔ Odstranění ➔ Čištění a obnova',
+        'Kombinovaná forenzní analýza: Process Explorer, Registr Run klíče, Event Viewer ID 4625 a Firewall',
+        'Sepsání formálního protokolu o bezpečnostním zásahu (Incident Response Report)',
+        'Týmová spolupráce při vyšetřování incidentu'
+      ],
+      practice: [
+        'Praktická laboratorní hra (Mini-CTF): Nalezení bezpečnostních flagů na kompromitované stanici',
+        'Zpracování a odevzdání protokolu o zásahu a doporučených opatřeních pro vedení firmy'
+      ],
+      builds: 'Syntéza všech témat BZ1 až BZ9.'
+    }
+  ]
 };
 
-/** Pokročilá konfigurace Windows a PowerShell (~8 h) – nástroje správce, služby na pozadí, skriptování, registr a logy. */
+/** Systémové služby a skriptování v PowerShellu (18 h) – správa služeb na pozadí, konzole MMC a administrační skriptování. */
 export const OSS2_POKROCILA: OutlineGroup = {
   chapterId: 'os2-pokrocila',
-  chapterTitle: 'Pokročilá konfigurace Windows a PowerShell',
-  chapterDescription: 'Nástroje správce: konzole MMC, služby na pozadí, skriptování v PowerShellu, registr a Prohlížeč událostí.',
+  chapterTitle: 'Systémové služby a skriptování v PowerShellu',
+  chapterDescription: 'Nástroje správce: konzole MMC, služby na pozadí, skriptování v PowerShellu a automatizované reporty.',
   chapterTag: 'adv',
   chapterPath: `${BASE}/pokrocila-konfigurace`,
   subjectTitle: SUBJECT,
   grade: 2,
   gradeLabel: '2. Ročník',
-  thematicBlock: 'Pokročilá konfigurace Windows a PowerShell',
+  thematicBlock: 'Systémové služby a administrační skriptování (PowerShell)',
   icon: 'Wrench',
   gradient: 'from-blue-600 to-cyan-600',
   items: [
     {
-      slug: 'mmc',
+      slug: 'sluzby',
       tag: 'PK1',
-      title: 'Konzole správce (MMC) a Služby Windows',
-      hours: '2 h',
-      subtitle: 'Sjednocené rozhraní snap-inů a správa procesů běžících na pozadí pod účtem SYSTEM.',
-      intro: 'Správce nepotřebuje deset různých oken. Ukážeme si, jak funguje Microsoft Management Console (MMC), jak si poskládat vlastní nástroj a jak ovládat služby Windows (typy spouštění, účty a závislosti).',
+      title: 'Systémové služby Windows na pozadí a jejich životní cyklus',
+      hours: '4 h',
+      subtitle: 'Koncepce procesů bez interaktivního přihlášení běžících pod účtem SYSTEM.',
+      intro: 'Systémové služby tvoří páteř operačního systému. Běží nezávisle na tom, zda je uživatel přihlášen. Naučíme se typy spouštění, účty služeb, řešení závislostí a konfiguraci automatického zotavení po selhání.',
       topics: [
-        'Microsoft Management Console (MMC) a princip rozšiřujících modulů (Snap-inů)',
-        'Služby Windows vs. běžné programy (spuštění bez přihlášeného uživatele pod účtem SYSTEM)',
-        'Typy spouštění služeb: Automaticky, Ručně, Zakázáno a zpožděné spuštění',
-        'Řešení závislostí služeb a obnova po chybě (Restart servisu, spuštění skriptu)',
-        'Správa služeb z příkazového řádku: příkazy net start/stop a sc config'
+        'Služby Windows vs. běžné interaktivní aplikace (běh na pozadí bez nutnosti GUI)',
+        'Systémové běžící účty: NT AUTHORITY\\SYSTEM, Local Service a Network Service',
+        'Typy spouštění: Automaticky, Ručně (Manual), Zakázáno (Disabled) a automaticky se zpožděním',
+        'Řešení závislostí služeb a konfigurace automatického restartu po selhání',
+        'Správa služeb z příkazového řádku: příkazy net start/stop a utilita sc.exe'
       ],
       practice: [
-        'Simulace: Trenažér závislostí služeb – co se stane, když vypadne závislá síťová služba',
-        'Praxe v OS: Sestavení vlastní konzole správce v mmc.exe a rekonfigurace služby na automatický restart po selhání'
+        'Simulace: Trenažér závislostí služeb – co nastane při výpadku závislé síťové komponenty',
+        'Praxe v OS: Rekonfigurace služby na automatický restart po selhání a kontrola spuštění v services.msc'
       ],
       builds: 'Procesy (OSS 1), BZ2 (svchost.exe a služby).'
     },
     {
-      slug: 'powershell',
+      slug: 'mmc',
       tag: 'PK2',
-      title: 'PowerShell: Základy, objekty a roury',
-      hours: '2 h',
-      subtitle: 'Moderní příkazová řádka správce: konec prostého textu, nástup objektů a cmdletů.',
-      intro: 'Zatímco staré CMD posílalo jen text, PowerShell předává skutečné strukturované objekty. Naučíme se syntaxi Sloveso-PodstatnéJméno, vyhledávání nápovědy a magickou rouru objektů.',
+      title: 'Konzole správce (MMC) a centrální správa',
+      hours: '4 h',
+      subtitle: 'Sjednocené rozhraní snap-inů: sestavení vlastní administrátorské konzole na míru.',
+      intro: 'Profesionální správce nepotřebuje otevírat deset samostatných oken. Pomocí Microsoft Management Console (MMC) si poskládá vlastní modulární pracovní nástroj.',
+      topics: [
+        'Architektura Microsoft Management Console (mmc.exe) a princip rozšiřujících modulů (Snap-inů)',
+        'Základní snap-iny pro správce: Služby, Správa počítače, Prohlížeč událostí, Místní zásady',
+        'Režimy konzole: Autorský režim vs. Uživatelský režim s omezeným přístupem',
+        'Uložení vlastní konzole do souboru .msc pro rychlou rutinní administraci stanice'
+      ],
+      practice: [
+        'Simulace: Sestavování vlastní konzole pro technickou podporu stanic',
+        'Praxe v OS: Vytvoření administrátorské konzole MojeSprava.msc obsahující vybrané diagnostické nástroje'
+      ],
+      builds: 'Služby Windows (PK1).'
+    },
+    {
+      slug: 'powershell',
+      tag: 'PK3',
+      title: 'PowerShell: Objektový shell, syntaxe cmdletů a roury',
+      hours: '4 h',
+      subtitle: 'Moderní příkazová řádka správce: konec prostého textu, nástup objektů a roury |.',
+      intro: 'Zatímco staré CMD předávalo pouze textové řádky, PowerShell pracuje se skutečnými .NET objekty. Naučíme se syntaxi Sloveso-PodstatnéJméno, zjišťování nápovědy a magickou rouru objektů.',
       topics: [
         'Proč PowerShell nahradil CMD: objektový model .NET vs. prostý textový proud',
         'Syntaxe cmdletů: Sloveso-PodstatnéJméno (Verb-Noun, např. Get-Service, Stop-Process)',
         'Tři zlaté cmdlety správce: Get-Command, Get-Help (-Full, -Examples) a Get-Member',
-        'Objektová roura (Pipeline |): předávání celých vlastností objektu bez složitého parsování',
+        'Objektová roura (Pipeline |): předávání celých vlastností objektu bez nutnosti parsování textu',
         'Filtrování a výběr dat: cmdlety Where-Object a Select-Object'
       ],
       practice: [
-        'Simulace: Pipeline Explorer – sledování, jak se objekt procesů filtruje a transformuje v rouře',
-        'Praxe v OS: Vyhledání běžících procesů s vysokou spotřebou RAM a jejich zformátování do tabulky přes PowerShell'
+        'Simulace: Pipeline Explorer – sledování transformace a filtrace systémových objektů v rouře',
+        'Praxe v OS: Vyhledání běžících procesů s vysokou spotřebou RAM a jejich naformátování do tabulky v PowerShellu'
       ],
-      builds: 'Příkazová řádka CMD (OSS 1 – roury a filtry).'
+      builds: 'Příkazová řádka CMD (OSS 1).'
     },
     {
       slug: 'powershell-sprava',
-      tag: 'PK3',
-      title: 'Automatizace správy v PowerShellu',
-      hours: '2 h',
-      subtitle: 'Správa systému, hromadné operace, skripty .ps1 a bezpečnostní politika ExecutionPolicy.',
-      intro: 'Jak admin ušetří hodiny klikání? Napíše si PowerShell skript. Naučíme se hromadně spravovat služby a soubory, řešit politiku ExecutionPolicy a vytvářet autonomní skripty.',
+      tag: 'PK4',
+      title: 'Administrační skriptování v PowerShellu (.ps1)',
+      hours: '4 h',
+      subtitle: 'Tvorba skriptů, proměnné, cykly, bezpečnostní politika ExecutionPolicy a podepisování.',
+      intro: 'Jak správce ušetří hodiny rutinního klikání? Napíše si skript. Naučíme se hromadně spravovat služby, řešit bezpečnostní politiku ExecutionPolicy a vytvářet autonomní skripty.',
       topics: [
-        'Hromadná správa: Start-Service, Stop-Service, Restart-Service s využitím roury',
+        'Hromadná správa: Start-Service, Stop-Service s využitím roury',
         'Práce se souborovým systémem: Get-ChildItem, Copy-Item, Remove-Item a zástupné znaky',
-        'Tvorba a spouštění skriptů .ps1: proměnné ($), cykly (foreach) a předávání parametrů',
-        'Bezpečnostní politika ExecutionPolicy: Restricted vs. RemoteSigned a podepisování skriptů',
-        'Export reportů do formátu CSV a HTML (Export-Csv, ConvertTo-Html)'
+        'Tvorba skriptů .ps1: proměnné ($), cykly (foreach), podmínky (if) a předávání parametrů',
+        'Bezpečnostní politika ExecutionPolicy: Restricted vs. RemoteSigned a zásady podepisování skriptů'
       ],
       practice: [
         'Simulace: Inspekční skript – automatická kontrola stavu kritických služeb',
-        'Praxe v OS: Vytvoření skriptu pro kontrolu a automatický restart zamrzlé služby s exportem do HTML reportu'
+        'Praxe v OS: Vytvoření skriptu pro kontrolu a automatický restart zamrzlé služby'
       ],
-      builds: 'PowerShell základy (PK2) a Dávkové soubory (BAT1).'
+      builds: 'PowerShell základy (PK3) a Dávkové soubory (OSS 1 – BAT1).'
     },
     {
-      slug: 'registry',
-      tag: 'PK4',
-      title: 'Systémový registr a řešení chyb',
-      hours: '2 h',
-      subtitle: 'Srdce konfigurace Windows: větve registru, klíče, hodnoty a záchrana systému.',
-      intro: 'Téměř každé nastavení ve Windows končí zápisem do registru. Naučíme se bezpečně navigovat v regedit.exe, chápat rozdíl mezi nastavením počítače a uživatele a zálohovat klíče do .reg souborů.',
-      topics: [
-        'Účel a hierarchie registru Windows: soubory úlů (Hives) v System32\\config a profilu',
-        'Pět hlavních větví: HKEY_LOCAL_MACHINE (stroj), HKEY_CURRENT_USER (uživatel), HKCR, HKU, HKCC',
-        'Datové typy hodnot: REG_SZ (text), REG_DWORD (číslo/přepínač 0/1), REG_BINARY',
-        'Záloha, export a import registru (.reg soubory pro hromadnou distribuci nastavení)',
-        'Odstraňování chyb: vyčištění položek po havárii a oprava nechtěných asociací souborů'
-      ],
-      practice: [
-        'Simulace: Rentgen registru – odhalení, který klíč v registru se mění při přepnutí volby v Nastavení',
-        'Praxe v OS: Export vybrané větve do souboru .reg, bezpečná úprava hodnoty DWORD a opětovný import'
-      ],
-      builds: 'Hierarchie disku C: (OSS 1), Bezpečnost (BZ3 – položky po startu v Run).'
-    },
-    {
-      slug: 'udalosti',
+      slug: 'reporty',
       tag: 'PK5',
-      title: 'Prohlížeč událostí a audit (Event Viewer)',
+      title: 'Automatizovaný sběr dat a generování stavových reportů',
       hours: '2 h',
-      subtitle: 'Forenzní čtení logů: co se v systému stalo, kdy k tomu došlo a jak najít příčinu chyby.',
-      intro: 'Když systém padá nebo se někdo pokouší prolomit heslo, nezanechá zprávu na ploše, ale záznam v Prohlížeči událostí. Naučíme se číst protokoly a filtrovat klíčová Event ID.',
+      subtitle: 'Diagnostika hardware a konfigurace stanice s exportem do formátů CSV a HTML.',
+      intro: 'Správce musí mít přehled o stavu svěřených počítačů. Vytvoříme skript, který získá informace o disku, paměti RAM a běžících službách a automaticky vygeneruje HTML auditní report.',
       topics: [
-        'Role systémového logování v podniku: architektura Windows Event Log (služba eventlog)',
-        'Tři základní protokoly: Systém (hardware, ovladače), Aplikace (pády programů), Zabezpečení (audity)',
-        'Úrovně událostí: Informace, Upozornění, Chyba, Kritická událost',
-        'Klíčová Event ID pro správce: úspěšné přihlášení (4624), neúspěšný pokus / brute-force (4625), vypnutí (6006)',
-        'Tvorba vlastních filtrů a zobrazení (Custom Views) a napojení úlohy na konkrétní událost'
+        'Cmdlety pro zjištění stavu systému: Get-ComputerInfo, Get-Volume, Get-Process',
+        'Transformace datových objektů do formátovaných výstupů: ConvertTo-Html, Export-Csv',
+        'Stylování vygenerovaného HTML reportu pomocí CSS hlavičky',
+        'Automatizace spouštění inspekčního skriptu přes Plánovač úloh (Task Scheduler)'
       ],
       practice: [
-        'Simulace: Stopař incidentů – odhalení pokusu o neoprávněné přihlášení v časové ose logu',
-        'Praxe v OS: Vyfiltrování neúspěšných přihlášení v protokolu Zabezpečení a uložení filtru do vlastní konzole'
+        'Simulace: Reportér stavu – sestavení přehledného manažerského reportu',
+        'Praxe v OS: Vytvoření inspekčního PowerShell skriptu generujícího barevný HTML auditní report o stavu stanice'
       ],
-      builds: 'Zabezpečení účtů (OSS 1/2), MMC (PK1).'
+      builds: 'PowerShell skripty (PK4).'
     }
   ]
 };
 
-/** Síťové serverové služby a infrastruktura (~12 h) – DHCP, DNS, SMB sdílení, RDP, webový server IIS a databázový SQL server. */
-export const OSS2_SLUZBY: OutlineGroup = {
-  chapterId: 'os2-sluzby',
-  chapterTitle: 'Síťové serverové služby a infrastruktura',
-  chapterDescription: 'Základní infrastruktura podnikové sítě: automatická konfigurace DHCP, překlad jmen DNS, sdílení SMB, RDP, webový server IIS a databázový server SQL.',
-  chapterTag: 'srv',
-  chapterPath: `${BASE}/sluzby`,
+/** Síťové sdílení a centrální správa v doméně (18 h) – sdílení SMB, RDP, doména, připojení stanice, GPO a projekt. */
+export const OSS2_AD: OutlineGroup = {
+  chapterId: 'os2-ad',
+  chapterTitle: 'Síťové sdílení a centrální správa v doméně',
+  chapterDescription: 'Sdílení prostředků SMB, vzdálená správa RDP, připojení klienta do domény, uplatnění politik GPO a závěrečný projekt.',
+  chapterTag: 'dom',
+  chapterPath: `${BASE}/active-directory`,
   subjectTitle: SUBJECT,
   grade: 2,
   gradeLabel: '2. Ročník',
-  thematicBlock: 'Serverové služby a infrastruktura',
-  icon: 'Database',
+  thematicBlock: 'Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
+  icon: 'Network',
   gradient: 'from-blue-600 to-cyan-600',
   items: [
     {
-      slug: 'dhcp',
-      tag: 'SL1',
-      title: 'DHCP server: Automatická konfigurace sítě',
-      hours: '2 h',
-      subtitle: 'Centrální správa IP adres: rozsah, zapůjčení, vyloučení a statické rezervace pro tiskárny.',
-      intro: 'Ručně zadávat IP adresu do stovek počítačů je noční můra. Zprovozníme roli DHCP Server na Windows Serveru, definujeme rozsah přidělovaných adres a nastavíme pevnou rezervaci pro tiskárnu podle její MAC adresy.',
-      topics: [
-        'Princip protokolu DHCP: 4fázový proces DORA (Discover, Offer, Request, Acknowledge)',
-        'Instalace role DHCP Server ve Správci serveru na Windows Serveru',
-        'Vytvoření a autorizace rozsahu (Scope): rozsah IP, maska sítě, výchozí brána a DNS servery',
-        'Doba zapůjčení (Lease Duration) a proces obnovy zapůjčení (Renew)',
-        'Rezervace IP adres podle MAC adresy pro stálé síťové prvky (tiskárny, servery, kamery)'
-      ],
-      practice: [
-        'Simulace: Provoz DHCP – sledování toku zpráv DORA mezi klientem a serverem při zapnutí PC',
-        'Praxe v OS: Konfigurace nového rozsahu DHCP ve virtuálním serveru a ověření převzetí údajů klientem přes ipconfig /renew'
-      ],
-      builds: 'Síťové adaptéry a IP (OSS 1 – NET1), Služby Windows (PK1).'
-    },
-    {
-      slug: 'dns',
-      tag: 'SL2',
-      title: 'DNS server: Překlad jmen a páteř sítě',
-      hours: '2 h',
-      subtitle: 'Telefonní seznam sítě: dopředné zóny, A záznamy, rekurze a nutná podmínka pro doménu.',
-      intro: 'Lidé si pamatují názvy, počítače rozumí IP adresám. Zprovozníme roli DNS Serveru, vytvoříme podnikovou doménovou zónu a pochopíme, proč bez funkčního DNS serveru nemůže fungovat ani Active Directory.',
-      topics: [
-        'Hierarchie doménového systému DNS: kořenové servery (Root), TLD (.cz, .com) a autoritativní servery',
-        'Instalace role DNS Server a konfigurace Dopředné zóny vyhledávání (Forward Lookup Zone)',
-        'Základní typy DNS záznamů: A (převod jména na IPv4), CNAME (alias), PTR (reverzní překlad), MX (pošta)',
-        'Předávání dotazů (Forwarders) do veřejného internetu (např. na 8.8.8.8 nebo 1.1.1.1)',
-        'Diagnostika a testování překladu jmen v příkazovém řádku: nástroj nslookup a vymazání mezipaměti ipconfig /flushdns'
-      ],
-      practice: [
-        'Simulace: Tok DNS dotazu – rekurzivní vs. iterativní dotazování při zadání webové adresy',
-        'Praxe v OS: Vytvoření vlastní zóny na serveru, přidání A záznamu pro intranetový server a ověření přes nslookup'
-      ],
-      builds: 'Diagnostika konektivity a sítě (OSS 1 – NET2), DHCP server (SL1).'
-    },
-    {
       slug: 'smb',
-      tag: 'SL3',
-      title: 'Souborový server a síťové disky (SMB)',
-      hours: '2 h',
+      tag: 'AD1',
+      title: 'Síťové sdílení složek a efektivní přístupová práva (SMB)',
+      hours: '4 h',
       subtitle: 'Centrální datové úložiště: sdílení složek, oprávnění a automatické připojení diskové jednotky.',
-      intro: 'Místo posílání souborů e-mailem vytvoříme centrální souborový server. Nastavíme sdílené složky pro jednotlivá oddělení a namapujeme je klientům jako síťové disky.',
+      intro: 'Místo posílání souborů e-mailem vytvoříme centrální sdílené úložiště. Nastavíme sdílené složky pro jednotlivá oddělení, vyladíme kombinaci práv a namapujeme je klientům jako síťové disky.',
       topics: [
         'Protokol SMB (Server Message Block) a princip souborového serveru',
         'Zápis síťové cesty UNC (Universal Naming Convention): \\\\Server\\SdilenyProstredek',
@@ -266,175 +342,55 @@ export const OSS2_SLUZBY: OutlineGroup = {
       ],
       practice: [
         'Simulace: Vyhodnocení přístupu – průchod uživatele přes bránu sdílení a bránu NTFS práv',
-        'Praxe v OS: Zřízení sdílené složky s omezením zápisu na Windows Serveru a její namapování na klientovi'
+        'Praxe v OS: Zřízení sdílené složky s omezením zápisu a její namapování na klientovi jako trvalé diskové jednotky'
       ],
       builds: 'Oprávnění NTFS (OSS 1 – USR4), Síťové profily (OSS 1 – NET3).'
     },
     {
       slug: 'vzdalena-sprava',
-      tag: 'SL4',
-      title: 'Vzdálená správa: RDP a OpenSSH',
+      tag: 'AD2',
+      title: 'Zabezpečená vzdálená správa pracovní plochy (RDP)',
       hours: '2 h',
-      subtitle: 'Správa serveru z tepla kanceláře: Vzdálená plocha RDP, správa portu 3389 a OpenSSH.',
-      intro: 'K serveru do chladné serverovny se fyzicky nechodí. Naučíme se konfigurovat zabezpečený vzdálený přístup přes grafické rozhraní RDP i moderní textový OpenSSH server.',
+      subtitle: 'Správa klientské stanice na dálku: Vzdálená plocha RDP, správa portu 3389 a zabezpečení NLA.',
+      intro: 'K počítačům uživatelů není třeba běhat osobně. Naučíme se konfigurovat zabezpečený vzdálený přístup přes grafické rozhraní RDP a porozumíme bezpečnostnímu ověřování NLA.',
       topics: [
         'Protokol RDP (Remote Desktop Protocol) a port 3389: povolení přístupu, oprávnění a limity relací',
         'Bezpečnostní rizika RDP: brute-force útoky z internetu, NLA (Network Level Authentication) a nutnost VPN',
         'Nástroj Připojení k vzdálené ploše (mstsc.exe) a jeho pokročilé volby (sdílení disků, schránky, tiskáren)',
-        'OpenSSH server na platformě Windows: instalace volitelné funkce a správa přes port 22',
-        'Konfigurace Windows Firewallu pro vzdálený přístup'
+        'Konfigurace Windows Firewallu pro vzdálený přístup a autorizace uživatelů ve skupině Remote Desktop Users'
       ],
       practice: [
-        'Simulace: Zabezpečení RDP brány – nastavení NLA a pravidla firewallu pro vybraný rozsah IP adres',
-        'Praxe v OS: Povolení RDP na serveru, vzdálené připojení z klientské stanice přes mstsc a ověření otevřených relací'
+        'Simulace: Zabezpečení RDP brány – nastavení NLA a pravidla firewallu pro autorizované uživatele',
+        'Praxe v OS: Povolení RDP na klientské stanici, vzdálené připojení přes mstsc a ověření aktivních relací'
       ],
       builds: 'Firewall (BZ5), Sítě (OSS 1).'
     },
     {
-      slug: 'iis',
-      tag: 'SL5',
-      title: 'Webový server (IIS)',
-      hours: '2 h',
-      subtitle: 'Publikování intranetových stránek: instalace web serveru, porty 80 a 443 a certifikáty HTTPS.',
-      intro: 'Webový server je klasická síťová služba. Nainstalujeme Microsoft IIS, umístíme vlastní HTML stránku do kořenového adresáře a zabezpečíme ji šifrovaným protokolem HTTPS.',
-      topics: [
-        'Role Internet Information Services (IIS) a výchozí kořenový adresář C:\\inetpub\\wwwroot',
-        'Vazby webu (Bindings): kombinace IP adresy, portu (80 pro HTTP, 443 pro HTTPS) a názvu hostitele',
-        'Protokol HTTPS: role digitálního certifikátu serveru (vlastnoručně podepsaný / Self-signed vs. CA)',
-        'Pravidla firewallu pro webový provoz a testování dostupnosti z klientské stanice',
-        'Základní diagnostika webu: protokoly v C:\\inetpub\\logs\\LogFiles a stavové kódy (200, 403, 404, 500)'
-      ],
-      practice: [
-        'Simulace: Požadavek klienta – cesta paketu od zadání doménového jména po vrácení HTML kódu ze serveru',
-        'Praxe v OS: Instalace role IIS na serveru, vytvoření vlastní uvítací stránky a její otevření z klienta přes prohlížeč'
-      ],
-      builds: 'DNS server (SL2), Firewall (BZ5), Certifikáty (BZ2).'
-    },
-    {
-      slug: 'sql',
-      tag: 'SL6',
-      title: 'Databázový server (MS SQL Server)',
-      hours: '2 h',
-      subtitle: 'Správa databázového enginu z pohledu správce OS: instalace instance, síťový port 1433, autentizace a zálohování.',
-      intro: 'Provoz podnikových systémů a webových aplikací stojí na databázích. Z pohledu správce operačního systému se naučíme nainstalovat instanci MS SQL Serveru, nakonfigurovat službu pod dedikovaným účtem, povolit TCP/IP komunikaci na portu 1433, nastavit Firewall a vytvořit zálohu (.bak).',
-      topics: [
-        'Role databázového serveru v OS: relační databáze (RDBMS), datové soubory (.mdf) a transakční logy (.ldf) na disku',
-        'Instalace MS SQL Server Express / Developer: pojmenovaná instance (SQLEXPRESS) vs. výchozí instance, systémový účet služby',
-        'Správce konfigurace sítě (SQL Server Configuration Manager): protokol TCP/IP a výchozí port 1433',
-        'Režimy ověřování: Windows Authentication (integrované účty OS a domény) vs. Mixed Mode (účet sa)',
-        'Pravidla Windows Firewallu pro port 1433 a vzdálené připojení klientských aplikací',
-        'Správa a diagnostika přes SSMS / Azure Data Studio: připojení k instanci a vytvoření konzistentní zálohy do souboru .bak'
-      ],
-      practice: [
-        'Simulace: Port a služba – diagnostika chybějící konektivity k SQL (ověření běhu služby MSSQLSERVER vs. blokovaný port 1433 na firewallu)',
-        'Praxe v OS: Instalace SQL Server Express, povolení protokolu TCP/IP, otevření portu 1433 ve Windows Firewallu a vytvoření zálohy testovací databáze do souboru .bak'
-      ],
-      builds: 'Služby Windows (PK1), Firewall (BZ5), Webový server IIS (SL5), Zálohování (Blok 1).'
-    }
-  ]
-};
-
-/** Active Directory a centrální správa (~14 h) – doména, řadič DC, uživatelé, skupiny, připojení klientů, GPO a projekt. */
-export const OSS2_AD: OutlineGroup = {
-  chapterId: 'os2-ad',
-  chapterTitle: 'Active Directory a centrální správa',
-  chapterDescription: 'Podniková doména: řadič domény, organizační jednotky, uživatelé a skupiny, připojení stanic, skupinové politiky GPO a závěrečný projekt.',
-  chapterTag: 'ad',
-  chapterPath: `${BASE}/active-directory`,
-  subjectTitle: SUBJECT,
-  grade: 2,
-  gradeLabel: '2. Ročník',
-  thematicBlock: 'Active Directory a centrální správa',
-  icon: 'Network',
-  gradient: 'from-blue-600 to-cyan-600',
-  items: [
-    {
       slug: 'server-a-domena',
-      tag: 'AD1',
-      title: 'Windows Server a co je doména',
+      tag: 'AD3',
+      title: 'Koncept podnikové infrastruktury a domény',
       hours: '2 h',
-      subtitle: 'Rozdíl mezi pracovní skupinou a podnikovou doménou, architektura klient-server.',
-      intro: 'V pracovní skupině musíte každého uživatele zakládat na každém počítači zvlášť. V doméně existuje jedna centrální databáze na řadiči domény. Představíme si koncept Active Directory a rozhraní Windows Serveru.',
+      subtitle: 'Rozdíl mezi decentralizovanou pracovní skupinou a podnikovou doménou Active Directory.',
+      intro: 'V pracovní skupině musíte každého uživatele zakládat na každém počítači zvlášť. V doméně existuje jedna centrální databáze na řadiči domény. Představíme si koncept Active Directory a architekturu klient-server.',
       topics: [
         'Limity Peer-to-Peer sítě (Pracovní skupina) při více než 5 počítačích',
         'Koncept podnikové domény: centrální adresářová služba Active Directory Domain Services (AD DS)',
-        'Role řadiče domény (Domain Controller - DC) a replikace databáze NTDS.dit',
-        'Rozhraní Windows Serveru a práce v konzoli Správce serveru (Server Manager)',
-        'Předpoklady pro instalaci domény: pevná statická IP adresa a funkční DNS'
+        'Role řadiče domény (Domain Controller - DC) a centrální autentizace (Kerberos)',
+        'Předpoklady pro doménovou komunikaci: správná konfigurace DNS pro vyhledání domény'
       ],
       practice: [
         'Simulace: Pracovní skupina vs. Doména – srovnání počtu kroků při změně hesla na 20 počítačích',
-        'Praxe v OS: Prvotní seznámení se Správcem serveru, ověření statické IP adresy a instalace role AD DS'
+        'Praxe v OS: Analýza doménové architektury a ověření síťové dostupnosti doménových služeb'
       ],
-      builds: 'Základní síťové služby (SL1, SL2), Konzole MMC (PK1).'
-    },
-    {
-      slug: 'dns-a-radic',
-      tag: 'AD2',
-      title: 'Povýšení na řadič domény (DC)',
-      hours: '2 h',
-      subtitle: 'Zrození domény: povýšení serveru, vytvoření lesa a automatická registrace SRV záznamů v DNS.',
-      intro: 'Nainstalovat roli nestačí, server musíme povýšit na řadič domény. Projdeme průvodcem vytvoření nového doménového lesa (např. firma.local) a ukážeme si, jak si řadič vytvoří v DNS své vlastní záznamy.',
-      topics: [
-        'Proces povýšení serveru na řadič domény (Promote to Domain Controller)',
-        'Pojmy strom a les (Forest Root Domain) – volba doménového jména (FQDN, např. korporace.local)',
-        'Heslo pro režim obnovení adresářových služeb (DSRM password)',
-        'Vazba na DNS: záznamy typu SRV (Service Location) ve složce _msdcs (vyhledání Netlogon a Kerberos)',
-        'Struktura databáze Active Directory: soubor ntds.dit a složka SYSVOL'
-      ],
-      practice: [
-        'Simulace: DNS detektiv – odhalení chybějícího SRV záznamu, který brání přihlášení do domény',
-        'Praxe v OS: Povýšení Windows Serveru na řadič nové domény a kontrola vygenerovaných DNS zón'
-      ],
-      builds: 'DNS server (SL2), Server a doména (AD1).'
-    },
-    {
-      slug: 'uzivatele-skupiny',
-      tag: 'AD3',
-      title: 'Organizační jednotky (OU) a doménové účty',
-      hours: '2 h',
-      subtitle: 'Zrcadlo struktury podniku: tvorba oddělení (OU), doménových uživatelů a zásady hesel.',
-      intro: 'V doméně spravujeme stovky lidí. Uspořádáme je do Organizačních jednotek (OU) kopírujících oddělení firmy a založíme doménové uživatele, kteří se přihlásí k jakémukoliv počítači v podniku.',
-      topics: [
-        'Konzole Uživatelé a počítače služby Active Directory (dsa.msc)',
-        'Organizační jednotky (Organizational Units - OU): logické kontejnery pro aplikaci politik a delegaci správy',
-        'Rozdíl mezi složkami (Containers např. Users, Computers) a Organizačními jednotkami (OU)',
-        'Tvorba doménového účtu: uživatelské jméno (UPN login), doménové heslo, změna hesla při prvním přihlášení',
-        'Zásady uzamčení účtu při opakovaném zadání chybného hesla (Account Lockout)'
-      ],
-      practice: [
-        'Simulace: Návrh struktury firmy – vytvoření stromu OU pro střední firmu (Vedení, Obchod, IT, Výroba)',
-        'Praxe v OS: Založení organizačních jednotek a hromadné vytvoření uživatelů daného oddělení'
-      ],
-      builds: 'Správa uživatelů (OSS 1 – USR1), Konzole MMC (PK1).'
-    },
-    {
-      slug: 'sdileni-a-prava',
-      tag: 'AD4',
-      title: 'Skupiny a přístupová práva (Prakticky)',
-      hours: '2 h',
-      subtitle: 'Srozumitelná správa oprávnění: Uživatel ➔ Skupina ➔ Práva na sdílenou složku bez složité teorie.',
-      intro: 'Zapomeňme na složité teoretické modely. V praxi se práva nikdy nedávají jednotlivcům: vytvoříme skupinu pro oddělení, přidáme do ní zaměstnance a skupině přiřadíme přístup k datům.',
-      topics: [
-        'Proč se práva v doméně NIKDY nepřiřazují přímo uživatelům (princip udržitelnosti správy)',
-        'Typy skupin v doméně: Zabezpečení (Security Groups pro přidělování práv) vs. Distribuce (Distribution)',
-        'Praktický model správy: Uživatel je členem skupiny oddělení (např. Skupina-Uctarna), skupina má práva ke složce',
-        'Kombinace doménových skupin se sdílením SMB a právy NTFS na serveru',
-        'Ověření efektivních přístupových práv uživatele v záložce Zabezpečení'
-      ],
-      practice: [
-        'Simulace: Matice oprávnění – nastavení přístupu pro nového zaměstnance pouhým přidáním do správné skupiny',
-        'Praxe v OS: Vytvoření bezpečnostních skupin pro oddělení firmy a nastavení přístupu ke sdíleným datům'
-      ],
-      builds: 'Souborový server SMB (SL3), Oprávnění NTFS (OSS 1 – USR4).'
+      builds: 'Sdílení SMB (AD1), Síťové adaptéry (OSS 1 – NET1).'
     },
     {
       slug: 'klient-v-domene',
-      tag: 'AD5',
-      title: 'Připojení klientského PC do domény',
-      hours: '2 h',
+      tag: 'AD4',
+      title: 'Klientská stanice v podnikové doméně a uživatelské profily',
+      hours: '4 h',
       subtitle: 'Kouzlo jednotného přihlášení: konfigurace DNS klienta, vstup do domény a síťový profil.',
-      intro: 'Doména začne fungovat až ve chvíli, kdy k ní připojíme běžný počítač žáka. Nastavíme klientské Windows 11, propojíme je s řadičem a poprvé se přihlásíme doménovým účtem.',
+      intro: 'Doména začne fungovat ve chvíli, kdy k ní připojíme běžný klientský počítač. Nastavíme Windows 11, propojíme je s řadičem a poprvé se přihlásíme doménovým účtem s vlastním profilem.',
       topics: [
         'Podmínka #1 pro připojení klienta: nastavení DNS klienta na IP adresu řadiče domény',
         'Připojení stanice do domény v Nastavení systému (dialog Vlastnosti systému ➔ Změnit doménu)',
@@ -444,50 +400,49 @@ export const OSS2_AD: OutlineGroup = {
       ],
       practice: [
         'Simulace: Diagnostika selhání – 3 nejčastější důvody, proč stanice nenajde doménu (špatné DNS, čas, název)',
-        'Praxe v OS: Připojení virtuálního klienta Windows 11 do vytvořené domény a přihlášení pod vytvořeným uživatelem'
+        'Praxe v OS: Připojení virtuálního klienta Windows 11 do domény a přihlášení pod doménovým uživatelem'
       ],
-      builds: 'Instalace řadiče (AD2), DNS (SL2), Síťové adaptéry (OSS 1 – NET1).'
+      builds: 'Koncept domény (AD3), DNS (OSS 1), Síťové adaptéry (OSS 1 – NET1).'
     },
     {
       slug: 'gpo',
-      tag: 'AD6',
-      title: 'Skupinové politiky (Group Policy – GPO)',
-      hours: '2 h',
+      tag: 'AD5',
+      title: 'Skupinové politiky (Group Policy – uplatnění na stanici)',
+      hours: '4 h',
       subtitle: 'Jeden příkaz vládne všem: centrální zákaz USB, bezpečnost hesel, jednotná plocha a mapování disků.',
-      intro: 'Jak přinutit 200 počítačů ve firmě, aby měly stejné pozadí, zablokované flash disky a automaticky připojený síťový disk Z:? Pomocí Group Policy. Nastavíme politiku jednou na serveru a systém ji automaticky vnutí všem stanicím.',
+      intro: 'Jak přinutit stovky počítačů ve firmě, aby měly stejné pozadí, zablokované flash disky a automaticky připojený síťový disk Z:? Pomocí Group Policy. Centrální politika se automaticky vnutí všem stanicím v síti.',
       topics: [
-        'Co je Group Policy Object (GPO) a konzole Správa zásad skupiny (gpmc.msc)',
+        'Co je Group Policy Object (GPO) a jak se zásady aplikují na klientské počítače',
         'Rozsah zásad: Konfigurace počítače (platí pro stanici) vs. Konfigurace uživatele',
-        'Propojení zásad s Organizačními jednotkami (OU Link) a pořadí aplikace politik (LSDOU)',
         'Klíčová praktická nastavení: zákaz USB disků, jednotná tapeta, zákaz Ovládacích panelů, mapování disku',
         'Vynucení a ověření zásad na klientovi: příkazy gpupdate /force a výpis aplikovaných politik gpresult /r'
       ],
       practice: [
-        'Simulace: Která politika vyhraje? – sledování konfliktu dvou politik s různou prioritou',
-        'Praxe v OS: Vytvoření a aplikace GPO politiky pro zákaz USB a automatické připojení síťového disku oddělení'
+        'Simulace: Která politika vyhraje? – sledování konfliktu politik a pořadí uplatňování',
+        'Praxe v OS: Ověření uplatnění bezpečnostní GPO politiky pro zákaz USB a kontrola výstupu gpresult /r'
       ],
-      builds: 'Organizační jednotky OU (AD3), Sdílení a SMB (SL3), Místní zásady (PK1).'
+      builds: 'Klientská stanice v doméně (AD4), Sdílení SMB (AD1).'
     },
     {
       slug: 'zaloha-a-projekt',
-      tag: 'AD7',
-      title: 'Závěrečný integrující projekt: Podniková síť',
-      hours: '3 h',
-      subtitle: 'Malá firma od A do Z: Server s DHCP, DNS a doménou, klient, dvě oddělení a funkční GPO restrikce.',
-      intro: 'Vrchol celého 2. ročníku. Přesně podle vzoru zkoušek na SŠ Horažďovice postavíme kompletní fungující podnikovou infrastrukturu od nuly a ověříme její bezpečnost a funkčnost.',
+      tag: 'AD6',
+      title: 'Závěrečný integrující projekt administrace stanice',
+      hours: '2 h',
+      subtitle: 'Komplexní konfigurace stanice: síť, sdílení, zálohování, doména, GPO restrikce a obhajoba.',
+      intro: 'Vrchol celého 2. ročníku. Postavíme a nakonfigurujeme kompletní klientskou stanici Windows 11 v podnikovém prostředí, integrujeme bezpečnostní a zálohovací mechanismy a své řešení obhájíme.',
       topics: [
-        'Zadání komplexní infrastruktury: fiktivní firma „TechCorp s.r.o.“ s ředitelstvím a obchodem',
-        'Krok 1: Serverové služby – statická IP, aktivní DHCP pro stanice, funkční DNS zóna',
-        'Krok 2: Doména Active Directory – řadič domény, vytvoření OU struktury, založení uživatelů a skupin',
-        'Krok 3: Sdílená data – zřízení oddělených síťových složek pro Vedení a Obchod s přesnými právy',
-        'Krok 4: Skupinové politiky (GPO) – zákaz USB disků a automatické namapování disku Z: pro příslušné oddělení',
-        'Krok 5: Klientská stanice – připojení klienta přes DHCP a DNS do domény, ověření přihlášení a funkčnosti omezení'
+        'Zadání komplexní konfigurace: firemní stanice v podnikové síti',
+        'Krok 1: Klientská stanice a síť – ověření adresace a konektivity',
+        'Krok 2: Připojení do domény – autentizace a profil uživatele',
+        'Krok 3: Sdílená data – zřízení a připojení síťových disků SMB s přesnými právy',
+        'Krok 4: Skupinové politiky (GPO) – ověření restrikcí USB disků a aplikovaných pravidel',
+        'Krok 5: Zálohování a bezpečnost – kontrola šifrování, firewallu a zálohovacího skriptu'
       ],
       practice: [
-        'Praktický laboratorní projekt: Samostatné zprovoznění celé infrastruktury ve dvojicích ve virtuálním prostředí',
+        'Praktický laboratorní projekt: Samostatné zprovoznění a zabezpečení stanice ve virtuálním prostředí',
         'Akceptační test: Učitel provede auditní kontrolu (login uživatele, ověření práv na složku, pokus o vložení USB, výpis gpresult)'
       ],
-      builds: 'Syntéza všech témat OSS 2: Zálohování (B1-B5), Bezpečnost (BZ1-BZ9), Pokročilá správa (PK1-PK5), Služby (SL1-SL5) a AD (AD1-AD6).'
+      builds: 'Syntéza všech témat OSS 2: Zálohování (Blok 1), Bezpečnost (Blok 2), PowerShell (Blok 3) a Síťové sdílení a doména (Blok 4).'
     }
   ]
 };
@@ -495,6 +450,5 @@ export const OSS2_AD: OutlineGroup = {
 export const OSS2_GROUPS: OutlineGroup[] = [
   OSS2_BEZPECNOST,
   OSS2_POKROCILA,
-  OSS2_SLUZBY,
   OSS2_AD
 ];

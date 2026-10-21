@@ -591,3 +591,54 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Vytvořena hlavní stránka rozcestníku `app/.../operacni-systemy-1/projekt/page.tsx` a 4 odpovídající podstránky.
     - Karta byla zařazena do kurikula školy v `defaultSchool.ts` a lekce se automaticky propisují do centrálního registru `registry/lessons.ts`.
     - Tím má 1. ročník OSS 1 kompletní 100% zrcadlové pokrytí všech 10 bloků ŠVP a 66 hodin výuky na webu.
+15. **Harmonizace webového rozcestníku a témat OSS 2 s 4 schválenými bloky ŠVP (66 h):**
+    - **Zachování kapitol:** Kapitoly *Zálohování* (`zalohovani/*`, B1–B5) a *Bezpečnost* (`bezpecnost/*`, BZ1–BZ9) byly ponechány beze změny v plném rozsahu.
+    - **Odstranění nepoužitých kapitol:** Smazány zastaralé serverové kapitoly:
+      - `app/specializovana/operacni-systemy-2/sluzby/iis/` (webový server IIS – přesunuto na Linux v OSS 3).
+      - `app/specializovana/operacni-systemy-2/sluzby/sql/` (databázový server MS SQL Server – přesunuto na Linux v OSS 3).
+      - `app/specializovana/operacni-systemy-2/active-directory/dns-a-radic/` (instalace/povýšení Windows Serveru na řadič domény DC).
+    - **Sjednocení rozcestníku předmětu na 4 karty:** Předmět OSS 2 má na webu (`defaultSchool.ts`) přesně 4 karty odpovídající 4 blokům ŠVP InspIS:
+      1. *Zálohování dat* (10 h, `/zalohovani`)
+      2. *Bezpečnost 1* (20 h, `/bezpecnost`)
+      3. *Systémové služby a skriptování v PowerShellu* (18 h, `/pokrocila-konfigurace` – MMC 4 h, PowerShell základy a roury 4 h, skripty .ps1 a ExecutionPolicy 4 h, registr 3 h, Prohlížeč událostí a audit 3 h)
+      4. *Síťové sdílení a centrální správa v doméně* (18 h, `/active-directory` – SMB sdílení složek a efektivní práva 4 h, vzdálená správa RDP 2 h, koncept podnikové domény 2 h, klientská stanice v doméně a profily 4 h, skupinové politiky GPO 4 h, závěrečný integrující projekt administrace stanice 2 h)
+    - **Synchronizace tematického plánu:** V `registry/curriculum/thematicPlans.ts` i `app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx` jsou rozepsány přesně tyto 4 bloky v součtu 66 hodin.
+    - Všechny statické stránky (297 rout) se úspěšně překládají v produkčním buildu.
+
+16. **Integrace Registru a Žurnálu událostí do Bloku 2 (Bezpečnost) a vyčištění PowerShellu (OSS 2):**
+    - **Začlenění do Bezpečnosti:** V souladu s didaktikou a oficiálním ŠVP InspIS byla témata *Systémový registr a persistence škodlivého kódu* (BZ3) a *Systémový žurnál událostí a bezpečnostní audit* (BZ4) začleněna přímo do Bloku 2: Bezpečnost koncových zařízení, audit a forenzní analýza (`/bezpecnost/`).
+    - **10 karet Bloku 2 (20 h):** Blok 2 na webu i v tematickém plánu nyní 1:1 mapuje 10 podtémat (10 × 2 h = 20 h):
+      - BZ1: *Typologie malwaru a principy nákazy* (`/bezpecnost/malware`) – 2 h
+      - BZ2: *Forenzní analýza procesů a certifikáty Authenticode* (`/bezpecnost/procesy-a-certifikaty`) – 2 h
+      - BZ3: *Systémový registr a persistence škodlivého kódu* (`/bezpecnost/registr`) – 2 h
+      - BZ4: *Systémový žurnál událostí a bezpečnostní audit* (`/bezpecnost/udalosti`) – 2 h
+      - BZ5: *Izolované testovací prostředí (Sandbox) a antivirus* (`/bezpecnost/izolace`) – 2 h
+      - BZ6: *Paketový firewall na koncovém zařízení* (`/bezpecnost/firewall`) – 2 h
+      - BZ7: *Diskové šifrování BitLocker a TPM čip* (`/bezpecnost/sifrovani`) – 2 h
+      - BZ8: *Správa systémových aktualizací a zranitelnosti (0-day)* (`/bezpecnost/ucty`) – 2 h
+      - BZ9: *Sociální inženýrství, phishing a ochrana identity* (`/bezpecnost/sit-hesla`) – 2 h
+      - BZ10: *Vyšetřování bezpečnostního incidentu (Mini-CTF)* (`/bezpecnost/ctf`) – 2 h
+    - **5 karet Bloku 3 (18 h):** Blok 3 (`/pokrocila-konfigurace/`) byl uvolněn od klikání v GUI a soustředí se čistě na služby Windows, konzoli MMC a PowerShell:
+      - PK1: *Systémové služby Windows na pozadí a jejich životní cyklus* (`/pokrocila-konfigurace/sluzby`) – 4 h
+      - PK2: *Konzole správce (MMC) a centrální správa* (`/pokrocila-konfigurace/mmc`) – 4 h
+      - PK3: *PowerShell: Objektový shell, syntaxe cmdletů a roury* (`/pokrocila-konfigurace/powershell`) – 4 h
+      - PK4: *Administrační skriptování v PowerShellu (.ps1)* (`/pokrocila-konfigurace/powershell-sprava`) – 4 h
+      - PK5: *Automatizovaný sběr dat a generování stavových reportů* (`/pokrocila-konfigurace/reporty`) – 2 h
+    - **Odstranění osiřelých rout:** Z `app/.../operacni-systemy-2/` byly smazány osiřelé adresáře `bezpecnost/defender`, `pokrocila-konfigurace/registry`, `pokrocila-konfigurace/udalosti`, `pokrocila-konfigurace/ntfs`, `pokrocila-konfigurace/zasady`, `active-directory/sdileni-a-prava` a `active-directory/uzivatele-skupiny`.
+    - **Synchronizace plánů:** Sjednoceno v `thematicPlans.ts`, `PLAN_OSS2` v `app/.../tematicky-plan/page.tsx`, `oss2Outlines.ts` a `defaultSchool.ts`.
+
+17. **Harmonizace kurikula a struktury stránek pro Operační systémy 3 (OSS 3):**
+    - **Sjednocení 5 kapitol na webu s ŠVP InspIS a Tematickým plánem (66 h):**
+      - **Kapitola 1: Linux: Instalace a správa** (`/linux`, 16 h) – 8 podtémat po 2 h: `instalace` (LX1), `terminal` (LX2), `prava` (LX3), `text-a-roury` (LX4), `disky` (LX5 – oddíly, ext4 a `/etc/fstab`), `procesy` (LX6), `balicky` (LX7), `sluzby-a-logy` (LX8).
+      - **Kapitola 2: Linux: Sítě, služby a Bash** (`/sluzby`, 16 h) – 8 podtémat po 2 h: `sit-a-firewall` (LX9), `ssh` (LX10), `apache` (LX11), `https` (LX12 – TLS certifikáty a Certbot), `samba` (LX13), `bash-zaklady` (LX14), `bash-skripty` (LX15), `cron` (LX16 – přesunut z bloku 1).
+      - **Kapitola 3: Git a verzování kódu** (`/git`, 8 h) – 4 podtémata po 2 h: `principy` (GT1), `zakladni-cyklus` (GT2), `vetve` (GT3), `github` (GT4).
+      - **Kapitola 4: Kybernetická bezpečnost** (`/kyberbezpecnost`, 12 h) – 6 podtémat po 2 h: `pravo-a-utok` (KB1), `osint-nmap` (KB2), `wireshark` (KB3), `hashe-a-soleni` (KB4 – ukládání hesel a sůl), `slovnikove-utoky` (KB5 – slovníkové útoky a RockYou), `incident-ctf` (KB6).
+      - **Kapitola 5: Týmový projekt a agilní řízení** (`/tymova-spoluprace`, 10 h) – 3 podtémata: `kanban` (TM1, 2 h), `projekt` (TM2, 6 h), `obhajoba` (TM3, 2 h).
+    - **Odstranění osiřelých a duplicitních složek:** Z adresářů OSS 3 byly smazány zastaralé složky `linux/sit-a-ssh`, `linux/uvod`, `linux/procesy-a-sluzby`, `linux/logy-a-cron`, `sluzby/bash-automatizace`, `sluzby/proverka`, `sluzby/sit-a-ssh`, `kyberbezpecnost/ad-utoky`, `kyberbezpecnost/ctf`, `kyberbezpecnost/utocnik-a-pravo`, `kyberbezpecnost/web`, `kyberbezpecnost/zranitelnosti`, `tymova-spoluprace/harmonogram` a `tymova-spoluprace/komunikace`.
+    - **Synchronizace centrálního registru:** V `thematicPlans.ts` byly bloky pro `ops3` sjednoceny na 5 bloků a opraveny veškeré routy tak, aby ukazovaly na platné funkční URL.
+
+18. **Audit a vyčištění znalostní databáze pro OSS 2 a OSS 3 (Zákaz starých serverových údajů):**
+    - Proveden důkladný audit všech znalostních dokumentů (`doc/curriculum/HORAZDOVICE_SVP_OS.md`, `doc/plan.md`) a odstraněny veškeré zastaralé zmínky o rolích Windows Serveru (instalace DC, povýšení domény, IIS, MS SQL, vzdálený PowerShell Remoting, RSAT a teoretické AGDLP/LSDOU).
+    - Tyto dokumenty byly synchronizovány s reálným stavem aplikace: OSS 2 je striktně koncipován jako pokročilá administrace klientských stanic Windows 11 Pro, endpoint bezpečnost a uplatňování doménových politik (GPO na klientovi).
+    - Znalostní báze je nyní 100% konsistentní napříč všemi soubory.
+

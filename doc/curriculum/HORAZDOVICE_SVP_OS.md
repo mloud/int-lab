@@ -94,7 +94,7 @@ Kritéria hodnocení vychází z pravidel pro hodnocení výsledků vzděláván
 ---
 
 ### 3. V čem je naše kurikulum v IntLabu modernější a hlubší:
-1. **Plynulost výuky (žádná roční pauza):** Horažďovice ve 2. ročníku OS vůbec neučí. Naši žáci neztrácejí kontakt se správou systémů a plynule navazují z 1. ročníku (klientská stanice) na 2. ročník (podnikový Windows Server, Active Directory a bezpečnost).
+1. **Plynulost výuky (žádná roční pauza):** Horažďovice ve 2. ročníku OS vůbec neučí. Naši žáci neztrácejí kontakt se správou systémů a plynule navazují z 1. ročníku (klientská stanice a hardware) na 2. ročník (pokročilá administrace Windows 11 Pro, bezpečnost koncových zařízení, zálohování a uplatnění doménových politik).
 2. **Hloubková kybernetická bezpečnost:** V IntLabu máme ucelený forenzní blok (Sysinternals, digitální certifikáty Authenticode, EICAR test, BitLocker s hardwarovým čipem TPM 2.0 a reakci na incidenty).
-3. **Objektový PowerShell a Active Directory:** V IntLabu se PowerShell vyučuje systematicky od základních rour objektů po automatizační skripty, podpořený doménovou infrastrukturou AD DS a Skupinovými politikami (GPO).
+3. **Objektový PowerShell, registr a uplatnění GPO:** V IntLabu se PowerShell vyučuje systematicky od základních rour objektů po automatizační skripty a stavové reporty, žáci provádějí audit systémového registru i žurnálu událostí a učí se uplatňovat centrální bezpečnostní restrikce (GPO) na klientské stanici.
 4. **Interaktivní didaktické zázemí:** Žáci mají k dispozici živé simulátory (FAT tabulka, procesy, střídání procesů, správa certifikátů) a elektronické pracovní listy s exportem protokolů do Wordu.

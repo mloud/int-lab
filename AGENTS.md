@@ -80,12 +80,14 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       - Jde-li o přímou lekci: použij šablonu obsahu (`FsChapterShell`, `WorksheetLayout` nebo vlastní interaktivní komponentu).
     - **Krok 4 (Registry):** Zapiš lekci do `registry/lessons.ts`.
 
-12. **Správa Historie a Plánu Učiva (OSS 1, OSS 2, PRG 1, PRG 2 Tracking):**
-    - Vždy před zahájením práce na odborných předmětech **OSS 1, OSS 2, PRG 1 (Programování 1) a PRG 2 (Programování 2)** nebo před přidáním nového tématu **MUSÍŠ nejprve zkontrolovat**:
+12. **Správa Historie a Plánu Učiva (OSS 1, OSS 2, OSS 3, PRG 1, PRG 2 Tracking):**
+    - Každý odborný předmět má svůj **vlastní dedikovaný plán** ve složce `doc/plans/` (`PLAN_OSS1.md`, `PLAN_OSS2.md`, `PLAN_OSS3.md`, `PLAN_PRG1.md`, `PLAN_PRG2.md`, `PLAN_ROB.md`, `PLAN_REFACTORING.md`).
+    - Soubor `doc/plan.md` slouží jako **aktivní plánovací tabule**, která se VŽDY přepne na ten předmět, na kterém se právě pracuje.
+    - Vždy před zahájením práce na odborných předmětech **MUSÍŠ nejprve zkontrolovat**:
       - `doc/history.md` – co už je hotové, jaká je struktura existujících kapitol, jaké pojmy žáci znají a jaké didaktické volby byly učiněny.
-      - `doc/plan.md` – na čem se právě pracuje a jaká je plánovaná návaznost.
+      - `doc/plan.md` a příslušný soubor v `doc/plans/` – na čem se právě pracuje a jaká je plánovaná návaznost.
     - ZAJISTI, aby každé nové téma logicky a didakticky navazovalo na předchozí probíranou látku (žádné izolované "skoky" v pojmech).
-    - Po dokončení práce nebo změně v kurikulu **VŽDY aktualizuj** záznam v `doc/history.md` a uprav stav v `doc/plan.md`.
+    - Při přechodu na jiný předmět automaticky přepni `doc/plan.md` na daný předmět. Po dokončení práce nebo změně v kurikulu **VŽDY aktualizuj** záznam v `doc/history.md` a uprav stav v dedikovaném plánu v `doc/plans/` i v `doc/plan.md`.
 
 13. **Modulární architektura a zákaz monolitického kódu (Modular Code Architecture):**
     - **Žádné monolity:** VŽDY se vyvaruj psaní obřích monolitických souborů (typicky nad 400–500 řádků).
