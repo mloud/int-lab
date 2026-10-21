@@ -669,3 +669,14 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Možnost resetu dat do výchozího stavu.
     - **Architektura:** Striktně dodrženo Pravidlo 13 (žádný monolit), modulární struktura v `components/informatika/informacni-systemy/` a `gradebook/`.
 
+21. **Vytvoření hodnocené práce (testu) Výpočet kapacity záloh pro OSS 2 (Blok 1):**
+    - **Komponenta:** `BackupCapacityTestWorksheet.tsx` (`components/specializovana/operacni-systemy-2/zalohovani/BackupCapacityTestWorksheet.tsx`) postavená na šabloně `TestWorksheetShell`.
+    - **Routa:** `/specializovana/operacni-systemy-2/zalohovani/test`.
+    - **Přístupové PINy:** Studentský PIN `ZAK2026`, Učitelský PIN `OS2026`.
+    - **Obsah zadání (A4 tiskový formát s řešením):**
+      - Závazná pravidla a předpoklady (denní večerní zálohování, pondělní plná záloha, souborová úroveň, nepřepisování archivů).
+      - Úloha 1: Pouze vznik nových souborů (tabulka výpočtu denních velikostí pro plnou, inkrementální a diferenciální zálohu + celkový objem na disku).
+      - Úloha 2: Vznik nových souborů a úprava stávajících (úprava velikosti databáze, nový PDF report, čtvrtek beze změn s nulovým přírůstkem pro inkrementální zálohu).
+      - V učitelském režimu kompletní vzorové hodnoty zvýrazněné červeně s podrobným vysvětlením logiky výpočtu.
+    - **Registrace:** Zařazeno jako 6. karta rozcestníku Bloku 1 (`/specializovana/operacni-systemy-2/zalohovani`) s příznakem `isTest: true` a štítkem `#TEST` v `defaultSchool.ts` a zaregistrováno v `lessons.ts`.
+

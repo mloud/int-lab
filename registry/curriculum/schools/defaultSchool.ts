@@ -769,7 +769,8 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     { id: 'bak-manual', title: 'Manuální záloha', description: 'Kopírování a struktura složek', tag: 'b2', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/manualni' },
                     { id: 'bak-system', title: 'Systémové nástroje', description: 'Zálohování ve Windows a historie souborů', tag: 'b3', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/system' },
                     { id: 'bak-cloud', title: 'Cloudové zálohy', description: 'Synchronizace a vzdálená úložiště', tag: 'b4', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/cloud' },
-                    { id: 'bak-cobian', title: 'Cobian Reflector', description: 'Konfigurace automatizovaného zálohování', tag: 'b5', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/cobian' }
+                    { id: 'bak-cobian', title: 'Cobian Reflector', description: 'Konfigurace automatizovaného zálohování', tag: 'b5', icon: 'HardDrive', gradient: 'from-blue-600 to-cyan-600', route: '/specializovana/operacni-systemy-2/zalohovani/cobian' },
+                    { id: 'bak-test', title: 'Test: Výpočet kapacity záloh', description: 'Písemná práce – porovnání nároků na diskový prostor u plné, inkrementální a diferenciální zálohy.', tag: 'TEST', icon: 'FileSpreadsheet', gradient: 'from-rose-500 to-red-600', route: '/specializovana/operacni-systemy-2/zalohovani/test', isTest: true }
                   ]
                 },
                 {

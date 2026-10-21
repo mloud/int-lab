@@ -2820,6 +2820,41 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy-2/zalohovani/BackupCloudChapter')
   },
   {
+    id: 'os2-zalohovani-test',
+    title: 'Hodnocená práce: Výpočet kapacity záloh',
+    shortCode: '#bk-test',
+    description: 'Písemná práce – porovnání nároků na diskový prostor u plné, inkrementální a diferenciální zálohy.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'worksheet',
+    defaultPath: '/specializovana/operacni-systemy-2/zalohovani/test',
+    iconName: 'FileSpreadsheet',
+    keywords: ['test', 'písemka', 'zálohování', 'kapacita', 'inkrementální', 'diferenciální'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [2],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 2,
+      gradeLabel: '2. Ročník',
+      subject: 'Operační systémy 2',
+      thematicBlock: 'Zálohování a obnova dat',
+      chapter: 'Zálohování a obnova dat',
+      subchapter: '6. Hodnocená práce: Výpočet kapacity záloh',
+      lesson: 'Hodnocená práce: Výpočet kapacity záloh'
+    },
+    tabs: {
+      hasTheory: false,
+      hasSimulation: false,
+      hasWorksheet: true,
+      worksheetType: 'test'
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy-2/zalohovani/BackupCapacityTestWorksheet')
+  },
+  {
     id: 'os2-bezpecnost-malware',
     title: 'Úvod do malwaru a principy nákazy',
     shortCode: '#bz1',

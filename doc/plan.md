@@ -61,6 +61,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 * [x] **B3 Systémové nástroje ve Windows a stínové kopie VSS** (`/zalohovani/system`, 2 h)
 * [x] **B4 Cloudová synchronizace vs. nezávislá neměnná záloha** (`/zalohovani/cloud`, 2 h)
 * [x] **B5 Automatizované zálohování službou (Cobian Reflector)** (`/zalohovani/cobian`, 2 h)
+* [x] **Hodnocená práce: Výpočet kapacity záloh** (`/zalohovani/test`, PINy: `ZAK2026` / `OS2026`)
 
 ### Blok 2: Bezpečnost koncových zařízení, audit a forenzní analýza (20 h)
 * [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`, 2 h) – *Plně interaktivní modul (`malware/`)*
