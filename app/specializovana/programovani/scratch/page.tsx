@@ -1,22 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CategoryLayout from '@/components/layout/CategoryLayout';
 import ScratchSequenceChapter from '@/components/specializovana/programovani/scratch/ScratchSequenceChapter';
 import ScratchVariablesChapter from '@/components/specializovana/programovani/scratch/ScratchVariablesChapter';
 import ScratchVariablesLoopsChapter from '@/components/specializovana/programovani/scratch/ScratchVariablesLoopsChapter';
 import ScratchSubprogramsChapter from '@/components/specializovana/programovani/scratch/ScratchSubprogramsChapter';
 import ScratchConditionsChapter from '@/components/specializovana/programovani/scratch/ScratchConditionsChapter';
+import ScratchListsChapter from '@/components/specializovana/programovani/scratch/ScratchListsChapter';
 import { useRouter } from 'next/navigation';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, ListOrdered } from 'lucide-react';
 import TechnicalCard from '@/components/ui/TechnicalCard';
 
 const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => void }) => {
   const router = useRouter();
 
   return (
-    <div className="max-w-4xl w-full text-center animate-in fade-in duration-500 mx-auto">
-      <div className="bg-white/80 backdrop-blur-xl p-10 sm:p-16 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center">
+    <div className="max-w-5xl w-full text-center animate-in fade-in duration-500 mx-auto">
+      <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-14 rounded-[4rem] shadow-2xl border-4 border-white flex flex-col items-center">
         <h1 className="text-4xl sm:text-6xl font-black text-amber-600 mb-4 tracking-tighter uppercase">
           Scratch - Úvod do programování
         </h1>
@@ -79,11 +80,22 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
             onClick={() => onSelectChapter(5)}
             accentCorner={false}
           />
+
+          <TechnicalCard
+            tag="scr6"
+            title="Lekce 6: Seznamy"
+            description="Seznamy a pole dat. Inventář hráče, nákupní lístek, čtení cyklem a žebříček skóre."
+            icon={ListOrdered}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(6)}
+            accentCorner={false}
+          />
         </div>
 
         <button 
           onClick={() => router.push('/specializovana/programovani')}
-          className="mt-12 px-6 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-sm"
+          className="mt-12 px-6 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-sm transition-all"
         >
           Zpět do menu Programování
         </button>
@@ -95,6 +107,19 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
 export default function ScratchPage() {
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const ch = params.get('lekce');
+      if (ch) {
+        const num = parseInt(ch, 10);
+        if (num >= 1 && num <= 6) {
+          setActiveChapter(num);
+        }
+      }
+    }
+  }, []);
 
   if (activeChapter === 1) {
     return <ScratchSequenceChapter onBack={() => setActiveChapter(null)} />;
@@ -108,8 +133,11 @@ export default function ScratchPage() {
   if (activeChapter === 4) {
     return <ScratchSubprogramsChapter onBack={() => setActiveChapter(null)} />;
   }
-  if (activeChapter === 5 || activeChapter === 6) {
+  if (activeChapter === 5) {
     return <ScratchConditionsChapter onBack={() => setActiveChapter(null)} />;
+  }
+  if (activeChapter === 6) {
+    return <ScratchListsChapter onBack={() => setActiveChapter(null)} />;
   }
 
   return (

@@ -3662,5 +3662,39 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     },
     componentLoader: () => import('@/components/informatika/compression/HuffmanGame')
   },
+  {
+    id: 'scratch-seznamy',
+    title: 'Seznamy a práce s daty ve Scratchi (Lekce 6)',
+    shortCode: '#scr6',
+    description: 'Datové seznamy a pole: inventář hráče, dynamické vkládání, procházení cyklem a tabulka nejvyšších skóre.',
+    domain: 'informatika-specializovana',
+    category: 'programovani-scratch',
+    contentType: 'game',
+    defaultPath: '/specializovana/programovani/scratch?lekce=6',
+    iconName: 'ListOrdered',
+    keywords: ['scratch', 'seznamy', 'pole', 'list', 'inventář', 'data', 'top skóre'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Programování a hry 1',
+      thematicBlock: 'Vizuální blokové programování (Scratch)',
+      chapter: 'Scratch projekty',
+      subchapter: 'Lekce 6: Seznamy',
+      lesson: 'Seznamy a práce s daty'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/programovani/scratch/ScratchListsChapter')
+  },
   ...OUTLINE_LESSONS
 ];

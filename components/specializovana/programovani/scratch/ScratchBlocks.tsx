@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ScratchCategory = 'motion' | 'looks' | 'events' | 'control' | 'pen' | 'operators' | 'variables' | 'custom' | 'sensing' | 'empty';
+export type ScratchCategory = 'motion' | 'looks' | 'events' | 'control' | 'pen' | 'operators' | 'variables' | 'custom' | 'sensing' | 'empty' | 'lists';
 
 interface ScratchBlockProps {
   category: ScratchCategory;
@@ -15,6 +15,7 @@ const categoryColors: Record<ScratchCategory, string> = {
   pen: 'bg-[#0FBD8C] border-[#0B8E69]',
   operators: 'bg-[#59C059] border-[#389438]',
   variables: 'bg-[#FF8C1A] border-[#DB6E00]',
+  lists: 'bg-[#FF661A] border-[#E64D00]',
   custom: 'bg-[#FF6680] border-[#FF3355]',
   sensing: 'bg-[#5CB1D6] border-[#2E8EB8]',
   empty: 'bg-black/10 border-black/20'
@@ -48,7 +49,7 @@ export const ScratchDistanceBlock = ({ target = "ukazateli myši" }: { target?: 
   );
 };
 
-export const ScratchInput = ({ children, type = 'number' }: { children: React.ReactNode, type?: 'number' | 'text' | 'dropdown' | 'empty' }) => {
+export const ScratchInput = ({ children, type = 'number', className = '' }: { children?: React.ReactNode, type?: 'number' | 'text' | 'dropdown' | 'empty', className?: string }) => {
   let roundedClass = 'rounded-full'; // default pro čísla (kulatý)
   if (type === 'text') roundedClass = 'rounded'; // obdélník pro text
   if (type === 'dropdown') roundedClass = 'rounded-md pr-4 relative'; // rozbalovací šipka
@@ -60,7 +61,7 @@ export const ScratchInput = ({ children, type = 'number' }: { children: React.Re
   const borderClass = type === 'empty' ? '' : 'border border-black/20';
 
   return (
-    <span className={`inline-flex items-center bg-white text-slate-800 mx-1 ${roundedClass} text-sm font-mono font-bold ${paddingClass} justify-center shadow-inner ${borderClass}`}>
+    <span className={`inline-flex items-center bg-white text-slate-800 mx-1 ${roundedClass} text-sm font-mono font-bold ${paddingClass} justify-center shadow-inner ${borderClass} ${className}`}>
       {children}
       {type === 'dropdown' && (
         <span className="absolute right-1 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[4px] border-transparent border-t-slate-600"></span>
@@ -116,11 +117,11 @@ export const ScratchCBlock = ({ category, children, topLabel }: ScratchBlockProp
   );
 };
 
-export const ScratchSpeechBubble = ({ children }: { children: React.ReactNode }) => {
+export const ScratchSpeechBubble = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
   return (
-    <div className="relative inline-flex flex-col items-start mb-2 ml-4">
-      <div className="relative z-10 bg-white border-[3px] border-slate-300 rounded-[2.5rem] px-8 py-3 shadow-sm min-w-[120px] flex items-center justify-center">
-        <span className="text-2xl text-slate-600 font-sans">{children}</span>
+    <div className={`relative inline-flex flex-col items-start mb-2 ml-4 ${className}`}>
+      <div className="relative z-10 bg-white border-[3px] border-slate-300 rounded-[2.5rem] px-6 py-2 shadow-sm min-w-[120px] flex items-center justify-center">
+        <span className="text-base sm:text-lg font-bold text-slate-700 font-sans">{children}</span>
       </div>
       <svg className="absolute -bottom-[12px] left-8 w-8 h-5 z-0" viewBox="0 0 32 20" fill="none">
         <path d="M0 0 L12 20 L32 0" fill="white" stroke="#cbd5e1" strokeWidth="3" strokeLinejoin="round" />

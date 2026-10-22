@@ -16,12 +16,12 @@ Rozvinout algoritmické a logické myšlení studentů prostřednictvím vizuál
 
 | Blok | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|---|:---:|:---:|---|
-| **1** | **Algoritmizace a základy Scratche** | 6 h | ✅ Hotovo (prostředí, události, souřadnice) | `/programovani/scratch` (Lekce 1) |
-| **2** | **Pohyb, sekvence a animace** | 8 h | ✅ Hotovo (ovládání klávesnicí, kostýmy) | `/programovani/scratch` (Lekce 2) |
-| **3** | **Proměnné a herní mechaniky** | 10 h | ✅ Hotovo (skóre, životy, počítadla, časovač) | `/programovani/scratch` (Lekce 3) |
-| **4** | **Cykly a opakování** | 8 h | ✅ Hotovo (opakuj N-krát, opakuj stále, vnořené cykly) | `/programovani/scratch` (Lekce 4) |
-| **5** | **Podmínky a logické operátory** | 12 h | ✅ Hotovo (14 gradovaných úloh vč. Validátoru hesla a Bankomatu) | `/programovani/scratch` (Lekce 5) |
-| **6** | **Podprogramy a vlastní bloky** | 8 h | ✅ Hotovo (definice vlastního bloku, parametry) | `/programovani/scratch` (Lekce 6) |
+| **1** | **Algoritmizace a základy Scratche** | 6 h | ✅ Hotovo (prostředí, události, souřadnice) | `/programovani/scratch` (Lekce 1: Sekvence) |
+| **2** | **Proměnné a operátory** | 8 h | ✅ Hotovo (skóre, životy, ukládání a modifikace) | `/programovani/scratch` (Lekce 2: Proměnné) |
+| **3** | **Cykly a opakování** | 8 h | ✅ Hotovo (opakuj N-krát, proměnná cyklu, geometrie) | `/programovani/scratch` (Lekce 3: Cykly) |
+| **4** | **Podprogramy a vlastní bloky** | 8 h | ✅ Hotovo (definice vlastního bloku, parametry) | `/programovani/scratch` (Lekce 4: Podprogramy) |
+| **5** | **Podmínky a logické operátory** | 12 h | ✅ Hotovo (14 úloh vč. Validátoru hesla a Bankomatu) | `/programovani/scratch` (Lekce 5: Podmínky) |
+| **6** | **Seznamy a práce s daty** | 10 h | ✅ Hotovo (10 úloh vč. deduplikace, vlastních bloků a TOP 3 skóre) | `/programovani/scratch` (Lekce 6: Seznamy) |
 | **7** | **Syntetický projekt: Raycaster 3D Engine** | 14 h | ✅ Hotovo (vysílání paprsků, DDA algoritmus, 3D render) | `/programovani/projekty/raycaster` |
 | **Σ** | **Celkem** | **66 h** | **Plně funkční** | |
 

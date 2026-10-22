@@ -678,5 +678,30 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Úloha 1: Pouze vznik nových souborů (tabulka výpočtu denních velikostí pro plnou, inkrementální a diferenciální zálohu + celkový objem na disku).
       - Úloha 2: Vznik nových souborů a úprava stávajících (úprava velikosti databáze, nový PDF report, čtvrtek beze změn s nulovým přírůstkem pro inkrementální zálohu).
       - V učitelském režimu kompletní vzorové hodnoty zvýrazněné červeně s podrobným vysvětlením logiky výpočtu.
-    - **Registrace:** Zařazeno jako 6. karta rozcestníku Bloku 1 (`/specializovana/operacni-systemy-2/zalohovani`) s příznakem `isTest: true` a štítkem `#TEST` v `defaultSchool.ts` a zaregistrováno v `lessons.ts`.
+22. **Přepnutí kontextu na předmět Programování a vývoj her 1 (PVH 1 / PRG 1):**
+    - Kontext aktivního vývoje byl přepnut na 1. ročník oboru IT – **Programování a vývoj her 1 (PVH 1 / PRG 1)**.
+    - Aktivní plánovací tabule [`doc/plan.md`](./plan.md) byla synchronizována s dedikovaným plánem [`doc/plans/PLAN_PRG1.md`](./plans/PLAN_PRG1.md) a kurikulárním profilem [`doc/curriculum/PRG1.md`](./curriculum/PRG1.md).
+    - Zkontrolován stav témat: 5 modulů ve Scratchi (Sekvence, Proměnné, Cykly, Podprogramy, Podmínky se 14 úlohami vč. Bankomatu a Validátoru) a syntetický projekt 3D Raycaster Engine (Wolfenstein 3D).
+
+23. **Vytvoření kapitoly Seznamy (Lekce 6) v předmětu PVH 1 (Scratch):**
+    - **Komponenta:** `ScratchListsChapter.tsx` (`components/specializovana/programovani/scratch/ScratchListsChapter.tsx`).
+    - **Routa & Navigace:** Zařazeno v rozcestníku Scratche (`/specializovana/programovani/scratch`) na 6. pozici za Podmínky (tag `#scr6`, ikona `ListOrdered`, `onSelectChapter(6)`). Přidána podpora přímého otevření přes query parametr `?lekce=6`.
+    - **UI & Layout:** Striktní dodržení Pravidla 6 (`FsChapterShell`, `accentColor="border-amber-500"`, metodický přepínač s PINem `1234` / `OS2026`, úkoly v kontejneru `flex flex-col gap-8`).
+    - **Teorie a didaktická struktura:**
+      - Rozdíl mezi proměnnou (jedna krabička) a seznamem/polem (pořadač s indexovanými přihrádkami 1..N).
+      - Přehled bloků: akční příkazy (`přidej`, `smaž`, `smaž všechno`, `vlož na pozici`), reportéry (`položka`, `délka`, `pozice`) a predikát `obsahuje?`.
+    - **8 gradovaných úloh:**
+      - Úkol 1: Nákupní seznam a inicializace (`NakupniSeznam.sb3`) – význam `smaž všechno z [nákup]` před startem.
+      - Úkol 2: Interaktivní sběr položek do batohu (`BatohHrace.sb3`) – propojení `zeptej se` s ukládáním do seznamu v cyklu.
+      - Úkol 3: Použití předmětu a posouvání indexů (`InventarLektvaru.sb3`) – mazání položky 1 a automatický posun prvků.
+      - Úkol 4: VIP Vstupní brána (`VipBrana.sb3`) – test přítomnosti položky v seznamu přes `obsahuje?` a větvení `když - tak - jinak`.
+      - Úkol 5: Procházení seznamu cyklem s indexem `i` (`CtenarSeznamu.sb3`) – fundamentální vzor traverzování pole.
+      - Úkol 6: Zábavná věštírna (`Vestirna.sb3`) – dynamická náhoda `od 1 do délka [seznam]`.
+      - Úkol 7: Vrcholový herní projekt – Žebříček TOP 3 nejvyšších skóre (`TopSkore.sb3`) – vkládání na pozici a ořezávání seznamu.
+      - **Úkol 8: Seznamy vlastními bloky (`SeznamyLehkePriklady2.sb3`):** Modulární úloha propojující seznamy s procedurami (*Moje bloky*). Rozdělena do 4 samostatných podprogramů: `Naplň seznam`, `Najdi největší číslo`, `Najdi nejmenší číslo`, `Spocitej prumer` a hlavní orchestrátor pod zelenou vlajkou.
+      - **Úkol 9: Počet výskytů čísla s parametrem (`PocetVyskytu.sb3`):** Vyhledávací a počítací algoritmus s využitím vlastního bloku se vstupním formálním parametrem `tiskni počet výskytů (hledané číslo)`. Žáci porovnávají prvky seznamu s parametrem, inkrementují čítač a kocour výsledek oznámí bublinou (např. *„Pocet vyskytu cisla 3 je 2“*). Ukazuje čisté volání funkce s argumentem z hlavního scénáře bez vedlejších efektů globálních proměnných.
+      - **Úkol 10: Vytvoření unikátního seznamu / Deduplikace (`UnikatniSeznam.sb3`):** Vytvoření množiny unikátních hodnot z původního seznamu `seznam` do `unikatni_seznam`. Rozšíření bloku `Naplň seznam (počet) (max)` o 2 parametry pro garantovaný vznik duplicit (např. 15 prvků s maximem 5), procedurální deduplikace cyklem a testováním `když < ne < [unikatni_seznam] obsahuje (položka (i) z [seznam])? > > tak vlož`. Vizuální diagram převodu přímo v zadání.
+    - **Registrace:** Zaregistrováno v `defaultSchool.ts` (subchapters pro `scratch`), v `registry/lessons.ts` (`id: 'scratch-seznamy'`) a v plánech `PLAN_PRG1.md` i `doc/plan.md`.
+
+
 

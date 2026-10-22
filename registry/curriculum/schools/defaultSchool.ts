@@ -715,14 +715,19 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 {
                   id: 'scratch',
                   title: 'Scratch projekty',
-                  description: 'Vizuální blokové programování, proměnné, podmínky, cykly a tvorba her.',
+                  description: 'Vizuální blokové programování, proměnné, podmínky, cykly, podprogramy a seznamy.',
                   tag: 'scr',
                   icon: 'Code',
                   gradient: 'from-emerald-600 to-teal-600',
                   route: '/specializovana/programovani/scratch',
                   hasSubchapters: true,
                   subchapters: [
-                    { id: 'scr-uvod', title: 'Úvod do Scratche', description: 'Prostředí, postavy a základní bloky', tag: 's1', icon: 'Code', gradient: 'from-emerald-600 to-teal-600', route: '/specializovana/programovani/scratch' }
+                    { id: 'scr-sekvence', title: 'Lekce 1: Sekvence', description: 'Algoritmus a sekvence příkazů pro postavu', tag: 'scr1', icon: 'BookOpen', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=1' },
+                    { id: 'scr-promenne', title: 'Lekce 2: Proměnné', description: 'Základy práce s proměnnými a operátory', tag: 'scr2', icon: 'BookOpen', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=2' },
+                    { id: 'scr-cykly', title: 'Lekce 3: Cykly', description: 'Proměnná v cyklu a kreslení geometrie', tag: 'scr3', icon: 'BookOpen', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=3' },
+                    { id: 'scr-podprogramy', title: 'Lekce 4: Podprogramy', description: 'Vlastní bloky a procedurální dekompozice', tag: 'scr4', icon: 'BookOpen', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=4' },
+                    { id: 'scr-podminky', title: 'Lekce 5: Podmínky', description: 'Podmíněný příkaz (když - tak) a větvení', tag: 'scr5', icon: 'BookOpen', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=5' },
+                    { id: 'scr-seznamy', title: 'Lekce 6: Seznamy', description: 'Seznamy a pole dat, inventář a žebříček skóre', tag: 'scr6', icon: 'ListOrdered', gradient: 'from-amber-500 to-orange-500', route: '/specializovana/programovani/scratch?lekce=6' }
                   ]
                 },
                 {

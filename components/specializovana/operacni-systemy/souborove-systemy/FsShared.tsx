@@ -33,11 +33,11 @@ interface FsChapterShellProps {
   totalChapters?: number;
   title: string;
   highlight?: string;
-  subtitle: string;
+  subtitle?: string;
   tabs?: FsTab[];
   activeTab?: string;
   onTabChange?: (id: string) => void;
-  onBack: () => void;
+  onBack?: () => void;
   children: React.ReactNode;
   icon?: React.ReactNode;
   accentColor?: string;
@@ -50,14 +50,16 @@ export const FsChapterShell: React.FC<FsChapterShellProps> = ({
   return (
     <div className="max-w-6xl w-full min-h-screen p-4 flex flex-col items-center animate-in fade-in duration-500 mx-auto">
       <div className="w-full flex flex-col gap-6 text-left">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-slate-100 uppercase tracking-wider text-xs"
-          >
-            <ArrowLeft className="w-4 h-4" /> Zpět na rozcestník
-          </button>
-        </div>
+        {onBack && (
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl shadow-md transition-all hover:scale-105 active:scale-95 border-2 border-slate-100 uppercase tracking-wider text-xs"
+            >
+              <ArrowLeft className="w-4 h-4" /> Zpět na rozcestník
+            </button>
+          </div>
+        )}
 
         <header className="text-center py-4">
           {chapterNumber !== undefined && (
@@ -69,7 +71,9 @@ export const FsChapterShell: React.FC<FsChapterShellProps> = ({
             {title}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-500">{highlight}</span>
           </h1>
-          <p className="mt-4 text-lg text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">{subtitle}</p>
+          {subtitle && (
+            <p className="mt-4 text-lg text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">{subtitle}</p>
+          )}
         </header>
 
         {tabs && tabs.length > 0 && (
