@@ -327,7 +327,7 @@ const BackupCobianChapter: React.FC<BackupCobianChapterProps> = ({ onBack }) => 
                   currentCumulative = 100 + (simDay * 5);
                   currentSteps = simDay + 1;
                 } else if (cfg.type === 'diff') {
-                  currentCumulative = 100 + Array.from({ length: simDay }).reduce((acc: any, _, j) => acc + ((j + 1) * 5), 0);
+                  currentCumulative = 100 + (Array.from({ length: simDay }).reduce((acc: number, _, j) => acc + ((j + 1) * 5), 0) as number);
                   currentSteps = simDay === 0 ? 1 : 2;
                 }
 

@@ -13,6 +13,7 @@ export interface SubchapterConfig {
   route: string;
   actionLabel?: string;
   orderNumber?: number | string;
+  isTest?: boolean;
 }
 
 export interface PracticeGameConfig {

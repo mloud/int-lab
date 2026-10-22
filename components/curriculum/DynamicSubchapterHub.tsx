@@ -99,6 +99,7 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
                 actionLabel={sub.actionLabel || 'Otevřít kapitolu'}
                 onClick={() => router.push(sub.route)}
                 accentCorner={false}
+                isTest={sub.isTest}
                 orderNumber={sub.orderNumber !== undefined ? sub.orderNumber : (idx + 1)}
               />
             );

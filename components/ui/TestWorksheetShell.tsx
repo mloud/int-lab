@@ -38,9 +38,9 @@ export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin
   };
 
   const handleLock = () => {
-     setIsUnlocked(false);
-     setIsTeacher(false);
-     setShowSolutions(false);
+    setIsUnlocked(false);
+    setIsTeacher(false);
+    setShowSolutions(false);
   };
 
   if (!isUnlocked) {
@@ -69,9 +69,8 @@ export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin
                 setError(false);
               }}
               placeholder="****"
-              className={`w-full text-center text-3xl font-bold tracking-[0.5em] p-4 rounded-2xl border-2 transition-colors ${
-                error ? 'border-red-400 bg-red-50 text-red-600' : 'border-slate-200 focus:border-rose-400 focus:ring-4 focus:ring-rose-100'
-              }`}
+              className={`w-full text-center text-3xl font-bold tracking-[0.5em] p-4 rounded-2xl border-2 transition-colors ${error ? 'border-red-400 bg-red-50 text-red-600' : 'border-slate-200 focus:border-rose-400 focus:ring-4 focus:ring-rose-100'
+                }`}
               autoFocus
             />
             {error && <p className="text-red-500 font-bold text-sm animate-bounce">Nesprávné heslo!</p>}
@@ -170,11 +169,6 @@ export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin
                 <span className="flex-1 border-b border-slate-700" style={{ height: '7mm' }} />
               </div>
             </div>
-          )}
-          {!showSolutions && (
-            <p className="text-[10pt] italic text-slate-700 mt-4">
-              Odpovídejte vlastními slovy a čitelně. U otázek se schématem nakreslete přehledné blokové schéma a popište jej.
-            </p>
           )}
         </header>
 

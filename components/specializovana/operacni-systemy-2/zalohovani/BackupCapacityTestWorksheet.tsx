@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { TestWorksheetShell, Question, Sub } from '@/components/ui/TestWorksheetShell';
+import { TestWorksheetShell, Question, Sub, Answer, Lines } from '@/components/ui/TestWorksheetShell';
 import { Info, CheckCircle2 } from 'lucide-react';
 
 interface BackupCapacityTestWorksheetProps {
@@ -154,9 +154,34 @@ export default function BackupCapacityTestWorksheet({ onBack }: BackupCapacityTe
               </table>
             </div>
 
+            {/* Podúkoly k obnově dat */}
+            <div className="mt-4 space-y-3 print-avoid-break">
+              <div>
+                <p className="text-[11pt]">
+                  <strong>a) Jak budete postupovat při obnově dat (stav ve čtvrtek večer) z inkrementální zálohy?</strong>
+                </p>
+                <Answer
+                  show={showSolutions}
+                  lines={2}
+                  solution="Nejprve obnovíme výchozí plnou zálohu z pondělí. Následně v chronologickém pořadí aplikujeme všechny inkrementální zálohy: úterý ➔ středa ➔ čtvrtek (obnova vyžaduje celou nepřerušenou řadu záloh)."
+                />
+              </div>
+
+              <div>
+                <p className="text-[11pt]">
+                  <strong>b) Jak budete postupovat při obnově dat (stav ve čtvrtek večer) z diferenciální zálohy?</strong>
+                </p>
+                <Answer
+                  show={showSolutions}
+                  lines={2}
+                  solution="Nejprve obnovíme výchozí plnou zálohu z pondělí. Následně obnovíme pouze poslední diferenciální zálohu ze čtvrtka (ta kumuluje všechny změny od pondělí; úterní ani středeční zálohy nejsou k obnově potřeba)."
+                />
+              </div>
+            </div>
+
             {showSolutions && (
-              <div className="mt-2 p-3 bg-rose-50 border border-rose-200 rounded text-[10pt] text-rose-800 leading-snug">
-                <strong>Vysvětlení výpočtu k úloze 1:</strong>
+              <div className="mt-3 p-3 bg-rose-50 border border-rose-200 rounded text-[10pt] text-rose-800 leading-snug">
+                <strong>Vysvětlení výpočtu tabulky k úloze 1:</strong>
                 <ul className="list-disc pl-5 mt-1 space-y-0.5">
                   <li><strong>Plná:</strong> Po=100; Út=(100+200)=300; St=(300+50)=350; Čt=(350+10)=360. Součet všech 4 plných záloh = 1 110 kB.</li>
                   <li><strong>Inkrementální:</strong> Po=100 (plná); Út=200 (nové od Út); St=50 (nové od St); Čt=10 (nové od Čt). Součet = 360 kB.</li>
