@@ -195,16 +195,18 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 - **Routa:** `/specializovana/programovani/scratch`
 - **Konstrukce lekcí:** Všechny kapitoly jsou obaleny v `FsChapterShell` s akcentem `accentColor="border-amber-500"`, metodickým přepínačem s PINem a úkoly `TaskCard` v kontejneru `<div className="flex flex-col gap-8">`.
 - **Kapitoly:**
-  1. **Sekvence a pohyb postav:** Základní příkazy, souřadnice X/Y, krokování a směrování.
+  1. **Sekvence a pohyb postav (Lekce 1):** Základní příkazy, souřadnice X/Y, krokování a směrování.
      - *Komponenta:* `ScratchSequenceChapter.tsx`
-  2. **Proměnné:** Vytvoření proměnné, ukládání skóre, inkrementace, textové zprávy.
+  2. **Proměnné (Lekce 2):** Vytvoření proměnné, ukládání skóre, inkrementace, textové zprávy.
      - *Komponenta:* `ScratchVariablesChapter.tsx`
-  3. **Cykly a proměnné:** Opakuj N-krát, opakuj stále, řízení proměnnou cyklu.
+  3. **Cykly a proměnné (Lekce 3):** Opakuj N-krát, opakuj stále, řízení proměnnou cyklu.
      - *Komponenta:* `ScratchVariablesLoopsChapter.tsx`
-  4. **Podmínky a větvení:** Bloky `když - tak` a `když - tak - jinak`, detekce dotyku barev a kláves.
-     - *Komponenta:* `ScratchConditionsChapter.tsx`
-  5. **Vlastní bloky (Podprogramy):** Tvorba znovupoužitelných bloků, rozklad problému na podúlohy.
+  4. **Vlastní bloky / Podprogramy (Lekce 4):** Tvorba znovupoužitelných bloků, rozklad problému na podúlohy, procedurální dekompozice.
      - *Komponenta:* `ScratchSubprogramsChapter.tsx`
+  5. **Podmínky a větvení (Lekce 5):** Neúplná a úplná podmínka (`když` a `když - jinak`), vnořené větvení, logické spojky (`a`, `nebo`, `ne`), operátor modulo (zbytek po dělení), cyklus `opakuj dokud nenastane`. Všech 14 úloh vybaveno kompletními vizuálními vzorovými blokovými skripty v učitelském režimu (`teacherNote`). V závěrečném projektu Bankomat (ATM) je validace částky rozložena do 3 samostatných diagnostických větví (nedostatek financí, limit transakce, bankovky po 100 Kč) s přesnou chybovou hláškou.
+     - *Komponenta:* `ScratchConditionsChapter.tsx`
+  6. **Seznamy a pole (Lekce 6):** Práce se seznamy (vkládání, mazání položek, indexace, délka, vyhledávání, analýza a filtrace, vlastní bloky s formálními parametry, deduplikace unikátních čísel). Sada 10 úloh s kompletními vizuálními blokovými řešeními pro učitele chráněnými PINem `1234`.
+     - *Komponenta:* `ScratchListsChapter.tsx`
 
 ### Blok 2: Herní retro engine
 - **3D Raycaster hra** (`/specializovana/programovani/projekty/raycaster`)

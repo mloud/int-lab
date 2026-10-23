@@ -216,7 +216,35 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Je větší?"
             taskId="cond-1"
             showTeacher={teacherMode}
-            teacherNote={<p>Úvod do neúplného podmíněného příkazu. Žáci používají senzor <code>odpověď</code> a porovnávají ho pomocí bloku ze zelené kategorie Operátory.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodický cíl:</strong> Úvod do neúplného podmíněného příkazu (<code>když ... tak</code>). Žáci použijí blok otázky z kategorie <em>Vnímání</em>, senzor <code>odpověď</code> a porovnávací operátor <code>&gt;</code> z kategorie <em>Operátory</em>. Pokud podmínka neplatí, program neudělá nic.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="sensing">odpověď</ScratchReporter> {">"} <ScratchInput>100</ScratchInput>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Číslo je větší než 100</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="PodminkaNeuplna.sb3"
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -229,7 +257,39 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Je sudé?"
             taskId="cond-2"
             showTeacher={teacherMode}
-            teacherNote={<p>Zde je nutné využít operátor "zbytek po dělení". Číslo je sudé, pokud je zbytek po dělení 2 roven 0.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodický cíl:</strong> Využití operátoru modulo (<em>zbytek po dělení</em>). Číslo je sudé, pokud je zbytek po dělení dvěma přesně roven nule. Jde o typický vzor, se kterým se žáci budou setkávat v každém programovacím jazyce.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej číslo k ověření sudosti:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="operators">
+                              zbytek <ScratchReporter category="sensing">odpověď</ScratchReporter> děleno <ScratchInput>2</ScratchInput>
+                            </ScratchReporter>
+                            {" = "}
+                            <ScratchInput>0</ScratchInput>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Číslo je sudé</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
               Napište scénář, který se zeptá na číslo a vypíše "Číslo je sudé", pokud je číslo dělitelné 2.
@@ -252,7 +312,37 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="První je větší"
             taskId="cond-3"
             showTeacher={teacherMode}
-            teacherNote={<p>Protože chceme porovnat dvě čísla od uživatele zadaná postupně, je nutné si první číslo po první otázce uložit do proměnné. Jinak nová odpověď přepíše tu starou.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Klíčový didaktický moment:</strong> Scratch má pouze jednu globální proměnnou <code>odpověď</code>. Pokud se zeptáme na druhé číslo, hodnota první odpovědi se nenávratně přepíše. Žák si proto <em>musí</em> první odpověď okamžitě uložit do vlastní proměnné (např. <code>prvni_cislo</code>).
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej první číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">prvni_cislo</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej druhé číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="variables">prvni_cislo</ScratchReporter> {">"} <ScratchReporter category="sensing">odpověď</ScratchReporter>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">První je větší</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
               Napište scénář, který se zeptá na dvě čísla a vypíše "První je větší", pokud je první číslo větší než druhé.
@@ -267,7 +357,63 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Vracení do středu"
             taskId="cond-4"
             showTeacher={teacherMode}
-            teacherNote={<p>Žáci si nejprve vytvoří jednoduché chození na klávesy. Poté ve stejném cyklu kontrolují pozici okrajů – <code>když x {">"} 210</code>, <code>když x {"<"} -210</code> atd.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Herní smyčka běží v bloku <code>opakuj stále</code>. Kočka reaguje na směrové šipky změnou x a y. Scéna má šířku 480 (-240 až 240) a výšku 360 (-180 až 180). Hranice 30 kroků od okraje znamená: <code>x &gt; 210</code>, <code>x &lt; -210</code>, <code>y &gt; 150</code>, <code>y &lt; -150</code>. Při detekci libovolného okraje skočí kočka zpět do středu <code>(0, 0)</code>.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="motion">skoč na x: <ScratchInput>0</ScratchInput> y: <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock category="control" topLabel="opakuj stále">
+                      <div className="pl-2 space-y-1">
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="sensing">klávesa <ScratchInput type="dropdown">šipka vpravo</ScratchInput> stisknuta?</ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">změň x o <ScratchInput>10</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="sensing">klávesa <ScratchInput type="dropdown">šipka vlevo</ScratchInput> stisknuta?</ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">změň x o <ScratchInput>-10</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="sensing">klávesa <ScratchInput type="dropdown">šipka nahoru</ScratchInput> stisknuta?</ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">změň y o <ScratchInput>10</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="sensing">klávesa <ScratchInput type="dropdown">šipka dolů</ScratchInput> stisknuta?</ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">změň y o <ScratchInput>-10</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div className="pt-1">
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">x pozice</ScratchReporter> {">"} <ScratchInput>210</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">skoč na x: <ScratchInput>0</ScratchInput> y: <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">x pozice</ScratchReporter> {"<"} <ScratchInput>-210</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">skoč na x: <ScratchInput>0</ScratchInput> y: <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">y pozice</ScratchReporter> {">"} <ScratchInput>150</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">skoč na x: <ScratchInput>0</ScratchInput> y: <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">y pozice</ScratchReporter> {"<"} <ScratchInput>-150</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">skoč na x: <ScratchInput>0</ScratchInput> y: <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="PostavaNaStred.sb3"
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -343,7 +489,43 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Pac-Man efekt (přechod přes okraj)"
             taskId="cond-5"
             showTeacher={teacherMode}
-            teacherNote={<p>Místo na střed se kočka při překročení x {">"} 210 přesune na opačnou stranu, tedy na x = -210 (a zachová si své y). Podobně pro ostatní okraje.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Místo skoku do středu postavu přeneseme na protější okraj scény. Důležité je měnit pouze příslušnou osu (<code>nastav x na ...</code> nebo <code>nastav y na ...</code>), aby si postava zachovala druhou souřadnici a pohyb byl plynulý.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock category="control" topLabel="opakuj stále">
+                      <div className="pl-2 space-y-1">
+                        <div className="text-slate-400 italic font-sans text-[11px]">// Pohyb na šipky stejný jako v úloze 4...</div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">x pozice</ScratchReporter> {">"} <ScratchInput>210</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">nastav x na <ScratchInput>-210</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">x pozice</ScratchReporter> {"<"} <ScratchInput>-210</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">nastav x na <ScratchInput>210</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">y pozice</ScratchReporter> {">"} <ScratchInput>150</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">nastav y na <ScratchInput>-150</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                        <div>
+                          <ScratchCBlock category="control" topLabel={<>když <ScratchHexagon category="operators"><ScratchReporter category="motion">y pozice</ScratchReporter> {"<"} <ScratchInput>-150</ScratchInput></ScratchHexagon> tak</>}>
+                            <div className="pl-2"><ScratchBlock category="motion">nastav y na <ScratchInput>150</ScratchInput></ScratchBlock></div>
+                          </ScratchCBlock>
+                        </div>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="PostavaNaOkraj.sb3"
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -402,7 +584,40 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Je sudé nebo liché?"
             taskId="cond-6"
             showTeacher={teacherMode}
-            teacherNote={<p>Úprava úkolu č. 2. Žáci nahradí jednoduché "když" za úplné "když - jinak". Odpadá tak nutnost tvořit dvě nezávislé podmínky pro sudé a liché číslo.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Úplný podmíněný příkaz (<code>když – jinak</code>). Odpadá nutnost dvou samostatných testů pro sudost a lichost. Pokud podmínka dělitelnosti dvěma neplatí, řízení automaticky přechází do větve <code>jinak</code>.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej celé číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCElseBlock
+                      category="control"
+                      condition={
+                        <ScratchHexagon category="operators">
+                          <ScratchReporter category="operators">
+                            zbytek <ScratchReporter category="sensing">odpověď</ScratchReporter> děleno <ScratchInput>2</ScratchInput>
+                          </ScratchReporter>
+                          {" = "}
+                          <ScratchInput>0</ScratchInput>
+                        </ScratchHexagon>
+                      }
+                      elseChildren={
+                        <div className="pl-2">
+                          <ScratchBlock category="looks">bublina <ScratchInput type="text">Číslo je liché</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                        </div>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Číslo je sudé</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCElseBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="PodminkaUplna.sb3"
           >
             <p className="mb-4 text-sm text-slate-600 leading-relaxed">
@@ -426,7 +641,55 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Porovnání dvou čísel (Úplné)"
             taskId="cond-7"
             showTeacher={teacherMode}
-            teacherNote={<p>Zde se projeví, zda žáci pochopili, že se na dvě čísla musí zeptat postupně a to první si musí uložit do proměnné. Jinak nová "odpověď" přepíše tu starou. Pro třetí bod (Jsou stejná) je nutné vnořit další "když-jinak" do větve "jinak".</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Didaktický přechod k vnořenému větvení (konstrukce <em>if – else if – else</em>). Žáci načtou obě čísla do proměnných <code>prvni</code> a <code>druhe</code>. Větev <code>jinak</code> obsahuje další podmínku pro testování, zda je větší druhé číslo, nebo zda jsou obě čísla totožná.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej první číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">prvni</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej druhé číslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">druhe</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCElseBlock
+                      category="control"
+                      condition={
+                        <ScratchHexagon category="operators">
+                          <ScratchReporter category="variables">prvni</ScratchReporter> {">"} <ScratchReporter category="variables">druhe</ScratchReporter>
+                        </ScratchHexagon>
+                      }
+                      elseChildren={
+                        <div className="pl-2">
+                          <ScratchCElseBlock
+                            category="control"
+                            condition={
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">druhe</ScratchReporter> {">"} <ScratchReporter category="variables">prvni</ScratchReporter>
+                              </ScratchHexagon>
+                            }
+                            elseChildren={
+                              <div className="pl-2">
+                                <ScratchBlock category="looks">bublina <ScratchInput type="text">Čísla jsou stejná</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                              </div>
+                            }
+                          >
+                            <div className="pl-2">
+                              <ScratchBlock category="looks">bublina <ScratchInput type="text">Druhé je větší</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                            </div>
+                          </ScratchCElseBlock>
+                        </div>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">První je větší</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCElseBlock>
+                  </div>
+                </div>
+              </div>
+            }
           >
             <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
               <div>
@@ -446,7 +709,46 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Generování vlajek"
             taskId="cond-8"
             showTeacher={teacherMode}
-            teacherNote={<p>Žáci využijí cyklus k náhodnému rozmístění teček. Pro Polsko (horizontální) testujeme osu Y (y {">"} 0 = bílá, jinak červená). Pro Francii (vertikální) testujeme osu X s více podmínkami. Německo má 3 horizontální pruhy. Japonsko vyžaduje složitější matematiku nebo vzdálenost od středu.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Grafické generování pomocí metody Monte Carlo. Cyklus provede náhodný skok po plátně a otestuje vertikální pozici: osa X dělí scénu napůl (<code>y &gt; 0</code> odpovídá horní bílé polovině, <code>jinak</code> červené spodní polovině). Tloušťka pera nastavená např. na 10 zajistí rychlé zaplnění plátna.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="pen">smaž všechno</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="pen">nastav tloušťku pera na <ScratchInput>10</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchInput>1000</ScratchInput> krát</span>}>
+                      <div className="pl-2 space-y-1">
+                        <div><ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock></div>
+                        <div>
+                          <ScratchCElseBlock
+                            category="control"
+                            condition={
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="motion">y pozice</ScratchReporter> {">"} <ScratchInput>0</ScratchInput>
+                              </ScratchHexagon>
+                            }
+                            elseChildren={
+                              <div className="pl-2">
+                                <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-red-600 border border-white ml-1"></span></ScratchBlock>
+                              </div>
+                            }
+                          >
+                            <div className="pl-2">
+                              <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-slate-100 border border-slate-300 ml-1"></span></ScratchBlock>
+                            </div>
+                          </ScratchCElseBlock>
+                        </div>
+                        <div><ScratchBlock category="pen">pero zapni</ScratchBlock></div>
+                        <div><ScratchBlock category="pen">pero vypni</ScratchBlock></div>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="Vlajky.sb3"
           >
             <div className="space-y-6">
@@ -535,9 +837,109 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             taskId="cond-9"
             showTeacher={teacherMode}
             teacherNote={
-              <div className="space-y-1">
-                <p>Žáci rozšiřují předchozí program. Francie vyžaduje testování osy X s vnořenými podmínkami (3 svislé pruhy), Německo testování osy Y (3 vodorovné pruhy).</p>
-                <p><strong>Japonsko:</strong> Elegantně lze vyřešit přidáním prázdné postavy <code>Střed</code> na pozici <code>x: 0, y: 0</code> a použitím bloku <code>vzdálenost k Střed</code> z kategorie Vnímání. Pokud je vzdálenost menší než poloměr (např. 60), barvíme červeně, jinak bíle.</p>
+              <div className="space-y-3">
+                <p>
+                  <strong>Metodické vysvětlení:</strong> Rozšíření o testování osy X (svislé pruhy u Francie) a geometrickou podmínku kruhu (vlajka Japonska).
+                </p>
+                
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                    1. Vlajka Francie (svislé pruhy podle osy X):
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                    <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="pen">smaž všechno</ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="pen">nastav tloušťku pera na <ScratchInput>10</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4">
+                      <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchInput>1000</ScratchInput> krát</span>}>
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock></div>
+                          <div>
+                            <ScratchCElseBlock
+                              category="control"
+                              condition={
+                                <ScratchHexagon category="operators">
+                                  <ScratchReporter category="motion">x pozice</ScratchReporter> {"<"} <ScratchInput>-80</ScratchInput>
+                                </ScratchHexagon>
+                              }
+                              elseChildren={
+                                <div className="pl-2">
+                                  <ScratchCElseBlock
+                                    category="control"
+                                    condition={
+                                      <ScratchHexagon category="operators">
+                                        <ScratchReporter category="motion">x pozice</ScratchReporter> {"<"} <ScratchInput>80</ScratchInput>
+                                      </ScratchHexagon>
+                                    }
+                                    elseChildren={
+                                      <div className="pl-2">
+                                        <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-red-600 border border-white ml-1"></span></ScratchBlock>
+                                      </div>
+                                    }
+                                  >
+                                    <div className="pl-2">
+                                      <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-slate-100 border border-slate-300 ml-1"></span></ScratchBlock>
+                                    </div>
+                                  </ScratchCElseBlock>
+                                </div>
+                              }
+                            >
+                              <div className="pl-2">
+                                <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-blue-600 border border-white ml-1"></span></ScratchBlock>
+                              </div>
+                            </ScratchCElseBlock>
+                          </div>
+                          <div><ScratchBlock category="pen">pero zapni</ScratchBlock></div>
+                          <div><ScratchBlock category="pen">pero vypni</ScratchBlock></div>
+                        </div>
+                      </ScratchCBlock>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                    2. Vlajka Japonska (vzdálenost k pomocné postavě Střed):
+                  </div>
+                  <p className="text-xs text-slate-600">
+                    Na pozici <code>(0, 0)</code> umístíme postavu <code>Střed</code>. Blok <code>vzdálenost k Střed</code> ověří, zda tečka leží v poloměru kruhu:
+                  </p>
+                  <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                    <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="pen">smaž všechno</ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="pen">nastav tloušťku pera na <ScratchInput>10</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4">
+                      <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchInput>1000</ScratchInput> krát</span>}>
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="motion">skoč na <ScratchInput type="dropdown">náhodná pozice</ScratchInput></ScratchBlock></div>
+                          <div>
+                            <ScratchCElseBlock
+                              category="control"
+                              condition={
+                                <ScratchHexagon category="operators">
+                                  <ScratchDistanceBlock target="Střed" /> {"<"} <ScratchInput>70</ScratchInput>
+                                </ScratchHexagon>
+                              }
+                              elseChildren={
+                                <div className="pl-2">
+                                  <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-slate-100 border border-slate-300 ml-1"></span></ScratchBlock>
+                                </div>
+                              }
+                            >
+                              <div className="pl-2">
+                                <ScratchBlock category="pen">nastav barvu pera na <span className="inline-block w-3.5 h-3.5 rounded-full bg-red-600 border border-white ml-1"></span></ScratchBlock>
+                              </div>
+                            </ScratchCElseBlock>
+                          </div>
+                          <div><ScratchBlock category="pen">pero zapni</ScratchBlock></div>
+                          <div><ScratchBlock category="pen">pero vypni</ScratchBlock></div>
+                        </div>
+                      </ScratchCBlock>
+                    </div>
+                  </div>
+                </div>
               </div>
             }
             saveAs="Vlajky.sb3"
@@ -661,7 +1063,94 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Zkoušení malé násobilky"
             taskId="cond-10"
             showTeacher={teacherMode}
-            teacherNote={<p>Žáci si musí vygenerovaná čísla uložit do dvou proměnných, aby mohli spočítat správný výsledek pro kontrolu. Dále potřebují třetí proměnnou na počítání správných odpovědí. Pro složení otázky se do sebe vkládají dva bloky <code>spoj</code> (např. <code>spoj a (spoj &quot; × &quot; b)</code>). Známkování na konci vyžaduje složené větvení (když-jinak s dalším vloženým když-jinak).</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Žáci pracují s proměnnými <code>a</code> a <code>b</code> pro generování čísel, proměnnou <code>body</code> pro počítadlo úspěchů a vnořeným blokem <code>spoj</code> pro sestavení zadání otázky. Na závěr aplikují třístupňové známkování pomocí vnořeného <code>když – jinak</code>.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">body</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchInput>10</ScratchInput> krát</span>}>
+                      <div className="pl-2 space-y-1">
+                        <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">a</ScratchInput> na <ScratchReporter category="operators">náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchInput>10</ScratchInput></ScratchReporter></ScratchBlock></div>
+                        <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">b</ScratchInput> na <ScratchReporter category="operators">náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchInput>10</ScratchInput></ScratchReporter></ScratchBlock></div>
+                        <div>
+                          <ScratchBlock category="sensing">
+                            zeptej se <ScratchReporter category="operators">spoj <ScratchReporter category="variables">a</ScratchReporter> <ScratchReporter category="operators">spoj <ScratchInput type="text"> × </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">b</ScratchReporter> <ScratchInput type="text"> = ?</ScratchInput></ScratchReporter></ScratchReporter></ScratchReporter> a čekej
+                          </ScratchBlock>
+                        </div>
+                        <div>
+                          <ScratchCElseBlock
+                            category="control"
+                            condition={
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="sensing">odpověď</ScratchReporter>
+                                {" = "}
+                                <ScratchReporter category="operators">
+                                  <ScratchReporter category="variables">a</ScratchReporter> * <ScratchReporter category="variables">b</ScratchReporter>
+                                </ScratchReporter>
+                              </ScratchHexagon>
+                            }
+                            elseChildren={
+                              <div className="pl-2">
+                                <ScratchBlock category="looks">bublina <ScratchInput type="text">Chyba!</ScratchInput> na <ScratchInput>1</ScratchInput> sekund</ScratchBlock>
+                              </div>
+                            }
+                          >
+                            <div className="pl-2 space-y-1">
+                              <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Správně! 👍</ScratchInput> na <ScratchInput>1</ScratchInput> sekund</ScratchBlock></div>
+                              <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">body</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                            </div>
+                          </ScratchCElseBlock>
+                        </div>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                  <div className="pl-4">
+                    <ScratchBlock category="looks">
+                      bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Správně: </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">body</ScratchReporter> <ScratchInput type="text"> / 10</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund
+                    </ScratchBlock>
+                  </div>
+                  <div className="pl-4">
+                    <ScratchCElseBlock
+                      category="control"
+                      condition={
+                        <ScratchHexagon category="operators">
+                          <ScratchReporter category="variables">body</ScratchReporter> {">"} <ScratchInput>8</ScratchInput>
+                        </ScratchHexagon>
+                      }
+                      elseChildren={
+                        <div className="pl-2">
+                          <ScratchCElseBlock
+                            category="control"
+                            condition={
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">body</ScratchReporter> {">"} <ScratchInput>5</ScratchInput>
+                              </ScratchHexagon>
+                            }
+                            elseChildren={
+                              <div className="pl-2">
+                                <ScratchBlock category="looks">bublina <ScratchInput type="text">Známka: 3</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                              </div>
+                            }
+                          >
+                            <div className="pl-2">
+                              <ScratchBlock category="looks">bublina <ScratchInput type="text">Známka: 2</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                            </div>
+                          </ScratchCElseBlock>
+                        </div>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Výborně! Známka: 1</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCElseBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="ZkouseniMaleNasobilky.sb3"
           >
             <div className="space-y-6">
@@ -741,15 +1230,122 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             taskId="cond-11"
             showTeacher={teacherMode}
             teacherNote={
-              <div className="space-y-2">
-                <p><strong>Cíl úlohy:</strong> Kombinace práce s řetězci (kategorie <em>Operátory</em>), inkrementace skóre a závěrečného třístupňového větvení <code>když – jinak</code>.</p>
-                <p>Žáci si vytvoří proměnnou <code>skore</code> nastavenou na 0 a proměnnou <code>heslo</code>, kam uloží <code>odpověď</code>. Postupně testují:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li><code>délka heslo &gt; 7</code> (alespoň 8 znaků) ➔ změň skóre o 1.</li>
-                  <li><code>ne (heslo = 123456 nebo heslo = heslo)</code> (ochrana proti triviálním heslům) ➔ změň skóre o 1.</li>
-                  <li><code>heslo obsahuje @ nebo heslo obsahuje ! nebo heslo obsahuje 1</code> (speciální znak či číslo) ➔ změň skóre o 1.</li>
-                </ul>
-                <p>Na závěr porovnají: <code>když skore &gt;= 3</code> ➔ Silné, <code>jinak když skore = 2</code> ➔ Střední, <code>jinak</code> ➔ Slabé.</p>
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Kombinace práce s řetězci (<code>délka</code> a <code>obsahuje</code>), kumulace bodů v proměnné <code>skore</code> a závěrečného třístupňového vyhodnocení.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">skore</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej testované heslo:</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">heslo</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                  
+                  {/* Test 1: Délka */}
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="operators">délka <ScratchReporter category="variables">heslo</ScratchReporter></ScratchReporter> {">"} <ScratchInput>7</ScratchInput>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2"><ScratchBlock category="variables">změň <ScratchInput type="dropdown">skore</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                    </ScratchCBlock>
+                  </div>
+
+                  {/* Test 2: Není triviální */}
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            ne
+                            <ScratchHexagon isSlot>
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">heslo</ScratchReporter> {" = "} <ScratchInput type="text">123456</ScratchInput>
+                              </ScratchHexagon>
+                              nebo
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">heslo</ScratchReporter> {" = "} <ScratchInput type="text">heslo</ScratchInput>
+                              </ScratchHexagon>
+                            </ScratchHexagon>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2"><ScratchBlock category="variables">změň <ScratchInput type="dropdown">skore</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                    </ScratchCBlock>
+                  </div>
+
+                  {/* Test 3: Speciální znak nebo číslice */}
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          když
+                          <ScratchHexagon category="operators">
+                            <ScratchHexagon category="operators">
+                              <ScratchReporter category="variables">heslo</ScratchReporter> obsahuje <ScratchInput type="text">@</ScratchInput> ?
+                            </ScratchHexagon>
+                            nebo
+                            <ScratchHexagon category="operators">
+                              <ScratchReporter category="variables">heslo</ScratchReporter> obsahuje <ScratchInput type="text">!</ScratchInput> ?
+                            </ScratchHexagon>
+                          </ScratchHexagon>
+                          tak
+                        </>
+                      }
+                    >
+                      <div className="pl-2"><ScratchBlock category="variables">změň <ScratchInput type="dropdown">skore</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                    </ScratchCBlock>
+                  </div>
+
+                  {/* Vyhodnocení */}
+                  <div className="pl-4">
+                    <ScratchCElseBlock
+                      category="control"
+                      condition={
+                        <ScratchHexagon category="operators">
+                          <ScratchReporter category="variables">skore</ScratchReporter> {" = "} <ScratchInput>3</ScratchInput>
+                        </ScratchHexagon>
+                      }
+                      elseChildren={
+                        <div className="pl-2">
+                          <ScratchCElseBlock
+                            category="control"
+                            condition={
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">skore</ScratchReporter> {" = "} <ScratchInput>2</ScratchInput>
+                              </ScratchHexagon>
+                            }
+                            elseChildren={
+                              <div className="pl-2">
+                                <ScratchBlock category="looks">bublina <ScratchInput type="text">Slabé a nebezpečné heslo! ❌</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                              </div>
+                            }
+                          >
+                            <div className="pl-2">
+                              <ScratchBlock category="looks">bublina <ScratchInput type="text">Průměrné heslo, zvaž vylepšení! ⚠️</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                            </div>
+                          </ScratchCElseBlock>
+                        </div>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Vynikající bezpečné heslo! 🔒</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCElseBlock>
+                  </div>
+                </div>
               </div>
             }
             saveAs="ValidatorHesla.sb3"
@@ -817,7 +1413,39 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Hádání čísla"
             taskId="cond-12"
             showTeacher={teacherMode}
-            teacherNote={<p>Klasická hra vyšší/nižší by k tomuto zadání seděla lépe, ale zadání zmiňuje jen "správná / nesprávná odpověď". Aplikujte zadání 1:1, žáci si vyzkouší porovnávání vygenerované proměnné s odpovědí.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Základní verze hry na jeden pokus. Počítač si vygeneruje náhodné číslo do proměnné <code>tajne_cislo</code> a pomocí bloku <code>když – jinak</code> okamžitě porovná uživatelskou odpověď.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">tajne_cislo</ScratchInput> na <ScratchReporter category="operators">náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchInput>10</ScratchInput></ScratchReporter></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Jaké číslo si myslím? (1-10):</ScratchInput> a čekej</ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCElseBlock
+                      category="control"
+                      condition={
+                        <ScratchHexagon category="operators">
+                          <ScratchReporter category="sensing">odpověď</ScratchReporter>
+                          {" = "}
+                          <ScratchReporter category="variables">tajne_cislo</ScratchReporter>
+                        </ScratchHexagon>
+                      }
+                      elseChildren={
+                        <div className="pl-2">
+                          <ScratchBlock category="looks">bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Bohužel špatně! Bylo to: </ScratchInput> <ScratchReporter category="variables">tajne_cislo</ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock>
+                        </div>
+                      }
+                    >
+                      <div className="pl-2">
+                        <ScratchBlock category="looks">bublina <ScratchInput type="text">Výborně! Uhodl jsi! 🎉</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    </ScratchCElseBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="HadaniCisla.sb3"
           >
             <div className="space-y-6 text-sm text-slate-600">
@@ -900,7 +1528,80 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             title="Hádání čísla (vylepšené)"
             taskId="cond-13"
             showTeacher={teacherMode}
-            teacherNote={<p>Zde žáci přidají cyklus "opakuj dokud nenastane". Podmínka v cyklu bude (odpověď = hádané číslo). Nápověda vyšší/nižší vyžaduje navíc vložit podmínku když-jinak.</p>}
+            teacherNote={
+              <div>
+                <p className="mb-2">
+                  <strong>Metodické vysvětlení:</strong> Přechod na cyklus s podmínkou <code>opakuj dokud nenastane (odpověď = tajne_cislo)</code>. V každém průchodu cyklem zvýšíme počítadlo pokusů o 1 a pomocí vnitřního <code>když – jinak</code> napovíme hráči <em>Přidej!</em> nebo <em>Uber!</em>.
+                </p>
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">tajne_cislo</ScratchInput> na <ScratchReporter category="operators">náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchInput>100</ScratchInput></ScratchReporter></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokusy</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4">
+                    <ScratchCBlock
+                      category="control"
+                      topLabel={
+                        <>
+                          opakuj dokud nenastane
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="sensing">odpověď</ScratchReporter>
+                            {" = "}
+                            <ScratchReporter category="variables">tajne_cislo</ScratchReporter>
+                          </ScratchHexagon>
+                        </>
+                      }
+                    >
+                      <div className="pl-2 space-y-1">
+                        <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Hádej číslo (1-100):</ScratchInput> a čekej</ScratchBlock></div>
+                        <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">pokusy</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                        <div>
+                          <ScratchCBlock
+                            category="control"
+                            topLabel={
+                              <>
+                                když
+                                <ScratchHexagon category="operators">
+                                  ne
+                                  <ScratchHexagon isSlot>
+                                    <ScratchReporter category="sensing">odpověď</ScratchReporter> {" = "} <ScratchReporter category="variables">tajne_cislo</ScratchReporter>
+                                  </ScratchHexagon>
+                                </ScratchHexagon>
+                                tak
+                              </>
+                            }
+                          >
+                            <div className="pl-2">
+                              <ScratchCElseBlock
+                                category="control"
+                                condition={
+                                  <ScratchHexagon category="operators">
+                                    <ScratchReporter category="sensing">odpověď</ScratchReporter> {"<"} <ScratchReporter category="variables">tajne_cislo</ScratchReporter>
+                                  </ScratchHexagon>
+                                }
+                                elseChildren={
+                                  <div className="pl-2">
+                                    <ScratchBlock category="looks">bublina <ScratchInput type="text">Uber! (Moje číslo je menší)</ScratchInput> na <ScratchInput>1.5</ScratchInput> sekund</ScratchBlock>
+                                  </div>
+                                }
+                              >
+                                <div className="pl-2">
+                                  <ScratchBlock category="looks">bublina <ScratchInput type="text">Přidej! (Moje číslo je větší)</ScratchInput> na <ScratchInput>1.5</ScratchInput> sekund</ScratchBlock>
+                                </div>
+                              </ScratchCElseBlock>
+                            </div>
+                          </ScratchCBlock>
+                        </div>
+                      </div>
+                    </ScratchCBlock>
+                  </div>
+                  <div className="pl-4">
+                    <ScratchBlock category="looks">
+                      bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Gratuluji! Uhodl jsi na </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">pokusy</ScratchReporter> <ScratchInput type="text"> pokusů!</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund
+                    </ScratchBlock>
+                  </div>
+                </div>
+              </div>
+            }
             saveAs="HadaniCisla2.sb3"
           >
             <div className="space-y-6 text-sm text-slate-600">
@@ -928,18 +1629,184 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             taskId="cond-14"
             showTeacher={teacherMode}
             teacherNote={
-              <div className="space-y-2">
-                <p><strong>Cíl závěrečné syntetické úlohy:</strong> Propojení cyklu s podmínkou (ochrana PINu před brute-force útokem), složených logických podmínek se spojkou <code>a</code> a operátoru modulo (zbytek po dělení) pro výdej reálných bankovek.</p>
-                <p><strong>Struktura scénáře:</strong></p>
-                <ol className="list-decimal pl-5 space-y-1">
-                  <li>Proměnné: <code>PIN = 1234</code>, <code>zustatek = 5000</code>, <code>pokusy = 0</code>, <code>limit = 3000</code>.</li>
-                  <li>Ověření PINu: <code>opakuj dokud nenastane (odpověď = PIN nebo pokusy = 3)</code>. V těle: zeptej se na PIN, pokud špatně ➔ <code>změň pokusy o 1</code>.</li>
-                  <li>Blokace karty: <code>když pokusy = 3 tak zastav všechno</code>.</li>
-                  <li>Výběr peněz: Dotaz na částku do proměnné <code>vyber</code>.</li>
-                  <li>Tři kontroly: <code>vyber &lt;= zustatek</code> A <code>vyber &lt;= limit</code> A <code>(zbytek vyber děleno 100) = 0</code>.</li>
-                  <li>Při úspěchu odečíst ze zůstatku a ohlásit úspěch, jinak vysvětlit chybu.</li>
-                  <li><strong>Bonusové opakování:</strong> Na konci výběru (ať už byl úspěšný, nebo neúspěšný) se bankomat vždy zeptá <code>Přejete si pokračovat? (ano / ne)</code>. Pokud uživatel odpoví <code>ano</code>, cyklus volby částky a kontroly pravidel se zopakuje (při úspěchu se pracuje s již sníženým zůstatkem); při odpovědi <code>ne</code> se bankomat rozloučí a ukončí.</li>
-                </ol>
+              <div className="space-y-3">
+                <p>
+                  <strong>Metodické vysvětlení:</strong> Syntetický projekt. Program je rozdělen na dvě klíčové fáze:
+                  (1) Přihlášení chráněné cyklem na max. 3 chybné pokusy, (2) Samotný výběr rozložený do tří samostatných podmínek pro přesnou diagnostiku chyb (nedostatek financí, limit transakce, bankovky po 100 Kč) a možností opakování transakce.
+                </p>
+                
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <KeyRound className="w-3.5 h-3.5 text-amber-600" />
+                    Fáze 1: Ověření PINu (max. 3 pokusy):
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                    <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">PIN</ScratchInput> na <ScratchInput>1234</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">zustatek</ScratchInput> na <ScratchInput>5000</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokusy</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4">
+                      <ScratchCBlock
+                        category="control"
+                        topLabel={
+                          <>
+                            opakuj dokud nenastane
+                            <ScratchHexagon category="operators">
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="sensing">odpověď</ScratchReporter> {" = "} <ScratchReporter category="variables">PIN</ScratchReporter>
+                              </ScratchHexagon>
+                              nebo
+                              <ScratchHexagon category="operators">
+                                <ScratchReporter category="variables">pokusy</ScratchReporter> {" = "} <ScratchInput>3</ScratchInput>
+                              </ScratchHexagon>
+                            </ScratchHexagon>
+                          </>
+                        }
+                      >
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadejte 4místný PIN:</ScratchInput> a čekej</ScratchBlock></div>
+                          <div>
+                            <ScratchCBlock
+                              category="control"
+                              topLabel={
+                                <>
+                                  když
+                                  <ScratchHexagon category="operators">
+                                    ne
+                                    <ScratchHexagon isSlot>
+                                      <ScratchReporter category="sensing">odpověď</ScratchReporter> {" = "} <ScratchReporter category="variables">PIN</ScratchReporter>
+                                    </ScratchHexagon>
+                                  </ScratchHexagon>
+                                  tak
+                                </>
+                              }
+                            >
+                              <div className="pl-2 space-y-1">
+                                <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">pokusy</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
+                                <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Špatný PIN!</ScratchInput> na <ScratchInput>1.5</ScratchInput> sekund</ScratchBlock></div>
+                              </div>
+                            </ScratchCBlock>
+                          </div>
+                        </div>
+                      </ScratchCBlock>
+                    </div>
+                    <div className="pl-4">
+                      <ScratchCBlock
+                        category="control"
+                        topLabel={
+                          <>
+                            když
+                            <ScratchHexagon category="operators">
+                              <ScratchReporter category="variables">pokusy</ScratchReporter> {" = "} <ScratchInput>3</ScratchInput>
+                            </ScratchHexagon>
+                            tak
+                          </>
+                        }
+                      >
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Karta zablokována! 🚨</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                          <div><ScratchBlock category="control">zastav <ScratchInput type="dropdown">všechno</ScratchInput></ScratchBlock></div>
+                        </div>
+                      </ScratchCBlock>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <Landmark className="w-3.5 h-3.5 text-emerald-600" />
+                    Fáze 2: Výběr peněz, 3 samostatné kontroly chyb a opakování:
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                    <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchInput type="text">ano</ScratchInput></ScratchBlock></div>
+                    <div>
+                      <ScratchCBlock
+                        category="control"
+                        topLabel={
+                          <>
+                            opakuj dokud nenastane
+                            <ScratchHexagon category="operators">
+                              ne
+                              <ScratchHexagon isSlot>
+                                <ScratchReporter category="variables">pokracovat</ScratchReporter> {" = "} <ScratchInput type="text">ano</ScratchInput>
+                              </ScratchHexagon>
+                            </ScratchHexagon>
+                          </>
+                        }
+                      >
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Kolik chcete vybrat Kč?</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">vyber</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                          
+                          {/* 3 rozložené podmínky pro přesnou diagnostiku chyb */}
+                          <div>
+                            <ScratchCElseBlock
+                              category="control"
+                              condition={
+                                <ScratchHexagon category="operators">
+                                  <ScratchReporter category="variables">vyber</ScratchReporter> {">"} <ScratchReporter category="variables">zustatek</ScratchReporter>
+                                </ScratchHexagon>
+                              }
+                              elseChildren={
+                                <div className="pl-2">
+                                  <ScratchCElseBlock
+                                    category="control"
+                                    condition={
+                                      <ScratchHexagon category="operators">
+                                        <ScratchReporter category="variables">vyber</ScratchReporter> {">"} <ScratchInput>3000</ScratchInput>
+                                      </ScratchHexagon>
+                                    }
+                                    elseChildren={
+                                      <div className="pl-2">
+                                        <ScratchCElseBlock
+                                          category="control"
+                                          condition={
+                                            <ScratchHexagon category="operators">
+                                              ne
+                                              <ScratchHexagon isSlot>
+                                                <ScratchReporter category="operators">
+                                                  zbytek <ScratchReporter category="variables">vyber</ScratchReporter> děleno <ScratchInput>100</ScratchInput>
+                                                </ScratchReporter>
+                                                {" = "}
+                                                <ScratchInput>0</ScratchInput>
+                                              </ScratchHexagon>
+                                            </ScratchHexagon>
+                                          }
+                                          elseChildren={
+                                            <div className="pl-2 space-y-1">
+                                              <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">zustatek</ScratchInput> o <ScratchReporter category="operators"><ScratchInput>0</ScratchInput> - <ScratchReporter category="variables">vyber</ScratchReporter></ScratchReporter></ScratchBlock></div>
+                                              <div><ScratchBlock category="looks">bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Výběr schválen! Zůstatek: </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">zustatek</ScratchReporter> <ScratchInput type="text"> Kč</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
+                                            </div>
+                                          }
+                                        >
+                                          <div className="pl-2">
+                                            <ScratchBlock category="looks">bublina <ScratchInput type="text">Chyba: Bankomat vydává pouze celé stokoruny! 💵</ScratchInput> na <ScratchInput>2.5</ScratchInput> sekund</ScratchBlock>
+                                          </div>
+                                        </ScratchCElseBlock>
+                                      </div>
+                                    }
+                                  >
+                                    <div className="pl-2">
+                                      <ScratchBlock category="looks">bublina <ScratchInput type="text">Chyba: Částka překračuje jednorázový limit (max 3 000 Kč)! ⚠️</ScratchInput> na <ScratchInput>2.5</ScratchInput> sekund</ScratchBlock>
+                                    </div>
+                                  </ScratchCElseBlock>
+                                </div>
+                              }
+                            >
+                              <div className="pl-2">
+                                <ScratchBlock category="looks">bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Chyba: Nedostatek financí! Zůstatek je jen </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">zustatek</ScratchReporter> <ScratchInput type="text"> Kč 💳</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>2.5</ScratchInput> sekund</ScratchBlock>
+                              </div>
+                            </ScratchCElseBlock>
+                          </div>
+                          
+                          <div className="pt-1"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Přejete si pokračovat? (ano / ne)</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                        </div>
+                      </ScratchCBlock>
+                    </div>
+                    <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Děkujeme za návštěvu, nezapomeňte si kartu! 👋</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
+                  </div>
+                </div>
               </div>
             }
             saveAs="Bankomat.sb3"
