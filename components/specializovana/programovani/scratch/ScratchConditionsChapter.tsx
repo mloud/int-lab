@@ -841,7 +841,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                 <p>
                   <strong>Metodické vysvětlení:</strong> Rozšíření o testování osy X (svislé pruhy u Francie) a geometrickou podmínku kruhu (vlajka Japonska).
                 </p>
-                
+
                 <div className="space-y-1">
                   <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
@@ -1239,7 +1239,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">skore</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
                   <div className="pl-4"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Zadej testované heslo:</ScratchInput> a čekej</ScratchBlock></div>
                   <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">heslo</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
-                  
+
                   {/* Test 1: Délka */}
                   <div className="pl-4">
                     <ScratchCBlock
@@ -1368,7 +1368,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                     <strong>Zákaz triviálních hesel:</strong> Heslo nesmí být rovno <code>"123456"</code> ani <code>"heslo"</code> ani <code>"admin"</code>.
                   </li>
                   <li>
-                    <strong>Speciální znak nebo číslice:</strong> Heslo musí obsahovat alespoň jeden speciální znak nebo číslici (např. <code>@</code>, <code>!</code>, <code>#</code>, <code>1</code>).
+                    <strong>Speciální znak:</strong> Heslo musí obsahovat alespoň jeden speciální znak z <code>@</code>, <code>!</code>, <code>#</code>).
                   </li>
                 </ol>
               </div>
@@ -1634,7 +1634,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                   <strong>Metodické vysvětlení:</strong> Syntetický projekt. Program je rozdělen na dvě klíčové fáze:
                   (1) Přihlášení chráněné cyklem na max. 3 chybné pokusy, (2) Samotný výběr rozložený do tří samostatných podmínek pro přesnou diagnostiku chyb (nedostatek financí, limit transakce, bankovky po 100 Kč) a možností opakování transakce.
                 </p>
-                
+
                 <div className="space-y-1">
                   <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                     <KeyRound className="w-3.5 h-3.5 text-amber-600" />
@@ -1737,7 +1737,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                         <div className="pl-2 space-y-1">
                           <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Kolik chcete vybrat Kč?</ScratchInput> a čekej</ScratchBlock></div>
                           <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">vyber</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
-                          
+
                           {/* 3 rozložené podmínky pro přesnou diagnostiku chyb */}
                           <div>
                             <ScratchCElseBlock
@@ -1798,7 +1798,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                               </div>
                             </ScratchCElseBlock>
                           </div>
-                          
+
                           <div className="pt-1"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Přejete si pokračovat? (ano / ne)</ScratchInput> a čekej</ScratchBlock></div>
                           <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
                         </div>
