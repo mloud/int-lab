@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Printer, Calendar, FileText } from 'lucide-react';
-import { SvpGradeData } from '@/registry/curriculum/svpData';
+import { SvpGradeData, SvpSharedInfo } from '@/registry/curriculum/svpData';
 import SvpInspisTable from './SvpInspisTable';
 
 export interface PlanSubtopic {
@@ -25,6 +25,8 @@ interface SimplePlanTableProps {
   backRoute: string;
   topics: PlanTopic[];
   svpData?: SvpGradeData;
+  sharedInfo?: SvpSharedInfo;
+  weeklyInfo?: string;
 }
 
 export default function SimplePlanTable({
@@ -33,11 +35,19 @@ export default function SimplePlanTable({
   backRoute,
   topics,
   svpData,
+  sharedInfo,
+  weeklyInfo,
 }: SimplePlanTableProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'plan' | 'svp'>('plan');
 
   const totalHours = topics.reduce((acc, t) => acc + t.topicHours, 0);
+  const defaultWeeklyInfo = totalHours === 99 
+    ? '33 výukových týdnů × 3 h/týden' 
+    : totalHours === 50 
+      ? '25 výukových týdnů × 2 h/týden' 
+      : '33 výukových týdnů × 2 h/týden';
+  const resolvedWeeklyInfo = weeklyInfo || defaultWeeklyInfo;
 
   return (
     <div className="max-w-6xl w-full mx-auto px-4 py-8 animate-in fade-in duration-300">
@@ -74,7 +84,7 @@ export default function SimplePlanTable({
             {activeTab === 'plan' ? `Tematický plán: ${title}` : `Školní vzdělávací program: ${title}`}
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Celková dotace: <strong>{totalHours} hodin</strong> (33 týdnů × 2 hodiny týdně) · Obor: <strong>18-20-M/01 Informační technologie</strong>
+            Celková dotace: <strong>{totalHours} hodin</strong> ({resolvedWeeklyInfo}) · Obor: <strong>18-20-M/01 Informační technologie</strong>
           </p>
         </div>
 
@@ -113,6 +123,7 @@ export default function SimplePlanTable({
             title={title}
             gradeLabel={gradeLabel}
             data={svpData}
+            sharedInfo={sharedInfo}
           />
         ) : (
           /* OBSAH ZÁLOŽKY: MĚSÍČNÍ TEMATICKÝ PLÁN */
@@ -196,7 +207,7 @@ export default function SimplePlanTable({
                     {totalHours} h
                   </td>
                   <td className="py-3 px-4 text-slate-400 font-normal text-xs">
-                    33 výukových týdnů × 2 h/týden
+                    {resolvedWeeklyInfo}
                   </td>
                 </tr>
               </tfoot>

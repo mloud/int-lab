@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { 
   SvpGradeData, 
+  SvpSharedInfo,
   SVP_SHARED_INFO, 
   SvpOutcomeBlock 
 } from '@/registry/curriculum/svpData';
@@ -23,15 +24,19 @@ interface SvpInspisTableProps {
   title: string;
   gradeLabel: string;
   data: SvpGradeData;
+  sharedInfo?: SvpSharedInfo;
 }
 
 export default function SvpInspisTable({
   title,
   gradeLabel,
-  data
+  data,
+  sharedInfo
 }: SvpInspisTableProps) {
   const [showShared, setShowShared] = useState(false);
   const [copiedType, setCopiedType] = useState<string | null>(null);
+
+  const shared = sharedInfo || SVP_SHARED_INFO;
 
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
@@ -42,7 +47,7 @@ export default function SvpInspisTable({
   // Generování tabulkového textu pro InspIS / Word / Excel
   const generateInspisTableText = () => {
     let output = `ŠKOLNÍ VZDĚLÁVACÍ PROGRAM (ŠVP) – ${title.toUpperCase()}\n`;
-    output += `Ročník: ${data.gradeLabel} · Obor: ${SVP_SHARED_INFO.fieldCode} ${SVP_SHARED_INFO.fieldName}\n`;
+    output += `Ročník: ${data.gradeLabel} · Obor: ${shared.fieldCode} ${shared.fieldName}\n`;
     output += `Celková hodinová dotace: ${data.totalHours} h\n`;
     output += `--------------------------------------------------------------------------------\n\n`;
 
@@ -67,20 +72,20 @@ export default function SvpInspisTable({
 
   // Generování kompletního textu pro InspIS včetně charakteristiky
   const generateFullSvpText = () => {
-    let output = `ŠKOLNÍ VZDĚLÁVACÍ PROGRAM: ${SVP_SHARED_INFO.subjectName.toUpperCase()}\n`;
-    output += `Obor vzdělání: ${SVP_SHARED_INFO.fieldCode} ${SVP_SHARED_INFO.fieldName}\n\n`;
+    let output = `ŠKOLNÍ VZDĚLÁVACÍ PROGRAM: ${shared.subjectName.toUpperCase()}\n`;
+    output += `Obor vzdělání: ${shared.fieldCode} ${shared.fieldName}\n\n`;
     output += `1. PRAVIDLA PRO HODNOCENÍ VÝSLEDKŮ VZDĚLÁVÁNÍ ŽÁKŮ:\n`;
-    output += `${SVP_SHARED_INFO.evaluation}\n\n`;
+    output += `${shared.evaluation}\n\n`;
     output += `2. PŘÍNOS PŘEDMĚTU PRO ROZVOJ KLÍČOVÝCH KOMPETENCÍ:\n`;
-    SVP_SHARED_INFO.keyCompetencies.forEach((k) => {
+    shared.keyCompetencies.forEach((k) => {
       output += ` • ${k.title}: ${k.description}\n`;
     });
     output += `\n3. PRŮŘEZOVÁ TÉMATA:\n`;
-    SVP_SHARED_INFO.crossCuttingThemes.forEach((t) => {
+    shared.crossCuttingThemes.forEach((t) => {
       output += ` • ${t.code} (${t.name}): ${t.description}\n`;
     });
     output += `\n4. MEZIPŘEDMĚTOVÉ VZTAHY:\n`;
-    output += `${SVP_SHARED_INFO.interdisciplinaryRelations}\n\n`;
+    output += `${shared.interdisciplinaryRelations}\n\n`;
     output += `================================================================================\n`;
     output += `ROČNÍKOVÁ UČEBNÍ OSNOVA: ${data.gradeLabel} (${data.totalHours} hodin)\n`;
     output += `================================================================================\n\n`;
@@ -174,7 +179,7 @@ export default function SvpInspisTable({
               <div className="font-bold text-sm text-slate-900 flex items-center gap-2">
                 <span>Společná charakteristika předmětu v InspIS</span>
                 <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 font-semibold">
-                  Společné pro 1.–3. ročník
+                  {shared.subjectName.toLowerCase().includes('program') ? 'Společné pro 1.–4. ročník' : 'Společné pro 1.–3. ročník'}
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
@@ -198,7 +203,7 @@ export default function SvpInspisTable({
                   1. Pravidla pro hodnocení výsledků vzdělávání žáků
                 </h4>
                 <button
-                  onClick={() => copyToClipboard(SVP_SHARED_INFO.evaluation, 'eval')}
+                  onClick={() => copyToClipboard(shared.evaluation, 'eval')}
                   className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
                 >
                   {copiedType === 'eval' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
@@ -206,7 +211,7 @@ export default function SvpInspisTable({
                 </button>
               </div>
               <p className="text-slate-600 leading-relaxed text-xs">
-                {SVP_SHARED_INFO.evaluation}
+                {shared.evaluation}
               </p>
             </div>
 
@@ -219,7 +224,7 @@ export default function SvpInspisTable({
                 </h4>
                 <button
                   onClick={() => {
-                    const text = SVP_SHARED_INFO.keyCompetencies.map(k => `${k.title}:\n${k.description}`).join('\n\n');
+                    const text = shared.keyCompetencies.map(k => `${k.title}:\n${k.description}`).join('\n\n');
                     copyToClipboard(text, 'comp');
                   }}
                   className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
@@ -229,7 +234,7 @@ export default function SvpInspisTable({
                 </button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                {SVP_SHARED_INFO.keyCompetencies.map((comp, idx) => (
+                {shared.keyCompetencies.map((comp, idx) => (
                   <div key={idx} className="p-3 rounded-lg bg-slate-50 border border-slate-100 text-xs">
                     <strong className="text-slate-900 block mb-1 font-bold">{comp.title}</strong>
                     <span className="text-slate-600 leading-relaxed">{comp.description}</span>
@@ -247,7 +252,7 @@ export default function SvpInspisTable({
                 </h4>
                 <button
                   onClick={() => {
-                    const text = SVP_SHARED_INFO.crossCuttingThemes.map(t => `${t.code} (${t.name}):\n${t.description}`).join('\n\n');
+                    const text = shared.crossCuttingThemes.map(t => `${t.code} (${t.name}):\n${t.description}`).join('\n\n');
                     copyToClipboard(text, 'pt');
                   }}
                   className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
@@ -257,7 +262,7 @@ export default function SvpInspisTable({
                 </button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
-                {SVP_SHARED_INFO.crossCuttingThemes.map((theme, idx) => (
+                {shared.crossCuttingThemes.map((theme, idx) => (
                   <div key={idx} className="p-3 rounded-lg bg-slate-50 border border-slate-100 text-xs">
                     <span className="font-mono font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded text-[10px] inline-block mb-1">
                       {theme.code}
@@ -276,7 +281,7 @@ export default function SvpInspisTable({
                 4. Mezipředmětové vztahy
               </h4>
               <p className="text-slate-600 leading-relaxed">
-                {SVP_SHARED_INFO.interdisciplinaryRelations}
+                {shared.interdisciplinaryRelations}
               </p>
             </div>
           </div>

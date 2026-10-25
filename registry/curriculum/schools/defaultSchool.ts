@@ -1184,6 +1184,67 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                   ]
                 }
               ]
+            },
+            {
+              id: 'prg3',
+              title: 'Programování a hry 3',
+              tag: 'prg3',
+              description: '3D vývoj ve virtuálním prostředí v Unity a síťové klient–server aplikace v Pythonu s databází.',
+              icon: 'Code',
+              gradient: 'from-violet-600 to-indigo-600',
+              route: '/specializovana/programovani-3',
+              chapters: [
+                {
+                  id: 'prg3-unity-uvod',
+                  title: '3D prostředí a scény v Unity',
+                  description: 'Tvorba 3D prostředí, transformace, materiály, osvětlení a kamera.',
+                  tag: 'u3d',
+                  icon: 'Box',
+                  gradient: 'from-violet-600 to-purple-600',
+                  route: '/specializovana/programovani-3/unity-uvod',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg3-unity-fyzika',
+                  title: 'Fyzika a herní interakce',
+                  description: 'RigidBody, kolizní tvary, spouštěče (triggery), prostorový zvuk a interakce.',
+                  tag: 'uphy',
+                  icon: 'Activity',
+                  gradient: 'from-purple-600 to-indigo-600',
+                  route: '/specializovana/programovani-3/unity-fyzika',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg3-unity-build',
+                  title: 'Uživatelské rozhraní a sestavení',
+                  description: 'Herní HUD, skriptování herního cyklu a export pro fyzické cílové zařízení.',
+                  tag: 'ubld',
+                  icon: 'MonitorUp',
+                  gradient: 'from-indigo-600 to-blue-600',
+                  route: '/specializovana/programovani-3/unity-sestaveni',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg3-architektura-klient-server',
+                  title: 'Architektura klient–server a síťová komunikace',
+                  description: 'Přechod od desktopového rozhraní ke klient–server architektuře, HTTP komunikace a JSON.',
+                  tag: 'net',
+                  icon: 'Network',
+                  gradient: 'from-blue-600 to-cyan-600',
+                  route: '/specializovana/programovani-3/klient-server',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg3-backend-databaze',
+                  title: 'Backend a databázové úložiště',
+                  description: 'Tvorba aplikačního rozhraní (API), bezpečné SQL dotazy a perzistence dat.',
+                  tag: 'api',
+                  icon: 'Database',
+                  gradient: 'from-cyan-600 to-teal-600',
+                  route: '/specializovana/programovani-3/backend-api',
+                  hasSubchapters: false
+                }
+              ]
             }
           ]
         },
@@ -1322,6 +1383,57 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     { id: 'rob4-prj-run', title: 'Týmová integrace a ladění', description: 'Autonomní logistika a kooperace v reálném čase', tag: 'run', icon: 'Bot', gradient: 'from-rose-600 to-red-700', route: '/specializovana/robotika-4/projekt/realizace' },
                     { id: 'rob4-prj-prez', title: 'Obhajoba & Troubleshooting', description: 'Prezentace projektu a řešení simulovaných poruch', tag: 'def', icon: 'ShieldCheck', gradient: 'from-rose-600 to-red-700', route: '/specializovana/robotika-4/projekt/obhajoba' }
                   ]
+                }
+              ]
+            },
+            {
+              id: 'prg4',
+              title: 'Programování a hry 4',
+              tag: 'prg4',
+              description: 'Vývoj webového klienta, zabezpečení a autentizace aplikací, týmové nástroje a maturitní projekt.',
+              icon: 'Code',
+              gradient: 'from-emerald-600 to-teal-600',
+              route: '/specializovana/programovani-4',
+              chapters: [
+                {
+                  id: 'prg4-web-klient',
+                  title: 'Vývoj webového klienta a frontend',
+                  description: 'Struktura webového rozhraní, stylování a asynchronní komunikace s API.',
+                  tag: 'web',
+                  icon: 'Globe',
+                  gradient: 'from-emerald-600 to-teal-600',
+                  route: '/specializovana/programovani-4/webovy-klient',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg4-bezpecnost-autentizace',
+                  title: 'Zabezpečení, autentizace a správa uživatelů',
+                  description: 'Autentizace, hashování hesel, ochrana vstupů a ošetření zranitelností.',
+                  tag: 'sec',
+                  icon: 'ShieldCheck',
+                  gradient: 'from-teal-600 to-cyan-600',
+                  route: '/specializovana/programovani-4/zabezpeceni',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg4-sw-inzenyrstvi',
+                  title: 'Softwarové inženýrství a týmové nástroje',
+                  description: 'Zásady čistého kódu, automatizované testování a týmové větvení v Gitu.',
+                  tag: 'eng',
+                  icon: 'GitBranch',
+                  gradient: 'from-cyan-600 to-blue-600',
+                  route: '/specializovana/programovani-4/sw-inzenyrstvi',
+                  hasSubchapters: false
+                },
+                {
+                  id: 'prg4-maturitni-projekt',
+                  title: 'Komplexní maturitní projekt',
+                  description: 'Samostatný návrh, realizace komplexní vícevrstvé aplikace, dokumentace a obhajoba.',
+                  tag: 'prj',
+                  icon: 'FolderKanban',
+                  gradient: 'from-blue-600 to-indigo-600',
+                  route: '/specializovana/programovani-4/maturitni-projekt',
+                  hasSubchapters: false
                 }
               ]
             }

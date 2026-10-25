@@ -44,6 +44,9 @@ import {
   GitBranch,
   RefreshCw,
   Wifi,
+  Globe,
+  Box,
+  Gamepad2,
   LucideIcon
 } from 'lucide-react';
 
@@ -91,6 +94,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   ArrowUpDown,
   Search,
   Wifi,
+  Globe,
+  Box,
+  Gamepad2,
 };
 
 /**

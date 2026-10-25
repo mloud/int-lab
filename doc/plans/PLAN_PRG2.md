@@ -1,48 +1,31 @@
-# Pracovní plán: Programování a vývoj her 2 (PRG 2)
+# Pracovní plán: Programování a vývoj aplikací 2 (PRG 2)
 
 **Cílový ročník:** 2. ročník SŠ (Obor 18-20-M/01 Informační technologie)  
 **Hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
 **Výchozí routa v IntLab:** `/specializovana/programovani-2`  
-**Odpovídající profil kurikula:** [`doc/curriculum/PRG2.md`](../curriculum/PRG2.md)
+**Odpovídající profil kurikula (ŠVP InspIS):** [`doc/curriculum/PRG_SVP_INSPIS.md`](../curriculum/PRG_SVP_INSPIS.md)
 
 ---
 
 ## 🎯 Hlavní pedagogický cíl
-Přechod od blokového programování k textovému programovacímu jazyku **Python**. Důraz na vizuální výstupy pomocí grafické knihovny **Tkinter (Canvas)**, ovládání základních syntaktických struktur (proměnné, větvení, cykly, vlastní funkce), práci s náhodou, myší a klávesnicí a tvorbu interaktivních miniher.
+Přechod od procedurálního kódu k pokročilému strukturovanému a objektovému programování v jazyce **Python**. Zvládnutí pokročilých kolekcí a struktur (slovníky, řezy, list comprehension), práce se soubory a perzistence dat (formáty JSON, CSV), robustní ošetření chyb a výjimek (`try-except`), pochopení paradigmatu objektově orientovaného programování (třídy, instance, zapouzdření) a tvorba plnohodnotných okenních desktopových aplikací s grafickým uživatelským rozhraním (GUI).
 
 ---
 
-## 📊 Stav realizace na portálu IntLab
+## 📊 Stav realizace na portálu IntLab (Rozpis 66 hodin)
 
-Na portálu existuje kompletní řada 20 lekcí:
-1. `python-zaklady` – Interaktivní konzole a první výpočty
-2. `python-promenne` – Krabičky v paměti a přiřazování
-3. `python-program` – Příkaz print a první skripty
-4. `python-vypisy` – Proměnné a formátování výpisů
-5. `python-vyrazy` – Aritmetické výrazy a priority operací
-6. `python-kresleni` – Úvod do plátna Canvas a souřadnicový systém
-7. `python-kresleni-s-promennymi` – Geometrické tvary s proměnnými rozměry
-8. `python-barvy` – Barvy, výplně a obrysy na plátně
-9. `python-elipsy` – Kreslení kruhů a oválů
-10. `python-nahoda` – Modul random, generování náhodných pozic a barev
-11. `python-text` – Vykreslování textových prvků na plátno
-12. `python-cyklus` – Cyklus `for` a opakování grafických prvků
-13. `python-promenna-cyklu` – Využití proměnné `i` pro posun souřadnic
-14. `python-kruhy-a-cykly` – Terče a koncentrické obrazce
-15. `python-podprogramy` – Vlastní funkce `def` pro znovupoužitelnost
-16. `python-podprogram-s-parametrem` – Funkce s parametry (velikost, barva, pozice)
-17. `python-vetveni` – Podmínky `if` a `else`
-18. `python-vetveni-a-konstrukce` – Složené podmínky `elif`, logické operátory `and`, `or`
-19. `python-vnorene-vetveni` – Víceúrovňové rozhodování
-20. `python-kresleni-mysi` – Reakce na události myši (`<Button-1>`, `<B1-Motion>`)
+| Blok | Tematický celek | Dotace | Obsah a plánovaná témata | Stav na portálu |
+|:---:|---|:---:|---|:---:|
+| **1** | **Pokročilé datové struktury a kolekce v jazyce Python** | **16 h** | • Seznamy a jejich metody (`append`, `pop`, `insert`, `sort`)<br>• Krájení dat (slicing `[start:stop:step]`, záporné indexy)<br>• Generátory seznamů (list comprehension)<br>• Neměnné n-tice (`tuple`) a množiny (`set` – deduplikace)<br>• Slovníky (`dict`): klíče a hodnoty, vyhledávání, vnořené slovníky | 🟡 K vytvoření |
+| **2** | **Práce se soubory, perzistence dat (JSON) a ošetření výjimek** | **14 h** | • Čtení a zápis textových souborů (`with open(...)`)<br>• Zpracování tabulkových dat v CSV<br>• Hierarchický výměnný formát JSON (`dump`, `load`)<br>• Ošetření běhových chyb a výjimek (`try - except - finally`) | 🟡 K vytvoření |
+| **3** | **Základy objektově orientovaného programování v jazyce Python** | **16 h** | • Od procedur k objektům, abstrakce a modelování reality<br>• Třída a instance, konstruktor `__init__`, parametr `self`<br>• Atributy a metody, zapouzdření vnitřního stavu<br>• Skládání objektů (kompozice), základy dědičnosti | 🟡 K vytvoření |
+| **4** | **Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** | **20 h** | • Okenní architektura, smyčka událostí Event Loop<br>• Layout manažery (mřížka `grid`, balíčkování `pack`)<br>• Widgety: textová pole, tlačítka, přepínače, seznamy<br>• Zapouzdření GUI do objektové třídy<br>• Ucelený ročníkový projekt desktopové aplikace s ukládáním do JSON a obhajobou | 🟡 K vytvoření |
+| **Σ** | **Celkem** | **66 h** | **Plně navrženo a harmonizováno** | |
 
 ---
 
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj)
+## 🔥 Aktuální úkoly a Backlog (Další rozvoj PRG 2)
 
-- [ ] **Modernizace navigace rozcestníku:**
-  - Přestavba menu předmětu PRG 2 na standardní vertikální karty s explicitním tlačítkem (dle pravidla 4 a 8 z `AGENTS.md`).
-- [ ] **Grafické minihry a projekty v Tkinteru:**
-  - Projekt 1: Animovaný míček s odrazem od stěn plátna (`after()` smyčka).
-  - Projekt 2: Klasická hra Pong (pálka ovládaná myší/klávesnicí + míček).
-  - Projekt 3: Klikací hra (chytání náhodně se objevujících cílů na čas).
+- [ ] Příprava nových modulů pro pokročilý Python (slovníky, list comprehension, práce se soubory).
+- [ ] Vytvoření interaktivních trenažérů objektového myšlení (třídy, instance, metody) v prohlížeči.
+- [ ] Návrh projektových šablon pro okenní GUI aplikace (Evidence agendy, Správce úkolů) s exportem do Wordu.

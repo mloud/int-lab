@@ -46,7 +46,12 @@ export const DynamicSubjectHub: React.FC<DynamicSubjectHubProps> = ({ subjectId,
 
   const { subject, division, grade } = result;
   const SubjectIcon = getCurriculumIcon(subject.icon);
-  const hasThematicPlan = ['ops1', 'ops2', 'ops3'].includes(subject.id);
+  const hasThematicPlan = ['ops1', 'ops2', 'ops3', 'prg1', 'prg2', 'prg3', 'prg4'].includes(subject.id);
+  const planHours = (subject.id === 'prg1' || subject.id === 'prg3') 
+    ? '99 h' 
+    : subject.id === 'prg4' 
+      ? '50 h' 
+      : '66 h';
 
   return (
     <div className="max-w-6xl w-full animate-in fade-in duration-500 px-4">
@@ -90,9 +95,9 @@ export const DynamicSubjectHub: React.FC<DynamicSubjectHubProps> = ({ subjectId,
               className="inline-flex items-center gap-2.5 px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-indigo-600" />
-              <span>Tematický plán předmětu</span>
+              <span>Tematický plán a ŠVP předmětu</span>
               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-500">
-                66 h
+                {planHours}
               </span>
               <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
             </button>

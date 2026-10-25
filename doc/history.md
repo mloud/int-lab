@@ -705,5 +705,48 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - **Úkol 10: Vytvoření unikátního seznamu / Deduplikace (`UnikatniSeznam.sb3`):** Vytvoření množiny unikátních hodnot z původního seznamu `seznam` do `unikatni_seznam`. Rozšíření bloku `Naplň seznam (počet) (max)` o 2 parametry pro garantovaný vznik duplicit (např. 15 prvků s maximem 5), procedurální deduplikace cyklem a testováním `když < ne < [unikatni_seznam] obsahuje (položka (i) z [seznam])? > > tak vlož`. Vizuální diagram převodu přímo v zadání.
     - **Registrace:** Zaregistrováno v `defaultSchool.ts` (subchapters pro `scratch`), v `registry/lessons.ts` (`id: 'scratch-seznamy'`) a v plánech `PLAN_PRG1.md` i `doc/plan.md`.
 
+24. **Návrh a schválení čtyřletého kurikula Programování a vývoj aplikací (PRG 1–4):**
+    - **Hodinová dotace:** Zaveden model **3 – 2 – 3 – 2** (PRG 1: 99 h · PRG 2: 66 h · PRG 3: 99 h · PRG 4: 50 h = celkem **314 hodin**).
+    - **Oficiální dokument ŠVP InspIS:** Vytvořen oficiální dokument [`doc/curriculum/PRG_SVP_INSPIS.md`](./curriculum/PRG_SVP_INSPIS.md) podle standardu ČŠI InspIS a vzoru SŠ Horažďovice.
+    - **Koncepce a didaktická gradace:**
+      - **1. ročník (PRG 1 – 99 h):** Vizuální blokové programování ve Scratchi (vč. zpráv a klonování, 36 h) ➔ Teorie algoritmizace a vývojové diagramy (vlastnosti algoritmu, normalizované značky, čtení a tvorba diagramů, 9 h) ➔ Algoritmizace v hardware na mikrokontrolérech (12 h) ➔ Přechod k textovému Pythonu s okamžitou grafickou vizualizací v Canvasu (42 h). 3D Raycaster vyřazen jako volitelný rozšiřující modul.
+      - **2. ročník (PRG 2 – 66 h):** Pokročilé datové struktury (slovníky, řezy, list comprehension, 16 h) ➔ Práce se soubory (TXT, CSV, JSON) a ošetření výjimek (14 h) ➔ Základy OOP v Pythonu (třídy, instance, `__init__`, zapouzdření, 16 h) ➔ Vývoj okenních desktopových aplikací s grafickým uživatelským rozhraním GUI (20 h).
+      - **3. ročník (PRG 3 – 99 h):** Tvorba prostorové scény, materiálů a osvětlení v simulačním enginu Unity s jednoduchými skripty interakce a fyziky z připravené školní šablony a exportem na cílové zařízení / VR (1. pololetí, 45 h) ➔ Základy síťové komunikace, architektura klient–server v Pythonu, rekapitulace jazyka SQL (známého z Databází) a jeho integrace s Pythonem a REST API (2. pololetí, 54 h).
+      - **4. ročník (PRG 4 – 50 h):** Dokončení klient–server architektury o webové klientské rozhraní vedle desktopu, bezpečnost a autentizace uživatelů (hashování hesel, ochrana vstupů, 14 h) ➔ Softwarové inženýrství, testování a týmový Git (12 h) ➔ Závěrečný syntetický maturitní projekt a veřejná obhajoba (24 h).
+    - Aktualizovány pracovní plány `PLAN_PRG1.md`, `PLAN_PRG2.md`, `PLAN_PRG3.md`, `PLAN_PRG4.md` i aktivní plánovací tabule `doc/plan.md`.
 
+25. **Implementace akčních tlačítek a tematických plánů předmětů PRG 1–4 (Shodná struktura jako OSS):**
+    - **UI & Tlačítka v rozcestnících:**
+      - V komponentě `DynamicSubjectHub.tsx` aktivována akční tlačítka **„Tematický plán a ŠVP předmětu“** pro všechny 4 ročníky programování (`prg1`, `prg2`, `prg3`, `prg4`) se zobrazením dynamické hodinové dotace v pilulce (`99 h` pro PRG 1 a 3, `66 h` pro PRG 2, `50 h` pro PRG 4).
+      - Do kurikula školy (`registry/curriculum/schools/defaultSchool.ts`) v divizi `specializovana-it` přidány karty a definice předmětů:
+        - **PRG 3 (3. ročník):** `route: '/specializovana/programovani-3'`, 99 h, 5 kapitol (3D prostředí v Unity, Fyzika a interakce, Sestavení a HUD, Architektura klient–server, Backend a SQL databáze).
+        - **PRG 4 (4. ročník):** `route: '/specializovana/programovani-4'`, 50 h, 4 kapitoly (Webový klient a frontend, Zabezpečení a autentizace, Softwarové inženýrství a Git, Komplexní maturitní projekt).
+      - V `registry/curriculum/iconRegistry.ts` doplněny chybějící ikony `Globe`, `Box`, `Gamepad2`.
+    - **Tematické plány a ŠVP stránky:**
+      - Vytvořen centrální modul `registry/curriculum/prgPlanTopics.ts` obsahující `PlanTopic[]` data pro všechny 4 ročníky v přesném souladu se schválenými dotacemi (99 h, 66 h, 99 h, 50 h).
+      - Komponenta `SvpInspisTable.tsx` i `SimplePlanTable.tsx` upraveny pro podporu volitelného `sharedInfo` (`SvpSharedInfo`) a dynamického výpočtu týdenní dotace `weeklyInfo` (99 h ➔ 33 týdnů × 3 h; 50 h ➔ 25 týdnů × 2 h).
+      - Vytvořeny plně funkční routy pro všechny ročníky obalené v `CategoryLayout`:
+        - `/specializovana/programovani/tematicky-plan`
+        - `/specializovana/programovani-2/tematicky-plan`
+        - `/specializovana/programovani-3` a `/specializovana/programovani-3/tematicky-plan`
+        - `/specializovana/programovani-4` a `/specializovana/programovani-4/tematicky-plan`
+    - **Ověření:** Všech 9 souvisejících rout otestováno proti běžícímu vývojovému serveru s návratovým kódem HTTP 200 a ověřením přítomnosti tlačítek i záložek.
 
+26. **Harmonizace ŠVP PRG 1–4 se standardem SŠ Horažďovice (InspIS ČŠI) a didaktická reflexe:**
+    - **Uložení originálního ŠVP Horažďovice:** Celé oficiální akreditované PDF kurikulum SŠ Horažďovice (*Vývoj aplikací a her*, 146 stran, 3.6 MB) bylo trvale archivováno v repozitáři v [`doc/curriculum/references/horazdovice_svp_vyvoj_aplikaci_a_her.pdf`](./curriculum/references/horazdovice_svp_vyvoj_aplikaci_a_her.pdf) pro možnost budoucího detailního porovnávání.
+    - **Srovnávací analýza větných konstrukcí a technologií:**
+      - Zjištěno, že Horažďovice ve svém ŠVP explicitně uvádějí konkrétní jazyky (Lua v 1. roč., PHP, JavaScript, SQL), herní enginy (Unity na 8 místech, Unreal Engine), verzovací nástroje (Git na 11 místech) i frontendové frameworky s možností volby / orientačně (Bootstrap, Tailwind, React, Vue, jQuery).
+      - Naše výstupy v PRG 1–4 byly stylisticky sjednoceny s přísným kánonem InspIS ČŠI:
+        - Krátké, úderné 1-větné výstupy začínající aktivním slovesem ve 3. os. j. č. přítomného času (`využívá`, `vytváří`, `používá`, `popíše`, `implementuje`, `navrhne`, `spravuje`, `prezentuje a obhájí`).
+        - Odstraněna rozvleklá souvětí a akademické kudrlinky.
+        - Odstraněno suché trasování proměnných z PRG 1 dle požadavku uživatele.
+        - Změny plně propsány do [`doc/curriculum/PRG_SVP_INSPIS.md`](./curriculum/PRG_SVP_INSPIS.md) i do aplikačního registru [`registry/curriculum/svpData.ts`](../registry/curriculum/svpData.ts).
+    - **Metodické ukotvení a didaktická reflexe hraničních témat:**
+      - **Je toho málo / moc?** Potvrzeno, že model 3-2-3-2 (314 hodin celkem) je přesně na horní hraně reálné kapacity středoškoláka (2 h týdně ve 2. a 4. roč. představují po odečtení svátků, exkurzí a maturit pouze cca 45–55 reálných hodin).
+      - **Identifikováno 5 didakticky hraničních témat a navrženo jejich bezpečné zvládnutí:**
+        1. *Přechod k OOP a parametr `self` (2. roč.)* – funkční pojetí přes okno Tkinteru / herní postavu namísto abstraktní zoologie.
+        2. *Asynchronní událostní smyčka GUI (2. roč.)* – oddělení layoutu od callbacků, analogie recepční.
+        3. *Mentální model Klient–Server (3. roč.)* – testování JSONu nejprve přímo v prohlížeči (`localhost:5000/api/...`), teprve pak napojení klienta.
+        4. *Kybernetická bezpečnost: Hashování hesel se solí, SQL Injection, XSS (4. roč.)* – pro žáky mimořádně atraktivní praktické téma zvládnutelné za 2–3 hodiny (vyzkoušení útoku `' OR '1'='1` a oprava otazníkem `?`, hashování přes `werkzeug.security` na 2 řádky kódu, automatický auto-escaping šablon).
+        5. *Týmový Git a merge konflikty (4. roč.)* – modulární dělení práce (server vs. klient) a využití vizuálního rozhraní (VS Code / GitHub Desktop).
+      - **Webový mikrorámec:** Vyjasněna terminologie – odlehčený vývojový server v Pythonu (Flask/FastAPI) o 5 řádcích kódu se zabudovaným HTTP serverem a směrováním.
