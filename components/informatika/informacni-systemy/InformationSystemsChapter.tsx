@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { BookOpen, Users, Database } from 'lucide-react';
+import { BookOpen, Users, Network } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { InformationSystemsTheoryTab } from './InformationSystemsTheoryTab';
+import { LibraryDiagramBuilder } from './LibraryDiagramBuilder';
 import { GradebookSimulator } from './gradebook/GradebookSimulator';
 
 interface InformationSystemsChapterProps {
@@ -10,24 +11,26 @@ interface InformationSystemsChapterProps {
 }
 
 export const InformationSystemsChapter: React.FC<InformationSystemsChapterProps> = ({ onBack }) => {
-  const [activeTab, setActiveTab] = useState<'teorie' | 'simulator'>('teorie');
+  const [activeTab, setActiveTab] = useState<'teorie' | 'knihovna' | 'simulator'>('teorie');
 
   const tabs = [
     { id: 'teorie', label: 'Teorie a principy', icon: BookOpen },
-    { id: 'simulator', label: 'Simulátor žákovské knížky', icon: Users },
+    { id: 'knihovna', label: 'Diagram knihovny', icon: Network },
+    { id: 'simulator', label: 'Žákovská knížka (Bakaláři)', icon: Users },
   ];
 
   return (
     <FsChapterShell
       title="Informační systémy"
       highlight="a role uživatelů"
-      subtitle="Co je informační systém, z čeho se skládá, jak rozeznává uživatele a jak fungují přístupová práva v reálné žákovské knížce pro 7. ročník."
+      subtitle="Z čeho se skládá informační systém, proč se přihlašujeme a jak fungují role v žákovské knížce."
       onBack={onBack}
       tabs={tabs}
       activeTab={activeTab}
-      onTabChange={tabId => setActiveTab(tabId as 'teorie' | 'simulator')}
+      onTabChange={tabId => setActiveTab(tabId as 'teorie' | 'knihovna' | 'simulator')}
     >
       {activeTab === 'teorie' && <InformationSystemsTheoryTab />}
+      {activeTab === 'knihovna' && <LibraryDiagramBuilder />}
       {activeTab === 'simulator' && <GradebookSimulator />}
     </FsChapterShell>
   );

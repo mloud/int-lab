@@ -75,34 +75,22 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
       {/* Bakaláři přihlašovací box */}
       <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
         {/* Modrá hlavička Bakalářů */}
-        <div className="bg-[#0B3A60] text-white p-6 sm:p-8 text-center relative">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center font-black text-2xl shadow-lg border-2 border-white/20 mb-3">
+        <div className="bg-[#0B3A60] text-white p-6 text-center relative">
+          <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center font-black text-xl shadow-lg border-2 border-white/20 mb-2">
             B
           </div>
-          <div className="text-xs font-bold uppercase tracking-widest text-blue-200">
-            Školní informační systém
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-wider uppercase text-white mt-1">
+          <h2 className="text-2xl font-black tracking-wider uppercase text-white">
             BAKALÁŘI
           </h2>
-          <p className="text-xs sm:text-sm text-blue-100/90 mt-1 font-medium">
-            Základní škola IntLab • Přihlášení do aplikace
-          </p>
         </div>
 
         {/* KROK 1: NEJPRVE POUZE VOLBA ROLE */}
         {!chosenRole && (
           <div className="p-6 sm:p-8 space-y-6 animate-in fade-in duration-200">
             <div className="text-center">
-              <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-black uppercase tracking-wider mb-2 border border-blue-200">
-                Krok 1 / 2
-              </span>
               <h3 className="text-xl font-black text-slate-900 tracking-tight">
                 Vyberte svoji roli v systému
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                Zvolte způsob, jakým chcete do školního systému vstoupit:
-              </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -159,9 +147,6 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
               </button>
 
               <div className="text-right">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Krok 2 / 2
-                </span>
                 <span className="text-xs font-black text-blue-900 uppercase">
                   Role: {chosenRole}
                 </span>
@@ -172,9 +157,6 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
               <h3 className="text-xl font-black text-slate-900 tracking-tight">
                 Kdo se přihlašuje?
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                Klikněte na účet pro okamžité přihlášení do aplikace:
-              </p>
             </div>
 
             {/* SEZNAM ŽÁKŮ */}
@@ -305,18 +287,6 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
             )}
           </div>
         )}
-
-        {/* Didaktická patička */}
-        <div className="bg-slate-50 px-6 sm:px-8 py-4 border-t border-slate-100 flex items-center gap-3 text-xs text-slate-500">
-          <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
-          <span>
-            {chosenRole ? (
-              <>Vybraná role <strong>{chosenRole}</strong> určí, co po přihlášení v systému uvidíš a co budeš moci dělat.</>
-            ) : (
-              <>Každá role má v informačním systému jiná oprávnění a přístup k jiným datům.</>
-            )}
-          </span>
-        </div>
       </div>
     </div>
   );
