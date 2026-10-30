@@ -594,8 +594,32 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       route: '/specializovana/operacni-systemy-1/souborove-systemy/boot',
                       orderNumber: 6,
                       actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'fs-test-sub',
+                      title: 'Hodnocená práce: Souborové systémy a disky',
+                      description: 'Souborové systémy, paměťová média, alokace dat a formátování disku. 40 minut, 50 bodů. Odemčení na PIN.',
+                      tag: 'TEST',
+                      icon: 'ShieldCheck',
+                      gradient: 'from-rose-500 to-red-600',
+                      route: '/specializovana/operacni-systemy-1/test02',
+                      orderNumber: 'TEST',
+                      actionLabel: 'Otevřít zadání',
+                      isTest: true
                     }
                   ]
+                },
+                {
+                  id: 'fs-test',
+                  title: 'Hodnocená práce',
+                  description: 'Souborové systémy, paměťová média, alokace dat a formátování disku. 40 minut, 50 bodů. Odemčení na heslo.',
+                  tag: 'TEST',
+                  icon: 'ShieldCheck',
+                  gradient: 'from-rose-500 to-red-600',
+                  actionLabel: 'Otevřít zadání',
+                  route: '/specializovana/operacni-systemy-1/test02',
+                  hasSubchapters: false,
+                  isTest: true
                 },
                 {
                   id: 'proc-mem',

@@ -17,7 +17,7 @@ Převést žáka z role běžného uživatele PC do role **poučeného lokální
 | Blok | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|---|:---:|:---:|---|
 | **1** | Architektura počítače a základy OS | 8 h | ✅ Hotovo (teorie, kvízy, simulátor CPU) | `/hardware/*`, `/architektura` |
-| **2** | Souborové systémy, disky a start systému | 10 h | ✅ Hotovo (simulátor instalace, FAT trenažér, boot) | `/instalace`, `/souborove-systemy/*` |
+| **2** | Souborové systémy, disky a start systému | 10 h | ✅ Hotovo (simulátor instalace, FAT trenažér, boot, písemná práce test02) | `/instalace`, `/souborove-systemy/*`, `/test02` |
 | **3** | Procesy a správa operační paměti | 6 h | ✅ Hotovo (multitasking, stavy, virtuální paměť) | `/procesy/*` (PR1–PR5) |
 | **4** | Grafické uživatelské rozhraní (GUI) | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/gui/*` (GUI1–GUI5) |
 | **5** | Příkazový řádek (CLI) a dávkové soubory | 6 h | ✅ Rozcestník & osnovy vytvořeny | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
