@@ -240,7 +240,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Sub label="b)">Kolik KB místa na disku bude pro tento soubor celkově rezervováno?</Sub>
             <Answer show={showSolutions} lines={1} solution="6 klastrů × 4 KB = 24 KB místa na disku." />
 
-            <Sub label="c)">Kolik KB činí promrhané nevyužité místo (vnitřní fragmentace) v posledním klastru?</Sub>
+            <Sub label="c)">Kolik KB činí nevyužité místo (vnitřní fragmentace) v posledním klastru?</Sub>
             <Answer show={showSolutions} lines={1} solution="24 KB - 22 KB = 2 KB nevyužitého místa." />
           </Question>
 

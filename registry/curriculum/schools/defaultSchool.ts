@@ -323,6 +323,17 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       route: '/informatika/grafy/spojnicove',
                       orderNumber: 2,
                       actionLabel: 'Otevřít kapitolu'
+                    },
+                    {
+                      id: 'grafy-vysecove',
+                      title: 'Výsečové grafy',
+                      description: 'Zobrazení podílů z jednoho celku (100 %), koláčové a prstencové grafy a odhalení 3D zkreslení.',
+                      tag: 'GR3',
+                      icon: 'PieChart',
+                      gradient: 'from-amber-500 to-orange-600',
+                      route: '/informatika/grafy/vysecove',
+                      orderNumber: 3,
+                      actionLabel: 'Otevřít kapitolu'
                     }
                   ]
                 },

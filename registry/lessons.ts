@@ -1415,6 +1415,41 @@ export const LESSON_REGISTRY: LessonUnit[] = [
     },
     componentLoader: () => import('@/components/informatika/grafy/spojnicove/LineChartsChapter')
   },
+  {
+    id: 'grafy-vysecove',
+    title: 'Výsečové grafy a podíly z celku',
+    shortCode: '#gra3',
+    description: 'Zobrazení částí jednoho celku (100 %), čtení koláčových a prstencových grafů a pravidla přehlednosti.',
+    domain: 'informatika-obecna',
+    category: 'grafika-a-multimedia',
+    contentType: 'interactive-chapter',
+    defaultPath: '/informatika/grafy/vysecove',
+    iconName: 'PieChart',
+    keywords: ['grafy', 'výsečový graf', 'koláčový graf', 'prstencový graf', 'procenta', 'podíl', 'vizualizace'],
+    difficulty: 'medium',
+    targetAudience: ['zs-2-stupen'],
+    recommendedGrades: [9],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'zs',
+      schoolName: 'Základní škola',
+      trackName: 'Základní vzdělávání',
+      grade: 9,
+      gradeLabel: '9. Třída',
+      subject: 'Informatika',
+      thematicBlock: 'Grafy a vizualizace dat',
+      chapter: 'Grafy',
+      subchapter: 'Výsečové grafy',
+      lesson: 'Výsečové grafy a podíly z celku'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: true,
+      worksheetType: 'worksheet'
+    },
+    componentLoader: () => import('@/components/informatika/grafy/vysecove/PieChartsChapter')
+  },
 
   // =========================================================================
   // =========================================================================
