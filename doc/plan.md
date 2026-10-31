@@ -1,45 +1,42 @@
-# Pracovní plán: Operační systémy 1 (OSS 1)
+# Pracovní plán: Programování a vývoj aplikací 2 (PVH 2 / PRG 2)
 
-**Cílový ročník:** 1. ročník SŠ (Obor 18-20-M/01 Informační technologie)  
+**Cílový ročník:** 2. ročník SŠ (Obor 18-20-M/01 Informační technologie)  
 **Hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
-**Výchozí routa v IntLab:** `/specializovana/operacni-systemy-1`  
-**Odpovídající profil kurikula:** [`doc/curriculum/OSS1.md`](../curriculum/OSS1.md)
+**Výchozí routa v IntLab:** `/specializovana/programovani-2`  
+**Odpovídající profil kurikula (ŠVP InspIS):** [`doc/curriculum/PRG_SVP_INSPIS.md`](../curriculum/PRG_SVP_INSPIS.md)  
+**Dedikovaný plán předmětu:** [`doc/plans/PLAN_PRG2.md`](plans/PLAN_PRG2.md)
 
 ---
 
 ## 🎯 Hlavní pedagogický cíl
-Převést žáka z role běžného uživatele PC do role **poučeného lokálního správce klientské stanice**. Žák proniká pod povrch grafického rozhraní, chápe spolupráci CPU a RAM, architekturu hardware, instaluje klientský OS, spravuje disky a oddíly, diagnostikuje procesy, automatizuje správu přes CLI/BAT a bezpečně konfiguruje lokální sítě.
+Přechod od procedurálního kódu k pokročilému strukturovanému a objektovému programování v jazyce **Python**. Zvládnutí pokročilých kolekcí a datových struktur (slovníky, řezy, list comprehension), perzistence dat a souborových operací (formáty JSON a CSV), robustního ošetření chyb a výjimek (`try-except`), pochopení paradigmatu objektově orientovaného programování (třídy, instance, konstruktory, zapouzdření) a tvorba plnohodnotných okenních desktopových aplikací s grafickým uživatelským rozhraním (GUI).
 
 ---
 
-## 📊 Stav realizace na portálu IntLab
+## 📊 Stav realizace na portálu IntLab (Rozpis 66 hodin)
 
-| Blok | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
-|:---:|---|:---:|:---:|---|
-| **1** | Architektura počítače a základy OS | 8 h | ✅ Hotovo (teorie, kvízy, simulátor CPU) | `/hardware/*`, `/architektura` |
-| **2** | Souborové systémy, disky a start systému | 10 h | ✅ Hotovo (simulátor instalace, FAT trenažér, boot, písemná práce test02) | `/instalace`, `/souborove-systemy/*`, `/test02` |
-| **3** | Procesy a správa operační paměti | 6 h | ✅ Hotovo (multitasking, stavy, virtuální paměť) | `/procesy/*` (PR1–PR5) |
-| **4** | Grafické uživatelské rozhraní (GUI) | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/gui/*` (GUI1–GUI5) |
-| **5** | Příkazový řádek (CLI) a dávkové soubory | 6 h | ✅ Rozcestník & osnovy vytvořeny | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
-| **6** | Správa uživatelů a přístupových práv | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/uzivatele/*` (USR1–USR4) |
-| **7** | Správa aplikačního software a balíčkovače | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/software/*` (SW1–SW2) |
-| **8** | Správa hardware, ovladače a plánovač | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/zarizeni`, `/planovac` |
-| **9** | Síťová konfigurace a lokální sítě (LAN) | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/site/*` (NET1–NET4) |
-| **10** | Závěrečný integrující projekt stanice | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/projekt/*` (PRJ1–PRJ4) |
-| **Σ** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
+| Blok | Tematický celek | Dotace | Obsah a plánovaná témata | Stav na portálu | Odkaz na webu |
+|:---:|---|:---:|---|:---:|---|
+| **1** | **Pokročilé datové struktury a kolekce v jazyce Python** | **16 h** | • Seznamy a jejich metody (`append`, `pop`, `insert`, `sort`)<br>• Krájení dat (slicing `[start:stop:step]`, záporné indexy)<br>• Generátory seznamů (list comprehension)<br>• Neměnné n-tice (`tuple`) a množiny (`set` – deduplikace)<br>• Slovníky (`dict`): klíče a hodnoty, vyhledávání, vnořené slovníky | 🟡 K vytvoření | `/specializovana/programovani-2` |
+| **2** | **Práce se soubory, perzistence dat (JSON) a ošetření výjimek** | **14 h** | • Čtení a zápis textových souborů (`with open(...)`)<br>• Zpracování tabulkových dat v CSV<br>• Hierarchický výměnný formát JSON (`dump`, `load`)<br>• Ošetření běhových chyb a výjimek (`try - except - finally`) | 🟡 K vytvoření | `/specializovana/programovani-2` |
+| **3** | **Základy objektově orientovaného programování v jazyce Python** | **16 h** | • Od procedur k objektům, abstrakce a modelování reality<br>• Třída a instance, konstruktor `__init__`, parametr `self`<br>• Atributy a metody, zapouzdření vnitřního stavu<br>• Skládání objektů (kompozice), základy dědičnosti | 🟡 K vytvoření | `/specializovana/programovani-2` |
+| **4** | **Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** | **20 h** | • Okenní architektura, smyčka událostí Event Loop<br>• Layout manažery (mřížka `grid`, balíčkování `pack`)<br>• Widgety: textová pole, tlačítka, přepínače, seznamy<br>• Zapouzdření GUI do objektové třídy<br>• Ucelený ročníkový projekt desktopové aplikace s ukládáním do JSON a obhajobou | 🟡 K vytvoření | `/specializovana/programovani-2` |
+| **Σ** | **Celkem** | **66 h** | **Plně navrženo a harmonizováno s ŠVP InspIS** | | |
 
 ---
 
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj)
+## 🔥 Aktuální úkoly a Backlog (Aktivní vývoj PVH 2 / PRG 2)
 
-- [ ] **Příkazový řádek (CLI) a BAT skriptování:**
-  - Vytvořit interaktivní emulátor konzole CMD v prohlížeči pro bezpečný nácvik příkazů (`cd`, `dir`, `mkdir`, `tree`).
-  - Vytvořit krokovač dávkového souboru `.bat` s vizualizací proměnných a podmínek `if`.
-- [ ] **Správa uživatelů a NTFS práv:**
-  - Doplnit interaktivní matici efektivních práv (vlastník, zděděná práva vs. explicitní Deny).
-  - Připravit badatelský pracovní list s exportem do Wordu pro laboratorní cvičení.
-- [ ] **Síťová konfigurace a Wi-Fi router:**
-  - Vytvořit interaktivní simulátor webové administrace SOHO routeru (nastavení DHCP rozsahu, WPA2/WPA3 a Guest Wi-Fi).
-- [ ] **Dekompozice velkých komponent (dle pravidla 13):**
-  - `OsArchitectureChapter.tsx` (1 454 řádků) ➔ modularizace do podsložky `architektura/`.
-  - `WindowsInstallGame.tsx` (1 352 řádků) ➔ modularizace do podsložky `instalace/`.
+- [ ] **Příprava kapitol pro pokročilý Python:**
+  - Vytvořit interaktivní vizualizátor řezů řetězců a seznamů (slicing step, záporné indexy).
+  - Vytvořit simulátor slovníků (`dict`) – mapování klíč ➔ hodnota, hashování a vnořené struktury.
+  - Vytvořit trenažér generátorů seznamů (list comprehension vs. klasický `for` cyklus).
+- [ ] **Práce se soubory a JSON:**
+  - Simulace čtení a zápisu souborů v sandboxu prohlížeče (formáty `.txt`, `.csv`, `.json`).
+  - Ošetření výjimek: interaktivní vizualizace toku programu při pádu (`try-except-finally`).
+- [ ] **Objektově orientované programování (OOP):**
+  - Třída vs. Instance: vizuální generátor instancí s inspektorem vnitřních proměnných (`self`).
+  - Interaktivní návrh třídy (např. Hrdina / Inventář / Bankovní účet) s testem metod.
+- [ ] **Okenní aplikace (GUI):**
+  - Vizuální návrhář okna s layout manažery (`pack`, `grid`).
+  - Závěrečný ročníkový projekt: šablona a metodické zadání pro žáky s exportem do Wordu.

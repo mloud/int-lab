@@ -750,3 +750,9 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         4. *Kybernetická bezpečnost: Hashování hesel se solí, SQL Injection, XSS (4. roč.)* – pro žáky mimořádně atraktivní praktické téma zvládnutelné za 2–3 hodiny (vyzkoušení útoku `' OR '1'='1` a oprava otazníkem `?`, hashování přes `werkzeug.security` na 2 řádky kódu, automatický auto-escaping šablon).
         5. *Týmový Git a merge konflikty (4. roč.)* – modulární dělení práce (server vs. klient) a využití vizuálního rozhraní (VS Code / GitHub Desktop).
       - **Webový mikrorámec:** Vyjasněna terminologie – odlehčený vývojový server v Pythonu (Flask/FastAPI) o 5 řádcích kódu se zabudovaným HTTP serverem a směrováním.
+
+
+27. **Přepnutí kontextu na předmět Programování a vývoj aplikací 2 (PVH 2 / PRG 2):**
+    - Kontext aktivního vývoje byl přepnut na 2. ročník oboru IT – **Programování a vývoj aplikací 2 (PVH 2 / PRG 2)**.
+    - Aktivní plánovací tabule `doc/plan.md` byla aktualizována a nastavena na předmět PRG 2 (66 h / 33 týdnů).
+    - Základní témata ročníku: Pokročilé datové struktury a kolekce v Pythonu (16 h), Práce se soubory, perzistence (JSON/CSV) a výjimky (14 h), Základy OOP (16 h), Vývoj aplikací s grafickým rozhraním GUI v Tkinteru (20 h).

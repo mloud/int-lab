@@ -39,45 +39,115 @@ const TeacherNote = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const CanvasPreview = ({ children, width = 300, height = 200, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
-  <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
+const CanvasPreview = ({ 
+  children, 
+  width = 300, 
+  height = 200, 
+  className = "", 
+  bgColor = "white" 
+}: { 
+  children: React.ReactNode; 
+  width?: number; 
+  height?: number; 
+  className?: string; 
+  bgColor?: string; 
+}) => (
+  <div 
+    className={`relative border-2 border-slate-400 shadow-sm mx-auto my-4 overflow-hidden rounded-xs ${className}`} 
+    style={{ width, height, backgroundColor: bgColor }}
+  >
     {children}
   </div>
 );
 
-const Rect = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
+const Rect = ({ 
+  x1, 
+  y1, 
+  width, 
+  height, 
+  fill = "transparent", 
+  stroke = "black",
+  strokeWidth = 1,
+  className = ""
+}: { 
+  x1: number; 
+  y1: number; 
+  width: number; 
+  height: number; 
+  fill?: string; 
+  stroke?: string;
+  strokeWidth?: number;
+  className?: string;
+}) => (
   <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'}`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
+    className={`absolute ${className}`} 
+    style={{ 
+      left: x1, 
+      top: y1, 
+      width, 
+      height, 
+      backgroundColor: fill,
+      border: strokeWidth > 0 ? `${strokeWidth}px solid ${stroke}` : 'none'
+    }} 
   />
+);
+
+const Text = ({ 
+  x, 
+  y, 
+  text, 
+  fontSize = 14, 
+  fontFamily = "Arial, sans-serif",
+  fontWeight = "normal",
+  color = "black" 
+}: { 
+  x: number; 
+  y: number; 
+  text: string | number; 
+  fontSize?: number; 
+  fontFamily?: string;
+  fontWeight?: string | number;
+  color?: string; 
+}) => (
+  <div 
+    className="absolute flex items-center justify-center select-none"
+    style={{ 
+      left: x, 
+      top: y, 
+      transform: 'translate(-50%, -50%)',
+      fontSize: `${fontSize}px`,
+      fontFamily,
+      fontWeight,
+      color
+    }}
+  >
+    {text}
+  </div>
 );
 
 const TaskCard = ({ 
   number, 
-  title, 
   children, 
   teacherNote, 
   showTeacher,
   taskId
 }: { 
-  number: string, 
-  title: string, 
-  children: React.ReactNode, 
-  teacherNote?: React.ReactNode,
-  showTeacher: boolean,
-  taskId: string
+  number: string; 
+  children: React.ReactNode; 
+  teacherNote?: React.ReactNode; 
+  showTeacher: boolean;
+  taskId: string;
 }) => {
   const [done, setDone] = useLocalStorage(`py12-task-${taskId}`, false);
 
   return (
     <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
-      <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-violet-100 text-violet-700 rounded-2xl flex items-center justify-center font-black text-xl">
+      <div className="flex gap-4 items-start">
+        <div className="shrink-0 w-12 h-12 bg-violet-100 text-violet-700 rounded-2xl flex items-center justify-center font-black text-xl shadow-sm">
           {number}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
-          <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
+          <div className="text-slate-700 leading-relaxed text-sm sm:text-base space-y-4">
             {children}
           </div>
 
@@ -88,13 +158,13 @@ const TaskCard = ({
           <div className="mt-6 flex justify-end">
             <button 
               onClick={() => setDone(!done)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all text-xs tracking-wide uppercase active:scale-95 cursor-pointer ${
                 done 
                 ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
                 : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
+              <CheckCircle className={`w-4 h-4 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
               {done ? 'Splněno' : 'Označit jako splněné'}
             </button>
           </div>
@@ -131,11 +201,11 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
   return (
     <FsChapterShell
       title="Proměnná cyklu"
-      subtitle="Použití čísla kroku pro chytrou matematiku (iMyšlení Lekce 12)"
+      subtitle="Programování v jazyce Python pro střední školy (Lekce 12)"
       icon={<Calculator className="w-8 h-8 text-violet-600" />}
       onBack={onBack}
       accentColor="violet"
-      tabs={[{ id: 'lekce', label: 'Lekce 12', icon: Code }]}
+      tabs={[{ id: 'lekce', label: '12. lekce', icon: Code }]}
     >
       <div className="flex justify-end mb-6">
         {pinMode ? (
@@ -149,12 +219,12 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
               onKeyDown={(e) => e.key === 'Enter' && submitPin()}
               autoFocus
             />
-            <button onClick={submitPin} className="bg-violet-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
+            <button onClick={submitPin} className="bg-violet-600 text-white px-3 py-1 rounded-lg font-bold text-sm cursor-pointer">OK</button>
           </div>
         ) : (
           <button 
             onClick={handleToggleTeacher}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 cursor-pointer ${
               teacherMode ? 'bg-violet-100 text-violet-700 border-violet-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
             }`}
           >
@@ -164,18 +234,23 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
         )}
       </div>
 
-      <div className="space-y-6 max-w-4xl mx-auto pb-12">
-        <div className="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-2xl mb-8">
-          <h2 className="font-black text-violet-900 text-lg mb-2">Instrukce</h2>
-          <p className="text-violet-800/80 text-sm sm:text-base">
-            Otevři si Thonny nebo IDLE na levé polovině obrazovky. Náš cyklus <code>for i in range(5)</code> v sobě celou dobu skrýval jedno obrovské tajemství! To písmenko <code>i</code> není jen písmenko pro parádu – je to plnohodnotná <strong>proměnná</strong>, která si celou dobu tajně počítá, v kolikátém kole cyklu zrovna jsme! Dnes toto číslo odhalíme a použijeme na úžasné věci.
-          </p>
-        </div>
+      <div className="flex flex-col gap-8 max-w-4xl mx-auto pb-12">
 
-        <TaskCard number="1" title="Opakování: Dvojitá říkanka" taskId="1" showTeacher={teacherMode} teacherNote={<p>Úloha slouží k zopakování tvorby obyčejných cyklů. K vyřešení žáci potřebují napsat dva samostatné cykly: jeden, který 2x vypíše "pes oknem", a druhý, který 2x vypíše "nebude-li pršet, nezmoknem".</p>}>
-          <p>Tvůj mladší sourozenec našel následující říkanku, kde se spousta textu zbytečně opakuje. Vytvoř program <code>rikanka.py</code>, který ji vypíše pomocí příkazů <code>print</code>, ale použij cykly tak, abys měl v celém programu napsaný příkaz print maximálně třikrát!</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-sm rounded-xl">
-            Kočka leze dírou<br/>
+        {/* Úloha 1 */}
+        <TaskCard 
+          number="1" 
+          taskId="1" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Úloha slouží k zopakování tvorby cyklu for. Žáci by měli použít dva samostatné cykly for:</p>
+              <PythonSnippet code={`print('kočka leze dírou')\nfor i in range(2):\n    print('pes oknem')\nfor i in range(2):\n    print('nebude-li pršet')\n    print('nezmoknem')`} />
+            </div>
+          }
+        >
+          <p>Tvůj mladší sourozenec našel následující říkanku:</p>
+          <div className="bg-slate-900 text-slate-200 p-4 rounded-xl border border-slate-700 font-mono text-sm leading-relaxed">
+            kočka leze dírou<br/>
             pes oknem<br/>
             pes oknem<br/>
             nebude-li pršet<br/>
@@ -183,28 +258,127 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
             nebude-li pršet<br/>
             nezmoknem
           </div>
+          <p>
+            Vytvoř program <code>rikanka.py</code>, který ji vypíše pomocí příkazů <code>print</code>. Použij <code>for</code> cykly, aby bylo v programu co nejméně příkazů <code>print</code>.
+          </p>
         </TaskCard>
 
-        <TaskCard number="2" title="Odhalení písmene I" taskId="2" showTeacher={teacherMode} teacherNote={<p>Tady žáci odhalí, že `i` se při každém průchodu cyklem mění z 0 na 1, 2... atd. Je nutné zdůraznit, že programování začíná počítat už od nuly!</p>}>
-          <p>Vytvoř program <code>rada_cisel.py</code> a pomocí následujícího kódu si nech vypsat "vnitřnosti" naší smyčky. Poprvé použijeme písmenko <code>i</code> přímo v printu!</p>
+        {/* Úloha 2 */}
+        <TaskCard 
+          number="2" 
+          taskId="2" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">V této úloze žáci poprvé využívají proměnnou cyklu. Zásadní je uvědomit si, že čísla generovaná funkcí <code>range(10)</code> začínají od 0 a končí u 9 (tedy celkem 10 čísel z polootevřeného intervalu &lt;0, 10)).</p>
+            </div>
+          }
+        >
+          <p>
+            Vytvoř program <code>rada_cisel.py</code> a pomocí následujícího kódu vypiš celá čísla od 0 do 9:
+          </p>
+          
           <PythonSnippet code={`for i in range(10):\n    print('číslo', i)`} />
-          <p className="font-bold text-violet-700">Co myslíš, že to vypíše? Kde se vůbec vzala nula?</p>
-          <p className="text-sm">Počítače a programátoři mají jednu zvláštnost – vždycky začínají počítat věci od nuly. Takže 10 opakování je vlastně počítání od 0 do 9!</p>
+
+          <p>Jestli jsi kód zapsal(a) správně, program po spuštění vypíše:</p>
+
+          <div className="bg-slate-900 text-slate-200 p-4 rounded-xl border border-slate-700 font-mono text-sm leading-snug">
+            číslo 0<br/>
+            číslo 1<br/>
+            číslo 2<br/>
+            číslo 3<br/>
+            číslo 4<br/>
+            číslo 5<br/>
+            číslo 6<br/>
+            číslo 7<br/>
+            číslo 8<br/>
+            číslo 9
+          </div>
+
+          <div className="mt-6 pt-5 border-t border-slate-200">
+            <h4 className="font-bold text-slate-800 text-base mb-3">Jak to funguje?</h4>
+            
+            <div className="bg-slate-900 rounded-xl p-5 font-mono text-sm text-slate-200 border border-slate-700 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="text-violet-400 font-bold">for</span>
+                <span className="text-sky-300 font-bold bg-sky-950/60 px-1 rounded">i</span>
+                <span>in range(</span>
+                <span className="text-amber-300 font-bold bg-amber-950/60 px-1 rounded">10</span>
+                <span>):</span>
+              </div>
+              <div className="pl-6 border-l-4 border-violet-500 ml-2 py-1 flex items-center gap-1">
+                <span>print('číslo',</span>
+                <span className="text-sky-300 font-bold bg-sky-950/60 px-1 rounded">i</span>
+                <span>)</span>
+              </div>
+            </div>
+
+            <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+              <li className="flex items-start gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shrink-0 mt-1"></span>
+                <span><strong>i je proměnná</strong>, do které příkaz <code>for</code> postupně přiřazuje celá čísla od 0 do 9</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0 mt-1"></span>
+                <span><strong>rozsah čísel</strong> je z intervalu &lt;0, 10)</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-violet-400 shrink-0 mt-1"></span>
+                <span><strong>pro každé číslo</strong> se vykoná tělo cyklu, a tak se vypíše hodnota proměnné <code>i</code></span>
+              </li>
+            </ul>
+
+            <div className="mt-5 p-3.5 bg-slate-100 rounded-xl border border-slate-300 text-center text-xs sm:text-sm text-slate-800 font-medium">
+              Příkaz <code>for</code> čteme: <em>„pro i v rozsahu(...) vykonej tělo cyklu“</em>
+            </div>
+          </div>
         </TaskCard>
 
-        <TaskCard number="3" title="Matematika s I" taskId="3" showTeacher={teacherMode} teacherNote={<p>Extrémně důležitá gradovaná úloha. a) <code>range(11)</code>, b) <code>print(i+1)</code>, c) <code>print((i+1)*2)</code>, d) <code>print((i+1)*10)</code>. Žáci postupně odvozují vzorce, neustále pracují s původním indexem 0-9.</p>}>
-          <p>Urči, co je potřeba v předchozím programu změnit u samotného vypsání písmene <code>i</code>, aby se ti místo klasického (0 až 9) vypsala tato konkrétní čísla:</p>
-          <ul className="list-disc pl-5 mt-2 space-y-3 font-mono bg-slate-50 p-4 rounded-xl text-sm">
-            <li><span className="font-sans font-bold">a) Vypiš včetně 10:</span> 0, 1, 2 ... až 10 <span className="font-sans text-slate-400 ml-2">(Tip: Stačí změnit jen range)</span></li>
-            <li><span className="font-sans font-bold">b) Odstranění nuly:</span> 1, 2, 3 ... až 10 <span className="font-sans text-slate-400 ml-2">(Tip: Ke každému číslu v printu zkusmo něco přičti)</span></li>
-            <li><span className="font-sans font-bold">c) Dvojnásobně:</span> 2, 4, 6 ... až 20 <span className="font-sans text-slate-400 ml-2">(Tip: Nejdřív jako minule udělej 1 až 10 a výsledek vynásob *2)</span></li>
-            <li><span className="font-sans font-bold">d) Desítky:</span> 10, 20, 30 ... až 100 <span className="font-sans text-slate-400 ml-2">(Tip: Stejný princip, jen násobíš jiným číslem)</span></li>
-          </ul>
+        {/* Úloha 3 */}
+        <TaskCard 
+          number="3" 
+          taskId="3" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Možná řešení:</p>
+              <ul className="list-disc pl-5 space-y-1 font-mono text-xs">
+                <li>a) <code>for i in range(11): print('číslo', i)</code></li>
+                <li>b) <code>for i in range(10): print('číslo', i + 1)</code> (nebo <code>range(1, 11)</code>)</li>
+                <li>c) <code>for i in range(10): print('číslo', (i + 1) * 2)</code> (nebo <code>range(2, 21, 2)</code>)</li>
+                <li>d) <code>for i in range(10): print('číslo', (i + 1) * 10)</code> (nebo <code>range(10, 101, 10)</code>)</li>
+              </ul>
+            </div>
+          }
+        >
+          <p>Urči, co je potřeba v předchozím programu změnit, aby se vypsala čísla:</p>
+          <div className="pl-2 space-y-1.5 font-mono text-sm sm:text-base text-slate-800">
+            <div>a) 0, 1, ... 10 – tedy i číslo 10</div>
+            <div>b) 1, 2, ... 10</div>
+            <div>c) 2, 4, ... 20</div>
+            <div>d) 10, 20, ... 100</div>
+          </div>
+          <p className="text-slate-600 text-sm">
+            Program pokaždé vyzkoušej, abys ověřil, zda byla tvá domněnka správná.
+          </p>
         </TaskCard>
 
-        <TaskCard number="4" title="Druhé mocniny" taskId="4" showTeacher={teacherMode} teacherNote={<p>Aplikace proměnné cyklu. Řešení: <code>print(i, 'na druhou je', i * i)</code>.</p>}>
-          <p>Vytvoř program <code>druhe_mocniny.py</code>, který pomocí for cyklu vypíše čísla a jejich druhé mocniny (číslo vynásobené samo sebou):</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-sm rounded-xl">
+        {/* Úloha 4 */}
+        <TaskCard 
+          number="4" 
+          taskId="4" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení:</p>
+              <PythonSnippet code={`for i in range(7):\n    print(i, 'na druhou je', i * i)`} />
+            </div>
+          }
+        >
+          <p>
+            Vytvoř program <code>druhe_mocniny.py</code>, který pomocí <code>for</code> cyklu vypíše čísla a jejich druhé mocniny:
+          </p>
+          <div className="bg-slate-900 text-slate-200 p-4 rounded-xl border border-slate-700 font-mono text-sm leading-snug">
             0 na druhou je 0<br/>
             1 na druhou je 1<br/>
             2 na druhou je 4<br/>
@@ -215,91 +389,344 @@ const PythonLoopVarChapter: React.FC<PythonLoopVarChapterProps> = ({ onBack }) =
           </div>
         </TaskCard>
 
-        <TaskCard number="5" title="Slet vrabců" taskId="5" showTeacher={teacherMode} teacherNote={<p>Řešením je spojování textu s proměnnou <code>i</code> a s matematickým výrazem <code>i+1</code> uvnitř jednoho příkazu print. <code>print("Na stromě bylo", i, "vrabců, jeden přiletěl a už je tam", i+1, "vrabců")</code>.</p>}>
-          <p>Napiš do nového programu <code>povidka.py</code> kód, který pomocí jediného cyklu vygeneruje postupně celou tuto vrabčí povídku:</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-xs sm:text-sm rounded-xl overflow-x-auto whitespace-nowrap">
+        {/* Úloha 5 */}
+        <TaskCard 
+          number="5" 
+          taskId="5" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení:</p>
+              <PythonSnippet code={`for i in range(10):\n    print('Na stromě bylo', i, 'vrabců, jeden přiletěl a už je tam', i + 1, 'vrabců')`} />
+            </div>
+          }
+        >
+          <p>Máme takovouto povídku:</p>
+          <div className="bg-slate-900 text-slate-200 p-4 rounded-xl border border-slate-700 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto whitespace-nowrap">
             Na stromě bylo 0 vrabců, jeden přiletěl a už je tam 1 vrabců<br/>
             Na stromě bylo 1 vrabců, jeden přiletěl a už je tam 2 vrabců<br/>
             Na stromě bylo 2 vrabců, jeden přiletěl a už je tam 3 vrabců<br/>
-            ... a tak dále, až po:<br/>
+            Na stromě bylo 3 vrabců, jeden přiletěl a už je tam 4 vrabců<br/>
+            Na stromě bylo 4 vrabců, jeden přiletěl a už je tam 5 vrabců<br/>
+            Na stromě bylo 5 vrabců, jeden přiletěl a už je tam 6 vrabců<br/>
+            Na stromě bylo 6 vrabců, jeden přiletěl a už je tam 7 vrabců<br/>
+            Na stromě bylo 7 vrabců, jeden přiletěl a už je tam 8 vrabců<br/>
+            Na stromě bylo 8 vrabců, jeden přiletěl a už je tam 9 vrabců<br/>
             Na stromě bylo 9 vrabců, jeden přiletěl a už je tam 10 vrabců
           </div>
+          <p>
+            Zapiš ji pomocí <code>for</code> cyklu do nového programu <code>povidka.py</code>.
+          </p>
         </TaskCard>
 
-        <TaskCard number="6" title="Odlet vrabců" taskId="6" showTeacher={teacherMode} teacherNote={<p>Zde se žáci poprvé učí "couvat" (odečítat od maxima dolů). Řešení: <code>print("Na stromě bylo", 10-i, "vrabců...", 9-i)</code>.</p>}>
-          <p>A teď to nejtěžší – vrabci z předchozí povídky odlétají! Vymysli cyklus, který bude tuto povídku vyprávět "pozpátku", z 10 postupně až dolů na nulu.</p>
-          <div className="bg-black p-4 text-emerald-400 font-mono text-xs sm:text-sm rounded-xl overflow-x-auto whitespace-nowrap">
+        {/* Úloha 6 */}
+        <TaskCard 
+          number="6" 
+          taskId="6" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení:</p>
+              <PythonSnippet code={`for i in range(10):\n    print('Na stromě bylo', 10 - i, 'vrabců, jeden odletěl a zůstalo tam', 9 - i, 'vrabců')`} />
+            </div>
+          }
+        >
+          <p>
+            Vrabci z předchozí povídky odlétají – vymysli v programu <code>povidka.py</code> kód, který to bude pomocí <code>for</code> cyklu vyprávět:
+          </p>
+          <div className="bg-slate-900 text-slate-200 p-4 rounded-xl border border-slate-700 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto whitespace-nowrap">
             Na stromě bylo 10 vrabců, jeden odletěl a zůstalo tam 9 vrabců<br/>
             Na stromě bylo 9 vrabců, jeden odletěl a zůstalo tam 8 vrabců<br/>
-            ... a tak dále, až po:<br/>
+            Na stromě bylo 8 vrabců, jeden odletěl a zůstalo tam 7 vrabců<br/>
+            Na stromě bylo 7 vrabců, jeden odletěl a zůstalo tam 6 vrabců<br/>
+            Na stromě bylo 6 vrabců, jeden odletěl a zůstalo tam 5 vrabců<br/>
+            Na stromě bylo 5 vrabců, jeden odletěl a zůstalo tam 4 vrabců<br/>
+            Na stromě bylo 4 vrabců, jeden odletěl a zůstalo tam 3 vrabců<br/>
+            Na stromě bylo 3 vrabců, jeden odletěl a zůstalo tam 2 vrabců<br/>
+            Na stromě bylo 2 vrabců, jeden odletěl a zůstalo tam 1 vrabců<br/>
             Na stromě bylo 1 vrabců, jeden odletěl a zůstalo tam 0 vrabců
           </div>
-          <p className="text-violet-700 font-bold mt-2">Nápověda: Programování umí jen přičítat od nuly (0, 1, 2, 3...). Když chceš čísla zmenšovat (10, 9, 8, 7...), musíš v printu to vzrůstající "i" šikovně odečítat od desítky: <code>10 - i</code>.</p>
         </TaskCard>
 
-        <TaskCard number="7" title="Deset popsaných kartiček" taskId="7" showTeacher={teacherMode} teacherNote={<p>Tady se propojuje grafika s vypsáním proměnné cyklu. Řešení kombinuje <code>random.randint</code> pro pozici a příkaz <code>canvas.create_text(x, y, text=i)</code>.</p>}>
-          <p>Zpátky do grafiky! Máme kartičky s čísly od 0 do 9, které chceme náhodně rozložit po ploše. Vytvoř program <code>deset_karticek.py</code>, který pomocí cyklu postupně nakreslí deset takových modrých kartiček na náhodných pozicích, a doprostřed nich vypíše číslo z proměnné `i`.</p>
-          <CanvasPreview width={300} height={200}>
-            {[
-              [50, 40, 0], [120, 140, 1], [200, 60, 2], [230, 150, 3], [140, 80, 4],
-              [80, 110, 5], [160, 40, 6], [260, 90, 7], [100, 170, 8], [20, 150, 9]
-            ].map((d, i) => (
-              <div key={i} className="absolute border border-black bg-sky-400 flex items-center justify-center font-bold text-lg" style={{ left: d[0], top: d[1], width: 30, height: 40, transform: 'translate(-50%, -50%)' }}>
-                {d[2]}
-              </div>
-            ))}
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="8" title="Zahraniční bankovky" taskId="8" showTeacher={teacherMode} teacherNote={<p>Rozšíření předchozí úlohy, jen s tím rozdílem, že text nebude `i`, ale třeba <code>(i+1)*10</code>, čímž vzniknou nápisy 10, 20, 30, 40, 50. Pozadí zelené a obdélník horizontální.</p>}>
-          <p>Na chodníku je rozhozených pět cizokrajných zelených bankovek s hodnotami 10, 20, 30, 40 a 50. Napiš program <code>bankovky.py</code>, který takové bankovky (široké zelené obdélníky) nakreslí i s těmito čísly na náhodné místo pomocí <code>for</code> cyklu.</p>
-        </TaskCard>
-
-        <TaskCard number="9" title="Geometrie: Pohyb po ose" taskId="9" showTeacher={teacherMode} teacherNote={<p>Klíčová myšlenka lekce. X-ová souřadnice už není z <code>random</code>, ale je vypočtená přímo z <code>i</code>, což zaručí matematicky přesnou rovnou řadu! Zde: <code>x = i * 50</code>, y je pevné 100.</p>}>
-          <p>Tohle je magie! Proměnnou <code>i</code> můžeme použít i jako přesnou souřadnici, takže se nám už nebudou věci kreslit náhodně na přeskáčku, ale vytvoří přesnou geometrickou řadu!</p>
-          <p>Vytvoř program <code>kresleni_cisel.py</code> a přepiš do něj tento kód:</p>
-          <PythonSnippet code={`for i in range(8):\n    x = i * 50\n    canvas.create_text(x, 100, text=i, font='arial 30')`} />
-          <p className="font-bold text-violet-700 mt-2">Dříve než to spustíš: Zkus si propočítat v hlavě, co vlastně ten řádek <code>x = i * 50</code> dělá pro první i=0, i=1 a i=2? Jaké číslo tím vyjde?</p>
-        </TaskCard>
-
-        <TaskCard number="10" title="Klesající schody" taskId="10" showTeacher={teacherMode} teacherNote={<p>Posun i na obou osách najednou vytvoří diagonálu. Řešení: do y se dosadí <code>y = i * 30</code>.</p>}>
-          <p>Uprav předchozí program tak, aby se čísla 0 až 7 kreslila přibližně do šikmých "schodů" klesajících z levého horního rohu doprava dolů. Musíš tedy k proměnné <code>x</code> (která to posouvá doprava) vymyslet podobný výpočet i pro proměnnou <code>y</code> (která to bude posouvat dolů)!</p>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="absolute font-bold text-xl" style={{ left: i * 30, top: i * 20 }}>
-                {i}
-              </div>
-            ))}
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="11" title="Záchrana nuly" taskId="11" showTeacher={teacherMode} teacherNote={<p>Nula byla na začátku na pozici 0,0 a tím pádem byla polovina textu oříznutá rohem obrazovky. Řešení: přidat na konec výpočtu statický posun, např. <code>x = i * 50 + 15</code>.</p>}>
-          <p>V předchozím programu se číslo 0 kreslilo přesně v souřadnici [0,0] za úplný roh grafické plochy, takže z něj nebylo skoro nic vidět. Uprav oba své výpočty na těch dvou řádcích s násobením jednoduše tak, že k nim na konci ještě nějaké napevno zvolené číslo přičteš (třeba <code>+ 15</code> nebo <code>+ 20</code>). Tím se celá úhlopříčka celkově posune doprostřed plátna!</p>
-        </TaskCard>
-
-        <TaskCard number="12" title="Kostky domina" taskId="12" showTeacher={teacherMode} teacherNote={<p>Přesunutí konceptu "i * 50 + posun" i na obdélníky. Tím se vykreslí mřížka nebo řada bez použití textu.</p>}>
-          <p>Víš, jak vypadá padající had z domina? Vytvoř program <code>domino.py</code>, který pomocí cyklu a obdélníku nakreslí vedle sebe takto krásně srovnané (zatím ještě stojící) kostky domina.</p>
-          <p>Budeš k tomu zase potřebovat svůj spolehlivý matematický vzorec pro výpočet souřadnice <code>x</code> (souřadnici y si nastav nějakou pevnou, tyhle kostky nepadají šikmo po schodech jako čísla minule!).</p>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <Rect key={i} x1={i * 30 + 40} y1={80} width={15} height={60} fill="red" />
-            ))}
-          </CanvasPreview>
-        </TaskCard>
-
-        <TaskCard number="13*" title="Incká pyramida" taskId="13" showTeacher={teacherMode} teacherNote={<p>Velmi těžká úloha, kde se `i` používá nejen pro y-souřadnici (stavba nahoru), ale také pro odečítání velikosti (aby obdélníky byly čím dál tím užší). Polovina šířky <code>d = 100 - i * 10</code>. Pak obdélník <code>150 - d, y, 150 + d, y + 20</code>.</p>}>
-          <p className="flex items-center gap-2 font-bold text-violet-600 mb-2">
-            <GraduationCap className="w-5 h-5" /> Výzkumný úkol pro experty
+        {/* Úloha 7 */}
+        <TaskCard 
+          number="7" 
+          taskId="7" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení úlohy s kartičkami:</p>
+              <PythonSnippet code={`import tkinter\nimport random\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(10):\n    x = random.randint(30, 300)\n    y = random.randint(30, 200)\n    canvas.create_rectangle(x - 15, y - 20, x + 15, y + 20, fill='deep sky blue')\n    canvas.create_text(x, y, text=i, font='arial 30')`} />
+            </div>
+          }
+        >
+          <p>
+            Máme kartičky s čísly od 0 do 9, které chceme náhodně rozložit po ploše. Vytvoř program <code>deset_karticek.py</code>, který pomocí cyklu postupně nakreslí deset takových kartiček na náhodných pozicích:
           </p>
-          <p>Napiš program <code>velka_pyramida.py</code>, který pomocí jednoho cyklu a jediného kreslícího příkazu obdélníku (vykonaného samozřejmě 10x) nakreslí dokonale souměrnou pyramidu postavenou z deseti pater na sobě, od nejširšího až po to nejužší.</p>
-          <CanvasPreview width={300} height={200}>
-            {Array.from({ length: 10 }).map((_, i) => {
-              const d = 100 - i * 10;
-              const y = 180 - i * 15;
-              return <Rect key={i} x1={150 - d} y1={y} width={d * 2} height={15} fill="orange" />;
-            })}
+
+          <CanvasPreview width={300} height={200} bgColor="#f8fafc">
+            <Rect x1={200} y1={25} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={215} y={46} text="2" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={155} y1={55} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={170} y={76} text="1" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={185} y1={60} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={200} y={81} text="8" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={105} y1={65} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={120} y={86} text="4" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={125} y1={68} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={140} y={89} text="5" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={95} y1={105} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={110} y={126} text="6" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={120} y1={115} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={135} y={136} text="3" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={175} y1={125} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={190} y={146} text="9" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={220} y1={95} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={235} y={116} text="7" fontSize={24} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={200} y1={140} width={30} height={42} fill="#00bfff" stroke="black" />
+            <Text x={215} y={161} text="0" fontSize={24} fontFamily="Arial" fontWeight="bold" />
           </CanvasPreview>
-          <p className="text-violet-700 font-bold mt-2">Dvojitá záludnost: Aby se ti patra stavěla odzdola nahoru, musíš jejich <code>y</code> od spodku plátna postupně v každém kroku <strong>odečítat</strong> (třeba <code>200 - i*15</code>). A aby se zužovaly obě zdi pyramidy stejně, musíš si vymyslet extra proměnnou např. <code>šířka</code>, která se bude s přibývajícím <code>i</code> zmenšovat, a přičítat ji a odečítat k pevnému středu základny osy <code>x</code>!</p>
+
+          <p>
+            Když budeš chtít na kartičkách nakreslit velká čísla jako na obrázku výše, přidej do příkazu <code>create_text</code> žlutě zvýrazněný kód:{' '}
+            <code className="bg-slate-100 text-slate-800 p-1 rounded font-mono text-xs sm:text-sm">
+              canvas.create_text(x, y, <mark className="bg-yellow-300 text-black px-1 rounded">text=i, font=&apos;arial 30&apos;</mark>)
+            </code>
+          </p>
+        </TaskCard>
+
+        {/* Úloha 8 */}
+        <TaskCard 
+          number="8" 
+          taskId="8" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení úlohy s bankovkami:</p>
+              <PythonSnippet code={`import tkinter\nimport random\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(5):\n    x = random.randint(50, 250)\n    y = random.randint(40, 160)\n    hodnota = (i + 1) * 10\n    canvas.create_rectangle(x - 30, y - 20, x + 30, y + 20, fill='yellow green')\n    canvas.create_text(x, y, text=hodnota, font='arial 25')`} />
+            </div>
+          }
+        >
+          <p>
+            Na chodníku je rozhozených pět cizokrajných bankovek s hodnotami 10, 20, 30, 40 a 50. Napiš program <code>bankovky.py</code>, který takové bankovky nakreslí pomocí <code>for</code> cyklu:
+          </p>
+
+          <CanvasPreview width={300} height={200} bgColor="#f8fafc">
+            <Rect x1={140} y1={30} width={50} height={32} fill="#8cb04e" stroke="black" />
+            <Text x={165} y={46} text="40" fontSize={20} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={120} y1={60} width={50} height={32} fill="#8cb04e" stroke="black" />
+            <Text x={145} y={76} text="10" fontSize={20} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={130} y1={80} width={50} height={32} fill="#8cb04e" stroke="black" />
+            <Text x={155} y={96} text="30" fontSize={20} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={95} y1={95} width={50} height={32} fill="#8cb04e" stroke="black" />
+            <Text x={120} y={111} text="50" fontSize={20} fontFamily="Arial" fontWeight="bold" />
+
+            <Rect x1={185} y1={115} width={50} height={32} fill="#8cb04e" stroke="black" />
+            <Text x={210} y={131} text="20" fontSize={20} fontFamily="Arial" fontWeight="bold" />
+          </CanvasPreview>
+        </TaskCard>
+
+        {/* Úloha 9 */}
+        <TaskCard 
+          number="9" 
+          taskId="9" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Vyplněná tabulka:</p>
+              <div className="font-mono text-xs bg-slate-900 text-slate-200 p-3 rounded-lg border border-slate-700">
+                když se zobrazí 0: i = 0, x = 0<br/>
+                když se zobrazí 1: i = 1, x = 50<br/>
+                když se zobrazí 2: i = 2, x = 100<br/>
+                když se zobrazí 3: i = 3, x = 150<br/>
+                když se zobrazí 4: i = 4, x = 200<br/>
+                když se zobrazí 5: i = 5, x = 250<br/>
+                když se zobrazí 6: i = 6, x = 300<br/>
+                když se zobrazí 7: i = 7, x = 350
+              </div>
+            </div>
+          }
+        >
+          <p>
+            Vytvoř nový program <code>kresleni_cisel.py</code> a přepiš do něj následující kód, který kreslí čísla na grafickou plochu:
+          </p>
+
+          <PythonSnippet code={`import tkinter\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(8):\n    x = i * 50\n    canvas.create_text(x, 100, text=i, font='arial 30')`} />
+
+          <p>
+            Vytvořený program spusť, abys viděl(a), co udělá, a vyplň tabulku na následující straně:
+          </p>
+
+          <div className="overflow-x-auto my-4">
+            <table className="w-full max-w-md mx-auto text-xs sm:text-sm border-collapse border border-slate-300">
+              <thead>
+                <tr className="bg-slate-100 text-slate-700">
+                  <th className="border border-slate-300 px-3 py-2 text-left font-bold"></th>
+                  <th className="border border-slate-300 px-3 py-2 text-center font-bold">hodnota v proměnné i</th>
+                  <th className="border border-slate-300 px-3 py-2 text-center font-bold">hodnota v proměnné x</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-slate-800">
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((val) => (
+                  <tr key={val} className="hover:bg-slate-50">
+                    <td className="border border-slate-300 px-3 py-1.5 font-medium">když se zobrazí {val}</td>
+                    <td className="border border-slate-300 px-3 py-1.5 text-center font-mono text-slate-400">&nbsp;</td>
+                    <td className="border border-slate-300 px-3 py-1.5 text-center font-mono text-slate-400">&nbsp;</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </TaskCard>
+
+        {/* Úloha 10 */}
+        <TaskCard 
+          number="10" 
+          taskId="10" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Vzorec pro y-ovou souřadnici:</p>
+              <p className="mb-2">Jelikož se <code>x</code> posouvá o <code>i * 50</code>, pro úhlopříčku stačí nastavit <code>y = i * 30</code> (nebo obdobné násobení <code>i</code>).</p>
+              <PythonSnippet code={`import tkinter\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(8):\n    x = i * 40\n    y = i * 25\n    canvas.create_text(x, y, text=i, font='arial 30')`} />
+            </div>
+          }
+        >
+          <p>
+            Uprav předchozí program tak, aby se čísla kreslila přibližně na úhlopříčce grafické plochy podobně jako na následujícím obrázku:
+          </p>
+
+          <CanvasPreview width={260} height={200} bgColor="#f1f5f9">
+            {/* Číslo 0 je v levém horním rohu oříznuté, začíná jen pravá spodní část nuly */}
+            <Text x={0} y={0} text="0" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={35} y={26} text="1" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={70} y={52} text="2" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={105} y={78} text="3" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={140} y={104} text="4" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={175} y={130} text="5" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={210} y={156} text="6" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={245} y={182} text="7" fontSize={26} fontFamily="Arial, sans-serif" />
+          </CanvasPreview>
+
+          <p className="font-bold text-slate-800">
+            Jaký jsi vymyslel vzorec pro výpočet y-ové souřadnice?
+          </p>
+        </TaskCard>
+
+        {/* Úloha 11 */}
+        <TaskCard 
+          number="11" 
+          taskId="11" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení: k souřadnicím přičteme odsazení (např. + 30):</p>
+              <PythonSnippet code={`import tkinter\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(8):\n    x = i * 35 + 20\n    y = i * 25 + 20\n    canvas.create_text(x, y, text=i, font='arial 30')`} />
+            </div>
+          }
+        >
+          <p>
+            V předchozím programu se číslo 0 kreslilo za roh grafické plochy, takže nebylo skoro vidět. Uprav výpočet souřadnic tak, aby byla vidět všechna čísla. Výsledek může vypadat jako na obrázku níže:
+          </p>
+
+          <CanvasPreview width={260} height={200} bgColor="#f1f5f9">
+            {/* Zde je již číslo 0 plně viditelné celé u levého horního okraje */}
+            <Text x={15} y={16} text="0" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={48} y={40} text="1" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={81} y={64} text="2" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={114} y={88} text="3" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={147} y={112} text="4" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={180} y={136} text="5" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={213} y={160} text="6" fontSize={26} fontFamily="Arial, sans-serif" />
+            <Text x={246} y={184} text="7" fontSize={26} fontFamily="Arial, sans-serif" />
+          </CanvasPreview>
+        </TaskCard>
+
+        {/* Úloha 12 */}
+        <TaskCard 
+          number="12" 
+          taskId="12" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení úlohy s dominem:</p>
+              <PythonSnippet code={`import tkinter\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(6):\n    x = 40 + i * 40\n    canvas.create_rectangle(x, 70, x + 15, 140, fill='red', outline='red')`} />
+            </div>
+          }
+        >
+          <p>
+            Víš, jak vypadá padající had z domina? Vytvoř program <code>domino.py</code>, který pomocí cyklu a obdélníku nakreslí zatím ještě stojící kostky domina:
+          </p>
+
+          <CanvasPreview width={300} height={200} bgColor="#eeeeee">
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <Rect 
+                key={i} 
+                x1={35 + i * 40} 
+                y1={65} 
+                width={16} 
+                height={75} 
+                fill="#ff0000" 
+                stroke="#ff0000" 
+                strokeWidth={0} 
+              />
+            ))}
+          </CanvasPreview>
+        </TaskCard>
+
+        {/* Úloha 13* */}
+        <TaskCard 
+          number="13*" 
+          taskId="13" 
+          showTeacher={teacherMode} 
+          teacherNote={
+            <div>
+              <p className="mb-2">Řešení pyramidy (obdélníky od největšího po nejmenší nebo naopak):</p>
+              <PythonSnippet code={`import tkinter\n\ncanvas = tkinter.Canvas()\ncanvas.pack()\n\nfor i in range(10):\n    x = 100 - i * 8\n    y = 50 + i * 14\n    w = 16 * i\n    canvas.create_rectangle(x, y, x + 100 + w, y + 14, fill='orange', outline='black')`} />
+            </div>
+          }
+        >
+          <p>
+            Napiš program <code>velka_pyramida.py</code>, který pomocí cyklu a obdélníku nakreslí takovouto pyramidu:
+          </p>
+
+          <CanvasPreview width={260} height={200} bgColor="#eeeeee">
+            {[
+              { w: 14, h: 14, y: 22 },  // nejvrchnější je čtverec 14x14
+              { w: 28, h: 14, y: 36 },
+              { w: 42, h: 14, y: 50 },
+              { w: 56, h: 14, y: 64 },
+              { w: 70, h: 14, y: 78 },
+              { w: 84, h: 14, y: 92 },
+              { w: 98, h: 14, y: 106 },
+              { w: 112, h: 14, y: 120 },
+              { w: 126, h: 14, y: 134 },
+              { w: 144, h: 15, y: 148 },
+            ].map((step, idx) => (
+              <Rect 
+                key={idx} 
+                x1={130 - step.w / 2} 
+                y1={step.y} 
+                width={step.w} 
+                height={step.h} 
+                fill="#f59e0b" 
+                stroke="#1f2937" 
+                strokeWidth={1} 
+              />
+            ))}
+          </CanvasPreview>
         </TaskCard>
 
       </div>

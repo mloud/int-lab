@@ -32,7 +32,7 @@ const PythonSnippet = ({ code }: { code: string }) => (
 );
 
 const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-2xl shadow-sm">
+  <div className="mt-4 bg-rose-50 border-l-4 border-indigo-500 p-4 rounded-r-2xl shadow-sm">
     <div className="flex items-center gap-2 mb-2">
       <GraduationCap className="w-5 h-5 text-rose-600" />
       <span className="font-bold text-rose-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
@@ -339,7 +339,7 @@ Těším se na prázdniny`}
           <div className="bg-slate-900 rounded-2xl p-5 my-3 font-mono text-sm sm:text-base text-slate-200 border border-slate-700 shadow-inner">
             <div className="flex items-center flex-wrap gap-2">
               <span>for i in range(</span>
-              <span className="bg-yellow-300 text-slate-950 px-1.5 py-0.5 rounded font-black">5</span>
+              <span className="bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded font-black">5</span>
               <span>):</span>
               <span className="text-xs font-sans text-yellow-300 font-bold ml-2">
                 ← Dvojtečka je velmi důležitá
@@ -410,10 +410,10 @@ Těším se na prázdniny
               <div className="flex items-center gap-2">
                 <span className="text-rose-400 font-bold">for</span>
                 <span>i in range(</span>
-                <span className="bg-yellow-300 text-slate-950 px-1 rounded font-bold">5</span>
+                <span className="bg-amber-400 text-slate-950 px-1 rounded font-bold">5</span>
                 <span>):</span>
               </div>
-              <div className="pl-6 border-l-4 border-rose-500 ml-2 py-1 space-y-1">
+              <div className="pl-6 border-l-4 border-indigo-500 ml-2 py-1 space-y-1">
                 <div>print('Těším se na prázdniny')</div>
                 <div>print('=====================')</div>
               </div>
@@ -823,7 +823,7 @@ for i in range(5):
           <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-xs sm:text-sm text-slate-200 overflow-x-auto border border-slate-700">
             <div>
               <span>canvas.create_text(x, y, text=random.randint(1, 6), </span>
-              <span className="bg-yellow-300 text-slate-950 font-bold px-1.5 py-0.5 rounded">font='arial 50'</span>
+              <span className="bg-amber-400 text-slate-950 font-bold px-1.5 py-0.5 rounded">font='arial 50'</span>
               <span>)</span>
             </div>
           </div>
