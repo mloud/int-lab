@@ -219,7 +219,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           {/* ========================================================= */}
           <div className="print-page-break flex items-center justify-between bg-slate-800 text-white px-4 py-2 rounded-lg mb-6 mt-8 shadow-sm">
             <h2 className="text-[13pt] font-black uppercase tracking-wider flex items-center gap-2">
-              <Table2 className="w-5 h-5 text-teal-400" /> Část C — Systém souborů FAT v praxi a Formátování
+              <Table2 className="w-5 h-5 text-teal-400" /> Část C
             </h2>
             <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">14 bodů</span>
           </div>
