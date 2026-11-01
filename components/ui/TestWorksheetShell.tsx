@@ -2,34 +2,71 @@
 import React, { useState } from 'react';
 import { Lock, Unlock, ArrowLeft, Printer, Eye, EyeOff } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { sha256 } from '@/lib/crypto';
 
 interface TestWorksheetShellProps {
   id: string; // Unique ID for local storage keys
   title: string;
   subtitle: string;
-  studentPin: string;
-  teacherPin: string;
+  studentPin?: string;
+  teacherPin?: string;
+  studentPinHash?: string;
+  teacherPinHash?: string;
   onBack: () => void;
   children: (showSolutions: boolean) => React.ReactNode;
 }
 
-export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin, onBack, children }: TestWorksheetShellProps) {
+export function TestWorksheetShell({
+  id,
+  title,
+  subtitle,
+  studentPin,
+  teacherPin,
+  studentPinHash,
+  teacherPinHash,
+  onBack,
+  children
+}: TestWorksheetShellProps) {
   const [pin, setPin] = useState('');
   const [error, setError] = useState(false);
-  const [isUnlocked, setIsUnlocked] = useLocalStorage(`test-${id}-unlocked`, false);
-  const [isTeacher, setIsTeacher] = useLocalStorage(`test-${id}-teacher`, false);
+  
+  // Bezpečný autorizační token v localStorage (ukládá hash ověřeného PINu, nikoliv prosté boolean 'true')
+  const [authToken, setAuthToken] = useLocalStorage<string>(`test-${id}-auth-token`, '');
+  const [isTeacherSession, setIsTeacherSession] = useLocalStorage<boolean>(`test-${id}-is-teacher`, false);
   const [showSolutions, setShowSolutions] = useState(false);
+
+  // Spočítané cílové hashe pro porovnání
+  const expectedStudentHash = (studentPinHash || (studentPin ? sha256(studentPin.toUpperCase()) : '')).toLowerCase();
+  const expectedTeacherHash = (teacherPinHash || (teacherPin ? sha256(teacherPin.toUpperCase()) : '')).toLowerCase();
+
+  // Odemčeno pouze tehdy, pokud uložený autorizační token přesně odpovídá hashi oprávněného hesla
+  const isUnlocked = Boolean(
+    authToken &&
+    ((expectedStudentHash && authToken === expectedStudentHash) ||
+     (expectedTeacherHash && authToken === expectedTeacherHash))
+  );
+
+  const isTeacher = Boolean(
+    isUnlocked &&
+    isTeacherSession &&
+    expectedTeacherHash &&
+    authToken === expectedTeacherHash
+  );
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
     const entered = pin.trim().toUpperCase();
-    if (entered === studentPin.toUpperCase()) {
-      setIsUnlocked(true);
-      setIsTeacher(false);
+    if (!entered) return;
+
+    const enteredHash = sha256(entered).toLowerCase();
+
+    if (expectedStudentHash && enteredHash === expectedStudentHash) {
+      setAuthToken(enteredHash);
+      setIsTeacherSession(false);
       setError(false);
-    } else if (entered === teacherPin.toUpperCase()) {
-      setIsUnlocked(true);
-      setIsTeacher(true);
+    } else if (expectedTeacherHash && enteredHash === expectedTeacherHash) {
+      setAuthToken(enteredHash);
+      setIsTeacherSession(true);
       setError(false);
     } else {
       setError(true);
@@ -38,8 +75,8 @@ export function TestWorksheetShell({ id, title, subtitle, studentPin, teacherPin
   };
 
   const handleLock = () => {
-    setIsUnlocked(false);
-    setIsTeacher(false);
+    setAuthToken('');
+    setIsTeacherSession(false);
     setShowSolutions(false);
   };
 

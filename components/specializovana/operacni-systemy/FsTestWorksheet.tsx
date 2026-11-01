@@ -13,8 +13,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
       id="fs-summary-test02"
       title="Hodnocená práce"
       subtitle="Operační systémy 1 (OSS 1) — Souborové systémy, paměťová média a formátování disku"
-      studentPin="ZAK2026"
-      teacherPin="OS2026"
+      studentPinHash="c65f8eccc82462d02bdcaa9dc5bba508baee2951c2a858fd4737b232ed45a04a"
+      teacherPinHash="1315e5df74ae234ea7d73028d852847e6ef87634f0189016e86e1f23deb5034f"
       onBack={onBack}
     >
       {(showSolutions) => (
