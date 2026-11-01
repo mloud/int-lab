@@ -23,7 +23,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           <div className="mb-6 p-4 bg-slate-100 rounded-xl border border-slate-300 flex flex-wrap items-center justify-between text-xs font-bold text-slate-700 uppercase tracking-wider">
             <span>Časový limit: 40 minut</span>
             <span>Celkem otázek: 11</span>
-            <span>Maximální počet bodů: 45 bodů</span>
           </div>
 
           {/* ========================================================= */}
@@ -33,11 +32,10 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <h2 className="text-[13pt] font-black uppercase tracking-wider flex items-center gap-2">
               <HardDrive className="w-5 h-5 text-indigo-400" /> Část A — Architektura FS a paměťová média
             </h2>
-            <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">13 bodů</span>
           </div>
 
           {/* Otázka 1 */}
-          <Question id="1" title="Funkce modulu správy souborů v architektuře OS (4 body)">
+          <Question id="1" title="Funkce modulu správy souborů v architektuře OS">
             <p>
               Popište, jakou funkci plní modul <strong>souborového systému (File System)</strong> v architektuře operačního systému.
               Proč se v odborné literatuře označuje jako <strong>překladová vrstva (knihovník)</strong> mezi uživatelskými aplikacemi a diskovým hardwarem?
@@ -50,7 +48,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 2 */}
-          <Question id="2" title="Srovnávací tabulka vlastností HDD a SSD (5 bodů)">
+          <Question id="2" title="Srovnávací tabulka vlastností HDD a SSD">
             <p>
               Doplňte do tabulky srovnání vlastností obou diskových technologií. Do jednotlivých políček doplňte odpovídající hodnocení podle nápovědy (např. <em>pomalá / rychlá, malá / velká, nízká / vysoká, hlučný / tichý</em>):
             </p>
@@ -118,7 +116,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 3 */}
-          <Question id="3" title="Proč instalovat operační systém na SSD? (4 body)">
+          <Question id="3" title="Proč instalovat operační systém na SSD?">
             <p>
               Proč je pro běh operačního systému (např. Windows 11) zásadně výhodnější instalace na SSD disk než na klasický HDD?
               Ve své odpovědi vysvětlete rozdíl mezi <strong>sekvenčním čtením</strong> a <strong>náhodným čtením mnoha drobných souborů</strong>.
@@ -137,11 +135,10 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <h2 className="text-[13pt] font-black uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-5 h-5 text-purple-400" /> Část B
             </h2>
-            <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">18 bodů</span>
           </div>
 
           {/* Otázka 4 */}
-          <Question id="4" title="Fyzická jednotka disku (Sektor) (3 body)">
+          <Question id="4" title="Fyzická jednotka disku (Sektor)">
             <Sub label="a)">Jak se nazývá nejmenší fyzicky adresovatelná jednotka disku vytvořená výrobcem při výrobě?</Sub>
             <Answer show={showSolutions} lines={1} solution="Sektor (Sector)." />
 
@@ -153,7 +150,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 5 */}
-          <Question id="5" title="Výpočet alokace pro 1 000 malých souborů (4 body)">
+          <Question id="5" title="Výpočet alokace pro 1 000 malých souborů">
             <p>
               Předpokládejte disk naformátovaný se standardní velikostí klastru (alokační jednotky) <strong>4 KB</strong>.
               Na tento disk uložíte <strong>1 000 malých konfiguračních souborů</strong>, z nichž každý má velikost pouze <strong>10 B</strong>.
@@ -174,7 +171,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 6 */}
-          <Question id="6" title="Výpočet alokace pro jeden větší soubor (4 body)">
+          <Question id="6" title="Výpočet alokace pro jeden větší soubor">
             <p>
               Máte soubor <code>protokol.docx</code> o velikosti <strong>22 KB</strong> uložený na disku s velikostí klastru <strong>4 KB</strong>.
             </p>
@@ -189,7 +186,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 7 */}
-          <Question id="7" title="Výhody dělení disku na logické oddíly (3 body)">
+          <Question id="7" title="Výhody dělení disku na logické oddíly">
             <p>
               Jaké jsou výhody rozdělení jednoho fyzického disku na více logických oddílů (partitions)?
               Uveďte alespoň <strong>2 konkrétní praktické důvody</strong>, proč se disk dělí např. na systémový oddíl C: a datový oddíl D:.
@@ -202,7 +199,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 8 */}
-          <Question id="8" title="Oddíly bez přiřazeného písmene jednotky (4 body)">
+          <Question id="8" title="Oddíly bez přiřazeného písmene jednotky">
             <Sub label="a)">Může v operačním systému Windows 11 existovat diskový oddíl, který nemá přiřazené logické písmeno (např. C:, D:)?</Sub>
             <Answer show={showSolutions} lines={1} solution="Ano, může." />
 
@@ -221,11 +218,10 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <h2 className="text-[13pt] font-black uppercase tracking-wider flex items-center gap-2">
               <Table2 className="w-5 h-5 text-teal-400" /> Část C
             </h2>
-            <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">14 bodů</span>
           </div>
 
           {/* Otázka 9 */}
-          <Question id="9" title="Čtení z FAT tabulky – soubor o 4 clusterech (5 bodů)">
+          <Question id="9" title="Čtení z FAT tabulky – soubor o 4 clusterech">
             <p>
               V adresáři disku byl vyhledán soubor <code>zprava.docx</code>, u kterého je zapsán počáteční cluster <strong>#4</strong>.
             </p>
@@ -292,7 +288,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 10 */}
-          <Question id="10" title="Kombinovaná doplňovačka FAT – soubor o 5 clusterech (5 bodů)">
+          <Question id="10" title="Kombinovaná doplňovačka FAT – soubor o 5 clusterech">
             <p>
               Na disku je uložen soubor <code>video.mp4</code> o velikosti <strong>5 klastrů</strong>.
               V adresáři má zapsán počáteční cluster <strong>#2</strong>.
@@ -363,7 +359,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </Question>
 
           {/* Otázka 11 */}
-          <Question id="11" title="Formátování disku a bezpečnost dat při prodeji (4 body)">
+          <Question id="11" title="Formátování disku a bezpečnost dat při prodeji">
             <Sub label="a)">
               Jaký je zásadní technický rozdíl mezi <strong>Rychlým formátováním</strong> (Quick Format) a <strong>Úplným / Pomalým formátováním</strong> (Full Format)?
               Popište, co se při každém z nich fyzicky děje s daty v sektorech disku.
