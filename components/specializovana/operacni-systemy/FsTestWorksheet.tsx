@@ -235,21 +235,21 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
               <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
                 <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Výřez FAT tabulky</div>
                 <div className="grid grid-cols-2 font-mono">
-                  <span className="font-bold text-slate-500">Číslo klastru</span>
+                  <span className="font-bold text-slate-500">Číslo clusteru</span>
                   <span className="font-bold text-slate-500">Odkaz</span>
-                  <span>Cluster #4:</span>
+                  <span>4</span>
                   <span className="font-bold text-indigo-700">7</span>
-                  <span>Cluster #5:</span>
+                  <span>5</span>
                   <span className="text-slate-400">0 (volný)</span>
-                  <span>Cluster #6:</span>
+                  <span>6</span>
                   <span className="text-slate-400">0 (volný)</span>
-                  <span>Cluster #7:</span>
+                  <span>7</span>
                   <span className="font-bold text-indigo-700">11</span>
-                  <span>Cluster #8:</span>
+                  <span>8</span>
                   <span className="text-slate-400">0 (volný)</span>
-                  <span>Cluster #11:</span>
+                  <span>11</span>
                   <span className="font-bold text-indigo-700">15</span>
-                  <span>Cluster #15:</span>
+                  <span>15</span>
                   <span className="font-bold text-rose-600">EOF</span>
                 </div>
               </div>
@@ -304,19 +304,21 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
               <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
                 <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Neúplná FAT tabulka</div>
                 <div className="grid grid-cols-2 font-mono text-[10.5pt] py-1">
-                  <span>Cluster #2:</span>
+                  <span className="font-bold text-slate-500">Číslo clusteru</span>
+                  <span className="font-bold text-slate-500">Odkaz</span>
+                  <span>2</span>
                   <span className="font-bold text-slate-700">5</span>
-                  <span>Cluster #5:</span>
+                  <span>5</span>
                   <span className="font-bold text-slate-700">
                     {showSolutions ? <span className="text-rose-600 font-bold italic">6 (Hodnota A)</span> : '[ Doplnit A ]'}
                   </span>
-                  <span>Cluster #6:</span>
+                  <span>6</span>
                   <span className="font-bold text-slate-700">9</span>
-                  <span>Cluster #9:</span>
+                  <span>9</span>
                   <span className="font-bold text-slate-700">
                     {showSolutions ? <span className="text-rose-600 font-bold italic">13 (Hodnota B)</span> : '[ Doplnit B ]'}
                   </span>
-                  <span>Cluster #13:</span>
+                  <span>13</span>
                   <span className="font-bold text-slate-700">
                     {showSolutions ? <span className="text-rose-600 font-bold italic">EOF (Hodnota C)</span> : '[ Doplnit C ]'}
                   </span>
