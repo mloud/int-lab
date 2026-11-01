@@ -192,7 +192,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           <Question id="7" title="Výhody dělení disku na logické oddíly (3 body)">
             <p>
               Jaké jsou výhody rozdělení jednoho fyzického disku na více logických oddílů (partitions)?
-              Uveďte alespoň <strong>3 konkrétní praktické důvody</strong>, proč se disk dělí např. na systémový oddíl C: a datový oddíl D:.
+              Uveďte alespoň <strong>2 konkrétní praktické důvody</strong>, proč se disk dělí např. na systémový oddíl C: a datový oddíl D:.
             </p>
             <Answer
               show={showSolutions}
