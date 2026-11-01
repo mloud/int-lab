@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { TestWorksheetShell, Question, Sub, DrawBox, Answer, Lines } from '@/components/ui/TestWorksheetShell';
-import { HardDrive, Layers, Table2, ShieldAlert, Cpu, Disc } from 'lucide-react';
+import { TestWorksheetShell, Question, Sub, Answer } from '@/components/ui/TestWorksheetShell';
+import { HardDrive, Layers, Table2 } from 'lucide-react';
 
 interface FsTestWorksheetProps {
   onBack: () => void;
@@ -22,8 +22,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           {/* Informační hlavička parametrů testu */}
           <div className="mb-6 p-4 bg-slate-100 rounded-xl border border-slate-300 flex flex-wrap items-center justify-between text-xs font-bold text-slate-700 uppercase tracking-wider">
             <span>Časový limit: 40 minut</span>
-            <span>Celkem otázek: 12</span>
-            <span>Maximální počet bodů: 50 bodů</span>
+            <span>Celkem otázek: 11</span>
+            <span>Maximální počet bodů: 45 bodů</span>
           </div>
 
           {/* ========================================================= */}
@@ -33,7 +33,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <h2 className="text-[13pt] font-black uppercase tracking-wider flex items-center gap-2">
               <HardDrive className="w-5 h-5 text-indigo-400" /> Část A — Architektura FS a paměťová média
             </h2>
-            <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">18 bodů</span>
+            <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">13 bodů</span>
           </div>
 
           {/* Otázka 1 */}
@@ -130,62 +130,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             />
           </Question>
 
-          {/* Otázka 4 */}
-          <Question id="4" title="Mechanika čtení na plotnovém disku: Souvislé vs. rozptýlené bloky (5 bodů)">
-            <p>
-              Proč je na klasickém plotnovém pevném disku (HDD) čtení <strong>5 bloků (sektorů) ležících těsně za sebou</strong> na stejné stopě podstatně rychlejší než čtení <strong>5 bloků umístěných na různých částech fyzického disku</strong> (na různých stopách)?
-            </p>
-
-            {/* Schéma disku se stopami */}
-            <div className="my-3 p-3 bg-slate-50 border border-slate-300 rounded-xl flex flex-col sm:flex-row items-center gap-6 justify-center">
-              <div className="w-36 h-36 rounded-full border-4 border-slate-700 bg-white relative flex items-center justify-center shadow-inner">
-                <div className="w-24 h-24 rounded-full border-2 border-dashed border-indigo-400 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full border border-slate-400 bg-slate-200 flex items-center justify-center text-[8pt] font-mono">
-                    Střed
-                  </div>
-                </div>
-                <div className="absolute top-1 right-8 text-[8pt] font-bold text-emerald-700 bg-emerald-50 px-1 border border-emerald-300 rounded">
-                  Stopa 1 (5 bloků v řadě)
-                </div>
-                <div className="absolute bottom-4 left-4 text-[8pt] font-bold text-purple-700 bg-purple-50 px-1 border border-purple-300 rounded">
-                  Různé stopy (rozptýlené)
-                </div>
-              </div>
-              <div className="text-xs text-slate-700 space-y-1">
-                <p className="font-bold text-slate-800">Mechanické části disku při čtení:</p>
-                <p>• <strong>Pohyblivé raménko s hlavičkou:</strong> přejíždí radiálně mezi stopami (Seek time)</p>
-                <p>• <strong>Rotující plotna:</strong> otáčí se konstantní rychlostí pod hlavičkou (dotočení sektoru)</p>
-              </div>
-            </div>
-
-            <Sub label="a)">
-              Co se děje s mechanickými částmi disku (čtecí hlavička a rotující plotna) při čtení 5 bloků <strong>těsně za sebou na jedné stopě</strong>?
-            </Sub>
-            <Answer
-              show={showSolutions}
-              lines={3}
-              solution="Čtecí hlavička se na příslušnou stopu přesune pouze jednou (jednorázový Seek time). Jakmile se plotna pootočí k prvnímu bloku, všech 5 bloků jdoucích těsně za sebou je přečteno plynule v rámci jediné otáčky bez nutnosti dalšího mechanického pohybu raménka."
-            />
-
-            <Sub label="b)">
-              Co se musí stát, pokud je stejných 5 bloků <strong>rozptýleno na různých částech disku</strong> (na různých stopách)?
-            </Sub>
-            <Answer
-              show={showSolutions}
-              lines={3}
-              solution="Při čtení rozptýlených bloků musí čtecí raménko pro každý jednotlivý blok znovu mechanicky přejet na jinou stopu (Seek time, cca 5–15 ms) a čekat, až se plotna pod hlavičku dotočí (rotační zpoždění). Tento mechanický cyklus se musí opakovat 5×, což proces čtení dramaticky zpomalí."
-            />
-
-            <Sub label="c)">
-              Jak se nazývá stav disku, kdy jsou bloky souborů takto rozptýlené po různých stopách, a jaký systémový proces se používá k jejich srovnání za sebe?
-            </Sub>
-            <Answer
-              show={showSolutions}
-              lines={2}
-              solution="Tento stav se nazývá (vnější) fragmentace disku. Ke srovnání bloků souvisle za sebe se používá defragmentace disku (ve Windows nástroj dfrgui.exe / Defragmentace a optimalizace jednotek)."
-            />
-          </Question>
-
           {/* ========================================================= */}
           {/* ========================= ČÁST B ========================= */}
           {/* ========================================================= */}
@@ -196,8 +140,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">18 bodů</span>
           </div>
 
-          {/* Otázka 5 */}
-          <Question id="5" title="Fyzická jednotka disku (Sektor) (3 body)">
+          {/* Otázka 4 */}
+          <Question id="4" title="Fyzická jednotka disku (Sektor) (3 body)">
             <Sub label="a)">Jak se nazývá nejmenší fyzicky adresovatelná jednotka disku vytvořená výrobcem při výrobě?</Sub>
             <Answer show={showSolutions} lines={1} solution="Sektor (Sector)." />
 
@@ -208,8 +152,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Answer show={showSolutions} lines={1} solution="Protože 1 znak odpovídá 1 bajtu, odpovídá kapacita 4 KB přesně 4 096 znakům (cca 2 normostrany textu; u 512B sektorů je to 512 znaků)." />
           </Question>
 
-          {/* Otázka 6 */}
-          <Question id="6" title="Výpočet alokace pro 1 000 malých souborů (4 body)">
+          {/* Otázka 5 */}
+          <Question id="5" title="Výpočet alokace pro 1 000 malých souborů (4 body)">
             <p>
               Předpokládejte disk naformátovaný se standardní velikostí klastru (alokační jednotky) <strong>4 KB</strong>.
               Na tento disk uložíte <strong>1 000 malých konfiguračních souborů</strong>, z nichž každý má velikost pouze <strong>10 B</strong>.
@@ -229,8 +173,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             />
           </Question>
 
-          {/* Otázka 7 */}
-          <Question id="7" title="Výpočet alokace pro jeden větší soubor (4 body)">
+          {/* Otázka 6 */}
+          <Question id="6" title="Výpočet alokace pro jeden větší soubor (4 body)">
             <p>
               Máte soubor <code>protokol.docx</code> o velikosti <strong>22 KB</strong> uložený na disku s velikostí klastru <strong>4 KB</strong>.
             </p>
@@ -244,8 +188,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Answer show={showSolutions} lines={1} solution="24 KB - 22 KB = 2 KB nevyužitého místa." />
           </Question>
 
-          {/* Otázka 8 */}
-          <Question id="8" title="Výhody dělení disku na logické oddíly (3 body)">
+          {/* Otázka 7 */}
+          <Question id="7" title="Výhody dělení disku na logické oddíly (3 body)">
             <p>
               Jaké jsou výhody rozdělení jednoho fyzického disku na více logických oddílů (partitions)?
               Uveďte alespoň <strong>3 konkrétní praktické důvody</strong>, proč se disk dělí např. na systémový oddíl C: a datový oddíl D:.
@@ -257,8 +201,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             />
           </Question>
 
-          {/* Otázka 9 */}
-          <Question id="9" title="Oddíly bez přiřazeného písmene jednotky (4 body)">
+          {/* Otázka 8 */}
+          <Question id="8" title="Oddíly bez přiřazeného písmene jednotky (4 body)">
             <Sub label="a)">Může v operačním systému Windows 11 existovat diskový oddíl, který nemá přiřazené logické písmeno (např. C:, D:)?</Sub>
             <Answer show={showSolutions} lines={1} solution="Ano, může." />
 
@@ -280,8 +224,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <span className="text-xs font-bold bg-slate-700 px-2.5 py-1 rounded">14 bodů</span>
           </div>
 
-          {/* Otázka 10 */}
-          <Question id="10" title="Čtení z FAT tabulky – soubor o 4 clusterech (5 bodů)">
+          {/* Otázka 9 */}
+          <Question id="9" title="Čtení z FAT tabulky – soubor o 4 clusterech (5 bodů)">
             <p>
               V adresáři disku byl vyhledán soubor <code>zprava.docx</code>, u kterého je zapsán počáteční cluster <strong>#4</strong>.
             </p>
@@ -347,8 +291,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Answer show={showSolutions} lines={1} solution="EOF (End of File) = značka konce souboru. Informuje operační systém, že tento klastr je poslední částí souboru a žádný další odkaz už nenásleduje." />
           </Question>
 
-          {/* Otázka 11 */}
-          <Question id="11" title="Kombinovaná doplňovačka FAT – soubor o 5 clusterech (5 bodů)">
+          {/* Otázka 10 */}
+          <Question id="10" title="Kombinovaná doplňovačka FAT – soubor o 5 clusterech (5 bodů)">
             <p>
               Na disku je uložen soubor <code>video.mp4</code> o velikosti <strong>5 klastrů</strong>.
               V adresáři má zapsán počáteční cluster <strong>#2</strong>.
@@ -416,8 +360,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Answer show={showSolutions} lines={2} solution="Značka BAD označuje poškozený / nečitelný klastr (vadný blok). Operační systém by řetězec nedokázal dočíst do konce a při pokusu o přehrání videa by došlo k chybě čtení nebo zamrznutí přehrávače." />
           </Question>
 
-          {/* Otázka 12 */}
-          <Question id="12" title="Formátování disku a bezpečnost dat při prodeji (4 body)">
+          {/* Otázka 11 */}
+          <Question id="11" title="Formátování disku a bezpečnost dat při prodeji (4 body)">
             <Sub label="a)">
               Jaký je zásadní technický rozdíl mezi <strong>Rychlým formátováním</strong> (Quick Format) a <strong>Úplným / Pomalým formátováním</strong> (Full Format)?
               Popište, co se při každém z nich fyzicky děje s daty v sektorech disku.
