@@ -15,6 +15,7 @@ import {
 } from './FsShared';
 import { useRouter } from 'next/navigation';
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
+import { DefinitionCard } from '@/components/ui/DefinitionCard';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export default function FatChapter({
@@ -165,7 +166,15 @@ export default function FatChapter({
       onBack={onBack}
     >
       {activeTab === 'theory' && (
-        <div className="space-y-12">
+        <div className="space-y-10">
+
+          {/* HLAVNÍ DEFINICE */}
+          <DefinitionCard
+            icon={Database}
+            term="Souborový systém"
+            definition={<>je způsob a pravidla, kterými operační systém <strong>organizuje a ukládá soubory a složky na disku</strong>.</>}
+            note={<>Bez něj je diskový oddíl pouze surovou plochou bajtů. Vytváří se procesem <strong>formátování</strong> inicializací sítě clusterů a tabulky souborů.</>}
+          />
 
           <TheoryCard icon={HardDrive} title="Od hardwaru k softwaru" letter="A" tone="slate">
             <p>

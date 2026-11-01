@@ -18,11 +18,20 @@ import {
   TheoryCard, 
   Callout 
 } from '../../souborove-systemy/FsShared';
+import { DefinitionCard } from '@/components/ui/DefinitionCard';
 
 export default function ProcessIntroTheoryTab() {
   return (
-    <div className="space-y-12 animate-in fade-in duration-500">
+    <div className="space-y-10 animate-in fade-in duration-500">
       
+      {/* HLAVNÍ DEFINICE */}
+      <DefinitionCard
+        icon={Cpu}
+        term="Proces"
+        definition={<>je běžící instance programu zavedená v operační paměti RAM, která má přiděleny systémové prostředky, vlastní identifikátor <strong>PID</strong> a je spravována jádrem operačního systému.</>}
+        note={<>Zatímco <strong>program</strong> je pasivní soubor ležící na disku (.exe), <strong>proces</strong> je jeho živé vykonávání procesorem.</>}
+      />
+
       {/* ========================================================================= */}
       {/* BLOK A: Co je program a jak z něj vznikne proces                          */}
       {/* ========================================================================= */}
@@ -46,10 +55,10 @@ export default function ProcessIntroTheoryTab() {
 
           <div className="p-5 rounded-2xl bg-indigo-50 border-2 border-indigo-200">
             <div className="text-xs font-mono font-bold uppercase text-indigo-600 mb-1">Aktivní stav v RAM</div>
-            <h4 className="text-lg font-black text-indigo-950 mb-2">Proces (Instance v paměti)</h4>
+            <h4 className="text-lg font-black text-indigo-950 mb-2">Proces (Vykonávání v paměti)</h4>
             <p className="text-sm text-indigo-900 leading-relaxed">
-              Běžící instance programu zavedená operačním systémem do operační paměti RAM. Má přidělené systémové 
-              prostředky a čas procesoru. Je to jako <strong>kuchař, který podle receptu právě vaří</strong>.
+              Program probuzený k životu, který CPU právě vykonává instrukci po instrukci. 
+              Je to jako <strong>kuchař, který podle receptu v kuchyni právě vaří</strong>.
             </p>
           </div>
         </div>
@@ -136,10 +145,6 @@ export default function ProcessIntroTheoryTab() {
           </div>
         </div>
 
-        <Callout kind="key" title="Definice procesu pro technika">
-          <strong>Proces</strong> je <em>běžící instance programu zavedená v operační paměti RAM</em>, 
-          která má přiděleny systémové prostředky, má vlastní identifikátor <strong>PID</strong> a je spravována jádrem operačního systému.
-        </Callout>
       </TheoryCard>
 
       {/* ========================================================================= */}
@@ -232,64 +237,9 @@ export default function ProcessIntroTheoryTab() {
       </TheoryCard>
 
       {/* ========================================================================= */}
-      {/* BLOK C: Občanský průkaz procesu: PCB (Process Control Block)               */}
+      {/* BLOK C: Izolace procesů a ochrana paměti                                  */}
       {/* ========================================================================= */}
-      <TheoryCard icon={FileText} title="Občanský průkaz procesu: PCB (Process Control Block)" letter="C" tone="purple">
-        <p className="text-sm text-slate-600 leading-relaxed mb-6">
-          V počítači běží stovky procesů najednou. Jak o nich jádro operačního systému (kernel) udržuje přehled? 
-          Pro každý existující proces si jádro v paměti vede speciální strukturu zvanou{' '}
-          <strong>PCB (Process Control Block)</strong> – pomyslný „občanský průkaz procesu“.
-        </p>
-
-        <div className="bg-slate-50 p-6 rounded-2xl border-2 border-slate-200 mb-6">
-          <h4 className="font-black text-slate-800 text-sm uppercase mb-4 text-center">
-            Co všechno si jádro operačního systému v PCB pamatuje:
-          </h4>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">1. Číslo a rodič (PID & PPID)</div>
-              <p className="text-slate-600 leading-relaxed">Kdo proces je a který program ho spustil (např. PID 1420, rodič Průzkumník 108).</p>
-            </div>
-
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">2. Co právě dělá (Stav)</div>
-              <p className="text-slate-600 leading-relaxed">Zda proces zrovna počítá, nebo čeká, až uživatel stiskne klávesu či myš.</p>
-            </div>
-
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">3. Záložka v běhu programu</div>
-              <p className="text-slate-600 leading-relaxed">Místo, kde byl program naposledy přerušen, aby mohl po chvilce přesně tam pokračovat.</p>
-            </div>
-
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">4. Přidělený prostor v RAM</div>
-              <p className="text-slate-600 leading-relaxed">Kde v paměti začíná a končí jeho parcela, aby omylem nesáhl cizím programům do dat.</p>
-            </div>
-
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">5. Otevřené soubory na disku</div>
-              <p className="text-slate-600 leading-relaxed">Seznam souborů, se kterými právě pracuje (např. otevřený textový dokument).</p>
-            </div>
-
-            <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs">
-              <div className="font-bold text-purple-700 mb-1">6. Kterému uživateli patří</div>
-              <p className="text-slate-600 leading-relaxed">Který přihlášený člověk ho spustil (např. žák u počítače vs. samotný operační systém).</p>
-            </div>
-          </div>
-        </div>
-
-        <Callout kind="info" title="Proč je PCB klíčový pro multitasking?">
-          Když operační systém odebere procesu procesor a přepne na jiný, <strong>stav přerušeného procesu se neztratí</strong>. 
-          Jádro bleskově uloží všechny hodnoty z procesoru do tabulky PCB. Jakmile proces dostane procesor znovu, jádro stav z PCB 
-          načte a proces pokračuje přesně v tom zlomku mikrosekundy, kde minule skončil.
-        </Callout>
-      </TheoryCard>
-
-      {/* ========================================================================= */}
-      {/* BLOK D: Izolace procesů a ochrana paměti                                  */}
-      {/* ========================================================================= */}
-      <TheoryCard icon={ShieldCheck} title="Izolace procesů a ochrana paměti" letter="D" tone="rose">
+      <TheoryCard icon={ShieldCheck} title="Izolace procesů a ochrana paměti" letter="C" tone="rose">
         <p className="text-sm text-slate-600 leading-relaxed mb-6">
           V operačním systému běží desítky programů současně. Zásadním úkolem moderního OS je zajistit, 
           aby byl každý proces <strong>dokonale izolován ve své vlastní bublině</strong>.

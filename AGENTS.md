@@ -109,3 +109,13 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       6. **Mapování na IntLab:** Seznam odpovídajících kapitol, rout, interaktivních simulátorů a laboratorních protokolů.
     - Kdykoliv uživatel požaduje generování tematického plánu, podkladů pro ŠVP, inspekci, akreditaci nebo globální dotazy napříč předměty, **VŽDY čerpej z `doc/curriculum/`** a při změnách v kurikulu tyto dokumenty aktualizuj.
 
+
+
+15. **Standardní šablona opakovacích otázek k tématu (Topic Review Quiz Pattern):**
+    - Pro všechny opakovací / procvičovací záložky k tématům VŽDY používej standardizovanou šablonu `TopicReviewQuiz` (`components/ui/TopicReviewQuiz.tsx`).
+    - **Pravidla a chování opakovací sekce:**
+      1. **Pouze čisté krokování (Stepper):** Žáci procházejí otázky výhradně po jedné (žádný přepínač na „Vše najednou“). V záhlaví je přítomna rychlá skoková lišta čísel 1..N s barevným odlišením stavu.
+      2. **Zadání bez spoilerů:** Otázky NEMAJÍ žádné dílčí podnadpisy (`title`), které by prozrazovaly odpověď. Karta obsahuje rovnou číslo otázky `#{index + 1}` a plné znění zadání. Názvy kategorií musí být neutrální.
+      3. **Dvoutaktní interakční tlačítko:** Po zvolení odpovědi je aktivní tlačítko **„Vyhodnotit“** (nebo klávesa Enter v textovém poli). Po kliknutí se otázka vyhodnotí, obarví zeleně/červeně, rozbalí se didaktické vysvětlení a tlačítko se změní na **„Další otázka“** (příp. „Zobrazit celkový výsledek“). Teprve dalším kliknutím se přechází dál.
+      4. **Náhodné míchání odpovědí (Fisher-Yates Shuffle):** Při startu i při každém resetu jsou možnosti otázek (single i multiple choice) náhodně promíchány. Písmena možností A..D zůstávají shora dolů seřazena.
+      5. **Závěrečné vyhodnocení s vysokým kontrastem:** Světlá karta s tmavým písmem (`text-slate-900`), celkovým skóre a podrobným rozborem chybně zodpovězených otázek (každá s označením chybné volby žáka ❌, správného řešení ✓ a podrobného vysvětlení 💡). Závěr obsahuje akce „Opakovat celé znovu (nové pořadí)“ a „Prohlédnout otázky v testu“.

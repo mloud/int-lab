@@ -756,3 +756,48 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Kontext aktivního vývoje byl přepnut na 2. ročník oboru IT – **Programování a vývoj aplikací 2 (PVH 2 / PRG 2)**.
     - Aktivní plánovací tabule `doc/plan.md` byla aktualizována a nastavena na předmět PRG 2 (66 h / 33 týdnů).
     - Základní témata ročníku: Pokročilé datové struktury a kolekce v Pythonu (16 h), Práce se soubory, perzistence (JSON/CSV) a výjimky (14 h), Základy OOP (16 h), Vývoj aplikací s grafickým rozhraním GUI v Tkinteru (20 h).
+
+28. **Přepnutí kontextu na předmět Operační systémy 1 (OSS 1):**
+    - Kontext aktivního vývoje byl přepnut na 1. ročník oboru IT – **Operační systémy 1 (OSS 1)**.
+    - Aktivní plánovací tabule `doc/plan.md` byla nastavena na předmět OSS 1 (66 h / 33 týdnů).
+    - Výchozí routa: `/specializovana/operacni-systemy-1`.
+    - Stav kurikula: Bloky 1–3 (Hardware & architektura, Souborové systémy a boot, Procesy & virtuální paměť) jsou plně hotové; navazují bloky 4–10 (GUI, CLI & BAT, Uživatelé & NTFS, Správa software, Ovladače & Plánovač, Sítě LAN, Závěrečný projekt).
+
+29. **Didaktická a vizuální harmonizace kapitoly PR2 Střídání procesů (Multitasking - OSS 1):**
+    - V kapitole **PR2: Střídání procesů (Multitasking)** (`components/specializovana/operacni-systemy/procesy/stridani/ProcessSwitchingTheoryTab.tsx`):
+      - Na vrchol teorie nasazena čistá komponenta `DefinitionCard` s etymologií (*multi = mnoho, task = úloha*) a srovnáním s jednoúlohovým MS-DOS.
+      - **Blok A (Iluze multitaskingu):** Zobecněn na čisté vysvětlení dělení času (Time-Sharing) a časových kvant (10–30 ms) na jednom procesoru. Odstraněno předčasné označení "Preemptivní multitasking" v tomto bloku i na odznaku schématu, nahrazeno neutrálním *Střídání v čase*.
+      - **SVG Schéma střídání úloh:** Vytvořen responzivní SVG diagram bez horizontálního posuvníku s osou $X$ (čas na CPU od $t=0$, šipka doprava) a střídáním úloh Word, Spotify a Prohlížeč přesně podle učebnicového modelu.
+      - **Blok B (Kooperativní vs. Preemptivní multitasking):** Vytvořen samostatný blok vysvětlující zásadní rozdíl: dobrovolné vzdávání se CPU (`yield`) u starých systémů (Windows 3.1) vs. nucené odebrání procesoru hardwarovým časovačem (preempce) v moderních OS chránící systém před zamrznutím.
+      - **Blok C (Přepnutí kontextu):** Vizuální schéma sjednoceno do **stejného formátu horizontální časové osy jako v Bloku A** (Osa X s časem na CPU, řádky Úloha A a Úloha B). Mezi modrými bloky běhu úloh jsou vloženy žluté přechodové bloky reprezentující okamžik přepnutí kontextu (`1. Uložit do PCB 1 ➔ 2. Načíst z PCB 2`). Tím žák na první pohled vidí přesně ten okamžik na časové ose, kdy se procesor věnuje jádru OS. Doplněny pouze 2 stručné definiční karty pro PCB a Registr PC.
+      - Odstraněna zavádějící analogie filmového plátna a veškeré zmínky o vícejádrových CPU pro zachování čistého mentálního modelu 1 CPU pro žáky 1. ročníku SŠ.
+
+30. **Nová interaktivní záložka „Opakovací otázky“ v kapitole PR2 Střídání procesů (OSS 1) & Standardizace TopicReviewQuiz:**
+    - Do orchestrátoru kapitoly [`ProcessSwitchingChapter.tsx`](components/specializovana/operacni-systemy/procesy/ProcessSwitchingChapter.tsx) přidána nová třetí záložka:
+      `{ id: 'questions', label: 'Opakovací otázky', icon: HelpCircle }`.
+    - Vytvořen dedikovaný datový modul [`processSwitchingQuestionsData.ts`](components/specializovana/operacni-systemy/procesy/stridani/processSwitchingQuestionsData.ts) obsahující **20 didakticky propracovaných otázek** rozdělených do 4 tematických bloků:
+      1. *Dělení času na CPU* (iluze multitaskingu, výpočet počtu kvant za sekundu $1000/20 = 50$, fronta úloh $4 \times 15 = 60\text{ ms}$, jednoúlohový MS-DOS).
+      2. *Principy multitaskingu* (příčiny pádů Windows 3.1, pojem preempce, hardwarový časovač / Timer, příkaz `yield`).
+      3. *Střídání úloh* (definice kontextu procesu, registr PC / čítač instrukcí a důsledky jeho ztráty, kroky přepnutí, výpočet čistého CPU času $199{,}6\text{ ms}$).
+      4. *Režie & Výpočty* (karta PCB a její obsah, proč kvantum nemůže být $0{,}0001\text{ ms}$ ani $1\,000\text{ ms}$, výpočet procenta režie $1\text{ ms}/20\text{ ms} = 5\,\%$).
+    - **Globální šablona `TopicReviewQuiz` ([`components/ui/TopicReviewQuiz.tsx`](components/ui/TopicReviewQuiz.tsx)):**
+      - Celá komponenta byla povýšena na univerzální a opakovaně použitelnou šablonu pro jakékoliv budoucí opakovací sekce (zapsáno do pravidla 15 v `AGENTS.md`).
+      - Orchestrátor [`ProcessSwitchingQuestionsTab.tsx`](components/specializovana/operacni-systemy/procesy/stridani/ProcessSwitchingQuestionsTab.tsx) byl zredukován na štíhlý ~30řádkový wrapper.
+      - **Klíčové vlastnosti šablony:**
+        1. *Výhradní čisté krokování:* Žádný matoucí přepínač na „Vše najednou“, žák prochází otázky po jedné. V záhlaví je skoková lišta čísel 1..N.
+        2. *Zadání bez spoilerů:* Otázky nemají podnadpisy (`title`), které by prozrazovaly odpověď.
+        3. *Dvoutaktní interakční tlačítko:* Po zadání odpovědi je aktivní tlačítko **„Vyhodnotit“** (nebo Enter). Po kliknutí se otázka vyhodnotí, rozbalí se didaktické vysvětlení a tlačítko se změní na zelené **„Další otázka“**. Teprve dalším kliknutím se přechází dál.
+        4. *Náhodné míchání odpovědí (Fisher-Yates Shuffle):* Při startu i při každém resetu jsou možnosti otázek (single i multiple choice) náhodně promíchány.
+        5. *Závěrečné vyhodnocení s vysokým kontrastem:* Světlá karta s tmavým písmem (`text-slate-900`), celkovým skóre a podrobným rozborem chybně zodpovězených otázek (každá s označením chybné volby žáka ❌, správného řešení ✓ a podrobného vysvětlení 💡). Akce: „Opakovat celé znovu (nové pořadí)“ a „Prohlédnout otázky v testu“.
+
+31. **Didaktická restrukturalizace praktického listu v kapitole Procesy a paměť (OSS 1):**
+    - V praktickém laboratorním protokolu [`ProcessIntroWorksheetTab.tsx`](../components/specializovana/operacni-systemy/procesy/intro/ProcessIntroWorksheetTab.tsx) byla provedena zásadní didaktická gradace a úprava úloh dle požadavků z výuky:
+      - **Úkol 3 (Zjištění PID v GUI):** Aplikace Poznámkový blok byla nahrazena za **Malování (`mspaint.exe`)** a **Kalkulačku (`calc.exe`)**. Úkol se soustředí výhradně na odečet PID v grafickém rozhraní Správce úloh (záložka *Podrobnosti*). CLI příkaz `tasklist` byl z tohoto úkolu vyčleněn.
+      - **Nový Úkol 4 (První seznámení s CLI & tasklist):** Popisuje postup spuštění Příkazového řádku (`Win + R ➔ cmd ➔ tasklist`). Studenti v dlouhém výpisu ručně vyhledají procesy `mspaint.exe` a `CalculatorApp.exe`, zapíší jejich PID a porovnají je s PID z Úkolu 3 v přehledné srovnávací tabulce (samostatné textové otázky 4.1 a 4.2 byly na žádost uživatele vyřazeny, úkol končí přímo vyplněním tabulky).
+      - **Nový Úkol 5 (Filtrování podle názvu v CLI - tasklist /FI):** Přidána podrobná nápovědná karta vysvětlující syntaxi přepínače `/FI`, atribut `IMAGENAME`, operátor `eq` a zástupný znak `*`. Studenti filtrují Malování (`tasklist /FI "IMAGENAME eq mspaint.exe"`), zkouší wildcard `m*` a zapisují celkový počet nalezených procesů (nadbytečné pole pro opis příkazu i teoretická otázka na operátor `ne` byly vyřazeny).
+      - **Úkol 6 (Samostatné filtrování podle paměti RAM):** Samostatná práce s nápovědou `tasklist /?`. Studenti sami sestaví filtr na procesy nad 300 MB bez napovídajících placeholderů, zapíší top 3 procesy do tabulky a v otázce 6.1 navrhnou příkaz pro procesy pod 10 MB (nápověda operátoru `lt` byla z otázky odstraněna).
+      - **Úkol 7* (Dvě instance v RAM — Malování):** Poznámkový blok nahrazen za **Malování (`mspaint.exe`)**. Spuštění 2 oken Malování vedle sebe, ověření jejich samostatných PID přes `tasklist /FI "IMAGENAME eq mspaint.exe"` a didaktické otázky na důvody unikátnosti PID a výhodu paměťové izolace při pádu jedné instance.
+      - **Úkol 8* a Úkol 9* (Rozšiřující část pro pokročilé):** Úkoly byly vzájemně prohozeny:
+        - **Úkol 8\*** představuje téma *Program na disku vs. Proces v paměti RAM (Instrukce vs. Data)* s měřením velikosti souboru na disku vs. v RAM po čistém spuštění. Nadbytečné stahování 1MB souboru i druhá otázka byly odebrány a otázka 8.1 je přímo položena bez návodné věty v závorce a bez napovídajícího textu v poli pro odpověď.
+        - **Úkol 9\*** představuje téma *Rodičovský proces (PPID) a stromová hierarchie v Process Exploreru* s vyhledáním hierarchie rodič–potomek a vysvětlením dědění práv.
+      - **100% soulad Word exportu:** Funkce `handleExportWord` byla kompletně synchronizována s novou 9úlohovou strukturou se zpětnou kompatibilitou dříve uložených stavů v `localStorage`.
