@@ -409,13 +409,10 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
               </div>
             </div>
 
-            <Sub label="a)">Doplňte chybějící hodnoty do prázdných políček tabulky FAT tak, aby byl soubor <code>video.mp4</code> správně zřetězen a ukončen:</Sub>
-            <Answer show={showSolutions} lines={1} solution="Doplněné hodnoty: cluster 5 ➔ 6, cluster 9 ➔ 13, cluster 13 ➔ EOF." />
+            <Sub label="a)">Doplňte chybějící hodnoty do prázdných políček tabulky FAT tak, aby byl soubor <code>video.mp4</code> správně zřetězen a ukončen. Zároveň v přiložené mřížce disku označte (vybarvěte) všech 5 klastrů, které soubor obsazuje:</Sub>
+            <Answer show={showSolutions} lines={1} solution="Doplněné hodnoty: cluster 5 ➔ 6, cluster 9 ➔ 13, cluster 13 ➔ EOF. V mřížce jsou správně označeny klastry #2, #5, #6, #9 a #13." />
 
-            <Sub label="b)">V mřížce disku označte všech 5 klastrů, které soubor obsazuje.</Sub>
-            <Answer show={showSolutions} lines={1} solution="V mřížce jsou správně označeny klastry #2, #5, #6, #9 a #13." />
-
-            <Sub label="c)">Co by se stalo, kdyby se v klastru #9 objevila speciální značka BAD?</Sub>
+            <Sub label="b)">Co by se stalo, kdyby se v klastru #9 objevila speciální značka BAD?</Sub>
             <Answer show={showSolutions} lines={2} solution="Značka BAD označuje poškozený / nečitelný klastr (vadný blok). Operační systém by řetězec nedokázal dočíst do konce a při pokusu o přehrání videa by došlo k chybě čtení nebo zamrznutí přehrávače." />
           </Question>
 
