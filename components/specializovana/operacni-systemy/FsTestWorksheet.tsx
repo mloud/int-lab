@@ -221,18 +221,45 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </div>
 
           {/* Otázka 9 */}
-          <Question id="9" title="Čtení z FAT tabulky – soubor o 4 clusterech">
+          <Question id="9" title="Čtení z FAT tabulky – vyhledání a rekonstrukce souboru">
             <p>
-              V adresáři disku byl vyhledán soubor <code>zprava.docx</code>, u kterého je zapsán počáteční cluster <strong>#4</strong>.
+              V kořenovém adresáři disku jsou zapsány následující soubory. Pomocí adresáře a výřezu tabulky FAT zrekonstruujte soubor <code>zprava.docx</code>.
             </p>
 
-            <div className="my-3 grid grid-cols-1 sm:grid-cols-2 gap-4 items-start text-xs">
+            <div className="my-3 grid grid-cols-1 md:grid-cols-3 gap-3 items-start text-xs">
+              {/* Adresář disku */}
+              <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
+                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Adresář (Directory)</div>
+                <table className="w-full text-left border-collapse font-mono text-[9.5pt]">
+                  <thead>
+                    <tr className="border-b border-slate-300 text-slate-500 font-bold text-[8.5pt]">
+                      <th className="pb-1">Název</th>
+                      <th className="pb-1 text-center">Start</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    <tr>
+                      <td className="py-1">poznamky.txt</td>
+                      <td className="py-1 text-center font-bold">1</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="py-1 font-bold text-indigo-700">zprava.docx</td>
+                      <td className="py-1 text-center font-bold text-indigo-700">4</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1">foto.jpg</td>
+                      <td className="py-1 text-center font-bold">9</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
               {/* FAT tabulka */}
               <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
                 <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Výřez FAT tabulky</div>
-                <div className="grid grid-cols-2 font-mono">
-                  <span className="font-bold text-slate-500">Číslo clusteru</span>
-                  <span className="font-bold text-slate-500">Odkaz</span>
+                <div className="grid grid-cols-2 font-mono text-[9.5pt]">
+                  <span className="font-bold text-slate-500 text-[8.5pt]">Číslo clusteru</span>
+                  <span className="font-bold text-slate-500 text-[8.5pt]">Odkaz</span>
                   <span>4</span>
                   <span className="font-bold text-indigo-700">7</span>
                   <span>5</span>
@@ -252,14 +279,14 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
 
               {/* Mřížka disku */}
               <div className="bg-slate-50 border-2 border-slate-700 rounded-lg p-2.5 text-center">
-                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Fyzická mřížka klastrů disku</div>
-                <div className="grid grid-cols-4 gap-1.5 font-mono text-[10pt]">
+                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2 text-[8.5pt]">Fyzická mřížka klastrů</div>
+                <div className="grid grid-cols-4 gap-1 font-mono text-[9pt]">
                   {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((idx) => {
                     const isTarget = [4, 7, 11, 15].includes(idx);
                     return (
                       <div
                         key={idx}
-                        className={`p-1.5 rounded border ${showSolutions && isTarget
+                        className={`p-1 rounded border ${showSolutions && isTarget
                           ? 'bg-rose-500 text-white font-bold border-rose-700 shadow-xs'
                           : 'bg-white border-slate-300 text-slate-600'
                           }`}
@@ -270,67 +297,101 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   })}
                 </div>
                 {showSolutions && (
-                  <p className="text-[9pt] text-rose-600 font-bold mt-2">
-                    Vyznačeny klastry: #4, #7, #11, #15
+                  <p className="text-[8.5pt] text-rose-600 font-bold mt-1.5">
+                    Vyznačeno: #4, #7, #11, #15
                   </p>
                 )}
               </div>
             </div>
 
-            <Sub label="a)">Vypište přesné pořadí klastrů, ve kterých je soubor uložen na disku (řetězec klastrů):</Sub>
-            <Answer show={showSolutions} lines={1} solution="Řetězec klastrů: #4 ➔ #7 ➔ #11 ➔ #15 (celkem 4 klastry)." />
+            <Sub label="a)">Vyhledejte v adresáři soubor <code>zprava.docx</code>, zjistěte jeho počáteční cluster a vypište přesné pořadí klastrů (řetězec), ve kterých je uložen. Zároveň v přiložené mřížce klastrů disku všechny tyto klastry zakřížkujte nebo vybarvěte:</Sub>
+            <Answer show={showSolutions} lines={1} solution="Počáteční cluster z adresáře: #4 ➔ Řetězec klastrů: #4 ➔ #7 ➔ #11 ➔ #15 (celkem 4 klastry). V mřížce jsou správně označeny klastry #4, #7, #11 a #15." />
 
-            <Sub label="b)">V přiložené mřížce klastrů disku zakřížkujte nebo vybarvěte všechny klastry tohoto souboru.</Sub>
-            <Answer show={showSolutions} lines={1} solution="V mřížce jsou správně označeny klastry #4, #7, #11 a #15." />
-
-            <Sub label="c)">Co v tabulce FAT vyjadřuje speciální hodnota EOF?</Sub>
+            <Sub label="b)">Co v tabulce FAT vyjadřuje speciální hodnota EOF?</Sub>
             <Answer show={showSolutions} lines={1} solution="EOF (End of File) = značka konce souboru. Informuje operační systém, že tento klastr je poslední částí souboru a žádný další odkaz už nenásleduje." />
           </Question>
 
           {/* Otázka 10 */}
           <Question id="10" title="Kombinovaná doplňovačka FAT – soubor o 5 clusterech">
             <p>
-              Na disku je uložen soubor <code>video.mp4</code> o velikosti <strong>5 klastrů</strong>.
-              V adresáři má zapsán počáteční cluster <strong>#2</strong>.
-              Z mřížky disku víme, že soubor leží v klastrech <strong>#2, #5, #6, #9 a #13</strong>.
+              V adresáři vyhledejte soubor <code>video.mp4</code>. Z mřížky disku víme, že soubor fyzicky leží v klastrech <strong>#2, #5, #6, #9 a #13</strong> (v tomto pořadí).
             </p>
 
-            <div className="my-3 grid grid-cols-1 sm:grid-cols-2 gap-4 items-start text-xs">
+            <div className="my-3 grid grid-cols-1 md:grid-cols-3 gap-3 items-start text-xs">
+              {/* Adresář disku */}
+              <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
+                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Adresář (Directory)</div>
+                <table className="w-full text-left border-collapse font-mono text-[9.5pt]">
+                  <thead>
+                    <tr className="border-b border-slate-300 text-slate-500 font-bold text-[8.5pt]">
+                      <th className="pb-1">Název</th>
+                      <th className="pb-1 text-center">Start</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    <tr>
+                      <td className="py-1">hudba.mp3</td>
+                      <td className="py-1 text-center font-bold">8</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="py-1 font-bold text-purple-700">video.mp4</td>
+                      <td className="py-1 text-center font-bold text-purple-700">2</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1">tabulka.xlsx</td>
+                      <td className="py-1 text-center font-bold">11</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
               {/* Neúplná FAT tabulka */}
               <div className="bg-white border-2 border-slate-700 rounded-lg p-2.5">
                 <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Neúplná FAT tabulka</div>
-                <div className="grid grid-cols-2 font-mono text-[10.5pt] py-1">
-                  <span className="font-bold text-slate-500">Číslo clusteru</span>
-                  <span className="font-bold text-slate-500">Odkaz</span>
+                <div className="grid grid-cols-2 font-mono text-[9.5pt] py-0.5">
+                  <span className="font-bold text-slate-500 text-[8.5pt]">Číslo clusteru</span>
+                  <span className="font-bold text-slate-500 text-[8.5pt]">Odkaz</span>
                   <span>2</span>
                   <span className="font-bold text-slate-700">5</span>
                   <span>5</span>
-                  <span className="font-bold text-slate-700">
-                    {showSolutions ? <span className="text-rose-600 font-bold italic">6 (Hodnota A)</span> : '[ Doplnit A ]'}
+                  <span>
+                    {showSolutions ? (
+                      <span className="text-rose-600 font-bold italic">6</span>
+                    ) : (
+                      <span className="inline-block w-8 h-4 border-b-2 border-slate-800"></span>
+                    )}
                   </span>
                   <span>6</span>
                   <span className="font-bold text-slate-700">9</span>
                   <span>9</span>
-                  <span className="font-bold text-slate-700">
-                    {showSolutions ? <span className="text-rose-600 font-bold italic">13 (Hodnota B)</span> : '[ Doplnit B ]'}
+                  <span>
+                    {showSolutions ? (
+                      <span className="text-rose-600 font-bold italic">13</span>
+                    ) : (
+                      <span className="inline-block w-8 h-4 border-b-2 border-slate-800"></span>
+                    )}
                   </span>
                   <span>13</span>
-                  <span className="font-bold text-slate-700">
-                    {showSolutions ? <span className="text-rose-600 font-bold italic">EOF (Hodnota C)</span> : '[ Doplnit C ]'}
+                  <span>
+                    {showSolutions ? (
+                      <span className="text-rose-600 font-bold italic">EOF</span>
+                    ) : (
+                      <span className="inline-block w-8 h-4 border-b-2 border-slate-800"></span>
+                    )}
                   </span>
                 </div>
               </div>
 
               {/* Mřížka disku */}
               <div className="bg-slate-50 border-2 border-slate-700 rounded-lg p-2.5 text-center">
-                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2">Fyzická mřížka klastrů disku</div>
-                <div className="grid grid-cols-4 gap-1.5 font-mono text-[10pt]">
+                <div className="font-bold text-slate-800 uppercase border-b pb-1 mb-2 text-[8.5pt]">Fyzická mřížka klastrů</div>
+                <div className="grid grid-cols-4 gap-1 font-mono text-[9pt]">
                   {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((idx) => {
                     const isTarget = [2, 5, 6, 9, 13].includes(idx);
                     return (
                       <div
                         key={idx}
-                        className={`p-1.5 rounded border ${showSolutions && isTarget
+                        className={`p-1 rounded border ${showSolutions && isTarget
                           ? 'bg-purple-600 text-white font-bold border-purple-800 shadow-xs'
                           : 'bg-white border-slate-300 text-slate-600'
                           }`}
@@ -341,15 +402,15 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   })}
                 </div>
                 {showSolutions && (
-                  <p className="text-[9pt] text-purple-700 font-bold mt-2">
-                    Vyznačeno 5 klastrů: #2, #5, #6, #9, #13
+                  <p className="text-[8.5pt] text-purple-700 font-bold mt-1.5">
+                    Obsazeno: #2, #5, #6, #9, #13
                   </p>
                 )}
               </div>
             </div>
 
-            <Sub label="a)">Doplňte chybějící hodnoty A, B a C do tabulky FAT tak, aby byl soubor správně zřetězen a ukončen:</Sub>
-            <Answer show={showSolutions} lines={1} solution="A = 6, B = 13, C = EOF." />
+            <Sub label="a)">Doplňte chybějící hodnoty do prázdných políček tabulky FAT tak, aby byl soubor <code>video.mp4</code> správně zřetězen a ukončen:</Sub>
+            <Answer show={showSolutions} lines={1} solution="Doplněné hodnoty: cluster 5 ➔ 6, cluster 9 ➔ 13, cluster 13 ➔ EOF." />
 
             <Sub label="b)">V mřížce disku označte všech 5 klastrů, které soubor obsazuje.</Sub>
             <Answer show={showSolutions} lines={1} solution="V mřížce jsou správně označeny klastry #2, #5, #6, #9 a #13." />
