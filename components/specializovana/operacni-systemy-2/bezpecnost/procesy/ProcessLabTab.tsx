@@ -620,7 +620,7 @@ export default function ProcessLabTab({
               V Příkazovém řádku (cmd.exe) vyfiltrujte procesy s pamětí nad 100 MB (100 000 KB):
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Použijte <code>tasklist /FI &quot;MEMUSAGE gt 100000&quot;</code>.</li>
+              <li>Sestavte příkaz <code>tasklist</code> s filtrem <code>/FI</code> (využijte vlastnost <code>MEMUSAGE</code> a operátor <code>gt</code> pro hodnotu nad 100 000 KB).</li>
               <li>Zapište použitý příkaz a proces s největší pamětí ve výsledku.</li>
             </ul>
           </div>
