@@ -103,15 +103,12 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Ověřte stav bezpečnostního filtru blokujícího nedůvěryhodné či nepodepsané aplikace na vašem počítači:
+              Ověřte stav reputačního filtru blokujícího nedůvěryhodné či nepodepsané aplikace:
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Otevřete <strong>Zabezpečení Windows ➔ Řízení aplikací a prohlížečů ➔ Nastavení Smart App Control</strong> (ve Windows 11) nebo <strong>Ochrana na základě reputace</strong> (SmartScreen).</li>
-              <li>Zjistěte, v jakém stavu se tato ochrana na vašem PC nachází.</li>
+              <li>V <strong>Zabezpečení Windows ➔ Řízení aplikací a prohlížečů</strong> zkontrolujte <strong>Smart App Control</strong> nebo <strong>SmartScreen</strong>.</li>
+              <li>Zapište zjištěný stav (např. <em>Zapnuto</em>, <em>Hodnocení</em>, <em>Vypnuto</em> či <em>Spravováno správcem</em>).</li>
             </ul>
-            <div className="pt-1 text-[11px] text-slate-500">
-              💡 <strong>Možné stavy:</strong> <em>Zapnuto</em> (striktně blokuje nepodepsané soubory bez dobré reputace), <em>Hodnocení / Evaluation</em> (učí se), <em>Vypnuto</em>, nebo <em>Spravováno správcem / doménou</em>.
-            </div>
           </div>
 
           <div className="pt-4 border-t-2 border-slate-100 space-y-3">
@@ -171,12 +168,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Ověřte stav antivirové ochrany v reálném čase (Microsoft Defender nebo školní/vlastní antivirus):
+              V <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami</strong> ověřte:
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Otevřete <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami</strong>.</li>
-              <li>Klikněte na <strong>Spravovat nastavení</strong> a ověřte, zda je zapnutá <strong>Ochrana v reálném čase</strong>.</li>
-              <li>Vraťte se a dole v sekci <em>Aktualizace ochrany před viry a hrozbami</em> zjistěte aktuální verzi definic/signatur (Security Intelligence).</li>
+              <li>Zda je aktivní <strong>Ochrana v reálném čase</strong> (v <em>Spravovat nastavení</em>).</li>
+              <li>Aktuální <strong>verzi signatur / definic</strong> (dole v sekci aktualizací).</li>
             </ul>
           </div>
 
@@ -251,12 +247,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Ověřte nastavení ochrany před vyděračským softwarem (ransomwarem) v OS Windows:
+              V <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami ➔ Spravovat ochranu před ransomwarem</strong>:
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Otevřete <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami</strong>.</li>
-              <li>Dole klikněte na odkaz <strong>Spravovat ochranu před ransomwarem</strong>.</li>
-              <li>Zjistěte stav přepínače <strong>Řízený přístup ke složkám (Controlled Folder Access)</strong> a prohlédněte si odkaz <em>Chráněné složky</em>.</li>
+              <li>Zjistěte stav funkce <strong>Řízený přístup ke složkám</strong>.</li>
+              <li>V odkazu <em>Chráněné složky</em> zjistěte, které složky systém před neoprávněným zašifrováním chrání.</li>
             </ul>
           </div>
 
@@ -326,31 +321,13 @@ export default function ProcessLabTab({
             </button>
           </div>
 
-          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
-            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
-              📜 <strong>Proč kontrolovat certifikát v GUI?</strong> Než spustíte stažený instalační balíček nebo program,
-              operační systém vám umožňuje zkontrolovat jeho digitální pečeť (Authenticode). Podpis garantuje, že soubor pochází
-              od skutečného vydavatele a od okamžiku podpisu v něm nikdo nezměnil ani jediný bajt kódu.
-            </div>
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Postup inspekce (např. instalační balíček VLC Media Player z videolan.org nebo libovolný program v Program Files):
+              Ověřte digitální podpis (Authenticode) libovolného programu (např. instalátor VLC, 7-Zip či program v <code>Program Files</code>):
             </p>
-            <ol className="list-decimal list-inside space-y-1.5 text-slate-600 pl-1">
-              <li>
-                Stáhněte instalátor programu (doporučeno: <strong>VLC Media Player</strong> z <code>https://www.videolan.org</code>, případně 7-Zip či Notepad++), nebo v Průzkumníku najděte existující <code>.exe</code> soubor.
-              </li>
-              <li>
-                Klikněte na soubor pravým tlačítkem myši &rarr; <strong>Vlastnosti</strong> (Alt + Enter).
-              </li>
-              <li>
-                Přejděte na záložku <strong>Digitální podpisy</strong>, v seznamu podpisů označte položku a klikněte na <strong>Podrobnosti</strong>.
-              </li>
-              <li>
-                V okně Podrobnosti digitálního podpisu klikněte na tlačítko <strong>Zobrazit certifikát</strong>.
-              </li>
-              <li>
-                Prozkoumejte záložku <strong>Obecné</strong> (komu a kým byl certifikát vystaven) a záložku <strong>Certifikační cesta</strong> (strom autorit).
-              </li>
+            <ol className="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+              <li>Pravým tlačítkem na soubor &rarr; <strong>Vlastnosti</strong> &rarr; záložka <strong>Digitální podpisy</strong> &rarr; <strong>Podrobnosti</strong>.</li>
+              <li>Klikněte na <strong>Zobrazit certifikát</strong> a opište vystavitele, předmět a stav v záložce <em>Certifikační cesta</em>.</li>
             </ol>
           </div>
 
@@ -640,11 +617,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Vypište všechny procesy, které v paměti RAM zabírají více než 100 MB (tj. více než 100 000 KB):
+              V Příkazovém řádku (cmd.exe) vyfiltrujte procesy s pamětí nad 100 MB (100 000 KB):
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Sestavte příkaz <code>tasklist</code> s filtrem <code>/FI</code>, který vybere procesy s využitím paměti větším než 100 000 KB (využijte operátor <code>gt</code> = greater than).</li>
-              <li>Najděte proces s největší spotřebou paměti ve výpisu a zapište jeho název a velikost paměti.</li>
+              <li>Použijte <code>tasklist /FI &quot;MEMUSAGE gt 100000&quot;</code>.</li>
+              <li>Zapište použitý příkaz a proces s největší pamětí ve výsledku.</li>
             </ul>
           </div>
 
@@ -731,13 +708,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Spusťte nástroj <strong>resmon.exe</strong> (Sledování prostředků):
+              Spusťte <strong>resmon.exe</strong> (Sledování prostředků) a přejděte na záložku <strong>Síť ➔ Připojení TCP</strong>:
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Přejděte na záložku <strong>Síť</strong> a rozbalte panel <strong>Síťová aktivita</strong> nebo <strong>Připojení TCP</strong>.</li>
-              <li>Najděte libovolné aktivní spojení (např. pro váš webový prohlížeč – <code>chrome.exe</code>, <code>msedge.exe</code>, <code>firefox.exe</code>).</li>
-              <li>Zapište vzdálenou IP adresu a port (např. port 443).</li>
-              <li>Otevřete v prohlížeči <code>https://ipinfo.io/&lt;IP_ADRESA&gt;</code> (nebo whois) a zjistěte organizaci / vlastníka autonomního systému (ASN).</li>
+              <li>Vyberte aktivní spojení libovolného procesu (např. prohlížeč <code>chrome.exe</code> či <code>msedge.exe</code>).</li>
+              <li>Zapište vzdálenou IP adresu, port a přes <code>https://ipinfo.io/&lt;IP&gt;</code> ověřte vlastníka sítě.</li>
             </ul>
           </div>
 
@@ -834,20 +809,13 @@ export default function ProcessLabTab({
             </button>
           </div>
 
-          {/* Představení služby VirusTotal a zadání */}
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
-              💡 <strong>Co je VirusTotal.com?</strong> Bezplatná cloudová služba (provozovaná dceřinou společností Google / Chronicle),
-              která analyzuje podezřelé soubory a URL adresy. Místo jednoho antiviru prověří vzorek současně více než <strong>70 předními bezpečnostními a antivirovými systémy</strong>
-              (Microsoft, ESET, Avast, Kaspersky, Bitdefender, Sophos atd.) a zobrazí celkové detekční skóre (např. <em>0/72</em> = čistý soubor, <em>56/72</em> = známý malware).
-            </div>
-            <p className="font-semibold text-slate-900 pt-1">
-              Postup prověření:
+            <p className="font-semibold text-slate-900">
+              Ověřte soubor nebo jeho SHA-256 hash na multiskeneru <strong>VirusTotal.com</strong> (testuje soubor vůči 70+ antivirům):
             </p>
             <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Otevřete v prohlížeči <code>https://www.virustotal.com</code> (záložka <strong>FILE</strong>, případně záložka <strong>SEARCH</strong>, kam můžete přímo vložit SHA-256 hash z Úlohy 5!).</li>
-              <li>Vyberte libovolný spustitelný soubor ze svého počítače (např. stažený instalátor, utilitu, portable program nebo systémový soubor), nebo vyhledejte jeho hash.</li>
-              <li>Počkejte na vyhodnocení a zapište název souboru, zjištěné skóre detekce a celkový verdikt.</li>
+              <li>Na <code>https://www.virustotal.com</code> nahrajte soubor (záložka <strong>FILE</strong>), nebo vyhledejte hash z Úlohy 5 (záložka <strong>SEARCH</strong>).</li>
+              <li>Zapište název souboru, výsledné skóre detekcí (např. 0/72) a bezpečnostní verdikt.</li>
             </ul>
           </div>
 
@@ -932,33 +900,14 @@ export default function ProcessLabTab({
             </button>
           </div>
 
-          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
-            <div className="p-2.5 bg-indigo-50/80 rounded-xl border border-indigo-200 text-indigo-950">
-              🛠️ <strong>Nástroj Microsoft Sysinternals Process Explorer:</strong> Pokročilá náhrada Správce úloh vytvořená Markem Russinovichem.
-              Umožňuje naživo kontrolovat digitální podpisy procesů (Authenticode) a jediným kliknutím odesílat hashe všech běžících procesů na VirusTotal.com.
-            </div>
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Postup zprovoznění a analýzy:
+              Spusťte <strong>Process Explorer</strong> (ze Sysinternals / <code>https://live.sysinternals.com/procexp.exe</code>):
             </p>
-            <ol className="list-decimal list-inside space-y-1.5 text-slate-600 pl-1">
-              <li>
-                Stáhněte a spusťte <strong>Process Explorer</strong> z oficiálního webu Microsoft Sysinternals (případně přímo z odkazu <code>https://live.sysinternals.com/procexp.exe</code>). Není potřeba žádná instalace, jedná se o portable utilitu.
-              </li>
-              <li>
-                V horním menu Process Exploreru zapněte: <strong>Options &rarr; VirusTotal.com &rarr; Check VirusTotal.com</strong> (při prvním spuštění odsouhlaste podmínky služby).
-              </li>
-              <li>
-                Zapněte také ověřování podpisů: <strong>Options &rarr; Verify Image Signatures</strong>.
-              </li>
-              <li>
-                Spusťte aplikaci <strong>Malování</strong> (<code>mspaint.exe</code>) a najděte ji ve stromu procesů Process Exploreru.
-              </li>
-              <li>
-                Vyberte <strong>druhý libovolný proces</strong> (např. webový prohlížeč <code>chrome.exe</code> / <code>msedge.exe</code>, textový editor nebo přehrávač).
-              </li>
-              <li>
-                U obou procesů zapište jejich PID, stav digitálního podpisu (sloupec <em>Verified Signer</em>) a skóre VirusTotal (sloupec <em>VirusTotal</em>).
-              </li>
+            <ol className="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+              <li>V menu zapněte: <strong>Options ➔ Verify Image Signatures</strong> a <strong>Options ➔ VirusTotal.com ➔ Check VirusTotal.com</strong>.</li>
+              <li>Najděte proces <strong>mspaint.exe</strong> a jeden libovolný další proces.</li>
+              <li>Opište jejich PID, digitální podpis (sloupec <em>Verified Signer</em>) a skóre VirusTotal.</li>
             </ol>
           </div>
 
@@ -1123,11 +1072,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
             <p className="font-semibold text-amber-900">
-              Ve Windows běží desítky instancí <code>svchost.exe</code> (Service Host). Každá hostuje jednu nebo více systémových služeb (např. DNS klient, Windows Update, Zvuk).
+              V Příkazovém řádku vypište přiřazené systémové služby pomocí <code>tasklist /svc</code>:
             </p>
             <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1">
-              <li>Spusťte Příkazový řádek (nebo jako Správce) a pomocí vhodného parametru nástroje <code>tasklist</code> vypište procesy včetně přiřazených systémových služeb (nápovědu získáte přes <code>tasklist /?</code>).</li>
-              <li>Vyberte si jeden konkrétní řádek s <strong>svchost.exe</strong>, opište jeho PID a seznam služeb, které pod ním běží.</li>
+              <li>Vyberte jednu instanci <strong>svchost.exe</strong>, zapište její PID a seznam služeb, které hostuje.</li>
+              <li>Zdůvodněte, proč se útočníci za název <code>svchost.exe</code> rádi maskují.</li>
             </ul>
           </div>
 
@@ -1231,11 +1180,11 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
             <p className="font-semibold text-amber-900">
-              Vytvořte vlastní spustitelný soubor (.exe) bez komerčního certifikátu:
+              Spusťte libovolný vlastní nebo nepodepsaný program (např. zkompilovaný skript přes PyInstaller či vlastní utilitu):
             </p>
             <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1">
-              <li>Vytvořte jednoduchý Python skript <code>test.py</code> (např. <code>import time; print(&apos;Bezim&apos;); time.sleep(60)</code>) a zkompilujte jej: <code>pyinstaller --onefile test.py</code> (nebo použijte jakoukoliv vlastní nepodepsanou utilitu).</li>
-              <li>Spusťte vytvořený program a podívejte se na něj v <strong>Process Exploreru</strong> ve sloupci <strong>Verified Signer</strong>.</li>
+              <li>Zkontrolujte jeho sloupec <strong>Verified Signer</strong> v Process Exploreru.</li>
+              <li>Zdůvodněte, proč SmartScreen takový soubor zablokuje modrým varovným oknem.</li>
             </ul>
           </div>
 
