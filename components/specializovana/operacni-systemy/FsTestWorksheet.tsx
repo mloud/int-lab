@@ -19,11 +19,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
     >
       {(showSolutions) => (
         <>
-          {/* Informační hlavička parametrů testu */}
-          <div className="mb-6 p-4 bg-slate-100 rounded-xl border border-slate-300 flex flex-wrap items-center justify-between text-xs font-bold text-slate-700 uppercase tracking-wider">
-            <span>Časový limit: 40 minut</span>
-            <span>Celkem otázek: 11</span>
-          </div>
 
           {/* ========================================================= */}
           {/* ========================= ČÁST A ========================= */}
@@ -65,7 +60,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <tr>
                     <td className="p-2 font-semibold bg-slate-50 border-r border-slate-400">
                       Typická přístupová doba
-                      <span className="block text-[9pt] text-slate-500 font-normal italic">(nápověda: pomalá / rychlá)</span>
                     </td>
                     <td className="p-2 border-r border-slate-400">
                       {showSolutions ? <span className="text-rose-600 font-bold italic">pomalá (10–15 ms)</span> : <span className="text-slate-400 font-mono text-[9.5pt]">........................</span>}
@@ -77,7 +71,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <tr>
                     <td className="p-2 font-semibold bg-slate-50 border-r border-slate-400">
                       Odolnost proti pádům a otřesům
-                      <span className="block text-[9pt] text-slate-500 font-normal italic">(nápověda: malá / velká)</span>
                     </td>
                     <td className="p-2 border-r border-slate-400">
                       {showSolutions ? <span className="text-rose-600 font-bold italic">malá (hrozí poškození plotny)</span> : <span className="text-slate-400 font-mono text-[9.5pt]">........................</span>}
@@ -89,7 +82,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <tr>
                     <td className="p-2 font-semibold bg-slate-50 border-r border-slate-400">
                       Cena za 1 GB úložného prostoru
-                      <span className="block text-[9pt] text-slate-500 font-normal italic">(nápověda: nízká / vysoká)</span>
                     </td>
                     <td className="p-2 border-r border-slate-400">
                       {showSolutions ? <span className="text-rose-600 font-bold italic">nízká (velmi výhodná)</span> : <span className="text-slate-400 font-mono text-[9.5pt]">........................</span>}
@@ -101,7 +93,6 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <tr>
                     <td className="p-2 font-semibold bg-slate-50 border-r border-slate-400">
                       Hlučnost a provozní vibrace
-                      <span className="block text-[9pt] text-slate-500 font-normal italic">(nápověda: hlučný / tichý)</span>
                     </td>
                     <td className="p-2 border-r border-slate-400">
                       {showSolutions ? <span className="text-rose-600 font-bold italic">hlučný (motor a hlavičky)</span> : <span className="text-slate-400 font-mono text-[9.5pt]">........................</span>}
@@ -138,7 +129,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           </div>
 
           {/* Otázka 4 */}
-          <Question id="4" title="Fyzická jednotka disku (Sektor)">
+          <Question id="4" title="Fyzická jednotka disku">
             <Sub label="a)">Jak se nazývá nejmenší fyzicky adresovatelná jednotka disku vytvořená výrobcem při výrobě?</Sub>
             <Answer show={showSolutions} lines={1} solution="Sektor (Sector)." />
 
@@ -243,8 +234,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                       <td className="py-1 text-center font-bold">1</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="py-1 font-bold text-indigo-700">zprava.docx</td>
-                      <td className="py-1 text-center font-bold text-indigo-700">4</td>
+                      <td className="py-1">zprava.docx</td>
+                      <td className="py-1 text-center font-bold">4</td>
                     </tr>
                     <tr>
                       <td className="py-1">foto.jpg</td>
@@ -334,8 +325,8 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                       <td className="py-1 text-center font-bold">8</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="py-1 font-bold text-purple-700">video.mp4</td>
-                      <td className="py-1 text-center font-bold text-purple-700">2</td>
+                      <td className="py-1">video.mp4</td>
+                      <td className="py-1 text-center">2</td>
                     </tr>
                     <tr>
                       <td className="py-1">tabulka.xlsx</td>
@@ -412,8 +403,12 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Sub label="a)">Doplňte chybějící hodnoty do prázdných políček tabulky FAT tak, aby byl soubor <code>video.mp4</code> správně zřetězen a ukončen. Zároveň v přiložené mřížce disku označte (vybarvěte) všech 5 klastrů, které soubor obsazuje:</Sub>
             <Answer show={showSolutions} lines={1} solution="Doplněné hodnoty: cluster 5 ➔ 6, cluster 9 ➔ 13, cluster 13 ➔ EOF. V mřížce jsou správně označeny klastry #2, #5, #6, #9 a #13." />
 
-            <Sub label="b)">Co by se stalo, kdyby se v klastru #9 objevila speciální značka BAD?</Sub>
-            <Answer show={showSolutions} lines={2} solution="Značka BAD označuje poškozený / nečitelný klastr (vadný blok). Operační systém by řetězec nedokázal dočíst do konce a při pokusu o přehrání videa by došlo k chybě čtení nebo zamrznutí přehrávače." />
+            <Sub label="b)">Co přesně operační systém provede v adresáři a ve FAT tabulce, když uživatel soubor <code>video.mp4</code> smaže? Přepisují se samotná data v clusterech ihned nulami?</Sub>
+            <Answer
+              show={showSolutions}
+              lines={3}
+              solution="V adresáři se záznam souboru označí jako smazaný a jeho clustery se ve FAT tabulce uvolní (označí se jako volné / 0). Samotná data v clusterech se nulami nepřepisují, zůstávají fyzicky netknutá na disku, dokud na ně systém nezapíše nový soubor."
+            />
           </Question>
 
           {/* Otázka 11 */}
