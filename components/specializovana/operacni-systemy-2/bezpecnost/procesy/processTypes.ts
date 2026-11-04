@@ -210,13 +210,19 @@ export interface ProcessProtocolState {
   task10SecondProcessSigner: string;
   task10SecondProcessVtScore: string;
 
-  // Úloha 11* (Pokročilé): Systémové služby pod svchost.exe
-  task11SvcCmd: string;
-  task11SvchostPid: string;
-  task11SvcNames: string;
-  task11SvcWhyAbused: string;
+  // Úloha 11* (Pokročilé): Simulace manipulace s binárním kódem v HxD a porušení certifikátu
+  task11OriginalCertStatus: string;
+  task11ModifiedString: string;
+  task11ModifiedCertStatus: string;
+  task11WhyInvalid: string;
 
-  // Úloha 12** (Expertní výzva): Vlastní nepodepsaný program
-  task12ExpertSignerResult: string;
-  task12ExpertSmartScreenReason: string;
+  // Úloha 12* (Pokročilé): Systémové služby pod svchost.exe
+  task12SvcCmd: string;
+  task12SvchostPid: string;
+  task12SvcNames: string;
+  task12SvcWhyAbused: string;
+
+  // Úloha 13** (Expertní výzva): Vlastní nepodepsaný program
+  task13ExpertSignerResult: string;
+  task13ExpertSmartScreenReason: string;
 }

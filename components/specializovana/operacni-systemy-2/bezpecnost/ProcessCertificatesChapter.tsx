@@ -27,7 +27,7 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   const [checkedTasks, setCheckedTasks] = useLocalStorage<Record<string, boolean>>('process_lab_checked_tasks', {});
   const [copiedSuccess, setCopiedSuccess] = useState(false);
 
-  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v10', {
+  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v11', {
     task1SacStatus: '',
     task2AntivirusStatus: '',
     task2SignatureVersion: '',
@@ -62,12 +62,16 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
     task10SecondProcessName: '',
     task10SecondProcessSigner: '',
     task10SecondProcessVtScore: '',
-    task11SvcCmd: '',
-    task11SvchostPid: '',
-    task11SvcNames: '',
-    task11SvcWhyAbused: '',
-    task12ExpertSignerResult: '',
-    task12ExpertSmartScreenReason: ''
+    task11OriginalCertStatus: '',
+    task11ModifiedString: '',
+    task11ModifiedCertStatus: '',
+    task11WhyInvalid: '',
+    task12SvcCmd: '',
+    task12SvchostPid: '',
+    task12SvcNames: '',
+    task12SvcWhyAbused: '',
+    task13ExpertSignerResult: '',
+    task13ExpertSmartScreenReason: ''
   });
 
   const toggleTask = (taskId: string) => {
@@ -135,15 +139,21 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 - 2. proces Verified Signer: ${protocol.task10SecondProcessSigner || '-'}
 - 2. proces VirusTotal skóre: ${protocol.task10SecondProcessVtScore || '-'}
 
-[Úloha 11*: Služby pod svchost.exe (tasklist /svc)]
-- Použitý příkaz: ${protocol.task11SvcCmd || '-'}
-- Vybrané PID svchost.exe: ${protocol.task11SvchostPid || '-'}
-- Běžící služby: ${protocol.task11SvcNames || '-'}
-- Důvod maskování malwaru za svchost: ${protocol.task11SvcWhyAbused || '-'}
+[Úloha 11*: Simulace modifikace binárního kódu v HxD a porušení certifikátu]
+- Původní stav podpisu vlc.exe: ${protocol.task11OriginalCertStatus || '-'}
+- Změněný textový řetězec: ${protocol.task11ModifiedString || '-'}
+- Stav podpisu po editaci v HxD: ${protocol.task11ModifiedCertStatus || '-'}
+- Proč systém podpis odmítl: ${protocol.task11WhyInvalid || '-'}
 
-[Úloha 12**: Expertní výzva – Vlastní nepodepsaný program]
-- Stav podpisu v Process Exploreru: ${protocol.task12ExpertSignerResult || '-'}
-- Proč SmartScreen program zablokuje: ${protocol.task12ExpertSmartScreenReason || '-'}
+[Úloha 12*: Služby pod svchost.exe (tasklist /svc)]
+- Použitý příkaz: ${protocol.task12SvcCmd || '-'}
+- Vybrané PID svchost.exe: ${protocol.task12SvchostPid || '-'}
+- Běžící služby: ${protocol.task12SvcNames || '-'}
+- Důvod maskování malwaru za svchost: ${protocol.task12SvcWhyAbused || '-'}
+
+[Úloha 13**: Expertní výzva – Vlastní nepodepsaný program]
+- Stav podpisu v Process Exploreru: ${protocol.task13ExpertSignerResult || '-'}
+- Proč SmartScreen program zablokuje: ${protocol.task13ExpertSmartScreenReason || '-'}
 `;
     navigator.clipboard.writeText(text);
     setCopiedSuccess(true);
@@ -227,15 +237,21 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
         <div class="item"><span class="label">2. proces Verified Signer:</span> <span class="val">${protocol.task10SecondProcessSigner || '-'}</span></div>
         <div class="item"><span class="label">2. proces VirusTotal skóre:</span> <span class="val">${protocol.task10SecondProcessVtScore || '-'}</span></div>
 
-        <h2>Úloha 11*: Mapování systémových služeb pod svchost.exe (tasklist /svc)</h2>
-        <div class="item"><span class="label">Použitý příkaz:</span> <span class="val">${protocol.task11SvcCmd || '-'}</span></div>
-        <div class="item"><span class="label">Zkoumané PID svchost.exe:</span> <span class="val">${protocol.task11SvchostPid || '-'}</span></div>
-        <div class="item"><span class="label">Služby běžící pod tímto PID:</span> <span class="val">${protocol.task11SvcNames || '-'}</span></div>
-        <div class="item"><span class="label">Důvod maskování útočníků za svchost:</span> <span class="val">${protocol.task11SvcWhyAbused || '-'}</span></div>
+        <h2>Úloha 11*: Simulace modifikace binárního kódu v HxD a porušení certifikátu</h2>
+        <div class="item"><span class="label">Původní stav podpisu vlc.exe:</span> <span class="val">${protocol.task11OriginalCertStatus || '-'}</span></div>
+        <div class="item"><span class="label">Změněný textový řetězec:</span> <span class="val">${protocol.task11ModifiedString || '-'}</span></div>
+        <div class="item"><span class="label">Stav podpisu po editaci v HxD:</span> <span class="val">${protocol.task11ModifiedCertStatus || '-'}</span></div>
+        <div class="item"><span class="label">Proč systém podpis odmítl:</span> <span class="val">${protocol.task11WhyInvalid || '-'}</span></div>
 
-        <h2>Úloha 12**: Expertní výzva – Vytvoření a analýza vlastního nepodepsaného programu</h2>
-        <div class="item"><span class="label">Verified Signer vlastního programu:</span> <span class="val">${protocol.task12ExpertSignerResult || '-'}</span></div>
-        <div class="item"><span class="label">Důvod zablokování filtrem SmartScreen:</span> <span class="val">${protocol.task12ExpertSmartScreenReason || '-'}</span></div>
+        <h2>Úloha 12*: Mapování systémových služeb pod svchost.exe (tasklist /svc)</h2>
+        <div class="item"><span class="label">Použitý příkaz:</span> <span class="val">${protocol.task12SvcCmd || '-'}</span></div>
+        <div class="item"><span class="label">Zkoumané PID svchost.exe:</span> <span class="val">${protocol.task12SvchostPid || '-'}</span></div>
+        <div class="item"><span class="label">Služby běžící pod tímto PID:</span> <span class="val">${protocol.task12SvcNames || '-'}</span></div>
+        <div class="item"><span class="label">Důvod maskování útočníků za svchost:</span> <span class="val">${protocol.task12SvcWhyAbused || '-'}</span></div>
+
+        <h2>Úloha 13**: Expertní výzva – Vytvoření a analýza vlastního nepodepsaného programu</h2>
+        <div class="item"><span class="label">Verified Signer vlastního programu:</span> <span class="val">${protocol.task13ExpertSignerResult || '-'}</span></div>
+        <div class="item"><span class="label">Důvod zablokování filtrem SmartScreen:</span> <span class="val">${protocol.task13ExpertSmartScreenReason || '-'}</span></div>
       </body>
       </html>
     `;
