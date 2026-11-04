@@ -391,7 +391,7 @@ export default function ProcessLabTab({
         </div>
 
         {/* =========================================================================
-            ÚLOHA 5: KONTROLA INTEGRITY STAŽENÉHO SOUBORU (HASH VS. CHECKSUM)
+            ÚLOHA 5: KONTROLA INTEGRITY STAŽENÉHO SOUBORU
             ========================================================================= */}
         <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task5'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
           }`}>
@@ -402,7 +402,7 @@ export default function ProcessLabTab({
               </span>
               <div>
                 <h3 className={`text-base font-black ${checkedTasks['task5'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                  Úloha 5: Kontrola integrity staženého souboru (Hash vs. Checksum)
+                  Úloha 5: Kontrola integrity staženého souboru
                 </h3>
                 <p className="text-xs text-slate-500 font-medium">
                   Fáze 2: Stažení programu, výpočet SHA-256 a porovnání s kontrolním součtem na webu
@@ -440,7 +440,7 @@ export default function ProcessLabTab({
               <li>
                 V Příkazovém řádku (cmd.exe) spočítejte hash staženého souboru (např. ve složce Stažené soubory):
                 <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  certutil -hashfile "%USERPROFILE%\Downloads\WinSCP-6.7-Setup.exe" SHA256
+                  certutil -hashfile "cesta k WinSCP-6.7-Setup.exe" SHA256
                 </div>
               </li>
               <li>
