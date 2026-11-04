@@ -65,23 +65,6 @@ export default function ProcessLabTab({
           </div>
         </div>
 
-        {/* Úvodní kontext praktické práce */}
-        <div className="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 text-xs text-blue-950 space-y-2 leading-relaxed">
-          <div className="font-bold text-sm text-blue-900 flex items-center justify-between">
-            <span className="flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-blue-600" /> Forenzní vyšetřování a inspekce procesů v OS Windows
-            </span>
-            <span className="text-xs font-black px-2.5 py-1 rounded-xl bg-blue-200/70 text-blue-900">
-              10 základních úloh + 2 pokročilé výzvy (* / **)
-            </span>
-          </div>
-          <p>
-            V tomto praktickém cvičení projdete krok za krokem <strong>bezpečnostní prověrku operačního systému při spouštění souborů</strong>:
-            od reputačních filtrů (SmartScreen/SAC), přes antivirový štít a ochranu před ransomwarem, až po inspekci běžících procesů v RAM,
-            odposlech síťových spojení, ověřování digitálních podpisů (Authenticode) a pokročilé expertní výzvy.
-          </p>
-        </div>
-
         {/* =========================================================================
             ÚLOHA 1: KONTROLA SMART APP CONTROL / SMARTSCREEN
             ========================================================================= */}
