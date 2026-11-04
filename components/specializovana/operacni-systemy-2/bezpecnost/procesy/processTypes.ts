@@ -173,11 +173,10 @@ export interface ProcessProtocolState {
   task4CertificateCA: string;
   task4CertPathStatus: string;
 
-  // Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu
+  // Úloha 5: Kontrola integrity a neměnnosti souboru (Hash)
+  task5FileName: string;
   task5HashCmd: string;
   task5FileHash: string;
-  task5SignatureStatus: string;
-  task5SignerName: string;
 
   // Úloha 6: explorer.exe v CLI
   task6ExplorerPid: string;

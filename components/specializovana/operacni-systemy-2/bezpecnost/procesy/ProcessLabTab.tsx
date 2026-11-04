@@ -431,7 +431,7 @@ export default function ProcessLabTab({
         </div>
 
         {/* =========================================================================
-            ÚLOHA 5: VÝPOČET KRYPTOGRAFICKÉHO HASHE (SHA-256) A OVĚŘENÍ PODPISU V CLI
+            ÚLOHA 5: KONTROLA INTEGRITY STAŽENÉHO SOUBORU (SHA-256 HASH)
             ========================================================================= */}
         <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task5'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
           }`}>
@@ -442,10 +442,10 @@ export default function ProcessLabTab({
               </span>
               <div>
                 <h3 className={`text-base font-black ${checkedTasks['task5'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                  Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu
+                  Úloha 5: Kontrola integrity staženého souboru (SHA-256 hash)
                 </h3>
                 <p className="text-xs text-slate-500 font-medium">
-                  Fáze 2: Ověření integrity na disku před spuštěním – výpočet hashe a kontrola Authenticode v CLI
+                  Fáze 2: Ověření, že program nebyl po stažení pozměněn ani poškozen
                 </p>
               </div>
             </div>
@@ -466,95 +466,62 @@ export default function ProcessLabTab({
             </button>
           </div>
 
-          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
-            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
-              🔐 <strong>Proč počítat hash a ověřovat podpis v CLI?</strong> Útočníci mohou podvrhnout ikonu i název souboru
-              (např. <code>notepad.exe</code>). Dva klíčové nástroje v PowerShellu umožňují okamžitou forenzní kontrolu:
-              <br />
-              1. <strong>Kryptografický hash (SHA-256):</strong> Jedinečný matematický otisk obsahu souboru o délce 64 šestnáctkových znaků. Změna jediného bitu vygeneruje zcela jiný hash.
-              <br />
-              2. <strong>Authenticode podpis:</strong> Cmdlet prověří, zda je soubor digitálně podepsán a zda certifikátu důvěřuje kořenová autorita v systému.
-            </div>
-
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2.5 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Postup v konzoli PowerShell:
+              Po stažení programu z internetu můžeme jednoduše zkontrolovat, že soubor nebyl pozměněn:
             </p>
-            <ol className="list-decimal list-inside space-y-2 text-slate-600 pl-1">
+            <ul className="list-disc list-inside space-y-1.5 text-slate-600 pl-1">
               <li>
-                Otevřete <strong>PowerShell</strong> (např. stiskem <kbd className="px-1.5 py-0.5 bg-slate-200 rounded text-[11px] font-mono">Win + X</kbd> &rarr; Terminál / PowerShell).
+                Každý soubor má jedinečný matematický otisk – <strong>kryptografický hash (SHA-256)</strong>. Pokud se v souboru změní jediný bajt, hash bude úplně jiný.
               </li>
               <li>
-                Spočítejte SHA-256 hash systémového programu (např. Poznámkový blok):
+                V Příkazovém řádku (cmd.exe) spočítejte hash libovolného souboru (např. staženého programu nebo <code>notepad.exe</code>):
                 <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  Get-FileHash &quot;C:\Windows\notepad.exe&quot; -Algorithm SHA256
-                </div>
-                <span className="text-[11px] text-slate-500 italic">(V klasickém cmd.exe lze případně použít: <code>certutil -hashfile C:\Windows\notepad.exe SHA256</code>)</span>
-              </li>
-              <li>
-                Ověřte digitální podpis a důvěryhodnost souboru:
-                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  Get-AuthenticodeSignature &quot;C:\Windows\notepad.exe&quot; | Format-List
+                  certutil -hashfile C:\Windows\notepad.exe SHA256
                 </div>
               </li>
-              <li>
-                Zapište zjištěný SHA-256 hash (stačí prvních 16 znaků nebo celý), stav podpisu (<code>Status</code>) a jméno vystavitele/subjektu (<code>SignerCertificate.Subject</code>).
-              </li>
-            </ol>
+            </ul>
           </div>
 
           <div className="pt-4 border-t-2 border-slate-100 space-y-4">
             <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
               <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
               <div className="flex flex-col justify-end">
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.1 Použitý příkaz pro výpočet SHA-256 hashe:
+                  5.1 Název prověřovaného souboru:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5FileName || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5FileName: e.target.value })}
+                  placeholder="např. notepad.exe / vlc-setup.exe"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.2 Použitý příkaz (certutil):
                 </label>
                 <input
                   type="text"
                   value={protocol.task5HashCmd || ''}
                   onChange={(e) => setProtocol({ ...protocol, task5HashCmd: e.target.value })}
-                  placeholder="např. Get-FileHash C:\Windows\notepad.exe -Algorithm SHA256"
+                  placeholder="např. certutil -hashfile C:\Windows\notepad.exe SHA256"
                   className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                 />
               </div>
               <div className="flex flex-col justify-end">
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.2 Vypočítaná hodnota SHA-256 hashe:
+                  5.3 Vypočítaná hodnota SHA-256 hashe:
                 </label>
                 <input
                   type="text"
                   value={protocol.task5FileHash || ''}
                   onChange={(e) => setProtocol({ ...protocol, task5FileHash: e.target.value })}
-                  placeholder="např. 9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08"
+                  placeholder="Zadejte vypočítaný hash..."
                   className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div className="flex flex-col justify-end">
-                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.3 Stav digitálního podpisu (Status z Get-AuthenticodeSignature):
-                </label>
-                <input
-                  type="text"
-                  value={protocol.task5SignatureStatus || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task5SignatureStatus: e.target.value })}
-                  placeholder="např. Valid / NotSigned / HashMismatch"
-                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                />
-              </div>
-              <div className="flex flex-col justify-end">
-                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.4 Vydavatel / Předmět podpisového certifikátu:
-                </label>
-                <input
-                  type="text"
-                  value={protocol.task5SignerName || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task5SignerName: e.target.value })}
-                  placeholder="např. CN=Microsoft Windows, O=Microsoft Corporation..."
-                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                 />
               </div>
             </div>
