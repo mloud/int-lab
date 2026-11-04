@@ -1211,7 +1211,7 @@ export default function ProcessLabTab({
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 font-medium">
-                  Kompilace vlastního skriptu / utility do .exe, detekce chybějícího podpisu a reakce bezpečnostních mechanismů
+                  Kompilace Python skriptu do samostatného .exe souboru a reakce bezpečnostních mechanismů
                 </p>
               </div>
             </div>
@@ -1232,14 +1232,31 @@ export default function ProcessLabTab({
             </button>
           </div>
 
-          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
+          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-3 leading-relaxed">
             <p className="font-semibold text-amber-900">
-              Spusťte libovolný vlastní nebo nepodepsaný program (např. zkompilovaný skript přes PyInstaller či vlastní utilitu):
+              Vytvořte vlastní spustitelný soubor (.exe) z Python skriptu a sledujte reakci systému:
             </p>
-            <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1">
-              <li>Zkontrolujte jeho sloupec <strong>Verified Signer</strong> v Process Exploreru.</li>
-              <li>Zdůvodněte, proč SmartScreen takový soubor zablokuje modrým varovným oknem.</li>
-            </ul>
+            <ol className="list-decimal list-inside space-y-2 text-amber-950/90 pl-1">
+              <li>
+                <strong>Instalace kompilátoru PyInstaller</strong> (v Příkazovém řádku nebo Terminálu):
+                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
+                  pip install pyinstaller
+                </div>
+              </li>
+              <li>
+                Vytvořte jednoduchý skript <code>test.py</code> (např. <code>import time; print("Bezim"); time.sleep(60)</code>).
+              </li>
+              <li>
+                <strong>Příkaz pro vytvoření samostatného .exe souboru:</strong>
+                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
+                  pyinstaller --onefile test.py
+                </div>
+                <span className="text-[11px] text-amber-900/80 italic">Výsledný <code>test.exe</code> naleznete ve nově vytvořené podsložce <code>dist\</code>.</span>
+              </li>
+              <li>
+                Spusťte vytvořený <code>test.exe</code> a v <strong>Process Exploreru</strong> zkontrolujte sloupec <strong>Verified Signer</strong>.
+              </li>
+            </ol>
           </div>
 
           <div className="pt-4 border-t-2 border-slate-100 space-y-4">
@@ -1275,7 +1292,7 @@ export default function ProcessLabTab({
           </div>
         </div>
 
-      </div>
+        </div>
     </WorksheetLayout>
   );
 }
