@@ -14,6 +14,7 @@ export interface SubchapterConfig {
   actionLabel?: string;
   orderNumber?: number | string;
   isTest?: boolean;
+  hidden?: boolean;
 }
 
 export interface PracticeGameConfig {
@@ -45,6 +46,7 @@ export interface ChapterConfig {
   actionLabel?: string;
   variant?: 'default' | 'filled';
   isTest?: boolean;
+  hidden?: boolean;
 }
 
 /**

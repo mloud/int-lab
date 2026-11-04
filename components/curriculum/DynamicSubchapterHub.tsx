@@ -86,7 +86,7 @@ export const DynamicSubchapterHub: React.FC<DynamicSubchapterHubProps> = ({ chap
           Podkapitoly
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-4">
-          {chapter.subchapters.map((sub, idx) => {
+          {chapter.subchapters.filter((sub) => !sub.hidden).map((sub, idx) => {
             const SubIcon = getCurriculumIcon(sub.icon);
             return (
               <TechnicalCard

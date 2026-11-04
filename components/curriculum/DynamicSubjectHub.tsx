@@ -106,7 +106,7 @@ export const DynamicSubjectHub: React.FC<DynamicSubjectHubProps> = ({ subjectId,
 
         {/* Grid kapitol */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {subject.chapters.map((chapter) => {
+          {subject.chapters.filter((chapter) => !chapter.hidden).map((chapter) => {
             const ChapterIcon = getCurriculumIcon(chapter.icon);
             const hasSub = chapter.hasSubchapters ?? Boolean(chapter.subchapters && chapter.subchapters.length > 0);
 
