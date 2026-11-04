@@ -403,11 +403,11 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
             <Sub label="a)">Doplňte chybějící hodnoty do prázdných políček tabulky FAT tak, aby byl soubor <code>video.mp4</code> správně zřetězen a ukončen. Zároveň v přiložené mřížce disku označte (vybarvěte) všech 5 klastrů, které soubor obsazuje:</Sub>
             <Answer show={showSolutions} lines={1} solution="Doplněné hodnoty: cluster 5 ➔ 6, cluster 9 ➔ 13, cluster 13 ➔ EOF. V mřížce jsou správně označeny klastry #2, #5, #6, #9 a #13." />
 
-            <Sub label="b)">Co přesně operační systém provede v adresáři a ve FAT tabulce, když uživatel soubor <code>video.mp4</code> smaže? Přepisují se samotná data v clusterech ihned nulami?</Sub>
+            <Sub label="b)">Co přesně operační systém provede v adresáři, ve FAT tabulce a v datových sektorech na pevném disku, pokud soubor <code>video.mp4</code> smažeme?</Sub>
             <Answer
               show={showSolutions}
               lines={3}
-              solution="V adresáři se záznam souboru označí jako smazaný a jeho clustery se ve FAT tabulce uvolní (označí se jako volné / 0). Samotná data v clusterech se nulami nepřepisují, zůstávají fyzicky netknutá na disku, dokud na ně systém nezapíše nový soubor."
+              solution="1. V adresáři: Záznam souboru se označí jako smazaný. 2. Ve FAT tabulce: Clustery souboru (#2, #5, #6, #9, #13) se označí jako volné (hodnota 0). 3. V sektorech disku: Samotná data se nemažou ani nepřepisují nulami – zůstávají fyzicky na disku, dokud je nepřepíše jiný soubor."
             />
           </Question>
 
