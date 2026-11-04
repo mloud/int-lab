@@ -794,7 +794,7 @@ export default function ProcessLabTab({
         </div>
 
         {/* =========================================================================
-            ÚLOHA 9: LUSTRACE SOUBORU NA VIRUSTOTAL.COM
+            ÚLOHA 9: LUSTRACE SOUBORŮ NA VIRUSTOTAL.COM (WinSCP & notepad.exe)
             ========================================================================= */}
         <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task9'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
           }`}>
@@ -808,7 +808,7 @@ export default function ProcessLabTab({
                   Úloha 9: Cloudová reputace a lustrace na VirusTotal.com
                 </h3>
                 <p className="text-xs text-slate-500 font-medium">
-                  Představení globálního multiskeneru a ověření souboru či hashe vůči 70+ antivirovým enginům
+                  Prověření staženého WinSCP a systémového notepad.exe vůči 70+ antivirovým enginům
                 </p>
               </div>
             </div>
@@ -831,55 +831,89 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Ověřte soubor nebo jeho SHA-256 hash na multiskeneru <strong>VirusTotal.com</strong> (testuje soubor vůči 70+ antivirům):
+              Na multiskeneru <strong>VirusTotal.com</strong> (záložka <strong>FILE</strong> nebo <strong>SEARCH</strong> pro hash) prověřte dva soubory:
             </p>
-            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-              <li>Na <code>https://www.virustotal.com</code> nahrajte soubor (záložka <strong>FILE</strong>), nebo vyhledejte hash z Úlohy 5 (záložka <strong>SEARCH</strong>).</li>
-              <li>Zapište název souboru, výsledné skóre detekcí (např. 0/72) a bezpečnostní verdikt.</li>
-            </ul>
+            <ol className="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+              <li>
+                <strong>Stažený instalační balíček WinSCP:</strong> nahrajte soubor nebo vložte jeho SHA-256 hash z Úlohy 5.
+              </li>
+              <li>
+                <strong>Systémový program notepad.exe:</strong> nahrajte soubor z <code>C:\Windows\notepad.exe</code>, nebo spočítejte a vyhledejte jeho hash.
+              </li>
+            </ol>
           </div>
 
-          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+          <div className="pt-4 border-t-2 border-slate-100 space-y-5">
             <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
               <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div className="flex flex-col justify-end">
-                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  9.1 Název prověřovaného souboru:
-                </label>
-                <input
-                  type="text"
-                  value={protocol.task9FileName || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task9FileName: e.target.value })}
-                  placeholder="např. vlc-3.0.20-win64.exe / notepad.exe"
-                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                />
+
+            {/* Soubor 1: WinSCP */}
+            <div className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                1. Prověření staženého WinSCP (instalátor / hash)
               </div>
-              <div className="flex flex-col justify-end">
-                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  9.2 Výsledné VirusTotal skóre detekce:
-                </label>
-                <input
-                  type="text"
-                  value={protocol.task9VtScore || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task9VtScore: e.target.value })}
-                  placeholder="např. 0/72 (žádný ze 72 antivirů nenalezl hrozbu)"
-                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    9.1 Skóre detekce na VirusTotalu:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task9WinscpVtScore || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task9WinscpVtScore: e.target.value })}
+                    placeholder="např. 0/72"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    9.2 Zhodnocení bezpečnosti:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task9WinscpVerdict || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task9WinscpVerdict: e.target.value })}
+                    placeholder="např. Čistý soubor, žádný antivirus nenašel hrozbu"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
               </div>
             </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">
-                9.3 Zhodnocení: Považuje VirusTotal a komunita soubor za bezpečný?:
-              </label>
-              <textarea
-                rows={2}
-                value={protocol.task9VtVerdict || ''}
-                onChange={(e) => setProtocol({ ...protocol, task9VtVerdict: e.target.value })}
-                placeholder="Zhodnoťte, zda je soubor zcela čistý, nebo byl některým antivirem označen za podezřelý či nežádoucí..."
-                className="w-full min-h-[60px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-              />
+
+            {/* Soubor 2: notepad.exe */}
+            <div className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+                2. Prověření systémového programu notepad.exe
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    9.3 Skóre detekce na VirusTotalu:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task9NotepadVtScore || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task9NotepadVtScore: e.target.value })}
+                    placeholder="např. 0/75"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    9.4 Zhodnocení bezpečnosti:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task9NotepadVerdict || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task9NotepadVerdict: e.target.value })}
+                    placeholder="např. Oficiální systémová komponenta Microsoft Windows"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

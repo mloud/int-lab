@@ -27,7 +27,7 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   const [checkedTasks, setCheckedTasks] = useLocalStorage<Record<string, boolean>>('process_lab_checked_tasks', {});
   const [copiedSuccess, setCopiedSuccess] = useState(false);
 
-  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v9', {
+  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v10', {
     task1SacStatus: '',
     task2AntivirusStatus: '',
     task2SignatureVersion: '',
@@ -52,9 +52,10 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
     task8RemotePort: '',
     task8IpOwner: '',
     task8IsLegitimate: '',
-    task9FileName: '',
-    task9VtScore: '',
-    task9VtVerdict: '',
+    task9WinscpVtScore: '',
+    task9WinscpVerdict: '',
+    task9NotepadVtScore: '',
+    task9NotepadVerdict: '',
     task10MspaintPid: '',
     task10MspaintSigner: '',
     task10MspaintVtScore: '',
@@ -120,10 +121,11 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 - Vlastník IP (IPinfo/Whois): ${protocol.task8IpOwner || '-'}
 - Legitimita spojení: ${protocol.task8IsLegitimate || '-'}
 
-[Úloha 9: Cloudová reputace a lustrace na VirusTotal.com]
-- Prověřovaný soubor: ${protocol.task9FileName || '-'}
-- VirusTotal skóre: ${protocol.task9VtScore || '-'}
-- Zhodnocení bezpečnosti: ${protocol.task9VtVerdict || '-'}
+[Úloha 9: Cloudová reputace na VirusTotal.com (WinSCP & notepad.exe)]
+- WinSCP skóre detekce: ${protocol.task9WinscpVtScore || '-'}
+- WinSCP zhodnocení: ${protocol.task9WinscpVerdict || '-'}
+- notepad.exe skóre detekce: ${protocol.task9NotepadVtScore || '-'}
+- notepad.exe zhodnocení: ${protocol.task9NotepadVerdict || '-'}
 
 [Úloha 10: Živá analýza procesů v Sysinternals Process Explorer & VirusTotal]
 - Malování (mspaint.exe) PID: ${protocol.task10MspaintPid || '-'}
@@ -211,10 +213,11 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
         <div class="item"><span class="label">Vlastník IP adresy (IPinfo/Whois):</span> <span class="val">${protocol.task8IpOwner || '-'}</span></div>
         <div class="item"><span class="label">Zhodnocení legitimity:</span> <span class="val">${protocol.task8IsLegitimate || '-'}</span></div>
 
-        <h2>Úloha 9: Cloudová reputace a lustrace na VirusTotal.com</h2>
-        <div class="item"><span class="label">Prověřovaný soubor:</span> <span class="val">${protocol.task9FileName || '-'}</span></div>
-        <div class="item"><span class="label">VirusTotal skóre detekce:</span> <span class="val">${protocol.task9VtScore || '-'}</span></div>
-        <div class="item"><span class="label">Zhodnocení bezpečnosti:</span> <span class="val">${protocol.task9VtVerdict || '-'}</span></div>
+        <h2>Úloha 9: Cloudová reputace na VirusTotal.com (WinSCP &amp; notepad.exe)</h2>
+        <div class="item"><span class="label">WinSCP skóre detekce:</span> <span class="val">${protocol.task9WinscpVtScore || '-'}</span></div>
+        <div class="item"><span class="label">WinSCP zhodnocení:</span> <span class="val">${protocol.task9WinscpVerdict || '-'}</span></div>
+        <div class="item"><span class="label">notepad.exe skóre detekce:</span> <span class="val">${protocol.task9NotepadVtScore || '-'}</span></div>
+        <div class="item"><span class="label">notepad.exe zhodnocení:</span> <span class="val">${protocol.task9NotepadVerdict || '-'}</span></div>
 
         <h2>Úloha 10: Živá analýza procesů v Sysinternals Process Explorer &amp; VirusTotal</h2>
         <div class="item"><span class="label">Malování (mspaint.exe) PID:</span> <span class="val">${protocol.task10MspaintPid || '-'}</span></div>

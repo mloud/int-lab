@@ -196,10 +196,11 @@ export interface ProcessProtocolState {
   task8IpOwner: string;
   task8IsLegitimate: string;
 
-  // Úloha 9: VirusTotal.com cloudová reputace souboru
-  task9FileName: string;
-  task9VtScore: string;
-  task9VtVerdict: string;
+  // Úloha 9: VirusTotal.com cloudová reputace souborů (WinSCP a notepad.exe)
+  task9WinscpVtScore: string;
+  task9WinscpVerdict: string;
+  task9NotepadVtScore: string;
+  task9NotepadVerdict: string;
 
   // Úloha 10: Sysinternals Process Explorer & VirusTotal živá analýza
   task10MspaintPid: string;
