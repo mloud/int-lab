@@ -1,17 +1,19 @@
 'use client';
 
 import React from 'react';
-import { 
-  FileText, 
-  Terminal, 
-  CheckSquare, 
-  Square, 
-  Copy, 
-  ShieldAlert, 
-  ChevronDown, 
-  Info,
+import {
+  Terminal,
+  CheckSquare,
+  Square,
+  ShieldCheck,
+  ShieldAlert,
+  Activity,
+  Network,
+  Search,
+  Sparkles,
   CheckCircle2,
-  PencilLine
+  PencilLine,
+  Lock
 } from 'lucide-react';
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
 import { ProcessProtocolState } from './processTypes';
@@ -39,1074 +41,1288 @@ export default function ProcessLabTab({
   copiedSuccess,
   handleDownloadWord
 }: ProcessLabTabProps) {
-  return (
-        <WorksheetLayout
-          title="Praktický list: Správa procesů a digitální certifikáty v OS"
-          studentName={studentName}
-          onStudentNameChange={setStudentName}
-          onDownload={handleDownloadWord}
-        >
-          <div className="space-y-8">
+  const completedCount = Object.values(checkedTasks).filter(Boolean).length;
 
-            {/* Auto-save & Status Banner */}
-            <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-emerald-50/80 rounded-2xl border-2 border-emerald-200 shadow-xs">
-              <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-pulse" />
-                <span>Automatické ukládání aktivní – všechny odpovědi a zaškrtnutí se ukládají do paměti prohlížeče</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-xl border border-emerald-300">
-                  Splněno: {Object.values(checkedTasks).filter(Boolean).length} / 10
-                </span>
+  return (
+    <WorksheetLayout
+      title="Praktický list: Správa procesů a digitální certifikáty v OS"
+      studentName={studentName}
+      onStudentNameChange={setStudentName}
+      onDownload={handleDownloadWord}
+    >
+      <div className="space-y-8">
+
+        {/* Auto-save & Status Banner */}
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-emerald-50/80 rounded-2xl border-2 border-emerald-200 shadow-xs">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-pulse" />
+            <span>Automatické ukládání aktivní – všechny odpovědi a zaškrtnutí se ukládají do paměti prohlížeče</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-xl border border-emerald-300">
+              Splněno: {completedCount} / 12
+            </span>
+          </div>
+        </div>
+
+        {/* Úvodní kontext praktické práce */}
+        <div className="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 text-xs text-blue-950 space-y-2 leading-relaxed">
+          <div className="font-bold text-sm text-blue-900 flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <Terminal className="w-4 h-4 text-blue-600" /> Forenzní vyšetřování a inspekce procesů v OS Windows
+            </span>
+            <span className="text-xs font-black px-2.5 py-1 rounded-xl bg-blue-200/70 text-blue-900">
+              10 základních úloh + 2 pokročilé výzvy (* / **)
+            </span>
+          </div>
+          <p>
+            V tomto praktickém cvičení projdete krok za krokem <strong>bezpečnostní prověrku operačního systému při spouštění souborů</strong>:
+            od reputačních filtrů (SmartScreen/SAC), přes antivirový štít a ochranu před ransomwarem, až po inspekci běžících procesů v RAM,
+            odposlech síťových spojení, ověřování digitálních podpisů (Authenticode) a pokročilé expertní výzvy.
+          </p>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 1: KONTROLA SMART APP CONTROL / SMARTSCREEN
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task1'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                1
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task1'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 1: Aktivní obranný val OS – Smart App Control & SmartScreen
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Fáze 1: Prověření reputace a digitálního podpisu před spuštěním kódu
+                </p>
               </div>
             </div>
 
-            {/* Úvodní kontext praktické práce */}
-            <div className="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 text-xs text-blue-950 space-y-2 leading-relaxed">
-              <div className="font-bold text-sm text-blue-900 flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-blue-600" /> Forenzní vyšetřování ve Windows 11 Pro / VirtualBoxu
-                </span>
-                <span className="text-xs font-black px-2.5 py-1 rounded-xl bg-blue-200/70 text-blue-900">
-                  10 samostatných úloh
-                </span>
+            <button
+              type="button"
+              onClick={() => toggleTask('task1')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task1']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task1'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              Ověřte stav bezpečnostního filtru blokujícího nedůvěryhodné či nepodepsané aplikace na vašem počítači:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Otevřete <strong>Zabezpečení Windows ➔ Řízení aplikací a prohlížečů ➔ Nastavení Smart App Control</strong> (ve Windows 11) nebo <strong>Ochrana na základě reputace</strong> (SmartScreen).</li>
+              <li>Zjistěte, v jakém stavu se tato ochrana na vašem PC nachází.</li>
+            </ul>
+            <div className="pt-1 text-[11px] text-slate-500">
+              💡 <strong>Možné stavy:</strong> <em>Zapnuto</em> (striktně blokuje nepodepsané soubory bez dobré reputace), <em>Hodnocení / Evaluation</em> (učí se), <em>Vypnuto</em>, nebo <em>Spravováno správcem / doménou</em>.
+            </div>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-3">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpověď:
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">
+                1.1 Stav Smart App Control / SmartScreen na vašem PC:
+              </label>
+              <input
+                type="text"
+                value={protocol.task1SacStatus || ''}
+                onChange={(e) => setProtocol({ ...protocol, task1SacStatus: e.target.value })}
+                placeholder="např. Zapnuto / Hodnocení / Vypnuto / SmartScreen aktivní"
+                className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 2: KONTROLA ANTIVIROVÉHO ŠTÍTU
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task2'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                2
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task2'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 2: Kontrola antivirového štítu v reálném čase a signatur
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Fáze 2: Inspekce kódu na známé signatury a chování před předáním řízení procesoru
+                </p>
               </div>
-              <p>
-                Každá úloha představuje <strong>reálný bezpečnostní incident nebo vyšetřovací postup</strong>, který správci a bezpečnostní analytici provádějí při podezření na infekci. 
-                Všechny úlohy řešte v <strong>Příkazovém řádku (cmd.exe)</strong>, vestavěných systémových diagnostických nástrojích nebo v Excelu. 
-                Odpovědi vyplňujte přímo do formulářových polí u konkrétní úlohy. Po dokončení si dole stáhněte vyplněný praktický list ve Wordu (.doc).
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task2')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task2']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task2'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              Ověřte stav antivirové ochrany v reálném čase (Microsoft Defender nebo školní/vlastní antivirus):
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Otevřete <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami</strong>.</li>
+              <li>Klikněte na <strong>Spravovat nastavení</strong> a ověřte, zda je zapnutá <strong>Ochrana v reálném čase</strong>.</li>
+              <li>Vraťte se a dole v sekci <em>Aktualizace ochrany před viry a hrozbami</em> zjistěte aktuální verzi definic/signatur (Security Intelligence).</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-3">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  2.1 Stav ochrany v reálném čase:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task2AntivirusStatus || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task2AntivirusStatus: e.target.value })}
+                  placeholder="např. Zapnuto (Microsoft Defender) / Aktivní"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  2.2 Verze virových signatur / definic:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task2SignatureVersion || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task2SignatureVersion: e.target.value })}
+                  placeholder="např. 1.403.250.0 (ze dne 3.11.2026)"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 3: OCHRANA PŘED RANSOMWAREM
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task3'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                3
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task3'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 3: Kontrola ochrany před ransomwarem (Řízený přístup ke složkám)
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Zabezpečení uživatelských dat proti neoprávněnému šifrování nedůvěryhodnými aplikacemi
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task3')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task3']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task3'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              Ověřte nastavení ochrany před vyděračským softwarem (ransomwarem) v OS Windows:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Otevřete <strong>Zabezpečení Windows ➔ Ochrana před viry a hrozbami</strong>.</li>
+              <li>Dole klikněte na odkaz <strong>Spravovat ochranu před ransomwarem</strong>.</li>
+              <li>Zjistěte stav přepínače <strong>Řízený přístup ke složkám (Controlled Folder Access)</strong> a prohlédněte si odkaz <em>Chráněné složky</em>.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-3">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  3.1 Stav funkce Řízený přístup ke složkám:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task3RansomwareStatus || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task3RansomwareStatus: e.target.value })}
+                  placeholder="např. Zapnuto / Vypnuto / Spravováno správcem"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  3.2 Které klíčové složky Windows standardně chrání?:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task3ProtectedFolders || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task3ProtectedFolders: e.target.value })}
+                  placeholder="např. Dokumenty, Obrázky, Videa, Hudba, Plocha"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 4: INSPEKCE DIGITÁLNÍHO PODPISU A CERTIFIKÁTU V PRŮZKUMNÍKU WINDOWS (GUI)
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task4'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                4
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task4'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 4: Inspekce digitálního podpisu a certifikátu aplikace v GUI
+                </h3>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task4')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task4']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task4'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
+            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
+              📜 <strong>Proč kontrolovat certifikát v GUI?</strong> Než spustíte stažený instalační balíček nebo program,
+              operační systém vám umožňuje zkontrolovat jeho digitální pečeť (Authenticode). Podpis garantuje, že soubor pochází
+              od skutečného vydavatele a od okamžiku podpisu v něm nikdo nezměnil ani jediný bajt kódu.
+            </div>
+            <p className="font-semibold text-slate-900">
+              Postup inspekce (např. instalační balíček VLC Media Player z videolan.org nebo libovolný program v Program Files):
+            </p>
+            <ol className="list-decimal list-inside space-y-1.5 text-slate-600 pl-1">
+              <li>
+                Stáhněte instalátor programu (doporučeno: <strong>VLC Media Player</strong> z <code>https://www.videolan.org</code>, případně 7-Zip či Notepad++), nebo v Průzkumníku najděte existující <code>.exe</code> soubor.
+              </li>
+              <li>
+                Klikněte na soubor pravým tlačítkem myši &rarr; <strong>Vlastnosti</strong> (Alt + Enter).
+              </li>
+              <li>
+                Přejděte na záložku <strong>Digitální podpisy</strong>, v seznamu podpisů označte položku a klikněte na <strong>Podrobnosti</strong>.
+              </li>
+              <li>
+                V okně Podrobnosti digitálního podpisu klikněte na tlačítko <strong>Zobrazit certifikát</strong>.
+              </li>
+              <li>
+                Prozkoumejte záložku <strong>Obecné</strong> (komu a kým byl certifikát vystaven) a záložku <strong>Certifikační cesta</strong> (strom autorit).
+              </li>
+            </ol>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  4.1 Název prověřovaného programu / instalátoru:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task4AppName || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task4AppName: e.target.value })}
+                  placeholder=""
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  4.2 Komu byl certifikát vystaven (Vystaveno pro / Předmět):
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task4SignerSubject || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task4SignerSubject: e.target.value })}
+                  placeholder=""
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  4.3 Vystavitel certifikátu (Certifikační autorita CA):
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task4CertificateCA || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task4CertificateCA: e.target.value })}
+                  placeholder=""
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  4.4 Stav v záložce Certifikační cesta:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task4CertPathStatus || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task4CertPathStatus: e.target.value })}
+                  placeholder="např. Tento certifikát je v pořádku."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 5: VÝPOČET KRYPTOGRAFICKÉHO HASHE (SHA-256) A OVĚŘENÍ PODPISU V CLI
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task5'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                5
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task5'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Fáze 2: Ověření integrity na disku před spuštěním – výpočet hashe a kontrola Authenticode v CLI
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task5')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task5']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task5'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
+            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
+              🔐 <strong>Proč počítat hash a ověřovat podpis v CLI?</strong> Útočníci mohou podvrhnout ikonu i název souboru
+              (např. <code>notepad.exe</code>). Dva klíčové nástroje v PowerShellu umožňují okamžitou forenzní kontrolu:
+              <br />
+              1. <strong>Kryptografický hash (SHA-256):</strong> Jedinečný matematický otisk obsahu souboru o délce 64 šestnáctkových znaků. Změna jediného bitu vygeneruje zcela jiný hash.
+              <br />
+              2. <strong>Authenticode podpis:</strong> Cmdlet prověří, zda je soubor digitálně podepsán a zda certifikátu důvěřuje kořenová autorita v systému.
+            </div>
+
+            <p className="font-semibold text-slate-900">
+              Postup v konzoli PowerShell:
+            </p>
+            <ol className="list-decimal list-inside space-y-2 text-slate-600 pl-1">
+              <li>
+                Otevřete <strong>PowerShell</strong> (např. stiskem <kbd className="px-1.5 py-0.5 bg-slate-200 rounded text-[11px] font-mono">Win + X</kbd> &rarr; Terminál / PowerShell).
+              </li>
+              <li>
+                Spočítejte SHA-256 hash systémového programu (např. Poznámkový blok):
+                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
+                  Get-FileHash &quot;C:\Windows\notepad.exe&quot; -Algorithm SHA256
+                </div>
+                <span className="text-[11px] text-slate-500 italic">(V klasickém cmd.exe lze případně použít: <code>certutil -hashfile C:\Windows\notepad.exe SHA256</code>)</span>
+              </li>
+              <li>
+                Ověřte digitální podpis a důvěryhodnost souboru:
+                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
+                  Get-AuthenticodeSignature &quot;C:\Windows\notepad.exe&quot; | Format-List
+                </div>
+              </li>
+              <li>
+                Zapište zjištěný SHA-256 hash (stačí prvních 16 znaků nebo celý), stav podpisu (<code>Status</code>) a jméno vystavitele/subjektu (<code>SignerCertificate.Subject</code>).
+              </li>
+            </ol>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.1 Použitý příkaz pro výpočet SHA-256 hashe:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5HashCmd || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5HashCmd: e.target.value })}
+                  placeholder="např. Get-FileHash C:\Windows\notepad.exe -Algorithm SHA256"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.2 Vypočítaná hodnota SHA-256 hashe:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5FileHash || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5FileHash: e.target.value })}
+                  placeholder="např. 9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.3 Stav digitálního podpisu (Status z Get-AuthenticodeSignature):
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5SignatureStatus || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5SignatureStatus: e.target.value })}
+                  placeholder="např. Valid / NotSigned / HashMismatch"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.4 Vydavatel / Předmět podpisového certifikátu:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5SignerName || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5SignerName: e.target.value })}
+                  placeholder="např. CN=Microsoft Windows, O=Microsoft Corporation..."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 6: STOPOVÁNÍ KLÍČOVÉHO PROCESU V CLI (cmd.exe)
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task6'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                6
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task6'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 6: Stopování klíčového procesu v CLI (cmd.exe)
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Fáze 3: Proces v RAM paměti – zjištění PID a spotřeby paměti pro explorer.exe
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task6')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task6']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task6'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              V Příkazovém řádku (cmd.exe) vyhledejte běžící proces <strong>explorer.exe</strong> (grafické prostředí plochy) pomocí nástroje <code>tasklist</code>:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Použijte parametr filtru <code>/FI</code> pro filtrování podle názvu obrazu.</li>
+              <li>Opište zjištěné PID, velikost využité paměti RAM a přesné znění vámi sestaveného příkazu.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-3">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  6.1 Identifikátor PID:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task6ExplorerPid || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task6ExplorerPid: e.target.value })}
+                  placeholder="např. 4820"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  6.2 Využití paměti RAM:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task6ExplorerMemory || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task6ExplorerMemory: e.target.value })}
+                  placeholder="např. 125 400 K"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  6.3 Použitý příkaz:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task6ExplorerCmd || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task6ExplorerCmd: e.target.value })}
+                  placeholder="Zadejte použitý příkaz..."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 7: VÝPIS PROCESŮ S PAMĚTÍ NAD 100 MB V CLI
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task7'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                7
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task7'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 7: Výpis procesů s pamětí nad 100 MB v CLI (cmd.exe)
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Filtrování procesů podle využití fyzické paměti RAM v příkazovém řádku
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task7')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task7']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task7'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              Vypište všechny procesy, které v paměti RAM zabírají více než 100 MB (tj. více než 100 000 KB):
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Sestavte příkaz <code>tasklist</code> s filtrem <code>/FI</code>, který vybere procesy s využitím paměti větším než 100 000 KB (využijte operátor <code>gt</code> = greater than).</li>
+              <li>Najděte proces s největší spotřebou paměti ve výpisu a zapište jeho název a velikost paměti.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-3">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  7.1 Použitý příkaz:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task7MemCmd || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task7MemCmd: e.target.value })}
+                  placeholder="Zadejte použitý příkaz..."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  7.2 Proces s největší RAM nad 100 MB:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task7TopProcess || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task7TopProcess: e.target.value })}
+                  placeholder="např. msedge.exe / chrome.exe / code.exe"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  7.3 Zjištěná hodnota paměti:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task7TopMemValue || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task7TopMemValue: e.target.value })}
+                  placeholder="např. 485 200 K"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 8: ODPOSLECH SÍŤOVÝCH SPOJENÍ V RESMON.EXE
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task8'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                8
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task8'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 8: Odposlech síťových spojení procesu naživo (resmon.exe)
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Identifikace cizí IP adresy a lustrace vlastníka přes Whois / IPinfo
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task8')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task8']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task8'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p className="font-semibold text-slate-900">
+              Spusťte nástroj <strong>resmon.exe</strong> (Sledování prostředků):
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Přejděte na záložku <strong>Síť</strong> a rozbalte panel <strong>Síťová aktivita</strong> nebo <strong>Připojení TCP</strong>.</li>
+              <li>Najděte libovolné aktivní spojení (např. pro váš webový prohlížeč – <code>chrome.exe</code>, <code>msedge.exe</code>, <code>firefox.exe</code>).</li>
+              <li>Zapište vzdálenou IP adresu a port (např. port 443).</li>
+              <li>Otevřete v prohlížeči <code>https://ipinfo.io/&lt;IP_ADRESA&gt;</code> (nebo whois) a zjistěte organizaci / vlastníka autonomního systému (ASN).</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  8.1 Sledovaný proces:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task8NetworkProcess || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task8NetworkProcess: e.target.value })}
+                  placeholder="např. chrome.exe / msedge.exe"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  8.2 Vzdálená IP adresa a port:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task8RemoteIp || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task8RemoteIp: e.target.value })}
+                  placeholder="např. 142.250.185.206 : 443"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  8.3 Vlastník IP adresy (IPinfo / Whois):
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task8IpOwner || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task8IpOwner: e.target.value })}
+                  placeholder="např. Google LLC / Cloudflare / Microsoft"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">
+                8.4 Zhodnocení: Jedná se o očekávanou legitimní infrastrukturu, nebo podezřelé spojení?:
+              </label>
+              <textarea
+                rows={2}
+                value={protocol.task8IsLegitimate || ''}
+                onChange={(e) => setProtocol({ ...protocol, task8IsLegitimate: e.target.value })}
+                placeholder="Zhodnoťte, zda spojení odpovídá načtenému webu, CDN síti či aktualizačnímu serveru..."
+                className="w-full min-h-[60px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 9: LUSTRACE SOUBORU NA VIRUSTOTAL.COM
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task9'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                9
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task9'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 9: Cloudová reputace a lustrace na VirusTotal.com
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Představení globálního multiskeneru a ověření souboru či hashe vůči 70+ antivirovým enginům
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task9')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task9']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task9'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          {/* Představení služby VirusTotal a zadání */}
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
+            <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-200 text-blue-950">
+              💡 <strong>Co je VirusTotal.com?</strong> Bezplatná cloudová služba (provozovaná dceřinou společností Google / Chronicle),
+              která analyzuje podezřelé soubory a URL adresy. Místo jednoho antiviru prověří vzorek současně více než <strong>70 předními bezpečnostními a antivirovými systémy</strong>
+              (Microsoft, ESET, Avast, Kaspersky, Bitdefender, Sophos atd.) a zobrazí celkové detekční skóre (např. <em>0/72</em> = čistý soubor, <em>56/72</em> = známý malware).
+            </div>
+            <p className="font-semibold text-slate-900 pt-1">
+              Postup prověření:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
+              <li>Otevřete v prohlížeči <code>https://www.virustotal.com</code> (záložka <strong>FILE</strong>, případně záložka <strong>SEARCH</strong>, kam můžete přímo vložit SHA-256 hash z Úlohy 5!).</li>
+              <li>Vyberte libovolný spustitelný soubor ze svého počítače (např. stažený instalátor, utilitu, portable program nebo systémový soubor), nebo vyhledejte jeho hash.</li>
+              <li>Počkejte na vyhodnocení a zapište název souboru, zjištěné skóre detekce a celkový verdikt.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  9.1 Název prověřovaného souboru:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task9FileName || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task9FileName: e.target.value })}
+                  placeholder="např. vlc-3.0.20-win64.exe / notepad.exe"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  9.2 Výsledné VirusTotal skóre detekce:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task9VtScore || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task9VtScore: e.target.value })}
+                  placeholder="např. 0/72 (žádný ze 72 antivirů nenalezl hrozbu)"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">
+                9.3 Zhodnocení: Považuje VirusTotal a komunita soubor za bezpečný?:
+              </label>
+              <textarea
+                rows={2}
+                value={protocol.task9VtVerdict || ''}
+                onChange={(e) => setProtocol({ ...protocol, task9VtVerdict: e.target.value })}
+                placeholder="Zhodnoťte, zda je soubor zcela čistý, nebo byl některým antivirem označen za podezřelý či nežádoucí..."
+                className="w-full min-h-[60px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 10: ŽIVÁ ANALÝZA PROCESŮ V SYSINTERNALS PROCESS EXPLORER & VIRUSTOTAL
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task10'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                10
+              </span>
+              <div>
+                <h3 className={`text-base font-black ${checkedTasks['task10'] ? 'text-emerald-950' : 'text-slate-800'}`}>
+                  Úloha 10: Živá analýza procesů v Sysinternals Process Explorer &amp; VirusTotal
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Spuštění profesionálního diagnostického nástroje od Microsoft Sysinternals a kontrola běžících procesů
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task10')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task10']
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task10'] ? (
+                <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
+            <div className="p-2.5 bg-indigo-50/80 rounded-xl border border-indigo-200 text-indigo-950">
+              🛠️ <strong>Nástroj Microsoft Sysinternals Process Explorer:</strong> Pokročilá náhrada Správce úloh vytvořená Markem Russinovichem.
+              Umožňuje naživo kontrolovat digitální podpisy procesů (Authenticode) a jediným kliknutím odesílat hashe všech běžících procesů na VirusTotal.com.
+            </div>
+            <p className="font-semibold text-slate-900">
+              Postup zprovoznění a analýzy:
+            </p>
+            <ol className="list-decimal list-inside space-y-1.5 text-slate-600 pl-1">
+              <li>
+                Stáhněte a spusťte <strong>Process Explorer</strong> z oficiálního webu Microsoft Sysinternals (případně přímo z odkazu <code>https://live.sysinternals.com/procexp.exe</code>). Není potřeba žádná instalace, jedná se o portable utilitu.
+              </li>
+              <li>
+                V horním menu Process Exploreru zapněte: <strong>Options &rarr; VirusTotal.com &rarr; Check VirusTotal.com</strong> (při prvním spuštění odsouhlaste podmínky služby).
+              </li>
+              <li>
+                Zapněte také ověřování podpisů: <strong>Options &rarr; Verify Image Signatures</strong>.
+              </li>
+              <li>
+                Spusťte aplikaci <strong>Malování</strong> (<code>mspaint.exe</code>) a najděte ji ve stromu procesů Process Exploreru.
+              </li>
+              <li>
+                Vyberte <strong>druhý libovolný proces</strong> (např. webový prohlížeč <code>chrome.exe</code> / <code>msedge.exe</code>, textový editor nebo přehrávač).
+              </li>
+              <li>
+                U obou procesů zapište jejich PID, stav digitálního podpisu (sloupec <em>Verified Signer</em>) a skóre VirusTotal (sloupec <em>VirusTotal</em>).
+              </li>
+            </ol>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
+            </div>
+
+            {/* Část 1: Malování */}
+            <div className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                Analýza 1: Aplikace Malování (mspaint.exe)
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.1 PID procesu mspaint.exe:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10MspaintPid || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10MspaintPid: e.target.value })}
+                    placeholder="např. 14820"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.2 Verified Signer (Digitální podpis):
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10MspaintSigner || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10MspaintSigner: e.target.value })}
+                    placeholder="např. Microsoft Windows Publisher"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.3 VirusTotal skóre (např. 0/76):
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10MspaintVtScore || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10MspaintVtScore: e.target.value })}
+                    placeholder="např. 0/76"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Část 2: Druhý vybraný proces */}
+            <div className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+                Analýza 2: Druhý běžící proces dle vašeho výběru
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.4 Název vybraného procesu:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10SecondProcessName || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10SecondProcessName: e.target.value })}
+                    placeholder="např. msedge.exe / chrome.exe / notepad.exe"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.5 Verified Signer (Vydavatel certifikátu):
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10SecondProcessSigner || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10SecondProcessSigner: e.target.value })}
+                    placeholder="např. Microsoft Windows / Google LLC"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex flex-col justify-end">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                    10.6 VirusTotal skóre vybraného procesu:
+                  </label>
+                  <input
+                    type="text"
+                    value={protocol.task10SecondProcessVtScore || ''}
+                    onChange={(e) => setProtocol({ ...protocol, task10SecondProcessVtScore: e.target.value })}
+                    placeholder="např. 0/75"
+                    className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            SEKCE: POKROČILÉ ÚLOHY A EXPERTNÍ VÝZVY
+            ========================================================================= */}
+        <div className="pt-6 pb-2">
+          <div className="flex items-center gap-3 pb-3 border-b-2 border-amber-200">
+            <span className="p-2 rounded-xl bg-amber-100 text-amber-700">
+              <Sparkles className="w-5 h-5" />
+            </span>
+            <div>
+              <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">
+                Pokročilé úlohy & Expertní výzvy
+              </h2>
+              <p className="text-xs text-slate-500 font-medium">
+                Úlohy pro hlubší pochopení systémových služeb a vlastního nepodepsaného kódu
               </p>
             </div>
-
-            {/* =========================================================================
-                ÚLOHA 1: STOPOVÁNÍ KLÍČOVÉHO PROCESU V CLI (cmd.exe)
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task1'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    1
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task1'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 1: Stopování klíčového procesu v CLI (cmd.exe)
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Opakování příkazu tasklist a rychlé filtrování specifických procesů v terminálu
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task1')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task1'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task1'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  V Příkazovém řádku (cmd.exe) vyhledejte běžící proces <strong>explorer.exe</strong> (grafické prostředí plochy) pomocí nástroje <code>tasklist</code>.
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Použijte parametr filtru <code>/FI</code> pro filtrování podle názvu obrazu (<code>IMAGENAME</code>).</li>
-                  <li>Opište zjištěné PID, velikost využité paměti RAM a přesné znění příkazu.</li>
-                </ul>
-              </div>
-
-              {/* Formulářová pole úlohy 1 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-3">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      1.1 Identifikátor PID:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task1Pid || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task1Pid: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      1.2 Využití paměti RAM:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task1Memory || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task1Memory: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      1.3 Přesný příkaz v CMD:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task1Cmd || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task1Cmd: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 2: VÝPIS PROCESŮ S PAMĚTÍ NAD 100 MB V CLI (cmd.exe)
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task2'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    2
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task2'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 2: Výpis procesů spotřebovávajících více než 100 MB RAM (cmd.exe)
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Filtrování procesů podle alokované operační paměti a odhalení podezřelých konzumentů RAM
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task2')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task2'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task2'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  Pomocí filtru paměti v nástroji <code>tasklist</code> vyhledejte všechny procesy spotřebovávající více než 100 MB RAM (odhalení náročných aplikací či memory leaků).
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Použijte parametr filtru <code>/FI</code> pro filtrování podle paměti (<code>MEMUSAGE</code>) a operátor větší než (systém očekává hodnotu v kB).</li>
-                  <li>Vyhledejte proces s největší alokovanou pamětí RAM a zapište jeho název a spotřebu.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Operátory filtru:</strong> <code>gt</code> (větší než), <code>lt</code> (menší než), <code>eq</code> (rovno).
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 2 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-3">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      2.1 Použitý příkaz v CMD:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task2MemCmd || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task2MemCmd: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      2.2 Největší proces nad 100 MB:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task2TopProcess || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task2TopProcess: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      2.3 Využití paměti RAM:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task2TopMemValue || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task2TopMemValue: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 3: FORENZNÍ EXPORT DO CSV A TABULKOVÁ ANALÝZA ANOMÁLIÍ
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task4'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    3
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task4'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 3: Forenzní export do CSV a tabulková analýza anomálií
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Přesměrování výstupu do souboru a hloubková prověrka instancí svchost.exe v Excelu
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task4')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task4'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task4'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  Vyexportujte kompletní seznam běžících procesů do formátu CSV a proveďte tabulkovou analýzu v Excelu nebo LibreOffice Calc.
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Použijte nástroj <code>tasklist</code> s parametrem formátu výstupu (<code>/FO</code>) a operátorem přesměrování do souboru <code>procesy.csv</code>.</li>
-                  <li>V tabulce seřaďte procesy podle sloupce využití paměti a spočítejte celkový počet instancí <code>svchost.exe</code>.</li>
-                  <li>Zkontrolujte, zda některý <code>svchost.exe</code> nevykazuje anomální hodnoty RAM (stovky MB), což značí malware nebo chybu.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Formátování výstupu:</strong> parametr <code>/FO CSV</code> formátuje výstup do čárkami oddělených hodnot vhodných pro tabulkový procesor.
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 3 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      3.1 Příkaz pro export do CSV:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task4ExportCmd || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task4ExportCmd: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      3.2 Proces s největší RAM v tabulce:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task4TopRamProcess || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task4TopRamProcess: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      3.3 Počet nalezených instancí svchost.exe:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task4SvchostCount || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task4SvchostCount: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    3.4 Audit anomálií: Vykazuje některý svchost.exe podezřele vysokou paměť RAM nebo cizí název?
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.task4SvchostAnomaly || ''}
-                    onChange={(e) => setProtocol({ ...protocol, task4SvchostAnomaly: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 4: ODPOSLECH A AUDIT SÍŤOVÝCH SPOJENÍ V RESMON.EXE
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task5'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    4
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task5'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 4: Odposlech síťových spojení prohlížeče v Sledování prostředků (resmon.exe – Chrome)
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Vyhledání odchozí IP adresy prohlížeče a ověření organizace vlastníka (Google)
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task5')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task5'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task5'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  V nástroji <strong>Sledování prostředků</strong> (<code>resmon.exe</code> ➔ záložka <strong>Síť</strong>) prověřte aktivní síťovou telemetrii procesů.
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>V sekci <em>Připojení TCP</em> vyhledejte proces prohlížeče (Chrome/Edge) a opište jednu cílovou IP adresu.</li>
-                  <li>Tuto IP adresu prověřte na službě pro reputaci a Whois (<a href="https://ipinfo.io" target="_blank" rel="noreferrer" className="text-blue-600 underline font-semibold">ipinfo.io</a> nebo <a href="https://whois.com" target="_blank" rel="noreferrer" className="text-blue-600 underline font-semibold">whois.com</a>) a zjistěte organizaci vlastníka.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Bezpečnostní pravidlo:</strong> Běžný web komunikuje na portech 80/443. Nestandardní porty (např. 4444, 1337) na neznámé zahraniční IP značí podezřelou aktivitu.
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 4 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      4.1 Odchozí IP adresa procesu Chrome (z resmon.exe):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task5ChromeIp || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task5ChromeIp: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      4.2 Legitimní organizace / vlastník této IP (z IPinfo / Whois):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task5IpOwner || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task5IpOwner: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 5: HROMADNÝ EXPORT SPOJENÍ DO TABULKY A IDENTIFIKACE WEBŮ POMOCÍ AI
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['taskSeznam'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    5
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['taskSeznam'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 5: Hromadný export spojení do tabulky a identifikace webů pomocí AI
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Kopírování telemetrie TCP z resmon.exe do tabulkového editoru a hromadná identifikace vlastníků IP přes AI
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('taskSeznam')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['taskSeznam'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['taskSeznam'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  V prohlížeči otevřete web <strong>www.seznam.cz</strong> a v nástroji <strong>resmon.exe</strong> (záložka <strong>Síť</strong> ➔ <em>Připojení TCP</em>) zkopírujte celou telemetrii do tabulky:
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>V tabulce <em>Připojení TCP</em> označte všechny řádky vašeho prohlížeče (např. <code>chrome.exe</code>) a zkopírujte je do schránky (<strong>Ctrl+C</strong>).</li>
-                  <li>Data vložte do tabulkového editoru (Excel, Google Tabulky nebo Calc) a vyfiltrujte sloupec <em>Vzdálená adresa</em>.</li>
-                  <li>S pomocí <strong>AI asistenta</strong> (ChatGPT, Copilot apod.) najděte způsob, jak hromadně identifikovat, kterým webům a organizacím tyto IP adresy náleží.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Forenzní analýza s AI:</strong> AI dokáže z tabulky bleskově vyčíst unikátní adresy a rozřadit je podle provozovatelů (servery Seznamu, CDN sítě jako Akamai/Cloudflare, analytické a reklamní servery).
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 5 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    5.1 Použitý prompt pro AI a způsob hromadné identifikace IP z tabulky:
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.taskSeznamAiPrompt || ''}
-                    onChange={(e) => setProtocol({ ...protocol, taskSeznamAiPrompt: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    5.2 Identifikované weby, organizace a infrastruktura (výsledek šetření přes AI):
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.taskSeznamIdentifiedWebs || ''}
-                    onChange={(e) => setProtocol({ ...protocol, taskSeznamIdentifiedWebs: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    5.3 Závěr šetření: Proč jediná stránka Seznam.cz komunikuje s tolika různými servery a IP adresami?:
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.taskSeznamReflection || ''}
-                    onChange={(e) => setProtocol({ ...protocol, taskSeznamReflection: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[65px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 6: FORENZNÍ INSPEKCE PROCESU VLC V SYSINTERNALS PROCESS EXPLORERU
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['taskCert'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    6
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['taskCert'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Představení nástroje, ověření digitálního podpisu Authenticode a cloudová reputace VirusTotal
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('taskCert')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['taskCert'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['taskCert'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
-                <p className="text-slate-900 leading-relaxed">
-                  <strong>Sysinternals Process Explorer</strong> je profesionální, vylepšený diagnostický nástroj na analýzu procesů od Microsoftu (oproti běžnému Správci úloh zobrazuje hierarchický strom procesů rodič-potomek, přímo v reálném čase ověřuje digitální podpisy spustitelných souborů a integruje celosvětovou antivirovou cloudovou databázi <strong>VirusTotal</strong>).
-                </p>
-
-                <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-200 text-blue-950 space-y-1">
-                  <span className="font-bold text-xs text-blue-900 block">⚙️ Příprava nástroje:</span>
-                  <p className="text-[11px] text-slate-600">
-                    V horním menu Process Exploreru aktivujte volby <strong>Options ➔ Verify Image Signatures</strong> a <strong>Options ➔ Check VirusTotal.com</strong> (při prvním spuštění odsouhlaste podmínky služby).
-                  </p>
-                </div>
-
-                <div className="space-y-1 pt-1">
-                  <p className="font-bold text-slate-900">
-                    Postup analýzy přehrávače VLC:
-                  </p>
-                  <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                    <li>Spusťte program <code>vlc.exe</code> (nebo jinou nainstalovanou aplikaci).</li>
-                    <li>V Process Exploreru vyhledejte jeho proces a odečtěte hodnoty ve sloupcích <strong>Verified Signer</strong> a <strong>VirusTotal</strong>.</li>
-                    <li>Dvojklikem na proces můžete otevřít okno <em>Properties</em> ➔ záložka <em>Image</em>, kde lze vyčíst přesnou cestu a kliknutím na <em>Verify</em> zkontrolovat podrobnosti certifikátu.</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 6 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      6.1 Prověřovaný program a cesta k souboru:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.taskCertProgram || ''}
-                      onChange={(e) => setProtocol({ ...protocol, taskCertProgram: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      6.2 Ověřený podpis (Verified Signer / Vlastník):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.taskCertSubject || ''}
-                      onChange={(e) => setProtocol({ ...protocol, taskCertSubject: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      6.3 VirusTotal skóre procesu:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.taskCertIssuer || ''}
-                      onChange={(e) => setProtocol({ ...protocol, taskCertIssuer: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 7: VYTVOŘENÍ A ANALÝZA VLASTNÍHO NEPODEPANÉHO PROGRAMU
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task6'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    7
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task6'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Kompilace Python skriptu do .exe, detekce chybějícího podpisu Authenticode a odeslání na VirusTotal
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task6')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task6'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task6'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  V tomto úkolu si vytvoříme vlastní nepodepsaný program.
-                </p>
-                <ul className="list-decimal list-inside space-y-2 text-slate-600 pl-1">
-                  <li>
-                    Vytvořte skript <code>test_app.py</code> se smyčkou, aby proces po spuštění zůstal běžet v paměti:
-                    <div className="my-1.5 p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg">
-                      import time<br/>
-                      print(&quot;Moje aplikace bezi...&quot;)<br/>
-                      while True:<br/>
-                      &nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)
-                    </div>
-                  </li>
-                  <li>
-                    V Příkazovém řádku nainstalujte PyInstaller a zkompilujte skript do samostatného <code>.exe</code>:
-                    <div className="my-1.5 p-2 bg-slate-900 text-slate-200 font-mono text-[11px] rounded-lg">
-                      <span className="text-slate-400">pip install pyinstaller</span><br/>
-                      <span className="text-blue-300">python -m PyInstaller --onefile test_app.py</span>
-                    </div>
-                  </li>
-                  <li>
-                    Spusťte vytvořený program <code>dist\test_app.exe</code>.
-                  </li>
-                  <li>
-                    V Process Exploreru vyhledejte běžící <code>test_app.exe</code>. Zkontrolujte stav v kolonce <strong>Verified Signer</strong> a u položky <strong>VirusTotal</strong> klikněte na odkaz <em>Unknown</em> (nebo <em>Submit</em>) pro odeslání souboru k bezpečnostní analýze.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Formulářová pole úlohy 7 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.1 Stav podpisu vlastního programu (Verified Signer):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task6PySigner || protocol.task6BonusApp || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6PySigner: e.target.value, task6BonusApp: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      7.2 Výsledek VirusTotal vlastního programu (Unknown ➔ skóre po analýze):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task6PyScore || protocol.task6PurpleMeaning || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task6PyScore: e.target.value, task6PurpleMeaning: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 8: VÝPOČET KRYPTOGRAFICKÉHO HASHU V CMD (certutil)
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task7'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    8
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task7'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 8: Výpočet kryptografického hashe v CMD (certutil) a lustrace na VirusTotal.com
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Ověření integrity souboru notepad.exe přes 64znakový SHA-256 otisk
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task7')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task7'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task7'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  Vypočtěte kontrolní součet systémového souboru a ověřte jeho reputaci v globální databázi VirusTotal.
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>V Příkazovém řádku zadejte: <code>certutil -hashfile C:\Windows\System32\notepad.exe SHA256</code>.</li>
-                  <li>Zkopírujte vypsaný 64znakový hash a vyhledejte jej na webu <a href="https://www.virustotal.com" target="_blank" rel="noreferrer" className="text-blue-600 font-bold underline">VirusTotal.com</a> v záložce <strong>Search</strong>.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Výhoda hashe:</strong> Výpočet hashe umožňuje prověřit integritu souboru online bez rizika odeslání citlivých dat na internet.
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 8 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      8.1 Vypočtený 64znakový SHA-256 hash (notepad.exe):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task7Hash || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task7Hash: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      8.2 Výsledek reputace na VirusTotal.com:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task7VtScore || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task7VtScore: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 9: SMART APP CONTROL (SAC) V ZABEZPEČENÍ WINDOWS
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task8'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
-                    9
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task8'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                      Úloha 9: Aktivní obranný val Windows 11 – Smart App Control (SAC)
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Ochrana před spuštěním neznámých programů v paměti RAM
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task8')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task8'] 
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task8'] ? (
-                    <><CheckSquare className="w-4 h-4 text-emerald-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-slate-900">
-                  Zkontrolujte stav bezpečnostní vrstvy Windows 11 blokující spuštění nedůvěryhodných aplikací.
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Otevřete <strong>Zabezpečení Windows ➔ Řízení aplikací a prohlížečů ➔ Nastavení Smart App Control</strong>.</li>
-                  <li>Zapište aktuální stav (Zapnuto / Hodnocení / Vypnuto) a zdůvodněte výhodu blokování před načtením do RAM oproti běžnému antiviru.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-slate-500">
-                  💡 <strong>Stavy SAC:</strong> <em>Zapnuto</em> (blokuje), <em>Hodnocení / Evaluation</em> (učí se chování uživatele bez blokování), <em>Vypnuto</em>.
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 9 */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      9.1 Stav funkce Smart App Control na vašem PC (Zapnuto / Hodnocení / Vypnuto):
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task8SacStatus || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task8SacStatus: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      9.2 Proč je blokování před spuštěním v RAM účinnější než pouhé čekání na virus?:
-                    </label>
-                    <textarea
-                      rows={2}
-                      value={protocol.task8SacReason || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task8SacReason: e.target.value })}
-                      placeholder=""
-                      className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ÚLOHA 10**: ODHALENÍ SYSTÉMOVÝCH SLUŽEB POD PROCESY (tasklist /svc)
-                ========================================================================= */}
-            <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${
-              checkedTasks['task3'] ? 'bg-indigo-50/40 border-indigo-400' : 'bg-white border-indigo-200 hover:border-indigo-300 shadow-xs'
-            }`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-10 h-8 rounded-xl bg-indigo-950 text-white font-black text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    10**
-                  </span>
-                  <div>
-                    <h3 className={`text-base font-black ${checkedTasks['task3'] ? 'text-indigo-950' : 'text-slate-800'}`}>
-                      Úloha 10**: Odhalení skrytých systémových služeb pod procesy (tasklist /svc)
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium">
-                      Mapování konkrétních služeb Windows na PID procesů svchost.exe přímo v příkazovém řádku
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => toggleTask('task3')}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
-                    checkedTasks['task3'] 
-                      ? 'bg-indigo-100 text-indigo-800 border-indigo-300' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
-                  }`}
-                >
-                  {checkedTasks['task3'] ? (
-                    <><CheckSquare className="w-4 h-4 text-indigo-600" /> Splněno</>
-                  ) : (
-                    <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
-                  )}
-                </button>
-              </div>
-
-              {/* Zadání a postup práce */}
-              <div className="p-4 bg-indigo-50/80 rounded-2xl border border-indigo-200 text-xs text-slate-700 space-y-2 leading-relaxed">
-                <p className="font-semibold text-indigo-950">
-                  Prozkoumejte, které systémové služby Windows běží uvnitř instancí <code>svchost.exe</code> (přepínač <code>/svc</code>).
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>V Příkazovém řádku spusťte: <code>tasklist /svc /fi "IMAGENAME eq svchost.exe"</code>.</li>
-                  <li>Vyberte jedno PID, zapište zkratky běžících služeb (např. <code>Dnscache</code>, <code>gpsvc</code>, <code>wuauserv</code>) a stručně vysvětlete jejich význam.</li>
-                </ul>
-                <div className="pt-1 text-[11px] text-indigo-900">
-                  💡 <strong>Bezpečnostní pravidlo:</strong> Běžné aplikace mají ve sloupci Služby <code>N/A</code>. Pokud by <code>svchost.exe</code> měl <code>N/A</code> nebo neznámou službu, jde o maskovaný virus.
-                </div>
-              </div>
-
-              {/* Formulářová pole úlohy 10** */}
-              <div className="pt-4 border-t-2 border-slate-100 space-y-4">
-                <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                  <PencilLine className="w-3.5 h-3.5 text-indigo-600" /> Vstupní pole pro odpovědi a záznam zjištění:
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      10.1 Použitý příkaz v CMD:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task3SvcCmd || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task3SvcCmd: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-mono text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                      10.2 Zvolené PID procesu svchost.exe:
-                    </label>
-                    <input
-                      type="text"
-                      value={protocol.task3SvchostPid || ''}
-                      onChange={(e) => setProtocol({ ...protocol, task3SvchostPid: e.target.value })}
-                      placeholder=""
-                      className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
-                    10.3 Běžící systémové služby v tomto PID a vysvětlení jejich účelu:
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={protocol.task3SvcNames || ''}
-                    onChange={(e) => setProtocol({ ...protocol, task3SvcNames: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* =========================================================================
-                ZÁVĚREČNÝ ZÁZNAM ZJIŠTĚNÍ A EXPORT
-                ========================================================================= */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-slate-50 border-2 border-slate-200 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
-                <div>
-                  <h3 className="text-base font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
-                    <Info className="w-5 h-5 text-indigo-600" />
-                    Závěrečný záznam zjištění a kontrolní otázky
-                  </h3>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">
-                    Shrňte výsledky svého vyšetřování a odpovězte na teoretické otázky před odevzdáním protokolu.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={copyProtocolToClipboard}
-                  className="px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer border border-indigo-200 shadow-xs"
-                >
-                  <Copy className="w-4 h-4" />
-                  <span>{copiedSuccess ? 'Zkopírováno do schránky! ✅' : 'Kopírovat pro Teams'}</span>
-                </button>
-              </div>
-
-              <div className="space-y-5 text-xs">
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-2 uppercase tracking-wide leading-relaxed">
-                    1. Proč se malware nejčastěji maskuje právě pod název svchost.exe a podle jakých indicií (překlep ve jménu, cesta na disku, chybějící služba v /svc) ho spolehlivě odhalíte?
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={protocol.qVirusWorm || ''}
-                    onChange={(e) => setProtocol({ ...protocol, qVirusWorm: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[85px] p-4 bg-white border-2 border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:border-indigo-500 focus:outline-none leading-relaxed transition-all shadow-inner"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-2 uppercase tracking-wide leading-relaxed">
-                    2. Proč je nutné spouštět diagnostické nástroje (Process Explorer, Příkazový řádek) jako Správce (Run as Administrator)?
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={protocol.qRunAsAdmin || ''}
-                    onChange={(e) => setProtocol({ ...protocol, qRunAsAdmin: e.target.value })}
-                    placeholder=""
-                    className="w-full min-h-[85px] p-4 bg-white border-2 border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:border-indigo-500 focus:outline-none leading-relaxed transition-all shadow-inner"
-                  />
-                </div>
-              </div>
-            </div>
-
           </div>
-        </WorksheetLayout>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 11*: SYSTÉMOVÉ SLUŽBY POD PROCESY (tasklist /svc)
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task11'] ? 'bg-amber-50/40 border-amber-400' : 'bg-white border-amber-200/80 hover:border-amber-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                11*
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className={`text-base font-black ${checkedTasks['task11'] ? 'text-amber-950' : 'text-slate-800'}`}>
+                    Úloha 11*: Co se skrývá pod svchost.exe? Mapování systémových služeb
+                  </h3>
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-amber-200 text-amber-900">
+                    Pokročilé (*)
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium">
+                  Zjištění, které systémové služby Windows běží v rámci konkrétního procesu
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task11')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task11']
+                ? 'bg-amber-200 text-amber-950 border-amber-400'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task11'] ? (
+                <><CheckSquare className="w-4 h-4 text-amber-700" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
+            <p className="font-semibold text-amber-900">
+              Ve Windows běží desítky instancí <code>svchost.exe</code> (Service Host). Každá hostuje jednu nebo více systémových služeb (např. DNS klient, Windows Update, Zvuk).
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1">
+              <li>Spusťte Příkazový řádek (nebo jako Správce) a pomocí vhodného parametru nástroje <code>tasklist</code> vypište procesy včetně přiřazených systémových služeb (nápovědu získáte přes <code>tasklist /?</code>).</li>
+              <li>Vyberte si jeden konkrétní řádek s <strong>svchost.exe</strong>, opište jeho PID a seznam služeb, které pod ním běží.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+              <PencilLine className="w-3.5 h-3.5 text-amber-600" /> Vstupní pole pro odpovědi:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  11.1 Použitý příkaz:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task11SvcCmd || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task11SvcCmd: e.target.value })}
+                  placeholder="Zadejte použitý příkaz..."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  11.2 Vybrané PID procesu svchost.exe:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task11SvchostPid || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task11SvchostPid: e.target.value })}
+                  placeholder="např. 1432"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-mono font-bold text-slate-800 bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  11.3 Služby běžící pod tímto PID:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task11SvcNames || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task11SvcNames: e.target.value })}
+                  placeholder="např. AudioSrv, AudioEndpointBuilder"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-bold text-slate-800 bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">
+                11.4 Proč útočníci tak rádi maskují malware pod název &quot;svchost.exe&quot; nebo &quot;scvhost.exe&quot;?:
+              </label>
+              <textarea
+                rows={2}
+                value={protocol.task11SvcWhyAbused || ''}
+                onChange={(e) => setProtocol({ ...protocol, task11SvcWhyAbused: e.target.value })}
+                placeholder="Vysvětlete, proč v záplavě legitimních svchost.exe běžný uživatel podvržený proces snadno přehlédne..."
+                className="w-full min-h-[60px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-medium text-slate-800 bg-white transition-all resize-y shadow-inner leading-relaxed"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            ÚLOHA 12**: EXPERTNÍ VÝZVA - VLASTNÍ NEPODEPANÝ PROGRAM
+            ========================================================================= */}
+        <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task12'] ? 'bg-amber-50/40 border-amber-400' : 'bg-white border-amber-200/80 hover:border-amber-300 shadow-xs'
+          }`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="w-8 h-8 rounded-xl bg-amber-200 text-amber-900 font-black text-sm flex items-center justify-center shrink-0 mt-0.5">
+                12**
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className={`text-base font-black ${checkedTasks['task12'] ? 'text-amber-950' : 'text-slate-800'}`}>
+                    Úloha 12**: Expertní výzva – Vytvoření a analýza vlastního nepodepsaného programu
+                  </h3>
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-rose-200 text-rose-900">
+                    Pro experty (**)
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium">
+                  Kompilace vlastního skriptu / utility do .exe, detekce chybějícího podpisu a reakce bezpečnostních mechanismů
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => toggleTask('task12')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${checkedTasks['task12']
+                ? 'bg-amber-200 text-amber-950 border-amber-400'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+            >
+              {checkedTasks['task12'] ? (
+                <><CheckSquare className="w-4 h-4 text-amber-700" /> Splněno</>
+              ) : (
+                <><Square className="w-4 h-4 text-slate-400" /> Označit jako splněné</>
+              )}
+            </button>
+          </div>
+
+          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-2 leading-relaxed">
+            <p className="font-semibold text-amber-900">
+              Vytvořte vlastní spustitelný soubor (.exe) bez komerčního certifikátu:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1">
+              <li>Vytvořte jednoduchý Python skript <code>test.py</code> (např. <code>import time; print(&apos;Bezim&apos;); time.sleep(60)</code>) a zkompilujte jej: <code>pyinstaller --onefile test.py</code> (nebo použijte jakoukoliv vlastní nepodepsanou utilitu).</li>
+              <li>Spusťte vytvořený program a podívejte se na něj v <strong>Process Exploreru</strong> ve sloupci <strong>Verified Signer</strong>.</li>
+            </ul>
+          </div>
+
+          <div className="pt-4 border-t-2 border-slate-100 space-y-4">
+            <div className="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" /> Záznam expertního šetření:
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  12.1 Co Process Explorer ukáže ve sloupci Verified Signer?:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task12ExpertSignerResult || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task12ExpertSignerResult: e.target.value })}
+                  placeholder="např. (No signature found in file) / Neověřeno"
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  12.2 Proč Windows SmartScreen takový program zablokuje modrým oknem?:
+                </label>
+                <textarea
+                  rows={2}
+                  value={protocol.task12ExpertSmartScreenReason || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task12ExpertSmartScreenReason: e.target.value })}
+                  placeholder="Vysvětlete význam reputace a chybějícího digitálního podpisu pro SmartScreen..."
+                  className="w-full min-h-[70px] p-3.5 rounded-xl border-2 border-slate-200 focus:border-amber-500 outline-none text-sm font-medium text-slate-800 bg-slate-50/70 focus:bg-white transition-all resize-y shadow-inner leading-relaxed"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </WorksheetLayout>
   );
 }

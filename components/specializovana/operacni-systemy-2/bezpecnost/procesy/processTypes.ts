@@ -156,51 +156,66 @@ export const PROCESS_TREE_DATA: ProcessItem[] = [
 ];
 
 export interface ProcessProtocolState {
-  task1Pid: string;
-  task1Memory: string;
-  task1Cmd: string;
-  task2MemCmd: string;
-  task2TopProcess: string;
-  task2TopMemValue: string;
-  task3SvcCmd: string;
-  task3SvchostPid: string;
-  task3SvcNames: string;
-  task4ExportCmd: string;
-  task4TopRamProcess: string;
-  task4SvchostCount: string;
-  task4SvchostAnomaly: string;
-  task5ChromeIp: string;
-  task5IpOwner: string;
-  taskSeznamIp?: string;
-  taskSeznamOwner?: string;
-  taskSeznamAiPrompt?: string;
-  taskSeznamIdentifiedWebs?: string;
-  taskSeznamReflection?: string;
-  task5BulkMethod?: string;
-  task5SuspiciousReflection?: string;
-  task5Process?: string;
-  task5RemoteIp?: string;
-  task5RemotePort?: string;
-  task5IpType?: string;
-  task6VlcSigner?: string;
-  task6VlcScore?: string;
-  task6PySigner?: string;
-  task6PyScore?: string;
-  task6ExplorerSigner?: string;
-  task6SvchostScore?: string;
-  task6PinkMeaning?: string;
-  task6PurpleMeaning?: string;
-  task6BonusApp?: string;
-  task7Hash: string;
-  task7VtScore: string;
-  task8SacStatus: string;
-  task8SacReason: string;
-  taskCertProgram?: string;
-  taskCertSubject?: string;
-  taskCertIssuer?: string;
-  taskCertValidity?: string;
-  taskCertAlgorithm?: string;
-  taskCertChainStatus?: string;
-  qVirusWorm: string;
-  qRunAsAdmin: string;
+  // Úloha 1: Smart App Control / SmartScreen
+  task1SacStatus: string;
+
+  // Úloha 2: Antivirový štít a signatury
+  task2AntivirusStatus: string;
+  task2SignatureVersion: string;
+
+  // Úloha 3: Ochrana před ransomwarem (Řízený přístup ke složkám)
+  task3RansomwareStatus: string;
+  task3ProtectedFolders: string;
+
+  // Úloha 4: Inspekce digitálního podpisu a certifikátu aplikace v GUI (VLC / instalátor)
+  task4AppName: string;
+  task4SignerSubject: string;
+  task4CertificateCA: string;
+  task4CertPathStatus: string;
+
+  // Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu
+  task5HashCmd: string;
+  task5FileHash: string;
+  task5SignatureStatus: string;
+  task5SignerName: string;
+
+  // Úloha 6: explorer.exe v CLI
+  task6ExplorerPid: string;
+  task6ExplorerMemory: string;
+  task6ExplorerCmd: string;
+
+  // Úloha 7: Procesy nad 100 MB v CLI
+  task7MemCmd: string;
+  task7TopProcess: string;
+  task7TopMemValue: string;
+
+  // Úloha 8: Odposlech v resmon.exe
+  task8NetworkProcess: string;
+  task8RemoteIp: string;
+  task8RemotePort: string;
+  task8IpOwner: string;
+  task8IsLegitimate: string;
+
+  // Úloha 9: VirusTotal.com cloudová reputace souboru
+  task9FileName: string;
+  task9VtScore: string;
+  task9VtVerdict: string;
+
+  // Úloha 10: Sysinternals Process Explorer & VirusTotal živá analýza
+  task10MspaintPid: string;
+  task10MspaintSigner: string;
+  task10MspaintVtScore: string;
+  task10SecondProcessName: string;
+  task10SecondProcessSigner: string;
+  task10SecondProcessVtScore: string;
+
+  // Úloha 11* (Pokročilé): Systémové služby pod svchost.exe
+  task11SvcCmd: string;
+  task11SvchostPid: string;
+  task11SvcNames: string;
+  task11SvcWhyAbused: string;
+
+  // Úloha 12** (Expertní výzva): Vlastní nepodepsaný program
+  task12ExpertSignerResult: string;
+  task12ExpertSmartScreenReason: string;
 }

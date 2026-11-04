@@ -801,3 +801,33 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         - **Úkol 8\*** představuje téma *Program na disku vs. Proces v paměti RAM (Instrukce vs. Data)* s měřením velikosti souboru na disku vs. v RAM po čistém spuštění. Nadbytečné stahování 1MB souboru i druhá otázka byly odebrány a otázka 8.1 je přímo položena bez návodné věty v závorce a bez napovídajícího textu v poli pro odpověď.
         - **Úkol 9\*** představuje téma *Rodičovský proces (PPID) a stromová hierarchie v Process Exploreru* s vyhledáním hierarchie rodič–potomek a vysvětlením dědění práv.
       - **100% soulad Word exportu:** Funkce `handleExportWord` byla kompletně synchronizována s novou 9úlohovou strukturou se zpětnou kompatibilitou dříve uložených stavů v `localStorage`.
+
+
+32. **Přepracování opakovacího kvízu v kapitole Úvod do malwaru a principy nákazy (OSS 2) dle standardu TopicReviewQuiz:**
+    - Původní monolitický kvíz [`MalwareQuizTab.tsx`](components/specializovana/operacni-systemy-2/bezpecnost/malware/MalwareQuizTab.tsx) byl kompletně přepracován podle globálního standardu definovaného v pravidle 15 `AGENTS.md`.
+    - Vytvořen dedikovaný datový modul [`malwareQuestionsData.ts`](components/specializovana/operacni-systemy-2/bezpecnost/malware/malwareQuestionsData.ts) obsahující **15 didakticky propracovaných otázek** rozdělených do 4 tematických kategorií:
+      1. *CPU a princip nákazy* (slepé vykonávání instrukcí procesorem, formát PE a sekce .text/.data, Entry Point a technika Entry Point Hijacking).
+      2. *Typy malwaru a šíření* (klíčový rozdíl mezi parazitickým virem a autonomním červem, trojský kůň a jeho charakteristiky, funkce dropperu a payloadu).
+      3. *Útoky a techniky* (proč OS nezabrání ransomwaru v šifrování pod právy uživatele, odposlech kláves přes Windows Hook v RAM, neúčinnost maskování tečkami v HTML, role C2 serveru pro botnety).
+      4. *Detekce a obrana* (lavinový efekt SHA-256 při změně jediného bajtu, proč Process Explorer vyžaduje administrátorská práva, 2FA ochrana proti odcizení přihlašovacích údajů z keyloggeru, zálohovací pravidlo 3-2-1, princip cloudového multiskeneru VirusTotal).
+    - Komponenta [`MalwareQuizTab.tsx`](components/specializovana/operacni-systemy-2/bezpecnost/malware/MalwareQuizTab.tsx) zredukována na štíhlý 28řádkový orchestrátor napojený na `TopicReviewQuiz` s perzistencí do `localStorage` (`intlab_malware_review_quiz_v1`) a ikonami kategorií (`Cpu`, `Network`, `Lock`, `ShieldCheck`).
+    - Splňuje všechna kritéria standardu: čisté krokování otázek po jedné se skokovou lištou, zadání bez spoilerů, dvoutaktní tlačítko (Vyhodnotit ➔ Další otázka), Fisher-Yates shuffle možností a závěrečný přehled chyb s vysokým kontrastem.
+
+33. **Didaktická revize a rozšíření praktického laboratorního listu v kapitole Správa procesů a digitální certifikáty (OSS 2):**
+    - Praktický list byl reorganizován do čisté posloupnosti 9 základních úloh + 2 v sekci pokročilé/expertní:
+      - **Základní část (Úlohy 1–9):**
+        - **Úloha 1:** Smart App Control & SmartScreen v GUI Zabezpečení Windows (Fáze 1 před spuštěním).
+        - **Úloha 2:** Kontrola antivirového štítu v reálném čase a verze signatur v GUI Zabezpečení Windows (Fáze 2 ochrana).
+        - **Úloha 3:** Kontrola ochrany před ransomwarem (Řízený přístup ke složkám – Controlled Folder Access) v GUI Zabezpečení Windows.
+        - **Úloha 4 (NOVÉ GUI):** Inspekce digitálního podpisu a certifikátu aplikace v GUI Průzkumníku Windows (Vlastnosti souboru -> Digitální podpisy -> Podrobnosti -> Zobrazit certifikát; prověření staženého instalátoru např. VLC Media Player z videolan.org – Předmět/Subjekt, Vystavitel CA a stav Certifikační cesty).
+        - **Úloha 5:** Stopování procesu `explorer.exe` v CLI (PID, RAM, sestavený příkaz bez spoilerů).
+        - **Úloha 6:** Filtrování procesů s pamětí nad 100 MB v CLI (největší proces, RAM, sestavený příkaz bez spoilerů).
+        - **Úloha 7:** Živý odposlech síťových TCP spojení v `resmon.exe`, zjištění vlastníka vzdálené IP přes Whois/IPinfo.
+        - **Úloha 8:** Cloudová reputace a lustrace na VirusTotal.com (představení 70+ multiskeneru, ověření staženého souboru, skóre detekce a zhodnocení).
+        - **Úloha 9:** Živá analýza procesů v Sysinternals Process Explorer & VirusTotal (stažení portable `procexp.exe`, zapnutí kontroly VirusTotal a digitálních podpisů v menu Options, analýza běžícího Malování `mspaint.exe` a druhého libovolného procesu dle výběru žáka – PID, Verified Signer a VirusTotal skóre např. 0/76).
+      - **Sekce: Pokročilé úlohy & Expertní výzvy:**
+        - **Úloha 10\* (Pokročilé):** Mapování systémových služeb pod `svchost.exe` (`tasklist /svc`) a zdůvodnění maskování útočníků.
+        - **Úloha 11\*\* (Expertní výzva):** Vytvoření vlastního nepodepsaného programu (Python/utilita) a demonstrace chybějící pečeti Authenticode v Process Exploreru a varování SmartScreenu.
+      - **Závěr:** Závěrečná syntéza byla odebrána, list je přímočarý a praktický. Všechny inputy a popisky mají sjednocené výšky a horizontální zarovnání.
+    - Aktualizován typový kontrakt `ProcessProtocolState` v [`processTypes.ts`](components/specializovana/operacni-systemy-2/bezpecnost/procesy/processTypes.ts).
+    - Export do Wordu (`handleDownloadWord`) i kopírování protokolu do schránky v [`ProcessCertificatesChapter.tsx`](components/specializovana/operacni-systemy-2/bezpecnost/ProcessCertificatesChapter.tsx) jsou 100% synchronizovány s novým 11úlohovým protokolem.

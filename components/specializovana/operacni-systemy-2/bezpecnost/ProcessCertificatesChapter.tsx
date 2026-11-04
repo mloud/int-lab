@@ -27,54 +27,46 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   const [checkedTasks, setCheckedTasks] = useLocalStorage<Record<string, boolean>>('process_lab_checked_tasks', {});
   const [copiedSuccess, setCopiedSuccess] = useState(false);
 
-  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers', {
-    task1Pid: '',
-    task1Memory: '',
-    task1Cmd: '',
-    task2MemCmd: '',
-    task2TopProcess: '',
-    task2TopMemValue: '',
-    task3SvcCmd: '',
-    task3SvchostPid: '',
-    task3SvcNames: '',
-    task4ExportCmd: '',
-    task4TopRamProcess: '',
-    task4SvchostCount: '',
-    task4SvchostAnomaly: '',
-    task5ChromeIp: '',
-    task5IpOwner: '',
-    taskSeznamIp: '',
-    taskSeznamOwner: '',
-    taskSeznamAiPrompt: '',
-    taskSeznamIdentifiedWebs: '',
-    taskSeznamReflection: '',
-    task5BulkMethod: '',
-    task5SuspiciousReflection: '',
-    task5Process: '',
-    task5RemoteIp: '',
-    task5RemotePort: '',
-    task5IpType: '',
-    task6VlcSigner: '',
-    task6VlcScore: '',
-    task6PySigner: '',
-    task6PyScore: '',
-    task6ExplorerSigner: '',
-    task6SvchostScore: '',
-    task6PinkMeaning: '',
-    task6PurpleMeaning: '',
-    task6BonusApp: '',
-    task7Hash: '',
-    task7VtScore: '',
-    task8SacStatus: '',
-    task8SacReason: '',
-    taskCertProgram: '',
-    taskCertSubject: '',
-    taskCertIssuer: '',
-    taskCertValidity: '',
-    taskCertAlgorithm: '',
-    taskCertChainStatus: '',
-    qVirusWorm: '',
-    qRunAsAdmin: ''
+  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v7', {
+    task1SacStatus: '',
+    task2AntivirusStatus: '',
+    task2SignatureVersion: '',
+    task3RansomwareStatus: '',
+    task3ProtectedFolders: '',
+    task4AppName: '',
+    task4SignerSubject: '',
+    task4CertificateCA: '',
+    task4CertPathStatus: '',
+    task5HashCmd: '',
+    task5FileHash: '',
+    task5SignatureStatus: '',
+    task5SignerName: '',
+    task6ExplorerPid: '',
+    task6ExplorerMemory: '',
+    task6ExplorerCmd: '',
+    task7MemCmd: '',
+    task7TopProcess: '',
+    task7TopMemValue: '',
+    task8NetworkProcess: '',
+    task8RemoteIp: '',
+    task8RemotePort: '',
+    task8IpOwner: '',
+    task8IsLegitimate: '',
+    task9FileName: '',
+    task9VtScore: '',
+    task9VtVerdict: '',
+    task10MspaintPid: '',
+    task10MspaintSigner: '',
+    task10MspaintVtScore: '',
+    task10SecondProcessName: '',
+    task10SecondProcessSigner: '',
+    task10SecondProcessVtScore: '',
+    task11SvcCmd: '',
+    task11SvchostPid: '',
+    task11SvcNames: '',
+    task11SvcWhyAbused: '',
+    task12ExpertSignerResult: '',
+    task12ExpertSmartScreenReason: ''
   });
 
   const toggleTask = (taskId: string) => {
@@ -89,57 +81,67 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
 Jméno studenta: ${studentName || 'Neuvedeno'}
 Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 
-[Úloha 1: Stopování klíčového procesu v CLI (cmd.exe)]
-- Sledovaný proces: explorer.exe
-- PID: ${protocol.task1Pid || '-'}
-- Využití paměti: ${protocol.task1Memory || '-'}
-- Použitý příkaz: ${protocol.task1Cmd || '-'}
+[Úloha 1: Smart App Control & SmartScreen]
+- Stav funkce na PC: ${protocol.task1SacStatus || '-'}
 
-[Úloha 2: Výpis procesů s pamětí nad 100 MB v CLI (cmd.exe)]
-- Použitý příkaz: ${protocol.task2MemCmd || '-'}
-- Proces s největší RAM nad 100 MB: ${protocol.task2TopProcess || '-'}
-- Zjištěná paměť: ${protocol.task2TopMemValue || '-'}
+[Úloha 2: Kontrola antivirového štítu a signatur]
+- Stav ochrany v reálném čase: ${protocol.task2AntivirusStatus || '-'}
+- Verze signatur / definic: ${protocol.task2SignatureVersion || '-'}
 
-[Úloha 3: Forenzní export do CSV a tabulková analýza v Excelu]
-- Příkaz pro export: ${protocol.task4ExportCmd || '-'}
-- Proces s největší RAM: ${protocol.task4TopRamProcess || '-'}
-- Počet instancí svchost.exe: ${protocol.task4SvchostCount || '-'}
-- Audit anomálií procesů: ${protocol.task4SvchostAnomaly || '-'}
+[Úloha 3: Ochrana před ransomwarem]
+- Stav funkce Řízený přístup ke složkám: ${protocol.task3RansomwareStatus || '-'}
+- Chráněné složky: ${protocol.task3ProtectedFolders || '-'}
 
-[Úloha 4: Odposlech síťových spojení – Chrome (resmon.exe)]
-- Odchozí IP adresa (Chrome): ${protocol.task5ChromeIp || protocol.task5RemoteIp || '-'}
-- Ověřený vlastník / organizace (IPinfo/Whois): ${protocol.task5IpOwner || '-'}
+[Úloha 4: Inspekce digitálního podpisu a certifikátu aplikace v GUI]
+- Prověřovaný program / instalátor: ${protocol.task4AppName || '-'}
+- Vystaveno pro (Předmět): ${protocol.task4SignerSubject || '-'}
+- Vystavitel certifikátu (CA): ${protocol.task4CertificateCA || '-'}
+- Stav v Certifikační cestě: ${protocol.task4CertPathStatus || '-'}
 
-[Úloha 5: Hromadný export spojení do tabulky a identifikace webů pomocí AI]
-- Použitý AI prompt a metoda: ${protocol.taskSeznamAiPrompt || '-'}
-- Identifikované weby a organizace: ${protocol.taskSeznamIdentifiedWebs || '-'}
-- Závěr šetření (infrastruktura webu): ${protocol.taskSeznamReflection || '-'}
+[Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu]
+- Použitý příkaz pro výpočet SHA-256 hashe: ${protocol.task5HashCmd || '-'}
+- Vypočítaná hodnota SHA-256 hashe souboru: ${protocol.task5FileHash || '-'}
+- Stav digitálního podpisu (Status): ${protocol.task5SignatureStatus || '-'}
+- Vydavatel / Předmět podpisovatele (SignerCertificate): ${protocol.task5SignerName || '-'}
 
-[Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru]
-- Prověřovaný program a cesta: ${protocol.taskCertProgram || '-'}
-- Ověřený podpis (Verified Signer / Vlastník): ${protocol.taskCertSubject || '-'}
-- VirusTotal skóre procesu: ${protocol.taskCertIssuer || protocol.task6VlcScore || '-'}
+[Úloha 6: Stopování explorer.exe v CLI (cmd.exe)]
+- PID: ${protocol.task6ExplorerPid || '-'}
+- Využití paměti RAM: ${protocol.task6ExplorerMemory || '-'}
+- Použitý příkaz: ${protocol.task6ExplorerCmd || '-'}
 
-[Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu]
-- Stav podpisu vlastního programu (Verified Signer): ${protocol.task6PySigner || protocol.task6BonusApp || '-'}
-- VirusTotal stav a skóre vlastního programu: ${protocol.task6PyScore || protocol.task6PurpleMeaning || '-'}
+[Úloha 7: Výpis procesů s pamětí nad 100 MB v CLI]
+- Použitý příkaz: ${protocol.task7MemCmd || '-'}
+- Proces s největší RAM nad 100 MB: ${protocol.task7TopProcess || '-'}
+- Zjištěná paměť: ${protocol.task7TopMemValue || '-'}
 
-[Úloha 8: Výpočet SHA-256 v CMD (certutil) a VirusTotal]
-- Vypočtený hash notepad.exe: ${protocol.task7Hash || '-'}
-- Skóre VirusTotal: ${protocol.task7VtScore || '-'}
+[Úloha 8: Odposlech síťových spojení (resmon.exe)]
+- Sledovaný proces: ${protocol.task8NetworkProcess || '-'}
+- Vzdálená IP adresa a port: ${protocol.task8RemoteIp || '-'}
+- Vlastník IP (IPinfo/Whois): ${protocol.task8IpOwner || '-'}
+- Legitimita spojení: ${protocol.task8IsLegitimate || '-'}
 
-[Úloha 9: Aktivní ochrana – Smart App Control (Windows 11)]
-- Stav SAC na PC: ${protocol.task8SacStatus || '-'}
-- Proč je účinnější než signatury: ${protocol.task8SacReason || '-'}
+[Úloha 9: Cloudová reputace a lustrace na VirusTotal.com]
+- Prověřovaný soubor: ${protocol.task9FileName || '-'}
+- VirusTotal skóre: ${protocol.task9VtScore || '-'}
+- Zhodnocení bezpečnosti: ${protocol.task9VtVerdict || '-'}
 
-[Úloha 10**: Odhalení systémových služeb pod procesy (tasklist /svc)]
-- Použitý příkaz: ${protocol.task3SvcCmd || '-'}
-- Vybrané PID svchost.exe: ${protocol.task3SvchostPid || '-'}
-- Běžící systémové služby: ${protocol.task3SvcNames || '-'}
+[Úloha 10: Živá analýza procesů v Sysinternals Process Explorer & VirusTotal]
+- Malování (mspaint.exe) PID: ${protocol.task10MspaintPid || '-'}
+- Malování Verified Signer: ${protocol.task10MspaintSigner || '-'}
+- Malování VirusTotal skóre: ${protocol.task10MspaintVtScore || '-'}
+- 2. vybraný proces: ${protocol.task10SecondProcessName || '-'}
+- 2. proces Verified Signer: ${protocol.task10SecondProcessSigner || '-'}
+- 2. proces VirusTotal skóre: ${protocol.task10SecondProcessVtScore || '-'}
 
-[Závěrečná reflexe]
-1. Proč malware volí název svchost.exe a jak ho odhalit: ${protocol.qVirusWorm || '-'}
-2. Proč spouštět diagnostické nástroje jako Správce: ${protocol.qRunAsAdmin || '-'}
+[Úloha 11*: Služby pod svchost.exe (tasklist /svc)]
+- Použitý příkaz: ${protocol.task11SvcCmd || '-'}
+- Vybrané PID svchost.exe: ${protocol.task11SvchostPid || '-'}
+- Běžící služby: ${protocol.task11SvcNames || '-'}
+- Důvod maskování malwaru za svchost: ${protocol.task11SvcWhyAbused || '-'}
+
+[Úloha 12**: Expertní výzva – Vlastní nepodepsaný program]
+- Stav podpisu v Process Exploreru: ${protocol.task12ExpertSignerResult || '-'}
+- Proč SmartScreen program zablokuje: ${protocol.task12ExpertSmartScreenReason || '-'}
 `;
     navigator.clipboard.writeText(text);
     setCopiedSuccess(true);
@@ -169,63 +171,68 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
           <strong>Datum:</strong> ${new Date().toLocaleDateString('cs-CZ')}
         </div>
 
-        <h2>Úloha 1: Stopování klíčového procesu v CLI (cmd.exe)</h2>
+        <h2>Úloha 1: Aktivní obranný val OS – Smart App Control & SmartScreen</h2>
+        <div class="item"><span class="label">Stav funkce na PC:</span> <span class="val">${protocol.task1SacStatus || '-'}</span></div>
+
+        <h2>Úloha 2: Kontrola antivirového štítu v reálném čase a signatur</h2>
+        <div class="item"><span class="label">Stav ochrany v reálném čase:</span> <span class="val">${protocol.task2AntivirusStatus || '-'}</span></div>
+        <div class="item"><span class="label">Verze virových signatur / definic:</span> <span class="val">${protocol.task2SignatureVersion || '-'}</span></div>
+
+        <h2>Úloha 3: Kontrola ochrany před ransomwarem (Řízený přístup ke složkám)</h2>
+        <div class="item"><span class="label">Stav funkce:</span> <span class="val">${protocol.task3RansomwareStatus || '-'}</span></div>
+        <div class="item"><span class="label">Chráněné složky:</span> <span class="val">${protocol.task3ProtectedFolders || '-'}</span></div>
+
+        <h2>Úloha 4: Inspekce digitálního podpisu a certifikátu aplikace v GUI</h2>
+        <div class="item"><span class="label">Prověřovaný program / instalátor:</span> <span class="val">${protocol.task4AppName || '-'}</span></div>
+        <div class="item"><span class="label">Vystaveno pro (Předmět):</span> <span class="val">${protocol.task4SignerSubject || '-'}</span></div>
+        <div class="item"><span class="label">Vystavitel certifikátu (CA):</span> <span class="val">${protocol.task4CertificateCA || '-'}</span></div>
+        <div class="item"><span class="label">Stav v Certifikační cestě:</span> <span class="val">${protocol.task4CertPathStatus || '-'}</span></div>
+
+        <h2>Úloha 5: Matematický otisk (SHA-256) a ověření podpisu v PowerShellu</h2>
+        <div class="item"><span class="label">Příkaz pro výpočet SHA-256 hashe:</span> <span class="val">${protocol.task5HashCmd || '-'}</span></div>
+        <div class="item"><span class="label">Vypočítaná hodnota SHA-256 hashe:</span> <span class="val">${protocol.task5FileHash || '-'}</span></div>
+        <div class="item"><span class="label">Stav digitálního podpisu (Status):</span> <span class="val">${protocol.task5SignatureStatus || '-'}</span></div>
+        <div class="item"><span class="label">Vydavatel / Předmět certifikátu:</span> <span class="val">${protocol.task5SignerName || '-'}</span></div>
+
+        <h2>Úloha 6: Stopování klíčového procesu v CLI (cmd.exe)</h2>
         <div class="item"><span class="label">Sledovaný proces:</span> explorer.exe</div>
-        <div class="item"><span class="label">Zjištěné PID:</span> <span class="val">${protocol.task1Pid || '-'}</span></div>
-        <div class="item"><span class="label">Využití paměti:</span> <span class="val">${protocol.task1Memory || '-'}</span></div>
-        <div class="item"><span class="label">Příkaz v CMD:</span> <span class="val">${protocol.task1Cmd || '-'}</span></div>
+        <div class="item"><span class="label">Zjištěné PID:</span> <span class="val">${protocol.task6ExplorerPid || '-'}</span></div>
+        <div class="item"><span class="label">Využití paměti RAM:</span> <span class="val">${protocol.task6ExplorerMemory || '-'}</span></div>
+        <div class="item"><span class="label">Použitý příkaz:</span> <span class="val">${protocol.task6ExplorerCmd || '-'}</span></div>
 
-        <h2>Úloha 2: Výpis procesů s pamětí nad 100 MB (cmd.exe)</h2>
-        <div class="item"><span class="label">Příkaz pro filtrování paměti:</span> <span class="val">${protocol.task2MemCmd || '-'}</span></div>
-        <div class="item"><span class="label">Proces s největší RAM nad 100 MB:</span> <span class="val">${protocol.task2TopProcess || '-'}</span></div>
-        <div class="item"><span class="label">Využití paměti tohoto procesu:</span> <span class="val">${protocol.task2TopMemValue || '-'}</span></div>
+        <h2>Úloha 7: Výpis procesů s pamětí nad 100 MB v CLI (cmd.exe)</h2>
+        <div class="item"><span class="label">Příkaz pro filtrování:</span> <span class="val">${protocol.task7MemCmd || '-'}</span></div>
+        <div class="item"><span class="label">Proces s největší RAM nad 100 MB:</span> <span class="val">${protocol.task7TopProcess || '-'}</span></div>
+        <div class="item"><span class="label">Zjištěná paměť:</span> <span class="val">${protocol.task7TopMemValue || '-'}</span></div>
 
-        <h2>Úloha 3: Forenzní export do CSV a tabulková analýza v Excelu</h2>
-        <div class="item"><span class="label">Příkaz pro export:</span> <span class="val">${protocol.task4ExportCmd || '-'}</span></div>
-        <div class="item"><span class="label">Proces s největší RAM v tabulce:</span> <span class="val">${protocol.task4TopRamProcess || '-'}</span></div>
-        <div class="item"><span class="label">Počet instancí svchost.exe:</span> <span class="val">${protocol.task4SvchostCount || '-'}</span></div>
-        <div class="item"><span class="label">Audit anomálií procesů:</span> <span class="val">${protocol.task4SvchostAnomaly || '-'}</span></div>
+        <h2>Úloha 8: Odposlech síťových spojení procesu naživo (resmon.exe)</h2>
+        <div class="item"><span class="label">Sledovaný proces:</span> <span class="val">${protocol.task8NetworkProcess || '-'}</span></div>
+        <div class="item"><span class="label">Vzdálená IP adresa a port:</span> <span class="val">${protocol.task8RemoteIp || '-'}</span></div>
+        <div class="item"><span class="label">Vlastník IP adresy (IPinfo/Whois):</span> <span class="val">${protocol.task8IpOwner || '-'}</span></div>
+        <div class="item"><span class="label">Zhodnocení legitimity:</span> <span class="val">${protocol.task8IsLegitimate || '-'}</span></div>
 
-        <h2>Úloha 4: Odposlech síťových spojení – Chrome (resmon.exe)</h2>
-        <div class="item"><span class="label">Odchozí IP adresa (Chrome):</span> <span class="val">${protocol.task5ChromeIp || protocol.task5RemoteIp || '-'}</span></div>
-        <div class="item"><span class="label">Ověřený vlastník / organizace:</span> <span class="val">${protocol.task5IpOwner || '-'}</span></div>
+        <h2>Úloha 9: Cloudová reputace a lustrace na VirusTotal.com</h2>
+        <div class="item"><span class="label">Prověřovaný soubor:</span> <span class="val">${protocol.task9FileName || '-'}</span></div>
+        <div class="item"><span class="label">VirusTotal skóre detekce:</span> <span class="val">${protocol.task9VtScore || '-'}</span></div>
+        <div class="item"><span class="label">Zhodnocení bezpečnosti:</span> <span class="val">${protocol.task9VtVerdict || '-'}</span></div>
 
-        <h2>Úloha 5: Hromadný export spojení do tabulky a identifikace webů pomocí AI</h2>
-        <div class="item"><span class="label">Použitý AI prompt a metoda:</span> <span class="val">${protocol.taskSeznamAiPrompt || '-'}</span></div>
-        <div class="item"><span class="label">Identifikované weby a organizace:</span> <span class="val">${protocol.taskSeznamIdentifiedWebs || '-'}</span></div>
-        <div class="item"><span class="label">Závěr šetření (infrastruktura webu):</span> <span class="val">${protocol.taskSeznamReflection || '-'}</span></div>
+        <h2>Úloha 10: Živá analýza procesů v Sysinternals Process Explorer &amp; VirusTotal</h2>
+        <div class="item"><span class="label">Malování (mspaint.exe) PID:</span> <span class="val">${protocol.task10MspaintPid || '-'}</span></div>
+        <div class="item"><span class="label">Malování Verified Signer:</span> <span class="val">${protocol.task10MspaintSigner || '-'}</span></div>
+        <div class="item"><span class="label">Malování VirusTotal skóre:</span> <span class="val">${protocol.task10MspaintVtScore || '-'}</span></div>
+        <div class="item"><span class="label">2. vybraný proces:</span> <span class="val">${protocol.task10SecondProcessName || '-'}</span></div>
+        <div class="item"><span class="label">2. proces Verified Signer:</span> <span class="val">${protocol.task10SecondProcessSigner || '-'}</span></div>
+        <div class="item"><span class="label">2. proces VirusTotal skóre:</span> <span class="val">${protocol.task10SecondProcessVtScore || '-'}</span></div>
 
-        <h2>Úloha 6: Forenzní inspekce procesu VLC v Sysinternals Process Exploreru</h2>
-        <div class="item"><span class="label">Prověřovaný program a cesta:</span> <span class="val">${protocol.taskCertProgram || '-'}</span></div>
-        <div class="item"><span class="label">Ověřený podpis (Verified Signer / Vlastník):</span> <span class="val">${protocol.taskCertSubject || '-'}</span></div>
-        <div class="item"><span class="label">VirusTotal skóre procesu:</span> <span class="val">${protocol.taskCertIssuer || protocol.task6VlcScore || '-'}</span></div>
+        <h2>Úloha 11*: Mapování systémových služeb pod svchost.exe (tasklist /svc)</h2>
+        <div class="item"><span class="label">Použitý příkaz:</span> <span class="val">${protocol.task11SvcCmd || '-'}</span></div>
+        <div class="item"><span class="label">Zkoumané PID svchost.exe:</span> <span class="val">${protocol.task11SvchostPid || '-'}</span></div>
+        <div class="item"><span class="label">Služby běžící pod tímto PID:</span> <span class="val">${protocol.task11SvcNames || '-'}</span></div>
+        <div class="item"><span class="label">Důvod maskování útočníků za svchost:</span> <span class="val">${protocol.task11SvcWhyAbused || '-'}</span></div>
 
-        <h2>Úloha 7: Vytvoření a forenzní analýza vlastního nepodepsaného programu</h2>
-        <div class="item"><span class="label">Stav podpisu vlastního programu (Verified Signer):</span> <span class="val">${protocol.task6PySigner || protocol.task6BonusApp || '-'}</span></div>
-        <div class="item"><span class="label">VirusTotal stav a skóre vlastního programu:</span> <span class="val">${protocol.task6PyScore || protocol.task6PurpleMeaning || '-'}</span></div>
-
-        <h2>Úloha 8: Výpočet SHA-256 v CMD (certutil) a VirusTotal</h2>
-        <div class="item"><span class="label">SHA-256 hash notepad.exe:</span> <span class="val">${protocol.task7Hash || '-'}</span></div>
-        <div class="item"><span class="label">Reputace na VirusTotal.com:</span> <span class="val">${protocol.task7VtScore || '-'}</span></div>
-
-        <h2>Úloha 9: Aktivní ochrana – Smart App Control (Windows 11)</h2>
-        <div class="item"><span class="label">Stav funkce na PC:</span> <span class="val">${protocol.task8SacStatus || '-'}</span></div>
-        <div class="item"><span class="label">Zdůvodnění účinnosti:</span> <span class="val">${protocol.task8SacReason || '-'}</span></div>
-
-        <h2>Úloha 10**: Odhalení skrytých systémových služeb pod procesy (tasklist /svc)</h2>
-        <div class="item"><span class="label">Příkaz pro zjištění služeb:</span> <span class="val">${protocol.task3SvcCmd || '-'}</span></div>
-        <div class="item"><span class="label">Prověřované PID svchost.exe:</span> <span class="val">${protocol.task3SvchostPid || '-'}</span></div>
-        <div class="item"><span class="label">Služby běžící pod tímto PID:</span> <span class="val">${protocol.task3SvcNames || '-'}</span></div>
-
-        <h2>Závěrečná reflexe</h2>
-        <div class="qa">
-          <strong>1. Proč malware volí název svchost.exe a jak ho odhalit:</strong><br/>
-          ${protocol.qVirusWorm || 'Neuvedeno'}
-        </div>
-        <div class="qa">
-          <strong>2. Proč je nutné spouštět diagnostické nástroje jako Správce:</strong><br/>
-          ${protocol.qRunAsAdmin || 'Neuvedeno'}
-        </div>
+        <h2>Úloha 12**: Expertní výzva – Vytvoření a analýza vlastního nepodepsaného programu</h2>
+        <div class="item"><span class="label">Verified Signer vlastního programu:</span> <span class="val">${protocol.task12ExpertSignerResult || '-'}</span></div>
+        <div class="item"><span class="label">Důvod zablokování filtrem SmartScreen:</span> <span class="val">${protocol.task12ExpertSmartScreenReason || '-'}</span></div>
       </body>
       </html>
     `;

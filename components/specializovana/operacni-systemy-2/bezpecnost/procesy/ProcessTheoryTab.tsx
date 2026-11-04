@@ -12,10 +12,7 @@ import {
   CheckCircle2, 
   XCircle, 
   AlertTriangle, 
-  ChevronDown, 
-  ShieldAlert, 
   Key, 
-  Server, 
   Fingerprint, 
   Terminal,
   Search,
@@ -23,558 +20,340 @@ import {
   FileCheck,
   Network,
   FileCode,
-  Bug
+  Bug,
+  ShieldAlert,
+  ArrowRight,
+  ArrowDown
 } from 'lucide-react';
 
 export default function ProcessTheoryTab() {
   return (
-        <div className="space-y-10 animate-in fade-in duration-300">
+    <div className="space-y-8 animate-in fade-in duration-300">
+      
+      {/* 1. NAVÁZÁNÍ NA 1. ROČNÍK (Mentální most z OSS 1) */}
+      <div className="p-5 sm:p-6 bg-blue-50/90 rounded-3xl border-2 border-blue-200/80 space-y-2">
+        <div className="flex items-center gap-2 text-blue-900 font-black text-xs uppercase tracking-wider">
+          <Sparkles className="w-4 h-4 text-blue-600" />
+          Navázání na 1. ročník (Co už známe z OSS 1)
+        </div>
+        <p className="text-sm text-blue-950 leading-relaxed font-medium">
+          V 1. ročníku jsme zjistili, že <strong>program na disku</strong> je pasivní soubor bajtů. 
+          Teprve po zavedení do <strong>paměti RAM</strong> a přidělení číselného identifikátoru <strong>PID</strong> 
+          vznikne živý <strong>proces</strong>, jehož instrukce vykonává CPU. V bezpečnosti ale řešíme novou otázku: 
+          <em> Jak systém pozná, zda je program bezpečný, ještě než ho vůbec pustí do procesoru?</em>
+        </p>
+      </div>
+
+      {/* =========================================================================
+          PILÍŘ 1: CO SE STANE PŘI DVOJKLIKU NA .EXE? (3 ÚROVNĚ KONTROLY)
+          ========================================================================= */}
+      <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
+        <div className="flex items-center gap-3">
+          <span className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-black flex items-center justify-center shrink-0 shadow-sm">
+            <Zap className="w-5 h-5" />
+          </span>
+          <div>
+            <h3 className="text-xl font-black text-slate-800">
+              1. Třífázový filtr: Co dělá Windows při spuštění .exe souboru?
+            </h3>
+            <p className="text-xs text-slate-500 font-medium">
+              Operační systém nepustí cizí kód do procesoru okamžitě – provede bleskový řetězec prověrek
+            </p>
+          </div>
+        </div>
+
+        {/* Sekvenční proud 3 fází se spojovacími šipkami */}
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 relative">
           
-          {/* Úvodní navázání na 1. ročník */}
-          <div className="p-6 bg-blue-50/80 rounded-3xl border-2 border-blue-200/80 space-y-3">
-            <div className="flex items-center gap-2.5 text-blue-900 font-black text-sm uppercase tracking-wide">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              Navázání na 1. ročník (Co už známe z OSS 1):
-            </div>
-            <p className="text-sm text-blue-950 leading-relaxed">
-              V 1. ročníku jsme zjistili, že <strong>program na disku</strong> je pouhý pasivní soubor bajtů. 
-              Teprve když ho operační systém zavede do <strong>paměti RAM</strong> a přidělí mu číselný identifikátor <strong>PID</strong>, 
-              vznikne živý <strong>proces</strong>, jehož instrukce vykonává procesor přes čítač PC.
-            </p>
-          </div>
-
-          {/* =========================================================================
-              KLÍČOVÝ BOD 1: CO DĚLÁ OPERAČNÍ SYSTÉM PŘI SPUŠTĚNÍ SOUBORU .EXE?
-              ========================================================================= */}
-          <div className="p-6 sm:p-8 bg-gradient-to-br from-indigo-50/90 via-blue-50/60 to-white rounded-[2.5rem] border-2 border-indigo-200 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">
-                <Zap className="w-5 h-5" />
+          {/* Fáze 1 */}
+          <div className="flex-1 p-5 bg-gradient-to-br from-blue-50/80 to-white rounded-3xl border-2 border-blue-400 shadow-md space-y-3 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-7 h-7 rounded-xl bg-blue-600 text-white font-black text-xs flex items-center justify-center shadow-sm">
+                1
               </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Co dělá operační systém při spuštění souboru .exe?
-                </h3>
-                <p className="text-xs text-indigo-700 font-semibold">
-                  Jaké analýzy a prověrky Windows provede předtím, než pustí cizí kód do procesoru
-                </p>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-700 leading-relaxed">
-              Když uživatel dvakrát klikne na program nebo ho spustí z terminálu, Windows ho <strong>nepustí okamžitě do procesoru</strong>! 
-              V moderním operačním systému proběhne během zlomku sekundy bezpečnostní řetězec prověrek:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div className="p-4 bg-white rounded-2xl border border-indigo-100 shadow-2xs space-y-2">
-                <div className="w-7 h-7 rounded-xl bg-blue-100 text-blue-700 font-black flex items-center justify-center text-xs">
-                  1
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                    <Fingerprint className="w-4 h-4 text-blue-600" /> Lokální kontrola (Integrita & Podpis)
-                  </div>
-                  <span className="text-[10px] text-blue-600 font-bold uppercase tracking-wider block mt-0.5">
-                    100% offline (na vašem CPU)
-                  </span>
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Váš procesor spočítá hash instrukcí a dešifruje podpis v certifikátu souboru. Zjistí: <em>Je podpis platný a nebyl kód po cestě změněn?</em> Pokud hash nesouhlasí, systém soubor <strong>okamžitě zablokuje a další kroky ani nespustí!</strong>
-                </p>
-              </div>
-
-              <div className="p-4 bg-white rounded-2xl border border-indigo-100 shadow-2xs space-y-2">
-                <div className="w-7 h-7 rounded-xl bg-indigo-100 text-indigo-700 font-black flex items-center justify-center text-xs">
-                  2
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                    <ShieldAlert className="w-4 h-4 text-indigo-600" /> Cloudová kontrola (Reputace v síti)
-                  </div>
-                  <span className="text-[10px] text-indigo-600 font-bold uppercase tracking-wider block mt-0.5">
-                    Online (dotaz do cloudu)
-                  </span>
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Teprve pokud je podpis v pořádku (nebo je soubor nepodepsaný), systém kontaktuje cloudové služby (jako SmartScreen či Smart App Control): <em>Známe tento program? Běží na milionech PC, nebo byl vytvořen před minutou?</em>
-                </p>
-              </div>
-
-              <div className="p-4 bg-white rounded-2xl border border-indigo-100 shadow-2xs space-y-2">
-                <div className="w-7 h-7 rounded-xl bg-purple-100 text-purple-700 font-black flex items-center justify-center text-xs">
-                  3
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                    <Shield className="w-4 h-4 text-purple-600" /> Antivirová kontrola (Lokální sken)
-                  </div>
-                  <span className="text-[10px] text-purple-600 font-bold uppercase tracking-wider block mt-0.5">
-                    Analýza v reálném čase
-                  </span>
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Antivirová ochrana v reálném čase proskenuje kód a hlavičky souboru na přítomnost známých signatur malwaru, škodlivých skriptů a podezřelých vzorců chování.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-3.5 bg-indigo-100/70 rounded-2xl border border-indigo-200 text-xs text-indigo-950 font-medium flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-indigo-700 shrink-0" />
-              <span><strong>Výsledek:</strong> Teprve když soubor projde těmito filtry, zavaděč OS (Loader) alokuje virtuální paměť v RAM, přidělí mu číselné <strong>PID</strong> a CPU začne vykonávat instrukce.</span>
-            </div>
-          </div>
-
-          {/* =========================================================================
-              ANATOMIE .EXE SOUBORU A DIGITÁLNÍ PODPIS (AUTHENTICODE)
-              ========================================================================= */}
-          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 font-black text-base flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5" />
+              <span className="text-[10px] font-black text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-blue-200">
+                100% offline (CPU)
               </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Anatomie .EXE souboru a digitální podpis (Authenticode)
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Jak je spustitelný program poskládán na disku a jak Windows pozná nedovolenou úpravu
-                </p>
-              </div>
             </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Když se podíváme na soubor <code>.exe</code> pod rentgenem, neobsahuje jen samotný kód programu. 
-              Na samém konci souboru je speciální bezpečnostní přihrádka, kam autor přibalil digitální podpis a svůj certifikát:
-            </p>
-
-            {/* JEDNODUCHÉ GRAFICKÉ SCHÉMA .EXE SOUBORU NA DISKU */}
-            <div className="max-w-2xl mx-auto rounded-3xl border-2 border-slate-300 bg-slate-900 text-white p-5 shadow-xl space-y-3 font-sans">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-xs">
-                <span className="font-mono text-cyan-400 font-black flex items-center gap-2">
-                  <FileCode className="w-4 h-4 text-cyan-400" /> Soubor programu na disku: kalkulacka.exe
-                </span>
-                <span className="text-[10px] text-slate-400 font-mono">PE formát (Portable Executable)</span>
+            <div>
+              <div className="font-black text-slate-900 flex items-center gap-2 text-sm">
+                <Fingerprint className="w-4 h-4 text-blue-600" /> Integrita & Podpis
               </div>
-
-              {/* Sekce 1: Instrukce */}
-              <div className="p-3.5 bg-slate-800/90 rounded-2xl border border-slate-700 space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <strong className="text-slate-100 flex items-center gap-1.5 font-black">
-                    <Cpu className="w-3.5 h-3.5 text-cyan-400" /> 1. Instrukce programu (Kód)
-                  </strong>
-                  <span className="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded font-mono font-bold">Kód pro CPU</span>
-                </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Výkonný strojový kód, který procesor čte a vykonává (výpočty, otevření okna, komunikace po síti).
-                </p>
-              </div>
-
-              {/* Sekce 2: Data a zdroje */}
-              <div className="p-3.5 bg-slate-800/90 rounded-2xl border border-slate-700 space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <strong className="text-slate-100 flex items-center gap-1.5 font-black">
-                    <Layers className="w-3.5 h-3.5 text-indigo-400" /> 2. Data a zdroje (Resources)
-                  </strong>
-                  <span className="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded font-mono font-bold">Data</span>
-                </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Obrázky, ikony, texty v nabídkách, grafické dialogy a konfigurace aplikace.
-                </p>
-              </div>
-
-              {/* Sekce 3: Bezpečnostní přihrádka na konci souboru */}
-              <div className="p-4 bg-gradient-to-br from-blue-950/90 to-indigo-950/90 rounded-2xl border-2 border-blue-500/80 space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <strong className="text-blue-200 flex items-center gap-2 font-black text-sm">
-                    <ShieldCheck className="w-4 h-4 text-blue-400" /> 3. Část na konci souboru: Bezpečnostní blok (Authenticode)
-                  </strong>
-                  <span className="text-[10px] bg-blue-500 text-white font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
-                    Připojeno k souboru
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  {/* Zašifrovaný hash (Podpis) */}
-                  <div className="p-3 bg-black/40 rounded-xl border border-blue-400/40 space-y-1">
-                    <div className="text-cyan-300 font-bold flex items-center gap-1.5 text-[11px]">
-                      <Key className="w-3.5 h-3.5 text-cyan-400" /> Podpis = Zašifrovaný hash
-                    </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
-                      Autor vzal hash instrukcí a dat a <strong>zašifroval ho svým tajným klíčem</strong>. Nikdo jiný na světě tento podpis neumí vyrobit.
-                    </p>
-                  </div>
-
-                  {/* Certifikát (Notář) */}
-                  <div className="p-3 bg-black/40 rounded-xl border border-emerald-400/40 space-y-1">
-                    <div className="text-emerald-300 font-bold flex items-center gap-1.5 text-[11px]">
-                      <FileCheck className="w-3.5 h-3.5 text-emerald-400" /> Digitální certifikát
-                    </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
-                      Úřední doklad od certifikační autority (např. DigiCert): <em>„Ověřili jsme totožnost, klíč skutečně patří Microsoftu.“</em>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* JAK WINDOWS KONTROLUJE SOUBOR PŘI SPUŠTĚNÍ */}
-            <div className="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 space-y-3 text-xs text-slate-700 leading-relaxed">
-              <h4 className="font-black text-sm text-blue-950 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-blue-600" /> Jak probíhá lokální kontrola souboru (Krok 1), když na něj kliknete?
-              </h4>
-              <ol className="list-decimal list-inside space-y-1.5 text-slate-600">
-                <li><strong>Spočte aktuální hash na vašem procesoru:</strong> Windows vezme instrukce programu a lokálně spočte kontrolní hash (např. <code>a7f3...</code>).</li>
-                <li><strong>Dešifruje podpis z konce souboru:</strong> Pomocí veřejného klíče v certifikátu dešifruje původní hash ukrytý v podpisu (vyjde <code>a7f3...</code>).</li>
-                <li><strong>Porovná obě čísla (Lokální integrita):</strong> Pokud se obě hodnoty přesně shodují, Windows ví, že kód nikdo nezměnil. Teprve nyní může program postoupit do Kroku 2 (cloudové kontroly reputace). Pokud se neshodují, soubor je okamžitě zastaven!</li>
-              </ol>
-            </div>
-
-            {/* CO SE STANE, KDYŽ DO PROGRAMU VLEZE VIRUS: POROVNÁNÍ DVOU PROCESŮ */}
-            <div className="p-6 bg-slate-50/90 rounded-3xl border-2 border-slate-200 space-y-6">
-              <div>
-                <div className="font-black flex items-center gap-2 text-slate-900 text-base">
-                  <AlertTriangle className="w-5 h-5 text-rose-600" />
-                  Co přesně znamená, že se „pečeť rozbije“, když do programu vleze virus?
-                </div>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Podívejte se na vnitřní strukturu dvou procesů v paměti / na disku. Virus se připíše přímo do sekce instrukcí k původnímu kódu programu.
-                </p>
-              </div>
-
-              {/* DVA PROCESY VEDLE SEBE */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                {/* 1. ČISTÝ PROCES / PROGRAM */}
-                <div className="bg-white rounded-2xl border-2 border-emerald-300 p-5 shadow-sm space-y-4 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    {/* Hlavička programu */}
-                    <div className="flex items-center justify-between pb-3 border-b border-emerald-100">
-                      <div className="flex items-center gap-2">
-                        <span className="p-2 bg-emerald-100 rounded-xl text-emerald-700">
-                          <ShieldCheck className="w-4 h-4" />
-                        </span>
-                        <div>
-                          <div className="font-black text-xs text-slate-800">kalkulacka.exe</div>
-                          <div className="text-[10px] text-slate-400">Původní originál od Microsoftu</div>
-                        </div>
-                      </div>
-                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold text-[10px] rounded-full flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Platný podpis
-                      </span>
-                    </div>
-
-                    {/* Vnitřek programu - Instrukce a Digitální podpis */}
-                    <div className="space-y-3 text-xs">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Sekce instrukcí (Kód)</span>
-                        <div className="mt-1 bg-slate-900 text-emerald-400 font-mono text-[11px] p-2.5 rounded-xl space-y-1">
-                          <div className="text-slate-400">// Běžné instrukce kalkulačky:</div>
-                          <div><span className="text-slate-500">1:</span> VÝPOČET = 5 + 7</div>
-                          <div><span className="text-slate-500">2:</span> ULOŽ VÝSLEDEK</div>
-                          <div><span className="text-slate-500">3:</span> VYPÍŠ VÝSLEDEK</div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Digitální pečeť (Podpis na konci)</span>
-                        <div className="mt-1 bg-emerald-50 border border-emerald-200 p-2 rounded-xl text-[11px] text-emerald-900">
-                          <span className="font-bold">Uložený podpis:</span> Zašifrovaný hash <code className="font-mono bg-white px-1 py-0.5 rounded border border-emerald-200">a7f3b2c1...</code>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Kontrola hashe dole */}
-                  <div className="p-3 bg-emerald-50/80 rounded-xl border border-emerald-300 space-y-1.5 text-[11px]">
-                    <div className="font-black text-emerald-950 flex items-center justify-between">
-                      <span>Kontrola integrity Windows:</span>
-                      <span className="text-emerald-700 font-mono font-bold">SHODA ✅</span>
-                    </div>
-                    <div className="font-mono text-[10px] bg-white p-2 rounded-lg border border-emerald-200 text-slate-800 space-y-0.5">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Spočtený hash obsahu:</span>
-                        <strong className="text-emerald-700">a7f3b2c1...</strong>
-                      </div>
-                      <div className="flex justify-between border-t border-slate-100 pt-0.5">
-                        <span className="text-slate-500">Hash dešifrovaný z podpisu:</span>
-                        <strong className="text-emerald-700">a7f3b2c1...</strong>
-                      </div>
-                    </div>
-                    <div className="text-[10px] text-emerald-800 font-bold text-center pt-1">
-                      a7f3b2c1... == a7f3b2c1... ➔ Hashe se rovnají, spuštění povoleno!
-                    </div>
-                  </div>
-                </div>
-
-                {/* 2. INFIKOVANÝ PROCES / PROGRAM */}
-                <div className="bg-white rounded-2xl border-2 border-rose-400 p-5 shadow-sm space-y-4 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    {/* Hlavička programu */}
-                    <div className="flex items-center justify-between pb-3 border-b border-rose-100">
-                      <div className="flex items-center gap-2">
-                        <span className="p-2 bg-rose-100 rounded-xl text-rose-700">
-                          <ShieldAlert className="w-4 h-4" />
-                        </span>
-                        <div>
-                          <div className="font-black text-xs text-rose-950">kalkulacka.exe</div>
-                          <div className="text-[10px] text-rose-600 font-bold">Infikováno virem!</div>
-                        </div>
-                      </div>
-                      <span className="px-2 py-0.5 bg-rose-100 text-rose-800 font-bold text-[10px] rounded-full flex items-center gap-1">
-                        <XCircle className="w-3 h-3 text-rose-600" /> Neplatný podpis!
-                      </span>
-                    </div>
-
-                    {/* Vnitřek programu - Instrukce a Digitální podpis */}
-                    <div className="space-y-3 text-xs">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Sekce instrukcí (Kód s virem)</span>
-                        <div className="mt-1 bg-slate-900 text-emerald-400 font-mono text-[11px] p-2.5 rounded-xl space-y-1">
-                          <div className="text-slate-400">// Původní kód kalkulačky:</div>
-                          <div><span className="text-slate-500">1:</span> VÝPOČET = 5 + 7</div>
-                          <div><span className="text-slate-500">2:</span> ULOŽ VÝSLEDEK</div>
-                          <div><span className="text-slate-500">3:</span> VYPÍŠ VÝSLEDEK</div>
-                          <div className="pt-1 border-t border-slate-700 text-rose-400 font-bold flex items-center gap-1 bg-rose-950/60 -mx-1.5 px-1.5 py-1 rounded">
-                            <Bug className="w-3 h-3 text-rose-400 shrink-0" />
-                            <span><span className="text-rose-300">4:</span> UKRADNI_HESLA_A_ODESLI()</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Digitální pečeť (Původní starý podpis)</span>
-                        <div className="mt-1 bg-rose-50 border border-rose-200 p-2 rounded-xl text-[11px] text-rose-900">
-                          <span className="font-bold">Původní podpis:</span> Stále nese starý hash <code className="font-mono bg-white px-1 py-0.5 rounded border border-rose-200">a7f3b2c1...</code>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Kontrola hashe dole */}
-                  <div className="p-3 bg-rose-50/90 rounded-xl border border-rose-300 space-y-1.5 text-[11px]">
-                    <div className="font-black text-rose-950 flex items-center justify-between">
-                      <span>Lokální kontrola integrity (Krok 1):</span>
-                      <span className="text-rose-700 font-mono font-bold">CHYBA 💥</span>
-                    </div>
-                    <div className="font-mono text-[10px] bg-white p-2 rounded-lg border border-rose-200 text-slate-800 space-y-0.5">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Nový hash instrukcí s virem:</span>
-                        <strong className="text-rose-700">9e4a8f10...</strong>
-                      </div>
-                      <div className="flex justify-between border-t border-slate-100 pt-0.5">
-                        <span className="text-slate-500">Původní hash v podpisu:</span>
-                        <strong className="text-slate-500">a7f3b2c1...</strong>
-                      </div>
-                    </div>
-                    <div className="text-[10px] text-rose-900 font-bold text-center pt-1">
-                      9e4a8f10... ≠ a7f3b2c1... ➔ Hashe se NEROVNAJÍ! Pečeť je rozbitá – program zablokován lokálně!
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* ZÁVĚREČNÉ VYSVĚTLENÍ */}
-              <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-1.5">
-                <div className="font-bold flex items-center gap-1.5 text-amber-900">
-                  <Key className="w-4 h-4 text-amber-600" />
-                  Proč útočník nemůže podpis jednoduše přepočítat na nový hash (9e4a8f10...)?
-                </div>
-                <p className="leading-relaxed text-amber-900/90">
-                  Protože k vytvoření platného podpisu je nutný <strong>tajný privátní klíč Microsoftu</strong>, který leží v zabezpečeném trezoru v Redmondu. 
-                  Útočník může do souboru připsat svůj škodlivý kód, ale <strong>nemůže podepsat nový hash</strong>. 
-                  Windows ihned při <strong>lokální kontrole integrity (Krok 1)</strong> odhalí nesoulad (<code>9e4a... ≠ a7f3...</code>), podpis prohlásí za neplatný a <strong>spuštění zablokuje přímo na vašem zařízení</strong> ještě dříve, než by se vůbec obrátil na cloud!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* =========================================================================
-              JAK UDĚLAT RYCHLOU ANALÝZU SYSTÉMU NA SPUŠTĚNÉ PROCESY?
-              ========================================================================= */}
-          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-rose-100 text-rose-700 font-black text-base flex items-center justify-center shrink-0">
-                <Search className="w-5 h-5" />
-              </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Jak udělat rychlou analýzu systému na spuštěné procesy?
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Forenzní rychlokontrola běžícího počítače: na jaké 4 indicie se správce okamžitě zaměří
-                </p>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Máte podezření, že je počítač infikován nebo se chová divně? Když otevřete seznam procesů, nehledejte naslepo. 
-              Sledujte tyto <strong>4 klíčové znaky nebezpečí</strong>:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-                <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                  <FileText className="w-4 h-4 text-blue-600" /> 1. Překlep ve jménu
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Útočníci spoléhají na lidskou nepozornost (tzv. typosquatting): napodobují systémové názvy, např. <code className="font-mono bg-slate-200/80 px-1 rounded">scvhost.exe</code>, <code className="font-mono bg-slate-200/80 px-1 rounded">svch0st.exe</code> (s nulou) nebo <code className="font-mono bg-slate-200/80 px-1 rounded">explorerr.exe</code>.
-                </p>
-              </div>
-
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-                <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                  <Layers className="w-4 h-4 text-indigo-600" /> 2. Kde program bydlí
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Pravé systémové procesy Windows sídlí výhradně v <code className="font-mono bg-slate-200/80 px-1 rounded">C:\Windows\System32</code>. Pokud proces běží ze složky <em>Stažené soubory</em> nebo <em>C:\Temp</em>, je to vetřelec!
-                </p>
-              </div>
-
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-                <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                  <Cpu className="w-4 h-4 text-purple-600" /> 3. Extrémní RAM a CPU
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Těžební malware (miner) nebo ransomware vytíží procesor na 100 % nebo alokuje stovky megabajtů RAM. Příkaz <code className="font-mono bg-slate-200/80 px-1 rounded">tasklist /fi "MEMUSAGE gt 100000"</code> je ihned odhalí.
-                </p>
-              </div>
-
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-                <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" /> 4. Chybějící podpis
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Běžící proces bez platného digitálního podpisu od Microsoftu či známého výrobce (Verified Signer) je v moderním systému vždy vysoce podezřelý.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* =========================================================================
-              SEZNAM PROCESŮ V SYSTÉMU A PROČ JE JMÉNO PROCESU TAK DŮLEŽITÉ
-              ========================================================================= */}
-          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 font-black text-base flex items-center justify-center shrink-0">
-                <Layers className="w-5 h-5" />
-              </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Seznam procesů v systému: Proč je jméno procesu tak důležité a zrádné?
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  V systému běží stovky procesů najednou – jak se v nich vyznat a proč pouhé jméno nestačí
-                </p>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed">
-              V každém okamžiku běží v operačním systému Windows 200 až 300 procesů najednou. 
-              Všechny jsou zapsány v jednom globálním <strong>seznamu procesů</strong>. 
-              Každý řádek obsahuje <strong>Jméno programu</strong> (Image Name), unikátní <strong>PID</strong> a <strong>Využití paměti</strong>.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Legitimní systémový proces (Příklad)
-                </div>
-                <div className="font-mono text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-200 space-y-1">
-                  <div><strong>Název:</strong> svchost.exe</div>
-                  <div><strong>Cesta na disku:</strong> C:\Windows\System32\svchost.exe</div>
-                  <div><strong>Digitální podpis:</strong> Microsoft Windows Publisher (Platný)</div>
-                  <div><strong>Běžící služba:</strong> Dnscache (překlad doménových jmen)</div>
-                </div>
-                <p className="text-xs text-emerald-900 font-medium">
-                  Poctivý systémový proces: Správný název, sídlo v System32, platná pečeť a reálná služba.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-rose-50/70 border border-rose-200 space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-rose-800 flex items-center gap-1.5">
-                  <XCircle className="w-4 h-4 text-rose-600" /> Maskovaný virus (Příklad podvrhu)
-                </div>
-                <div className="font-mono text-xs text-slate-700 bg-white p-3 rounded-xl border border-rose-200 space-y-1">
-                  <div><strong>Název:</strong> svchost.exe <span className="text-rose-600 font-bold">(vypadá stejně!)</span></div>
-                  <div><strong>Cesta na disku:</strong> C:\Users\Student\AppData\svchost.exe</div>
-                  <div><strong>Digitální podpis:</strong> Žádný (Nepodepsáno)</div>
-                  <div><strong>Běžící služba:</strong> N/A (žádná služba)</div>
-                </div>
-                <p className="text-xs text-rose-900 font-medium">
-                  Hrozba: Jméno je identické, ale sídlí v uživatelském profilu, chybí podpis a neveze žádnou službu!
-                </p>
-              </div>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-1.5 leading-relaxed">
-              <div className="font-bold text-slate-900 flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
-                💡 Zlaté pravidlo správce: Jméno procesu je jen textový štítek!
-              </div>
-              <p>
-                Kdyby útočník pojmenoval svůj program <code>trojan.exe</code>, každý správce ho hned ukončí. 
-                Proto ho útočník pojmenuje <code>svchost.exe</code>, aby splynul s davem dalších 70 stejných procesů. 
-                Proto se nikdy nespokojíme jen se jménem, ale vždy prověřujeme <strong>kde na disku soubor leží</strong>, <strong>jaké služby veze</strong> a <strong>zda má platný digitální podpis</strong>.
+              <p className="text-slate-600 leading-relaxed text-xs mt-1.5">
+                Váš procesor spočítá kontrolní součet instrukcí a ověří podpis na konci souboru. 
+                Pokud byl kód změněn (např. virem), systém jej <strong>okamžitě zablokuje</strong>.
               </p>
             </div>
+            <div className="text-[10px] text-blue-700 font-bold bg-blue-100/60 p-2 rounded-xl border border-blue-200/60">
+              ✓ Podpis platí ➔ postup do Fáze 2
+            </div>
           </div>
 
-          {/* DIAGNOSTICKÉ NÁSTROJE VE WINDOWS */}
-          <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-black text-base flex items-center justify-center shrink-0">
-                <Terminal className="w-5 h-5" />
+          {/* Šipka 1 -> 2 */}
+          <div className="flex items-center justify-center text-slate-400 shrink-0 self-center">
+            <ArrowRight className="hidden lg:block w-6 h-6 text-indigo-400 animate-pulse stroke-[2.5]" />
+            <ArrowDown className="block lg:hidden w-5 h-5 text-indigo-400 animate-pulse stroke-[2.5]" />
+          </div>
+
+          {/* Fáze 2 */}
+          <div className="flex-1 p-5 bg-gradient-to-br from-indigo-50/80 to-white rounded-3xl border-2 border-indigo-400 shadow-md space-y-3 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs flex items-center justify-center shadow-sm">
+                2
               </span>
-              <div>
-                <h3 className="text-xl font-black text-slate-800">
-                  Forenzní arzenál správce: Nástroje pro odhalení anomálií
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Přehled nástrojů, které použijeme v dnešní praktické laboratoři
-                </p>
-              </div>
+              <span className="text-[10px] font-black text-indigo-800 bg-indigo-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-indigo-200">
+                Online (Cloud)
+              </span>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
-                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                  <Terminal className="w-4 h-4 text-blue-600" /> tasklist v CMD
-                </div>
-                <p className="text-slate-600">
-                  Základní terminálový příkaz pro okamžitý výpis procesů, PID a paměti. Lze filtrovat (<code className="font-mono">/FI</code>) nebo exportovat do CSV (<code className="font-mono">/FO CSV</code>).
-                </p>
+            <div>
+              <div className="font-black text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldAlert className="w-4 h-4 text-indigo-600" /> Prověrka reputace
               </div>
+              <p className="text-slate-600 leading-relaxed text-xs mt-1.5">
+                Systém se zeptá cloudové databáze (SmartScreen / Smart App Control): 
+                <em> Známe tento program? Běží na milionech PC, nebo vznikl před minutou?</em>
+              </p>
+            </div>
+            <div className="text-[10px] text-indigo-700 font-bold bg-indigo-100/60 p-2 rounded-xl border border-indigo-200/60">
+              ✓ Reputace v pořádku ➔ postup do Fáze 3
+            </div>
+          </div>
 
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
-                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                  <Network className="w-4 h-4 text-emerald-600" /> resmon.exe
-                </div>
-                <p className="text-slate-600">
-                  Sledování prostředků: Odhalí, jaký proces posílá data po síti, na jaké cizí IP adresy a na které porty (detekce spywaru a C2 serverů).
-                </p>
-              </div>
+          {/* Šipka 2 -> 3 */}
+          <div className="flex items-center justify-center text-slate-400 shrink-0 self-center">
+            <ArrowRight className="hidden lg:block w-6 h-6 text-emerald-400 animate-pulse stroke-[2.5]" />
+            <ArrowDown className="block lg:hidden w-5 h-5 text-emerald-400 animate-pulse stroke-[2.5]" />
+          </div>
 
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
-                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                  <Activity className="w-4 h-4 text-indigo-600" /> Process Explorer
-                </div>
-                <p className="text-slate-600">
-                  Pokročilý nástroj od Microsoft Sysinternals: Zobrazuje strom procesů, ověřuje podpisy Authenticode a integruje reputaci z VirusTotal.com.
-                </p>
+          {/* Fáze 3 */}
+          <div className="flex-1 p-5 bg-gradient-to-br from-emerald-50/80 to-white rounded-3xl border-2 border-emerald-400 shadow-md space-y-3 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-7 h-7 rounded-xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center shadow-sm">
+                3
+              </span>
+              <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-emerald-200">
+                Před spuštěním
+              </span>
+            </div>
+            <div>
+              <div className="font-black text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" /> Antivirový štít
               </div>
-
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
-                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                  <ShieldAlert className="w-4 h-4 text-amber-600" /> Smart App Control
-                </div>
-                <p className="text-slate-600">
-                  Aktivní cloudový filtr ve Windows 11: Zabrání spuštění nepodepsaných nebo neznámých programů ještě dříve, než se dostanou do RAM.
-                </p>
-              </div>
+              <p className="text-slate-600 leading-relaxed text-xs mt-1.5">
+                Antivirus zkontroluje, zda soubor neobsahuje známý vir. Pokud je čistý, systém nahraje program do paměti RAM, přidělí mu identifikační číslo <strong>PID</strong> a procesor začne vykonávat jeho instrukce.
+              </p>
+            </div>
+            <div className="text-[10px] text-emerald-700 font-bold bg-emerald-100/60 p-2 rounded-xl border border-emerald-200/60">
+              🚀 V paměti RAM vzniká běžící proces
             </div>
           </div>
 
         </div>
+      </div>
+
+      {/* =========================================================================
+          PILÍŘ 2: ANATOMIE .EXE A DIGITÁLNÍ PODPIS AUTHENTICODE
+          ========================================================================= */}
+      <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
+        <div className="flex items-center gap-3">
+          <span className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 font-black flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-5 h-5" />
+          </span>
+          <div>
+            <h3 className="text-xl font-black text-slate-800">
+              2. Digitální podpis programu (Analogie voskové pečeti)
+            </h3>
+            <p className="text-xs text-slate-500 font-medium">
+              Každý bezpečný program je jako zapečetěný dopis od ověřeného autora
+            </p>
+          </div>
+        </div>
+
+        {/* 2 části programu: Kód + Pečeť */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 bg-slate-50 rounded-2xl border-2 border-slate-200 space-y-2">
+            <div className="flex items-center gap-2 text-slate-800 font-black text-xs">
+              <FileCode className="w-4 h-4 text-blue-600" /> 1. Kód programu (Obsah dopisu)
+            </div>
+            <p className="text-slate-600 leading-relaxed text-[11px]">
+              Instrukce, které procesor vykonává (výpočty, tlačítka, okna). Pokud se v nich změní byť jediné písmenko nebo instrukce, celá pečeť se nenávratně poškodí.
+            </p>
+          </div>
+
+          <div className="p-4 bg-blue-50/70 rounded-2xl border-2 border-blue-200 space-y-2">
+            <div className="flex items-center gap-2 text-blue-900 font-black text-xs">
+              <Key className="w-4 h-4 text-blue-600" /> 2. Digitální pečeť (Podpis na konci)
+            </div>
+            <p className="text-blue-950 leading-relaxed text-[11px]">
+              Certifikát autora (např. Microsoft). Potvrzuje: <em>„Tento soubor jsme vytvořili my a od chvíle zapečetění do něj nikdo nezasáhl.“</em>
+            </p>
+          </div>
+        </div>
+
+        {/* Srovnání: Originál vs Napadený program */}
+        <div className="space-y-3">
+          <div className="text-xs font-black uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+            <AlertTriangle className="w-4 h-4 text-amber-600" />
+            Co se stane, když se do programu pokusí proniknout virus?
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs">
+            {/* Originál */}
+            <div className="p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-50/40 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-emerald-200">
+                <span className="font-bold text-slate-900 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Originální kalkulačka
+                </span>
+                <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                  Pečeť neporušena ✓
+                </span>
+              </div>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Kód programu přesně odpovídá tomu, co Microsoft zapečetil. Windows vidí platný podpis známého vydavatele ➔ <strong>program se okamžitě spustí</strong>.
+              </p>
+            </div>
+
+            {/* Napadený program */}
+            <div className="p-4 rounded-2xl border-2 border-rose-400 bg-rose-50/40 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-rose-200">
+                <span className="font-bold text-slate-900 flex items-center gap-1.5">
+                  <XCircle className="w-4 h-4 text-rose-600" /> Program napadený virem
+                </span>
+                <span className="text-[10px] font-black text-rose-800 bg-rose-100 px-2 py-0.5 rounded-full border border-rose-300">
+                  Rozbitá pečeť ✗
+                </span>
+              </div>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Virus připsal do souboru svůj škodlivý kód. Původní pečeť se rozbila a novou útočník bez tajného klíče Microsoftu nevyrobí ➔ <strong>Windows program zablokuje</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          PILÍŘ 3: 4 FORENZNÍ PRAVIDLA SPRÁVCE (JAK ODHALIT VETŘELCE)
+          ========================================================================= */}
+      <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-6">
+        <div className="flex items-center gap-3">
+          <span className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 font-black flex items-center justify-center shrink-0">
+            <Search className="w-5 h-5" />
+          </span>
+          <div>
+            <h3 className="text-xl font-black text-slate-800">
+              3. Zlatá pravidla správce: Jak odhalit maskovaný malware v procesech?
+            </h3>
+            <p className="text-xs text-slate-500 font-medium">
+              V systému běží 200–300 procesů najednou – pouhé jméno programu nestačí!
+            </p>
+          </div>
+        </div>
+
+        <div className="p-4 bg-amber-50/80 rounded-2xl border border-amber-200 text-xs text-amber-950 font-medium">
+          💡 <strong>Zásada:</strong> Jméno procesu je pouhý textový řetězec. Útočník svůj virus nepojmenuje <code>virus.exe</code>, 
+          ale <code>svchost.exe</code>, aby splynul s desítkami legitimních procesů. Proto správce kontroluje tyto 4 indicie:
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          {/* Pravidlo 1 */}
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+            <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <FileText className="w-4 h-4 text-blue-600" /> 1. Překlep ve jménu
+            </div>
+            <p className="text-slate-600 leading-relaxed text-[11px]">
+              Záměna písmenek (typosquatting): např. <code className="font-mono bg-slate-200 px-1 rounded">scvhost.exe</code>, <code className="font-mono bg-slate-200 px-1 rounded">svch0st.exe</code> (s nulou) nebo <code className="font-mono bg-slate-200 px-1 rounded">explorerr.exe</code>.
+            </p>
+          </div>
+
+          {/* Pravidlo 2 */}
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+            <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <Layers className="w-4 h-4 text-indigo-600" /> 2. Cesta na disku
+            </div>
+            <p className="text-slate-600 leading-relaxed text-[11px]">
+              Pravý <code>svchost.exe</code> sídlí výhradně v <code className="font-mono bg-slate-200 px-1 rounded">C:\Windows\System32</code>. Pokud běží ze složky <em>Stažené soubory</em> nebo <em>AppData</em>, jde o malware!
+            </p>
+          </div>
+
+          {/* Pravidlo 3 */}
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+            <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <Cpu className="w-4 h-4 text-purple-600" /> 3. Extrémní RAM a CPU
+            </div>
+            <p className="text-slate-600 leading-relaxed text-[11px]">
+              Těžební malware (miner) nebo ransomware vytíží procesor na 100 % nebo zabere stovky MB paměti RAM. Rychle ho odhalí filtr v příkazovém řádku.
+            </p>
+          </div>
+
+          {/* Pravidlo 4 */}
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+            <div className="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" /> 4. Chybějící podpis
+            </div>
+            <p className="text-slate-600 leading-relaxed text-[11px]">
+              Systémový proces bez ověřeného digitálního podpisu Microsoftu (Verified Signer) je v moderním systému vždy kritickým varovným signálem.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          PILÍŘ 4: FORENZNÍ ARZENÁL (NÁSTROJE V PRAXI)
+          ========================================================================= */}
+      <div className="p-6 sm:p-8 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-sm space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-black flex items-center justify-center shrink-0">
+            <Terminal className="w-5 h-5" />
+          </span>
+          <div>
+            <h3 className="text-xl font-black text-slate-800">
+              4. Forenzní arzenál správce v laboratoři
+            </h3>
+            <p className="text-xs text-slate-500 font-medium">
+              Nástroje, které použijeme v dnešní praktické laboratorní práci
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+            <strong className="text-slate-900 flex items-center gap-1.5">
+              <Terminal className="w-3.5 h-3.5 text-blue-600" /> tasklist v CMD
+            </strong>
+            <p className="text-[11px] text-slate-600">
+              Okamžitý výpis procesů, PID a paměti přímo z terminálu. Podporuje filtry (<code>/FI</code>) a export do CSV.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+            <strong className="text-slate-900 flex items-center gap-1.5">
+              <Network className="w-3.5 h-3.5 text-emerald-600" /> resmon.exe
+            </strong>
+            <p className="text-[11px] text-slate-600">
+              Sledování prostředků: Odhalí odchozí síťová spojení, cizí IP adresy a porty (detekce C2 serverů).
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+            <strong className="text-slate-900 flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5 text-indigo-600" /> Process Explorer
+            </strong>
+            <p className="text-[11px] text-slate-600">
+              Diagnostický nástroj Sysinternals: Zobrazuje strom procesů, ověřuje podpisy a kontroluje reputaci na VirusTotal.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+            <strong className="text-slate-900 flex items-center gap-1.5">
+              <ShieldAlert className="w-3.5 h-3.5 text-amber-600" /> Smart App Control
+            </strong>
+            <p className="text-[11px] text-slate-600">
+              Aktivní ochrana ve Windows 11: Zabrání spuštění neznámého nebo nepodepsaného programu ještě před vstupem do RAM.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   );
 }
