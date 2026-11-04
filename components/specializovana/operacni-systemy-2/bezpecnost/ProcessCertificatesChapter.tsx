@@ -27,7 +27,7 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   const [checkedTasks, setCheckedTasks] = useLocalStorage<Record<string, boolean>>('process_lab_checked_tasks', {});
   const [copiedSuccess, setCopiedSuccess] = useState(false);
 
-  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v8', {
+  const [protocol, setProtocol] = useLocalStorage<ProcessProtocolState>('process_lab_protocol_answers_v9', {
     task1SacStatus: '',
     task2AntivirusStatus: '',
     task2SignatureVersion: '',
@@ -38,8 +38,9 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
     task4CertificateCA: '',
     task4CertPathStatus: '',
     task5FileName: '',
-    task5HashCmd: '',
-    task5FileHash: '',
+    task5WebHash: '',
+    task5LocalHash: '',
+    task5HashesMatch: '',
     task6ExplorerPid: '',
     task6ExplorerMemory: '',
     task6ExplorerCmd: '',
@@ -97,10 +98,11 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
 - Vystavitel certifikátu (CA): ${protocol.task4CertificateCA || '-'}
 - Stav v Certifikační cestě: ${protocol.task4CertPathStatus || '-'}
 
-[Úloha 5: Kontrola integrity a neměnnosti souboru (Hash)]
+[Úloha 5: Kontrola integrity a neměnnosti souboru (Hash vs. Checksum z webu)]
 - Prověřovaný soubor: ${protocol.task5FileName || '-'}
-- Použitý příkaz (certutil): ${protocol.task5HashCmd || '-'}
-- Vypočítaná hodnota SHA-256 hashe: ${protocol.task5FileHash || '-'}
+- Kontrolní hash uvedený na webu: ${protocol.task5WebHash || '-'}
+- Vypočítaný lokální SHA-256 hash (certutil): ${protocol.task5LocalHash || '-'}
+- Shodují se hashe?: ${protocol.task5HashesMatch || '-'}
 
 [Úloha 6: Stopování explorer.exe v CLI (cmd.exe)]
 - PID: ${protocol.task6ExplorerPid || '-'}
@@ -186,10 +188,11 @@ Datum vypracování: ${new Date().toLocaleDateString('cs-CZ')}
         <div class="item"><span class="label">Vystavitel certifikátu (CA):</span> <span class="val">${protocol.task4CertificateCA || '-'}</span></div>
         <div class="item"><span class="label">Stav v Certifikační cestě:</span> <span class="val">${protocol.task4CertPathStatus || '-'}</span></div>
 
-        <h2>Úloha 5: Kontrola integrity a neměnnosti souboru (Hash)</h2>
+        <h2>Úloha 5: Kontrola integrity a neměnnosti souboru (Hash vs. Checksum z webu)</h2>
         <div class="item"><span class="label">Prověřovaný soubor:</span> <span class="val">${protocol.task5FileName || '-'}</span></div>
-        <div class="item"><span class="label">Použitý příkaz (certutil):</span> <span class="val">${protocol.task5HashCmd || '-'}</span></div>
-        <div class="item"><span class="label">Vypočítaná hodnota SHA-256 hashe:</span> <span class="val">${protocol.task5FileHash || '-'}</span></div>
+        <div class="item"><span class="label">Kontrolní hash uvedený na webu:</span> <span class="val">${protocol.task5WebHash || '-'}</span></div>
+        <div class="item"><span class="label">Vypočítaný lokální hash (certutil):</span> <span class="val">${protocol.task5LocalHash || '-'}</span></div>
+        <div class="item"><span class="label">Shodují se hashe?:</span> <span class="val">${protocol.task5HashesMatch || '-'}</span></div>
 
         <h2>Úloha 6: Stopování klíčového procesu v CLI (cmd.exe)</h2>
         <div class="item"><span class="label">Sledovaný proces:</span> explorer.exe</div>

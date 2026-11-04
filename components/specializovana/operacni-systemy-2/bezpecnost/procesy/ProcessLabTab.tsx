@@ -391,7 +391,7 @@ export default function ProcessLabTab({
         </div>
 
         {/* =========================================================================
-            ÚLOHA 5: KONTROLA INTEGRITY STAŽENÉHO SOUBORU (SHA-256 HASH)
+            ÚLOHA 5: KONTROLA INTEGRITY STAŽENÉHO SOUBORU (HASH VS. CHECKSUM)
             ========================================================================= */}
         <div className={`p-6 sm:p-7 rounded-3xl border-2 transition-all space-y-5 ${checkedTasks['task5'] ? 'bg-emerald-50/40 border-emerald-400' : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
           }`}>
@@ -402,10 +402,10 @@ export default function ProcessLabTab({
               </span>
               <div>
                 <h3 className={`text-base font-black ${checkedTasks['task5'] ? 'text-emerald-950' : 'text-slate-800'}`}>
-                  Úloha 5: Kontrola integrity staženého souboru (SHA-256 hash)
+                  Úloha 5: Kontrola integrity staženého souboru (Hash vs. Checksum)
                 </h3>
                 <p className="text-xs text-slate-500 font-medium">
-                  Fáze 2: Ověření, že program nebyl po stažení pozměněn ani poškozen
+                  Fáze 2: Stažení programu, výpočet SHA-256 a porovnání s kontrolním součtem na webu
                 </p>
               </div>
             </div>
@@ -428,26 +428,32 @@ export default function ProcessLabTab({
 
           <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-2.5 leading-relaxed">
             <p className="font-semibold text-slate-900">
-              Po stažení programu z internetu můžeme jednoduše zkontrolovat, že soubor nebyl pozměněn:
+              Ověřte integritu staženého instalačního balíčku porovnáním s oficiálním kontrolním součtem (checksum):
             </p>
-            <ul className="list-disc list-inside space-y-1.5 text-slate-600 pl-1">
+            <ol className="list-decimal list-inside space-y-1.5 text-slate-600 pl-1">
               <li>
-                Každý soubor má jedinečný matematický otisk – <strong>kryptografický hash (SHA-256)</strong>. Pokud se v souboru změní jediný bajt, hash bude úplně jiný.
+                Stáhněte instalační balíček WinSCP: <a href="https://winscp.net/download/WinSCP-6.7-Setup.exe/download" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-mono">WinSCP-6.7-Setup.exe</a>
               </li>
               <li>
-                V Příkazovém řádku (cmd.exe) spočítejte hash libovolného souboru (např. staženého programu nebo <code>notepad.exe</code>):
+                Na stránce stahování najděte oficiálně uvedený kontrolní součet <strong>SHA-256</strong>.
+              </li>
+              <li>
+                V Příkazovém řádku (cmd.exe) spočítejte hash staženého souboru (např. ve složce Stažené soubory):
                 <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  certutil -hashfile C:\Windows\notepad.exe SHA256
+                  certutil -hashfile "%USERPROFILE%\Downloads\WinSCP-6.7-Setup.exe" SHA256
                 </div>
               </li>
-            </ul>
+              <li>
+                Porovnejte obě hodnoty – shodují se všechny znaky hashe?
+              </li>
+            </ol>
           </div>
 
           <div className="pt-4 border-t-2 border-slate-100 space-y-4">
             <div className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
               <PencilLine className="w-3.5 h-3.5 text-blue-600" /> Vstupní pole pro odpovědi:
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               <div className="flex flex-col justify-end">
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
                   5.1 Název prověřovaného souboru:
@@ -456,32 +462,46 @@ export default function ProcessLabTab({
                   type="text"
                   value={protocol.task5FileName || ''}
                   onChange={(e) => setProtocol({ ...protocol, task5FileName: e.target.value })}
-                  placeholder="např. notepad.exe / vlc-setup.exe"
+                  placeholder="WinSCP-6.7-Setup.exe"
                   className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                 />
               </div>
               <div className="flex flex-col justify-end">
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.2 Použitý příkaz (certutil):
+                  5.2 Kontrolní SHA-256 hash uvedený na webu:
                 </label>
                 <input
                   type="text"
-                  value={protocol.task5HashCmd || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task5HashCmd: e.target.value })}
-                  placeholder="např. certutil -hashfile C:\Windows\notepad.exe SHA256"
+                  value={protocol.task5WebHash || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5WebHash: e.target.value })}
+                  placeholder="Zadejte hash z webu winscp.net..."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="flex flex-col justify-end">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
+                  5.3 Vypočítaný SHA-256 hash v příkazovém řádku:
+                </label>
+                <input
+                  type="text"
+                  value={protocol.task5LocalHash || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5LocalHash: e.target.value })}
+                  placeholder="Zadejte vypočítaný hash z certutil..."
                   className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                 />
               </div>
               <div className="flex flex-col justify-end">
                 <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide min-h-[1.75rem] flex items-end">
-                  5.3 Vypočítaná hodnota SHA-256 hashe:
+                  5.4 Shodují se oba hashe? (Je soubor v pořádku?):
                 </label>
                 <input
                   type="text"
-                  value={protocol.task5FileHash || ''}
-                  onChange={(e) => setProtocol({ ...protocol, task5FileHash: e.target.value })}
-                  placeholder="Zadejte vypočítaný hash..."
-                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-mono font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
+                  value={protocol.task5HashesMatch || ''}
+                  onChange={(e) => setProtocol({ ...protocol, task5HashesMatch: e.target.value })}
+                  placeholder="např. Ano, hashe jsou identické – soubor nebyl změněn."
+                  className="w-full p-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none text-sm font-bold text-slate-800 bg-slate-50/70 focus:bg-white transition-all shadow-inner"
                 />
               </div>
             </div>

@@ -173,10 +173,11 @@ export interface ProcessProtocolState {
   task4CertificateCA: string;
   task4CertPathStatus: string;
 
-  // Úloha 5: Kontrola integrity a neměnnosti souboru (Hash)
+  // Úloha 5: Kontrola integrity a neměnnosti souboru (Hash & Checksum)
   task5FileName: string;
-  task5HashCmd: string;
-  task5FileHash: string;
+  task5WebHash: string;
+  task5LocalHash: string;
+  task5HashesMatch: string;
 
   // Úloha 6: explorer.exe v CLI
   task6ExplorerPid: string;
