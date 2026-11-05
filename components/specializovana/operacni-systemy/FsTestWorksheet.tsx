@@ -25,7 +25,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           {/* ========================================================= */}
           <div className="flex items-center justify-between bg-slate-800 text-white px-3 py-1 rounded-md mb-3 shadow-xs">
             <h2 className="text-[11pt] font-black uppercase tracking-wider flex items-center gap-2">
-              <HardDrive className="w-4 h-4 text-indigo-400" /> Část A — Souborové systémy a technologie disků
+              <HardDrive className="w-4 h-4 text-indigo-400" /> Část A
             </h2>
           </div>
 
@@ -126,7 +126,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           {/* ========================================================= */}
           <div className="flex items-center justify-between bg-slate-800 text-white px-3 py-1 rounded-md mb-3 mt-4 shadow-xs">
             <h2 className="text-[11pt] font-black uppercase tracking-wider flex items-center gap-2">
-              <Layers className="w-4 h-4 text-purple-400" /> Část B — Alokace dat, klastry a oddíly disku
+              <Layers className="w-4 h-4 text-purple-400" /> Část B
             </h2>
           </div>
 
@@ -213,7 +213,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
           {/* ========================================================= */}
           <div className="flex items-center justify-between bg-slate-800 text-white px-3 py-1 rounded-md mb-3 mt-4 shadow-xs">
             <h2 className="text-[11pt] font-black uppercase tracking-wider flex items-center gap-2">
-              <Table2 className="w-4 h-4 text-teal-400" /> Část C — Struktura FAT a formátování disku
+              <Table2 className="w-4 h-4 text-teal-400" /> Část C
             </h2>
           </div>
 
@@ -223,7 +223,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
               V kořenovém adresáři disku jsou zapsány následující soubory. Pomocí adresáře a výřezu tabulky FAT zrekonstruujte soubor <code>zprava.docx</code>.
             </p>
 
-            <div className="my-2 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-start text-xs">
+            <div className="my-2 grid grid-cols-3 gap-2.5 items-start text-xs print:grid-cols-3">
               {/* Adresář disku */}
               <div className="bg-white border border-slate-700 rounded-md p-2">
                 <div className="font-bold text-slate-800 uppercase border-b pb-0.5 mb-1.5 text-[8pt]">Adresář (Directory)</div>
@@ -314,7 +314,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
               V adresáři vyhledejte soubor <code>video.mp4</code>. Z mřížky disku víme, že soubor fyzicky leží v klastrech <strong>#2, #5, #6, #9 a #13</strong> (v tomto pořadí).
             </p>
 
-            <div className="my-2 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-start text-xs">
+            <div className="my-2 grid grid-cols-3 gap-2.5 items-start text-xs print:grid-cols-3">
               {/* Adresář disku */}
               <div className="bg-white border border-slate-700 rounded-md p-2">
                 <div className="font-bold text-slate-800 uppercase border-b pb-0.5 mb-1.5 text-[8pt]">Adresář (Directory)</div>

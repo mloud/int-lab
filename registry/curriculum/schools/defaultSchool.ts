@@ -608,7 +608,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                     },
                     {
                       id: 'fs-test-sub',
-                      hidden: true,
                       title: 'Hodnocená práce: Souborové systémy a disky',
                       description: 'Souborové systémy, paměťová média, alokace dat a formátování disku. 40 minut. Odemčení na PIN.',
                       tag: 'TEST',
@@ -623,7 +622,6 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                 },
                 {
                   id: 'fs-test',
-                  hidden: true,
                   title: 'Hodnocená práce',
                   description: 'Souborové systémy, paměťová média, alokace dat a formátování disku. 40 minut. Odemčení na heslo.',
                   tag: 'TEST',
