@@ -1369,18 +1369,21 @@ export default function ProcessLabTab({
               <li>
                 <strong>Instalace kompilátoru PyInstaller</strong> (v Příkazovém řádku nebo Terminálu):
                 <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  pip install pyinstaller
+                  python -m pip install pyinstaller
                 </div>
               </li>
               <li>
-                Vytvořte jednoduchý skript <code>test.py</code> (např. <code>import time; print("Bezim"); time.sleep(60)</code>).
+                Vytvořte jednoduchý skript <code>test.py</code> s čekáním na stisk klávesy (aby se program hned neukončil a zůstal běžet v Process Exploreru):
+                <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
+                  input("Program bezi... Stiskni Enter pro ukonceni.")
+                </div>
               </li>
               <li>
                 <strong>Příkaz pro vytvoření samostatného .exe souboru:</strong>
                 <div className="mt-1 p-2 bg-slate-900 text-slate-100 rounded-xl font-mono text-[11px]">
-                  pyinstaller --onefile test.py
+                  python -m PyInstaller --onefile test.py
                 </div>
-                <span className="text-[11px] text-amber-900/80 italic">Výsledný <code>test.exe</code> naleznete ve nově vytvořené podsložce <code>dist\\</code>.</span>
+                
               </li>
               <li>
                 Spusťte vytvořený <code>test.exe</code> a v <strong>Process Exploreru</strong> zkontrolujte sloupec <strong>Verified Signer</strong>.
