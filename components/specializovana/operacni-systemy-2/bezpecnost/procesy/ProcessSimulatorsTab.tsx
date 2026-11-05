@@ -62,7 +62,7 @@ const FILES_TO_LAUNCH: FileToLaunch[] = [
     failPhase: 1,
     failReason: 'Lokální kontrola selhala: Soubor nemá platnou pečeť Authenticode.'
   },
-  {
+    {
     id: 'miner',
     name: 'system_optimizer.exe',
     type: 'Spustitelná aplikace',
@@ -74,6 +74,19 @@ const FILES_TO_LAUNCH: FileToLaunch[] = [
     isClean: false,
     failPhase: 2,
     failReason: 'Cloudový filtr (SmartScreen) soubor zablokoval kvůli nulové reputaci.'
+  },
+  {
+    id: 'infected',
+    name: 'infected_media_player.exe',
+    type: 'Spustitelná aplikace',
+    size: '14 800 KB',
+    signedBy: 'Certifikát platný (nebo ukradený CA)',
+    description: 'Aplikace prošla kontrolou podpisu i reputací, ale uvnitř obsahuje známý škodlivý kód (Trojan.Win32).',
+    isSignedValid: true,
+    isReputationGood: true,
+    isClean: false,
+    failPhase: 3,
+    failReason: 'Antivirový štít (Microsoft Defender) detekoval známý virus (Trojan.Win32.Injector) a soubor přesunul do karantény.'
   }
 ];
 
@@ -274,9 +287,7 @@ export default function ProcessSimulatorsTab() {
                       <div className={`p-2 rounded-xl shrink-0 ${
                         file.id === 'calc' 
                           ? 'bg-blue-100 text-blue-700' 
-                          : file.id === 'patcher' 
-                            ? 'bg-rose-100 text-rose-700' 
-                            : 'bg-amber-100 text-amber-700'
+                          : file.id === 'patcher' ? 'bg-rose-100 text-rose-700' : file.id === 'infected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
                       }`}>
                         <FileCode className="w-4 h-4" />
                       </div>
@@ -462,6 +473,11 @@ export default function ProcessSimulatorsTab() {
                 <p className="text-slate-600 text-[11px] leading-relaxed">
                   Antivirus zkontroluje kód souboru proti databázi známých vzorců škodlivého kódu.
                 </p>
+                {executionPhase >= 3 && activeFile.failPhase === 3 && (
+                  <div className="p-2 bg-rose-100 rounded-xl text-rose-900 font-bold text-[11px]">
+                    ⛔ <strong>Zastaveno:</strong> {activeFile.failReason}
+                  </div>
+                )}
               </div>
 
             </div>
