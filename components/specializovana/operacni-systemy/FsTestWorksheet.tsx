@@ -245,7 +245,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                     </tr>
                     <tr>
                       <td className="py-0.5">foto.jpg</td>
-                      <td className="py-0.5 text-center font-bold">9</td>
+                      <td className="py-0.5 text-center font-bold">8</td>
                     </tr>
                   </tbody>
                 </table>
@@ -258,19 +258,19 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <span className="font-bold text-slate-500 text-[7.5pt]">Klastr</span>
                   <span className="font-bold text-slate-500 text-[7.5pt]">Odkaz</span>
                   <span>4</span>
-                  <span className="font-bold text-indigo-700">7</span>
-                  <span>5</span>
-                  <span className="text-slate-400">0</span>
-                  <span>6</span>
-                  <span className="text-slate-400">0</span>
                   <span>7</span>
-                  <span className="font-bold text-indigo-700">11</span>
-                  <span>8</span>
-                  <span className="text-slate-400">0</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>6</span>
+                  <span>EOF</span>
+                  <span>7</span>
                   <span>11</span>
-                  <span className="font-bold text-indigo-700">15</span>
+                  <span>8</span>
+                  <span>5</span>
+                  <span>11</span>
                   <span>15</span>
-                  <span className="font-bold text-rose-600">EOF</span>
+                  <span>15</span>
+                  <span>EOF</span>
                 </div>
               </div>
 
@@ -349,7 +349,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                   <span className="font-bold text-slate-500 text-[7.5pt]">Klastr</span>
                   <span className="font-bold text-slate-500 text-[7.5pt]">Odkaz</span>
                   <span>2</span>
-                  <span className="font-bold text-slate-700">5</span>
+                  <span>5</span>
                   <span>5</span>
                   <span>
                     {showSolutions ? (
@@ -359,7 +359,7 @@ export default function FsTestWorksheet({ onBack }: FsTestWorksheetProps) {
                     )}
                   </span>
                   <span>6</span>
-                  <span className="font-bold text-slate-700">9</span>
+                  <span>9</span>
                   <span>9</span>
                   <span>
                     {showSolutions ? (
