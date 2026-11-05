@@ -220,10 +220,10 @@ export function TestWorksheetShell({
 /* Pomocné komponenty pro testy                                        */
 /* ------------------------------------------------------------------ */
 
-export const Lines: React.FC<{ count: number }> = ({ count }) => (
+export const Lines: React.FC<{ count: number; height?: string }> = ({ count, height = "7mm" }) => (
   <div className="mt-1">
     {Array.from({ length: count }).map((_, i) => (
-      <div key={i} className="border-b border-dotted border-slate-500" style={{ height: '9mm' }} />
+      <div key={i} className="border-b border-dotted border-slate-500" style={{ height }} />
     ))}
   </div>
 );
@@ -235,32 +235,32 @@ export const DrawBox: React.FC<{ height: string; label?: string }> = ({ height, 
   </div>
 );
 
-export const Question: React.FC<{ id: string; title: string; children: React.ReactNode }> = ({ id, title, children }) => (
-  <section className="print-avoid-break mb-7">
-    <div className="border-b-2 border-slate-800 pb-1 mb-2">
-      <h3 className="text-[12.5pt] font-bold text-slate-900">
+export const Question: React.FC<{ id: string; title: string; compact?: boolean; children: React.ReactNode }> = ({ id, title, compact, children }) => (
+  <section className={`print-avoid-break ${compact ? 'mb-4' : 'mb-7'}`}>
+    <div className={`border-b-2 border-slate-800 ${compact ? 'pb-0.5 mb-1.5' : 'pb-1 mb-2'}`}>
+      <h3 className={`${compact ? 'text-[10.5pt]' : 'text-[12.5pt]'} font-bold text-slate-900`}>
         {id} — {title}
       </h3>
     </div>
-    <div className="text-[11pt] text-slate-900 leading-snug">{children}</div>
+    <div className={`${compact ? 'text-[9.5pt]' : 'text-[11pt]'} text-slate-900 leading-snug`}>{children}</div>
   </section>
 );
 
-export const Sub: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
-  <div className="mt-3">
+export const Sub: React.FC<{ label: string; compact?: boolean; children: React.ReactNode }> = ({ label, compact, children }) => (
+  <div className={compact ? "mt-1.5" : "mt-3"}>
     <p>
       <strong>{label}</strong> {children}
     </p>
   </div>
 );
 
-export const Answer: React.FC<{ show: boolean; lines?: number; solution: React.ReactNode }> = ({ show, lines = 1, solution }) => {
+export const Answer: React.FC<{ show: boolean; lines?: number; lineHeight?: string; textClass?: string; solution: React.ReactNode }> = ({ show, lines = 1, lineHeight, textClass, solution }) => {
   if (show) {
     return (
-      <div className="mt-2 mb-2 text-rose-600 font-medium text-[11pt] italic leading-snug">
+      <div className={`mt-1 mb-1 text-rose-600 font-medium ${textClass || 'text-[9.5pt]'} italic leading-snug`}>
         {solution}
       </div>
     );
   }
-  return <Lines count={lines} />;
+  return <Lines count={lines} height={lineHeight} />;
 };
