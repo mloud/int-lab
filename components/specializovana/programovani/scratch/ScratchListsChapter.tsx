@@ -442,8 +442,46 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
         {/* ÚKOL 5 */}
         <TaskCard
           number="5"
-          title="Procházení seznamu cyklem – Čtečka zpráv"
+          title="Náhodný výběr čísla ze seznamu"
           taskId="lists-5"
+          saveAs="NahodnyVyber.sb3"
+          showTeacher={teacherMode}
+          teacherNote={
+            <div>
+              <p className="mb-2">
+                Místo pevného čísla pozice vložíme do oválu položky blok náhody:
+                <ScratchReporter category="operators">náhodné číslo od <ScratchInput>1</ScratchInput> do (<ScratchReporter category="lists">délka [čísla]</ScratchReporter>)</ScratchReporter>.
+                Tento kód je plně dynamický – když do seznamu přidáme další čísla, nemusíme v kódu změnit ani jeden blok!
+              </p>
+              <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                <div><ScratchBlock category="events">po kliknutí na postavu</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Vylosované číslo je...] na <ScratchInput>1</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4">
+                  <ScratchBlock category="looks">
+                    bublina (položka (náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchReporter category="lists">délka [čísla]</ScratchReporter>) z <ScratchInput type="dropdown">čísla</ScratchInput>) na <ScratchInput>3</ScratchInput> sekund
+                  </ScratchBlock>
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <p>
+            Vytvoř losovací program, který po kliknutí na postavu náhodně vybere a vysloví jedno číslo ze seznamu.
+          </p>
+
+          <ol className="list-decimal pl-5 space-y-2 mt-2">
+            <li>Vytvoř seznam <span className="font-bold text-orange-600">čísla</span> a vlož do něj alespoň 6 různých čísel (např. <em>12, 25, 38, 44, 71, 99</em>).</li>
+            <li>Nastav událost <ScratchBlock category="events">po kliknutí na tuto postavu</ScratchBlock>.</li>
+            <li>Postava nejprve řekne: <em>„Vylosované číslo je...“</em>.</li>
+            <li>Následně postava vysloví náhodně vybrané číslo ze seznamu.</li>
+          </ol>
+        </TaskCard>
+
+        {/* ÚKOL 6 */}
+        <TaskCard
+          number="6"
+          title="Procházení seznamu cyklem – Čtečka zpráv"
+          taskId="lists-6"
           saveAs="CtenarSeznamu.sb3"
           showTeacher={teacherMode}
           teacherNote={
@@ -491,55 +529,72 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
           </ol>
         </TaskCard>
 
-        {/* ÚKOL 6 */}
+        {/* ÚKOL 7 */}
         <TaskCard
-          number="6"
-          title="Zábavná věštírna – Náhodný výběr ze seznamu"
-          taskId="lists-6"
-          saveAs="Vestirna.sb3"
+          number="7"
+          title="Procházení seznamu pozpátku – Čtečka zpráv odzadu"
+          taskId="lists-7"
+          saveAs="CtenarZpravOdzadu.sb3"
           showTeacher={teacherMode}
           teacherNote={
             <div>
               <p className="mb-2">
-                Místo pevného čísla pozice vložíme do oválu položky blok náhody:
-                <ScratchReporter category="operators">náhodné číslo od (1) do (<ScratchReporter category="lists">délka [věštby]</ScratchReporter>)</ScratchReporter>.
-                Tento kód je plně dynamický – když do seznamu přidáme 20 nových hlášek, nemusíme v kódu změnit ani jeden blok!
+                <strong>Zpětné traverzování (Reverse Traversal):</strong> Na rozdíl od předchozí úlohy 6, kde čteme od 1 do konce,
+                tady začínáme na konci seznamu na indexu <ScratchReporter category="lists">délka [zprávy]</ScratchReporter>.
+                V každém kroku cyklu hodnotu indexu nezvětšujeme, ale zmenšujeme o 1 blokem <ScratchBlock category="variables">změň [i] o <ScratchInput>-1</ScratchInput></ScratchBlock>.
+                Počet opakování cyklu zůstává stejný (<ScratchReporter category="lists">délka [zprávy]</ScratchReporter>).
               </p>
               <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
-                <div><ScratchBlock category="events">po kliknutí na postavu</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="looks">bublina [Hledím do křišťálové koule...] na <ScratchInput>1</ScratchInput> sekund</ScratchBlock></div>
+                <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
                 <div className="pl-4">
-                  <ScratchBlock category="looks">
-                    bublina (položka (náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchReporter category="lists">délka [věštby]</ScratchReporter>) z <ScratchInput type="dropdown">věštby</ScratchInput>) na <ScratchInput>3</ScratchInput> sekund
+                  <ScratchBlock category="variables">
+                    nastav <ScratchInput type="dropdown">i</ScratchInput> na <ScratchReporter category="lists">délka [zprávy]</ScratchReporter>
                   </ScratchBlock>
                 </div>
+                <div className="pl-4">
+                  <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchReporter category="lists">délka [zprávy]</ScratchReporter> krát</span>}>
+                    <div className="pl-2 space-y-1">
+                      <div>
+                        <ScratchBlock category="looks">
+                          bublina (položka <ScratchReporter category="variables">i</ScratchReporter> z <ScratchInput type="dropdown">zprávy</ScratchInput>) na <ScratchInput>1.5</ScratchInput> sekund
+                        </ScratchBlock>
+                      </div>
+                      <div>
+                        <ScratchBlock category="variables">změň <ScratchInput type="dropdown">i</ScratchInput> o <ScratchInput>-1</ScratchInput></ScratchBlock>
+                      </div>
+                    </div>
+                  </ScratchCBlock>
+                </div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [To byly všechny zprávy pozpátku!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
               </div>
             </div>
           }
         >
           <p>
-            Vytvoř interaktivní věšteckou kouli nebo čaroděje, který po kliknutí myší vygeneruje náhodné proroctví.
+            V předchozí úloze kocour přečetl seznam zpráv od začátku do konce. Nyní uprav skript tak, aby ten samý seznam prošel v opačném pořadí – tedy pozpátku od poslední položky až po první.
           </p>
 
           <ol className="list-decimal pl-5 space-y-2 mt-2">
-            <li>Vytvoř seznam <span className="font-bold text-orange-600">věštby</span> a vlož do něj alespoň 5 různých vtipných hlášek (např. <em>„Zítra dostaneš jedničku z informatiky!“</em>, <em>„Dnes neodpovídej na neznámá čísla.“</em>, <em>„Čeká tě velká pizza.“</em>).</li>
-            <li>Nastav událost <ScratchBlock category="events">po kliknutí na tuto postavu</ScratchBlock>.</li>
-            <li>Postava nejprve zahraje tajemný zvuk nebo řekne <em>„Vidím tvou budoucnost...“</em>.</li>
-            <li>Následně vysloví náhodnou položku ze seznamu pomocí kombinace:
-              <div className="my-2">
-                <ScratchReporter category="lists">
-                  položka (náhodné číslo od <ScratchInput>1</ScratchInput> do <ScratchReporter category="lists">délka [věštby]</ScratchReporter>) z [věštby]
-                </ScratchReporter>
-              </div>
-            </li>
+            <li>Využij existující seznam <span className="font-bold text-orange-600">zprávy</span> i pomocnou proměnnou <span className="font-bold text-amber-600">i</span> z úlohy 6 (můžeš si projekt otevřít a uložit pod novým názvem).</li>
+            <li>Uprav scénář tak, aby kocour začal číst od poslední zprávy v seznamu a postupně přečetl všechny věty až k té první.</li>
+            <li>Po dočtení všech zpráv kocour oznámí: <em>„To byly všechny zprávy pozpátku!“</em>.</li>
           </ol>
+
+          <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 mt-3 text-xs text-slate-700 space-y-1">
+            <span className="font-bold text-slate-800">🤔 K zamyšlení:</span>
+            <ul className="list-disc pl-5 space-y-1 text-slate-600">
+              <li>Na jaké číslo (index) musí ukazatel <em>i</em> mířit na samém začátku před spuštěním cyklu?</li>
+              <li>Jakým způsobem musíš ukazatel <em>i</em> v každém opakování upravit, aby se posouval směrem dolů k začátku?</li>
+              <li>Kolikrát se musí cyklus zopakovat, aby se přečetly opravdu všechny položky?</li>
+            </ul>
+          </div>
         </TaskCard>
 
-        {/* ÚKOL 7 */}
+        {/* ÚKOL 8 */}
         <TaskCard
-          number="7"
+          number="8"
           title="Žebříček TOP 3 nejvyšších skóre"
-          taskId="lists-7"
+          taskId="lists-8"
           saveAs="TopSkore.sb3"
           showTeacher={teacherMode}
           teacherNote={
@@ -608,15 +663,15 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
               <li>Jinak pokud je větší než 3. místo ➔ vlož jej na pozici 3.</li>
               <li>Jinak kocour smutně oznámí: <em>„Bohužel, do TOP 3 jsi se neprobojoval.“</em>.</li>
             </ul>
-            <li><strong>Udržení TOP 3:</strong> Po vložení nového skóre má seznam 4 položky. Nezapomeň zavolat <ScratchBlock category="lists">smaž (4) z [top_skore]</ScratchBlock>, aby poslední odpadl!</li>
+            <li><strong>Udržení TOP 3:</strong> Zajisti, aby seznam obsahoval vždy jen tři položky.</li>
           </ol>
         </TaskCard>
 
-        {/* ÚKOL 8 */}
+        {/* ÚKOL 9 */}
         <TaskCard
-          number="8"
+          number="9"
           title="Seznamy vlastními bloky"
-          taskId="lists-8"
+          taskId="lists-9"
           saveAs="SeznamyLehkePriklady2.sb3"
           showTeacher={teacherMode}
           teacherNote={
@@ -799,11 +854,11 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
           </div>
         </TaskCard>
 
-        {/* ÚKOL 9 */}
+        {/* ÚKOL 10 */}
         <TaskCard
-          number="9"
+          number="10"
           title="Počet výskytů čísla s parametrem"
-          taskId="lists-9"
+          taskId="lists-10"
           saveAs="PocetVyskytu.sb3"
           showTeacher={teacherMode}
           teacherNote={
@@ -885,11 +940,11 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
           </div>
         </TaskCard>
 
-        {/* ÚKOL 10 */}
+        {/* ÚKOL 11 */}
         <TaskCard
-          number="10"
+          number="11"
           title="Vytvoření unikátního seznamu (Deduplikace)"
-          taskId="lists-10"
+          taskId="lists-11"
           saveAs="UnikatniSeznam.sb3"
           showTeacher={teacherMode}
           teacherNote={
