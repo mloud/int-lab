@@ -864,8 +864,8 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
           teacherNote={
             <div>
               <p className="mb-2">
-                <strong>Vlastní blok s parametrem (Procedura s argumentem):</strong> Blok přijímá hledanou hodnotu jako formální parametr <ScratchParam>hledané číslo</ScratchParam>. 
-                Při procházení seznamu porovnáváme <ScratchHexagon category="operators"><ScratchReporter category="lists">položka (i) z [čísla]</ScratchReporter> = <ScratchParam>hledané číslo</ScratchParam></ScratchHexagon>. 
+                <strong>Vlastní blok s parametrem (Procedura s argumentem):</strong> Blok přijímá hledanou hodnotu jako formální parametr <ScratchParam>hledané číslo</ScratchParam>.
+                Při procházení seznamu porovnáváme <ScratchHexagon category="operators"><ScratchReporter category="lists">položka (i) z [čísla]</ScratchReporter> = <ScratchParam>hledané číslo</ScratchParam></ScratchHexagon>.
                 Tento přístup je mnohem čistší než globální proměnné a umožňuje blok volat opakovaně pro libovolná čísla!
               </p>
               <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-2">
@@ -950,9 +950,9 @@ export const ScratchListsChapter = ({ onBack }: { onBack?: () => void }) => {
           teacherNote={
             <div className="space-y-4">
               <p>
-                <strong>Algoritmus deduplikace (Odstranění duplicit):</strong> Procházíme výchozí seznam od začátku do konce. 
-                Před vložením každé hodnoty do <span className="font-bold text-orange-600">unikatni_seznam</span> otestujeme pomocí predikátu 
-                <ScratchHexagon category="lists">[unikatni_seznam] obsahuje (položka (i) z [seznam])?</ScratchHexagon> a negace <ScratchHexagon category="operators">ne &lt; &gt;</ScratchHexagon>, 
+                <strong>Algoritmus deduplikace (Odstranění duplicit):</strong> Procházíme výchozí seznam od začátku do konce.
+                Před vložením každé hodnoty do <span className="font-bold text-orange-600">unikatni_seznam</span> otestujeme pomocí predikátu
+                <ScratchHexagon category="lists">[unikatni_seznam] obsahuje (položka (i) z [seznam])?</ScratchHexagon> a negace <ScratchHexagon category="operators">ne &lt; &gt;</ScratchHexagon>,
                 zda tam dané číslo již není. Pokud tam není, přidáme jej.
               </p>
 

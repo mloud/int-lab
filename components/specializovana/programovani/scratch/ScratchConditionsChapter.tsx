@@ -1629,22 +1629,26 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             taskId="cond-14"
             showTeacher={teacherMode}
             teacherNote={
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <p>
-                  <strong>Metodické vysvětlení:</strong> Syntetický projekt. Program je rozdělen na dvě klíčové fáze:
-                  (1) Přihlášení chráněné cyklem na max. 3 chybné pokusy, (2) Samotný výběr rozložený do tří samostatných podmínek pro přesnou diagnostiku chyb (nedostatek financí, limit transakce, bankovky po 100 Kč) a možností opakování transakce.
+                  <strong>Metodické vysvětlení:</strong> Syntetický projekt. Program je přehledně hierarchizován do dvou logických celků:
+                  (1) Bezpečné přihlášení cyklem <code>opakuj dokud nenastane</code> s odpočtem pokusů (3 pokusy dolů k 0),
+                  (2) Vyhodnocení správnosti PINu za cyklem – ve větvi úspěchu proběhne dotaz na částku a dvě diagnostické podmínky omezení výběru (zůstatek a jednorázový limit 3 000 Kč).
                 </p>
 
+                {/* 1. Hlavní skript bankomatu */}
                 <div className="space-y-1">
                   <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                     <KeyRound className="w-3.5 h-3.5 text-amber-600" />
-                    Fáze 1: Ověření PINu (max. 3 pokusy):
+                    Základní program bankomatu (Fáze 1, 2 a 3):
                   </div>
                   <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
                     <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
                     <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">PIN</ScratchInput> na <ScratchInput>1234</ScratchInput></ScratchBlock></div>
                     <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">zustatek</ScratchInput> na <ScratchInput>5000</ScratchInput></ScratchBlock></div>
-                    <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokusy</ScratchInput> na <ScratchInput>0</ScratchInput></ScratchBlock></div>
+                    <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">zbyvajici_pokusy</ScratchInput> na <ScratchInput>3</ScratchInput></ScratchBlock></div>
+                    
+                    {/* Cyklus zadávání PINu */}
                     <div className="pl-4">
                       <ScratchCBlock
                         category="control"
@@ -1657,7 +1661,7 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                               </ScratchHexagon>
                               nebo
                               <ScratchHexagon category="operators">
-                                <ScratchReporter category="variables">pokusy</ScratchReporter> {" = "} <ScratchInput>3</ScratchInput>
+                                <ScratchReporter category="variables">zbyvajici_pokusy</ScratchReporter> {" = "} <ScratchInput>0</ScratchInput>
                               </ScratchHexagon>
                             </ScratchHexagon>
                           </>
@@ -1682,63 +1686,56 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                               }
                             >
                               <div className="pl-2 space-y-1">
-                                <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">pokusy</ScratchInput> o <ScratchInput>1</ScratchInput></ScratchBlock></div>
-                                <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Špatný PIN!</ScratchInput> na <ScratchInput>1.5</ScratchInput> sekund</ScratchBlock></div>
+                                <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">zbyvajici_pokusy</ScratchInput> o <ScratchInput>-1</ScratchInput></ScratchBlock></div>
+                                <div>
+                                  <ScratchCBlock
+                                    category="control"
+                                    topLabel={
+                                      <>
+                                        když
+                                        <ScratchHexagon category="operators">
+                                          <ScratchReporter category="variables">zbyvajici_pokusy</ScratchReporter> {">"} <ScratchInput>0</ScratchInput>
+                                        </ScratchHexagon>
+                                        tak
+                                      </>
+                                    }
+                                  >
+                                    <div className="pl-2">
+                                      <ScratchBlock category="looks">
+                                        bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Špatný PIN! Zbývá pokusů: </ScratchInput> <ScratchReporter category="variables">zbyvajici_pokusy</ScratchReporter></ScratchReporter> na <ScratchInput>2</ScratchInput> sekund
+                                      </ScratchBlock>
+                                    </div>
+                                  </ScratchCBlock>
+                                </div>
                               </div>
                             </ScratchCBlock>
                           </div>
                         </div>
                       </ScratchCBlock>
                     </div>
+
+                    {/* Vyhodnocení za cyklem */}
                     <div className="pl-4">
-                      <ScratchCBlock
+                      <ScratchCElseBlock
                         category="control"
-                        topLabel={
-                          <>
-                            když
-                            <ScratchHexagon category="operators">
-                              <ScratchReporter category="variables">pokusy</ScratchReporter> {" = "} <ScratchInput>3</ScratchInput>
-                            </ScratchHexagon>
-                            tak
-                          </>
+                        condition={
+                          <ScratchHexagon category="operators">
+                            <ScratchReporter category="sensing">odpověď</ScratchReporter> {" = "} <ScratchReporter category="variables">PIN</ScratchReporter>
+                          </ScratchHexagon>
+                        }
+                        elseChildren={
+                          <div className="pl-2 space-y-1">
+                            <div><ScratchBlock category="looks">bublina <ScratchInput type="text">3× špatně zadaný PIN! Karta zablokována. 🚨</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
+                            <div><ScratchBlock category="control">zastav <ScratchInput type="dropdown">všechno</ScratchInput></ScratchBlock></div>
+                          </div>
                         }
                       >
                         <div className="pl-2 space-y-1">
-                          <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Karta zablokována! 🚨</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
-                          <div><ScratchBlock category="control">zastav <ScratchInput type="dropdown">všechno</ScratchInput></ScratchBlock></div>
-                        </div>
-                      </ScratchCBlock>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                    <Landmark className="w-3.5 h-3.5 text-emerald-600" />
-                    Fáze 2: Výběr peněz, 3 samostatné kontroly chyb a opakování:
-                  </div>
-                  <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
-                    <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchInput type="text">ano</ScratchInput></ScratchBlock></div>
-                    <div>
-                      <ScratchCBlock
-                        category="control"
-                        topLabel={
-                          <>
-                            opakuj dokud nenastane
-                            <ScratchHexagon category="operators">
-                              ne
-                              <ScratchHexagon isSlot>
-                                <ScratchReporter category="variables">pokracovat</ScratchReporter> {" = "} <ScratchInput type="text">ano</ScratchInput>
-                              </ScratchHexagon>
-                            </ScratchHexagon>
-                          </>
-                        }
-                      >
-                        <div className="pl-2 space-y-1">
-                          <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Kolik chcete vybrat Kč?</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="looks">bublina <ScratchInput type="text">PIN v pořádku! Vítejte v bance. 👋</ScratchInput> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                          <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Kolik Kč si přejete vybrat?</ScratchInput> a čekej</ScratchBlock></div>
                           <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">vyber</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
-
-                          {/* 3 rozložené podmínky pro přesnou diagnostiku chyb */}
+                          
+                          {/* 2 diagnostické podmínky omezení výběru */}
                           <div>
                             <ScratchCElseBlock
                               category="control"
@@ -1757,32 +1754,9 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                                       </ScratchHexagon>
                                     }
                                     elseChildren={
-                                      <div className="pl-2">
-                                        <ScratchCElseBlock
-                                          category="control"
-                                          condition={
-                                            <ScratchHexagon category="operators">
-                                              ne
-                                              <ScratchHexagon isSlot>
-                                                <ScratchReporter category="operators">
-                                                  zbytek <ScratchReporter category="variables">vyber</ScratchReporter> děleno <ScratchInput>100</ScratchInput>
-                                                </ScratchReporter>
-                                                {" = "}
-                                                <ScratchInput>0</ScratchInput>
-                                              </ScratchHexagon>
-                                            </ScratchHexagon>
-                                          }
-                                          elseChildren={
-                                            <div className="pl-2 space-y-1">
-                                              <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">zustatek</ScratchInput> o <ScratchReporter category="operators"><ScratchInput>0</ScratchInput> - <ScratchReporter category="variables">vyber</ScratchReporter></ScratchReporter></ScratchBlock></div>
-                                              <div><ScratchBlock category="looks">bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Výběr schválen! Zůstatek: </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">zustatek</ScratchReporter> <ScratchInput type="text"> Kč</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
-                                            </div>
-                                          }
-                                        >
-                                          <div className="pl-2">
-                                            <ScratchBlock category="looks">bublina <ScratchInput type="text">Chyba: Bankomat vydává pouze celé stokoruny! 💵</ScratchInput> na <ScratchInput>2.5</ScratchInput> sekund</ScratchBlock>
-                                          </div>
-                                        </ScratchCElseBlock>
+                                      <div className="pl-2 space-y-1">
+                                        <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">zustatek</ScratchInput> o <ScratchReporter category="operators"><ScratchInput>0</ScratchInput> - <ScratchReporter category="variables">vyber</ScratchReporter></ScratchReporter></ScratchBlock></div>
+                                        <div><ScratchBlock category="looks">bublina <ScratchReporter category="operators">spoj <ScratchInput type="text">Výběr schválen! Zůstatek: </ScratchInput> <ScratchReporter category="operators">spoj <ScratchReporter category="variables">zustatek</ScratchReporter> <ScratchInput type="text"> Kč 💵</ScratchInput></ScratchReporter></ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
                                       </div>
                                     }
                                   >
@@ -1798,13 +1772,26 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
                               </div>
                             </ScratchCElseBlock>
                           </div>
-
-                          <div className="pt-1"><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Přejete si pokračovat? (ano / ne)</ScratchInput> a čekej</ScratchBlock></div>
-                          <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
                         </div>
-                      </ScratchCBlock>
+                      </ScratchCElseBlock>
                     </div>
-                    <div><ScratchBlock category="looks">bublina <ScratchInput type="text">Děkujeme za návštěvu, nezapomeňte si kartu! 👋</ScratchInput> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
+                  </div>
+                </div>
+
+                {/* 2. Bonusové rozšíření – cyklus opakování */}
+                <div className="space-y-1 pt-2">
+                  <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <Landmark className="w-3.5 h-3.5 text-emerald-600" />
+                    Volitelné rozšíření (Krok 4): Cyklus opakování transakcí:
+                  </div>
+                  <div className="bg-white p-3 rounded-xl border border-emerald-200 font-mono text-xs text-slate-800 space-y-1">
+                    <p className="font-sans text-[11px] text-slate-600 mb-1">
+                      Sekci zadání částky a obě podmínky obalíme do cyklu <code>opakuj dokud nenastane (pokracovat = ne)</code>. Na konci se zeptáme:
+                    </p>
+                    <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchInput type="text">ano</ScratchInput></ScratchBlock></div>
+                    <div className="pl-2 text-slate-400">... [kaskáda výběru a odečtení peněz] ...</div>
+                    <div><ScratchBlock category="sensing">zeptej se <ScratchInput type="text">Přejete si další transakci? (ano / ne)</ScratchInput> a čekej</ScratchBlock></div>
+                    <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">pokracovat</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
                   </div>
                 </div>
               </div>
@@ -1812,91 +1799,97 @@ export const ScratchConditionsChapter = ({ onBack }: { onBack?: () => void }) =>
             saveAs="Bankomat.sb3"
           >
             <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
-              <p className="font-bold text-slate-800">
-                Závěrečný komplexní projekt: Vytvořte inteligentní bankomat, který spravuje uživatelský účet, brání neoprávněnému vniknutí a dohlíží na pravidla výdeje hotovosti.
+              <p className="font-bold text-slate-800 text-base">
+                Závěrečný syntetický projekt: Vytvořte spolehlivý bankomat, který spravuje uživatelský účet, chrání kartu před neoprávněným vniknutím a kontroluje dvě základní pravidla pro výběr peněz.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
-                    <KeyRound className="w-4 h-4 text-amber-600" />
-                    1. Fáze: Bezpečnostní přihlášení
+              {/* 4 přehledné kroky stavby */}
+              <div className="space-y-4">
+                {/* KROK 1 */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                  <h4 className="font-bold text-slate-800 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center text-xs font-black">1</span>
+                    Příprava proměnných (Inicializace bankomatu)
                   </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-xs">
-                    <li>Správný PIN je uložen v proměnné (např. <code>1234</code>).</li>
-                    <li>Uživatel má maximálně <strong>3 pokusy</strong> na zadání správného PINu (použijte cyklus <code>opakuj dokud nenastane</code>).</li>
-                    <li>Pokud zadá 3× špatný PIN, bankomat ohlásí <em>„Karta zablokována! 🚨“</em> a program se zastaví.</li>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Vytvoř 4 proměnné a pod zelenou vlajku vlož jejich počáteční nastavení:
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+                    <div className="bg-white p-2 rounded-xl border border-slate-200 text-center">
+                      <span className="text-slate-400 block text-[10px] font-sans">Tajný PIN:</span>
+                      <strong className="text-amber-700">PIN = 1234</strong>
+                    </div>
+                    <div className="bg-white p-2 rounded-xl border border-slate-200 text-center">
+                      <span className="text-slate-400 block text-[10px] font-sans">Počáteční stav:</span>
+                      <strong className="text-emerald-700">zustatek = 5000</strong>
+                    </div>
+                    <div className="bg-white p-2 rounded-xl border border-slate-200 text-center">
+                      <span className="text-slate-400 block text-[10px] font-sans">Počet pokusů:</span>
+                      <strong className="text-blue-700">zbyvajici_pokusy = 3</strong>
+                    </div>
+                    <div className="bg-white p-2 rounded-xl border border-slate-200 text-center">
+                      <span className="text-slate-400 block text-[10px] font-sans">Výběr:</span>
+                      <strong className="text-slate-700">vyber = 0</strong>
+                    </div>
+                  </div>
+                </div>
+
+                {/* KROK 2 */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                  <h4 className="font-bold text-slate-800 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center text-xs font-black">2</span>
+                    Zadávání PINu s odpočtem pokusů
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Vytvoř cyklus, ve kterém se bankomat opakovaně ptá na 4místný PIN. Uživatel má k dispozici maximálně <strong>3 pokusy</strong>.
+                    Při každém chybném zadání bankomat ohlásí chybu a odečte jeden pokus. Cyklus skončí, jakmile uživatel zadá správný PIN, nebo když vyčerpá všechny 3 pokusy.
+                  </p>
+                </div>
+
+                {/* KROK 3 */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                  <h4 className="font-bold text-slate-800 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center text-xs font-black">3</span>
+                    Ověření PINu a kontrola pravidel výběru
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Za cyklem otestuj výsledek přihlášení:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1.5 text-xs text-slate-600 leading-relaxed">
+                    <li>
+                      <strong>Pokud byl PIN zadán špatně (vyčerpány 3 pokusy):</strong> Bankomat ohlásí zablokování karty a program se zastaví.
+                    </li>
+                    <li>
+                      <strong>Pokud je PIN správný:</strong> Bankomat uživatele přivítá, zeptá se na částku výběru a ověří dvě pravidla:
+                      <ol className="list-decimal pl-4 mt-1 space-y-1">
+                        <li>Zda částka nepřesahuje aktuální zůstatek na účtu.</li>
+                        <li>Zda částka nepřekračuje jednorázový limit 3 000 Kč.</li>
+                      </ol>
+                      Pokud některé pravidlo neprojde, bankomat nahlásí příslušnou chybu. Pokud jsou obě pravidla splněna, částku odečte ze zůstatku a potvrdí úspěšný výběr.
+                    </li>
                   </ul>
                 </div>
 
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
-                    <Landmark className="w-4 h-4 text-emerald-600" />
-                    2. Fáze: Pravidla výběru hotovosti
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-xs">
-                    <li>Počáteční <code>zustatek</code> je 5 000 Kč a jednorázový <code>limit</code> je 3 000 Kč.</li>
-                    <li><strong>Pravidlo 1 (Dostatek peněz):</strong> Částka nesmí být vyšší než zůstatek.</li>
-                    <li><strong>Pravidlo 2 (Bankovky):</strong> Bankomat vydává pouze stovky (zbytek po dělení 100 musí být 0).</li>
-                    <li><strong>Pravidlo 3 (Limit):</strong> Částka nesmí překročit limit 3 000 Kč.</li>
+                {/* KROK 4 - VOLITELNÝ BONUS */}
+                <div className="p-4 bg-amber-50/80 rounded-2xl border-2 border-amber-300 text-xs text-slate-700 space-y-2">
+                  <div className="font-bold text-amber-900 flex items-center gap-2 text-sm">
+                    <span className="text-base">💡</span>
+                    <span>Krok 4 (Volitelná bonusová výzva): Opakování výběru transakcí</span>
+                  </div>
+                  <p className="leading-relaxed">
+                    Máte hotovo dříve? Umožněte uživateli provést více výběrů za sebou, aniž by musel znovu zadávat PIN:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1.5 leading-relaxed">
+                    <li>Vytvoř proměnnou <code>pokracovat</code> a před výběrem ji nastav na <code>ano</code>.</li>
+                    <li>Dotaz na výběr a kontrolu obou pravidel obal do cyklu <ScratchBlock category="control">opakuj dokud nenastane &lt;pokracovat = ne&gt;</ScratchBlock>.</li>
+                    <li>
+                      Na konci každého výběru se zeptej: <strong>„Přejete si další transakci? (ano / ne)“</strong> a odpověď ulož do proměnné <code>pokracovat</code>.
+                    </li>
+                    <li>
+                      Pokud uživatel zadá <strong>„ne“</strong>, bankomat vypíše: <em>„Děkujeme za návštěvu, nezapomeňte si vzít platební kartu! 👋“</em>.
+                    </li>
                   </ul>
                 </div>
-              </div>
-
-              <div>
-                <h4 className="font-bold text-slate-800 mb-2">3. Fáze: Provedení transakce</h4>
-                <p>
-                  Pokud jsou všechna pravidla splněna, odečtěte požadovanou částku ze zůstatku a vypište:
-                  <strong className="text-slate-800 block mt-1">„Výběr schválen! Zůstatek na vašem účtu je: [zustatek] Kč.“</strong>
-                  Pokud některé pravidlo splněno není, bankomat musí uživateli jasně říct, v čem nastala chyba.
-                </p>
-              </div>
-
-              <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 flex flex-col gap-3">
-                <h4 className="text-xs font-bold text-amber-800 uppercase tracking-wider">
-                  Klíčové bloky k sestavení:
-                </h4>
-                <div className="flex flex-wrap gap-4 items-center">
-                  <ScratchCBlock
-                    category="control"
-                    topLabel={
-                      <>
-                        opakuj dokud nenastane <ScratchHexagon isSlot category="control" />
-                      </>
-                    }
-                  >
-                    <div className="h-4"></div>
-                  </ScratchCBlock>
-
-                  <ScratchHexagon category="operators">
-                    ne <ScratchHexagon isSlot />
-                  </ScratchHexagon>
-
-                  <ScratchBlock category="operators">
-                    zbytek <ScratchInput> </ScratchInput> děleno <ScratchInput> </ScratchInput>
-                  </ScratchBlock>
-                </div>
-              </div>
-
-              <div className="p-4 bg-amber-50/80 rounded-2xl border-2 border-amber-300 text-xs text-slate-700 space-y-2.5">
-                <div className="font-bold text-amber-900 flex items-center gap-2 text-sm">
-                  <span className="text-base">💡</span>
-                  <span>Bonusová výzva: Pokračování v transakcích (opakování výběru)</span>
-                </div>
-                <p className="leading-relaxed">
-                  Na konci výběru – <strong>ať už byl úspěšný, nebo neúspěšný</strong> (např. z důvodu nedostatku financí, špatných bankovek či překročení limitu) – se bankomat vždy zeptá:
-                </p>
-                <ul className="list-disc pl-5 space-y-1.5 leading-relaxed">
-                  <li>
-                    Otázka pro uživatele: <strong>„Přejete si pokračovat? (ano / ne)“</strong>.
-                  </li>
-                  <li>
-                    Pokud uživatel odpoví <strong>„ano“</strong>, celý proces zadání částky a ověření pravidel se <strong>zopakuje</strong> (využijte cyklus <code>opakuj dokud nenastane (odpověď = ne)</code>). Pokud byl předchozí výběr úspěšný, počítá se samozřejmě s novým, sníženým zůstatkem!
-                  </li>
-                  <li>
-                    Pokud uživatel odpoví <strong>„ne“</strong> (nebo cokoliv jiného), bankomat vypíše: <em>„Děkujeme za návštěvu, nezapomeňte si vzít svou platební kartu.“</em> a program se korektně ukončí.
-                  </li>
-                </ul>
               </div>
             </div>
           </TaskCard>
