@@ -1,8 +1,13 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import ChapterLayout from '@/components/layout/ChapterLayout';
 import { useRouter } from 'next/navigation';
-import WindowsInstallGame from '@/components/specializovana/operacni-systemy/WindowsInstallGame';
+
+const WindowsInstallGame = dynamic(
+  () => import('@/components/specializovana/operacni-systemy/WindowsInstallGame'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

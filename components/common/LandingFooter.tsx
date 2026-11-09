@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Mail, Copy, Check, ShieldCheck, Sparkles, Code2, ExternalLink, Info, Heart } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface LandingFooterProps {
   onOpenTechStack?: () => void;

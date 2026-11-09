@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import FATGame from '@/components/specializovana/operacni-systemy/FATGame';
+
+const FATGame = dynamic(
+  () => import('@/components/specializovana/operacni-systemy/FATGame'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

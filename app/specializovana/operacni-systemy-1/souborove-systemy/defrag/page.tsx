@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import DefragGame from '@/components/specializovana/operacni-systemy/DefragGame';
+
+const DefragGame = dynamic(
+  () => import('@/components/specializovana/operacni-systemy/DefragGame'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

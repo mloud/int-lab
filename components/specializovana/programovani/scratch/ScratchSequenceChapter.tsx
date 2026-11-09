@@ -1,144 +1,24 @@
 'use client';
 import React, { useState } from 'react';
-import { CheckCircle, GraduationCap, Unlock, Lock, Blocks, Code, Star, Save } from 'lucide-react';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { Blocks, Code, Star, Save, GraduationCap } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { ScratchBlock, ScratchInput, ScratchCBlock } from './ScratchBlocks';
+import {
+  TeacherNote,
+  CanvasPreview,
+  TaskCard,
+  Line,
+  CirclePath,
+  AvailableBlocks,
+  TeacherPinToggle,
+} from './ScratchShared';
 
 interface ScratchSequenceChapterProps {
   onBack: () => void;
 }
 
-
-const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
-    <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-amber-600" />
-      <span className="font-bold text-amber-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
-    </div>
-    <div className="text-sm text-amber-900 leading-relaxed">
-      {children}
-    </div>
-  </div>
-);
-
-const CanvasPreview = ({ children, width = 380, height = 266, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
-  <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
-    {children}
-  </div>
-);
-
-const TaskCard = ({ 
-  number, 
-  title, 
-  children, 
-  teacherNote, 
-  showTeacher,
-  taskId
-}: { 
-  number: string, 
-  title: string, 
-  children: React.ReactNode, 
-  teacherNote?: React.ReactNode,
-  showTeacher: boolean,
-  taskId: string
-}) => {
-  const [done, setLocalStorageDone] = useLocalStorage(`scratch-seq-task-${taskId}`, false);
-  const doneBool = done === true;
-
-  return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-amber-200 bg-amber-50/10' : 'border-white'}`}>
-      <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center font-black text-xl">
-          {number}
-        </div>
-        <div className="flex-1 min-w-0">
-          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
-          <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
-            {children}
-          </div>
-
-          {showTeacher && teacherNote && (
-            <TeacherNote>{teacherNote}</TeacherNote>
-          )}
-
-          <div className="mt-6 flex justify-end">
-            <button 
-              onClick={() => setLocalStorageDone(!doneBool)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                doneBool 
-                ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
-                : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-              }`}
-            >
-              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-amber-600' : 'text-slate-400'}`} />
-              {doneBool ? 'Splněno' : 'Označit jako splněné'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Pomocné komponenty pro grafiku
-const Line = ({ x1, y1, x2, y2, color = "blue", strokeWidth = 3, dashed = false }: any) => {
-  const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-  const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
-  return (
-    <div 
-      className="absolute origin-left"
-      style={{
-        left: x1, top: y1, width: length, height: strokeWidth,
-        backgroundColor: dashed ? 'transparent' : color,
-        borderTop: dashed ? `${strokeWidth}px dashed ${color}` : 'none',
-        transform: `rotate(${angle}deg)`,
-      }}
-    />
-  );
-};
-
-const CirclePath = ({ x, y, r, color = "blue", strokeWidth = 3 }: any) => (
-  <div 
-    className="absolute rounded-full"
-    style={{
-      left: x - r, top: y - r, width: r * 2, height: r * 2,
-      border: `${strokeWidth}px solid ${color}`,
-      backgroundColor: 'transparent'
-    }}
-  />
-);
-
-const AvailableBlocks = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex flex-wrap gap-2 my-4 items-center bg-slate-50 p-4 rounded-xl border border-slate-200">
-    <span className="text-sm font-bold text-slate-500 mr-2">Dostupné bloky:</span>
-    {children}
-  </div>
-);
-
 const ScratchSequenceChapter: React.FC<ScratchSequenceChapterProps> = ({ onBack }) => {
   const [teacherMode, setTeacherMode] = useState(false);
-  const [pinMode, setPinMode] = useState(false);
-  const [pin, setPin] = useState('');
-
-  const handleToggleTeacher = () => {
-    if (teacherMode) {
-      setTeacherMode(false);
-    } else {
-      setPinMode(true);
-      setPin('');
-    }
-  };
-
-  const submitPin = () => {
-    if (pin === '1234') {
-      setTeacherMode(true);
-      setPinMode(false);
-    } else {
-      alert('Nesprávný PIN');
-      setPinMode(false);
-    }
-  };
 
   return (
     <FsChapterShell
@@ -149,32 +29,7 @@ const ScratchSequenceChapter: React.FC<ScratchSequenceChapterProps> = ({ onBack 
       accentColor="amber"
       tabs={[{ id: 'lekce', label: 'Lekce 1', icon: Code }]}
     >
-      <div className="flex justify-end mb-6">
-        {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-amber-100">
-            <input 
-              type="password" 
-              placeholder="Zadej PIN" 
-              className="px-3 py-1 bg-slate-100 rounded-lg outline-none w-24 text-center font-mono"
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && submitPin()}
-              autoFocus
-            />
-            <button onClick={submitPin} className="bg-amber-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
-          </div>
-        ) : (
-          <button 
-            onClick={handleToggleTeacher}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-amber-100 text-amber-700 border-amber-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
-            }`}
-          >
-            {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
-            Učitelský režim {teacherMode ? 'ZAPNUT' : 'VYPNUT'}
-          </button>
-        )}
-      </div>
+      <TeacherPinToggle teacherMode={teacherMode} setTeacherMode={setTeacherMode} />
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-2xl mb-8">

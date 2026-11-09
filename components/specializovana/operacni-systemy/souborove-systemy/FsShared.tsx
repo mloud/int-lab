@@ -9,17 +9,24 @@ import { ArrowLeft, Info, AlertTriangle, Lightbulb, CheckCircle2, ExternalLink }
  * ale s větším písmem, aby se stránky daly promítat na projektoru.
  * ------------------------------------------------------------------ */
 
-export type Tone = 'indigo' | 'emerald' | 'amber' | 'rose' | 'sky' | 'purple' | 'slate' | 'teal';
+export type Tone = 'indigo' | 'emerald' | 'amber' | 'rose' | 'sky' | 'purple' | 'slate' | 'teal' | 'yellow' | 'cyan' | 'red' | 'fuchsia' | 'orange' | 'pink' | 'violet';
 
-export const toneClasses: Record<Tone, { bg: string; border: string; text: string; strong: string; icon: string; solid: string }> = {
-  indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-900', strong: 'text-indigo-700', icon: 'text-indigo-500', solid: 'bg-indigo-600' },
-  emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-900', strong: 'text-emerald-700', icon: 'text-emerald-500', solid: 'bg-emerald-600' },
-  amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', strong: 'text-amber-700', icon: 'text-amber-500', solid: 'bg-amber-500' },
-  rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-900', strong: 'text-rose-700', icon: 'text-rose-500', solid: 'bg-rose-600' },
-  sky: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-900', strong: 'text-sky-700', icon: 'text-sky-500', solid: 'bg-sky-600' },
-  purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-900', strong: 'text-purple-700', icon: 'text-purple-500', solid: 'bg-purple-600' },
-  slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', strong: 'text-slate-700', icon: 'text-slate-500', solid: 'bg-slate-700' },
-  teal: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-900', strong: 'text-teal-700', icon: 'text-teal-500', solid: 'bg-teal-600' },
+export const toneClasses: Record<Tone, { bg: string; border: string; text: string; strong: string; icon: string; solid: string; code400: string; code500: string; code300: string; badge: string; doneBg: string }> = {
+  indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-900', strong: 'text-indigo-700', icon: 'text-indigo-500', solid: 'bg-indigo-600', code400: 'text-indigo-400', code500: 'text-indigo-500', code300: 'text-indigo-300', badge: 'bg-indigo-100', doneBg: 'bg-indigo-50/20' },
+  emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-900', strong: 'text-emerald-700', icon: 'text-emerald-500', solid: 'bg-emerald-600', code400: 'text-emerald-400', code500: 'text-emerald-500', code300: 'text-emerald-300', badge: 'bg-emerald-100', doneBg: 'bg-emerald-50/20' },
+  amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', strong: 'text-amber-700', icon: 'text-amber-500', solid: 'bg-amber-500', code400: 'text-amber-400', code500: 'text-amber-500', code300: 'text-amber-300', badge: 'bg-amber-100', doneBg: 'bg-amber-50/20' },
+  rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-900', strong: 'text-rose-700', icon: 'text-rose-500', solid: 'bg-rose-600', code400: 'text-rose-400', code500: 'text-rose-500', code300: 'text-rose-300', badge: 'bg-rose-100', doneBg: 'bg-rose-50/20' },
+  sky: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-900', strong: 'text-sky-700', icon: 'text-sky-500', solid: 'bg-sky-600', code400: 'text-sky-400', code500: 'text-sky-500', code300: 'text-sky-300', badge: 'bg-sky-100', doneBg: 'bg-sky-50/20' },
+  purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-900', strong: 'text-purple-700', icon: 'text-purple-500', solid: 'bg-purple-600', code400: 'text-purple-400', code500: 'text-purple-500', code300: 'text-purple-300', badge: 'bg-purple-100', doneBg: 'bg-purple-50/20' },
+  slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', strong: 'text-slate-700', icon: 'text-slate-500', solid: 'bg-slate-700', code400: 'text-slate-400', code500: 'text-slate-500', code300: 'text-slate-300', badge: 'bg-slate-100', doneBg: 'bg-slate-50/20' },
+  teal: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-900', strong: 'text-teal-700', icon: 'text-teal-500', solid: 'bg-teal-600', code400: 'text-teal-400', code500: 'text-teal-500', code300: 'text-teal-300', badge: 'bg-teal-100', doneBg: 'bg-teal-50/20' },
+  yellow: { bg: 'bg-yellow-50', border: 'border-yellow-200', text: 'text-yellow-900', strong: 'text-yellow-700', icon: 'text-yellow-500', solid: 'bg-yellow-600', code400: 'text-yellow-400', code500: 'text-yellow-500', code300: 'text-yellow-300', badge: 'bg-yellow-100', doneBg: 'bg-yellow-50/20' },
+  cyan: { bg: 'bg-cyan-50', border: 'border-cyan-200', text: 'text-cyan-900', strong: 'text-cyan-700', icon: 'text-cyan-500', solid: 'bg-cyan-600', code400: 'text-cyan-400', code500: 'text-cyan-500', code300: 'text-cyan-300', badge: 'bg-cyan-100', doneBg: 'bg-cyan-50/20' },
+  red: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-900', strong: 'text-red-700', icon: 'text-red-500', solid: 'bg-red-600', code400: 'text-red-400', code500: 'text-red-500', code300: 'text-red-300', badge: 'bg-red-100', doneBg: 'bg-red-50/20' },
+  fuchsia: { bg: 'bg-fuchsia-50', border: 'border-fuchsia-200', text: 'text-fuchsia-900', strong: 'text-fuchsia-700', icon: 'text-fuchsia-500', solid: 'bg-fuchsia-600', code400: 'text-fuchsia-400', code500: 'text-fuchsia-500', code300: 'text-fuchsia-300', badge: 'bg-fuchsia-100', doneBg: 'bg-fuchsia-50/20' },
+  orange: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-900', strong: 'text-orange-700', icon: 'text-orange-500', solid: 'bg-orange-600', code400: 'text-orange-400', code500: 'text-orange-500', code300: 'text-orange-300', badge: 'bg-orange-100', doneBg: 'bg-orange-50/20' },
+  pink: { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-900', strong: 'text-pink-700', icon: 'text-pink-500', solid: 'bg-pink-600', code400: 'text-pink-400', code500: 'text-pink-500', code300: 'text-pink-300', badge: 'bg-pink-100', doneBg: 'bg-pink-50/20' },
+  violet: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-900', strong: 'text-violet-700', icon: 'text-violet-500', solid: 'bg-violet-600', code400: 'text-violet-400', code500: 'text-violet-500', code300: 'text-violet-300', badge: 'bg-violet-100', doneBg: 'bg-violet-50/20' },
 };
 
 export interface FsTab {
@@ -163,8 +170,21 @@ export const TermCard: React.FC<{ term: string; tone?: Tone; children: React.Rea
 );
 
 const hoverBorder: Record<Tone, string> = {
-  indigo: 'hover:border-indigo-200', emerald: 'hover:border-emerald-200', amber: 'hover:border-amber-200', rose: 'hover:border-rose-200',
-  sky: 'hover:border-sky-200', purple: 'hover:border-purple-200', slate: 'hover:border-slate-200', teal: 'hover:border-teal-200',
+  indigo: 'hover:border-indigo-200',
+  emerald: 'hover:border-emerald-200',
+  amber: 'hover:border-amber-200',
+  rose: 'hover:border-rose-200',
+  sky: 'hover:border-sky-200',
+  purple: 'hover:border-purple-200',
+  slate: 'hover:border-slate-200',
+  teal: 'hover:border-teal-200',
+  yellow: 'hover:border-yellow-200',
+  cyan: 'hover:border-cyan-200',
+  red: 'hover:border-red-200',
+  fuchsia: 'hover:border-fuchsia-200',
+  orange: 'hover:border-orange-200',
+  pink: 'hover:border-pink-200',
+  violet: 'hover:border-violet-200',
 };
 
 /** Odkaz na samostatnou procvičovací hru (už existující simulátory portálu). */

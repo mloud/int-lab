@@ -1,0 +1,436 @@
+"use client";
+
+import React from 'react';
+import {
+  Grid, HardDrive, Layout, MemoryStick, FileSearch, ShieldAlert,
+  FolderOpen, HardDriveDownload, Save, Database, Trash2, Eraser, Table2
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { TheoryCard, Callout, TermCard, RevealQuestions } from '../FsShared';
+import { DefinitionCard } from '@/components/ui/DefinitionCard';
+
+export const FatTheoryTab = () => {
+  const router = useRouter();
+  return (
+        <div className="space-y-10">
+
+          {/* HLAVNÍ DEFINICE */}
+          <DefinitionCard
+            icon={Database}
+            term="Souborový systém"
+            definition={<>je způsob a pravidla, kterými operační systém <strong>organizuje a ukládá soubory a složky na disku</strong>.</>}
+            note={<>Bez něj je diskový oddíl pouze surovou plochou bajtů. Vytváří se procesem <strong>formátování</strong> inicializací sítě clusterů a tabulky souborů.</>}
+          />
+
+          <TheoryCard icon={HardDrive} title="Od hardwaru k softwaru" letter="A" tone="slate">
+            <p>
+              Fyzický disk je členěn na základní <strong>sektory</strong> (typicky 4 KB), které se sdružují do logických <strong>diskových oddílů</strong>.
+            </p>
+            <p className="mt-4">
+              Samotný oddíl je však pouze nestrukturovaný prostor. Teprve <strong>formátováním</strong> se na něm inicializuje <strong>souborový systém</strong> (File System), který vytváří <strong>katalog clusterů</strong> nezbytný pro zápis souborů a složek.
+            </p>
+          </TheoryCard>
+
+          <TheoryCard icon={Grid} title="Cluster (Alokační jednotka)" letter="B" tone="purple">
+            <p>
+              Operační systém neukládá data bajt po bajtu, ale vyhrazuje si pro ně pevné bloky zvané <strong>Clustery</strong> (neboli Alokační jednotky). Běžná velikost clusteru ve Windows je <strong>4 KB</strong>. U moderních disků (kde má i samotný fyzický sektor 4 KB) tak tvoří jeden cluster přesně jeden sektor. U starších disků s 512bajtovými sektory musel systém spojit 8 sektorů, aby vytvořil jeden 4KB cluster.
+            </p>
+
+            {/* Grid clusterů */}
+            <div className="bg-slate-50 p-6 sm:p-10 rounded-2xl border-2 border-slate-200 mt-6 mb-6">
+              <div className="max-w-2xl mx-auto">
+                <h4 className="font-bold text-slate-800 uppercase text-center mb-4 text-sm tracking-widest">Mřížka Clusterů (Alokačních jednotek)</h4>
+
+                <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2">
+                  {[...Array(24)].map((_, i) => {
+                    const isFile1 = i >= 10 && i <= 12; // 3 clusters for big file
+                    const isFile2 = i >= 3 && i <= 5;   // 3 single clusters for small files
+
+                    let bgClass = 'bg-white border-slate-200 text-slate-400';
+                    let textTop = 'text-slate-300';
+                    let textBot = 'text-slate-500';
+                    let fillAmount = '0%';
+
+                    if (isFile1) {
+                      bgClass = 'bg-purple-100 border-purple-400 overflow-hidden relative z-10';
+                      textTop = 'text-purple-600 relative z-20';
+                      textBot = 'text-purple-900 relative z-20';
+                      fillAmount = i === 12 ? '50%' : '100%'; // last cluster half full
+                    } else if (isFile2) {
+                      bgClass = 'bg-emerald-100 border-emerald-400 overflow-hidden relative z-10';
+                      textTop = 'text-emerald-600 relative z-20';
+                      textBot = 'text-emerald-900 relative z-20';
+                      fillAmount = i === 3 ? '10%' : i === 4 ? '25%' : '5%'; // small fills
+                    }
+
+                    return (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-xl flex flex-col items-center justify-center p-1 border-2 transition-transform hover:scale-110 relative ${bgClass}`}
+                      >
+                        {/* Výplň dat */}
+                        {(isFile1 || isFile2) && (
+                          <div className={`absolute bottom-0 left-0 right-0 opacity-40 ${isFile1 ? 'bg-purple-500' : 'bg-emerald-500'}`} style={{ height: fillAmount }}></div>
+                        )}
+                        <div className={`absolute top-1 left-1.5 text-[9px] font-mono opacity-80 ${textTop}`}>#{i}</div>
+                        <div className={`text-[10px] font-bold ${textTop}`}>Cluster</div>
+                        <div className={`text-xs font-black mt-1 ${textBot}`}>4 KB</div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Legenda k souborům */}
+                <div className="mt-6 grid sm:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
+                    <div className="w-5 h-5 rounded bg-purple-500 shrink-0 mt-0.5 opacity-60"></div>
+                    <div>
+                      <div className="font-bold text-purple-900 text-sm">"video.mp4" (10 KB)</div>
+                      <div className="text-xs text-purple-700 mt-1 leading-relaxed">
+                        Velký soubor zabral celé clustery #10 a #11. Z clusteru #12 obsadil jen půlku. Zbylé 2 KB v clusteru #12 propadají (nikdo jiný je nesmí využít).
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-4 bg-emerald-50 rounded-xl border-2 border-emerald-200">
+                    <div className="w-5 h-5 rounded bg-emerald-500 shrink-0 mt-0.5 opacity-60"></div>
+                    <div>
+                      <div className="font-bold text-emerald-900 text-sm">3 malé soubory (po 1 KB)</div>
+                      <div className="text-xs text-emerald-700 mt-1 leading-relaxed">
+                        I když by se všechny 3 malé soubory s přehledem vešly do jednoho 4KB clusteru, OS to nedovolí! Každý musí obsadit svůj vlastní cluster (#3, #4, #5) a vyplýtvají tak zbytečně 12 KB místa na disku.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Callout kind="warning" title="Zlaté pravidlo clusteru (Vnitřní fragmentace)">
+                <p>
+                  Jeden soubor může na disku zabrat třeba tisíc clusterů, ale <strong>jeden cluster nikdy nemohou sdílet dva různé soubory</strong>.
+                </p>
+                <p className="mt-2 text-sm">
+                  <em>Pokud uložíte textový soubor o velikosti 1 Bajt, na disku reálně zabere celé 4 Kilobajty. Zbytek clusteru nenávratně propadne. Tomu se říká vnitřní fragmentace (slack space).</em>
+                </p>
+              </Callout>
+            </div>
+          </TheoryCard>
+
+          <TheoryCard icon={FileSearch} title="Jak OS najde data? (Tabulka souborů)" letter="C" tone="sky">
+            <p>
+              Mřížka plná clusterů by byla jen hromadou nesrozumitelných jedniček a nul, kdyby k ní neexistoval "obsah". Proto má každý souborový systém někde na začátku disku schovanou <strong>Tabulku souborů</strong> (např. systém FAT nebo MFT). Ta funguje jako rejstřík v knížce a říká, ve kterých clusterech leží jaký soubor.
+            </p>
+
+            <div className="mt-8 flex flex-col xl:flex-row gap-8">
+              {/* Levá část: Adresář a FAT tabulka */}
+              <div className="xl:w-[45%] flex flex-col gap-4">
+
+                {/* Adresář (Hlavičky souborů) */}
+                <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col">
+                  <h4 className="font-bold text-slate-800 uppercase text-xs mb-3 flex items-center gap-2">
+                    <FolderOpen className="w-4 h-4 text-slate-500" /> Adresář (Seznam souborů)
+                  </h4>
+                  <div className="text-xs w-full text-left rounded-xl bg-slate-50 border border-slate-200 p-2.5">
+                    <div className="grid grid-cols-2 pb-1.5 mb-1.5 border-b border-slate-200 font-bold uppercase text-[10px] tracking-wider text-slate-500">
+                      <span>Název souboru</span>
+                      <span className="text-right">Počáteční cluster</span>
+                    </div>
+                    <div className="grid grid-cols-2 items-center text-sky-800 py-1 font-medium">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+                        zprava.txt
+                      </span>
+                      <span className="font-mono font-bold text-right text-sky-700 bg-sky-100/80 px-2 py-0.5 rounded ml-auto">
+                        Cluster #2
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 items-center text-amber-800 py-1 font-medium border-t border-slate-100">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                        dovolena.jpg
+                      </span>
+                      <span className="font-mono font-bold text-right text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded ml-auto">
+                        Cluster #7
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Samotná FAT tabulka */}
+                <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-sm flex-1 flex flex-col">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-bold text-slate-800 uppercase text-xs flex items-center gap-2">
+                      <Table2 className="w-4 h-4 text-slate-500" /> FAT Tabulka (Řetězení clusterů)
+                    </h4>
+                    <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">
+                      Index ➔ Odkaz
+                    </span>
+                  </div>
+
+                  {/* Názvy sloupců (Hlavička tabulky) */}
+                  <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-[11px] font-black uppercase tracking-wider text-slate-700 mb-2">
+                    <div className="pl-1">Číslo clusteru</div>
+                    <div className="pl-1">Následující cluster</div>
+                  </div>
+
+                  {/* Řádky tabulky */}
+                  <div className="space-y-1 font-mono text-xs max-h-[460px] overflow-y-auto pr-1">
+                    {[
+                      { cluster: 0, next: 'RES', file: 'FAT tabulka', isSystem: true },
+                      { cluster: 1, next: 'RES', file: 'Záloha FAT', isSystem: true },
+                      { cluster: 2, next: '3', file: 'zprava.txt', isSystem: false },
+                      { cluster: 3, next: 'EOF', file: 'zprava.txt', isSystem: false },
+                      { cluster: 4, next: '0', file: null, isSystem: false },
+                      { cluster: 5, next: '0', file: null, isSystem: false },
+                      { cluster: 6, next: '0', file: null, isSystem: false },
+                      { cluster: 7, next: '8', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 8, next: '14', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 9, next: '0', file: null, isSystem: false },
+                      { cluster: 10, next: '0', file: null, isSystem: false },
+                      { cluster: 11, next: '0', file: null, isSystem: false },
+                      { cluster: 12, next: '0', file: null, isSystem: false },
+                      { cluster: 13, next: '0', file: null, isSystem: false },
+                      { cluster: 14, next: '15', file: 'dovolena.jpg', isSystem: false },
+                      { cluster: 15, next: 'EOF', file: 'dovolena.jpg', isSystem: false },
+                    ].map((row) => {
+                      const isSky = row.file === 'zprava.txt';
+                      const isAmber = row.file === 'dovolena.jpg';
+                      const isSystem = row.isSystem;
+
+                      return (
+                        <div
+                          key={row.cluster}
+                          className={`grid grid-cols-2 gap-2 p-1.5 rounded-lg border text-xs transition-colors items-center ${isSystem
+                            ? 'bg-indigo-50/90 border-indigo-200 text-indigo-900 font-bold'
+                            : isSky
+                              ? 'bg-sky-50/90 border-sky-200 text-sky-900 font-bold'
+                              : isAmber
+                                ? 'bg-amber-50/90 border-amber-200 text-amber-900 font-bold'
+                                : 'bg-slate-50/40 border-slate-100 text-slate-400 hover:bg-slate-50'
+                            }`}
+                        >
+                          {/* 1. Sloupec: Číslo clusteru */}
+                          <div className="flex items-center gap-1.5 pl-1">
+                            <span
+                              className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${isSystem
+                                ? 'bg-indigo-200 text-indigo-950 font-black'
+                                : isSky
+                                  ? 'bg-sky-200 text-sky-950'
+                                  : isAmber
+                                    ? 'bg-amber-200 text-amber-950'
+                                    : 'bg-slate-200/80 text-slate-600'
+                                }`}
+                            >
+                              #{row.cluster}
+                            </span>
+                            {row.file && (
+                              <span className="text-[10px] font-sans font-medium opacity-85 truncate">
+                                ({row.file})
+                              </span>
+                            )}
+                          </div>
+
+                          {/* 2. Sloupec: Následující cluster */}
+                          <div className="flex items-center gap-1.5 pl-1">
+                            <span
+                              className={`px-1.5 py-0.5 rounded font-black text-[11px] ${isSystem
+                                ? 'bg-white border border-indigo-300 text-indigo-700 shadow-xs'
+                                : isSky
+                                  ? 'bg-white border border-sky-300 text-sky-700 shadow-xs'
+                                  : isAmber
+                                    ? 'bg-white border border-amber-300 text-amber-700 shadow-xs'
+                                    : 'text-slate-400'
+                                }`}
+                            >
+                              {row.next}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-4 p-3 bg-slate-50 text-[11px] text-slate-600 border border-slate-200 rounded-xl leading-relaxed">
+                    <strong>Jak číst FAT tabulku:</strong><br />
+                    • <strong>#0 a #1:</strong> FAT tabulka a její záloha (uživatelská data začínají od #2).<br />
+                    • <strong>Číslo:</strong> Odkaz na další navazující cluster souboru.<br />
+                    • <strong>EOF (End of File):</strong> Poslední blok – soubor zde končí. Číslo <strong>0</strong> = volný cluster.
+                  </div>
+                </div>
+              </div>
+
+              {/* Pravá část: Mřížka disku */}
+              <div className="xl:w-[55%] bg-slate-50 p-6 sm:p-8 rounded-2xl border-2 border-slate-200">
+                <h4 className="font-bold text-slate-800 uppercase text-center mb-4 text-sm tracking-widest">Fyzický stav na disku</h4>
+
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                  {[...Array(24)].map((_, i) => {
+                    const isFat = i === 0;
+                    const isBackup = i === 1;
+                    const isSky = i === 2 || i === 3;
+                    const isAmber = i === 7 || i === 8 || i === 14 || i === 15;
+
+                    let bgClass = 'bg-white border-slate-200 text-slate-400';
+                    let textTop = 'text-slate-300';
+
+                    if (isFat) {
+                      bgClass = 'bg-indigo-100 border-indigo-300 text-indigo-900 shadow-xs';
+                      textTop = 'text-indigo-600 font-black';
+                    } else if (isBackup) {
+                      bgClass = 'bg-indigo-50 border-indigo-200 text-indigo-900 shadow-xs';
+                      textTop = 'text-indigo-500 font-bold';
+                    } else if (isSky) {
+                      bgClass = 'bg-sky-500 border-sky-600 shadow-sm';
+                      textTop = 'text-sky-100';
+                    } else if (isAmber) {
+                      bgClass = 'bg-amber-500 border-amber-600 shadow-sm';
+                      textTop = 'text-amber-100';
+                    }
+
+                    return (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-xl flex flex-col items-center justify-center p-1 border-2 transition-transform hover:scale-105 relative ${bgClass}`}
+                      >
+                        <div className={`absolute top-1 left-1.5 text-[9px] font-mono opacity-80 ${textTop}`}>#{i}</div>
+                        {isFat ? (
+                          <div className="text-[8px] sm:text-[9px] font-black mt-2 text-indigo-900 tracking-tight uppercase text-center px-0.5 leading-tight">
+                            FAT<br />tabulka
+                          </div>
+                        ) : isBackup ? (
+                          <div className="text-[8px] sm:text-[9px] font-black mt-2 text-indigo-800 tracking-tight uppercase text-center px-0.5 leading-tight">
+                            Záloha<br />FAT
+                          </div>
+                        ) : isSky ? (
+                          <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>zprava<br />.txt</div>
+                        ) : isAmber ? (
+                          <div className={`text-[8px] sm:text-[9px] font-black mt-2 text-white opacity-90 tracking-wide uppercase text-center px-1 leading-tight`}>dovolena<br />.jpg</div>
+                        ) : (
+                          <div className={`text-[9px] font-bold mt-1 ${textTop}`}>Volno</div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Legenda a vysvětlení rozložení na disku */}
+                <div className="mt-6 space-y-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-medium text-slate-600">
+                    <div className="flex items-center gap-1.5 p-2 bg-indigo-50 rounded-lg border border-indigo-200">
+                      <span className="w-3 h-3 rounded bg-indigo-500 shrink-0"></span>
+                      <span><strong>#0:</strong> FAT tabulka</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-indigo-50/60 rounded-lg border border-indigo-100">
+                      <span className="w-3 h-3 rounded bg-indigo-300 shrink-0"></span>
+                      <span><strong>#1:</strong> Záloha FAT</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-sky-50 rounded-lg border border-sky-200">
+                      <span className="w-3 h-3 rounded bg-sky-500 shrink-0"></span>
+                      <span><strong>#2, #3:</strong> zprava.txt</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 p-2 bg-amber-50 rounded-lg border border-amber-200">
+                      <span className="w-3 h-3 rounded bg-amber-500 shrink-0"></span>
+                      <span><strong>#7, #8...:</strong> dovolena.jpg</span>
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 bg-white rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed shadow-xs flex items-start gap-2.5">
+                    <HardDrive className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-slate-800 text-[11px] uppercase tracking-wider block mb-0.5">FAT tabulka a její záloha:</strong>
+                      <p className="text-slate-600">
+                        V prvním sektoru (<strong>#0</strong>) se nachází hlavní <strong>FAT tabulka</strong> a hned v dalším (<strong>#1</strong>) její <strong>záloha</strong>. Kdyby se první sektor poškodil, systém nepřijde o data a použije záložní tabulku. Uživatelská data proto začínají až od sektoru <strong>#2</strong>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TheoryCard>
+
+          <TheoryCard icon={Eraser} title="Formátování: Co to je a co vlastně dělá?" letter="D" tone="rose">
+            <p>
+              Když koupíte nový disk nebo chcete flashku vyčistit, musíte ji <strong>naformátovat</strong>. Formátování je proces, kterým se na diskovém oddílu vytvoří prázdná kostra zvoleného souborového systému (např. FAT32 nebo NTFS).
+            </p>
+            <p className="mt-4">
+              Při formátování systém:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 mt-2 ml-2 text-sm text-slate-600">
+              <li>Rozdělí prostor na <strong>clustery</strong> pevné velikosti (např. 4 KB).</li>
+              <li>Vytvoří <strong>prázdnou alokační tabulku</strong> (např. FAT tabulku plnou nul) a kořenový adresář složek.</li>
+            </ul>
+
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div className="bg-sky-50/70 border-2 border-sky-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-3 h-3 rounded-full bg-sky-500"></span>
+                  <h4 className="font-black text-sky-950 text-sm uppercase tracking-wide">Rychlé formátování (Quick Format)</h4>
+                </div>
+                <p className="text-xs text-sky-900 leading-relaxed">
+                  Trvá jen pár sekund. Pouze <strong>přepíše alokační tabulku a adresáře na nuly</strong>. Pro operační systém se disk jeví jako dokonale prázdný, ale samotná data ve fyzických sektorech disku stále leží. Lze je pomocí specializovaných programů často snadno obnovit.
+                </p>
+              </div>
+
+              <div className="bg-rose-50/70 border-2 border-rose-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-3 h-3 rounded-full bg-rose-500"></span>
+                  <h4 className="font-black text-rose-950 text-sm uppercase tracking-wide">Úplné / Pomalé formátování (Full Format)</h4>
+                </div>
+                <p className="text-xs text-rose-900 leading-relaxed">
+                  Trvá desítky minut až hodiny. Kromě vymazání tabulky systém <strong>fyzicky projde celý povrch disku</strong>, otestuje vadné sektory a ve moderních Windows přepisuje data nulami (Zero-fill). Původní data jsou nenávratně zničena a nelze je již běžně obnovit.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Callout kind="tip" title="Kdy zvolit které?">
+                Běžně vám stačí <strong>Rychlé formátování</strong> (při běžném použití či reinstalaci). <strong>Úplné formátování</strong> volte, pokud disk někomu prodáváte nebo darujete (ochrana soukromí) anebo máte podezření, že disk vykazuje chyby čtení a potřebujete otestovat jeho fyzický povrch.
+              </Callout>
+            </div>
+          </TheoryCard>
+
+          <TheoryCard icon={HardDriveDownload} title="Moderní systémy v praxi" letter="E" tone="emerald">
+            <p>
+              Jaký souborový systém (formát) zvolit pro váš disk či flashku?
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 mt-6">
+              <TermCard term="NTFS" tone="sky">
+                <p>
+                  Standardní systém pro <strong>pevné disky s Windows</strong>. Zvládá obrovské soubory, hlídá přístupová práva uživatelů a při výpadku proudu zabrání chybám (tzv. žurnálování).
+                </p>
+              </TermCard>
+              <TermCard term="FAT32" tone="amber">
+                <p>
+                  Absolutně <strong>nejkompatibilnější</strong>. Přečte ho Windows, Mac, stará televize i rádio v autě.
+                  <br /><br />
+                  <strong className="text-amber-900">Zásadní nevýhoda:</strong> Neumí uložit žádný soubor větší než 4 GB!
+                </p>
+              </TermCard>
+              <TermCard term="exFAT" tone="emerald">
+                <p>
+                  Moderní evoluce pro <strong>velké flashky a SD karty</strong>. Ruší limit 4 GB a rozumí si bez problému s Windows, Linuxem i Apple macOS.
+                </p>
+              </TermCard>
+            </div>
+          </TheoryCard>
+
+          <RevealQuestions
+            questions={[
+              {
+                q: "Proč má textový soubor obsahující jediné písmeno 'A' na disku reálnou velikost 4096 bajtů?",
+                a: "Protože soubor zabere vždy minimálně jednu celou alokační jednotku (cluster). Výchozí velikost jednoho clusteru ve Windows je právě 4 KB (4096 bajtů)."
+              },
+              {
+                q: "Je možné obnovit omylem smazané rodinné fotky, pokud jsem už vysypal Koš?",
+                a: "Ano. Pokud na disk nebylo od smazání zapsáno příliš mnoho nových dat, dají se fotky zachránit specializovanými programy (např. Recuva). Smazáním se totiž pouze uvolnil 'ukazatel' v tabulce, samotná data ve fyzických sektorech zůstala nedotčena."
+              },
+              {
+                q: "Mám zbrusu novou 64GB flashku. Chci na ni zkopírovat 8GB film. Zkopírování se ale hned přeruší s chybou. Proč?",
+                a: "Flashka je z výroby pravděpodobně naformátovaná na zastaralý souborový systém FAT32, který nedokáže pracovat se soubory většími než 4 GB. Řešením je flashku v Počítači zformátovat (přepsat) na exFAT nebo NTFS."
+              }
+            ]}
+          />
+        </div>
+  );
+};

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+export { STORAGE_KEYS } from '@/lib/storageKeys';
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   // Always start with initialValue to match server render — avoids hydration mismatch.

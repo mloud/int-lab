@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import HuffmanGame from '@/components/informatika/compression/HuffmanGame';
+
+const HuffmanGame = dynamic(
+  () => import('@/components/informatika/compression/HuffmanGame'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

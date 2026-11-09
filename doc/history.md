@@ -831,3 +831,38 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - **Závěr:** Závěrečná syntéza byla odebrána, list je přímočarý a praktický. Všechny inputy a popisky mají sjednocené výšky a horizontální zarovnání.
     - Aktualizován typový kontrakt `ProcessProtocolState` v [`processTypes.ts`](components/specializovana/operacni-systemy-2/bezpecnost/procesy/processTypes.ts).
     - Export do Wordu (`handleDownloadWord`) i kopírování protokolu do schránky v [`ProcessCertificatesChapter.tsx`](components/specializovana/operacni-systemy-2/bezpecnost/ProcessCertificatesChapter.tsx) jsou 100% synchronizovány s novým 11úlohovým protokolem.
+
+
+34. **Kompletní architektonický refaktoring, Decoupling a optimalizace výkonu na větvi `refactor2` (Fáze 1–4):**
+    - **Fáze 1 (Bundle & Assets):**
+      - Sjednoceny animační knihovny: nahrazeny poslední 3 importy `framer-motion` za `motion/react` (`LandingFooter.tsx`, `SubjectSelection.tsx`, `SchoolDivisionCard.tsx`) a odinstalován balíček `framer-motion` z `package.json`.
+      - Zkomprimovány 4 největší statické obrázky v `public/` (`disk_geometry.jpg`, `hdd_internals.jpg`, `ssd_internals.jpg`, `isometric_factory.jpg`), úspora **2,6 MB (-81 %)**.
+      - Zavedeno dynamické načítání (`next/dynamic`, `ssr: false`) pro 6 těžkých simulátorů a her v `app/` (`ScratchRaycasterProject`, `HuffmanGame`, `VonNeumannGame`, `WindowsInstallGame`, `DefragGame`, `FATGame`).
+    - **Fáze 2 (Dekompozice všech 10 UI monolitů nad 1 000 řádků dle Pravidla 13):**
+      - `ScratchConditionsChapter.tsx` (1 903 ➔ 43 řádků) + sdílené `ScratchShared.tsx` + 6 modulů v `scratch/conditions/`.
+      - `ProcessIntroWorksheetTab.tsx` (1 707 ➔ 105 řádků) + 4 moduly v `procesy/intro/worksheet/`.
+      - `OsArchitectureChapter.tsx` (1 633 ➔ 73 řádků) + 5 modulů v `architektura/`.
+      - `ProcessLabTab.tsx` (1 430 ➔ 77 řádků) + 3 moduly v `bezpecnost/procesy/lab/`.
+      - `WindowsInstallGame.tsx` (1 352 ➔ 128 řádků) + 5 modulů v `instalace/`.
+      - `ScratchRaycasterProject.tsx` (1 194 ➔ 64 řádků) + 2 moduly v `raycaster/`.
+      - `ScratchListsChapter.tsx` (1 099 ➔ 35 řádků) + 4 moduly v `scratch/lists/`.
+      - `OsEvolutionChapter.tsx` (1 091 ➔ 138 řádků) + 3 moduly v `vyvoj/`.
+      - `HuffmanGame.tsx` (1 024 ➔ 86 řádků) + 4 moduly v `compression/huffman/`.
+      - `FatChapter.tsx` (1 019 ➔ 70 řádků) + 2 moduly v `souborove-systemy/fat/`.
+    - **Fáze 3 (Dekompozice 5 středních monolitů 850–1 000 řádků):**
+      - `BarChartsChapter.tsx` (921 ➔ 45 řádků) + 3 moduly v `grafy/bar-charts/`.
+      - `BackupCobianChapter.tsx` (910 ➔ 47 řádků) + 3 moduly v `zalohovani/cobian/`.
+      - `ProcessSimulatorsTab.tsx` (896 ➔ 17 řádků) + 3 izolované simulátory v `bezpecnost/procesy/simulators/`.
+      - `VonNeumannGame.tsx` (895 ➔ 81 řádků) + 3 moduly v `von-neumann/`.
+      - `PythonLoopChapter.tsx` (892 ➔ 79 řádků) + 3 moduly v `python-loops/`.
+    - **Fáze 4 (Centralizace LocalStorage klíčů & TypeScript Audit):**
+      - Vytvořen `lib/storageKeys.ts` (`STORAGE_KEYS`) a re-exportován z `hooks/useLocalStorage.ts`.
+      - Upraven `tsconfig.json` (vyloučen samostatný podprojekt `analytics`), ověřen nulový počet chyb v `npx tsc --noEmit` i produkční statický export `npm run build`.
+
+
+35. **Fáze 5–9 refaktoringu (`refactor2`): IntLab UI Stavebnice, nulová duplikace a modularizace registrů:**
+    - **Fáze 5 (IntLab UI Stavebnice):** Vytvořeny univerzální stavební bloky `components/ui/ChapterKit.tsx`, `TaskKit.tsx`, `WorksheetKit.tsx`, `SimulatorKit.tsx` a `lib/wordExport.ts`, plus rozšířen typ `Tone` v `FsShared.tsx` na 15 barevných palet.
+    - **Fáze 6 (PRG 2 Python & PRG 1 Scratch ➔ `TaskKit`):** Odstraněny lokálně duplikované pomocné komponenty (`TaskCard`, `TeacherNote`, `PythonSnippet`, `CanvasPreview`, `Rect`, `Text`, `PIN`) ze všech 24 Python kapitol a 6 Scratch kapitol a sjednoceny na `TaskKit` a `ScratchShared.tsx`. Dekomponovány `PythonLoopVarChapter.tsx` (534 ➔ 35 řádků) a `ScratchSubprogramsChapter.tsx` (696 ➔ 45 řádků).
+    - **Fáze 7 (Pracovní listy & Word exporty ➔ `WorksheetKit` / `lib/wordExport.ts`):** `VirtualizationWorksheetTab.tsx` migrováno na deklarativní `DeclarativeWorksheet` (`WorksheetSchema`) a sjednocen Word export (`downloadWordDoc`) napříč `DiskMediaWorksheetTab`, `FatWorksheetTab`, `OsEvolutionWorksheetTab`, `CobianWorksheetTab`, `DiskPartitionChapter`, `BackupCloudChapter`, `BackupManualChapter`, `BackupSystemChapter` a `ProcessCertificatesChapter` (`procesy/processExport.ts`).
+    - **Fáze 8 (Legacy kvízy ➔ `TopicReviewQuiz` & dekompozice 700+ řádků):** `ArchitectureQuizTab.tsx` a `OsIntroQuizTab.tsx` převedeny na standardizovaný `TopicReviewQuiz` (Pravidlo 15). Dekomponovány `OsIntroChapter.tsx` (715 ➔ 35 řádků), `DiskMediaChapter.tsx` (764 ➔ 37 řádků), `OsBootChapter.tsx` (705 ➔ 140 řádků) a `VirtualizationChapter.tsx` (701 ➔ 40 řádků).
+    - **Fáze 9 (Modularizace `registry/`):** Rozděleny obří datové soubory `registry/lessons.ts` (3 736 ➔ 33 řádků, 7 modulů v `registry/lessons/`), `registry/curriculum/thematicPlans.ts` (1 206 ➔ 15 řádků, 4 moduly v `registry/curriculum/thematic-plans/`) a `registry/curriculum/svpData.ts` (1 039 ➔ 4 řádky, 3 moduly v `registry/curriculum/svp/`).

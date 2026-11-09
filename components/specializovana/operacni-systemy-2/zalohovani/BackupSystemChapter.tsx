@@ -4,6 +4,7 @@ import { Save, BookOpen, FileText, Settings, Database, Server, AlertTriangle, Sh
 import { FsChapterShell, FsTab } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { downloadWordDoc } from '@/lib/wordExport';
 
 interface BackupSystemChapterProps {
   onBack: () => void;
@@ -43,15 +44,7 @@ const BackupSystemChapter: React.FC<BackupSystemChapterProps> = ({ onBack }) => 
       </body>
       </html>
     `;
-    const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Pracovni_list_SystemState_${studentName.replace(/\\s+/g, '_')}.doc`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadWordDoc(html, 'Pracovni_list_SystemState', studentName);
   };
 
   return (

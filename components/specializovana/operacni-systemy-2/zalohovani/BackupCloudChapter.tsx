@@ -4,6 +4,7 @@ import { Cloud, BookOpen, FileText, Smartphone, HardDrive, History, UploadCloud,
 import { FsChapterShell, FsTab } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { downloadWordDoc } from '@/lib/wordExport';
 
 interface BackupCloudChapterProps {
   onBack: () => void;
@@ -43,15 +44,7 @@ const BackupCloudChapter: React.FC<BackupCloudChapterProps> = ({ onBack }) => {
       </body>
       </html>
     `;
-    const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Pracovni_list_Cloud_${studentName.replace(/\\s+/g, '_')}.doc`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadWordDoc(html, 'Pracovni_list_Cloud', studentName);
   };
 
   return (

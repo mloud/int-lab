@@ -1,46 +1,41 @@
-# Pracovní plán: Operační systémy 1 (OSS 1)
+# Pracovní plán: Architektonický refaktoring, Decoupling & Optimalizace (`refactor2`)
 
-**Cílový ročník:** 1. ročník SŠ (Obor 18-20-M/01 Informační technologie)  
-**Hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
-**Výchozí routa v IntLab:** `/specializovana/operacni-systemy-1`  
-**Odpovídající profil kurikula:** [`doc/curriculum/OSS1.md`](curriculum/OSS1.md)  
-**Dedikovaný plán předmětu:** [`doc/plans/PLAN_OSS1.md`](plans/PLAN_OSS1.md)
+**Aktivní větev:** `refactor2` (založena z `dev`)  
+**Dedikovaný plán:** [`doc/plans/PLAN_REFACTORING.md`](plans/PLAN_REFACTORING.md)
 
 ---
 
-## 🎯 Hlavní pedagogický cíl
-Převést žáka z role běžného uživatele PC do role **poučeného lokálního správce klientské stanice**. Žák proniká pod povrch grafického rozhraní, chápe spolupráci CPU a RAM, architekturu hardware, instaluje klientský OS, spravuje disky a oddíly, diagnostikuje procesy, automatizuje správu přes CLI/BAT a bezpečně konfiguruje lokální sítě.
+## 📋 Přehled splněných fází (`refactor2`)
+
+- [x] **Fáze 1: Rychlé výkonnostní výhry (Bundle & Assets)**
+  - Sjednocení `framer-motion` ➔ `motion/react` a odinstalace `framer-motion`.
+  - Komprese 4 největších `.jpg` v `public/` (-2,6 MB / -81 %).
+  - Zavedení `next/dynamic` (`ssr: false`) pro 6 těžkých simulátorů a her.
+- [x] **Fáze 2: Dekompozice všech UI monolitů nad 1 000 řádků (10 kapitol/her)**
+  - `ScratchConditionsChapter.tsx` (1 903 ➔ 43 řádků)
+  - `ProcessIntroWorksheetTab.tsx` (1 707 ➔ 105 řádků)
+  - `OsArchitectureChapter.tsx` (1 633 ➔ 73 řádků)
+  - `ProcessLabTab.tsx` (1 430 ➔ 77 řádků)
+  - `WindowsInstallGame.tsx` (1 352 ➔ 128 řádků)
+  - `ScratchRaycasterProject.tsx` (1 194 ➔ 64 řádků)
+  - `ScratchListsChapter.tsx` (1 099 ➔ 35 řádků)
+  - `OsEvolutionChapter.tsx` (1 091 ➔ 138 řádků)
+  - `HuffmanGame.tsx` (1 024 ➔ 86 řádků)
+  - `FatChapter.tsx` (1 019 ➔ 70 řádků)
+- [x] **Fáze 3: Dekompozice středních monolitů (850–1 000 řádků, 5 kapitol/her)**
+  - `BarChartsChapter.tsx` (921 ➔ 45 řádků)
+  - `BackupCobianChapter.tsx` (910 ➔ 47 řádků)
+  - `ProcessSimulatorsTab.tsx` (896 ➔ 17 řádků)
+  - `VonNeumannGame.tsx` (895 ➔ 81 řádků)
+  - `PythonLoopChapter.tsx` (892 ➔ 79 řádků)
+- [x] **Fáze 4: Sjednocení LocalStorage klíčů (`lib/storageKeys.ts`) a čistý `npx tsc --noEmit` + `npm run build`**
+- [x] **Fáze 5: IntLab UI Stavebnice (`ChapterKit`, `TaskKit`, `WorksheetKit`, `SimulatorKit`, `lib/wordExport.ts`)**
+- [x] **Fáze 6: Migrace všech 24 kapitol PRG 2 (Python) a 6 kapitol PRG 1 (Scratch) na `TaskKit` (nulová duplikace)**
+- [x] **Fáze 7: Sjednocení pracovních listů a Word exportů (`WorksheetKit` + `downloadWordDoc`)**
+- [x] **Fáze 8: Převod zbylých kvízů na `TopicReviewQuiz` a dekompozice kapitol 700+ řádků (`OsIntroChapter`, `DiskMediaChapter`, `OsBootChapter`, `VirtualizationChapter`)**
+- [x] **Fáze 9: Modularizace `registry/lessons.ts`, `registry/curriculum/thematicPlans.ts` a `registry/curriculum/svpData.ts` podle předmětů**
 
 ---
 
-## 📊 Stav realizace na portálu IntLab (Rozpis 66 hodin)
-
-| Blok | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
-|:---:|---|:---:|:---:|---|
-| **1** | Architektura počítače a základy OS | 8 h | ✅ Hotovo (teorie, kvízy, simulátor CPU) | `/hardware/*`, `/architektura` |
-| **2** | Souborové systémy, disky a start systému | 10 h | ✅ Hotovo (simulátor instalace, FAT trenažér, boot, písemná práce test02) | `/instalace`, `/souborove-systemy/*`, `/test02` |
-| **3** | Procesy a správa operační paměti | 6 h | ✅ Hotovo (multitasking, stavy, virtuální paměť) | `/procesy/*` (PR1–PR5) |
-| **4** | Grafické uživatelské rozhraní (GUI) | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/gui/*` (GUI1–GUI5) |
-| **5** | Příkazový řádek (CLI) a dávkové soubory | 6 h | ✅ Rozcestník & osnovy vytvořeny | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
-| **6** | Správa uživatelů a přístupových práv | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/uzivatele/*` (USR1–USR4) |
-| **7** | Správa aplikačního software a balíčkovače | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/software/*` (SW1–SW2) |
-| **8** | Správa hardware, ovladače a plánovač | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/zarizeni`, `/planovac` |
-| **9** | Síťová konfigurace a lokální sítě (LAN) | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/site/*` (NET1–NET4) |
-| **10** | Závěrečný integrující projekt stanice | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/projekt/*` (PRJ1–PRJ4) |
-| **Σ** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
-
----
-
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj OSS 1)
-
-- [ ] **Příkazový řádek (CLI) a BAT skriptování:**
-  - Vytvořit interaktivní emulátor konzole CMD v prohlížeči pro bezpečný nácvik příkazů (`cd`, `dir`, `mkdir`, `tree`).
-  - Vytvořit krokovač dávkového souboru `.bat` s vizualizací proměnných a podmínek `if`.
-- [ ] **Správa uživatelů a NTFS práv:**
-  - Doplnit interaktivní matici efektivních práv (vlastník, zděděná práva vs. explicitní Deny).
-  - Připravit badatelský pracovní list s exportem do Wordu pro laboratorní cvičení.
-- [ ] **Síťová konfigurace a Wi-Fi router:**
-  - Vytvořit interaktivní simulátor webové administrace SOHO routeru (nastavení DHCP rozsahu, WPA2/WPA3 a Guest Wi-Fi).
-- [ ] **Dekompozice velkých komponent (dle pravidla 13):**
-  - `OsArchitectureChapter.tsx` (1 454 řádků) ➔ modularizace do podsložky `architektura/`.
-  - `WindowsInstallGame.tsx` (1 352 řádků) ➔ modularizace do podsložky `instalace/`.
+## 🔖 Kde příště navázat (Fáze 10 – Volitelný hloubkový decoupling obsahu)
+Veškeré závěry z brainstormingu (kolokace dat u kapitol, rozlišení pružného obsahu vs. pevné geometrie v simulátorech a seznam kandidátů pro převod na `DeclarativeWorksheet` / `DeclarativeTaskList`) jsou podrobně uloženy v [`doc/plans/PLAN_REFACTORING.md`](plans/PLAN_REFACTORING.md).

@@ -1,56 +1,20 @@
 'use client';
-import React, { useState } from 'react';
-import { CheckCircle, GraduationCap, Unlock, Lock, Circle, Code } from 'lucide-react';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import React from 'react';
+import { GraduationCap, Circle, Code } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
+import { createTaskKit, useTeacherMode, TeacherPinBar, CanvasPreview, Rect } from '@/components/ui/TaskKit';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
+
+const { TaskCard, PythonSnippet } = createTaskKit({
+  tone: 'teal',
+  layout: 'footer',
+  storageKeyFor: id => STORAGE_KEYS.pythonTask('py14', id),
+});
+
 
 interface PythonOvalsChapterProps {
   onBack: () => void;
 }
-
-const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-teal-400 overflow-x-auto shadow-inner border border-slate-700">
-    {code.split('\n').map((line, i) => (
-      <div key={i} className="flex">
-        {line.startsWith('>>>') ? (
-          <>
-            <span className="text-teal-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-teal-300">{line.substring(3).trim()}</span>
-          </>
-        ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
-          <span className="text-rose-400">{line}</span>
-        ) : (
-          <span className="text-slate-300 whitespace-pre">{line}</span>
-        )}
-      </div>
-    ))}
-  </div>
-);
-
-const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
-    <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-teal-600" />
-      <span className="font-bold text-teal-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
-    </div>
-    <div className="text-sm text-teal-900 leading-relaxed">
-      {children}
-    </div>
-  </div>
-);
-
-const CanvasPreview = ({ children, width = 300, height = 200, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
-  <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
-    {children}
-  </div>
-);
-
-const Rect = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
-  <div 
-    className={`absolute ${noBorder ? '' : 'border border-black'}`} 
-    style={{ left: x1, top: y1, width, height, backgroundColor: fill }} 
-  />
-);
 
 const Oval = ({ x1, y1, width, height, fill = "transparent", noBorder = false }: { x1: number, y1: number, width: number, height: number, fill?: string, noBorder?: boolean }) => (
   <div 
@@ -59,81 +23,9 @@ const Oval = ({ x1, y1, width, height, fill = "transparent", noBorder = false }:
   />
 );
 
-const TaskCard = ({ 
-  number, 
-  title, 
-  children, 
-  teacherNote, 
-  showTeacher,
-  taskId
-}: { 
-  number: string, 
-  title: string, 
-  children: React.ReactNode, 
-  teacherNote?: React.ReactNode,
-  showTeacher: boolean,
-  taskId: string
-}) => {
-  const [done, setDone] = useLocalStorage(`py14-task-${taskId}`, false);
-
-  return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${done ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
-      <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-teal-100 text-teal-700 rounded-2xl flex items-center justify-center font-black text-xl">
-          {number}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>
-          <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
-            {children}
-          </div>
-
-          {showTeacher && teacherNote && (
-            <TeacherNote>{teacherNote}</TeacherNote>
-          )}
-
-          <div className="mt-6 flex justify-end">
-            <button 
-              onClick={() => setDone(!done)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                done 
-                ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
-                : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-              }`}
-            >
-              <CheckCircle className={`w-5 h-5 ${done ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {done ? 'Splněno' : 'Označit jako splněné'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const PythonOvalsChapter: React.FC<PythonOvalsChapterProps> = ({ onBack }) => {
-  const [teacherMode, setTeacherMode] = useState(false);
-  const [pinMode, setPinMode] = useState(false);
-  const [pin, setPin] = useState('');
-
-  const handleToggleTeacher = () => {
-    if (teacherMode) {
-      setTeacherMode(false);
-    } else {
-      setPinMode(true);
-      setPin('');
-    }
-  };
-
-  const submitPin = () => {
-    if (pin === '1234') {
-      setTeacherMode(true);
-      setPinMode(false);
-    } else {
-      alert('Nesprávný PIN');
-      setPinMode(false);
-    }
-  };
+  const teacher = useTeacherMode();
+  const { teacherMode } = teacher;
 
   return (
     <FsChapterShell
@@ -144,32 +36,7 @@ const PythonOvalsChapter: React.FC<PythonOvalsChapterProps> = ({ onBack }) => {
       accentColor="teal"
       tabs={[{ id: 'lekce', label: 'Lekce 14', icon: Code }]}
     >
-      <div className="flex justify-end mb-6">
-        {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-teal-100">
-            <input 
-              type="password" 
-              placeholder="Zadej PIN" 
-              className="px-3 py-1 bg-slate-100 rounded-lg outline-none w-24 text-center font-mono"
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && submitPin()}
-              autoFocus
-            />
-            <button onClick={submitPin} className="bg-teal-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
-          </div>
-        ) : (
-          <button 
-            onClick={handleToggleTeacher}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-teal-100 text-teal-700 border-teal-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
-            }`}
-          >
-            {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
-            Učitelský režim {teacherMode ? 'ZAPNUT' : 'VYPNUT'}
-          </button>
-        )}
-      </div>
+      <TeacherPinBar tone="teal" state={teacher} />
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <div className="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-2xl mb-8">

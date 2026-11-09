@@ -119,3 +119,13 @@ Vždy dodržuj následující pravidla pro design a rozložení prvků v aplikac
       3. **Dvoutaktní interakční tlačítko:** Po zvolení odpovědi je aktivní tlačítko **„Vyhodnotit“** (nebo klávesa Enter v textovém poli). Po kliknutí se otázka vyhodnotí, obarví zeleně/červeně, rozbalí se didaktické vysvětlení a tlačítko se změní na **„Další otázka“** (příp. „Zobrazit celkový výsledek“). Teprve dalším kliknutím se přechází dál.
       4. **Náhodné míchání odpovědí (Fisher-Yates Shuffle):** Při startu i při každém resetu jsou možnosti otázek (single i multiple choice) náhodně promíchány. Písmena možností A..D zůstávají shora dolů seřazena.
       5. **Závěrečné vyhodnocení s vysokým kontrastem:** Světlá karta s tmavým písmem (`text-slate-900`), celkovým skóre a podrobným rozborem chybně zodpovězených otázek (každá s označením chybné volby žáka ❌, správného řešení ✓ a podrobného vysvětlení 💡). Závěr obsahuje akce „Opakovat celé znovu (nové pořadí)“ a „Prohlédnout otázky v testu“.
+
+
+16. **Povinné doporučení modelu na začátku každé odpovědi (Model Selection Guidance):**
+    - Kdykoli uživatel zadá nový požadavek nebo úkol, **VŽDY na samém začátku své odpovědi** (v prvním odstavci / bloku) uveď doporučení, na jaký AI model v menu (a s jakou úrovní Thinking: Low / Medium / High) je pro daný úkol nejvhodnější přepnout, a stručný důvod.
+    - Vycházej z přehledu v doc/MODEL_GUIDE.md:
+      - **Gemini 3.8 Flash (Low/Medium):** Rychlé textové iterace, drobné úpravy zadání, překlepy, rychlé ověření.
+      - **Claude Sonnet 5.5 (Medium):** Tvorba nových komponent, styling v Tailwindu, UI/UX, dělení monolitů, práce na lekcích.
+      - **Claude Opus 5.5 (High):** Složité interaktivní simulátory, hluboká matematika (Raycaster, PID, robotika), těžké bugy.
+      - **Gemini 4 Argon (Medium/High):** Celoprojektové audity, synchronizace kurikula ŠVP napříč ročníky, 1M kontext.
+      - **GPT-OSS 120B (Medium):** Nezávislá kontrola Python kódu a algoritmických testů.

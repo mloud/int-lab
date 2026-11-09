@@ -1,9 +1,13 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import ScratchRaycasterProject from '@/components/specializovana/programovani/ScratchRaycasterProject';
-
 import ChapterLayout from '@/components/layout/ChapterLayout';
+
+const ScratchRaycasterProject = dynamic(
+  () => import('@/components/specializovana/programovani/ScratchRaycasterProject'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

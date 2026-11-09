@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sparkles, ArrowRight, Info, Search, ScanFace, Clock, GraduationCap } from 'lucide-react';
 import TechStackSimulation from './TechStackSimulation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import SearchModal from './SearchModal';
 import SchoolDivisionCard from '@/components/ui/SchoolDivisionCard';
 import { useCurriculum } from '@/components/providers/CurriculumContext';

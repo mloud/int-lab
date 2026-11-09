@@ -1,94 +1,15 @@
 import React, { useState } from 'react';
-import { CheckCircle, GraduationCap, Unlock, Lock, Calculator, Save, Star } from 'lucide-react';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { Calculator, Star } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { ScratchBlock, ScratchInput, ScratchCBlock } from './ScratchBlocks';
+import { TaskCard, AvailableBlocks, TeacherPinToggle } from './ScratchShared';
 
 interface ScratchVariablesChapterProps {
   onBack: () => void;
 }
 
-const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
-    <div className="flex items-center gap-2 mb-2">
-      <Unlock className="w-4 h-4 text-amber-600" />
-      <span className="font-bold text-amber-800 text-sm uppercase tracking-wider">Metodika pro učitele</span>
-    </div>
-    <div className="text-amber-900/80 text-sm leading-relaxed">
-      {children}
-    </div>
-  </div>
-);
-
-const TaskCard = ({ number, title, children, showTeacher, teacherNote, taskId, saveAs }: any) => {
-  const [completed, setCompleted] = useLocalStorage(`scratch_task_variables_${taskId}`, false);
-  
-  return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${completed ? 'border-amber-200 bg-amber-50/10' : 'border-white'}`}>
-      <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center font-black text-xl">
-          {number}
-        </div>
-        <div className="flex-1 min-w-0">
-          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
-          <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
-            {children}
-          </div>
-
-          {showTeacher && teacherNote && (
-            <TeacherNote>{teacherNote}</TeacherNote>
-          )}
-
-          {saveAs && (
-            <div className="mt-4 px-4 py-3 bg-blue-50/50 border border-blue-100 text-blue-800 rounded-xl text-sm flex items-center gap-3">
-              <Save className="w-5 h-5 text-blue-500" /> 
-              <span>Projekt uložte jako: <strong className="font-mono bg-white px-2 py-0.5 rounded border border-blue-200">{saveAs}</strong></span>
-            </div>
-          )}
-
-          <div className="mt-6 flex justify-end">
-            <button 
-              onClick={() => setCompleted(!completed)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                completed 
-                ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
-                : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-              }`}
-            >
-              <CheckCircle className={`w-5 h-5 ${completed ? 'text-amber-600' : 'text-slate-400'}`} />
-              {completed ? 'Splněno' : 'Označit jako splněné'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const AvailableBlocks = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex flex-wrap gap-2 my-4 items-center bg-slate-50 p-4 rounded-xl border border-slate-200">
-    <span className="text-sm font-bold text-slate-500 mr-2">Dostupné bloky:</span>
-    {children}
-  </div>
-);
-
 const ScratchVariablesChapter: React.FC<ScratchVariablesChapterProps> = ({ onBack }) => {
   const [teacherMode, setTeacherMode] = useState(false);
-  const [pinMode, setPinMode] = useState(false);
-  const [pin, setPin] = useState('');
-  const [pinError, setPinError] = useState(false);
-
-  const handlePinSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (pin === '1234') {
-      setTeacherMode(true);
-      setPinMode(false);
-      setPin('');
-    } else {
-      setPinError(true);
-      setTimeout(() => setPinError(false), 2000);
-    }
-  };
 
   return (
     <FsChapterShell 
@@ -109,49 +30,7 @@ const ScratchVariablesChapter: React.FC<ScratchVariablesChapterProps> = ({ onBac
           </div>
         </div>
         
-        {/* Přepínač metodiky */}
-        <div className="flex justify-end mb-8">
-          {!teacherMode && !pinMode && (
-            <button 
-              onClick={() => setPinMode(true)}
-              className="flex items-center gap-2 text-slate-400 hover:text-amber-600 transition-colors px-4 py-2 rounded-xl hover:bg-amber-50"
-            >
-              <Lock className="w-4 h-4" />
-              <span className="text-sm font-medium">Učitelský přístup</span>
-            </button>
-          )}
-          
-          {pinMode && (
-            <form onSubmit={handlePinSubmit} className="flex items-center gap-2 animate-in fade-in slide-in-from-right-4">
-              <input 
-                type="password" 
-                value={pin}
-                onChange={(e) => setPin(e.target.value)}
-                placeholder="PIN" 
-                className={`w-24 px-3 py-1.5 rounded-lg border-2 outline-none text-center font-mono ${pinError ? 'border-red-400 bg-red-50' : 'border-amber-200 focus:border-amber-400'}`}
-                autoFocus
-              />
-              <button type="submit" className="px-3 py-1.5 bg-amber-500 text-white rounded-lg text-sm font-bold hover:bg-amber-600">
-                Odemknout
-              </button>
-              <button type="button" onClick={() => setPinMode(false)} className="px-3 py-1.5 text-slate-400 hover:text-slate-600 text-sm">
-                Zrušit
-              </button>
-            </form>
-          )}
-
-          {teacherMode && (
-            <div className="flex items-center gap-4 bg-amber-50 px-4 py-2 rounded-xl border border-amber-200">
-              <div className="flex items-center gap-2 text-amber-700">
-                <Unlock className="w-4 h-4" />
-                <span className="text-sm font-bold">Metodika aktivní</span>
-              </div>
-              <button onClick={() => setTeacherMode(false)} className="text-xs text-amber-600 hover:text-amber-800 underline">
-                Skrýt
-              </button>
-            </div>
-          )}
-        </div>
+        <TeacherPinToggle teacherMode={teacherMode} setTeacherMode={setTeacherMode} />
 
         <div className="flex flex-col gap-8">
           <TaskCard 

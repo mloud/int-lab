@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import VonNeumannGame from '@/components/specializovana/operacni-systemy/VonNeumannGame';
+
+const VonNeumannGame = dynamic(
+  () => import('@/components/specializovana/operacni-systemy/VonNeumannGame'),
+  { ssr: false }
+);
 
 export default function Page() {
   const router = useRouter();

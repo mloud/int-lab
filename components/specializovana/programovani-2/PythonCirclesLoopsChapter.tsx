@@ -1,49 +1,20 @@
 'use client';
-import React, { useState } from 'react';
-import { CheckCircle, GraduationCap, Unlock, Lock, Target, Code } from 'lucide-react';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import React from 'react';
+import { Target, Code } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
+import { createTaskKit, useTeacherMode, TeacherPinBar, CanvasPreview, Text } from '@/components/ui/TaskKit';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
+
+const { TaskCard, PythonSnippet } = createTaskKit({
+  tone: 'cyan',
+  layout: 'footer',
+  storageKeyFor: id => STORAGE_KEYS.pythonTask('py15', id),
+});
+
 
 interface PythonCirclesLoopsChapterProps {
   onBack: () => void;
 }
-
-const PythonSnippet = ({ code }: { code: string }) => (
-  <div className="bg-slate-900 rounded-xl p-4 my-3 font-mono text-sm sm:text-base text-cyan-400 overflow-x-auto shadow-inner border border-slate-700">
-    {code.split('\n').map((line, i) => (
-      <div key={i} className="flex">
-        {line.startsWith('>>>') ? (
-          <>
-            <span className="text-cyan-500 mr-2 select-none">{">>>"}</span>
-            <span className="text-cyan-300">{line.substring(3).trim()}</span>
-          </>
-        ) : line.startsWith('SyntaxError') || line.startsWith('Traceback') || line.startsWith('File') || line.startsWith('NameError') ? (
-          <span className="text-rose-400">{line}</span>
-        ) : (
-          <span className="text-slate-300 whitespace-pre">{line}</span>
-        )}
-      </div>
-    ))}
-  </div>
-);
-
-const TeacherNote = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 bg-cyan-50 border-l-4 border-cyan-500 p-4 rounded-r-xl shadow-sm animate-in fade-in zoom-in-95">
-    <div className="flex items-center gap-2 mb-2">
-      <GraduationCap className="w-5 h-5 text-cyan-600" />
-      <span className="font-bold text-cyan-800 uppercase tracking-widest text-xs">Metodika pro učitele</span>
-    </div>
-    <div className="text-sm text-cyan-900 leading-relaxed">
-      {children}
-    </div>
-  </div>
-);
-
-const CanvasPreview = ({ children, width = 380, height = 266, className = "", bgColor = "white" }: { children: React.ReactNode, width?: number, height?: number, className?: string, bgColor?: string }) => (
-  <div className={`relative border-2 border-slate-300 shadow-md mx-auto my-6 overflow-hidden ${className}`} style={{ width, height, backgroundColor: bgColor }}>
-    {children}
-  </div>
-);
 
 const Oval = ({ x1, y1, width, height, fill = "transparent", stroke = "black" }: { x1: number, y1: number, width: number, height: number, fill?: string, stroke?: string }) => (
   <div 
@@ -52,107 +23,9 @@ const Oval = ({ x1, y1, width, height, fill = "transparent", stroke = "black" }:
   />
 );
 
-const Text = ({ x, y, text, color = "black", align = "center", baseline = "middle", fontSize = 14, fontWeight = "normal" }: { x: number, y: number, text: string, color?: string, align?: "start"|"end"|"center", baseline?: "top"|"middle"|"bottom", fontSize?: number, fontWeight?: string }) => {
-  let transform = 'translate(-50%, -50%)';
-  if (align === "start") {
-    if (baseline === "top") transform = 'translate(0, 0)';
-    if (baseline === "middle") transform = 'translate(0, -50%)';
-    if (baseline === "bottom") transform = 'translate(0, -100%)';
-  } else if (align === "end") {
-    if (baseline === "top") transform = 'translate(-100%, 0)';
-    if (baseline === "middle") transform = 'translate(-100%, -50%)';
-    if (baseline === "bottom") transform = 'translate(-100%, -100%)';
-  } else {
-    if (baseline === "top") transform = 'translate(-50%, 0)';
-    if (baseline === "bottom") transform = 'translate(-50%, -100%)';
-  }
-
-  return (
-    <div 
-      className="absolute font-sans" 
-      style={{ left: x, top: y, color, transform, fontSize: `${fontSize}px`, fontWeight }}
-    >
-      {text}
-    </div>
-  );
-};
-
-const TaskCard = ({ 
-  number, 
-  title, 
-  children, 
-  teacherNote, 
-  showTeacher,
-  taskId
-}: { 
-  number: string, 
-  title: string, 
-  children: React.ReactNode, 
-  teacherNote?: React.ReactNode,
-  showTeacher: boolean,
-  taskId: string
-}) => {
-  const [done, setLocalStorageDone] = useLocalStorage(`py15-task-${taskId}`, false);
-  const doneBool = done === true;
-
-  return (
-    <div className={`bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 transition-colors ${doneBool ? 'border-emerald-200 bg-emerald-50/10' : 'border-white'}`}>
-      <div className="flex gap-4">
-        <div className="shrink-0 w-12 h-12 bg-cyan-100 text-cyan-700 rounded-2xl flex items-center justify-center font-black text-xl">
-          {number}
-        </div>
-        <div className="flex-1 min-w-0">
-          {title && <h3 className="text-xl sm:text-2xl font-black text-slate-800 mb-4">{title}</h3>}
-          <div className="text-slate-600 leading-relaxed text-sm sm:text-base space-y-4">
-            {children}
-          </div>
-
-          {showTeacher && teacherNote && (
-            <TeacherNote>{teacherNote}</TeacherNote>
-          )}
-
-          <div className="mt-6 flex justify-end">
-            <button 
-              onClick={() => setLocalStorageDone(!doneBool)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all active:scale-95 ${
-                doneBool 
-                ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' 
-                : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-              }`}
-            >
-              <CheckCircle className={`w-5 h-5 ${doneBool ? 'text-emerald-600' : 'text-slate-400'}`} />
-              {doneBool ? 'Splněno' : 'Označit jako splněné'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ onBack }) => {
-  const [teacherMode, setTeacherMode] = useState(false);
-  const [pinMode, setPinMode] = useState(false);
-  const [pin, setPin] = useState('');
-
-  const handleToggleTeacher = () => {
-    if (teacherMode) {
-      setTeacherMode(false);
-    } else {
-      setPinMode(true);
-      setPin('');
-    }
-  };
-
-  const submitPin = () => {
-    if (pin === '1234') {
-      setTeacherMode(true);
-      setPinMode(false);
-    } else {
-      alert('Nesprávný PIN');
-      setPinMode(false);
-    }
-  };
+  const teacher = useTeacherMode();
+  const { teacherMode } = teacher;
 
   return (
     <FsChapterShell
@@ -163,32 +36,7 @@ const PythonCirclesLoopsChapter: React.FC<PythonCirclesLoopsChapterProps> = ({ o
       accentColor="cyan"
       tabs={[{ id: 'lekce', label: 'Lekce 15', icon: Code }]}
     >
-      <div className="flex justify-end mb-6">
-        {pinMode ? (
-          <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-lg border-2 border-cyan-100">
-            <input 
-              type="password" 
-              placeholder="Zadej PIN" 
-              className="px-3 py-1 bg-slate-100 rounded-lg outline-none w-24 text-center font-mono"
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && submitPin()}
-              autoFocus
-            />
-            <button onClick={submitPin} className="bg-cyan-600 text-white px-3 py-1 rounded-lg font-bold text-sm">OK</button>
-          </div>
-        ) : (
-          <button 
-            onClick={handleToggleTeacher}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm border-2 ${
-              teacherMode ? 'bg-cyan-100 text-cyan-700 border-cyan-200' : 'bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600'
-            }`}
-          >
-            {teacherMode ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
-            Učitelský režim {teacherMode ? 'ZAPNUT' : 'VYPNUT'}
-          </button>
-        )}
-      </div>
+      <TeacherPinBar tone="cyan" state={teacher} />
 
       <div className="space-y-6 max-w-4xl mx-auto pb-12">
         <TaskCard number="1" title="" taskId="1" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 200</code><br/><code>y = 100</code><br/><code>canvas.create_oval(x - 100, y - 50, x, y + 50)</code><br/><code>canvas.create_oval(x, y - 50, x + 100, y + 50)</code><br/><br/>V případě, že žák vyřeší úlohu bez použití proměnných x, y jen s konstantami, lze mu například říci: „změň program tak, aby se kružnice dotýkaly v bodě [243, 182]“. Místo jednoduché změny hodnot proměnných x a y bude muset žák přepočítat všechny potřebné souřadnice.</p>}>

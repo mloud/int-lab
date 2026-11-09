@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 
 import { WorksheetLayout } from '@/components/common/worksheets/WorksheetLayout';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { downloadWordDoc } from '@/lib/wordExport';
 import { ClipboardList, CheckSquare, Square } from 'lucide-react';
 
 export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: () => void, onOpenBoot?: () => void }) {
@@ -101,15 +102,7 @@ export default function DiskPartitionChapter({ onBack, onOpenBoot }: { onBack: (
       </html>
     `;
 
-    const blob = new Blob([htmlContent], { type: 'application/msword;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Pracovni_list_Deleni_Disku_${studentName ? studentName.replace(/\s+/g, '_') : 'Student'}.doc`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadWordDoc(htmlContent, 'Pracovni_list_Deleni_Disku', studentName);
   };
 
   const tabs = [
