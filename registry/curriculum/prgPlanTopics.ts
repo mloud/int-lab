@@ -33,7 +33,7 @@ export const PLAN_PRG1: PlanTopic[] = [
     topic: 'Algoritmizace vestavných systémů a hardware',
     topicHours: 12,
     subtopics: [
-      { name: 'Architektura mikrokontroléru a blokové vývojové prostředí', hours: 3, note: 'Srovnání PC a MCU, nahrávání firmware, nekonečná smyčka loop' },
+      { name: 'Blokové vývojové prostředí pro mikrokontrolér', hours: 3, note: 'Příprava prostředí, nahrávání firmware, nekonečná smyčka loop' },
       { name: 'Práce se vstupy, tlačítka a čidla fyzického světa', hours: 3, note: 'Čtení digitálních tlačítek, akcelerometr, teploměr, fotorezistor' },
       { name: 'Řízení výstupů, zobrazovací matice a zvuková signalizace', hours: 3, note: 'Zobrazení grafiky na LED matici 5x5, tóny a piezo bzučák' },
       { name: 'Bezdrátová komunikace a rádiový přenos proměnných', hours: 3, note: 'Odesílání a příjem paketů na frekvenci 2.4 GHz mezi jednotkami' }
@@ -48,7 +48,7 @@ export const PLAN_PRG1: PlanTopic[] = [
       { name: 'Datové typy, proměnné a matematické výrazy v paměti', hours: 4, note: 'Čísla int/float, řetězce str, přetypování a priority operací' },
       { name: 'Grafické plátno (Canvas) a souřadnicový systém počítače', hours: 6, note: 'Knihovna grafiky, okno aplikace, souřadnice [0, 0] vlevo nahoře' },
       { name: 'Barvy, výplně, kreslení geometrických tvarů a vlajek', hours: 4, note: 'Čáry, obdélníky, polygony, hexadecimální barvy a překrývání vrstev' },
-      { name: 'Cyklus for, proměnná cyklu a generování mřížek a ornamentů', hours: 8, note: 'Rozsah range(), proměnná i, krokování posunu, matice dlaždic' },
+      { name: 'Cykly for a while, proměnná cyklu a opakované činnosti', hours: 8, note: 'Rozsah range(), cyklus while s podmínkou, proměnná i, krokování a opakování' },
       { name: 'Podmíněný příkaz if/else, náhodná čísla a větvení v cyklu', hours: 8, note: 'Generátor random, podmínky v cyklu, střídání barev a tvarů' },
       { name: 'Uživatelské funkce s parametry a návratovou hodnotou', hours: 4, note: 'Definice def, předávání argumentů, kreslení složitých razítek' },
       { name: 'Interaktivita: obsluha událostí myši, kliknutí a závěrečná minihra', hours: 4, note: 'Události motion a click, zachycení polohy kurzoru, obhajoba' }
@@ -63,25 +63,24 @@ export const PLAN_PRG1: PlanTopic[] = [
 export const PLAN_PRG2: PlanTopic[] = [
   {
     month: 'Září – Listopad',
-    topic: 'Pokročilé datové struktury a kolekce v jazyce Python',
+    topic: 'Datové kolekce v jazyce Python',
     topicHours: 16,
     subtopics: [
-      { name: 'Seznamy a jejich metody (append, pop, insert, sort, reverse)', hours: 4, note: 'Dynamická pole, vkládání a odebírání prvků, řazení na místě' },
-      { name: 'Indexace a krájení sekvencí (slicing [start:stop:step], záporné indexy)', hours: 4, note: 'Reverzace pole, podsekvence, vyhledávání prvků operátorem in' },
-      { name: 'Generátory seznamů (list comprehension) a filtrace dat', hours: 2, note: 'Deklarativní transformace kolekcí, podmíněná filtrace prvků' },
-      { name: 'Neměnné n-tice (tuple) a množiny (set – operace, deduplikace)', hours: 2, note: 'Immutabilita, množinové sjednocení, průnik, rozdíl a unikátní hodnoty' },
-      { name: 'Slovníky (dict): klíče a hodnoty, operace, iterace a vnořené struktury', hours: 4, note: 'Asociativní pole, metody keys(), values(), items(), JSON struktura' }
+      { name: 'Pojem kolekce, základy seznamů (list), indexace a délka len', hours: 3, note: 'Ukládání více hodnot, indexy od 0, přístup k prvkům, procházení cyklem for' },
+      { name: 'Operace se seznamy a manipulace s prvky (append, insert, pop, remove, sort)', hours: 3, note: 'Přidávání na konec/index, mazání prvků, řazení na místě a reverse' },
+      { name: 'Vyhledávání, filtrace a agregace v seznamech (in, min, max, sum)', hours: 3, note: 'Test přítomnosti prvku, výběr prvků splňujících podmínku, součty a průměry' },
+      { name: 'Slovníky (dict), neměnné n-tice (tuple) a množiny (set)', hours: 4, note: 'Dvojice klíč : hodnota, asociativní pole, neměnnost tuple a deduplikace set' },
+      { name: 'Textové řetězce (str) jako kolekce znaků a příprava na práci se soubory', hours: 3, note: 'Indexace znaků, délka len(), oříznutí strip(), dělení split() a hledání v textu' }
     ]
   },
   {
     month: 'Listopad – Leden',
-    topic: 'Práce se soubory, perzistence dat (JSON) a ošetření výjimek',
+    topic: 'Práce se soubory (JSON) a ošetření chyb v programu',
     topicHours: 14,
     subtopics: [
-      { name: 'Čtení a zápis textových souborů, kontextový manažer with open(...)', hours: 4, note: 'Režimy čtení r, zápisu w a připojení a, kódování UTF-8' },
-      { name: 'Zpracování strukturovaných dat ve formátu CSV', hours: 4, note: 'Knihovna csv, oddělovače polí, čtení do slovníků DictReader' },
-      { name: 'Výměnný datový formát JSON (dump, load, dumps, loads)', hours: 3, note: 'Serializace a deserializace hierarchických dat a konfigurací' },
-      { name: 'Běhové chyby a ošetření výjimek (try - except - finally)', hours: 3, note: 'FileNotFoundError, ValueError, bezpečné ošetření vstupů od uživatele' }
+      { name: 'Čtení a zápis textových souborů (with open, UTF-8)', hours: 4, note: 'Režimy čtení r, zápisu w a připojení a, kódování UTF-8, procházení po řádcích' },
+      { name: 'Ukládání strukturovaných dat ve formátu JSON (dump, load)', hours: 6, note: 'Mapování slovníků a seznamů na JSON soubory, ukládání stavu aplikace a herních dat' },
+      { name: 'Běhové chyby a ošetření výjimek (try - except)', hours: 4, note: 'FileNotFoundError, ValueError, bezpečné ošetření vstupů od uživatele a prevence pádu' }
     ]
   },
   {
@@ -89,10 +88,10 @@ export const PLAN_PRG2: PlanTopic[] = [
     topic: 'Základy objektově orientovaného programování v jazyce Python',
     topicHours: 16,
     subtopics: [
-      { name: 'Paradigma OOP: abstrakce, modelování reálných entit, třída vs. instance', hours: 4, note: 'Přechod od procedur k objektům s vlastním stavem a chováním' },
-      { name: 'Konstruktor __init__, význam parametru self, stav objektu a atributy', hours: 4, note: 'Inicializace nového objektu, vnitřní proměnné instance' },
-      { name: 'Metody instance, chování objektu a zapouzdření vnitřních dat', hours: 4, note: 'Volání metod nad instancí, ochrana integrity stavu objektu' },
-      { name: 'Skládání objektů (kompozice), vztahy mezi objekty a základy dědičnosti', hours: 4, note: 'Vztah má (has-a) vs. je (is-a), předávání zpráv mezi objekty' }
+      { name: 'Od procedur k objektům: třída jako šablona, instance jako konkrétní objekt', hours: 4, note: 'Pojem třída a instance, konstruktor __init__, parametr self a atributy' },
+      { name: 'Metody instance a chování objektu', hours: 4, note: 'Volání metod nad instancí, změna vnitřního stavu, textová reprezentace __str__' },
+      { name: 'Seznam instancí a hromadná práce s objekty', hours: 4, note: 'Ukládání objektů do seznamu, procházení cyklem for, vyhledávání a filtrace objektů' },
+      { name: 'Objektové modelování jednoduché aplikace', hours: 4, note: 'Samostatná konzolová miniaplikace (Evidence / Správce úkolů) jako můstek ke GUI' }
     ]
   },
   {
@@ -100,11 +99,11 @@ export const PLAN_PRG2: PlanTopic[] = [
     topic: 'Vývoj aplikací s grafickým uživatelským rozhraním (GUI)',
     topicHours: 20,
     subtopics: [
-      { name: 'Okenní architektura, řízení událostmi (Event-driven) a smyčka událostí', hours: 4, note: 'Hlavní okno aplikace, smyčka mainloop(), reakce na akce uživatele' },
-      { name: 'Rozmístění prvků (Layout management: mřížka grid a balíčkování pack)', hours: 4, note: 'Řádky, sloupce, roztažení sticky, vnitřní a vnější okraje padding' },
-      { name: 'Základní grafické komponenty: textová pole, tlačítka, přepínače, seznamy', hours: 4, note: 'Widgety Entry, Button, Checkbutton, Listbox, svázání proměnných' },
-      { name: 'Zapouzdření grafického rozhraní do objektové třídy a propojení logiky', hours: 4, note: 'Architektura oddělení datového modelu od vizuálního zobrazení' },
-      { name: 'Ucelený ročníkový projekt desktopové aplikace s ukládáním a obhajobou', hours: 4, note: 'Správce agendy/úkolů s perzistencí do JSON, prezentace a reflexe' }
+      { name: 'Okenní architektura, řízení událostmi (Event Loop) a smyčka událostí', hours: 4, note: 'Hlavní okno aplikace Tk(), geometrie okna, smyčka mainloop(), reakce na akce uživatele' },
+      { name: 'Základní komponenty a souřadnicové pozicování', hours: 4, note: 'Nápis Label, tlačítko Button, pozicování place(x, y), obslužné funkce a metoda config()' },
+      { name: 'Zpracování uživatelského vstupu a formulářové výpočty', hours: 4, note: 'Textové pole Entry, čtení hodnot metodou get(), přetypování vstupů a zobrazení výsledku' },
+      { name: 'Výběrové komponenty a řídicí proměnné rozhraní', hours: 4, note: 'Přepínače Radiobutton, zaškrtávací pole Checkbutton, proměnné StringVar a BooleanVar' },
+      { name: 'Samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním', hours: 4, note: 'Návrh okenního rozhraní, propojení logiky komponent, prezentace a reflexe' }
     ]
   }
 ];
@@ -116,10 +115,10 @@ export const PLAN_PRG2: PlanTopic[] = [
 export const PLAN_PRG3: PlanTopic[] = [
   {
     month: 'Září – Říjen',
-    topic: 'Tvorba prostorové scény, prostředí a materiály v enginu Unity',
+    topic: 'Tvorba prostorové scény, prostředí a materiály ve 3D enginu',
     topicHours: 20,
     subtopics: [
-      { name: 'Seznámení s editorem Unity, struktura projektu, správa aktiv a scéna', hours: 4, note: 'Pohled Scene, Game, Hierarchy, Project a Inspector' },
+      { name: 'Seznámení s editorem 3D enginu (např. Unity), struktura projektu a scéna', hours: 4, note: 'Pohled Scene, Game, Hierarchy, Project a Inspector' },
       { name: 'Prostorový souřadnicový systém X/Y/Z, hierarchie objektů Parent-Child', hours: 4, note: 'Globální vs. lokální prostor, vnořování komponent a objektů' },
       { name: 'Transformace herních objektů (pozice, rotace, měřítko) a kamera', hours: 4, note: 'Komponenta Transform, zorné pole kamery Field of View' },
       { name: 'Návrh a stavba prostorového levelu: geometrie, zdi, podlahy, překážky', hours: 4, note: 'Primitivní tělesa, modularita prostoru, level design' },
@@ -144,25 +143,26 @@ export const PLAN_PRG3: PlanTopic[] = [
     topic: 'Základy síťové komunikace, architektura klient–server a Python backend',
     topicHours: 24,
     subtopics: [
-      { name: 'Architektura klient–server, síťové protokoly a komunikace přes HTTP', hours: 4, note: 'Role klienta a serveru, model Request-Response, IP a porty' },
-      { name: 'Metody GET a POST, stavové kódy HTTP a struktura síťového požadavku/odpovědi', hours: 4, note: 'Kódy 200 OK, 404 Not Found, 500 Error, hlavičky požadavku' },
-      { name: 'Sémantický web zaměřený na data: formuláře, vstupní pole a tabulky', hours: 4, note: 'Struktura značek <form>, <input>, odesílání dat na server' },
-      { name: 'Napojení desktopové aplikace z 2. ročníku na síťovou komunikaci se serverem', hours: 4, note: 'Odeslání požadavku z desktopového rozhraní a přijetí odpovědi' },
-      { name: 'Tvorba aplikačního backendu v jazyce Python (webový mikrorámec) a endpointy', hours: 4, note: 'Instalace mikrorámce, směrování dekorátory @app.route, endpointy' },
-      { name: 'Zpracování dat odeslaných z formuláře na backendu a generování odpovědi', hours: 4, note: 'Čtení dat z těla požadavku, validační logika a renderování výsledku' }
+      { name: 'Architektura klient–server, síťové protokoly a komunikace přes HTTP', hours: 3, note: 'Role klienta a serveru, model Request-Response, IP a porty' },
+      { name: 'Metody GET a POST, stavové kódy HTTP a struktura síťového požadavku/odpovědi', hours: 3, note: 'Kódy 200 OK, 404 Not Found, 500 Error, hlavičky požadavku' },
+      { name: 'Návrat k Pythonu, instalace externích knihoven (pip) a modularita kódu', hours: 4, note: 'Zopakování základů Pythonu po 3D scéně, správa balíčků pip, dělení do více modulů (import)' },
+      { name: 'Sémantický web zaměřený na data: formuláře, vstupní pole a tabulky', hours: 3, note: 'Struktura značek <form>, <input>, odesílání dat na server' },
+      { name: 'Tvorba aplikačního backendu v jazyce Python, směrování a endpointy', hours: 4, note: 'Tvorba serveru (Flask), směrování dekorátory @app.route, obsluha koncových bodů' },
+      { name: 'Zpracování dat odeslaných z formuláře na backendu a generování odpovědi', hours: 4, note: 'Čtení dat z těla požadavku, kontrola vstupů a generování odpovědi' },
+      { name: 'Napojení desktopové aplikace z 2. ročníku na síťovou komunikaci se serverem', hours: 3, note: 'Odeslání požadavku z desktopového rozhraní a přijetí odpovědi' }
     ]
   },
   {
     month: 'Duben – Červen',
-    topic: 'Opakování jazyka SQL, integrace databáze s Pythonem a REST API',
+    topic: 'Databáze a aplikační rozhraní serveru (API)',
     topicHours: 30,
     subtopics: [
-      { name: 'Rekapitulace jazyka SQL: dotazy SELECT s podmínkami, řazením a agregací', hours: 5, note: 'Zopakování syntaktických konstrukcí SQL z předmětu Databáze' },
-      { name: 'Datové manipulace SQL: příkazy INSERT, UPDATE, DELETE a integrita dat', hours: 5, note: 'Vkládání záznamů, modifikace, mazání dat a primární klíče' },
-      { name: 'Připojení Pythonu k databázi SQLite, databázový kurzor a vykonávání dotazů', hours: 5, note: 'Knihovna sqlite3, otevření spojení, cursor.execute(), commit()' },
-      { name: 'Bezpečné parametrizované dotazy a prevence zranitelností SQL injection', hours: 5, note: 'Zástupné symboly ?, oddělení SQL příkazů od uživatelských dat' },
-      { name: 'Mapování databázových řádků na datové struktury Pythonu (slovníky a seznamy)', hours: 5, note: 'fetchall(), transformace n-tic na asociativní kolekce' },
-      { name: 'Návrh a implementace REST API: serializace do JSON pro desktop i web', hours: 5, note: 'Endpointy API vracící JSON data pro různé typy klientských aplikací' }
+      { name: 'Relační databáze a základní operace s daty', hours: 5, note: 'Struktura tabulek, primární klíče, čtení, vkládání a úprava záznamů' },
+      { name: 'Propojení aplikace s databází a provádění dotazů', hours: 5, note: 'Navázání databázového spojení, provádění příkazů z programovacího jazyka' },
+      { name: 'Bezpečná práce s databází a ochrana před zneužitím vstupů', hours: 5, note: 'Parametrizované dotazy, oddělení příkazů od uživatelských dat' },
+      { name: 'Zpracování a transformace databázových dat v programu', hours: 5, note: 'Převod databázových záznamů do struktur aplikace (seznamy, asociativní pole)' },
+      { name: 'Tvorba aplikačního rozhraní (API) pro výměnu dat', hours: 5, note: 'Strukturovaná výměna dat (formát JSON), koncové body serveru' },
+      { name: 'Integrace klientských aplikací (web a desktop) přes API', hours: 5, note: 'Konzumace aplikačního rozhraní více klientskými platformami' }
     ]
   }
 ];
@@ -177,34 +177,34 @@ export const PLAN_PRG4: PlanTopic[] = [
     topic: 'Bezpečnost aplikačních systémů, autentizace a webové klientské rozhraní',
     topicHours: 14,
     subtopics: [
-      { name: 'Dokončení webového klienta: interaktivní formulářové rozhraní pro vkládání dat', hours: 3, note: 'Dynamická webová stránka konzumující REST API z 3. ročníku' },
+      { name: 'Dokončení webového klienta: interaktivní formulářové rozhraní pro vkládání dat', hours: 3, note: 'Dynamická webová stránka konzumující API ze 3. ročníku' },
       { name: 'Koexistence klientů: webové rozhraní a desktopová aplikace nad společným backendem', hours: 3, note: 'Jeden centrální server obsluhující různé klientské platformy' },
-      { name: 'Uživatelská autentizace: registrace, přihlášení a správa relací (sessions)', hours: 3, note: 'Rozpoznání přihlášeného uživatele, stavové sezení a tokeny' },
-      { name: 'Bezpečná správa hesel: jednocestné hashování se solí a ochrana před útoky', hours: 3, note: 'Algoritmy bcrypt/pbkdf2, princip nesledovatelnosti hesla v DB' },
-      { name: 'Ochrana vstupů a sanitizace: obrana proti zranitelnostem typu XSS a injektování', hours: 2, note: 'Validace na straně klienta i serveru, escapování výstupu' }
+      { name: 'Uživatelská autentizace: registrace, přihlášení a správa relací', hours: 3, note: 'Rozpoznání přihlášeného uživatele a stavové sezení' },
+      { name: 'Bezpečná správa hesel: bezpečné jednocestné hashování a ochrana před útoky', hours: 3, note: 'Hashování se solí (werkzeug / pbkdf2), princip nečitelnosti hesla v DB' },
+      { name: 'Ochrana a kontrola uživatelských vstupů', hours: 2, note: 'Kontrola a ošetření dat na straně klienta i serveru' }
     ]
   },
   {
     month: 'Listopad – Leden',
-    topic: 'Softwarové inženýrství, týmová spolupráce a verzovací systémy',
+    topic: 'Týmová spolupráce a verzování softwaru',
     topicHours: 12,
     subtopics: [
-      { name: 'Principy čistého kódu (Clean Code), čitelnost, refaktoring a architektura', hours: 3, note: 'Pojmenování entit, redukce duplicit DRY, dekompozice modulů' },
-      { name: 'Automatizované testování software: jednotkové testy (Unit Testing) a ladění', hours: 3, note: 'Testovací rámec unittest/pytest, assert testy, hraniční stavy' },
-      { name: 'Týmová práce s verzovacím systémem Git: větvení, slučování a konflikty', hours: 3, note: 'Příkazy branch, checkout, merge, řešení textových konfliktů' },
-      { name: 'Vzdálené repozitáře, revize kódu (Code Review) a agilní řízení úkolů', hours: 3, note: 'Pull requesty, komentování změn v týmu, nástěnka Kanban' }
+      { name: 'Organizace práce v týmu a verzovací systém', hours: 3, note: 'Rozdělení projektu na úkoly, založení týmového repozitáře' },
+      { name: 'Sdílení a synchronizace kódu v týmu', hours: 3, note: 'Práce na oddělených částech kódu, nahrávání a stahování změn' },
+      { name: 'Slučování týmové práce a řešení kolizí', hours: 3, note: 'Začlenění změn od spolužáků, odhalení a oprava konfliktů v kódu' },
+      { name: 'Týmový miniprojekt: společný vývoj aplikace', hours: 3, note: 'Praktická tvorba aplikace ve dvojicích či trojicích, předvedení výsledku' }
     ]
   },
   {
     month: 'Únor – Duben',
-    topic: 'Závěrečný komplexní maturitní projekt a veřejná obhajoba',
+    topic: 'Závěrečný komplexní softwarový projekt a jeho prezentace',
     topicHours: 24,
     subtopics: [
-      { name: 'Zadání a architektura maturitního projektu: výběr domény a návrh API', hours: 4, note: 'Specifikace požadavků, diagram databáze, časový harmonogram' },
+      { name: 'Zadání a architektura komplexního projektu: výběr domény a návrh API', hours: 4, note: 'Specifikace požadavků, diagram databáze, časový harmonogram' },
       { name: 'Realizace klientské i serverové vrstvy projektu s verzováním v Gitu', hours: 8, note: 'Pravidelné commity, kontrolní milníky a průběžné konzultace' },
-      { name: 'Testování, ladění zátěže, zabezpečení a ošetření chybových stavů', hours: 4, note: 'Ověření všech uživatelských scénářů, ošetření výjimek a zátěž' },
+      { name: 'Testování aplikace, ladění, zabezpečení a ošetření chybových stavů', hours: 4, note: 'Ověření všech uživatelských scénářů, ošetření výjimek a ladění' },
       { name: 'Zpracování technické a uživatelské dokumentace projektu', hours: 4, note: 'Struktura technické zprávy, návod k instalaci a spuštění' },
-      { name: 'Příprava odborné prezentace a simulovaná veřejná obhajoba před komisí', hours: 4, note: 'Obhajoba architektonických rozhodnutí a demonstrace funkčnosti' }
+      { name: 'Příprava odborné prezentace a veřejná obhajoba projektu', hours: 4, note: 'Prezentace výsledků, demonstrace funkčnosti a obhajoba řešení' }
     ]
   }
 ];

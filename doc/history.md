@@ -878,5 +878,50 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         4. *Systémový registr (`regedit`)* – hierarchie `HKCU` vs. `HKLM`, klíče `Run` / `RunOnce`.
     - **Interaktivní průvodce / simulátor ([PersistenceExplorerSim.tsx](components/specializovana/operacni-systemy-2/bezpecnost/registr/simulators/PersistenceExplorerSim.tsx)):**
       - Zrušena stará lišta se zabíjením procesů. Místo toho zaveden vizuální průvodce 5 kroky (4 místa v OS + srovnání Správce úloh vs. Sysinternals Autoruns) s tlačítky pro kopírování příkazů do `Win + R`, kontrolním náhledem okna Windows a odškrtáváním splnění na vlastním PC.
-    - **Stav před další iterací:** Připraveno pro úpravu a dopilování úloh v **Praktickém listu** ([persistenceData.ts](components/specializovana/operacni-systemy-2/bezpecnost/registr/persistenceData.ts)).
+    - **Stav před další iterací:** BZ3 kompletně dokončeno včetně Praktického listu (7 úloh), sjednoceného WorksheetLayout/WorksheetKit a commitnuto do větve `dev`.
+
+37. **Přepnutí kontextu na předmět Programování a vývoj her / aplikací 1–4 (PVH / PRG 1–4):**
+    - Kontext aktivního vývoje byl přepnut na 4leté kurikulum **Programování a vývoj her / aplikací (PVH / PRG 1–4)** s celkovou dotací 314 hodin (PRG 1: 99 h · PRG 2: 66 h · PRG 3: 99 h · PRG 4: 50 h).
+    - Načteny oficiální podklady ŠVP pro Českou školní inspekci (modul InspIS ŠVP) v [`doc/curriculum/PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md), profily ročníků [`PRG1.md`](curriculum/PRG1.md) a [`PRG2.md`](curriculum/PRG2.md) a dedikované pracovní plány v `doc/plans/` (`PLAN_PRG1.md`, `PLAN_PRG2.md`, `PLAN_PRG3.md`, `PLAN_PRG4.md`).
+    - Aktivní plánovací tabule [`doc/plan.md`](plan.md) byla přepnuta na PVH / PRG 1–4 pro další práci na ŠVP a tematických plánech.
+    - **Didaktická optimalizace Bloku 3 a 4 v PVH 1 (ŠVP InspIS):**
+      - *Blok 3 (Vestavné systémy a hardware):* Z výsledků vzdělávání byly vyřazeny nízkoúrovňové a teoretické koncepty: *„popíše architekturu mikrokontroléru a jeho periferie“*, *„rozliší digitální a analogové vstupy a výstupy (GPIO)“* a *„aplikuje logiku stavového automatu pro řízení chování zařízení“*. Blok byl vyčištěn na ryze algoritmickou práci s periferiemi (tlačítka, senzory, LED matice, zvuk, rádiové pakety).
+      - *Blok 4 (Textový Python a Canvas):* Z výsledků vzdělávání byl odebrán bod *„vytvoří ucelenou interaktivní 2D aplikaci na plátně“* a výstup pro cyklus `for` byl zjednodušen na čisté a obecné *„aplikuje cyklus for a proměnnou cyklu pro opakované činnosti“*.
+    - **Didaktická přestavba Bloku 1 v PVH 2 (Datové kolekce v jazyce Python – 16 h):**
+      - Název změněn z matoucího *„Pokročilé datové struktury...“* na fundamentální **„Datové kolekce v jazyce Python“** (první reálné seznámení žáků s kolekcemi v textovém Pythonu).
+      - Odstraněny předčasné syntaktické konstrukce (slicing, list comprehension).
+      - Blok byl nově postaven na univerzálních a robustních základech: pojem kolekce, seznamy (`list`), indexace, délka, procházení cyklem, základní operace (`append`, `insert`, `pop`, `remove`, `sort`), vyhledávání a agregace (`in`, `min`, `max`, `sum`) a asociativní slovníky (`dict`), neměnné n-tice (`tuple`) a množiny (`set`).
+    - **Optimalizace a zpřehlednění Bloku 2 v PVH 2 (Práce se soubory (JSON) a ošetření chyb v programu – 14 h):**
+      - Z názvu i výstupů byl odstraněn akademický balast (*„perzistence dat“*, *„kontextový manažer“*, *„serializuje a deserializuje“*).
+      - Vyřazen formát CSV, který přetěžoval časovou dotaci a vnášel syntaktický chaos (oddělovače, český Excel); časová dotace 14 hodin byla soustředěna na praktickou trojici: textové soubory (4 h), strukturovaná data v JSON (6 h) a ošetření běhových chyb `try-except` (4 h).
+    - **Didaktická revize Bloku 3 v PVH 2 (Základy OOP v jazyce Python – 16 h):**
+      - Vyřazena předčasná dědičnost (`class B(A)`, `super()`) a formální zapouzdření, které v Pythonu neexistuje a žáky ve 2. ročníku pouze mátlo.
+      - Blok byl zaměřen na praktické základy potřebné pro následující tvorbu GUI aplikací: třída jako šablona, instance jako objekt, konstruktor `__init__`, parametr `self`, atributy, metody instance a práce se seznamem objektů.
+    - **Harmonizace Bloku 4 v PVH 2 (Vývoj aplikací s GUI – 20 h) s metodickými materiály (Mgr. Jiří Hejna):**
+      - Provedena detailní komparace kurikula ŠVP oproti 6 autorizovaným metodickým listům pro výuku Tkinteru na SŠ (`metodika_1.pdf` až `metodika_6.pdf`).
+      - Vyřazeny layout manažery `grid` a `pack`, které v metodikách vůbec nevystupují; rozvržení okna upraveno na souřadnicové pozicování `place(x, y)`.
+      - Odstraněn požadavek na objektové zapouzdření GUI do tříd (`class App:`), metodiky pracují čistě procedurálně s obslužnými funkcemi a metodou `.config()`.
+      - Odstraněna komponenta `Listbox` a v ŠVP explicitně specifikovány komponenty z metodik: `Label`, `Button`, `Entry`, `Radiobutton`, `Checkbutton` a speciální řídicí proměnné `StringVar` a `BooleanVar`.
+      - Závěrečný projekt byl odpojen od ukládání do souboru/JSON i od úzkého označení „kalkulátor“ a byl definován obecně jako **samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním**.
+      - Změny plně promítnuty do [`PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md), [`svpPrgData.ts`](../registry/curriculum/svp/svpPrgData.ts), [`prgPlanTopics.ts`](../registry/curriculum/prgPlanTopics.ts), [`PLAN_PRG2.md`](plans/PLAN_PRG2.md) a [`doc/plan.md`](plan.md).
+    - **Didaktické zobecnění Bloku 4 v PVH 3 (Databáze a aplikační rozhraní serveru – 30 h):**
+      - Název byl zobecněn z *„Opakování jazyka SQL, integrace databáze s Pythonem a REST API“* na **„Databáze a aplikační rozhraní serveru (API)“**.
+      - Odstraněn akademický a mikrodetailní výčet klauzulí SQL (`SELECT, WHERE, ORDER BY, GROUP BY, INSERT, UPDATE, DELETE, transakce`), databázového kurzoru a konkrétních knihoven (SQLite).
+      - Blok byl přeformulován na obecné a nadčasové kompetence: provádění základních operací s daty v relační databázi, propojení serverové aplikace s databází, zásady bezpečné komunikace (ochrana před zneužitím vstupů / injekcemi), transformace záznamů do struktur programu a zprostředkování dat klientským aplikacím (web i desktop) přes API.
+      - Aktualizováno v ŠVP InspIS, TypeScript datech i tematických plánech.
+    - **Didaktická revize Bloku 2 v PVH 4 (Týmová spolupráce a verzování softwaru – 12 h):**
+      - Název změněn z akademického *„Softwarové inženýrství, týmová spolupráce a verzovací systémy“* na **„Týmová spolupráce a verzování softwaru“**.
+      - Vyřazeny veškeré specifické koncepty a cizí terminologie: `Unit Testing`, `Clean Code`, `refaktoring`, `Kanban`, `Code Review`, `Pull Requesty`.
+      - Těžištěm bloku se stala reálná týmová spolupráce žáků v malých týmech (dvojice, trojice) na společné aplikaci: rozdělení rolí a plánování, verzovací repozitář pro sdílení kódu, slučování změn od spolužáků, odhalení a řešení kolizí a dodržování jednotného stylu zápisu kódu.
+      - Aktualizováno v ŠVP InspIS, TypeScript strukturách, tematických plánech i v `doc/plan.md`.
+    - **Úprava Bloku 3 a Bloku 1 v PVH 4 a Bloku 3 v PVH 3:**
+      - Odstraněna svazující vazba na „maturitní projekt / maturitní zkoušku“, blok přejmenován na **„Závěrečný komplexní softwarový projekt a jeho prezentace“**.
+      - Výstupy i učivo zobecněny na samostatnou realizaci klientské i serverové části, verzování v Gitu, systematické testování, technickou a uživatelskou dokumentaci a odbornou obhajobu zvolených řešení.
+      - V Bloku 3 PVH 3 byl zároveň odstraněn akademický termín `(webový mikrorámec)`.
+      - V Bloku 1 PVH 4 byl vyčištěn text od přebytečného žargonu: vyřazen specifický bod *„rozpozná zranitelnosti typu SQL injection a XSS a implementuje obranu“*, závorky `(sanitizace, validace)` i `(sessions, tokeny)` a nahrazeno čistým *„aplikuje zásady bezpečné práce a ošetření uživatelských vstupů“* a *„správa relací a přístupových práv“*.
+    - **Celokurikulární audit návaznosti a pokrytí jazyka Python (PVH 1–4 pro ČŠI):**
+      - **Sjednocení Kapitoly I (Charakteristika a kompetence):** Z úvodního textu ŠVP a `SVP_PRG_SHARED_INFO` byly odstraněny pozůstatky starých termínů (CSV, perzistence, Clean Code, Code Review, Kanban/Scrum, sokety, maturitní práce) tak, aby úvod plně odpovídal tabulkám osnov pro ČŠI.
+      - **Doplnění chybějících pilířů Pythonu:** Do PVH 1 (Blok 4) doplněn podmíněný cyklus **`while`**; do PVH 2 na konec Bloku 1 zařazeny **textové řetězce (`str`)** jako sekvence znaků (`strip`, `split`, `in`) tvořící přirozený můstek k souborům; do PVH 3 (Blok 3) přidáno krátké rozcvičení Pythonu po 1. pololetí s 3D enginem, **instalace externích balíčků (`pip`) a členění projektu do více modulů (`import`)**.
+      - **Zobecnění pojmů pro ČŠI:** V PVH 1 vyřazena `deduplikace` u Scratch seznamů; v PVH 3 (Blok 1–2) výsledky vzdělávání zobecněny z proprietárního *Unity* a C# API (`Rigidbody`, `Colliders`, `Triggers`) na obecný *3D herní a simulační engine* (konkrétní příklady ponechány jen v rozpisu učiva); v PVH 4 sjednoceno `(API)`, zjemněno hashování na *bezpečné jednocestné hashování* a v Bloku 3 nahrazeno nereálné *ladění zátěže*.
+      - Kompletně promítnuto do [`PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md), [`svpPrgData.ts`](../registry/curriculum/svp/svpPrgData.ts), [`prgPlanTopics.ts`](../registry/curriculum/prgPlanTopics.ts), plánů `PLAN_PRG1–4.md` a [`doc/plan.md`](plan.md).
 

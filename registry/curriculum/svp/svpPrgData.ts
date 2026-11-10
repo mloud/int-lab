@@ -18,7 +18,7 @@ export const SVP_PRG_SHARED_INFO: SvpSharedInfo = {
     'a odstranit syntaktické i logické chyby. Úroveň znalostí je zjišťována praktickými úlohami u počítače v integrovaném vývojovém ' +
     'prostředí (IDE), kontrolními programátorskými cvičeními, tvorbou a prezentací dílčích softwarových aplikací, týmovými projekty, ' +
     'prací s technickou dokumentací a verzovacím systémem, teoretickými testy ověřujícími pochopení algoritmických konceptů a závěrečnou ' +
-    'ústní obhajobou maturitní práce. Důraz je kladen na čistotu návrhu (Clean Code), modularitu, dekompozici a schopnost obhájit technické řešení.',
+    'prezentací a obhajobou projektu. Důraz je kladen na čistotu a čitelnost návrhu, modularitu, dekompozici a schopnost obhájit technické řešení.',
   keyCompetencies: [
     {
       title: 'Kompetence k učení',
@@ -38,7 +38,7 @@ export const SVP_PRG_SHARED_INFO: SvpSharedInfo = {
       description:
         'Žák formuluje své myšlenky věcně a přesně s využitím odborné IT terminologie v českém i anglickém jazyce. ' +
         'Vede přehlednou technickou dokumentaci (README, komentáře kódu), prezentuje výsledky své práce před třídou a věcně diskutuje ' +
-        'v týmu při revizích zdrojového kódu (Code Review).'
+        'v týmu při společné práci na zdrojovém kódu.'
     },
     {
       title: 'Digitální kompetence',
@@ -51,7 +51,7 @@ export const SVP_PRG_SHARED_INFO: SvpSharedInfo = {
       title: 'Pracovní a personální kompetence',
       description:
         'Žák dodržuje technologickou kázeň, termíny a zásady týmové spolupráce. Je schopen přijmout roli v projektovém týmu, ' +
-        'nést odpovědnost za svěřený modul a přizpůsobovat se agilnímu způsobu plánování a řízení práce (Kanban, Scrum).'
+        'nést odpovědnost za svěřený modul a systematicky plánovat postup práce v týmu.'
     }
   ],
   crossCuttingThemes: [
@@ -79,8 +79,8 @@ export const SVP_PRG_SHARED_INFO: SvpSharedInfo = {
   ],
   interdisciplinaryRelations:
     'Předmět přímo aplikuje poznatky z Matematiky (kartézské souřadnice, vektory, výroková logika, množiny a matice) a Databázových ' +
-    'systémů (relační model, dotazovací jazyk SQL, který integruje do aplikačního kódu). Vytváří technologické zázemí pro předměty ' +
-    'Počítačové sítě a Operační systémy (skriptování, síťová komunikace přes sokety a protokoly HTTP) a tvoří přímou propedeutiku pro předmět ' +
+    'systémů (relační model a práce s databází, kterou integruje do aplikačního kódu). Vytváří technologické zázemí pro předměty ' +
+    'Počítačové sítě a Operační systémy (skriptování, síťová komunikace přes protokoly HTTP) a tvoří přímou propedeutiku pro předmět ' +
     'Robotika (přenos logiky mikrokontrolérů a senzoriky do fyzických autonomních systémů).'
 };
 
@@ -114,7 +114,7 @@ export const SVP_PRG1_DATA: SvpGradeData = {
         'Podmíněné příkazy (if/else, porovnání, logické spojky)',
         'Cykly (pevný počet kroků, podmíněné opakování, nekonečný cyklus)',
         'Vlastní bloky a podprogramy (předávání parametrů, modularita)',
-        'Seznamy a práce s daty (pole hodnot, indexace, vyhledávání, deduplikace)',
+        'Seznamy a práce s daty (pole hodnot, indexace, přidávání, odebírání a vyhledávání)',
         'Událostní zprávy (broadcast, reakce objektů na zprávu)',
         'Klonování objektů (životní cyklus klonu, dynamické vytváření střel a překážek)'
       ]
@@ -146,18 +146,15 @@ export const SVP_PRG1_DATA: SvpGradeData = {
       hours: 12,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'popíše architekturu mikrokontroléru a jeho periferie',
-        'rozliší digitální a analogové vstupy a výstupy (GPIO)',
         'zpracovává vstupy z tlačítek a fyzických senzorů',
         'řídí zobrazovací a zvukové výstupy mikrokontroléru',
-        'aplikuje logiku stavového automatu pro řízení chování zařízení',
         'implementuje bezdrátový přenos dat mezi zařízeními'
       ],
       content: [
-        'Architektura mikrokontroléru (PC vs. jednočip, GPIO piny)',
+        'Blokové vývojové prostředí pro mikrokontrolér',
         'Vstupní periferie a čidla (tlačítka, akcelerometr, měření osvětlení a teploty)',
         'Výstupní periferie (LED matice, piezo bzučák, tóny)',
-        'Zpracování událostí hardware v reálném čase, neblokující stavová logika',
+        'Zpracování událostí hardware v reálném čase',
         'Bezdrátový přenos dat (rádiové pakety, přenos stavových proměnných)'
       ]
     },
@@ -171,22 +168,21 @@ export const SVP_PRG1_DATA: SvpGradeData = {
         'vytvoří program se vstupem z konzole a formátovaným výstupem',
         'používá základní datové typy a matematické operátory',
         'vytváří grafické objekty na plátně v souřadnicovém systému',
-        'aplikuje cyklus for a proměnnou cyklu pro generování mřížek a ornamentů',
+        'aplikuje cykly (for a while) pro opakované činnosti v programu',
         'vytváří větvené programy reagující na stav a polohu objektů',
         'vytváří vlastní funkce s parametry a návratovou hodnotou',
-        'obsluhuje události myši a klávesnice pro interakci s uživatelem',
-        'vytvoří ucelenou interaktivní 2D aplikaci na plátně'
+        'obsluhuje události myši a klávesnice pro interakci s uživatelem'
       ],
       content: [
         'Vývojové prostředí jazyka Python, interpret, syntaxe a odsazování bloků',
         'Vstup a výstup (print, f-strings, input, přetypování int a float)',
         'Datové typy a operátory (aritmetické, celočíselné dělení, modulo)',
         'Grafické plátno (souřadnicový systém, kreslení tvarů, barvy, výplně)',
-        'Řídicí struktury (cyklus for, rozsah range, proměnná cyklu jako posun)',
+        'Řídicí struktury (cykly for a while, rozsah range, podmínka opakování)',
         'Podmíněné větvení (if, elif, else, relační a logické operátory)',
         'Moduly a náhoda (import standardních knihoven, generování náhodných čísel)',
         'Uživatelské funkce (klíčové slovo def, parametry, návratová hodnota return)',
-        'Událostmi řízená interaktivita (obsluha událostí myši a klávesnice, tvorba 2D minihry)'
+        'Událostmi řízená interaktivita (obsluha událostí myši a klávesnice, interaktivní aplikace)'
       ]
     }
   ]
@@ -202,45 +198,44 @@ export const SVP_PRG2_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg2-b1',
-      topic: '1. Pokročilé datové struktury a kolekce v jazyce Python',
+      topic: '1. Datové kolekce v jazyce Python',
       hours: 16,
       crossThemes: ['PT - ČDS'],
       outcomes: [
-        'ukládá data do kolekcí',
-        'prochází a zpracovává kolekce',
-        'používá pokročilé metody seznamů',
-        'aplikuje techniku krájení (slicing) a generátory seznamů (list comprehension)',
-        'rozliší měnitelné a neměnné datové typy (tuple)',
-        'organizuje data v množinách (set) a odstraňuje duplicity',
-        'používá slovníky (dict) pro asociativní ukládání dat'
+        'vysvětlí princip a význam ukládání dat do kolekcí',
+        'vytváří a modifikuje seznamy (přidávání, úprava a odebírání prvků)',
+        'prochází kolekce pomocí cyklu a zpracovává jednotlivé prvky',
+        'vyhledává a filtruje prvky v kolekci podle zadaných kritérií',
+        'rozlišuje základní typy kolekcí (seznam, n-tice, množina, slovník)',
+        'používá slovníky pro ukládání a organizaci dat pomocí klíčů a hodnot',
+        'zpracovává textové řetězce pomocí základních řetězcových operací'
       ],
       content: [
-        'Dynamické seznamy (metody append, insert, pop, sort, vyhledávání)',
-        'Krájení dat (slicing, reverzace pole, záporné indexy)',
-        'Generátory seznamů (list comprehension, podmíněná filtrace)',
-        'Neměnné n-tice (tuple, rozbalování hodnot)',
-        'Množiny (set, množinové operace, deduplikace)',
-        'Slovníky (dict, klíče a hodnoty, iterace, vnořené slovníky)'
+        'Pojem kolekce, rozdíl mezi jednoduchou proměnnou a kolekcí dat',
+        'Seznamy (list) – indexace, délka, procházení prvků cyklem',
+        'Operace se seznamy (metody append, insert, pop, remove, řazení)',
+        'Prohledávání a filtrace dat v seznamu, podmíněný výběr prvků',
+        'N-tice (tuple) a množiny (set) – neměnnost, unikátnost a odstranění duplicit',
+        'Slovníky (dict) – asociativní ukládání, dvojice klíč–hodnota, strukturované záznamy',
+        'Textové řetězce (str) jako kolekce znaků – indexace, délka, oříznutí mezer, dělení a vyhledávání (strip, split, in)'
       ]
     },
     {
       id: 'prg2-b2',
-      topic: '2. Práce se soubory, perzistence dat (JSON) a ošetření výjimek',
+      topic: '2. Práce se soubory (JSON) a ošetření chyb v programu',
       hours: 14,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'využívá možnosti ukládání dat mimo operační paměť',
-        'čte a zapisuje textová data na disk pomocí kontextového manažeru',
-        'zpracovává strukturovaná data ve formátu CSV',
-        'serializuje a deserializuje data ve formátu JSON',
-        'identifikuje syntaktické a běhové chyby v programu',
-        'ošetřuje výjimky a zabraňuje pádu aplikace (try - except - finally)'
+        'vysvětlí význam trvalého ukládání dat mimo operační paměť',
+        'čte a zapisuje textová data do souborů na disku',
+        'ukládá a načítá strukturovaná data ve formátu JSON',
+        'rozpozná syntaktické a běhové chyby v programu',
+        'ošetřuje běhové chyby (výjimky) a předchází pádu aplikace'
       ],
       content: [
-        'Čtení a zápis textových souborů (with open, kódování UTF-8)',
-        'Zpracování tabulkových dat v CSV (knihovna csv, oddělovače)',
-        'Hierarchický formát JSON (json.dump, json.load, serializace stavu)',
-        'Ošetření výjimek (bloky try, except, finally, standardní výjimky)'
+        'Trvalé ukládání dat na disk, textové soubory (čtení, zápis, kódování UTF-8)',
+        'Strukturovaný výměnný formát JSON (ukládání stavu aplikace, konfigurace a herních dat)',
+        'Chyby v programu a jejich zachycení (typy chyb, zachycení výjimek, bezpečný běh aplikace)'
       ]
     },
     {
@@ -249,22 +244,17 @@ export const SVP_PRG2_DATA: SvpGradeData = {
       hours: 16,
       crossThemes: ['PT - ČDS'],
       outcomes: [
-        'vysvětlí princip objektově orientovaného programování',
-        'definuje pojmy třída, objekt a popíše jejich základní vlastnosti',
-        'vytváří třídy a instance objektů',
-        'používá konstruktor __init__ a parametr self',
-        'definuje atributy a metody třídy',
-        'používá zapouzdření dat',
-        'navrhne jednoduchý objektový model aplikace',
-        'vytváří vztahy mezi objekty (kompozice, základy dědičnosti)'
+        'vysvětlí rozdíl mezi procedurálním a objektovým přístupem',
+        'navrhne třídu jako šablonu pro modelování reálného objektu',
+        'vytváří instance tříd s počátečním stavem (konstruktor)',
+        'definuje atributy a metody pro řízení chování objektu',
+        'propojuje více instancí a objektů v aplikaci'
       ],
       content: [
-        'Principy objektově orientovaného programování (abstrakce, zapouzdření)',
-        'Definice třídy a vytváření instancí',
-        'Konstruktor __init__, parametr self, instanční atributy',
-        'Metody instance a chování objektu',
-        'Zapouzdření vnitřního stavu (veřejné vs. neveřejné atributy)',
-        'Vztahy mezi objekty (kompozice, základy dědičnosti, volání super)'
+        'Objektové myšlení (třída jako šablona, instance jako konkrétní objekt)',
+        'Vnitřní stav objektu (atributy, konstruktor __init__, parametr self)',
+        'Chování objektu (metody instance, práce s vnitřními daty objektu)',
+        'Spolupráce objektů (seznam objektů, předávání objektů mezi funkcemi)'
       ]
     },
     {
@@ -275,19 +265,17 @@ export const SVP_PRG2_DATA: SvpGradeData = {
       outcomes: [
         'popíše architekturu desktopového grafického rozhraní (GUI)',
         'vytvoří hlavní okno aplikace a řídí smyčku událostí',
-        'organizuje rozložení prvků pomocí layout manažerů',
-        'vytváří formuláře a ovládací prvky uživatelského rozhraní',
-        'propojuje grafické rozhraní s programovou logikou',
-        'zapouzdří aplikaci GUI do objektové třídy',
-        'realizuje samostatný projekt desktopové aplikace s ukládáním do souboru'
+        'organizuje rozložení prvků v okně aplikace pomocí souřadnicového pozicování',
+        'vytváří formuláře a ovládací prvky uživatelského rozhraní (nápis, tlačítko, textové pole, přepínače, zaškrtávací pole)',
+        'propojuje grafické rozhraní s programovou logikou a proměnnými rozhraní',
+        'realizuje samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním'
       ],
       content: [
         'Okenní architektura, řízení událostmi (Event Loop)',
-        'Správci rozložení prvků (layout manažery: mřížka grid, balíčkování pack)',
-        'Vizuální komponenty (textová pole, tlačítka, přepínače, seznamy)',
-        'Vazba událostí a proměnných na grafické prvky',
-        'Objektový návrh GUI aplikace (zapouzdření okna i aplikační logiky)',
-        'Samostatný ročníkový projekt desktopové aplikace s perzistencí do JSON'
+        'Rozmístění prvků v okně aplikace (souřadnicové pozicování place)',
+        'Grafické komponenty (nápis Label, tlačítko Button, textové pole Entry, přepínače Radiobutton, zaškrtávací pole Checkbutton)',
+        'Vazba událostí a proměnných na grafické prvky (obslužné funkce, parametry StringVar a BooleanVar)',
+        'Samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním'
       ]
     }
   ]
@@ -303,11 +291,11 @@ export const SVP_PRG3_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg3-b1',
-      topic: '1. Tvorba prostorové scény, prostředí a materiály v enginu Unity',
+      topic: '1. Tvorba prostorové scény, prostředí a materiály ve 3D enginu',
       hours: 20,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'orientuje se v prostředí herního a simulačního enginu Unity',
+        'orientuje se v prostředí 3D herního a simulačního enginu',
         'vysvětlí komponentový princip enginu',
         'vytváří 3D scénu a prostorové uspořádání objektů',
         'aplikuje transformace herních objektů (pozice, rotace, měřítko)',
@@ -316,7 +304,7 @@ export const SVP_PRG3_DATA: SvpGradeData = {
         'využívá připravenou šablonu pro pohyb hráče v prostoru'
       ],
       content: [
-        'Editor Unity, struktura projektu, správa aktiv (Project, Hierarchy, Inspector)',
+        'Editor 3D enginu (např. Unity), struktura projektu, správa aktiv (Project, Hierarchy, Inspector)',
         'Prostorový souřadnicový systém, scéna, hierarchie objektů Parent-Child',
         'Transformace objektů (Transform: pozice, rotace, měřítko)',
         'Tvorba herního prostředí (level design), geometrie scény',
@@ -330,9 +318,9 @@ export const SVP_PRG3_DATA: SvpGradeData = {
       hours: 25,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'implementuje fyzikální vlastnosti objektů (Rigidbody, gravitace, tření)',
-        'definuje kolizní tvary (Colliders) a detekční zóny (Triggers)',
-        'propojí herní logiku se skripty z připravené šablony',
+        'implementuje fyzikální vlastnosti objektů v 3D scéně (gravitace, hmotnost, tření)',
+        'definuje kolizní tvary a detekční zóny pro interakci v prostoru',
+        'propojí logiku scény se skripty z připravené šablony',
         'nastavuje 3D prostorový zvuk se směrovým útlumem',
         'vytváří jednoduché animace spouštěné interakcí hráče',
         'připraví finální sestavení aplikace (Build) pro cílové zařízení'
@@ -355,45 +343,41 @@ export const SVP_PRG3_DATA: SvpGradeData = {
         'vysvětlí princip fungování a komunikaci architektury klient–server',
         'popíše síťové protokoly a model požadavku a odpovědi (HTTP)',
         'rozliší metody GET a POST a vysvětlí stavové kódy HTTP',
+        'instaluje externí knihovny v Pythonu a člení aplikaci do více modulů',
         'vytvoří datově orientovaný webový formulář pro odesílání dat',
         'propojí desktopovou aplikaci se síťovým serverem',
-        'vytvoří aplikační backend v jazyce Python (webový mikrorámec)',
+        'vytvoří aplikační backend v jazyce Python',
         'definuje koncové body (endpointy) a směrování požadavků',
         'zpracovává příchozí data na backendu a generuje odpověď serveru'
       ],
       content: [
         'Architektura klient–server, model Request-Response, síťová komunikace',
         'Protokol HTTP/HTTPS, metody GET a POST, hlavičky, stavové kódy',
+        'Správa externích knihoven (pip) a dělení aplikace do více modulů (import)',
         'Formulářové rozhraní (značky form, input, odesílání dat, tabulka záznamů)',
         'Síťové propojení klientské aplikace se serverem',
-        'Tvorba backendu v Pythonu (webový mikrorámec, směrování, endpointy)',
+        'Tvorba backendu v Pythonu (směrování, obsluha požadavků a endpointy)',
         'Zpracování příchozích dat, validace a generování odpovědí'
       ]
     },
     {
       id: 'prg3-b4',
-      topic: '4. Opakování jazyka SQL, integrace databáze s Pythonem a REST API',
+      topic: '4. Databáze a aplikační rozhraní serveru (API)',
       hours: 30,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
-        'používá jazyk SQL pro dotazování a manipulaci s daty',
-        'formuluje dotazy SELECT s podmínkami, řazením a agregací',
-        'provádí datové manipulace pomocí příkazů INSERT, UPDATE, DELETE',
-        'připojí databázi k aplikaci v jazyce Python',
-        'využívá databázový kurzor pro vykonávání parametrizovaných dotazů',
-        'aplikuje zásady zabezpečení proti zranitelnosti SQL injection',
-        'transformuje databázové záznamy na datové struktury Pythonu',
-        'navrhne a implementuje jednoduché REST API vracející data ve formátu JSON',
-        'obslouží webového i desktopového klienta z jednotného serveru'
+        'provádí základní operace s daty v relační databázi (čtení, zápis, úprava a mazání dat)',
+        'propojí serverovou aplikaci s databázovým úložištěm',
+        'uplatňuje zásady bezpečné komunikace aplikace s databází',
+        'transformuje databázové záznamy do datových struktur programu',
+        'poskytuje data z databáze klientským aplikacím (webovým i desktopovým) prostřednictvím aplikačního rozhraní (API)'
       ],
       content: [
-        'Rekapitulace jazyka SQL (SELECT, WHERE, ORDER BY, GROUP BY)',
-        'Datové manipulace v SQL (INSERT, UPDATE, DELETE, transakce)',
-        'Integrace databáze s Pythonem (knihovna SQLite, připojení, kurzor)',
-        'Bezpečné parametrizované dotazy a prevence SQL injection',
-        'Mapování relačních záznamů na slovníky a seznamy v Pythonu',
-        'REST API a formát JSON (endpointy, serializace dat)',
-        'Vícevrstvá architektura: centrální server obsluhující desktop i web'
+        'Relační databáze v aplikacích (struktura dat, základní databázové operace čtení a zápisu)',
+        'Propojení serverové aplikace s databází (navázání spojení, vykonávání příkazů)',
+        'Bezpečnost databázové vrstvy (ochrana před neautorizovanou manipulací a zneužitím vstupů)',
+        'Zpracování a transformace databázových dat v programu',
+        'Aplikační programové rozhraní (API) pro výměnu dat s klientskými aplikacemi (web, desktop)'
       ]
     }
   ]
@@ -414,64 +398,60 @@ export const SVP_PRG4_DATA: SvpGradeData = {
       crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
         'vytváří interaktivní webové klientské rozhraní pro vkládání a správu dat',
-        'propojí webového klienta s aplikačním rozhraním (REST API)',
+        'propojí webového klienta s aplikačním rozhraním (API)',
         'sjednotí přístup k centrální databázi z webového i desktopového prostředí',
         'implementuje autentizaci a registraci uživatelů',
-        'spravuje uživatelské relace (sessions, tokeny) a přístupová práva',
-        'používá kryptografické hashování se solí pro bezpečnou správu hesel',
-        'aplikuje zásady bezpečné práce a ošetření vstupů (sanitizace, validace)',
-        'rozpozná zranitelnosti typu SQL injection a XSS a implementuje obranu'
+        'spravuje uživatelské relace a přístupová práva',
+        'používá bezpečné jednocestné hashování pro správu hesel',
+        'aplikuje zásady bezpečné práce a ošetření uživatelských vstupů'
       ],
       content: [
         'Vývoj webového klienta (formulářové rozhraní, interakce s API)',
         'Koexistence webového a desktopového klienta nad jednotným backendem',
         'Autentizace a autorizace uživatelů (registrace, přihlášení, správa relací)',
         'Bezpečná správa hesel (hashování se solí, ochrana před útoky)',
-        'Ochrana vstupů (sanitizace, validace dat na klientu i serveru, obrana proti XSS)'
+        'Ochrana a kontrola uživatelských vstupů na klientu i serveru'
       ]
     },
     {
       id: 'prg4-b2',
-      topic: '2. Softwarové inženýrství, týmová spolupráce a verzovací systémy',
+      topic: '2. Týmová spolupráce a verzování softwaru',
       hours: 12,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
-        'uplatňuje zásady čistého kódu (Clean Code) a modularitu softwaru',
-        'provádí refaktoring a optimalizaci zdrojového kódu',
-        'sestaví testovací scénáře a píše jednotkové testy (Unit Testing)',
-        'pracuje v týmu pomocí verzovacího systému Git',
-        'využívá větvení (branching), slučování (merge) a řeší konflikty',
-        'pracuje se vzdáleným repozitářem a účastní se revizí kódu (Code Review)',
-        'organizuje práci v týmu pomocí nástrojů pro správu úkolů (Kanban)'
+        'spolupracuje v malém týmu (dvojice, trojice) na vývoji společného softwarového projektu',
+        'rozděluje projekt na dílčí části a koordinuje postup práce se spolužáky',
+        'používá verzovací systém pro správu a sdílení zdrojového kódu v týmu',
+        'slučuje části kódu od jednotlivých členů týmu a řeší vzniklé kolize',
+        'dodržuje zásady čitelnosti a jednotného formátování kódu pro usnadnění týmové práce'
       ],
       content: [
-        'Zásady čistého kódu (Clean Code, čitelnost, refaktoring, modularita)',
-        'Testování softwaru (testovací scénáře, jednotkové testy, hledání chyb)',
-        'Týmový verzovací systém Git (větve, merge, řešení konfliktů)',
-        'Vzdálené repozitáře, Pull Requesty, Code Review',
-        'Agilní řízení projektu (nástěnka Kanban, správa úkolů a chyb)'
+        'Týmová spolupráce při tvorbě softwaru (rozdělení rolí v týmu, plánování a koordinace práce na projektu)',
+        'Verzovací systém v týmové praxi (historie změn, sdílení kódu ve společném repozitáři)',
+        'Slučování týmové práce a řešení kolizí (práce na oddělených částech, začleňování změn od spolužáků, předcházení a oprava konfliktů v kódu)',
+        'Čitelný kód a jednotný styl pro přehlednou spolupráci více vývojářů',
+        'Týmový miniprojekt (vývoj aplikace ve dvojicích či trojicích od zadání po funkční celek)'
       ]
     },
     {
       id: 'prg4-b3',
-      topic: '3. Závěrečný komplexní maturitní projekt a veřejná obhajoba',
+      topic: '3. Závěrečný komplexní softwarový projekt a jeho prezentace',
       hours: 24,
       crossThemes: ['PT - ČSP', 'PT - ČDS', 'PT - ODS'],
       outcomes: [
-        'analyzuje zadání a navrhne architekturu maturitního projektu',
+        'analyzuje zadání a navrhne architekturu komplexního softwarového projektu',
         'samostatně realizuje klientskou i serverovou část aplikace',
         'udržuje verzování projektu v repozitáři v jednotlivých milnících',
         'systematicky testuje software, odstraňuje nalezené chyby a ladí výkon',
         'vytváří ucelenou technickou a uživatelskou dokumentaci projektu',
-        'prezentuje a obhájí vlastní projekt před zkušební komisí',
-        'reflektuje zvolená technická řešení a reaguje na odborné dotazy'
+        'prezentuje a obhájí vlastní projekt a zvolená technická řešení'
       ],
       content: [
-        'Zadání a specifikace maturitního projektu (architektura, datový model, API)',
+        'Zadání a specifikace komplexního projektu (architektura, datový model, API)',
         'Samostatná implementace v projektových milnících s verzováním v Gitu',
-        'Testování, ladění zátěže, zabezpečení a ošetření chybových stavů',
+        'Testování aplikace, ladění, zabezpečení a ošetření chybových stavů',
         'Tvorba projektové dokumentace (README, technická zpráva, uživatelský návod)',
-        'Příprava prezentace a veřejná odborná obhajoba před maturitní komisí'
+        'Příprava prezentace a odborná obhajoba projektu'
       ]
     }
   ]

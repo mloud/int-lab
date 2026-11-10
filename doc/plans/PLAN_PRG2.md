@@ -8,7 +8,7 @@
 ---
 
 ## 🎯 Hlavní pedagogický cíl
-Přechod od procedurálního kódu k pokročilému strukturovanému a objektovému programování v jazyce **Python**. Zvládnutí pokročilých kolekcí a struktur (slovníky, řezy, list comprehension), práce se soubory a perzistence dat (formáty JSON, CSV), robustní ošetření chyb a výjimek (`try-except`), pochopení paradigmatu objektově orientovaného programování (třídy, instance, zapouzdření) a tvorba plnohodnotných okenních desktopových aplikací s grafickým uživatelským rozhraním (GUI).
+Přechod od základního kódu k práci s datovými kolekcemi a základy objektového programování v jazyce **Python**. Zvládnutí kolekcí a textových řetězců (`list`, `dict`, `tuple`, `set`, `str`), práce se soubory (textové soubory a formát JSON), ošetření běhových chyb a výjimek (`try-except`), pochopení objektového myšlení (třídy, instance, atributy, metody) a tvorba formulářových okenních aplikací s grafickým uživatelským rozhraním (GUI).
 
 ---
 
@@ -16,16 +16,16 @@ Přechod od procedurálního kódu k pokročilému strukturovanému a objektové
 
 | Blok | Tematický celek | Dotace | Obsah a plánovaná témata | Stav na portálu |
 |:---:|---|:---:|---|:---:|
-| **1** | **Pokročilé datové struktury a kolekce v jazyce Python** | **16 h** | • Seznamy a jejich metody (`append`, `pop`, `insert`, `sort`)<br>• Krájení dat (slicing `[start:stop:step]`, záporné indexy)<br>• Generátory seznamů (list comprehension)<br>• Neměnné n-tice (`tuple`) a množiny (`set` – deduplikace)<br>• Slovníky (`dict`): klíče a hodnoty, vyhledávání, vnořené slovníky | 🟡 K vytvoření |
-| **2** | **Práce se soubory, perzistence dat (JSON) a ošetření výjimek** | **14 h** | • Čtení a zápis textových souborů (`with open(...)`)<br>• Zpracování tabulkových dat v CSV<br>• Hierarchický výměnný formát JSON (`dump`, `load`)<br>• Ošetření běhových chyb a výjimek (`try - except - finally`) | 🟡 K vytvoření |
-| **3** | **Základy objektově orientovaného programování v jazyce Python** | **16 h** | • Od procedur k objektům, abstrakce a modelování reality<br>• Třída a instance, konstruktor `__init__`, parametr `self`<br>• Atributy a metody, zapouzdření vnitřního stavu<br>• Skládání objektů (kompozice), základy dědičnosti | 🟡 K vytvoření |
-| **4** | **Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** | **20 h** | • Okenní architektura, smyčka událostí Event Loop<br>• Layout manažery (mřížka `grid`, balíčkování `pack`)<br>• Widgety: textová pole, tlačítka, přepínače, seznamy<br>• Zapouzdření GUI do objektové třídy<br>• Ucelený ročníkový projekt desktopové aplikace s ukládáním do JSON a obhajobou | 🟡 K vytvoření |
+| **1** | **Datové kolekce v jazyce Python** | **16 h** | • Seznamy (`list`), indexace, délka, procházení cyklem `for`<br>• Operace a metody seznamů (`append`, `insert`, `pop`, `remove`, `sort`)<br>• Vyhledávání, filtrace a agregace (`in`, `min`, `max`, `sum`)<br>• Slovníky (`dict`), neměnné n-tice (`tuple`) a množiny (`set`)<br>• Textové řetězce (`str`) jako kolekce znaků (`strip`, `split`, `in`) – můstek k souborům | 🟡 K vytvoření |
+| **2** | **Práce se soubory (JSON) a ošetření chyb v programu** | **14 h** | • Čtení a zápis textových souborů (`with open(...)`, UTF-8)<br>• Strukturovaná data ve formátu JSON (`json.dump`, `json.load`)<br>• Běhové chyby a bezpečné ošetření výjimek (`try - except`)| 🟡 K vytvoření |
+| **3** | **Základy objektově orientovaného programování v jazyce Python** | **16 h** | • Třída jako šablona, instance jako konkrétní objekt<br>• Vnitřní stav: konstruktor `__init__`, parametr `self` a atributy<br>• Metody instance, chování a textová reprezentace `__str__`<br>• Seznam instancí a objektové modelování miniprojektu | 🟡 K vytvoření |
+| **4** | **Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** | **20 h** | • Okenní architektura, smyčka událostí `mainloop()`<br>• Rozmístění prvků v okně (souřadnicové pozicování `place`)<br>• Komponenty: `Label`, `Button`, `Entry`, `Radiobutton`, `Checkbutton`<br>• Vazba událostí na obslužné funkce, řídicí proměnné `StringVar` a `BooleanVar`<br>• Samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním | 🟡 K vytvoření |
 | **Σ** | **Celkem** | **66 h** | **Plně navrženo a harmonizováno** | |
 
 ---
 
 ## 🔥 Aktuální úkoly a Backlog (Další rozvoj PRG 2)
 
-- [ ] Příprava nových modulů pro pokročilý Python (slovníky, list comprehension, práce se soubory).
+- [ ] Příprava nových modulů pro kolekce Pythonu (seznamy, slovníky, práce s textovými řetězci a soubory JSON).
 - [ ] Vytvoření interaktivních trenažérů objektového myšlení (třídy, instance, metody) v prohlížeči.
 - [ ] Návrh projektových šablon pro okenní GUI aplikace (Evidence agendy, Správce úkolů) s exportem do Wordu.
