@@ -845,7 +845,18 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       orderNumber: 2,
                       actionLabel: 'Otevřít kapitolu'
                     },
-                    // BZ3–BZ9: zatím přehledové stránky (viz registry/curriculum/outlines)
+                    {
+                      id: 'bezp-registr',
+                      title: 'Persistence škodlivého kódu a registr',
+                      description: '5 úrovní automatického spouštění (Startup, zástupci, Plánovač, Služby, Registr) a audit v Autoruns.',
+                      tag: 'BZ3',
+                      icon: 'FileCode',
+                      gradient: 'from-blue-600 to-cyan-600',
+                      route: '/specializovana/operacni-systemy-2/bezpecnost/registr',
+                      orderNumber: 3,
+                      actionLabel: 'Otevřít kapitolu'
+                    },
+                    // BZ4–BZ9: zatím přehledové stránky (viz registry/curriculum/outlines)
                     ...outlineToSubchapters(OSS2_BEZPECNOST)
                   ]
                 },

@@ -55,7 +55,7 @@ export default function ProcessCertificatesChapter({ onBack }: ProcessCertificat
   return (
     <FsChapterShell
       chapterNumber={2}
-      totalChapters={2}
+      totalChapters={3}
       title="Správa procesů & Certifikáty:"
       highlight="Forenzní analýza v OS"
       subtitle="Navázání na procesy z 1. ročníku: proč pouhý název procesu nestačí, jak fungují digitální podpisy Authenticode a jak vyšetřovat systém."

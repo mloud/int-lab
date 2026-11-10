@@ -866,3 +866,17 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Fáze 7 (Pracovní listy & Word exporty ➔ `WorksheetKit` / `lib/wordExport.ts`):** `VirtualizationWorksheetTab.tsx` migrováno na deklarativní `DeclarativeWorksheet` (`WorksheetSchema`) a sjednocen Word export (`downloadWordDoc`) napříč `DiskMediaWorksheetTab`, `FatWorksheetTab`, `OsEvolutionWorksheetTab`, `CobianWorksheetTab`, `DiskPartitionChapter`, `BackupCloudChapter`, `BackupManualChapter`, `BackupSystemChapter` a `ProcessCertificatesChapter` (`procesy/processExport.ts`).
     - **Fáze 8 (Legacy kvízy ➔ `TopicReviewQuiz` & dekompozice 700+ řádků):** `ArchitectureQuizTab.tsx` a `OsIntroQuizTab.tsx` převedeny na standardizovaný `TopicReviewQuiz` (Pravidlo 15). Dekomponovány `OsIntroChapter.tsx` (715 ➔ 35 řádků), `DiskMediaChapter.tsx` (764 ➔ 37 řádků), `OsBootChapter.tsx` (705 ➔ 140 řádků) a `VirtualizationChapter.tsx` (701 ➔ 40 řádků).
     - **Fáze 9 (Modularizace `registry/`):** Rozděleny obří datové soubory `registry/lessons.ts` (3 736 ➔ 33 řádků, 7 modulů v `registry/lessons/`), `registry/curriculum/thematicPlans.ts` (1 206 ➔ 15 řádků, 4 moduly v `registry/curriculum/thematic-plans/`) a `registry/curriculum/svpData.ts` (1 039 ➔ 4 řádky, 3 moduly v `registry/curriculum/svp/`).
+
+36. **Vytvoření a didaktická optimalizace 3. kapitoly bloku Bezpečnost 1 v OSS 2 – BZ3: Persistence škodlivého kódu a systémový registr (`/specializovana/operacni-systemy-2/bezpecnost/registr`):**
+    - Kapitola byla povýšena z osnovy na plnohodnotný 4záložkový modul postavený na nových stavebních sadách (`ChapterKit`, `DeclarativeWorksheet`, `TopicReviewQuiz`) a dekomponovaný v podsložce `registr/` (`PersistenceRegistryChapter.tsx`, `persistenceData.ts`, `PersistenceTheoryTab.tsx`, `PersistenceSimulatorsTab.tsx`, `simulators/PersistenceExplorerSim.tsx`).
+    - **Didaktická optimalizace na 4 čisté systémové pilíře:**
+      - Vyřazena nadbytečná úroveň Zástupců (`.lnk` Hijacking) i podrobné CLI přepínače (`schtasks /query`, `sc query`, `reg query`), aby se žáci neztráceli v syntaxi a soustředili se na čistou podstatu automatického spouštění.
+      - **4 klíčová místa v OS:**
+        1. *Složka Po spuštění (`shell:startup`)* – souborová úroveň v `%AppData%` po přihlášení (bez UAC).
+        2. *Plánovač úloh (`taskschd.msc`)* – spouštění v čase a při událostech (skryté před Správcem úloh).
+        3. *Systémové služby (`services.msc`)* – spouštění před přihlášením pod `SYSTEM` (vyžaduje UAC / elevaci).
+        4. *Systémový registr (`regedit`)* – hierarchie `HKCU` vs. `HKLM`, klíče `Run` / `RunOnce`.
+    - **Interaktivní průvodce / simulátor ([PersistenceExplorerSim.tsx](components/specializovana/operacni-systemy-2/bezpecnost/registr/simulators/PersistenceExplorerSim.tsx)):**
+      - Zrušena stará lišta se zabíjením procesů. Místo toho zaveden vizuální průvodce 5 kroky (4 místa v OS + srovnání Správce úloh vs. Sysinternals Autoruns) s tlačítky pro kopírování příkazů do `Win + R`, kontrolním náhledem okna Windows a odškrtáváním splnění na vlastním PC.
+    - **Stav před další iterací:** Připraveno pro úpravu a dopilování úloh v **Praktickém listu** ([persistenceData.ts](components/specializovana/operacni-systemy-2/bezpecnost/registr/persistenceData.ts)).
+

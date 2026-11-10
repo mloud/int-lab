@@ -20,7 +20,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 | Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|:---:|---|:---:|:---:|---|
 | **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
-| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h | ✅ 10 podtémat (BZ1 a BZ2 plné moduly, BZ3–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
+| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
 | **3** | **Únor – Duben** (16.–24. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 18 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
 | **4** | **Duben – Červen** (25.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 18 h | ✅ 6 kapitol s osnovami (SMB, RDP, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD6) |
 | **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
@@ -40,7 +40,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 ### Blok 2: Bezpečnost koncových zařízení, audit a forenzní analýza (20 h)
 * [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `malware/`)*
 * [x] **BZ2 Forenzní analýza procesů a certifikáty Authenticode** (`/bezpecnost/procesy-a-certifikaty`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `procesy/`)*
-* [x] **BZ3 Systémový registr a persistence škodlivého kódu** (`/bezpecnost/registr`, 2 h) – *Hierarchie HKLM/HKCU, autorun klíče Run/RunOnce, export/import .reg*
+* [x] **BZ3 Persistence škodlivého kódu a systémový registr** (`/bezpecnost/registr`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `registr/`)*
 * [x] **BZ4 Systémový žurnál událostí a bezpečnostní audit** (`/bezpecnost/udalosti`, 2 h) – *Event Viewer, logy přihlášení Event ID 4624/4625, filtrace*
 * [x] **BZ5 Izolované prostředí (Sandbox) a antivirus** (`/bezpecnost/izolace`, 2 h) – *Signatury, heuristika, chování v RAM, test EICAR*
 * [x] **BZ6 Paketový firewall na koncovém zařízení** (`/bezpecnost/firewall`, 2 h) – *Příchozí/odchozí pravidla, sledování spojení netstat*

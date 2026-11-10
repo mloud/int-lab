@@ -25,28 +25,6 @@ export const OSS2_BEZPECNOST: OutlineGroup = {
   gradient: 'from-blue-600 to-cyan-600',
   items: [
     {
-      slug: 'registr',
-      tag: 'BZ3',
-      order: 3,
-      icon: 'FileCode',
-      title: 'Systémový registr a persistence škodlivého kódu',
-      hours: '2 h',
-      subtitle: 'Hierarchie klíčů pro počítač a uživatele, autorun spouštění po startu a soubory .reg.',
-      intro: 'Téměř každý škodlivý kód se potřebuje v systému udržet i po restartu. Prozkoumáme hierarchii registru, klíčové větve HKLM a HKCU a místa, kam útočníci ukrývají mechanismy persistence (klíče Run, RunOnce a úlohy po startu).',
-      topics: [
-        'Účel a hierarchie registru Windows: soubory úlů (Hives) v System32\\config a uživatelském profilu',
-        'Větve HKEY_LOCAL_MACHINE (stroj) vs. HKEY_CURRENT_USER (přihlášený uživatel)',
-        'Kde se malware ukrývá po startu: klíče Run, RunOnce, Winlogon a nástroj Sysinternals Autoruns',
-        'Datové typy hodnot: REG_SZ (text), REG_DWORD (čísla/přepínače 0/1) a nebezpečné binární payloady',
-        'Záloha, export a import konfigurace (.reg soubory pro hromadnou distribuci nastavení i záchranu)'
-      ],
-      practice: [
-        'Simulace: Rentgen registru – odhalení podezřelé persistence zapsané škodlivým skriptem',
-        'Praxe v OS: Bezpečný export vybrané větve do .reg, analýza klíčů Run v regedit.exe a odstranění neautorizované položky'
-      ],
-      builds: 'BZ1 (malware), BZ2 (procesy).'
-    },
-    {
       slug: 'udalosti',
       tag: 'BZ4',
       order: 4,

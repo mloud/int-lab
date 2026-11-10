@@ -1,6 +1,19 @@
 'use client';
-import ChapterOutlinePage from '@/components/curriculum/ChapterOutlinePage';
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import PersistenceRegistryChapter from '@/components/specializovana/operacni-systemy-2/bezpecnost/PersistenceRegistryChapter';
+import CategoryLayout from '@/components/layout/CategoryLayout';
 
-export default function Page() {
-  return <ChapterOutlinePage chapterId="os2-bezpecnost" slug="registr" />;
+export default function PersistenceRegistryPage() {
+  const router = useRouter();
+
+  return (
+    <CategoryLayout
+      title="Persistence škodlivého kódu a systémový registr"
+      category="specializovana"
+      parent={{ title: 'Bezpečnost 1', path: '/specializovana/operacni-systemy-2/bezpecnost' }}
+    >
+      <PersistenceRegistryChapter onBack={() => router.push('/specializovana/operacni-systemy-2/bezpecnost')} />
+    </CategoryLayout>
+  );
 }

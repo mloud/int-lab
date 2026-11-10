@@ -283,6 +283,41 @@ export const OSS2_LESSONS: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/ProcessCertificatesChapter')
   },
   {
+    id: 'os2-bezpecnost-registr',
+    title: 'Persistence škodlivého kódu a systémový registr',
+    shortCode: '#bz3',
+    description: '5 úrovní automatického spouštění (Startup, zástupci, Plánovač, Služby, Registr) a audit v Autoruns.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'interactive-chapter',
+    defaultPath: '/specializovana/operacni-systemy-2/bezpecnost/registr',
+    iconName: 'FileCode',
+    keywords: ['persistence', 'registr', 'regedit', 'autoruns', 'startup', 'task scheduler', 'services'],
+    difficulty: 'hard',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [2],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 2,
+      gradeLabel: '2. Ročník',
+      subject: 'Operační systémy 2',
+      thematicBlock: 'Bezpečnost operačních systémů',
+      chapter: 'Bezpečnost 1',
+      subchapter: '3. Persistence škodlivého kódu a registr',
+      lesson: 'Persistence škodlivého kódu a systémový registr'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: true,
+      worksheetType: 'worksheet'
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/PersistenceRegistryChapter')
+  },
+  {
     id: 'os-spec-virtualizace',
     title: 'Virtualizace a hypervizory',
     shortCode: '#osv',

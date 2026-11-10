@@ -1,41 +1,21 @@
-# Pracovní plán: Architektonický refaktoring, Decoupling & Optimalizace (`refactor2`)
+# Aktivní plánovací tabule: Operační systémy 2 (OSS 2)
 
-**Aktivní větev:** `refactor2` (založena z `dev`)  
-**Dedikovaný plán:** [`doc/plans/PLAN_REFACTORING.md`](plans/PLAN_REFACTORING.md)
-
----
-
-## 📋 Přehled splněných fází (`refactor2`)
-
-- [x] **Fáze 1: Rychlé výkonnostní výhry (Bundle & Assets)**
-  - Sjednocení `framer-motion` ➔ `motion/react` a odinstalace `framer-motion`.
-  - Komprese 4 největších `.jpg` v `public/` (-2,6 MB / -81 %).
-  - Zavedení `next/dynamic` (`ssr: false`) pro 6 těžkých simulátorů a her.
-- [x] **Fáze 2: Dekompozice všech UI monolitů nad 1 000 řádků (10 kapitol/her)**
-  - `ScratchConditionsChapter.tsx` (1 903 ➔ 43 řádků)
-  - `ProcessIntroWorksheetTab.tsx` (1 707 ➔ 105 řádků)
-  - `OsArchitectureChapter.tsx` (1 633 ➔ 73 řádků)
-  - `ProcessLabTab.tsx` (1 430 ➔ 77 řádků)
-  - `WindowsInstallGame.tsx` (1 352 ➔ 128 řádků)
-  - `ScratchRaycasterProject.tsx` (1 194 ➔ 64 řádků)
-  - `ScratchListsChapter.tsx` (1 099 ➔ 35 řádků)
-  - `OsEvolutionChapter.tsx` (1 091 ➔ 138 řádků)
-  - `HuffmanGame.tsx` (1 024 ➔ 86 řádků)
-  - `FatChapter.tsx` (1 019 ➔ 70 řádků)
-- [x] **Fáze 3: Dekompozice středních monolitů (850–1 000 řádků, 5 kapitol/her)**
-  - `BarChartsChapter.tsx` (921 ➔ 45 řádků)
-  - `BackupCobianChapter.tsx` (910 ➔ 47 řádků)
-  - `ProcessSimulatorsTab.tsx` (896 ➔ 17 řádků)
-  - `VonNeumannGame.tsx` (895 ➔ 81 řádků)
-  - `PythonLoopChapter.tsx` (892 ➔ 79 řádků)
-- [x] **Fáze 4: Sjednocení LocalStorage klíčů (`lib/storageKeys.ts`) a čistý `npx tsc --noEmit` + `npm run build`**
-- [x] **Fáze 5: IntLab UI Stavebnice (`ChapterKit`, `TaskKit`, `WorksheetKit`, `SimulatorKit`, `lib/wordExport.ts`)**
-- [x] **Fáze 6: Migrace všech 24 kapitol PRG 2 (Python) a 6 kapitol PRG 1 (Scratch) na `TaskKit` (nulová duplikace)**
-- [x] **Fáze 7: Sjednocení pracovních listů a Word exportů (`WorksheetKit` + `downloadWordDoc`)**
-- [x] **Fáze 8: Převod zbylých kvízů na `TopicReviewQuiz` a dekompozice kapitol 700+ řádků (`OsIntroChapter`, `DiskMediaChapter`, `OsBootChapter`, `VirtualizationChapter`)**
-- [x] **Fáze 9: Modularizace `registry/lessons.ts`, `registry/curriculum/thematicPlans.ts` a `registry/curriculum/svpData.ts` podle předmětů**
+**Aktivní předmět:** Operační systémy 2 (2. ročník SŠ)  
+**Dedikovaný plán předmětu:** [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md)  
+**Kurikulární profil:** [`doc/curriculum/OSS2.md`](curriculum/OSS2.md)
 
 ---
 
-## 🔖 Kde příště navázat (Fáze 10 – Volitelný hloubkový decoupling obsahu)
-Veškeré závěry z brainstormingu (kolokace dat u kapitol, rozlišení pružného obsahu vs. pevné geometrie v simulátorech a seznam kandidátů pro převod na `DeclarativeWorksheet` / `DeclarativeTaskList`) jsou podrobně uloženy v [`doc/plans/PLAN_REFACTORING.md`](plans/PLAN_REFACTORING.md).
+## 🎯 Aktuální zaměření: Blok 2 – Bezpečnost koncových zařízení, audit a forenzní analýza (`bezpecnost`)
+
+### Stav podkapitol v bloku `Bezpečnost 1` (`/specializovana/operacni-systemy-2/bezpecnost`)
+- [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`, 2 h) – Plný interaktivní modul (`MalwareDetectionChapter.tsx` + `malware/`)
+- [x] **BZ2 Forenzní analýza procesů a certifikáty Authenticode** (`/bezpecnost/procesy-a-certifikaty`, 2 h) – Plný interaktivní modul (`ProcessCertificatesChapter.tsx` + `procesy/`)
+- [x] **BZ3 Persistence škodlivého kódu a systémový registr** (`/bezpecnost/registr`, 2 h) – Plný interaktivní modul (`PersistenceRegistryChapter.tsx` + `registr/`)
+- [ ] **BZ4 Systémový žurnál událostí a bezpečnostní audit** (`/bezpecnost/udalosti`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ5 Izolované testovací prostředí (Sandbox) a antivirus** (`/bezpecnost/izolace`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ6 Paketový firewall na koncovém zařízení** (`/bezpecnost/firewall`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ7 Diskové šifrování BitLocker a TPM čip** (`/bezpecnost/sifrovani`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ8 Správa uživatelských účtů, UAC a aktualizace (0-day)** (`/bezpecnost/ucty`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ9 Sociální inženýrství, phishing a ochrana identity** (`/bezpecnost/sit-hesla`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
+- [ ] **BZ10 Vyšetřování bezpečnostního incidentu (Mini-CTF)** (`/bezpecnost/ctf`, 2 h) – Aktuálně osnova (`oss2Outlines.ts`)
