@@ -7,7 +7,7 @@ import { PlanTopic } from '@/components/curriculum/SimplePlanTable';
 export const PLAN_PRG1: PlanTopic[] = [
   {
     month: 'Září – Listopad',
-    topic: 'Vizuální blokové programování a herní mechaniky (Scratch)',
+    topic: 'Vizuální blokové programování',
     topicHours: 36,
     subtopics: [
       { name: 'Algoritmus, sekvence příkazů a události postavy', hours: 6, note: 'Lekce 1: Přímý pohyb, otočky, souřadnicová síť X/Y' },
@@ -20,7 +20,7 @@ export const PLAN_PRG1: PlanTopic[] = [
   },
   {
     month: 'Prosinec',
-    topic: 'Teorie algoritmizace a vývojové diagramy',
+    topic: 'Základy algoritmizace a vývojové diagramy',
     topicHours: 9,
     subtopics: [
       { name: 'Pojem algoritmus, jeho vlastnosti a specifikace vstupu a výstupu', hours: 3, note: 'Konečnost, jednoznačnost/determinovanost, hromadnost, rezultativnost' },
@@ -30,10 +30,10 @@ export const PLAN_PRG1: PlanTopic[] = [
   },
   {
     month: 'Leden',
-    topic: 'Algoritmizace vestavných systémů a hardware',
+    topic: 'Programování hardwarových zařízení',
     topicHours: 12,
     subtopics: [
-      { name: 'Blokové vývojové prostředí pro mikrokontrolér', hours: 3, note: 'Příprava prostředí, nahrávání firmware, nekonečná smyčka loop' },
+      { name: 'Vývojové prostředí pro mikrokontrolér', hours: 3, note: 'Příprava prostředí, nahrávání firmware, nekonečná smyčka loop' },
       { name: 'Práce se vstupy, tlačítka a čidla fyzického světa', hours: 3, note: 'Čtení digitálních tlačítek, akcelerometr, teploměr, fotorezistor' },
       { name: 'Řízení výstupů, zobrazovací matice a zvuková signalizace', hours: 3, note: 'Zobrazení grafiky na LED matici 5x5, tóny a piezo bzučák' },
       { name: 'Bezdrátová komunikace a rádiový přenos proměnných', hours: 3, note: 'Odesílání a příjem paketů na frekvenci 2.4 GHz mezi jednotkami' }
@@ -41,7 +41,7 @@ export const PLAN_PRG1: PlanTopic[] = [
   },
   {
     month: 'Únor – Červen',
-    topic: 'Přechod k textovému programování a grafické rozhraní v jazyce Python',
+    topic: 'Základy jazyka Python',
     topicHours: 42,
     subtopics: [
       { name: 'Příkazový řádek Pythonu, syntaxe a základní vstup/výstup', hours: 4, note: 'Interpret, funkce print(), formátování textu, vstup input()' },
@@ -63,7 +63,7 @@ export const PLAN_PRG1: PlanTopic[] = [
 export const PLAN_PRG2: PlanTopic[] = [
   {
     month: 'Září – Listopad',
-    topic: 'Datové kolekce v jazyce Python',
+    topic: 'Datové kolekce a zpracování textu v jazyce Python',
     topicHours: 16,
     subtopics: [
       { name: 'Pojem kolekce, základy seznamů (list), indexace a délka len', hours: 3, note: 'Ukládání více hodnot, indexy od 0, přístup k prvkům, procházení cyklem for' },
@@ -75,7 +75,7 @@ export const PLAN_PRG2: PlanTopic[] = [
   },
   {
     month: 'Listopad – Leden',
-    topic: 'Práce se soubory (JSON) a ošetření chyb v programu',
+    topic: 'Práce se soubory a ošetření chyb v programu',
     topicHours: 14,
     subtopics: [
       { name: 'Čtení a zápis textových souborů (with open, UTF-8)', hours: 4, note: 'Režimy čtení r, zápisu w a připojení a, kódování UTF-8, procházení po řádcích' },
@@ -115,7 +115,7 @@ export const PLAN_PRG2: PlanTopic[] = [
 export const PLAN_PRG3: PlanTopic[] = [
   {
     month: 'Září – Říjen',
-    topic: 'Tvorba prostorové scény, prostředí a materiály ve 3D enginu',
+    topic: 'Tvorba prostorové scény ve 3D enginu',
     topicHours: 20,
     subtopics: [
       { name: 'Seznámení s editorem 3D enginu (např. Unity), struktura projektu a scéna', hours: 4, note: 'Pohled Scene, Game, Hierarchy, Project a Inspector' },
@@ -127,7 +127,7 @@ export const PLAN_PRG3: PlanTopic[] = [
   },
   {
     month: 'Listopad – Leden',
-    topic: 'Fyzikální model, prostorový zvuk, jednoduché skripty a export',
+    topic: 'Fyzikální simulace, skriptování a export 3D aplikací',
     topicHours: 25,
     subtopics: [
       { name: 'Fyzikální simulace: komponenta Rigidbody, gravitace, hmotnost a tření', hours: 5, note: 'Výpočet dynamiky těles fyzikálním enginem, kinetická energie' },
@@ -140,7 +140,7 @@ export const PLAN_PRG3: PlanTopic[] = [
   },
   {
     month: 'Únor – Březen',
-    topic: 'Základy síťové komunikace, architektura klient–server a Python backend',
+    topic: 'Architektura klient–server a tvorba serverových aplikací',
     topicHours: 24,
     subtopics: [
       { name: 'Architektura klient–server, síťové protokoly a komunikace přes HTTP', hours: 3, note: 'Role klienta a serveru, model Request-Response, IP a porty' },
@@ -174,7 +174,7 @@ export const PLAN_PRG3: PlanTopic[] = [
 export const PLAN_PRG4: PlanTopic[] = [
   {
     month: 'Září – Listopad',
-    topic: 'Bezpečnost aplikačních systémů, autentizace a webové klientské rozhraní',
+    topic: 'Webové klientské rozhraní a zabezpečení aplikací',
     topicHours: 14,
     subtopics: [
       { name: 'Dokončení webového klienta: interaktivní formulářové rozhraní pro vkládání dat', hours: 3, note: 'Dynamická webová stránka konzumující API ze 3. ročníku' },

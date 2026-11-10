@@ -94,12 +94,11 @@ export const SVP_PRG1_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg1-b1',
-      topic: '1. Vizuální blokové programování a herní mechaniky',
+      topic: '1. Vizuální blokové programování',
       hours: 36,
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'využívá základní funkce vývojového prostředí',
-        'vytváří herní objekty a scény ve 2D prostředí',
         'používá proměnné a základní operátory',
         'použije řídicí struktury programu (podmínky, cykly)',
         'vytváří vlastní bloky a procedury s parametry',
@@ -121,7 +120,7 @@ export const SVP_PRG1_DATA: SvpGradeData = {
     },
     {
       id: 'prg1-b2',
-      topic: '2. Teorie algoritmizace a vývojové diagramy',
+      topic: '2. Základy algoritmizace a vývojové diagramy',
       hours: 9,
       crossThemes: ['PT - ČDS'],
       outcomes: [
@@ -142,7 +141,7 @@ export const SVP_PRG1_DATA: SvpGradeData = {
     },
     {
       id: 'prg1-b3',
-      topic: '3. Algoritmizace vestavných systémů a hardware',
+      topic: '3. Programování hardwarových zařízení',
       hours: 12,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -151,7 +150,7 @@ export const SVP_PRG1_DATA: SvpGradeData = {
         'implementuje bezdrátový přenos dat mezi zařízeními'
       ],
       content: [
-        'Blokové vývojové prostředí pro mikrokontrolér',
+        'Vývojové prostředí pro mikrokontrolér',
         'Vstupní periferie a čidla (tlačítka, akcelerometr, měření osvětlení a teploty)',
         'Výstupní periferie (LED matice, piezo bzučák, tóny)',
         'Zpracování událostí hardware v reálném čase',
@@ -160,7 +159,7 @@ export const SVP_PRG1_DATA: SvpGradeData = {
     },
     {
       id: 'prg1-b4',
-      topic: '4. Přechod k textovému programování a grafické rozhraní v jazyce Python',
+      topic: '4. Základy jazyka Python',
       hours: 42,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -198,7 +197,7 @@ export const SVP_PRG2_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg2-b1',
-      topic: '1. Datové kolekce v jazyce Python',
+      topic: '1. Datové kolekce a zpracování textu v jazyce Python',
       hours: 16,
       crossThemes: ['PT - ČDS'],
       outcomes: [
@@ -222,7 +221,7 @@ export const SVP_PRG2_DATA: SvpGradeData = {
     },
     {
       id: 'prg2-b2',
-      topic: '2. Práce se soubory (JSON) a ošetření chyb v programu',
+      topic: '2. Práce se soubory a ošetření chyb v programu',
       hours: 14,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -291,7 +290,7 @@ export const SVP_PRG3_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg3-b1',
-      topic: '1. Tvorba prostorové scény, prostředí a materiály ve 3D enginu',
+      topic: '1. Tvorba prostorové scény ve 3D enginu',
       hours: 20,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -314,7 +313,7 @@ export const SVP_PRG3_DATA: SvpGradeData = {
     },
     {
       id: 'prg3-b2',
-      topic: '2. Fyzikální model, prostorový zvuk, jednoduché skripty a export na cílová zařízení',
+      topic: '2. Fyzikální simulace, skriptování a export 3D aplikací',
       hours: 25,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -336,7 +335,7 @@ export const SVP_PRG3_DATA: SvpGradeData = {
     },
     {
       id: 'prg3-b3',
-      topic: '3. Základy síťové komunikace, architektura klient–server a Python backend',
+      topic: '3. Architektura klient–server a tvorba serverových aplikací',
       hours: 24,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
@@ -393,7 +392,7 @@ export const SVP_PRG4_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'prg4-b1',
-      topic: '1. Bezpečnost aplikačních systémů, autentizace a webové klientské rozhraní',
+      topic: '1. Webové klientské rozhraní a zabezpečení aplikací',
       hours: 14,
       crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
