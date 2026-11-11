@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Student, Parent } from './GradebookTypes';
-import { UserPlus, Trash2, Users, Shield, Link2, PlusCircle, Check } from 'lucide-react';
+import { UserPlus, Trash2, Users, Shield, Link2, PlusCircle, Check, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface UserManagementPanelProps {
   students: Student[];
@@ -19,6 +19,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
   const [showAddStudent, setShowAddStudent] = useState(false);
   const [studentFirstName, setStudentFirstName] = useState('');
   const [studentLastName, setStudentLastName] = useState('');
+  const [selectedParentIdForNewStudent, setSelectedParentIdForNewStudent] = useState('');
 
   // Stavy pro přidání rodiče
   const [showAddParent, setShowAddParent] = useState(false);
@@ -26,21 +27,45 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
   const [parentLastName, setParentLastName] = useState('');
   const [selectedChildIds, setSelectedChildIds] = useState<string[]>([]);
 
+  // Editace přiřazených dětí u existujícího rodiče
+  const [editingParentId, setEditingParentId] = useState<string | null>(null);
+
   const handleAddStudentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!studentFirstName.trim() || !studentLastName.trim()) return;
 
+    const newStudentId = `s${Date.now().toString().slice(-4)}`;
+    const cleanUsername = (studentFirstName.trim() + studentLastName.trim())
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
     const newStudent: Student = {
-      id: `s${Date.now().toString().slice(-4)}`,
+      id: newStudentId,
       firstName: studentFirstName.trim(),
       lastName: studentLastName.trim(),
+      username: cleanUsername,
+      password: 'heslo' + Math.floor(100 + Math.random() * 900),
       classGroup: '7.A',
       grades: [],
     };
 
     onUpdateStudents([...students, newStudent]);
+
+    // Pokud byl rovnou vybrán existující rodič, přiřadíme mu nového žáka
+    if (selectedParentIdForNewStudent) {
+      onUpdateParents(
+        parents.map((p) =>
+          p.id === selectedParentIdForNewStudent
+            ? { ...p, childIds: p.childIds.includes(newStudentId) ? p.childIds : [...p.childIds, newStudentId] }
+            : p
+        )
+      );
+    }
+
     setStudentFirstName('');
     setStudentLastName('');
+    setSelectedParentIdForNewStudent('');
     setShowAddStudent(false);
   };
 
@@ -59,10 +84,17 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
     e.preventDefault();
     if (!parentFirstName.trim() || !parentLastName.trim()) return;
 
+    const cleanUsername = (parentFirstName.trim() + parentLastName.trim())
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
     const newParent: Parent = {
       id: `p${Date.now().toString().slice(-4)}`,
       firstName: parentFirstName.trim(),
       lastName: parentLastName.trim(),
+      username: cleanUsername,
+      password: 'rodic' + Math.floor(100 + Math.random() * 900),
       childIds: selectedChildIds,
     };
 
@@ -75,6 +107,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
 
   const handleDeleteParent = (id: string) => {
     onUpdateParents(parents.filter(p => p.id !== id));
+    if (editingParentId === id) setEditingParentId(null);
   };
 
   const toggleChildSelection = (childId: string) => {
@@ -83,8 +116,21 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
     );
   };
 
+  const handleToggleChildForExistingParent = (parentId: string, childId: string) => {
+    onUpdateParents(
+      parents.map((p) => {
+        if (p.id !== parentId) return p;
+        const hasChild = p.childIds.includes(childId);
+        return {
+          ...p,
+          childIds: hasChild ? p.childIds.filter((cid) => cid !== childId) : [...p.childIds, childId],
+        };
+      })
+    );
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 font-sans">
       {/* Karta: Správa žáků */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 flex flex-col justify-between">
         <div>
@@ -101,7 +147,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
 
             <button
               onClick={() => setShowAddStudent(!showAddStudent)}
-              className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+              className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
               <UserPlus className="w-4 h-4" /> {showAddStudent ? 'Zavřít' : 'Nový žák'}
             </button>
@@ -129,9 +175,29 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                   required
                 />
               </div>
+
+              {/* Možnost rovnou přiřadit k existujícímu rodiči */}
+              <div>
+                <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">
+                  Přiřadit k zákonnému zástupci (volitelné):
+                </label>
+                <select
+                  value={selectedParentIdForNewStudent}
+                  onChange={(e) => setSelectedParentIdForNewStudent(e.target.value)}
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none text-slate-800"
+                >
+                  <option value="">-- Bez okamžitého přiřazení --</option>
+                  {parents.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.firstName} {p.lastName} (ID: {p.id})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <button
                 type="submit"
-                className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
+                className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
               >
                 Vytvořit žáka v databázi
               </button>
@@ -156,12 +222,17 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                     <span className="ml-2 text-[11px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
                       ID: {student.id}
                     </span>
+                    {student.username && (
+                      <span className="ml-1 text-[11px] font-mono text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">
+                        @{student.username}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <button
                   onClick={() => handleDeleteStudent(student.id)}
-                  className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                  className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
                   title="Smazat uživatelský profil žáka"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -188,7 +259,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
 
             <button
               onClick={() => setShowAddParent(!showAddParent)}
-              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
               <UserPlus className="w-4 h-4" /> {showAddParent ? 'Zavřít' : 'Nový rodič'}
             </button>
@@ -219,7 +290,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
 
               <div>
                 <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">
-                  Přiřadit děti (relace v databázi):
+                  Přiřadit existující děti (relace v databázi):
                 </label>
                 <div className="grid grid-cols-2 gap-1.5">
                   {students.map(s => {
@@ -229,9 +300,9 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                         type="button"
                         key={s.id}
                         onClick={() => toggleChildSelection(s.id)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left flex items-center justify-between border transition-all ${
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left flex items-center justify-between border transition-all cursor-pointer ${
                           isChecked
-                            ? 'bg-emerald-600 text-white border-emerald-700'
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-2xs'
                             : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
@@ -245,7 +316,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
 
               <button
                 type="submit"
-                className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
+                className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
               >
                 Vytvořit účet rodiče
               </button>
@@ -253,7 +324,7 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
           )}
 
           {/* Seznam rodičů */}
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {parents.map(parent => {
               const childrenNames = parent.childIds
                 .map(cid => {
@@ -262,36 +333,90 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                 })
                 .join(', ');
 
+              const isEditing = editingParentId === parent.id;
+
               return (
                 <li
                   key={parent.id}
-                  className="flex items-center justify-between p-3.5 bg-slate-50/80 hover:bg-slate-100 rounded-2xl border border-slate-200/60 transition-colors"
+                  className="p-3.5 bg-slate-50/80 hover:bg-slate-100 rounded-2xl border border-slate-200/60 transition-colors space-y-2.5"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center">
-                      {parent.firstName[0]}{parent.lastName[0]}
-                    </span>
-                    <div>
-                      <div className="font-bold text-slate-800 text-sm">
-                        {parent.firstName} {parent.lastName}
-                        <span className="ml-2 text-[11px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                          ID: {parent.id}
-                        </span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center">
+                        {parent.firstName[0]}{parent.lastName[0]}
+                      </span>
+                      <div>
+                        <div className="font-bold text-slate-800 text-sm">
+                          {parent.firstName} {parent.lastName}
+                          <span className="ml-2 text-[11px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
+                            ID: {parent.id}
+                          </span>
+                          {parent.username && (
+                            <span className="ml-1 text-[11px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                              @{parent.username}
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
+                          <Link2 className="w-3 h-3 text-emerald-600" />
+                          <span>Děti v péči: <strong className="text-slate-700">{childrenNames || 'Žádné přiřazené'}</strong></span>
+                        </div>
                       </div>
-                      <div className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
-                        <Link2 className="w-3 h-3 text-emerald-600" />
-                        <span>Děti v péči: <strong className="text-slate-700">{childrenNames || 'Žádné přiřazené'}</strong></span>
-                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => setEditingParentId(isEditing ? null : parent.id)}
+                        className={`text-xs font-bold px-2.5 py-1 rounded-xl border transition-all flex items-center gap-1 cursor-pointer ${
+                          isEditing
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-2xs'
+                            : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200'
+                        }`}
+                        title="Upravit přiřazení dětí tomuto rodiči"
+                      >
+                        <Link2 className="w-3 h-3" />
+                        <span>{isEditing ? 'Hotovo' : 'Upravit děti'}</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleDeleteParent(parent.id)}
+                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                        title="Smazat profil rodiče"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleDeleteParent(parent.id)}
-                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
-                    title="Smazat profil rodiče"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  {/* Rozbalovací panel pro přiřazení dětí (vytvořených dříve i později) */}
+                  {isEditing && (
+                    <div className="p-3 bg-emerald-50/80 rounded-xl border border-emerald-200 space-y-2 animate-in fade-in duration-150">
+                      <div className="text-[11px] font-black uppercase text-emerald-950 flex items-center justify-between">
+                        <span>Přiřadit žáky tomuto rodiči (propojení v databázi):</span>
+                        <span className="text-emerald-800 font-bold">Vybráno {parent.childIds.length} dětí</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {students.map((s) => {
+                          const isAssigned = parent.childIds.includes(s.id);
+                          return (
+                            <button
+                              type="button"
+                              key={s.id}
+                              onClick={() => handleToggleChildForExistingParent(parent.id, s.id)}
+                              className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left flex items-center justify-between border transition-all cursor-pointer ${
+                                isAssigned
+                                  ? 'bg-emerald-600 text-white border-emerald-700 shadow-2xs'
+                                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                              }`}
+                            >
+                              <span>{s.firstName} {s.lastName}</span>
+                              {isAssigned && <Check className="w-3.5 h-3.5" />}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </li>
               );
             })}

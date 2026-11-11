@@ -247,12 +247,14 @@ export const SVP_PRG2_DATA: SvpGradeData = {
         'navrhne třídu jako šablonu pro modelování reálného objektu',
         'vytváří instance tříd s počátečním stavem (konstruktor)',
         'definuje atributy a metody pro řízení chování objektu',
+        'aplikuje základní vlastnosti OOP na jednoduchých příkladech (zapouzdření stavu v objektu, dědičnost, polymorfismus)',
         'propojuje více instancí a objektů v aplikaci'
       ],
       content: [
         'Objektové myšlení (třída jako šablona, instance jako konkrétní objekt)',
-        'Vnitřní stav objektu (atributy, konstruktor __init__, parametr self)',
+        'Vnitřní stav a zapouzdření objektu (atributy, konstruktor __init__, parametr self)',
         'Chování objektu (metody instance, práce s vnitřními daty objektu)',
+        'Základní principy OOP v praxi (jednoduchá dědičnost pro sdílení vlastností, polymorfismus – jednotné volání metod nad různými objekty)',
         'Spolupráce objektů (seznam objektů, předávání objektů mezi funkcemi)'
       ]
     },

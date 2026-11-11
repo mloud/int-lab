@@ -34,22 +34,29 @@ const STEPS: StepQuestion[] = [
     options: [
       {
         id: 'a',
+        label: 'K [ Knihám ]',
+        isCorrect: false,
+        explanation:
+          'Pozor, častý chyták! Kniha představuje název a záznam díla v katalogu. Když má knihovna 5 kusů stejné knihy na polici, čtenář si domů půjčuje konkrétní fyzický výtisk s čárovým kódem, ne samotný název v katalogu.',
+      },
+      {
+        id: 'b',
         label: 'K [ Autorům ]',
         isCorrect: false,
         explanation: 'Autor knihu napsal, ale domů si ho nepůjčuješ!',
       },
       {
-        id: 'b',
+        id: 'c',
         label: 'K [ Oborům ]',
         isCorrect: false,
         explanation: 'Obor je žánr (např. Sci-fi), ten v batohu neodneseš.',
       },
       {
-        id: 'c',
+        id: 'd',
         label: 'K [ Výtiskům ] – konkrétní fyzická kniha s čárovým kódem',
         isCorrect: true,
         explanation:
-          'Správně! Čtenář si půjčuje konkrétní fyzický výtisk z regálu.',
+          'Správně! Čtenář si půjčuje konkrétní fyzický výtisk z regálu s vlastním evidenčním číslem / čárovým kódem.',
       },
     ],
     lessonPoint:

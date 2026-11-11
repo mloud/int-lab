@@ -19,7 +19,7 @@
 ### PVH 2 / PRG 2 (2. ročník – 66 h, 2 h týdně)
 * **Blok 1: Datové kolekce a zpracování textu v jazyce Python** (seznamy list, procházení, metody append/pop/remove/sort, filtrace in/sum/min/max, slovníky dict, n-tice tuple, množiny set, textové řetězce str – strip/split/in) – 16 h (🟡 Návrh)
 * **Blok 2: Práce se soubory a ošetření chyb v programu** (textové soubory, JSON, ošetření výjimek try-except) – 14 h (🟡 Návrh)
-* **Blok 3: Základy objektově orientovaného programování v jazyce Python** (třída, instance, konstruktor, self, metody, seznam objektů) – 16 h (🟡 Návrh)
+* **Blok 3: Základy objektově orientovaného programování v jazyce Python** (třída, instance, konstruktor, self, metody, zapouzdření, jednoduchá dědičnost a polymorfismus, seznam objektů) – 16 h (🟡 Návrh)
 * **Blok 4: Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** (Tkinter, okenní architektura, souřadnicové pozicování place, komponenty Label/Button/Entry/Radiobutton/Checkbutton, vazba na funkce a proměnné StringVar/BooleanVar, samostatný projekt desktopové aplikace) – 20 h (🟡 Návrh)
 
 ### PVH 3 / PRG 3 (3. ročník – 99 h, 3 h týdně)

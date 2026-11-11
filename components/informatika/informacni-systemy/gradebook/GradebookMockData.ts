@@ -5,6 +5,8 @@ export const initialStudents: Student[] = [
     id: 's1',
     firstName: 'Jan',
     lastName: 'Novák',
+    username: 'jannovak',
+    password: 'sova8314',
     classGroup: '7.A',
     grades: [
       { id: 'g1', subject: 'Matematika', grade: 1, weight: 10, date: '2024-10-05', topic: 'Zlomky a desetinná čísla' },
@@ -17,6 +19,8 @@ export const initialStudents: Student[] = [
     id: 's2',
     firstName: 'Petra',
     lastName: 'Krásná',
+    username: 'petrakrasna',
+    password: 'luna6429',
     classGroup: '7.A',
     grades: [
       { id: 'g4', subject: 'Anglický jazyk', grade: 1, weight: 10, date: '2024-10-08', topic: 'Past simple test' },
@@ -28,6 +32,8 @@ export const initialStudents: Student[] = [
     id: 's3',
     firstName: 'Tomáš',
     lastName: 'Krásný',
+    username: 'tomaskrasny',
+    password: 'kolo7291',
     classGroup: '7.A',
     grades: [
       { id: 'g6', subject: 'Fyzika', grade: 4, weight: 10, date: '2024-11-05', topic: 'Rychlost a dráha' },
@@ -40,6 +46,8 @@ export const initialStudents: Student[] = [
     id: 's4',
     firstName: 'Lucie',
     lastName: 'Černá',
+    username: 'luciecerna',
+    password: 'most5832',
     classGroup: '7.A',
     grades: [
       { id: 'g9', subject: 'Chemie', grade: 2, weight: 8, date: '2024-10-18', topic: 'Směsi a filtrace' },
@@ -54,28 +62,48 @@ export const initialParents: Parent[] = [
     id: 'p1',
     firstName: 'Pavel',
     lastName: 'Novák',
+    username: 'pavelnovak',
+    password: 'javor631',
     childIds: ['s1'],
   },
   {
     id: 'p2',
     firstName: 'Eva',
     lastName: 'Krásná',
+    username: 'evakrasna',
+    password: 'perla482',
     childIds: ['s2', 's3'],
   },
   {
     id: 'p3',
     firstName: 'Jana',
     lastName: 'Černá',
+    username: 'janacerna',
+    password: 'cesta915',
     childIds: ['s4'],
   },
 ];
 
 export const teachers: TeacherUser[] = [
-  { id: 't1', firstName: 'Karel', lastName: 'Vomáčka', title: 'Mgr.' }
+  {
+    id: 't1',
+    firstName: 'Karel',
+    lastName: 'Vomáčka',
+    username: 'vomacka',
+    password: 'skola394',
+    title: 'Mgr.',
+  },
 ];
 
 export const admins: AdminUser[] = [
-  { id: 'a1', firstName: 'Alena', lastName: 'Ředitelová', title: 'Mgr.' }
+  {
+    id: 'a1',
+    firstName: 'Alena',
+    lastName: 'Ředitelová',
+    username: 'reditelka',
+    password: 'sprav842',
+    title: 'Mgr.',
+  },
 ];
 
 export const availableSubjects = [

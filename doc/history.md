@@ -653,7 +653,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - Odstraněno duplicitní číslování z názvů témat v `PLAN_OSS2` (komponenta `SimplePlanTable` již automaticky generuje index bloku).
     - Změny sjednoceny v `app/.../operacni-systemy-2/tematicky-plan/page.tsx`, `thematicPlans.ts`, `PLAN_OSS2.md` i `doc/plan.md`.
 
-20. **Vytvoření kapitoly Informační systémy a role uživatelů pro 7. třídu ZŠ (Informatika 7):**
+20. **Vytvoření a rozšíření kapitoly Informační systémy a role uživatelů pro 7. třídu ZŠ (Informatika 7):**
     - **Zařazení:** Předmět *Informatika 7* (`inf-7`), routa `/informatika/informacni-systemy`.
     - **Registrace:** Zaregistrováno v `registry/curriculum/schools/defaultSchool.ts` (7. ročník, tag `#is`, ikona `Database`) a `registry/lessons.ts` (kategorie `informacni-systemy`).
     - **Didaktická stavba teorie (Záložka Teorie):** Sestavena didakticky pro sedmáky dle metodiky:
@@ -663,13 +663,27 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Uživatelské role a přístupová práva: podrobná porovnávací tabulka 4 rolí (Žák, Vyučující, Zákonný zástupce, Administrátor).
       - Rozšíření: Státní registr obyvatel a důvody pro nejvyšší stupeň zabezpečení.
       - Interaktivní minikvíz se 4 otázkami pro rychlé ověření znalostí přímo v hodině.
-    - **Simulátor žákovské knížky (Záložka Simulátory):** Kompletní interaktivní aplikace znovunapsaná do React 19 + TypeScript s plnohodnotnou českou diakritikou:
-      - Žák: prohlížení známek, výpočet vážených průměrů předmětů a celkového průměru.
-      - Rodič: přehled hodnocení svých dětí, přepínání mezi dětmi (např. Petra a Tomáš Krásní).
-      - Učitel: správa třídy 7.A, interaktivní zápis nové známky (předmět, známka 1-5, váha 1-10, téma) a mazání záznamů.
-      - Administrátor: plná správa známek + panel správy uživatelů (přidávání/mazání žáků a rodičů s relacemi dětí).
-      - Možnost resetu dat do výchozího stavu.
-    - **Architektura:** Striktně dodrženo Pravidlo 13 (žádný monolit), modulární struktura v `components/informatika/informacni-systemy/` a `gradebook/`.
+    - **Záložka Projektové zadání (Chytré osvětlení):**
+      - Týmová vývojářská úloha pro trojice na papír (návrh technických prvků a pravidel chování chytrého pouličního osvětlení).
+    - **Záložka Návrh databáze knihovny:**
+      - Čisté zadání na papír / do sešitu bez spoilerů (odebrána dřívější „Banka nabízených sloupců“ s předpřipravenými tlačítky, žáci pracují zcela samostatně).
+      - Maximálně čisté zadání na papír bez nápověd a spoilerů (odebrány veškeré dřívější návodné bloky). Náčrt tabulky pro překreslení do sešitu zobrazuje pouze 3 sloupce a tečky `...` naznačující další libovolné sloupce bez prozrazení jejich přesného počtu.
+    - **Simulátor žákovské knížky Bakaláři (Záložka Žákovská knížka):**
+      - **Autentizace heslem:** Všechny uživatelské účty (žáci, rodiče, učitelé, administrátor) mají nastavena realistická uživatelská jména a hesla. Přihlášení vyžaduje zadání hesla přes modální okno `BakalariPasswordModal`.
+      - **Dvourežimový provoz:** Přepínač mezi režimem *Volná práce* (volné zkoumání systému) a *Mise a úkoly* (5 didakticky gradovaných misí pokrývajících role v systému a relace databáze).
+      - **Aktivní badatelské mise:**
+        1. *Role: Žák* – vyhledat hodnotu Janova nejhoršího průměru (`2` / `2.00`).
+        2. *Role: Rodič* – zjistit celkový počet jedniček u dětí paní Krásné (`3`; žák musí sám v systému objevit a zkontrolovat obě své děti).
+        3. *Role: Vyučující* – v roli učitele Mgr. Vomáčky zjistit žáka 7.A s nejlepším celkovým průměrem (`Lucie Černá`).
+        4. *Role: Administrátor (Zjištění dat)* – zjistit celkový počet evidovaných rodičovských účtů (`3`).
+        5. *Role: Administrátor (Akční úkol bez textové odpovědi)* – v sekci Správa uživatelů vytvořit nového zákonného zástupce Petra Svobodu a přiřadit mu dvě děti: Jana Nováka a Adama Svobodu. Systém automaticky detekuje splnění v databázi.
+      - **Vyčištění formulářů:** Ze všech vstupních polí pro odpovědi byly odebrány veškeré placeholder texty a nápovědy.
+      - **Hesla uživatelů:** Nastavena 8místná hesla s kombinací písmen a číslic (`sova8314`, `luna6429`, `kolo7291`, `most5832`, `javor631`, `perla482`, `cesta915`, `skola394`, `sprav842`).
+      - **Rozšíření Správy uživatelů (`UserManagementPanel.tsx`):**
+        - Přidáno tlačítko „Upravit děti“ u každého rodiče umožňující kdykoliv dynamicky přiřadit či odebrat žáky v databázi (včetně žáků vytvořených až po založení rodiče).
+        - Přidán volitelný výběr rodiče při zakládání nového žáka.
+        - Automatické generování přihlašovacích loginů a hesel pro nově vytvořené žáky a rodiče.
+    - **Architektura:** Striktně dodrženo Pravidlo 13 (žádný monolit), plně modulární dekompozice v `components/informatika/informacni-systemy/` a podsložce `gradebook/` (`GradebookTasksTypes.ts`, `GradebookTasksData.ts`, `GradebookTasksPanel.tsx`, `BakalariPasswordModal.tsx`, `GradebookSimulator.tsx`).
 
 21. **Vytvoření hodnocené práce (testu) Výpočet kapacity záloh pro OSS 2 (Blok 1):**
     - **Komponenta:** `BackupCapacityTestWorksheet.tsx` (`components/specializovana/operacni-systemy-2/zalohovani/BackupCapacityTestWorksheet.tsx`) postavená na šabloně `TestWorksheetShell`.
@@ -895,8 +909,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Z názvu i výstupů byl odstraněn akademický balast (*„perzistence dat“*, *„kontextový manažer“*, *„serializuje a deserializuje“*).
       - Vyřazen formát CSV, který přetěžoval časovou dotaci a vnášel syntaktický chaos (oddělovače, český Excel); časová dotace 14 hodin byla soustředěna na praktickou trojici: textové soubory (4 h), strukturovaná data v JSON (6 h) a ošetření běhových chyb `try-except` (4 h).
     - **Didaktická revize Bloku 3 v PVH 2 (Základy OOP v jazyce Python – 16 h):**
-      - Vyřazena předčasná dědičnost (`class B(A)`, `super()`) a formální zapouzdření, které v Pythonu neexistuje a žáky ve 2. ročníku pouze mátlo.
-      - Blok byl zaměřen na praktické základy potřebné pro následující tvorbu GUI aplikací: třída jako šablona, instance jako objekt, konstruktor `__init__`, parametr `self`, atributy, metody instance a práce se seznamem objektů.
+      - Vyřazeny složité formální hierarchie dědičnosti (`super()`) a umělé skrývání proměnných; pro 100% pokrytí povinného RVP výstupu však ponechány základy vlastností OOP v praktické a přístupné formě (zapouzdření stavu a metod v objektu, jednoduchý příklad dědičnosti a polymorfní volání společných metod nad seznamem různých objektů) spolu s prací s konstruktorem `__init__`, parametrem `self`, atributy a metodami instance.
     - **Harmonizace Bloku 4 v PVH 2 (Vývoj aplikací s GUI – 20 h) s metodickými materiály (Mgr. Jiří Hejna):**
       - Provedena detailní komparace kurikula ŠVP oproti 6 autorizovaným metodickým listům pro výuku Tkinteru na SŠ (`metodika_1.pdf` až `metodika_6.pdf`).
       - Vyřazeny layout manažery `grid` a `pack`, které v metodikách vůbec nevystupují; rozvržení okna upraveno na souřadnicové pozicování `place(x, y)`.

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Role, Student, Parent, TeacherUser, AdminUser } from './GradebookTypes';
+import { BakalariPasswordModal } from './BakalariPasswordModal';
 import {
   GraduationCap,
   Users,
@@ -30,6 +31,8 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
 }) => {
   // Krok 1: Výběr role, Krok 2: Výběr konkrétního uživatele
   const [chosenRole, setChosenRole] = useState<Role | null>(null);
+  // Krok 3: Zadání hesla
+  const [authenticatingUser, setAuthenticatingUser] = useState<{ role: Role; user: any } | null>(null);
 
   const roles = [
     {
@@ -166,7 +169,7 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                   {students.map(st => (
                     <button
                       key={st.id}
-                      onClick={() => onLogin(Role.STUDENT, st)}
+                      onClick={() => setAuthenticatingUser({ role: Role.STUDENT, user: st })}
                       className="p-4 rounded-2xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 hover:shadow-md transition-all text-left flex items-center justify-between group active:scale-[0.98] cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
@@ -178,7 +181,7 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                             {st.firstName} {st.lastName}
                           </div>
                           <div className="text-xs text-slate-500 font-medium">
-                            Třída {st.classGroup || '7.A'} • {st.grades.length} známek
+                            Třída {st.classGroup || '7.A'} • login: <span className="font-mono text-slate-600 font-bold">{st.username}</span>
                           </div>
                         </div>
                       </div>
@@ -205,7 +208,7 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                     return (
                       <button
                         key={par.id}
-                        onClick={() => onLogin(Role.PARENT, par)}
+                        onClick={() => setAuthenticatingUser({ role: Role.PARENT, user: par })}
                         className="w-full p-4 rounded-2xl border-2 border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 hover:shadow-md transition-all text-left flex items-center justify-between group active:scale-[0.98] cursor-pointer"
                       >
                         <div className="flex items-center gap-3.5">
@@ -217,7 +220,7 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                               {par.firstName} {par.lastName}
                             </div>
                             <div className="text-xs text-slate-500 font-medium">
-                              Děti v evidenci: <strong className="text-slate-700">{childrenNames}</strong>
+                              Děti: <strong className="text-slate-700">{childrenNames}</strong> • login: <span className="font-mono text-slate-600 font-bold">{par.username}</span>
                             </div>
                           </div>
                         </div>
@@ -242,13 +245,13 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                       Mgr. Karel Vomáčka
                     </h4>
                     <p className="text-xs text-purple-900 font-medium">
-                      Třídní učitel 7.A • Oprávnění zápisu a editace známek
+                      Třídní učitel 7.A • login: <span className="font-mono font-bold">vomacka</span>
                     </p>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => onLogin(Role.TEACHER, teachers[0])}
+                  onClick={() => setAuthenticatingUser({ role: Role.TEACHER, user: teachers[0] })}
                   className="w-full py-3.5 px-6 bg-purple-600 hover:bg-purple-700 active:scale-[0.99] text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Lock className="w-4 h-4" />
@@ -270,13 +273,13 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                       Mgr. Alena Ředitelová
                     </h4>
                     <p className="text-xs text-amber-900 font-medium">
-                      Vedení školy • Plná administrace účtů, žáků a rodin
+                      Vedení školy • login: <span className="font-mono font-bold">reditelka</span>
                     </p>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => onLogin(Role.ADMIN, admins[0])}
+                  onClick={() => setAuthenticatingUser({ role: Role.ADMIN, user: admins[0] })}
                   className="w-full py-3.5 px-6 bg-amber-600 hover:bg-amber-700 active:scale-[0.99] text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Lock className="w-4 h-4" />
@@ -286,6 +289,19 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
               </div>
             )}
           </div>
+        )}
+
+        {/* MODÁLNÍ DIALOG PRO ZADÁNÍ HESLA */}
+        {authenticatingUser && (
+          <BakalariPasswordModal
+            role={authenticatingUser.role}
+            user={authenticatingUser.user}
+            onSuccess={(role, user) => {
+              setAuthenticatingUser(null);
+              onLogin(role, user);
+            }}
+            onCancel={() => setAuthenticatingUser(null)}
+          />
         )}
       </div>
     </div>

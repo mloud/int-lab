@@ -89,8 +89,8 @@ export const PLAN_PRG2: PlanTopic[] = [
     topicHours: 16,
     subtopics: [
       { name: 'Od procedur k objektům: třída jako šablona, instance jako konkrétní objekt', hours: 4, note: 'Pojem třída a instance, konstruktor __init__, parametr self a atributy' },
-      { name: 'Metody instance a chování objektu', hours: 4, note: 'Volání metod nad instancí, změna vnitřního stavu, textová reprezentace __str__' },
-      { name: 'Seznam instancí a hromadná práce s objekty', hours: 4, note: 'Ukládání objektů do seznamu, procházení cyklem for, vyhledávání a filtrace objektů' },
+      { name: 'Metody instance, zapouzdření stavu a chování objektu', hours: 4, note: 'Volání metod nad instancí, řízení přístupu k vnitřnímu stavu, __str__' },
+      { name: 'Základy dědičnosti, polymorfismus v praxi a seznam instancí', hours: 4, note: 'Sdílení vlastností jednoduchým děděním, jednotné rozhraní metod nad seznamem různých objektů' },
       { name: 'Objektové modelování jednoduché aplikace', hours: 4, note: 'Samostatná konzolová miniaplikace (Evidence / Správce úkolů) jako můstek ke GUI' }
     ]
   },

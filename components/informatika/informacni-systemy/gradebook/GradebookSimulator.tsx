@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Role, Student, Parent, Grade } from './GradebookTypes';
 import { initialStudents, initialParents, teachers, admins } from './GradebookMockData';
 import { BakalariLoginScreen } from './BakalariLoginScreen';
@@ -8,6 +8,8 @@ import { ParentView } from './ParentView';
 import { TeacherView } from './TeacherView';
 import { AdminView } from './AdminView';
 import { UserManagementPanel } from './UserManagementPanel';
+import { GRADEBOOK_TASKS } from './GradebookTasksData';
+import { GradebookTasksPanel } from './GradebookTasksPanel';
 
 interface ActiveSession {
   role: Role;
@@ -26,6 +28,28 @@ export const GradebookSimulator: React.FC = () => {
 
   // Režim celé obrazovky
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
+  // Systém úkolů a misí
+  const [isTaskMode, setIsTaskMode] = useState<boolean>(true);
+  const [activeTaskId, setActiveTaskId] = useState<number>(1);
+  const [completedTaskIds, setCompletedTaskIds] = useState<number[]>([]);
+
+  const handleCompleteTask = (taskId: number) => {
+    if (!completedTaskIds.includes(taskId)) {
+      setCompletedTaskIds((prev) => [...prev, taskId]);
+    }
+  };
+
+  // Detekce splnění akčního úkolu 5 (vytvoření nového rodiče se 2 dětmi)
+  useEffect(() => {
+    if (!isTaskMode) return;
+    const hasNewParentWithTwoChildren = parents.some(
+      (p) => !['p1', 'p2', 'p3'].includes(p.id) && p.childIds.length >= 2
+    );
+    if (hasNewParentWithTwoChildren && !completedTaskIds.includes(5)) {
+      handleCompleteTask(5);
+    }
+  }, [parents, isTaskMode, completedTaskIds]);
 
   const handleUpdateGrades = (studentId: string, newGrades: Grade[]) => {
     setStudents(prev => prev.map(s => (s.id === studentId ? { ...s, grades: newGrades } : s)));
@@ -52,24 +76,8 @@ export const GradebookSimulator: React.FC = () => {
     }
   };
 
-  if (!session) {
-    return (
-      <div className="w-full">
-        <BakalariLoginScreen
-          students={students}
-          parents={parents}
-          teachers={teachers}
-          admins={admins}
-          onLogin={(role, user) => {
-            setSession({ role, user });
-            setActiveTab(role === Role.ADMIN ? 'users' : 'grades');
-          }}
-        />
-      </div>
-    );
-  }
-
   const getUserDisplayName = () => {
+    if (!session) return '';
     if (session.role === Role.TEACHER || session.role === Role.ADMIN) {
       return `${session.user.title || ''} ${session.user.firstName} ${session.user.lastName}`.trim();
     }
@@ -80,124 +88,154 @@ export const GradebookSimulator: React.FC = () => {
     <div
       className={`w-full transition-all ${
         isFullscreen
-          ? 'fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-md p-2 sm:p-6 flex flex-col justify-center overflow-auto'
-          : 'relative'
+          ? 'fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-md p-2 sm:p-6 flex flex-col justify-start overflow-auto'
+          : 'relative max-w-6xl mx-auto'
       }`}
     >
-      <div className="bg-[#F4F6F9] rounded-2xl sm:rounded-3xl border-2 border-slate-300 shadow-2xl overflow-hidden flex flex-col max-w-6xl mx-auto w-full min-h-[540px]">
-        {/* Modrá hlavička Bakaláři */}
-        <BakalariNavbar
-          role={session.role}
-          userName={getUserDisplayName()}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          onLogout={() => setSession(null)}
-          onResetData={handleResetData}
-          isFullscreen={isFullscreen}
-          onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
-        />
+      {/* Panel misí a úkolů nad simulátorem */}
+      <GradebookTasksPanel
+        tasks={GRADEBOOK_TASKS}
+        activeTaskId={activeTaskId}
+        completedTaskIds={completedTaskIds}
+        onSelectTask={setActiveTaskId}
+        onCompleteTask={handleCompleteTask}
+        isTaskMode={isTaskMode}
+        onToggleTaskMode={setIsTaskMode}
+        onResetTasks={() => {
+          setCompletedTaskIds([]);
+          setActiveTaskId(1);
+        }}
+      />
 
-        {/* Hlavní pracovní plocha aplikace Bakaláři */}
-        <main className="p-4 sm:p-6 flex-1">
-          {/* ZÁLOŽKA: KLASIFIKACE */}
-          {activeTab === 'grades' && (
-            <>
-              {session.role === Role.STUDENT && <StudentView student={session.user} />}
-              {session.role === Role.PARENT && (
-                <ParentView parent={session.user} allStudents={students} />
-              )}
-              {session.role === Role.TEACHER && (
-                <TeacherView students={students} onUpdateGrades={handleUpdateGrades} />
-              )}
-              {session.role === Role.ADMIN && (
-                <AdminView
-                  students={students}
-                  parents={parents}
-                  onUpdateGrades={handleUpdateGrades}
-                  onUpdateStudents={setStudents}
-                  onUpdateParents={setParents}
-                />
-              )}
-            </>
-          )}
+      {!session ? (
+        <div className="w-full">
+          <BakalariLoginScreen
+            students={students}
+            parents={parents}
+            teachers={teachers}
+            admins={admins}
+            onLogin={(role, user) => {
+              setSession({ role, user });
+              setActiveTab(role === Role.ADMIN ? 'users' : 'grades');
+            }}
+          />
+        </div>
+      ) : (
+        <div className="bg-[#F4F6F9] rounded-2xl sm:rounded-3xl border-2 border-slate-300 shadow-2xl overflow-hidden flex flex-col w-full min-h-[540px]">
+          {/* Modrá hlavička Bakaláři */}
+          <BakalariNavbar
+            role={session.role}
+            userName={getUserDisplayName()}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            onLogout={() => setSession(null)}
+            onResetData={handleResetData}
+            isFullscreen={isFullscreen}
+            onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
+          />
 
-          {/* ZÁLOŽKA: SPRÁVA UŽIVATELŮ (pouze Admin) */}
-          {activeTab === 'users' && session.role === Role.ADMIN && (
-            <UserManagementPanel
-              students={students}
-              parents={parents}
-              onUpdateStudents={setStudents}
-              onUpdateParents={setParents}
-            />
-          )}
+          {/* Hlavní pracovní plocha aplikace Bakaláři */}
+          <main className="p-4 sm:p-6 flex-1">
+            {/* ZÁLOŽKA: KLASIFIKACE */}
+            {activeTab === 'grades' && (
+              <>
+                {session.role === Role.STUDENT && <StudentView student={session.user} />}
+                {session.role === Role.PARENT && (
+                  <ParentView parent={session.user} allStudents={students} />
+                )}
+                {session.role === Role.TEACHER && (
+                  <TeacherView students={students} onUpdateGrades={handleUpdateGrades} />
+                )}
+                {session.role === Role.ADMIN && (
+                  <AdminView
+                    students={students}
+                    parents={parents}
+                    onUpdateGrades={handleUpdateGrades}
+                    onUpdateStudents={setStudents}
+                    onUpdateParents={setParents}
+                  />
+                )}
+              </>
+            )}
 
-          {/* ZÁLOŽKA: ROZVRH HODIN */}
-          {activeTab === 'timetable' && (
-            <div className="bg-white rounded-2xl border border-slate-300 shadow-sm overflow-x-auto">
-              <table className="w-full text-center border-collapse text-xs">
-                <thead>
-                  <tr className="bg-slate-100 border-b border-slate-300 font-bold text-slate-700">
-                    <th className="py-2.5 px-3 w-16 text-left">Den</th>
-                    <th className="py-2.5 px-3">1. (8:00 - 8:45)</th>
-                    <th className="py-2.5 px-3">2. (8:55 - 9:40)</th>
-                    <th className="py-2.5 px-3">3. (10:00 - 10:45)</th>
-                    <th className="py-2.5 px-3">4. (10:55 - 11:40)</th>
-                    <th className="py-2.5 px-3">5. (11:50 - 12:35)</th>
-                    <th className="py-2.5 px-3">6. (12:45 - 13:30)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 font-semibold text-slate-800">
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Pondělí</td>
-                    <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-purple-50 text-purple-800 rounded-lg border border-purple-200 font-bold">Dějepis</span></td>
-                    <td className="p-2"><span className="block p-2 bg-amber-50 text-amber-800 rounded-lg border border-amber-200 font-bold">Přírodopis</span></td>
-                    <td className="p-2 text-slate-300">–</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Úterý</td>
-                    <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-teal-50 text-teal-800 rounded-lg border border-teal-200 font-bold">Informatika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-rose-50 text-rose-800 rounded-lg border border-rose-200 font-bold">Fyzika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Tělesná výchova</span></td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Středa</td>
-                    <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-orange-50 text-orange-800 rounded-lg border border-orange-200 font-bold">Zeměpis</span></td>
-                    <td className="p-2"><span className="block p-2 bg-cyan-50 text-cyan-800 rounded-lg border border-cyan-200 font-bold">Chemie</span></td>
-                    <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Výtvarná výchova</span></td>
-                    <td className="p-2 text-slate-300">–</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Čtvrtek</td>
-                    <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-rose-50 text-rose-800 rounded-lg border border-rose-200 font-bold">Fyzika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Tělesná výchova</span></td>
-                    <td className="p-2 text-slate-300">–</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Pátek</td>
-                    <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-teal-50 text-teal-800 rounded-lg border border-teal-200 font-bold">Informatika</span></td>
-                    <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
-                    <td className="p-2"><span className="block p-2 bg-amber-50 text-amber-800 rounded-lg border border-amber-200 font-bold">Hudební výchova</span></td>
-                    <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
-                    <td className="p-2 text-slate-300">–</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          )}
-        </main>
-      </div>
+            {/* ZÁLOŽKA: SPRÁVA UŽIVATELŮ (pouze Admin) */}
+            {activeTab === 'users' && session.role === Role.ADMIN && (
+              <UserManagementPanel
+                students={students}
+                parents={parents}
+                onUpdateStudents={setStudents}
+                onUpdateParents={setParents}
+              />
+            )}
+
+            {/* ZÁLOŽKA: ROZVRH HODIN */}
+            {activeTab === 'timetable' && (
+              <div className="bg-white rounded-2xl border border-slate-300 shadow-sm overflow-x-auto">
+                <table className="w-full text-center border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-slate-100 border-b border-slate-300 font-bold text-slate-700">
+                      <th className="py-2.5 px-3 w-16 text-left">Den</th>
+                      <th className="py-2.5 px-3">1. (8:00 - 8:45)</th>
+                      <th className="py-2.5 px-3">2. (8:55 - 9:40)</th>
+                      <th className="py-2.5 px-3">3. (10:00 - 10:45)</th>
+                      <th className="py-2.5 px-3">4. (10:55 - 11:40)</th>
+                      <th className="py-2.5 px-3">5. (11:50 - 12:35)</th>
+                      <th className="py-2.5 px-3">6. (12:45 - 13:30)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-semibold text-slate-800">
+                    <tr>
+                      <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Pondělí</td>
+                      <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-purple-50 text-purple-800 rounded-lg border border-purple-200 font-bold">Dějepis</span></td>
+                      <td className="p-2"><span className="block p-2 bg-amber-50 text-amber-800 rounded-lg border border-amber-200 font-bold">Přírodopis</span></td>
+                      <td className="p-2 text-slate-300">–</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Úterý</td>
+                      <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-teal-50 text-teal-800 rounded-lg border border-teal-200 font-bold">Informatika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-rose-50 text-rose-800 rounded-lg border border-rose-200 font-bold">Fyzika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Tělesná výchova</span></td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Středa</td>
+                      <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-orange-50 text-orange-800 rounded-lg border border-orange-200 font-bold">Zeměpis</span></td>
+                      <td className="p-2"><span className="block p-2 bg-cyan-50 text-cyan-800 rounded-lg border border-cyan-200 font-bold">Chemie</span></td>
+                      <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Výtvarná výchova</span></td>
+                      <td className="p-2 text-slate-300">–</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Čtvrtek</td>
+                      <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-rose-50 text-rose-800 rounded-lg border border-rose-200 font-bold">Fyzika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-bold">Tělesná výchova</span></td>
+                      <td className="p-2 text-slate-300">–</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-bold text-left bg-slate-50 text-[#0B3A60]">Pátek</td>
+                      <td className="p-2"><span className="block p-2 bg-indigo-50 text-indigo-800 rounded-lg border border-indigo-200 font-bold">Matematika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-teal-50 text-teal-800 rounded-lg border border-teal-200 font-bold">Informatika</span></td>
+                      <td className="p-2"><span className="block p-2 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 font-bold">Český jazyk</span></td>
+                      <td className="p-2"><span className="block p-2 bg-amber-50 text-amber-800 rounded-lg border border-amber-200 font-bold">Hudební výchova</span></td>
+                      <td className="p-2"><span className="block p-2 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 font-bold">Anglický jazyk</span></td>
+                      <td className="p-2 text-slate-300">–</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </main>
+        </div>
+      )}
     </div>
   );
 };

@@ -18,6 +18,8 @@ export interface Student {
   id: string;
   firstName: string;
   lastName: string;
+  username?: string;
+  password?: string;
   classGroup?: string;
   grades: Grade[];
 }
@@ -26,6 +28,8 @@ export interface Parent {
   id: string;
   firstName: string;
   lastName: string;
+  username?: string;
+  password?: string;
   childIds: string[];
 }
 
@@ -33,6 +37,8 @@ export interface TeacherUser {
   id: string;
   firstName: string;
   lastName: string;
+  username?: string;
+  password?: string;
   title?: string;
 }
 
@@ -40,5 +46,7 @@ export interface AdminUser {
   id: string;
   firstName: string;
   lastName: string;
+  username?: string;
+  password?: string;
   title?: string;
 }
