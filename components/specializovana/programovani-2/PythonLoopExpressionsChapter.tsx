@@ -12,6 +12,10 @@ const { TaskCard, PythonSnippet } = createTaskKit({
 });
 
 
+// Fixní pseudonáhodné hodnoty pro náhledy úloh 4 a 5 (zamezení React hydration mismatch z Math.random())
+const GOLD_SIZES_TASK_4 = [28, 16, 35, 22, 14, 38, 19, 32, 25, 12];
+const GOLD_SIZES_TASK_5 = [24, 18, 32, 15, 36, 20, 28, 12, 34, 16];
+
 interface PythonLoopExpressionsChapterProps {
   onBack: () => void;
 }
@@ -37,8 +41,8 @@ const PythonLoopExpressionsChapter: React.FC<PythonLoopExpressionsChapterProps> 
           <CanvasPreview width={300} height={250} bgColor="#f0f0f0">
             {Array.from({ length: 11 }).map((_, i) => (
               <React.Fragment key={i}>
-                <Text x={30} y={i * 20 + 20} text={i.toString()} fontSize={12} align="end" />
-                <Text x={60} y={i * 20 + 20} text={(i * i).toString()} fontSize={12} align="end" />
+                <Text x={15} y={i * 20 + 20} text={i.toString()} fontSize={12} align="center" baseline="middle" />
+                <Text x={45} y={i * 20 + 20} text={(i * i).toString()} fontSize={12} align="center" baseline="middle" />
               </React.Fragment>
             ))}
           </CanvasPreview>
@@ -84,8 +88,8 @@ const PythonLoopExpressionsChapter: React.FC<PythonLoopExpressionsChapterProps> 
             {(() => {
               let currentX = 20;
               const elements = [];
-              for (let i = 0; i < 10; i++) {
-                const a = Math.floor(Math.random() * 31) + 10; // 10 to 40
+              for (let i = 0; i < GOLD_SIZES_TASK_4.length; i++) {
+                const a = GOLD_SIZES_TASK_4[i];
                 elements.push(<Rect key={i} x1={currentX} y1={100 - a} width={a} height={a} fill="gold" />);
                 currentX += a;
               }
@@ -100,8 +104,8 @@ const PythonLoopExpressionsChapter: React.FC<PythonLoopExpressionsChapterProps> 
             {(() => {
               let currentX = 10;
               const elements = [];
-              for (let i = 0; i < 10; i++) {
-                const a = Math.floor(Math.random() * 31) + 10; // 10 to 40
+              for (let i = 0; i < GOLD_SIZES_TASK_5.length; i++) {
+                const a = GOLD_SIZES_TASK_5[i];
                 elements.push(<Rect key={i} x1={currentX} y1={100 - a} width={a} height={a} fill="gold" />);
                 currentX += a + 5;
               }
@@ -131,19 +135,40 @@ Po levelu 5 bude tvé skóre 15 bodů.<br/>
           <p>Jiná verze pověsti praví, že král měl mudrcovi dovolit dát na první políčko jen 1 zrnko, ale na každé další políčko mu dovolil dát dvakrát více zrnek než na předchozí (tj. 2, 4, 8, 16, ...). Uprav svůj program tak, aby zjistil celkový počet zrnek na šachovnici podle této verze pověsti.</p>
         </TaskCard>
 
-        <TaskCard number="9*" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 100</code><br/><code>y = 200</code><br/><code>sirka = 210</code><br/><code>vyska = 10</code><br/><code>for i in range(5):</code><br/><code>    canvas.create_rectangle(x, y, x + sirka, y + vyska, fill='lightgray')</code><br/><code>    x = x + 20</code><br/><code>    y = y - 20</code><br/><code>    sirka = sirka - 40</code><br/><code>    vyska = vyska + 10</code><br/><br/>Nebo s použitím závislosti na proměnné <code>i</code>:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>for i in range(5):</code><br/><code>    x = 100 + i * 20</code><br/><code>    y = 200 - i * 20</code><br/><code>    sirka = 210 - i * 40</code><br/><code>    vyska = 10 + i * 10</code><br/><code>    canvas.create_rectangle(x, y, x + sirka, y + vyska, fill='lightgray')</code></p>}>
+        <TaskCard number="9*" title="" taskId="9" showTeacher={teacherMode} teacherNote={<p>Řešení:<br/><code>import tkinter</code><br/><code>canvas = tkinter.Canvas()</code><br/><code>canvas.pack()</code><br/><br/><code>x = 45</code><br/><code>y = 180</code><br/><code>sirka = 210</code><br/><code>vyska = 10</code><br/><code>for i in range(6):</code><br/><code>    canvas.create_rectangle(x, y - vyska, x + sirka, y, fill='#b8b8b8')</code><br/><code>    y = y - vyska</code><br/><code>    x = x + 20</code><br/><code>    sirka = sirka - 40</code><br/><code>    vyska = vyska + 10</code><br/><br/>Nebo s použitím závislosti na proměnné <code>i</code> (vypočítané souřadnice a rozměry patra).</p>}>
           <p>9* Vytvoř program <code>jested.py</code>, který pomocí cyklu nakreslí vysílač na Ještědu:</p>
           <CanvasPreview width={300} height={200} bgColor="#f0f0f0">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Rect 
-                key={i} 
-                x1={45 + i * 20} 
-                y1={160 - i * 20} 
-                width={210 - i * 40} 
-                height={10 + i * 10} 
-                fill="lightgray" 
-              />
-            ))}
+            {(() => {
+              // 6 obdélníků na sobě (od spodního nahoru)
+              // Šířka: 210, 170, 130, 90, 50, 10
+              // Výška: 10, 20, 30, 40, 50, 60
+              // Každé patro leží přímo na předchozím: y_top = y_bottom - vyska
+              let currentY = 185;
+              let currentWidth = 210;
+              let currentHeight = 10;
+              const rects = [];
+
+              for (let i = 0; i < 6; i++) {
+                const x1 = 150 - currentWidth / 2;
+                const y1 = currentY - currentHeight;
+                rects.push(
+                  <Rect
+                    key={i}
+                    x1={x1}
+                    y1={y1}
+                    width={currentWidth}
+                    height={currentHeight}
+                    fill="#b8b8b8"
+                    stroke="#222"
+                    strokeWidth={1}
+                  />
+                );
+                currentY = y1;
+                currentWidth -= 40;
+                currentHeight += 10;
+              }
+              return rects;
+            })()}
           </CanvasPreview>
           <p className="mt-4">Kreslení můžeš začít od spodního obdélníku. Ten má šířku 210 a výšku 10. Každý další obdélník leží na předchozím, je užší o 40 a vyšší o 10.</p>
         </TaskCard>

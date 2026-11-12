@@ -456,7 +456,7 @@ export const PRG2_PYTHON_LESSONS: LessonUnit[] = [
       hasWorksheet: true,
       worksheetType: 'worksheet'
     },
-    componentLoader: () => import('@/components/specializovana/programovani-2/PythonExpressionsChapter')
+    componentLoader: () => import('@/components/specializovana/programovani-2/PythonLoopExpressionsChapter')
   },
   {
     id: 'py-elipsy',
