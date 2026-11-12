@@ -9,6 +9,11 @@ import {
   PauseCircle,
   CheckCircle2,
   Trash2,
+  User,
+  Shield,
+  Eye,
+  EyeOff,
+  Lock,
 } from 'lucide-react';
 import { TheoryCard, Callout } from '@/components/ui/ChapterKit';
 
@@ -86,9 +91,105 @@ export default function PersistenceTheoryTab() {
         </div>
       </TheoryCard>
 
-      {/* 2. ČTYŘI ZPŮSOBY AUTOMATICKÉHO SPOUŠTĚNÍ */}
+      {/* 2. UŽIVATELSKÝ ÚČET VS. ÚČET SYSTEM */}
       <TheoryCard
         letter="2"
+        title="Pod jakým účtem program běží? (Uživatel vs. SYSTEM)"
+        icon={Shield}
+        tone="purple"
+      >
+        <p className="text-sm text-slate-600 leading-relaxed -mt-1 mb-2">
+          Operační systém Windows striktně rozlišuje, <strong>kdo</strong> aplikaci nebo proces vlastní a jaká práva jim udělí.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* RÁMEC 1: ÚČET UŽIVATELE */}
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-blue-50/70 to-white border-2 border-blue-200 shadow-sm flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between border-b border-blue-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm shrink-0">
+                    <User className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-slate-900 leading-tight">Účet Uživatele (User)</h3>
+                    <p className="text-xs font-semibold text-blue-700">Např. Jan Novák / Běžný profil</p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-800 border border-blue-200">
+                  Omezená práva
+                </span>
+              </div>
+
+              <div className="space-y-2 text-sm text-slate-700 leading-relaxed">
+                <div>
+                  <strong className="text-slate-900 block text-xs uppercase tracking-wide text-blue-900 mb-0.5">Kdy a jak běží:</strong>
+                  Spouští se až <strong>po vašem přihlášení</strong>. Aplikace má obvykle grafické okno na obrazovce (prohlížeč, hry, Office).
+                </div>
+
+                <div>
+                  <strong className="text-slate-900 block text-xs uppercase tracking-wide text-blue-900 mb-0.5">Co to znamená pro práva programu:</strong>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600 text-xs pl-1">
+                    <li>Vidí a může měnit pouze <strong>vaše soubory</strong> (Dokumenty, Plocha, Stažené soubory).</li>
+                    <li><strong>Nemůže</strong> měnit systémové soubory Windows ani data ostatních uživatelů v PC.</li>
+                    <li>Při pokusu o systémový zásah Windows zobrazí okno <strong>UAC</strong> (žádost o heslo správce).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-blue-100 flex items-center gap-2 text-xs font-semibold text-slate-600 bg-blue-50/50 -mx-2 -mb-2 p-2.5 rounded-xl">
+              <Eye className="w-4 h-4 text-blue-600 shrink-0" />
+              <span>Příklady: <code>msedge.exe</code>, <code>word.exe</code>, malware ve složce Po spuštění.</span>
+            </div>
+          </div>
+
+          {/* RÁMEC 2: ÚČET SYSTEM */}
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-rose-50/70 to-white border-2 border-rose-200 shadow-sm flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between border-b border-rose-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-rose-600 text-white flex items-center justify-center shadow-sm shrink-0">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-slate-900 leading-tight">Účet SYSTEM (LocalSystem)</h3>
+                    <p className="text-xs font-semibold text-rose-700">Interní systémový účet jádra Windows</p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-rose-100 text-rose-800 border border-rose-200">
+                  Neomezená moc
+                </span>
+              </div>
+
+              <div className="space-y-2 text-sm text-slate-700 leading-relaxed">
+                <div>
+                  <strong className="text-slate-900 block text-xs uppercase tracking-wide text-rose-900 mb-0.5">Kdy a jak běží:</strong>
+                  Běží <strong>ihned po zapnutí PC</strong> na pozadí, ještě předtím, než se kdokoliv přihlásí. Typicky nemá žádné grafické okno.
+                </div>
+
+                <div>
+                  <strong className="text-slate-900 block text-xs uppercase tracking-wide text-rose-900 mb-0.5">Co to znamená pro práva programu:</strong>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600 text-xs pl-1">
+                    <li>Má <strong>plnou kontrolu</strong> nad celým počítačem, jádrem, diskem i všemi uživateli.</li>
+                    <li>Může číst i mazat cokoliv v systému, měnit ovladače a žádné okno UAC ho <strong>nezastaví</strong>.</li>
+                    <li>Pokud se malware dostane pod účet SYSTEM, má útočník nad stanicí absolutní nadvládu.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-rose-100 flex items-center gap-2 text-xs font-semibold text-slate-600 bg-rose-50/50 -mx-2 -mb-2 p-2.5 rounded-xl">
+              <EyeOff className="w-4 h-4 text-rose-600 shrink-0" />
+              <span>Příklady: <code>services.exe</code>, antivirové jádro, systémové služby na pozadí.</span>
+            </div>
+          </div>
+        </div>
+      </TheoryCard>
+
+      {/* 3. ČTYŘI ZPŮSOBY AUTOMATICKÉHO SPOUŠTĚNÍ */}
+      <TheoryCard
+        letter="3"
         title="4 místa, kam se malware schová (od nejjednodušších po registr)"
         icon={ShieldAlert}
         tone="amber"
@@ -140,9 +241,9 @@ export default function PersistenceTheoryTab() {
         </div>
       </TheoryCard>
 
-      {/* 3. OBRANA A ČIŠTĚNÍ */}
+      {/* 4. OBRANA A ČIŠTĚNÍ */}
       <TheoryCard
-        letter="3"
+        letter="4"
         title="Jak ho najít a správně smazat"
         icon={ShieldCheck}
         tone="emerald"

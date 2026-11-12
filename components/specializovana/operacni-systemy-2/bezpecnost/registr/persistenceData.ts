@@ -57,22 +57,22 @@ export const PERSISTENCE_WORKSHEET_SCHEMA: WorksheetSchema = {
         },
         {
           id: 't2-s2',
-          text: 'Pojmenujte úlohu `TestMalovani`, jako aktivační událost (Trigger) zvolte `Při přihlášení`, jako akci `Spustit program` a zadejte `mspaint.exe`. Úlohu dokončete.',
+          text: 'Pojmenujte úlohu `TestEdge`, jako aktivační událost (Trigger) zvolte `Při přihlášení`, jako akci `Spustit program` a zadejte `msedge.exe`. Úlohu dokončete.',
         },
         {
           id: 't2-s3',
-          text: 'V seznamu Knihovny plánovače úloh úlohu `TestMalovani` vyhledejte, klikněte na ni a v dolním panelu na záložce `Obecné` zjistěte, pod jakým uživatelským účtem je nastavena a zda je zaškrtnuto spouštění pouze při přihlášeném uživateli.',
+          text: 'V seznamu Knihovny plánovače úloh úlohu `TestEdge` vyhledejte, klikněte na ni a v dolním panelu na záložce `Obecné` zjistěte, pod jakým uživatelským účtem je nastavena a zda je zaškrtnuto spouštění pouze při přihlášeném uživateli.',
         },
         {
           id: 't2-s4',
-          text: 'Po ověření testovací úlohu `TestMalovani` označte a smažte (klávesa Delete).',
+          text: 'Po ověření testovací úlohu `TestEdge` označte a smažte (klávesa Delete).',
         },
       ],
       questions: [
         {
           id: 'q2-logon-task',
           type: 'textarea',
-          label: '2A. Pod jakým uživatelským účtem se úloha TestMalovani vytvořila? Vyžadovalo její vytvoření administrátorská práva (potvrzení dialogu UAC)?',
+          label: '2A. Pod jakým uživatelským účtem se úloha TestEdge vytvořila? Vyžadovalo její vytvoření administrátorská práva (potvrzení dialogu UAC)?',
           placeholder: 'Uživatelský účet: ...\nByla nutná práva správce (UAC): ...',
         },
       ],
@@ -150,8 +150,8 @@ export const PERSISTENCE_WORKSHEET_SCHEMA: WorksheetSchema = {
     {
       id: 'task-5-registry',
       number: '5',
-      title: 'Úroveň 5: Systémový registr (Klíč Run a záloha přes .reg)',
-      subtitle: 'Část A: Zápis automatického spuštění | Část B: Záloha a obnova přes .reg',
+      title: 'Úroveň 5: Systémový registr (Klíč Run – automatické spuštění)',
+      subtitle: 'Zápis programu do uživatelské větve registru HKCU pro automatický start',
       steps: [
         {
           id: 't5-s1',
@@ -159,37 +159,23 @@ export const PERSISTENCE_WORKSHEET_SCHEMA: WorksheetSchema = {
         },
         {
           id: 't5-s2',
-          text: 'ČÁST A (Přidání a test): V pravém okně klikněte pravým tlačítkem ➔ `Nový` ➔ `Řetězcová hodnota (REG_SZ)`, pojmenujte ji `TestMalovani` a jako hodnotu zadejte cestu k Malování (např. `mspaint.exe` nebo `C:\\Windows\\System32\\mspaint.exe`).',
+          text: 'V pravém okně klikněte pravým tlačítkem ➔ `Nový` ➔ `Řetězcová hodnota (REG_SZ)`, pojmenujte ji `TestPlanovac` a jako hodnotu zadejte cestu k Plánovači úloh: `taskschd.msc` (nebo `C:\\Windows\\System32\\taskschd.msc`).',
         },
         {
           id: 't5-s3',
-          text: 'Odhlaste se ze systému Windows a znovu se přihlaste (nebo restartujte PC) – ověřte, že se Malování po náběhu plochy samo automaticky spustilo.',
+          text: 'Odhlaste se ze systému Windows a znovu se přihlaste (nebo restartujte PC) – ověřte, že se Plánovač úloh po náběhu plochy sám automaticky otevřel.',
         },
         {
           id: 't5-s4',
-          text: 'ČÁST B (Záloha do .reg): Vraťte se do `regedit` na složku `Run`, klikněte na ni pravým tlačítkem ➔ `Exportovat` a uložte soubor jako `zaloha_run.reg`.',
-        },
-        {
-          id: 't5-s5',
-          text: 'V `regedit` hodnotu `TestMalovani` ručně smažte (klávesa Delete).',
-        },
-        {
-          id: 't5-s6',
-          text: 'ČÁST B (Obnova): Na Ploše najděte svůj uložený soubor `zaloha_run.reg`, dvakrát na něj klikněte a potvrďte import do registru. V `regedit` stiskněte F5 a zkontrolujte, že se hodnota `TestMalovani` okamžitě vrátila zpět. Poté ji finálně ukliďte a smažte.',
+          text: 'Po ověření se vraťte do `regedit` na klíč `Run`, testovací hodnotu `TestPlanovac` označte a smažte (klávesa Delete), aby se Plánovač nespouštěl při každém startu.',
         },
       ],
       questions: [
         {
           id: 'q5-registry-test',
           type: 'textarea',
-          label: '5A. Část A (Automatické spuštění): Zapište celou cestu ke klíči Run v registru. Spustilo se Malování po novém přihlášení? Vyžadoval zápis do této větve (HKCU) potvrzení UAC dialogu?',
-          placeholder: 'Cesta v registru: ...\nSpuštění Malování (Ano/Ne): ...\nVyžadovalo UAC: ...',
-        },
-        {
-          id: 'q5-registry-backup',
-          type: 'textarea',
-          label: '5B. Část B (Záloha a obnova): Otevřete soubor zaloha_run.reg v Poznámkovém bloku a zkopírujte sem řádek s hodnotou TestMalovani. Obnovila se hodnota po dvojkliku na .reg soubor?',
-          placeholder: 'Řádek ze souboru .reg: "TestMalovani"=...\nÚspěšnost obnovení (Ano/Ne): ...',
+          label: '5A. Automatické spuštění přes registr: Zapište celou cestu ke klíči Run v registru. Spustil se Plánovač úloh po novém přihlášení? Vyžadoval zápis do této větve (HKCU) administrátorská práva (potvrzení dialogu UAC)?',
+          placeholder: 'Cesta v registru: ...\nSpuštění Plánovače úloh (Ano/Ne): ...\nVyžadovalo UAC: ...',
         },
       ],
     },

@@ -932,6 +932,12 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         4. *Systémový registr (`regedit`)* – hierarchie `HKCU` vs. `HKLM`, klíče `Run` / `RunOnce`.
     - **Interaktivní průvodce / simulátor ([PersistenceExplorerSim.tsx](components/specializovana/operacni-systemy-2/bezpecnost/registr/simulators/PersistenceExplorerSim.tsx)):**
       - Zrušena stará lišta se zabíjením procesů. Místo toho zaveden vizuální průvodce 5 kroky (4 místa v OS + srovnání Správce úloh vs. Sysinternals Autoruns) s tlačítky pro kopírování příkazů do `Win + R`, kontrolním náhledem okna Windows a odškrtáváním splnění na vlastním PC.
+    - **Úprava praktického listu (Úkoly 2 a 5 v BZ3):**
+      - *Úkol 2 (Plánovač úloh při přihlášení):* Testovací aplikace změněna na `msedge.exe` (úloha `TestEdge`).
+      - *Úkol 5 (Registr – Klíč Run):* Vyřazena Část B se zálohou a obnovou přes export do `.reg` souboru. Spouštěným programem v `HKCU\...\Run` je nově **Plánovač úloh (`taskschd.msc`)** (hodnota `TestPlanovac`). Úkol je zjednodušen na čistý zápis do registru, test spuštění po přihlášení a bezpečné smazání hodnoty.
+    - **Rozšíření teoretické záložky (Uživatel vs. SYSTEM):** Do `PersistenceTheoryTab.tsx` přidána nová sekce 2 s dvěma velkými přehlednými rámci:
+      1. *Účet Uživatele (User)* – běží po přihlášení, interaktivní okna, přístup k vlastním datům (Plocha, Dokumenty), bez systémových zásahů, ochrana přes UAC.
+      2. *Účet SYSTEM (LocalSystem)* – běží okamžitě od startu PC před přihlášením na pozadí, neomezená systémová práva, neexistuje UAC blokace; cíl pro stealth a eskalaci malwaru.
     - **Stav před další iterací:** BZ3 kompletně dokončeno včetně Praktického listu (7 úloh), sjednoceného WorksheetLayout/WorksheetKit a commitnuto do větve `dev`.
 
 37. **Přepnutí kontextu na předmět Programování a vývoj her / aplikací 1–4 (PVH / PRG 1–4):**
