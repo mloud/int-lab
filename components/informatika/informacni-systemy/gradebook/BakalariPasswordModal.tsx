@@ -72,27 +72,27 @@ export const BakalariPasswordModal: React.FC<BakalariPasswordModalProps> = ({
 
         {/* Formulář */}
         <form onSubmit={handleLoginSubmit} className="p-6 space-y-4">
-          <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between">
+          <div className="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">
+              <span className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-0.5">
                 Přihlašovaný účet ({role})
               </span>
-              <div className="font-bold text-slate-900 text-sm">{getUserFullName()}</div>
-              <div className="text-xs text-slate-500 font-mono">login: @{username}</div>
+              <div className="font-black text-slate-900 text-base">{getUserFullName()}</div>
+              <div className="text-sm text-slate-600 font-mono font-bold">login: @{username}</div>
             </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-800">
+            <span className="text-sm font-black px-3 py-1.5 rounded-xl bg-indigo-100 text-indigo-900 border border-indigo-200">
               {role}
             </span>
           </div>
 
           {/* Vstup pro heslo */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 flex items-center justify-between">
+          <div className="space-y-2">
+            <label className="text-sm font-black text-slate-800 flex items-center justify-between">
               <span>Zadejte heslo:</span>
               <button
                 type="button"
                 onClick={handleUseHint}
-                className="text-xs text-blue-600 hover:text-blue-800 font-bold underline cursor-pointer"
+                className="text-sm text-blue-700 hover:text-blue-900 font-black underline cursor-pointer"
               >
                 Vyplnit nápovědu
               </button>
@@ -108,30 +108,30 @@ export const BakalariPasswordModal: React.FC<BakalariPasswordModalProps> = ({
                   setErrorMsg(null);
                 }}
                 placeholder="Zadejte heslo..."
-                className="w-full px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium transition-all pr-10"
+                className="w-full px-5 py-3.5 rounded-2xl border-2 border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none text-base font-mono font-bold transition-all pr-12 text-slate-900"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 cursor-pointer"
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
           </div>
 
           {/* Nápověda hesla pro žáky */}
-          <div className="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-center justify-between">
-            <div className="flex items-center gap-1.5 font-medium">
-              <KeyRound className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+          <div className="bg-amber-50 p-3 rounded-2xl border-2 border-amber-200 text-sm text-amber-950 flex items-center justify-between">
+            <div className="flex items-center gap-2 font-bold">
+              <KeyRound className="w-4 h-4 text-amber-700 shrink-0" />
               <span>
-                Školní heslo: <strong className="font-mono">{expectedPassword}</strong>
+                Školní heslo: <strong className="font-mono text-base font-black">{expectedPassword}</strong>
               </span>
             </div>
             <button
               type="button"
               onClick={handleUseHint}
-              className="text-[11px] font-bold text-amber-800 hover:text-amber-950 underline cursor-pointer"
+              className="text-xs font-black text-amber-900 hover:text-amber-950 bg-amber-200/80 hover:bg-amber-300 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
             >
               Vložit
             </button>

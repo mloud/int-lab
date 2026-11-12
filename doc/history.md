@@ -663,6 +663,24 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Uživatelské role a přístupová práva: podrobná porovnávací tabulka 4 rolí (Žák, Vyučující, Zákonný zástupce, Administrátor).
       - Rozšíření: Státní registr obyvatel a důvody pro nejvyšší stupeň zabezpečení.
       - Interaktivní minikvíz se 4 otázkami pro rychlé ověření znalostí přímo v hodině.
+    - **Kompletní didaktický a typografický redesign pro 7. třídu ZŠ (Varianta 3):**
+      - Na základě reálného ověření z výuky v 7. třídě byl proveden rozsáhlý redesign zaměřený na odstranění kognitivního přetížení a radikální zvýšení čitelnosti na školních monitorech i projekčním plátně:
+        1. **Plošné zvýšení typografie a kontrastu (ZŠ Standard):**
+           - Kompletní eliminace drobných písem `text-[10px]`, `text-[11px]` a nevýrazné šedé barvy.
+           - Základní texty zvětšeny na `text-base` (16px) a `text-lg` (18px) se sytě kontrastním písmem `text-slate-900`.
+           - Tlačítka, přepínače a ovládací prvky dostaly velkorysé paddingy (`py-3 px-5`) a výrazné ikony.
+        2. **Interaktivní kroková prezentace teorie (`InformationSystemsTheoryTab.tsx`):**
+           - Místo jedné dlouhé nepřehledné skrolovací stránky převedena teorie do 5 přehledných velkých vizuálních karet (1. Co je IS, 2. Jak funguje cyklus, 3. 4 pilíře, 4. Účet a profil, 5. Role a práva).
+           - Přidána horní krokovací lišta 1..5 a spodní navigační tlačítka „Předchozí“ a „Další téma“ s možností přepnutí na celkový přehled.
+        3. **Zpřehlednění a zvětšení simulátoru žákovské knížky:**
+           - V `GradebookTasksPanel.tsx` zvětšeny texty zadání cílů a otázek na `text-lg font-black`, vstupy pro odpovědi a ověřovací tlačítka mají výšku 48px+.
+           - V `GradeTable.tsx` i `EditableGradeTable.tsx` zvětšeny známkové dlaždice na `w-10 h-10` s velkými číslicemi, názvy předmětů a průměry jsou tučně a vysoce kontrastní.
+           - V `ParentView.tsx` a `TeacherView.tsx` zvětšen přepínač dětí a žáků do podoby velkých reprezentativních tlačítek s třídou a ikonami.
+        4. **Vzdušné 2sloupcové rozložení Karty strávníka (`LunchSysSelectionStep.tsx`, `LunchSysFlipCard.tsx`):**
+           - Zrušena stísněná 3sloupcová mřížka ve prospěch prostorných 2 sloupců (`grid-cols-1 sm:grid-cols-2`).
+           - Zvětšeny rozměry kartiček (`h-48 sm:h-52`), písma nadpisů a zadní vysvětlující texty pro snadné čtení.
+        5. **Vyčištění a zvětšení zadání projektových úloh:**
+           - Zvětšena písma v zadání `LibraryLoansTableTab.tsx` a `SmartLightingProjectTab.tsx`.
     - **Sjednocení praktických úloh do hlavní záložky „Aktivity“:**
       - Kvůli vysokému počtu položek v hlavní navigační liště byla kapitola zpřehledněna do 3 hlavních záložek:
         1. **Řízená diskuze** (`diskuze`)

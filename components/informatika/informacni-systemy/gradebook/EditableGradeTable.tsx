@@ -126,39 +126,39 @@ export const EditableGradeTable: React.FC<EditableGradeTableProps> = ({
       )}
 
       {/* Tabulka známek žáka s možností přidání a mazání */}
-      <div className="bg-white rounded-2xl border border-slate-300 shadow-sm overflow-hidden">
-        <div className="px-5 py-3 bg-[#F0F4F8] border-b border-slate-300 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-[#0B3A60]" />
-            <span className="font-black text-[#0B3A60] text-sm uppercase tracking-wide">
+      <div className="bg-white rounded-3xl border-2 border-slate-300 shadow-sm overflow-hidden">
+        <div className="px-6 py-4 bg-[#F0F4F8] border-b-2 border-slate-300 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <BookOpen className="w-5 h-5 text-[#0B3A60]" />
+            <span className="font-black text-[#0B3A60] text-base uppercase tracking-wide">
               Známky: {student.firstName} {student.lastName}
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             {totalAverage && (
-              <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-xl border border-slate-300 shadow-xs">
-                <span className="text-xs font-bold text-slate-500">Průměr:</span>
-                <span className="text-sm font-black text-[#0B3A60]">{totalAverage}</span>
+              <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-xl border-2 border-slate-300 shadow-xs">
+                <span className="text-sm font-bold text-slate-600">Celkový průměr:</span>
+                <span className="text-base font-black text-[#0B3A60]">{totalAverage}</span>
               </div>
             )}
 
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0B3A60] hover:bg-[#082E4D] text-white rounded-lg font-bold text-xs shadow-xs transition-all active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 bg-[#0B3A60] hover:bg-[#082E4D] text-white rounded-xl font-black text-sm shadow-sm transition-all active:scale-95 cursor-pointer"
             >
-              <PlusCircle className="w-3.5 h-3.5" />
-              <span>{showAddForm ? 'Zavřít formulář' : 'Zadat známku'}</span>
+              <PlusCircle className="w-4 h-4" />
+              <span>{showAddForm ? 'Zavřít formulář' : 'Zadat novou známku'}</span>
             </button>
           </div>
         </div>
 
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-slate-100/80 border-b border-slate-300 text-xs font-bold text-slate-600 uppercase tracking-wider">
-              <th className="py-2.5 px-4 w-44">Předmět</th>
-              <th className="py-2.5 px-4">Zapsané známky (křížkem smažete)</th>
-              <th className="py-2.5 px-4 text-center w-28">Průměr</th>
+            <tr className="bg-slate-100/90 border-b-2 border-slate-300 text-sm font-black text-slate-700 uppercase tracking-wider">
+              <th className="py-3 px-4 w-48">Předmět</th>
+              <th className="py-3 px-4">Zapsané známky (křížkem smažete)</th>
+              <th className="py-3 px-4 text-center w-32">Průměr</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 text-sm">

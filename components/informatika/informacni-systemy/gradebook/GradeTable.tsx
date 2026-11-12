@@ -41,18 +41,18 @@ export const GradeTable: React.FC<GradeTableProps> = ({
   const { average: totalAverage } = calculateWeightedAverage(grades);
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-300 shadow-sm overflow-hidden font-sans">
+    <div className="bg-white rounded-3xl border-2 border-slate-300 shadow-sm overflow-hidden font-sans">
       {/* Hlavička tabulky */}
-      <div className="px-5 py-3 bg-[#F0F4F8] border-b border-slate-300 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-[#0B3A60]" />
-          <h3 className="font-black text-[#0B3A60] text-sm uppercase tracking-wide">{title}</h3>
+      <div className="px-6 py-4 bg-[#F0F4F8] border-b-2 border-slate-300 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5">
+          <BookOpen className="w-5 h-5 text-[#0B3A60]" />
+          <h3 className="font-black text-[#0B3A60] text-base uppercase tracking-wide">{title}</h3>
         </div>
 
         {totalAverage && (
-          <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-xl border border-slate-300 shadow-xs">
-            <span className="text-xs font-bold text-slate-500">Celkový průměr:</span>
-            <span className="text-sm font-black text-[#0B3A60]">{totalAverage}</span>
+          <div className="flex items-center gap-2.5 bg-white px-4 py-2 rounded-2xl border-2 border-slate-300 shadow-xs">
+            <span className="text-sm font-bold text-slate-600">Celkový průměr:</span>
+            <span className="text-lg font-black text-[#0B3A60]">{totalAverage}</span>
           </div>
         )}
       </div>
@@ -60,13 +60,13 @@ export const GradeTable: React.FC<GradeTableProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-slate-100/80 border-b border-slate-300 text-xs font-bold text-slate-600 uppercase tracking-wider">
-              <th className="py-2.5 px-4 w-44">Předmět</th>
-              <th className="py-2.5 px-4">Známky (číslo v indexu = váha)</th>
-              <th className="py-2.5 px-4 text-center w-28">Průměr</th>
+            <tr className="bg-slate-100/90 border-b-2 border-slate-300 text-sm font-black text-slate-700 uppercase tracking-wider">
+              <th className="py-3.5 px-5 w-48">Předmět</th>
+              <th className="py-3.5 px-5">Známky (číslo v rohu = váha známky)</th>
+              <th className="py-3.5 px-5 text-center w-32">Průměr</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-200 text-sm">
+          <tbody className="divide-y divide-slate-200 text-base">
             {subjects.length > 0 ? (
               subjects.map(subject => {
                 const subjectGrades = grades
@@ -75,23 +75,23 @@ export const GradeTable: React.FC<GradeTableProps> = ({
                 const { average: subjectAverage } = calculateWeightedAverage(subjectGrades);
 
                 return (
-                  <tr key={subject} className="hover:bg-slate-50/70 transition-colors">
-                    <td className="py-3 px-4 font-bold text-slate-800 align-middle">
+                  <tr key={subject} className="hover:bg-slate-50 transition-colors">
+                    <td className="py-4 px-5 font-black text-slate-900 align-middle">
                       {subject}
                     </td>
 
-                    <td className="py-3 px-4 align-middle">
-                      <div className="flex flex-wrap items-center gap-2">
+                    <td className="py-4 px-5 align-middle">
+                      <div className="flex flex-wrap items-center gap-2.5">
                         {subjectGrades.map(grade => (
                           <div
                             key={grade.id}
                             title={`${grade.topic || 'Zkoušení'} (${new Date(grade.date).toLocaleDateString('cs-CZ')}, váha ${grade.weight})`}
-                            className={`relative inline-flex items-center justify-center w-8 h-8 rounded-lg font-black text-sm border cursor-default select-none transition-transform hover:scale-110 ${getGradeBadgeStyle(
+                            className={`relative inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl font-black text-base border-2 cursor-default select-none transition-transform hover:scale-110 shadow-xs ${getGradeBadgeStyle(
                               grade.grade
                             )}`}
                           >
                             <span>{grade.grade}</span>
-                            <span className="absolute -top-1.5 -right-1.5 bg-slate-900 text-white text-[9px] font-bold px-1 rounded-full shadow-xs leading-tight">
+                            <span className="absolute -top-2 -right-2 bg-slate-900 text-white text-[10px] font-black px-1.5 py-0.2 rounded-full shadow-md leading-tight">
                               {grade.weight}
                             </span>
                           </div>
@@ -99,7 +99,7 @@ export const GradeTable: React.FC<GradeTableProps> = ({
                       </div>
                     </td>
 
-                    <td className="py-3 px-4 text-center font-black text-[#0B3A60] text-base align-middle bg-slate-50/50">
+                    <td className="py-4 px-5 text-center font-black text-[#0B3A60] text-lg align-middle bg-slate-50/60">
                       {subjectAverage || '–'}
                     </td>
                   </tr>

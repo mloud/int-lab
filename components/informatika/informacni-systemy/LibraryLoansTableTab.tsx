@@ -24,11 +24,11 @@ export const LibraryLoansTableTab: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold">
+            <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-sm font-bold">
               <Users className="w-4 h-4 text-blue-600" />
               <span>Samostatně nebo ve dvojicích</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 text-purple-800 text-xs font-bold">
+            <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 text-sm font-bold">
               <FileEdit className="w-4 h-4 text-purple-600" />
               <span>Zápis na papír / do sešitu</span>
             </span>
@@ -36,28 +36,28 @@ export const LibraryLoansTableTab: React.FC = () => {
         </div>
 
         {/* Úvodní příběh a zadání */}
-        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 p-6 sm:p-8 rounded-2xl shadow-xs space-y-2">
-          <p className="text-base sm:text-lg text-slate-900 font-bold leading-relaxed">
+        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 p-6 sm:p-8 rounded-3xl shadow-xs space-y-2">
+          <p className="text-lg sm:text-xl text-slate-900 font-bold leading-relaxed">
             „Představte si, že městská nebo školní knihovna ruší staré papírové kartičky v šuplících
             a zavádí moderní počítačový systém. Knihovnice potřebuje databázovou tabulku{' '}
             <strong className="text-indigo-900 font-black">[ VÝPŮJČKY ]</strong>, kam se při každém
             zapůjčení knihy zaznamená jeden nový řádek.“
           </p>
-          <p className="text-xs sm:text-sm text-indigo-950/80 font-medium pt-1">
-            Zkuste na papír navrhnout, jaké sloupce tato tabulka musí obsahovat.
+          <p className="text-base text-indigo-950 font-semibold pt-1">
+            Zkuste na papír navrhnout, jaké sloupce tato tabulka musí nutně obsahovat.
           </p>
         </div>
 
         {/* Náčrt struktury tabulky pro překreslení na papír */}
         <div className="pt-2 space-y-3">
-          <div className="overflow-x-auto rounded-2xl border-2 border-dashed border-slate-300 p-4 bg-slate-50/60">
-            <table className="w-full text-center border-collapse text-xs sm:text-sm">
+          <div className="overflow-x-auto rounded-3xl border-2 border-dashed border-slate-300 p-6 bg-slate-50/60">
+            <table className="w-full text-center border-collapse text-base">
               <thead>
-                <tr className="border-b-2 border-slate-300 font-black text-slate-700 bg-white">
-                  <th className="p-3 border-r border-slate-200 text-indigo-900">[ Sloupec 1 ]</th>
-                  <th className="p-3 border-r border-slate-200 text-indigo-900">[ Sloupec 2 ]</th>
-                  <th className="p-3 border-r border-slate-200 text-indigo-900">[ Sloupec 3 ]</th>
-                  <th className="p-3 text-slate-400 font-bold tracking-widest">...</th>
+                <tr className="border-b-2 border-slate-300 font-black text-slate-800 bg-white">
+                  <th className="p-4 border-r border-slate-200 text-indigo-900">[ Sloupec 1 ]</th>
+                  <th className="p-4 border-r border-slate-200 text-indigo-900">[ Sloupec 2 ]</th>
+                  <th className="p-4 border-r border-slate-200 text-indigo-900">[ Sloupec 3 ]</th>
+                  <th className="p-4 text-slate-400 font-bold tracking-widest text-xl">...</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 text-slate-400 font-mono text-xs">

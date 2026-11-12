@@ -60,75 +60,75 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
         content: (
           <div className="space-y-4 mt-4">
             {/* 5 příkladů */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              <div className="bg-white/95 p-3 rounded-xl border border-blue-200 text-center shadow-xs">
-                <GraduationCap className="w-6 h-6 mx-auto mb-1 text-blue-600" />
-                <div className="text-xs font-black text-slate-800">Bakaláři</div>
-                <div className="text-[11px] text-slate-500">Známky a rozvrh</div>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+              <div className="bg-white/95 p-4 rounded-2xl border-2 border-blue-200 text-center shadow-xs">
+                <GraduationCap className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                <div className="text-base font-black text-slate-900">Bakaláři</div>
+                <div className="text-sm font-semibold text-slate-600">Známky a rozvrh</div>
               </div>
-              <div className="bg-white/95 p-3 rounded-xl border border-amber-200 text-center shadow-xs">
-                <Library className="w-6 h-6 mx-auto mb-1 text-amber-600" />
-                <div className="text-xs font-black text-slate-800">Knihovna</div>
-                <div className="text-[11px] text-slate-500">Katalog a výpůjčky</div>
+              <div className="bg-white/95 p-4 rounded-2xl border-2 border-amber-200 text-center shadow-xs">
+                <Library className="w-8 h-8 mx-auto mb-2 text-amber-600" />
+                <div className="text-base font-black text-slate-900">Knihovna</div>
+                <div className="text-sm font-semibold text-slate-600">Katalog a výpůjčky</div>
               </div>
-              <div className="bg-white/95 p-3 rounded-xl border border-emerald-200 text-center shadow-xs">
-                <ShoppingCart className="w-6 h-6 mx-auto mb-1 text-emerald-600" />
-                <div className="text-xs font-black text-slate-800">E-shop</div>
-                <div className="text-[11px] text-slate-500">Košík a objednávky</div>
+              <div className="bg-white/95 p-4 rounded-2xl border-2 border-emerald-200 text-center shadow-xs">
+                <ShoppingCart className="w-8 h-8 mx-auto mb-2 text-emerald-600" />
+                <div className="text-base font-black text-slate-900">E-shop</div>
+                <div className="text-sm font-semibold text-slate-600">Košík a objednávky</div>
               </div>
-              <div className="bg-white/95 p-3 rounded-xl border border-slate-200 text-center shadow-xs">
-                <Landmark className="w-6 h-6 mx-auto mb-1 text-slate-700" />
-                <div className="text-xs font-black text-slate-800">Banka</div>
-                <div className="text-[11px] text-slate-500">Účty a platby</div>
+              <div className="bg-white/95 p-4 rounded-2xl border-2 border-slate-300 text-center shadow-xs">
+                <Landmark className="w-8 h-8 mx-auto mb-2 text-slate-700" />
+                <div className="text-base font-black text-slate-900">Banka</div>
+                <div className="text-sm font-semibold text-slate-600">Účty a platby</div>
               </div>
-              <div className="bg-white/95 p-3 rounded-xl border border-rose-200 text-center col-span-2 sm:col-span-1 shadow-xs">
-                <Film className="w-6 h-6 mx-auto mb-1 text-rose-600" />
-                <div className="text-xs font-black text-slate-800">Netflix</div>
-                <div className="text-[11px] text-slate-500">Filmy a profily</div>
+              <div className="bg-white/95 p-4 rounded-2xl border-2 border-rose-200 text-center col-span-2 sm:col-span-1 shadow-xs">
+                <Film className="w-8 h-8 mx-auto mb-2 text-rose-600" />
+                <div className="text-base font-black text-slate-900">Netflix</div>
+                <div className="text-sm font-semibold text-slate-600">Filmy a profily</div>
               </div>
             </div>
 
             {/* Společné vlastnosti informačních systémů */}
-            <div className="bg-indigo-50/70 p-4 rounded-2xl border-2 border-indigo-200">
-              <span className="text-xs font-black uppercase tracking-wider text-indigo-800 block mb-3">
+            <div className="bg-indigo-50/80 p-5 rounded-3xl border-2 border-indigo-200 space-y-3">
+              <span className="text-sm font-black uppercase tracking-wider text-indigo-900 block">
                 ⭐ 4 společné vlastnosti každého informačního systému:
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <div className="bg-white p-3 rounded-xl border border-indigo-100 flex items-start gap-2.5 shadow-xs">
-                  <span className="text-lg shrink-0">💾</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="bg-white p-4 rounded-2xl border border-indigo-100 flex items-start gap-3 shadow-xs">
+                  <span className="text-2xl shrink-0">💾</span>
                   <div>
-                    <div className="text-xs font-black text-slate-900">1. Pamatuje si data</div>
-                    <div className="text-[11px] text-slate-600 leading-snug">
+                    <div className="text-base font-black text-slate-900">1. Pamatuje si data</div>
+                    <div className="text-sm text-slate-700 font-medium leading-relaxed">
                       Ukládá obrovské množství údajů (známky, zboží, filmy či platby).
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 rounded-xl border border-indigo-100 flex items-start gap-2.5 shadow-xs">
-                  <span className="text-lg shrink-0">🔑</span>
+                <div className="bg-white p-4 rounded-2xl border border-indigo-100 flex items-start gap-3 shadow-xs">
+                  <span className="text-2xl shrink-0">🔑</span>
                   <div>
-                    <div className="text-xs font-black text-slate-900">2. Má uživatelské účty</div>
-                    <div className="text-[11px] text-slate-600 leading-snug">
+                    <div className="text-base font-black text-slate-900">2. Má uživatelské účty</div>
+                    <div className="text-sm text-slate-700 font-medium leading-relaxed">
                       Každý se přihlašuje vlastním jménem a heslem pro ochranu soukromí.
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 rounded-xl border border-indigo-100 flex items-start gap-2.5 shadow-xs">
-                  <span className="text-lg shrink-0">🌐</span>
+                <div className="bg-white p-4 rounded-2xl border border-indigo-100 flex items-start gap-3 shadow-xs">
+                  <span className="text-2xl shrink-0">🌐</span>
                   <div>
-                    <div className="text-xs font-black text-slate-900">3. Funguje online pro mnoho lidí</div>
-                    <div className="text-[11px] text-slate-600 leading-snug">
+                    <div className="text-base font-black text-slate-900">3. Funguje online pro mnoho lidí</div>
+                    <div className="text-sm text-slate-700 font-medium leading-relaxed">
                       Běží na serveru a přistupujeme k němu přes mobil, tablet i počítač.
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-3 rounded-xl border border-indigo-100 flex items-start gap-2.5 shadow-xs">
-                  <span className="text-lg shrink-0">🛡️</span>
+                <div className="bg-white p-4 rounded-2xl border border-indigo-100 flex items-start gap-3 shadow-xs">
+                  <span className="text-2xl shrink-0">🛡️</span>
                   <div>
-                    <div className="text-xs font-black text-slate-900">4. Řídí práva (role)</div>
-                    <div className="text-[11px] text-slate-600 leading-snug">
+                    <div className="text-base font-black text-slate-900">4. Řídí práva (role)</div>
+                    <div className="text-sm text-slate-700 font-medium leading-relaxed">
                       Každý smí vidět a měnit jen to, co má dovoleno (žák vs. učitel).
                     </div>
                   </div>
@@ -594,39 +594,39 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
         )}
 
         {/* DOLNÍ NAVIGACE MEZI KROKY */}
-        <div className="flex items-center justify-between pt-4 border-t-2 border-slate-100">
+        <div className="flex items-center justify-between pt-5 border-t-2 border-slate-100">
           <button
             onClick={handlePrev}
             disabled={currentStepIndex === 0}
-            className={`px-4 py-2.5 rounded-xl border-2 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all ${
+            className={`px-5 py-3 rounded-2xl border-2 font-bold text-sm sm:text-base flex items-center gap-2 transition-all cursor-pointer ${
               currentStepIndex === 0
                 ? 'opacity-40 cursor-not-allowed border-slate-200 text-slate-400'
                 : 'border-slate-300 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-5 h-5" />
             <span>Předchozí otázka</span>
           </button>
 
-          <div className="text-xs font-black text-slate-400">
-            Krok {currentStepIndex + 1} z {steps.length}
+          <div className="text-sm font-black text-slate-500">
+            Otázka {currentStepIndex + 1} z {steps.length}
           </div>
 
           {currentStepIndex < steps.length - 1 ? (
             <button
               onClick={handleNext}
-              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-sm sm:text-base shadow-md transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>Další otázka</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           ) : (
             <button
               onClick={onGoToSimulator}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-md transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>Vyzkoušet v simulátoru</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </button>
           )}
         </div>

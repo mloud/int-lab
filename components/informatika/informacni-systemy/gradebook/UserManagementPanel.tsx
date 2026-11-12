@@ -212,18 +212,18 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                 className="flex items-center justify-between p-3.5 bg-slate-50/80 hover:bg-slate-100 rounded-2xl border border-slate-200/60 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">
+                  <span className="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 font-black text-sm flex items-center justify-center">
                     {student.firstName[0]}{student.lastName[0]}
                   </span>
                   <div>
-                    <span className="font-bold text-slate-800 text-sm">
+                    <span className="font-black text-slate-900 text-base">
                       {student.firstName} {student.lastName}
                     </span>
-                    <span className="ml-2 text-[11px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
+                    <span className="ml-2 text-xs font-mono font-bold text-slate-500 bg-white px-2 py-0.5 rounded-md border border-slate-200">
                       ID: {student.id}
                     </span>
                     {student.username && (
-                      <span className="ml-1 text-[11px] font-mono text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">
+                      <span className="ml-1 text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-200">
                         @{student.username}
                       </span>
                     )}
@@ -342,39 +342,39 @@ export const UserManagementPanel: React.FC<UserManagementPanelProps> = ({
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center">
+                      <span className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 font-black text-sm flex items-center justify-center">
                         {parent.firstName[0]}{parent.lastName[0]}
                       </span>
                       <div>
-                        <div className="font-bold text-slate-800 text-sm">
+                        <div className="font-black text-slate-900 text-base">
                           {parent.firstName} {parent.lastName}
-                          <span className="ml-2 text-[11px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
+                          <span className="ml-2 text-xs font-mono font-bold text-slate-500 bg-white px-2 py-0.5 rounded-md border border-slate-200">
                             ID: {parent.id}
                           </span>
                           {parent.username && (
-                            <span className="ml-1 text-[11px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                            <span className="ml-1 text-xs font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                               @{parent.username}
                             </span>
                           )}
                         </div>
-                        <div className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
-                          <Link2 className="w-3 h-3 text-emerald-600" />
-                          <span>Děti v péči: <strong className="text-slate-700">{childrenNames || 'Žádné přiřazené'}</strong></span>
+                        <div className="text-sm text-slate-600 flex items-center gap-1.5 mt-0.5">
+                          <Link2 className="w-4 h-4 text-emerald-600" />
+                          <span>Děti v péči: <strong className="text-slate-900 font-bold">{childrenNames || 'Žádné přiřazené'}</strong></span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => setEditingParentId(isEditing ? null : parent.id)}
-                        className={`text-xs font-bold px-2.5 py-1 rounded-xl border transition-all flex items-center gap-1 cursor-pointer ${
+                        className={`text-sm font-black px-3.5 py-1.5 rounded-xl border-2 transition-all flex items-center gap-1.5 cursor-pointer ${
                           isEditing
-                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-2xs'
-                            : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200'
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-sm'
+                            : 'text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border-emerald-300'
                         }`}
                         title="Upravit přiřazení dětí tomuto rodiči"
                       >
-                        <Link2 className="w-3 h-3" />
+                        <Link2 className="w-4 h-4" />
                         <span>{isEditing ? 'Hotovo' : 'Upravit děti'}</span>
                       </button>
 

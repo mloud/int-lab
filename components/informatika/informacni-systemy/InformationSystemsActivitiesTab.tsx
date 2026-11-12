@@ -37,7 +37,7 @@ export const InformationSystemsActivitiesTab: React.FC<InformationSystemsActivit
   return (
     <div className="w-full flex flex-col gap-6">
       {/* Horní přepínač podaktivit */}
-      <div className="bg-slate-100/90 backdrop-blur-xs p-1.5 rounded-2xl border border-slate-200 shadow-inner flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+      <div className="bg-slate-100 p-2 sm:p-2.5 rounded-3xl border-2 border-slate-200 shadow-sm flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         {ACTIVITIES.map((act) => {
           const Icon = act.icon;
           const isActive = activeActivity === act.id;
@@ -46,20 +46,20 @@ export const InformationSystemsActivitiesTab: React.FC<InformationSystemsActivit
             <button
               key={act.id}
               onClick={() => onSelectActivity(act.id)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-sm sm:text-base font-black transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-white text-indigo-900 shadow-sm border border-indigo-200/80 font-black'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 border border-transparent'
+                  ? 'bg-white text-indigo-900 shadow-md border-2 border-indigo-300 ring-2 ring-indigo-100'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-white/80 border-2 border-transparent'
               }`}
             >
               <span
-                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black shrink-0 ${
-                  isActive ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-700'
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black shrink-0 ${
+                  isActive ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-800'
                 }`}
               >
                 {act.order}
               </span>
-              <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-500'}`} />
+              <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-500'}`} />
               <span className="hidden sm:inline">{act.label}</span>
               <span className="inline sm:hidden">{act.shortLabel}</span>
             </button>

@@ -481,28 +481,28 @@ export const LibraryDiagramBuilder: React.FC = () => {
               </div>
 
               {/* Krátká situace a otázka */}
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+              <div className="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 text-sm sm:text-base text-slate-800 leading-relaxed font-bold">
                 💡 <strong>Představ si:</strong> {currentStep.situation}
               </div>
 
-              <h4 className="text-xs sm:text-sm font-black text-slate-900 leading-snug">
+              <h4 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                 {currentStep.question}
               </h4>
 
               {/* Možnosti odpovědí */}
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-2.5">
                 {currentStep.options.map((opt) => {
                   const isSelected = selectedOptionId === opt.id;
                   return (
                     <button
                       key={opt.id}
                       onClick={() => handleSelectOption(opt.id)}
-                      className={`w-full p-2.5 rounded-xl border-2 text-left font-bold text-xs sm:text-sm transition-all flex items-center justify-between cursor-pointer ${
+                      className={`w-full p-3.5 rounded-2xl border-2 text-left font-bold text-sm sm:text-base transition-all flex items-center justify-between cursor-pointer ${
                         isSelected
                           ? opt.isCorrect
                             ? 'bg-emerald-50 border-emerald-500 text-emerald-950 shadow-xs'
                             : 'bg-rose-50 border-rose-400 text-rose-950'
-                          : 'bg-white border-slate-200 hover:border-indigo-300 hover:bg-slate-50 text-slate-800'
+                          : 'bg-white border-slate-200 hover:border-indigo-400 hover:bg-slate-50 text-slate-900'
                       }`}
                     >
                       <span className="leading-snug">{opt.label}</span>
@@ -511,7 +511,7 @@ export const LibraryDiagramBuilder: React.FC = () => {
                           {opt.isCorrect ? (
                             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                           ) : (
-                            <span className="text-xs font-bold text-rose-600">Zkus to znovu</span>
+                            <span className="text-xs font-black text-rose-600">Zkus to znovu</span>
                           )}
                         </span>
                       )}
@@ -523,16 +523,16 @@ export const LibraryDiagramBuilder: React.FC = () => {
               {/* Stručné vysvětlení po volbě */}
               {selectedOption && (
                 <div
-                  className={`p-3 rounded-xl border text-xs font-medium leading-relaxed animate-in fade-in duration-200 ${
+                  className={`p-4 rounded-2xl border-2 text-sm font-semibold leading-relaxed animate-in fade-in duration-200 ${
                     selectedOption.isCorrect
-                      ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                      : 'bg-rose-50 border-rose-200 text-rose-900'
+                      ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
+                      : 'bg-rose-50 border-rose-300 text-rose-950'
                   }`}
                 >
                   {selectedOption.isCorrect ? '✅ ' : '❌ '}
                   {selectedOption.explanation}
                   {selectedOption.isCorrect && (
-                    <span className="block mt-1 font-bold text-emerald-800">
+                    <span className="block mt-1.5 font-black text-emerald-900">
                       📌 Pravidlo: {currentStep.lessonPoint}
                     </span>
                   )}
@@ -540,11 +540,11 @@ export const LibraryDiagramBuilder: React.FC = () => {
               )}
 
               {/* Tlačítko pro zakreslení šipky */}
-              <div className="flex justify-end pt-1">
+              <div className="flex justify-end pt-2">
                 <button
                   onClick={handleConfirm}
                   disabled={!selectedOption?.isCorrect}
-                  className="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:hover:bg-indigo-600 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:hover:bg-indigo-600 text-white font-black text-sm uppercase tracking-wider rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>
                     {currentStepIndex + 1 === STEPS.length

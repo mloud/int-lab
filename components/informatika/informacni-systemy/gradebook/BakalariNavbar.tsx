@@ -72,51 +72,51 @@ export const BakalariNavbar: React.FC<BakalariNavbarProps> = ({
           <button
             onClick={onLogout}
             title="Odhlásit se a změnit roli"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-black transition-all shadow-md active:scale-95 cursor-pointer"
           >
-            <LogOut className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Odhlásit</span>
+            <LogOut className="w-4 h-4" />
+            <span className="hidden sm:inline">Odhlásit se</span>
           </button>
         </div>
       </div>
 
       {/* Spodní lišta se záložkami Bakalářů */}
-      <nav className="px-4 sm:px-6 bg-[#082E4D] flex items-center gap-1 overflow-x-auto text-xs font-semibold py-1">
+      <nav className="px-4 sm:px-6 bg-[#082E4D] flex items-center gap-2 overflow-x-auto text-sm font-bold py-2">
         {role === Role.ADMIN && (
           <button
             onClick={() => onTabChange('users')}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
               activeTab === 'users'
-                ? 'bg-[#0B3A60] text-white shadow-xs'
-                : 'text-blue-200/70 hover:text-white'
+                ? 'bg-[#0B3A60] text-white shadow-sm ring-1 ring-white/20'
+                : 'text-blue-200/80 hover:text-white hover:bg-white/10'
             }`}
           >
-            <Users className="w-3.5 h-3.5" />
+            <Users className="w-4 h-4" />
             <span>Správa uživatelů</span>
           </button>
         )}
 
         <button
           onClick={() => onTabChange('grades')}
-          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
             activeTab === 'grades'
-              ? 'bg-[#0B3A60] text-white shadow-xs'
-              : 'text-blue-200/70 hover:text-white'
+              ? 'bg-[#0B3A60] text-white shadow-sm ring-1 ring-white/20'
+              : 'text-blue-200/80 hover:text-white hover:bg-white/10'
           }`}
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          <span>Klasifikace</span>
+          <BookOpen className="w-4 h-4" />
+          <span>Klasifikace (Známky)</span>
         </button>
 
         <button
           onClick={() => onTabChange('timetable')}
-          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
             activeTab === 'timetable'
-              ? 'bg-[#0B3A60] text-white shadow-xs'
-              : 'text-blue-200/70 hover:text-white'
+              ? 'bg-[#0B3A60] text-white shadow-sm ring-1 ring-white/20'
+              : 'text-blue-200/80 hover:text-white hover:bg-white/10'
           }`}
         >
-          <Calendar className="w-3.5 h-3.5" />
+          <Calendar className="w-4 h-4" />
           <span>Rozvrh hodin</span>
         </button>
       </nav>

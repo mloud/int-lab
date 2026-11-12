@@ -117,17 +117,17 @@ export const BakalariLoginScreen: React.FC<BakalariLoginScreenProps> = ({
                         </span>
                       </div>
 
-                      <h4 className="text-base font-black text-slate-900 group-hover:text-blue-900 transition-colors">
+                      <h4 className="text-lg font-black text-slate-900 group-hover:text-blue-900 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                      <p className="text-sm text-slate-600 leading-relaxed mt-1">
                         {item.subtitle}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-700">
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-sm font-black text-blue-700">
                       <span>Zvolit tuto roli</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </button>
                 );

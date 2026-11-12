@@ -24,11 +24,11 @@ export const SmartLightingProjectTab: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold">
+            <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-sm font-bold">
               <Users className="w-4 h-4 text-blue-600" />
               <span>Práce ve trojicích</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 text-purple-800 text-xs font-bold">
+            <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 text-sm font-bold">
               <FileEdit className="w-4 h-4 text-purple-600" />
               <span>Zápis na papír</span>
             </span>
@@ -36,7 +36,7 @@ export const SmartLightingProjectTab: React.FC = () => {
         </div>
 
         {/* Přesné znění zadání */}
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 p-6 sm:p-8 rounded-2xl shadow-xs">
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 p-6 sm:p-8 rounded-3xl shadow-xs">
           <p className="text-lg sm:text-xl text-slate-900 font-bold leading-relaxed">
             „Vytvořte ve trojicích vývojářskou firmu. Vaše obec by chtěla chytré osvětlení ulic,
             které by se rozsvěcelo jen tehdy, kdyby pod ním šel člověk nebo jel nějaký dopravní prostředek.
@@ -48,32 +48,32 @@ export const SmartLightingProjectTab: React.FC = () => {
         {/* 2 orámované sekce pro práci na papír */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
           {/* Technické prvky */}
-          <div className="bg-slate-50 p-6 rounded-2xl border-2 border-blue-200 shadow-xs space-y-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-black">
-                <Cpu className="w-5 h-5" />
+          <div className="bg-slate-50 p-6 sm:p-7 rounded-3xl border-2 border-blue-200 shadow-xs space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-black">
+                <Cpu className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-black text-slate-900">
-                Technické prvky:
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                1. Technické prvky:
               </h3>
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Zapište na papír všechna fyzická zařízení, ze kterých se systém skládá.
+            <p className="text-base text-slate-700 font-medium leading-relaxed">
+              Zapište na papír všechna fyzická zařízení, ze kterých se systém skládá (čidla pohybu, světla, kabely, centrála).
             </p>
           </div>
 
           {/* Pravidla */}
-          <div className="bg-slate-50 p-6 rounded-2xl border-2 border-emerald-200 shadow-xs space-y-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black">
-                <ListChecks className="w-5 h-5" />
+          <div className="bg-slate-50 p-6 sm:p-7 rounded-3xl border-2 border-emerald-200 shadow-xs space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black">
+                <ListChecks className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-black text-slate-900">
-                Pravidla:
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                2. Pravidla fungování:
               </h3>
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Zapište na papír pravidla a podmínky chování systému.
+            <p className="text-base text-slate-700 font-medium leading-relaxed">
+              Zapište na papír pravidla a podmínky: Kdy se má světlo rozsvítit? Na jak dlouho? Co když je ještě den?
             </p>
           </div>
         </div>
