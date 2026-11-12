@@ -1,28 +1,26 @@
 'use client';
 import React, { useState } from 'react';
-import { BookOpen, Users, Network, Sparkles, Lightbulb, Table } from 'lucide-react';
+import { BookOpen, Sparkles, LayoutGrid } from 'lucide-react';
 import { FsChapterShell } from '@/components/specializovana/operacni-systemy/souborove-systemy/FsShared';
 import { InformationSystemsDiscoveryTab } from './InformationSystemsDiscoveryTab';
 import { InformationSystemsTheoryTab } from './InformationSystemsTheoryTab';
-import { LibraryDiagramBuilder } from './LibraryDiagramBuilder';
-import { LibraryLoansTableTab } from './LibraryLoansTableTab';
-import { SmartLightingProjectTab } from './SmartLightingProjectTab';
-import { GradebookSimulator } from './gradebook/GradebookSimulator';
+import {
+  InformationSystemsActivitiesTab,
+  ActivityId,
+} from './InformationSystemsActivitiesTab';
 
 interface InformationSystemsChapterProps {
   onBack?: () => void;
 }
 
 export const InformationSystemsChapter: React.FC<InformationSystemsChapterProps> = ({ onBack }) => {
-  const [activeTab, setActiveTab] = useState<'diskuze' | 'teorie' | 'knihovna' | 'vypujcky' | 'osvetleni' | 'simulator'>('diskuze');
+  const [activeTab, setActiveTab] = useState<'diskuze' | 'teorie' | 'aktivity'>('diskuze');
+  const [activeActivity, setActiveActivity] = useState<ActivityId>('lunchsys');
 
   const tabs = [
     { id: 'diskuze', label: 'Řízená diskuze', icon: Sparkles },
     { id: 'teorie', label: 'Přehled teorie', icon: BookOpen },
-    { id: 'knihovna', label: 'Diagram knihovny', icon: Network },
-    { id: 'vypujcky', label: 'Tabulka výpůjček', icon: Table },
-    { id: 'osvetleni', label: 'Výzva: Chytré osvětlení', icon: Lightbulb },
-    { id: 'simulator', label: 'Žákovská knížka (Bakaláři)', icon: Users },
+    { id: 'aktivity', label: 'Aktivity', icon: LayoutGrid },
   ];
 
   return (
@@ -33,19 +31,24 @@ export const InformationSystemsChapter: React.FC<InformationSystemsChapterProps>
       onBack={onBack}
       tabs={tabs}
       activeTab={activeTab}
-      onTabChange={tabId => setActiveTab(tabId as 'diskuze' | 'teorie' | 'knihovna' | 'vypujcky' | 'osvetleni' | 'simulator')}
+      onTabChange={(tabId) => setActiveTab(tabId as 'diskuze' | 'teorie' | 'aktivity')}
     >
       {activeTab === 'diskuze' && (
         <InformationSystemsDiscoveryTab
-          onGoToSimulator={() => setActiveTab('simulator')}
+          onGoToSimulator={() => {
+            setActiveActivity('simulator');
+            setActiveTab('aktivity');
+          }}
           onGoToTheory={() => setActiveTab('teorie')}
         />
       )}
       {activeTab === 'teorie' && <InformationSystemsTheoryTab />}
-      {activeTab === 'knihovna' && <LibraryDiagramBuilder />}
-      {activeTab === 'vypujcky' && <LibraryLoansTableTab />}
-      {activeTab === 'osvetleni' && <SmartLightingProjectTab />}
-      {activeTab === 'simulator' && <GradebookSimulator />}
+      {activeTab === 'aktivity' && (
+        <InformationSystemsActivitiesTab
+          activeActivity={activeActivity}
+          onSelectActivity={setActiveActivity}
+        />
+      )}
     </FsChapterShell>
   );
 };

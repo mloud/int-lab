@@ -663,6 +663,28 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Uživatelské role a přístupová práva: podrobná porovnávací tabulka 4 rolí (Žák, Vyučující, Zákonný zástupce, Administrátor).
       - Rozšíření: Státní registr obyvatel a důvody pro nejvyšší stupeň zabezpečení.
       - Interaktivní minikvíz se 4 otázkami pro rychlé ověření znalostí přímo v hodině.
+    - **Sjednocení praktických úloh do hlavní záložky „Aktivity“:**
+      - Kvůli vysokému počtu položek v hlavní navigační liště byla kapitola zpřehledněna do 3 hlavních záložek:
+        1. **Řízená diskuze** (`diskuze`)
+        2. **Přehled teorie** (`teorie`)
+        3. **Aktivity** (`aktivity`) – samostatný modul `InformationSystemsActivitiesTab.tsx`, který obsahuje přehledný číselný přepínač pro 5 praktických úloh:
+           - 1. *Karta strávníka* (3kroková badatelská aktivita)
+           - 2. *Diagram knihovny* (interaktivní editor vazeb)
+           - 3. *Tabulka výpůjček* (návrh databázových sloupců)
+           - 4. *Výzva: Chytré osvětlení* (týmový projekt)
+           - 5. *Žákovská knížka* (simulátor rolí a misí)
+      - Propojení z řízené diskuze („Vyzkoušet v simulátoru“) automaticky přepne na záložku `Aktivity` a aktivuje přímo *Žákovskou knížku*.
+    - **Zjednodušení názvů navigačních tlačítek a záložek:**
+      - V souladu s požadavkem na čistý a obecný jazyk byly z tlačítek a záložek odstraněny názvy konkrétních systémů:
+        - Záložka `Karta strávníka (LunchSys)` zkrácena na čisté **`Karta strávníka`**.
+        - Záložka `Žákovská knížka (Bakaláři)` zkrácena na čisté **`Žákovská knížka`**.
+        - Tlačítko přechodu v řízené diskuzi upraveno na **`Vyzkoušet v simulátoru`**.
+    - **Záložka Karta strávníka (Školní jídelna a čip):**
+      - Třístupňová didaktická aktivita zařazená před diagram knihovny:
+        - **Krok 1 (Brainstorming):** Životní situace (pípnutí čipem u výdeje oběda), centrální otázka k zamyšlení bez nápověd a vizuální prázdná karta `[ LUNCHSYS: KARTA UŽIVATELE ]` pro samostatnou úvahu.
+        - **Krok 2 (Sestavení karty):** Výběr z 11 kartiček do karty strávníka, žáci čekají na pokyn učitele a až poté kliknou na tlačítko „Vyhodnotit výběr“ (žádný pokus-omyl v průběhu).
+        - **Krok 3 (Reflexe a 3D flip kartičky):** Oranžové označení zbytečných údajů (chytáků porušujících ochranu soukromí), plynulé 3D otočení kartičky po kliknutí s podrobným vysvětlením PROČ ANO / PROČ NE (minimalizace údajů, ochrana soukromí / GDPR), tlačítko „Vrátit zpět“ pro vyčištění karty (bez automatického nápovědného spoileru). Ocenění po sestavení optimální karty.
+      - **Modulární architektura:** V podsložce `components/informatika/informacni-systemy/lunchsys/` (`LunchSysTypes.ts`, `lunchSysData.ts`, `LunchSysFlipCard.tsx`, `LunchSysBrainstormStep.tsx`, `LunchSysSelectionStep.tsx`, `LunchSysChapterTab.tsx`).
     - **Záložka Projektové zadání (Chytré osvětlení):**
       - Týmová vývojářská úloha pro trojice na papír (návrh technických prvků a pravidel chování chytrého pouličního osvětlení).
     - **Záložka Návrh databáze knihovny:**

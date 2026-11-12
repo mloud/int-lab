@@ -625,7 +625,7 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
               onClick={onGoToSimulator}
               className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
             >
-              <span>Vyzkoušet v simulátoru Bakalářů</span>
+              <span>Vyzkoušet v simulátoru</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
