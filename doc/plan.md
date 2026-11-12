@@ -1,33 +1,44 @@
-# Aktivní plánovací tabule: Programování a vývoj aplikací 2 (PRG 2 / PVH 2)
+# Aktivní plánovací tabule: Programování a vývoj aplikací 1 (PRG 1 / PVH 1)
 
-**Aktivní předmět:** Programování a hry 2 / Programování a vývoj aplikací 2 (2. ročník SŠ, obor 18-20-M/01 Informační technologie)  
-**Celková hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
-**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md) a [`doc/curriculum/PRG2.md`](curriculum/PRG2.md)  
-**Dedikovaný podrobný plán:** [`doc/plans/PLAN_PRG2.md`](plans/PLAN_PRG2.md)  
-**Výchozí routa v IntLab:** `/specializovana/programovani-2`
+**Aktivní předmět:** Programování a hry 1 / Programování a vývoj aplikací 1 (1. ročník SŠ, obor 18-20-M/01 Informační technologie)  
+**Celková hodinová dotace:** 99 vyučovacích hodin (3 hodiny týdně, 33 týdnů)  
+**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md) a [`doc/plans/PLAN_PRG1.md`](plans/PLAN_PRG1.md)  
+**Dedikovaný podrobný plán:** [`doc/plans/PLAN_PRG1.md`](plans/PLAN_PRG1.md)  
+**Výchozí routa v IntLab:** `/specializovana/programovani` (Scratch rozcestník: `/specializovana/programovani/scratch`)
 
 ---
 
 ## 🎯 Hlavní pedagogický cíl předmětu
-Přechod od procedurálního kódu k práci s **datovými kolekcemi** a **objektovému programování** v jazyce **Python**.
-Zvládnutí kolekcí a textových řetězců (`list`, `dict`, `tuple`, `set`, `str`), práce se soubory (textové soubory a strukturovaný formát JSON), bezpečné ošetření běhových chyb a výjimek (`try-except`), pochopení objektového myšlení (třídy, instance, atributy, metody `__init__` / `self`) a tvorba desktopových formulářových aplikací s grafickým uživatelským rozhraním (GUI).
+Srovnat výchozí úroveň studentů z různých ZŠ pomocí **vizuálního blokového programování (Scratch)**, formálně ukotvit teorii **algoritmizace a vývojových diagramů**, ověřit chování algoritmů na reálném **hardware (mikrokontroléry)** a plynule přejít k textovému programovacímu jazyku **Python** s okamžitou vizuální odezvou na grafickém plátně (Canvas).
 
 ---
 
-## 📊 Přehled tematických celků (66 h)
+## 📊 Přehled tematických celků (99 h)
 
-| Blok | Tematický celek | Dotace | Obsah a plánovaná témata | Stav na portálu |
-|:---:|---|:---:|---|:---:|
-| **1** | **Datové kolekce a zpracování textu v jazyce Python** | **16 h** | • Seznamy (`list`), indexace, délka, procházení cyklem `for`<br>• Operace a metody seznamů (`append`, `insert`, `pop`, `remove`, `sort`)<br>• Vyhledávání, filtrace a agregace (`in`, `min`, `max`, `sum`)<br>• Slovníky (`dict`), neměnné n-tice (`tuple`) a množiny (`set`)<br>• Textové řetězce (`str`) jako kolekce znaků (`strip`, `split`, `in`) – můstek k souborům | 🟡 K vytvoření |
-| **2** | **Práce se soubory a ošetření chyb v programu** | **14 h** | • Čtení a zápis textových souborů (`with open(...)`, UTF-8)<br>• Strukturovaná data ve formátu JSON (`json.dump`, `json.load`)<br>• Běhové chyby a bezpečné ošetření výjimek (`try - except`) | 🟡 K vytvoření |
-| **3** | **Základy objektově orientovaného programování v jazyce Python** | **16 h** | • Třída jako šablona, instance jako konkrétní objekt<br>• Vnitřní stav a zapouzdření: konstruktor `__init__`, parametr `self` a atributy<br>• Metody instance, jednoduchá dědičnost a polymorfismus (jednotné rozhraní metod)<br>• Seznam instancí a objektové modelování miniprojektu | 🟡 K vytvoření |
-| **4** | **Vývoj aplikací s grafickým uživatelským rozhraním (GUI)** | **20 h** | • Okenní architektura, smyčka událostí `mainloop()`<br>• Rozmístění prvků v okně (souřadnicové pozicování `place`)<br>• Komponenty: `Label`, `Button`, `Entry`, `Radiobutton`, `Checkbutton`<br>• Vazba událostí na obslužné funkce, řídicí proměnné `StringVar` a `BooleanVar`<br>• Samostatný projekt desktopové aplikace s grafickým uživatelským rozhraním | 🟡 K vytvoření |
-| **Σ** | **Celkem** | **66 h** | **Plně navrženo a harmonizováno s ŠVP InspIS** | |
+| Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
+|:---:|:---:|---|:---:|:---:|---|
+| **1** | **Září – Listopad** (1.–12. týden) | **Vizuální blokové programování (Scratch)** | **36 h** | ✅ Hotovo (Lekce 1–6 ve Scratchi)<br>• Lekce 1: Sekvence (6 h)<br>• Lekce 2: Proměnné (6 h)<br>• Lekce 3: Cykly (6 h)<br>• Lekce 4: Podprogramy (6 h)<br>• Lekce 5: Podmínky (6 h)<br>• Lekce 6: Seznamy, zprávy a klonování (6 h) | `/specializovana/programovani/scratch` |
+| **2** | **Prosinec** (13.–15. týden) | **Základy algoritmizace a vývojové diagramy** | **9 h** | 🟡 K vytvoření (vlastnosti algoritmu, normalizované značky, čtení a tvorba vývojových diagramů, větvení a cykly) | `/specializovana/programovani/algoritmy` |
+| **3** | **Leden** (16.–19. týden) | **Programování hardwarových zařízení** | **12 h** | 🟡 K vytvoření (programování mikrokontroléru, vstupy a čidla, výstupy a matice LED, rádiový přenos proměnných) | `/specializovana/programovani/hardware` |
+| **4** | **Únor – Červen** (20.–33. týden) | **Základy jazyka Python** | **42 h** | ✅ Hotovo (přesun stávající řady 20 lekcí grafického Pythonu z 2. ročníku)<br>• Syntaxe, I/O, proměnné (8 h)<br>• Kreslení na Canvas, barvy, geometrie (10 h)<br>• Cykly `for` a `while`, proměnná cyklu (10 h)<br>• Větvení `if/else`, náhoda, funkce s parametry (8 h)<br>• Interaktivita myší a závěrečná minihra (6 h) | `/specializovana/programovani-2/` ➔ přesun do `/programovani/python/` |
+| **Σ** | **Celkem** | | **99 h** | **Plně navrženo a harmonizováno** | |
 
 ---
 
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj PRG 2)
+## 🐱 Přehled stávajících lekcí ve Scratchi (Blok 1 – 36 h)
 
-- [ ] Příprava nových výukových kapitol pro **Blok 1: Datové kolekce v Pythonu** (Seznamy, Slovníky, Zpracování textu).
-- [ ] Vytvoření interaktivních cvičení a simulátorů manipulace se seznamy a slovníky v prohlížeči.
-- [ ] Zavedení praktických úloh pro práci se soubory (JSON) a bezpečné `try-except` ošetření.
+1. **Lekce 1: Sekvence a krokování** (`ScratchSequenceChapter.tsx`)
+2. **Lekce 2: Proměnné a práce s daty** (`ScratchVariablesChapter.tsx`)
+3. **Lekce 3: Cykly a opakování** (`ScratchVariablesLoopsChapter.tsx`)
+4. **Lekce 4: Vlastní bloky a podprogramy** (`ScratchSubprogramsChapter.tsx`)
+5. **Lekce 5: Podmínky a větvení** (`ScratchConditionsChapter.tsx`, dekomponováno v `scratch/conditions/`)
+6. **Lekce 6: Seznamy, zprávy a události** (`ScratchListsChapter.tsx`, dekomponováno v `scratch/lists/`)
+*Volitelný rozšiřující modul:* 3D Raycaster Engine (`ScratchRaycasterProject.tsx` v `raycaster/`)
+
+---
+
+## 🔥 Aktuální úkoly a Backlog (Další rozvoj PVH 1 – Scratch)
+
+- [ ] Kontrola a harmonizace lekcí Scratche s metodickými materiály a PDF podklady.
+- [ ] Doplnění / rozšíření úloh na **zprávy (`broadcast`)** a **klonování postav** v Lekci 6 (nebo nová herní lekce).
+- [ ] Příprava návazného Bloku 2: Teorie algoritmizace a vývojové diagramy.

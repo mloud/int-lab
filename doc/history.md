@@ -990,4 +990,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Úloha 9* (Vysílač Ještěd):** Geometrický náhled byl opraven z dřívějších 5 pater na všech 6 pater s přesným dosedáním pater na sebe (`y_top = y_bottom - vyska`), tmavým obrysem a šedou výplní přesně podle referenčního obrázku z učebnice.
     - **Oprava Hydration Mismatch (SSR):** V úlohách 4 a 5 (Zlatý poklad) byla nahrazena dynamická generování `Math.random()` deterministickým pseudonáhodným polem velikostí, čímž byl zcela eliminován React hydration error při prvním načtení stránky.
 
+39. **Didaktická optimalizace kapitoly Lekce 6: Seznamy (PVH 1 – Scratch):**
+    - **Úloha 6 a 7 (Čtení seznamu):** Změna položek z vět na slova (zprávy se 4 slovy). Úloha 7 byla očištěna od návodných kroků a zjednodušena na čisté zadání zpětného traverzování.
+    - **Úloha 8 (TOP 3 skóre):** Odebrán omezující bod 5 pro ořezávání délky seznamu.
+    - **Úloha 9 (Analýza seznamu bloky):** V bodu 2 doplněna nápověda pro vyhledání maxima porovnáváním s proměnnou `max`.
+    - **Nová syntetická úloha 12 (Anglický slovník):** Zařazen projekt překladače se dvěma paralelními seznamy `cesky` a `anglicky`, vlastními bloky `Naplň český slovník` a `Naplň anglický slovník`, vyhledáním slova přes index a ošetřením neznámého slova. Úloha byla umístěna na samý konec lekce jako úloha 12.
+
 

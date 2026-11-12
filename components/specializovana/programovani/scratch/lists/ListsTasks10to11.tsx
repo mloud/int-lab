@@ -268,6 +268,104 @@ export const ListsTasks10to11 = ({ teacherMode }: { teacherMode: boolean }) => {
             💡 <strong>Doporučení pro testování:</strong> Zavolej např. <ScratchBlock category="custom">Naplň seznam <ScratchInput>15</ScratchInput> <ScratchInput>5</ScratchInput></ScratchBlock>. Z 15 vygenerovaných čísel vznikne seznam s maximálně 5 unikátními čísly (1 až 5), kde je výsledek okamžitě krásně vidět!
           </div>
         </TaskCard>
+
+        {/* ÚKOL 12: Anglický slovník */}
+        <TaskCard
+          number="12"
+          title="Anglický slovník"
+          taskId="lists-12"
+          saveAs="AnglickySlovnik.sb3"
+          showTeacher={teacherMode}
+          teacherNote={
+            <div className="space-y-4">
+              <p>
+                <strong>Kompletní řešení úlohy:</strong> Program využívá dva paralelní seznamy <span className="font-bold text-orange-600">cesky</span> a <span className="font-bold text-orange-600">anglicky</span>, kde si slova na stejném indexu odpovídají.
+              </p>
+
+              {/* 1. Vlastní bloky Naplň český / anglický slovník */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase tracking-wider text-[11px] mb-1">
+                    1. Blok: Naplň český slovník
+                  </div>
+                  <div><ScratchDefBlock>Naplň český slovník</ScratchDefBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">smaž všechno z <ScratchInput type="dropdown">cesky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [modrý] k <ScratchInput type="dropdown">cesky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [žlutý] k <ScratchInput type="dropdown">cesky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [zelený] k <ScratchInput type="dropdown">cesky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [hnědý] k <ScratchInput type="dropdown">cesky</ScratchInput></ScratchBlock></div>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase tracking-wider text-[11px] mb-1">
+                    2. Blok: Naplň anglický slovník
+                  </div>
+                  <div><ScratchDefBlock>Naplň anglický slovník</ScratchDefBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">smaž všechno z <ScratchInput type="dropdown">anglicky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [blue] k <ScratchInput type="dropdown">anglicky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [yellow] k <ScratchInput type="dropdown">anglicky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [green] k <ScratchInput type="dropdown">anglicky</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej [brown] k <ScratchInput type="dropdown">anglicky</ScratchInput></ScratchBlock></div>
+                </div>
+              </div>
+
+              {/* 2. Scénář překladu po kliknutí */}
+              <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                <div className="text-amber-800 font-bold font-sans uppercase tracking-wider text-[11px] mb-1">
+                  3. Scénář pro překlad
+                </div>
+                <div><ScratchBlock category="events">po kliknutí na mě</ScratchBlock></div>
+                <div className="pl-4">
+                  <ScratchBlock category="sensing">otázka [Jaké slovo chceš přeložit do angličtiny?] a čekej</ScratchBlock>
+                </div>
+                <div className="pl-4">
+                  <ScratchCElseBlock
+                    category="control"
+                    topLabel={
+                      <span>
+                        když <ScratchHexagon category="lists"><ScratchInput type="dropdown">cesky</ScratchInput> obsahuje <ScratchReporter category="sensing">odpověď</ScratchReporter>?</ScratchHexagon> tak
+                      </span>
+                    }
+                    elseChildren={
+                      <div>
+                        <ScratchBlock category="looks">bublina [Takové slovo neznám] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock>
+                      </div>
+                    }
+                  >
+                    <div>
+                      <ScratchBlock category="looks">
+                        bublina (spoj [Anglicky se ] (spoj <ScratchReporter category="sensing">odpověď</ScratchReporter> (spoj [ řekne ] (položka (pořadí <ScratchReporter category="sensing">odpověď</ScratchReporter> ve <ScratchInput type="dropdown">cesky</ScratchInput>) z <ScratchInput type="dropdown">anglicky</ScratchInput>)))) na <ScratchInput>3</ScratchInput> sekund
+                      </ScratchBlock>
+                    </div>
+                  </ScratchCElseBlock>
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <p className="leading-relaxed">
+            Vytvoř překladač ze dvou seznamů (<span className="font-bold text-orange-600">česky</span> a <span className="font-bold text-orange-600">anglicky</span>), kde slova na stejných pozicích tvoří dvojice (např. <em>modrý</em> ↔ <em>blue</em>, <em>žlutý</em> ↔ <em>yellow</em>).
+          </p>
+
+          <ol className="list-decimal pl-5 space-y-2.5 my-4 text-sm text-slate-800">
+            <li>
+              Vytvoř vlastní bloky <strong className="text-pink-600">Naplň český slovník</strong> a <strong className="text-pink-600">Naplň anglický slovník</strong> pro naplnění obou seznamů alespoň 4 slovy.
+            </li>
+            <li>
+              Po kliknutí na kocoura se program zeptá na české slovo: <em>„Jaké slovo chceš přeložit do angličtiny?“</em>.
+            </li>
+            <li>
+              Pokud slovo v seznamu existuje, kocour odpoví celou větou, např.: <em>„Anglicky se žlutý řekne yellow“</em>.
+            </li>
+            <li>
+              Pokud slovo v seznamu není, kocour řekne: <em>„Takové slovo neznám“</em>.
+            </li>
+          </ol>
+
+          <div className="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900 mt-2">
+            💡 <strong>Nápověda pro vyhledání:</strong> Pozici slova zjistíš blokem <ScratchReporter category="lists">pořadí (odpověď) ve [cesky]</ScratchReporter> a vložíš ji do <ScratchReporter category="lists">položka (...) z [anglicky]</ScratchReporter>. Pro spojení slov do celé věty použij bloky <ScratchReporter category="operators">spoj (...) (...)</ScratchReporter>.
+          </div>
+        </TaskCard>
     </div>
   );
 };
