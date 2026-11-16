@@ -180,13 +180,13 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
       {
         id: 'oss2-b3',
         order: 3,
-        month: 'Únor – Duben',
+        month: 'Únor – Březen',
         monthKey: 'unor',
-        weeks: '16.–24. týden',
+        weeks: '16.–23. týden',
         title: 'Systémové služby a administrační skriptování (PowerShell)',
-        hours: 18,
+        hours: 16,
         theoryHours: 4,
-        practiceHours: 14,
+        practiceHours: 12,
         description: 'Konzole MMC, systémové služby na pozadí, objektový PowerShell, administrační skriptování a diagnostické reporty.',
         rvpCompetence: 'Píše administrační skripty v PowerShellu, spravuje systémové služby, konzole MMC a generuje stavové reporty.',
         subtopics: [
@@ -202,7 +202,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           {
             id: 'oss2-b3-2',
             title: 'Konzole správce (MMC) a centrální správa',
-            hours: 4,
+            hours: 2,
             type: 'laborator',
             description: 'Architektura snap-inů v mmc.exe, sestavení vlastní administrátorské konzole, autorský vs. uživatelský režim a uložení do souboru .msc.',
             practice: 'Sestavení vlastní diagnostické konzole MojeSprava.msc pro technickou podporu stanic.',
@@ -242,13 +242,13 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
         order: 4,
         month: 'Duben – Červen',
         monthKey: 'duben',
-        weeks: '25.–33. týden',
+        weeks: '24.–33. týden',
         title: 'Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
-        hours: 18,
+        hours: 20,
         theoryHours: 4,
-        practiceHours: 14,
-        description: 'Sdílení souborů SMB, vzdálená plocha RDP, koncept podnikové domény, připojení stanice Windows 11, GPO restrikce a závěrečný projekt.',
-        rvpCompetence: 'Konfiguruje síťové sdílení SMB a RDP, připojuje klientskou stanici do domény Active Directory a aplikuje centrální politiky GPO.',
+        practiceHours: 16,
+        description: 'Sdílení souborů SMB, vzdálená správa RDP a OpenSSH, koncept podnikové domény, připojení stanice Windows 11, GPO restrikce a závěrečný projekt.',
+        rvpCompetence: 'Konfiguruje síťové sdílení SMB, vzdálenou správu RDP a OpenSSH, připojuje klientskou stanici do domény Active Directory a aplikuje centrální politiky GPO.',
         subtopics: [
           {
             id: 'oss2-b4-1',
@@ -270,6 +270,15 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss2-b4-3',
+            title: 'Konzolová vzdálená správa přes OpenSSH ve Windows 11',
+            hours: 2,
+            type: 'laborator',
+            description: 'Protokol SSH (port 22), nativní OpenSSH klient ve Windows Terminalu, aktivace volitelné systémové služby OpenSSH SSH Server (sshd), autorizace a vzdálený PowerShell.',
+            practice: 'Aktivace služby sshd ve Windows 11, konfigurace firewallu a bezpečné vzdálené připojení k příkazovému řádku ze sousední stanice.',
+            route: '/specializovana/operacni-systemy-2/active-directory/ssh-windows'
+          },
+          {
+            id: 'oss2-b4-4',
             title: 'Koncept podnikové infrastruktury a domény',
             hours: 2,
             type: 'teorie',
@@ -278,7 +287,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             route: '/specializovana/operacni-systemy-2/active-directory/server-a-domena'
           },
           {
-            id: 'oss2-b4-4',
+            id: 'oss2-b4-5',
             title: 'Klientská stanice v podnikové doméně a uživatelské profily',
             hours: 4,
             type: 'laborator',
@@ -287,7 +296,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             route: '/specializovana/operacni-systemy-2/active-directory/klient-v-domene'
           },
           {
-            id: 'oss2-b4-5',
+            id: 'oss2-b4-6',
             title: 'Skupinové politiky (Group Policy – uplatnění na stanici)',
             hours: 4,
             type: 'laborator',
@@ -296,7 +305,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             route: '/specializovana/operacni-systemy-2/active-directory/gpo'
           },
           {
-            id: 'oss2-b4-6',
+            id: 'oss2-b4-7',
             title: 'Závěrečný integrující projekt administrace a zabezpečení stanice',
             hours: 2,
             type: 'projekt',

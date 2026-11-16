@@ -14,13 +14,13 @@ const BASE = '/specializovana/operacni-systemy-2';
 export const OSS2_BEZPECNOST: OutlineGroup = {
   chapterId: 'os2-bezpecnost',
   chapterTitle: 'Bezpečnost 1',
-  chapterDescription: 'Zabezpečení Windows 11, forenzní analýza procesů, registr, žurnál událostí, Sandbox, Defender, Firewall a šifrování.',
+  chapterDescription: 'Zabezpečení Windows 11, inspekce procesů, registr, žurnál událostí, Sandbox, Defender, Firewall a šifrování.',
   chapterTag: 'sec',
   chapterPath: `${BASE}/bezpecnost`,
   subjectTitle: SUBJECT,
   grade: 2,
   gradeLabel: '2. Ročník',
-  thematicBlock: 'Bezpečnost koncových zařízení, audit a forenzní analýza',
+  thematicBlock: 'Bezpečnost koncových zařízení, inspekce a audit',
   icon: 'ShieldCheck',
   gradient: 'from-blue-600 to-cyan-600',
   items: [
@@ -115,14 +115,14 @@ export const OSS2_BEZPECNOST: OutlineGroup = {
       tag: 'BZ8',
       order: 8,
       icon: 'Cog',
-      title: 'Správa uživatelských účtů, UAC a aktualizace (0-day)',
+      title: 'Správa systémových aktualizací a bezpečnostní záplaty',
       hours: '2 h',
-      subtitle: 'Princip nejmenších práv (PoLP), řízení UAC, servisní cykly záplat a hromadná údržba.',
+      subtitle: 'Princip nejmenších práv (PoLP), řízení UAC, servisní cykly záplat a hromadná údržba softwaru.',
       intro: 'Většina škod vznikne proto, že program běží s právy správce. Mechanismy UAC omezují práva aplikací a pravidelné servisní aktualizace zalepují známé zranitelnosti systému.',
       topics: [
         'Princip nejmenších nutných oprávnění (PoLP) a oddělení správcovských úkonů',
         'Fungování řízení uživatelských účtů UAC (omezený standardní token vs. plný token správce)',
-        'Servisní cykly aktualizací, záplaty a princip zranitelností nultého dne (0-day)',
+        'Servisní cykly aktualizací, instalace bezpečnostních záplat a význam aktualizovaného systému',
         'Hromadná aktualizace nainstalovaného softwaru přes správce balíčků (winget upgrade --all)'
       ],
       practice: [
@@ -138,16 +138,16 @@ export const OSS2_BEZPECNOST: OutlineGroup = {
       icon: 'Search',
       title: 'Sociální inženýrství, phishing a ochrana identity',
       hours: '2 h',
-      subtitle: 'Phishing, silná hesla, vícefaktorové ověřování MFA a etický hacking.',
+      subtitle: 'Phishing, silná hesla, vícefaktorové ověřování MFA a zásady bezpečného chování.',
       intro: 'Nejslabším článkem bezpečnosti bývá lidský faktor. Naučíme se rozpoznat podvodný phishingový e-mail v hlavičkách zpráv, vytvářet odolná hesla a zabezpečit identitu vícefaktorovým ověřením.',
       topics: [
         'Metody sociálního inženýrství a analýza podvodných e-mailů (hlavičky, podvržené domény)',
         'Síla hesla, entropie a bezpečné ukládání v offline správcích hesel',
         'Vícefaktorové ověřování (MFA / 2FA): autentizační aplikace vs. hardwarové FIDO2 klíče',
-        'Základní principy uvažování etického hackera při obraně podnikové infrastruktury'
+        'Zásady obrany identity, silná hesla a vícefaktorové ověřování'
       ],
       practice: [
-        'Simulace: Forenzní detektiv – rozbor reálného podvodného e-mailu a nalezení podvržené adresy',
+        'Simulace: Detektor phishingu – rozbor podezřelého e-mailu a odhalení podvržené adresy',
         'Praxe v OS: Kontrola kompromitovaných přihlašovacích údajů a konfigurace vícefaktorového ověření'
       ],
       builds: 'BZ1 (spyware a keyloggery).'
@@ -157,30 +157,30 @@ export const OSS2_BEZPECNOST: OutlineGroup = {
       tag: 'BZ10',
       order: 10,
       icon: 'Eye',
-      title: 'Vyšetřování bezpečnostního incidentu (Mini-CTF)',
+      title: 'Řešení bezpečnostního incidentu a protokol o zásahu',
       hours: '2 h',
-      subtitle: 'Komplexní incident response: detekce, izolace, vyčištění a sepsání Incident Reportu.',
-      intro: 'Vyvrcholení celého bezpečnostního bloku. Na připraveném simulovaném systému žák v roli bezpečnostního technika detekuje útok, izoluje stanici na firewallu, dohledá stopy v registru a logu a vypracuje incident report.',
+      subtitle: 'Praktické řešení napadené stanice: detekce, izolace, vyčištění a sepsání technického protokolu.',
+      intro: 'Vyvrcholení celého bezpečnostního bloku. Na připraveném simulovaném systému žák v roli bezpečnostního technika detekuje neoprávněnou aktivitu, izoluje stanici na firewallu, dohledá stopy v registru a logu, odstraní škůdce a vypracuje technický protokol o zásahu.',
       topics: [
-        'Čtyři fáze reakce na incident (Incident Response): Detekce ➔ Izolace ➔ Odstranění ➔ Čištění a obnova',
-        'Kombinovaná forenzní analýza: Process Explorer, Registr Run klíče, Event Viewer ID 4625 a Firewall',
-        'Sepsání formálního protokolu o bezpečnostním zásahu (Incident Response Report)',
-        'Týmová spolupráce při vyšetřování incidentu'
+        'Fáze řešení bezpečnostního incidentu: Detekce ➔ Izolace stanice ➔ Odstranění škůdce ➔ Čištění a obnova',
+        'Kombinovaná bezpečnostní inspekce: Process Explorer, Registr Run klíče, Event Viewer ID 4625 a Firewall',
+        'Sepsání formálního protokolu o bezpečnostním zásahu pro vyučujícího',
+        'Zásady bezpečnostní prevence před opětovným napadením stanice'
       ],
       practice: [
-        'Praktická laboratorní hra (Mini-CTF): Nalezení bezpečnostních flagů na kompromitované stanici',
-        'Zpracování a odevzdání protokolu o zásahu a doporučených opatřeních pro vedení firmy'
+        'Praktická úloha: Nalezení a zneškodnění skryté hrozby na kompromitované stanici',
+        'Zpracování a odevzdání protokolu o zásahu a doporučených opatření'
       ],
       builds: 'Syntéza všech témat BZ1 až BZ9.'
     }
   ]
 };
 
-/** Systémové služby a skriptování v PowerShellu (18 h) – správa služeb na pozadí, konzole MMC a administrační skriptování. */
+/** Systémové služby a skriptování v PowerShellu (16 h) – správa služeb na pozadí, konzole MMC a administrační skriptování. */
 export const OSS2_POKROCILA: OutlineGroup = {
   chapterId: 'os2-pokrocila',
   chapterTitle: 'Systémové služby a skriptování v PowerShellu',
-  chapterDescription: 'Nástroje správce: konzole MMC, služby na pozadí, skriptování v PowerShellu a automatizované reporty.',
+  chapterDescription: 'Nástroje správce: systémové služby na pozadí, konzole MMC, skriptování v PowerShellu a automatizované reporty.',
   chapterTag: 'adv',
   chapterPath: `${BASE}/pokrocila-konfigurace`,
   subjectTitle: SUBJECT,
@@ -202,7 +202,7 @@ export const OSS2_POKROCILA: OutlineGroup = {
         'Systémové běžící účty: NT AUTHORITY\\SYSTEM, Local Service a Network Service',
         'Typy spouštění: Automaticky, Ručně (Manual), Zakázáno (Disabled) a automaticky se zpožděním',
         'Řešení závislostí služeb a konfigurace automatického restartu po selhání',
-        'Správa služeb z příkazového řádku: příkazy net start/stop a utilita sc.exe'
+        'Správa služeb z příkazového řádku (net start/stop) a PowerShellu (Start-Service, Stop-Service, Get-Service)'
       ],
       practice: [
         'Simulace: Trenažér závislostí služeb – co nastane při výpadku závislé síťové komponenty',
@@ -214,7 +214,7 @@ export const OSS2_POKROCILA: OutlineGroup = {
       slug: 'mmc',
       tag: 'PK2',
       title: 'Konzole správce (MMC) a centrální správa',
-      hours: '4 h',
+      hours: '2 h',
       subtitle: 'Sjednocené rozhraní snap-inů: sestavení vlastní administrátorské konzole na míru.',
       intro: 'Profesionální správce nepotřebuje otevírat deset samostatných oken. Pomocí Microsoft Management Console (MMC) si poskládá vlastní modulární pracovní nástroj.',
       topics: [
@@ -290,11 +290,11 @@ export const OSS2_POKROCILA: OutlineGroup = {
   ]
 };
 
-/** Síťové sdílení a centrální správa v doméně (18 h) – sdílení SMB, RDP, doména, připojení stanice, GPO a projekt. */
+/** Síťové sdílení a centrální správa v doméně (20 h) – sdílení SMB, RDP, OpenSSH, doména, připojení stanice, GPO a projekt. */
 export const OSS2_AD: OutlineGroup = {
   chapterId: 'os2-ad',
   chapterTitle: 'Síťové sdílení a centrální správa v doméně',
-  chapterDescription: 'Sdílení prostředků SMB, vzdálená správa RDP, připojení klienta do domény, uplatnění politik GPO a závěrečný projekt.',
+  chapterDescription: 'Sdílení prostředků SMB, vzdálená správa RDP a OpenSSH, připojení klienta do domény, uplatnění politik GPO a závěrečný projekt.',
   chapterTag: 'dom',
   chapterPath: `${BASE}/active-directory`,
   subjectTitle: SUBJECT,
@@ -329,10 +329,10 @@ export const OSS2_AD: OutlineGroup = {
       tag: 'AD2',
       title: 'Zabezpečená vzdálená správa pracovní plochy (RDP)',
       hours: '2 h',
-      subtitle: 'Správa klientské stanice na dálku: Vzdálená plocha RDP, správa portu 3389 a zabezpečení NLA.',
+      subtitle: 'Správa klientské stanice na dálku: Vzdálená plocha RDP, autorizace uživatelů a zabezpečení NLA.',
       intro: 'K počítačům uživatelů není třeba běhat osobně. Naučíme se konfigurovat zabezpečený vzdálený přístup přes grafické rozhraní RDP a porozumíme bezpečnostnímu ověřování NLA.',
       topics: [
-        'Protokol RDP (Remote Desktop Protocol) a port 3389: povolení přístupu, oprávnění a limity relací',
+        'Protokol RDP (Remote Desktop Protocol): povolení přístupu, oprávnění a limity relací',
         'Bezpečnostní rizika RDP: brute-force útoky z internetu, NLA (Network Level Authentication) a nutnost VPN',
         'Nástroj Připojení k vzdálené ploše (mstsc.exe) a jeho pokročilé volby (sdílení disků, schránky, tiskáren)',
         'Konfigurace Windows Firewallu pro vzdálený přístup a autorizace uživatelů ve skupině Remote Desktop Users'
@@ -341,11 +341,35 @@ export const OSS2_AD: OutlineGroup = {
         'Simulace: Zabezpečení RDP brány – nastavení NLA a pravidla firewallu pro autorizované uživatele',
         'Praxe v OS: Povolení RDP na klientské stanici, vzdálené připojení přes mstsc a ověření aktivních relací'
       ],
-      builds: 'Firewall (BZ5), Sítě (OSS 1).'
+      builds: 'Firewall (BZ6), Sítě (OSS 1).'
+    },
+    {
+      slug: 'ssh-windows',
+      tag: 'AD3',
+      order: 3,
+      icon: 'Terminal',
+      title: 'Konzolová vzdálená správa přes OpenSSH ve Windows 11',
+      hours: '2 h',
+      subtitle: 'Šifrovaná textová správa: vestavěný OpenSSH klient, aktivace sshd služby ve Windows 11 a vzdálený PowerShell.',
+      intro: 'Vzdálená správa nemusí vždy probíhat přes náročné grafické rozhraní. Moderní Windows 11 obsahují plnohodnotný protokol OpenSSH. Naučíme se aktivovat systémovou službu OpenSSH Server, zabezpečit přístup a ovládat systém na dálku přes terminál a PowerShell.',
+      topics: [
+        'Výhody konzolové správy oproti GUI ploše: rychlost, minimální síťový přenos a automatizace',
+        'OpenSSH ve Windows 11: nativní klientský nástroj ssh v příkazové řádce a Windows Terminalu',
+        'Instalace a spuštění volitelné funkce OpenSSH SSH Server (systémová služba sshd)',
+        'Konfigurace firewallu pro port 22 a autorizace uživatelských účtů',
+        'Vzdálená práce v prostředí PowerShellu přes šifrovanou relaci SSH'
+      ],
+      practice: [
+        'Simulace: SSH terminál – navázání šifrovaného spojení ze stanice na druhou stanici',
+        'Praxe v OS: Spuštění služby sshd ve Windows 11 a připojení ze sousedního počítače přes Windows Terminal'
+      ],
+      builds: 'Služby Windows (PK1), Firewall (BZ6), PowerShell (PK3).'
     },
     {
       slug: 'server-a-domena',
-      tag: 'AD3',
+      tag: 'AD4',
+      order: 4,
+      icon: 'Network',
       title: 'Koncept podnikové infrastruktury a domény',
       hours: '2 h',
       subtitle: 'Rozdíl mezi decentralizovanou pracovní skupinou a podnikovou doménou Active Directory.',
@@ -353,7 +377,7 @@ export const OSS2_AD: OutlineGroup = {
       topics: [
         'Limity Peer-to-Peer sítě (Pracovní skupina) při více než 5 počítačích',
         'Koncept podnikové domény: centrální adresářová služba Active Directory Domain Services (AD DS)',
-        'Role řadiče domény (Domain Controller - DC) a centrální autentizace (Kerberos)',
+        'Role řadiče domény (Domain Controller - DC) a centrální ověřování identit (Single Sign-On)',
         'Předpoklady pro doménovou komunikaci: správná konfigurace DNS pro vyhledání domény'
       ],
       practice: [
@@ -364,7 +388,9 @@ export const OSS2_AD: OutlineGroup = {
     },
     {
       slug: 'klient-v-domene',
-      tag: 'AD4',
+      tag: 'AD5',
+      order: 5,
+      icon: 'Monitor',
       title: 'Klientská stanice v podnikové doméně a uživatelské profily',
       hours: '4 h',
       subtitle: 'Kouzlo jednotného přihlášení: konfigurace DNS klienta, vstup do domény a síťový profil.',
@@ -380,11 +406,13 @@ export const OSS2_AD: OutlineGroup = {
         'Simulace: Diagnostika selhání – 3 nejčastější důvody, proč stanice nenajde doménu (špatné DNS, čas, název)',
         'Praxe v OS: Připojení virtuálního klienta Windows 11 do domény a přihlášení pod doménovým uživatelem'
       ],
-      builds: 'Koncept domény (AD3), DNS (OSS 1), Síťové adaptéry (OSS 1 – NET1).'
+      builds: 'Koncept domény (AD4), DNS (OSS 1), Síťové adaptéry (OSS 1 – NET1).'
     },
     {
       slug: 'gpo',
-      tag: 'AD5',
+      tag: 'AD6',
+      order: 6,
+      icon: 'Shield',
       title: 'Skupinové politiky (Group Policy – uplatnění na stanici)',
       hours: '4 h',
       subtitle: 'Jeden příkaz vládne všem: centrální zákaz USB, bezpečnost hesel, jednotná plocha a mapování disků.',
@@ -399,11 +427,13 @@ export const OSS2_AD: OutlineGroup = {
         'Simulace: Která politika vyhraje? – sledování konfliktu politik a pořadí uplatňování',
         'Praxe v OS: Ověření uplatnění bezpečnostní GPO politiky pro zákaz USB a kontrola výstupu gpresult /r'
       ],
-      builds: 'Klientská stanice v doméně (AD4), Sdílení SMB (AD1).'
+      builds: 'Klientská stanice v doméně (AD5), Sdílení SMB (AD1).'
     },
     {
       slug: 'zaloha-a-projekt',
-      tag: 'AD6',
+      tag: 'AD7',
+      order: 7,
+      icon: 'CheckSquare',
       title: 'Závěrečný integrující projekt administrace stanice',
       hours: '2 h',
       subtitle: 'Komplexní konfigurace stanice: síť, sdílení, zálohování, doména, GPO restrikce a obhajoba.',

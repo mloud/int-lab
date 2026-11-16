@@ -354,7 +354,7 @@ export const SVP_OSS2_DATA: SvpGradeData = {
     {
       id: 'oss2-b3',
       topic: '3. Systémové služby a administrační skriptování (PowerShell)',
-      hours: 18,
+      hours: 16,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
         'popíše architekturu a životní cyklus systémových služeb běžících na pozadí operačního systému',
@@ -378,12 +378,12 @@ export const SVP_OSS2_DATA: SvpGradeData = {
     {
       id: 'oss2-b4',
       topic: '4. Síťové sdílení prostředků, vzdálená správa a centrální správa v doméně',
-      hours: 18,
+      hours: 20,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
         'nakonfiguruje sdílení složek v lokální síti a nastaví kombinovaná oprávnění sdílení a souborového systému',
         'připojí síťové úložiště klientské stanici jako trvalou síťovou jednotku',
-        'zabezpečí a realizuje vzdálený přístup k pracovní ploše stanice',
+        'zabezpečí a realizuje vzdálený přístup k pracovní ploše stanice (RDP) i konzolovou správu přes šifrovaný protokol SSH (OpenSSH ve Windows 11)',
         'vysvětlí rozdíl mezi decentralizovanou pracovní skupinou a centralizovanou podnikovou doménou',
         'připojí klientskou stanici do podnikové domény a provede přihlášení doménovým profilem',
         'vysvětlí význam a mechanismus uplatňování centrálních bezpečnostních politik (GPO) na klientské stanici',
@@ -393,7 +393,8 @@ export const SVP_OSS2_DATA: SvpGradeData = {
         'Sdílení souborů v lokální síti (protokol SMB, síťové cesty UNC, konfigurace oprávnění sdílené složky)',
         'Efektivní přístupová práva (kombinace oprávnění sdílení a souborového systému, pravidlo restriktivnějšího přístupu)',
         'Mapování síťových disků (připojení síťové jednotky v grafickém i textovém rozhraní, trvalé připojení po přihlášení)',
-        'Vzdálená správa pracovní plochy (protokol RDP, autorizace vzdálených uživatelů, pravidla firewallu)',
+        'Vzdálená správa pracovní plochy (protokol RDP, autorizace vzdálených uživatelů, pravidla firewallu, zabezpečení NLA)',
+        'Konzolová správa přes OpenSSH ve Windows 11 (předinstalovaný OpenSSH klient, aktivace volitelné systémové služby OpenSSH SSH Server, autorizace uživatele, vzdálený PowerShell přes SSH)',
         'Koncept podnikové infrastruktury (pracovní skupina vs. doménové prostředí, centralizovaná autentizace, role doménového řadiče)',
         'Klientská stanice v podnikové doméně (připojení stanice do domény, profil doménového uživatele, oddělení lokálních a doménových práv)',
         'Skupinové politiky na stanici (princip centrální distribuce nastavení a bezpečnostních restrikcí na klientské počítače, zákaz výměnných médií, jednotná konfigurace)',

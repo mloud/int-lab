@@ -1055,4 +1055,20 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Synchronizace studentského tematického plánu (`app/specializovana/operacni-systemy-3/tematicky-plan/page.tsx`):**
       - Upraveny odpovídající řádky 33týdenního plánu (týdny 22, 23, 26, 31, 33) tak, aby tabulka na frontendu 1:1 odpovídala kurikulu v `ops3Plan.ts`.
 
+45. **Kurikulární revize OSS 2 a zavedení OpenSSH ve Windows 11 (Varianta B):**
+    - Provedena kompletní harmonizace kurikula pro 2. ročník SŠ (OSS 2 – 66 h, obor 18-20-M/01 Informační technologie) a synchronizace webu s novým ŠVP pro ČŠI a InspIS.
+    - **Zachování integrity:** Plně zachován obsah celého 1. bloku (Zálohování) i hotových interaktivních kapitol 2. bloku (BZ1 Malware, BZ2 Procesy a certifikáty, BZ3 Registr a persistence).
+    - **Revidovaná témata v Bloku 2 (Bezpečnost):**
+      - Název bloku sjednocen na *„Bezpečnost koncových zařízení, inspekce a audit“* (odstraněn akademický výraz *forenzní analýza*).
+      - `BZ8`: Změněno na *„Správa systémových aktualizací a bezpečnostní záplaty“* (teorie 0-day exploitů vyřazena jako předčasná, zařazena až do 3. ročníku).
+      - `BZ9`: Vyčištěn pojem „etický hacker“ a simulace přejmenována na *Detektor phishingu*.
+      - `BZ10`: Přejmenováno na *„Řešení bezpečnostního incidentu a protokol o zásahu“*, odstraněn herní a korporátní žargon (*Mini-CTF, Incident Response Report, flagy*).
+    - **Časová restrukturalizace Bloku 3 a Bloku 4 (Zavedení OpenSSH ve Windows 11):**
+      - V Bloku 3 (Služby a PowerShell) byla dotace konzole MMC (PK2) redukována ze 4 h na 2 h (celkem Blok 3 = 16 h). Z témat PK1 byl vyřazen archaický příkaz `sc.exe` ve prospěch nativních cmdletů PowerShellu.
+      - Uvolněné 2 hodiny byly alokovány do Bloku 4 (celkem Blok 4 = 20 h) pro novou samostatnou podkapitolu **AD3: Konzolová vzdálená správa přes OpenSSH ve Windows 11** (nativní `ssh` klient ve Windows Terminalu, aktivace volitelné systémové služby `sshd` ve Windows 11, konfigurace firewallu pro port 22, autorizace účtů a vzdálená práce v PowerShellu). Tím vznikl didaktický most mezi grafickým RDP ve 2. ročníku a Linuxem ve 3. ročníku.
+      - Následující podkapitoly v Bloku 4 byly přečíslovány na AD4 až AD7 a z konceptu domény byl vyčištěn protokol Kerberos.
+    - **Synchronizované soubory:**
+      - Kurikulum a ŠVP: [`doc/curriculum/OSS2.md`](curriculum/OSS2.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops2Plan.ts`](../registry/curriculum/thematic-plans/ops2Plan.ts), [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md) a aktivní tabule [`doc/plan.md`](plan.md).
+      - Webové osnovy a routy: [`registry/curriculum/outlines/oss2Outlines.ts`](../registry/curriculum/outlines/oss2Outlines.ts), [`app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx`](../app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx) a nová stránka [`app/specializovana/operacni-systemy-2/active-directory/ssh-windows/page.tsx`](../app/specializovana/operacni-systemy-2/active-directory/ssh-windows/page.tsx).
+
 

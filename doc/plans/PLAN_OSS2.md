@@ -21,8 +21,8 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 |:---:|:---:|---|:---:|:---:|---|
 | **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
 | **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, inspekce a audit** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
-| **3** | **Únor – Duben** (16.–24. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 18 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
-| **4** | **Duben – Červen** (25.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 18 h | ✅ 6 kapitol s osnovami (SMB, RDP, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD6) |
+| **3** | **Únor – Březen** (16.–23. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 16 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
+| **4** | **Duben – Červen** (24.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 20 h | ✅ 7 kapitol s osnovami (SMB, RDP, OpenSSH, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD7) |
 | **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
 
 ---
@@ -49,20 +49,21 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 * [x] **BZ9 Sociální inženýrství, phishing a ochrana identity** (`/bezpecnost/sit-hesla`, 2 h) – *Hlavičky podvodných e-mailů, MFA, správci hesel*
 * [x] **BZ10 Řešení bezpečnostního incidentu a protokol o zásahu** (`/bezpecnost/ctf`, 2 h) – *Detekce hrozby, izolace stanice, odstranění škůdce, technická zpráva o incidentu*
 
-### Blok 3: Systémové služby a skriptování v PowerShellu (18 h)
+### Blok 3: Systémové služby a skriptování v PowerShellu (16 h)
 * [x] **PK1 Systémové služby Windows na pozadí** (`/pokrocila-konfigurace/sluzby`, 4 h) – *Účet SYSTEM, typy spouštění, závislosti a obnova*
-* [x] **PK2 Konzole správce (MMC) a centrální diagnostika** (`/pokrocila-konfigurace/mmc`, 4 h) – *Doplňkové snap-iny, řešení pádů a zamrznutí*
+* [x] **PK2 Konzole správce (MMC) a centrální správa** (`/pokrocila-konfigurace/mmc`, 2 h) – *Doplňkové snap-iny, autorský vs. uživatelský režim*
 * [x] **PK3 PowerShell: Objektový shell, syntaxe cmdletů a roury** (`/pokrocila-konfigurace/powershell`, 4 h) – *Sloveso-PodstatnéJméno, roura `\|`, Where-Object, Select-Object*
 * [x] **PK4 Administrační skriptování v PowerShellu (.ps1)** (`/pokrocila-konfigurace/powershell-sprava`, 4 h) – *Proměnné, cykly foreach, politika ExecutionPolicy, skripty*
 * [x] **PK5 Automatizovaný sběr dat a generování reportů** (`/pokrocila-konfigurace/reporty`, 2 h) – *Diagnostika hardware/software a export do formátů CSV a HTML*
 
-### Blok 4: Síťové sdílení prostředků, vzdálená správa a doména (18 h)
+### Blok 4: Síťové sdílení prostředků, vzdálená správa a doména (20 h)
 * [x] **AD1 Síťové sdílení složek a efektivní práva (SMB)** (`/active-directory/smb`, 4 h) – *UNC cesty, kombinovaná práva sdílení a NTFS, mapování jednotky*
-* [x] **AD2 Zabezpečená vzdálená správa plochy (RDP)** (`/active-directory/vzdalena-sprava`, 2 h) – *Povolení RDP, autorizace uživatelů, pravidla firewallu*
-* [x] **AD3 Koncept podnikové infrastruktury a domény** (`/active-directory/server-a-domena`, 2 h) – *Pracovní skupina vs. doména, role DC a DNS*
-* [x] **AD4 Klientská stanice v podnikové doméně a profily** (`/active-directory/klient-v-domene`, 4 h) – *Konfigurace DNS, připojení stanice k doméně, profil DOMENA\\uzivatel*
-* [x] **AD5 Skupinové politiky (GPO – uplatnění na stanici)** (`/active-directory/gpo`, 4 h) – *Centrální distribuce nastavení, zákaz USB, gpupdate /force, gpresult /r*
-* [x] **AD6 Závěrečný integrující projekt administrace stanice** (`/active-directory/zaloha-a-projekt`, 2 h) – *Komplexní konfigurace stanice a obhajoba*
+* [x] **AD2 Zabezpečená vzdálená správa plochy (RDP)** (`/active-directory/vzdalena-sprava`, 2 h) – *Povolení RDP, autorizace uživatelů, pravidla firewallu, NLA*
+* [x] **AD3 Konzolová vzdálená správa přes OpenSSH ve Windows 11** (`/active-directory/ssh-windows`, 2 h) – *OpenSSH klient ve Windows Terminalu, spuštění služby sshd, vzdálený PowerShell*
+* [x] **AD4 Koncept podnikové infrastruktury a domény** (`/active-directory/server-a-domena`, 2 h) – *Pracovní skupina vs. doména, role DC a DNS*
+* [x] **AD5 Klientská stanice v podnikové doméně a profily** (`/active-directory/klient-v-domene`, 4 h) – *Konfigurace DNS, připojení stanice k doméně, profil DOMENA\\uzivatel*
+* [x] **AD6 Skupinové politiky (GPO – uplatnění na stanici)** (`/active-directory/gpo`, 4 h) – *Centrální distribuce nastavení, zákaz USB, gpupdate /force, gpresult /r*
+* [x] **AD7 Závěrečný integrující projekt administrace stanice** (`/active-directory/zaloha-a-projekt`, 2 h) – *Komplexní konfigurace stanice a obhajoba*
 
 ---
 
