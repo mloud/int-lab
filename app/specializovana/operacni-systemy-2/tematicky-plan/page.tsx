@@ -17,11 +17,11 @@ const PLAN_OSS2: PlanTopic[] = [
     topic: 'Správa podnikových dat a zálohování',
     topicHours: 10,
     subtopics: [
-      { name: 'Wargame – prověrka administrátorských dovedností z 1. ročníku', hours: 2, note: 'Diagnostika sítě, správa přístupových oprávnění NTFS a práce v textovém rozhraní' },
-      { name: 'Zásady zálohování a oborové pravidlo 3-2-1', hours: 2, note: 'Plná, přírůstková a rozdílová záloha, archivní atribut a stínové kopie svazku VSS' },
-      { name: 'Skriptovaná synchronizace dat v příkazovém rozhraní', hours: 2, note: 'Zrcadlení složek a logování v systémových nástrojích (robocopy)' },
+      { name: 'Úvod do zálohování a oborové pravidlo 3-2-1', hours: 2, note: 'Základní pojmy zálohování a obnovy, objekty zálohování a strategie 3-2-1' },
+      { name: 'Manuální záloha a skriptování v CLI (robocopy)', hours: 2, note: 'Příkazy copy, xcopy, robustní zrcadlení složek robocopy a logování' },
+      { name: 'Systémové nástroje ve Windows a stínové kopie VSS', hours: 2, note: 'Historie souborů, stav systému (System State) a obnova z VSS kopií' },
       { name: 'Cloudová synchronizace vs. nezávislá neměnná záloha', hours: 2, note: 'Rizika synchronizace při napadení ransomwarem a ochrana verzí' },
-      { name: 'Automatizované zálohování jako systémová služba', hours: 2, note: 'Běh pod systémovým účtem, ochrana záložních archivů šifrováním a heslem, zálohování na síťový disk a test obnovy' },
+      { name: 'Automatizované zálohování jako systémová služba', hours: 2, note: 'Běh pod systémovým účtem, šifrování archivů (Cobian Reflector) a test obnovy' },
     ]
   },
   {

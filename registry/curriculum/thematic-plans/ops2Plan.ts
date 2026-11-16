@@ -27,29 +27,29 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
         subtopics: [
           {
             id: 'oss2-b1-1',
-            title: 'Wargame – prověrka administrátorských dovedností z 1. ročníku',
+            title: 'Úvod do zálohování a oborové pravidlo 3-2-1',
             hours: 2,
-            type: 'laborator',
-            description: 'Diagnostika sítě, správa přístupových oprávnění NTFS a práce v textovém rozhraní.',
-            practice: 'Praktické laboratorní úlohy zaměřené na audit a konfiguraci stanice z 1. ročníku.',
+            type: 'teorie',
+            description: 'Základní pojmy zálohování a obnovy (Backup vs. Recovery), objekty zálohování, pravidlo 3-2-1 a typy záloh (plná, přírůstková, rozdílová).',
+            practice: 'Analýza zálohovací strategie pro modelovou firmu a návrh rozdělení záložních kopií podle pravidla 3-2-1.',
             route: '/specializovana/operacni-systemy-2/zalohovani/uvod'
           },
           {
             id: 'oss2-b1-2',
-            title: 'Zásady zálohování, oborové pravidlo 3-2-1 a typy záloh',
+            title: 'Manuální záloha a skriptování v CLI (robocopy)',
             hours: 2,
-            type: 'teorie',
-            description: 'Plná, přírůstková a rozdílová záloha, archivní atribut a stínové kopie svazku VSS.',
-            practice: 'Výpočet objemu záložních dat a návrh zálohovacího plánu pro firmu s denními změnami.',
+            type: 'laborator',
+            description: 'Příkazy copy, xcopy, robustní zrcadlení složek robocopy, práce s přepínači, archivní atribut a logování.',
+            practice: 'Vytvoření synchronizačního skriptu v robocopy s ošetřením návratových kódů a zápisem do logovacího souboru.',
             route: '/specializovana/operacni-systemy-2/zalohovani/manualni'
           },
           {
             id: 'oss2-b1-3',
-            title: 'Skriptovaná synchronizace dat a zrcadlení v CLI',
+            title: 'Systémové nástroje ve Windows a stínové kopie VSS',
             hours: 2,
             type: 'laborator',
-            description: 'Zrcadlení složek a logování v systémových nástrojích (robocopy).',
-            practice: 'Vytvoření synchronizačního skriptu s ošetřením chybových návratových kódů a zápisem do logu.',
+            description: 'Historie souborů (File History), zálohování stavu systému (System State), technologie Volume Shadow Copy (VSS) a body obnovy.',
+            practice: 'Aktivace a konfigurace stínových kopií svazku VSS a simulace obnovy nechtěně smazaného souboru z předchozí verze.',
             route: '/specializovana/operacni-systemy-2/zalohovani/system'
           },
           {

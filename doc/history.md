@@ -1071,4 +1071,13 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Kurikulum a ŠVP: [`doc/curriculum/OSS2.md`](curriculum/OSS2.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops2Plan.ts`](../registry/curriculum/thematic-plans/ops2Plan.ts), [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md) a aktivní tabule [`doc/plan.md`](plan.md).
       - Webové osnovy a routy: [`registry/curriculum/outlines/oss2Outlines.ts`](../registry/curriculum/outlines/oss2Outlines.ts), [`app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx`](../app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx) a nová stránka [`app/specializovana/operacni-systemy-2/active-directory/ssh-windows/page.tsx`](../app/specializovana/operacni-systemy-2/active-directory/ssh-windows/page.tsx).
 
+46. **Synchronizace tematického plánu Zálohování (Blok 1) s reálným obsahem na webu (Řešení A):**
+    - Odstraněn zastaralý relikt „Wargame 1“ z 1. týdne tematického plánu a narovnán týdenní rozpis přesně podle 5 plnohodnotných hotových kapitol na webu:
+      1. Týden 1: *Úvod do zálohování a oborové pravidlo 3-2-1* (`/zalohovani/uvod`)
+      2. Týden 2: *Manuální záloha a skriptování v CLI – robocopy* (`/zalohovani/manualni`)
+      3. Týden 3: *Systémové nástroje ve Windows a stínové kopie VSS* (`/zalohovani/system`)
+      4. Týden 4: *Cloudová synchronizace vs. nezávislá neměnná záloha* (`/zalohovani/cloud`)
+      5. Týden 5: *Automatizované zálohování jako systémová služba s šifrováním – Cobian Reflector* (`/zalohovani/cobian`)
+    - Dosažena absolutní 100% shoda všech kapitol 1. bloku (Zálohování) i 2. bloku (Bezpečnost) mezi ŠVP, tematickým plánem a webem portálu IntLab (všech 15 témat sedí 1:1) bez zásahu do funkčního obsahu lekcí.
+
 

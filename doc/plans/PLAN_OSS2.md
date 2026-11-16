@@ -19,7 +19,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 
 | Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|:---:|---|:---:|:---:|---|
-| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
+| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Pravidlo 3-2-1, robocopy, VSS stínové kopie, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
 | **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, inspekce a audit** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
 | **3** | **Únor – Březen** (16.–23. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 16 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
 | **4** | **Duben – Červen** (24.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 20 h | ✅ 7 kapitol s osnovami (SMB, RDP, OpenSSH, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD7) |

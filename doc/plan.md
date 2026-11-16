@@ -17,7 +17,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 
 | Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav v kurikulu | Odkaz na webu |
 |:---:|:---:|---|:---:|:---:|---|
-| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/specializovana/operacni-systemy-2/zalohovani` (B1–B5) |
+| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Pravidlo 3-2-1, robocopy, VSS stínové kopie, cloud, Cobian) | `/specializovana/operacni-systemy-2/zalohovani` (B1–B5) |
 | **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, inspekce a audit** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy vyčištěny od žargonu) | `/specializovana/operacni-systemy-2/bezpecnost` (BZ1–BZ10) |
 | **3** | **Únor – Březen** (16.–23. týden) | **Systémové služby a skriptování v PowerShellu** | 16 h | ✅ 5 kapitol s osnovami (služby, MMC 2h, cmdlety, skripty .ps1, reporty) | `/specializovana/operacni-systemy-2/pokrocila-konfigurace` (PK1–PK5) |
 | **4** | **Duben – Červen** (24.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 20 h | ✅ 7 kapitol s osnovami (SMB, RDP, OpenSSH ve Windows 11, doména, klient, GPO, projekt) | `/specializovana/operacni-systemy-2/active-directory` (AD1–AD7) |
