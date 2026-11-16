@@ -1006,6 +1006,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - *Úloha 4 (Bezpečné vypnutí OS / Graceful Shutdown):* Využití synchronního volání `vyšli zprávu [...] a čekej` pro řízení 3fázového vypnutí systému (ukončení aplikací ➔ zápis cache z RAM na disk ➔ ACPI signál odpojení napájení).
       - *Úloha 5 (Digitální stopky s řízením stavů):* Reakce na zprávy `start`, `stop`, `reset`. Část A: měření celých sekund. Část B: rozšíření na formát minut a sekund.
       - *Úloha 6 (Architektura Klient–Server, API a Databáze):* Rozfázovaný projekt: Fáze 1 (příkaz `vrat cas` ➔ zpráva `vrat cas a čekej` ➔ server nastaví proměnnou `odpoved_serveru`, ošetření chyby „Neznámý příkaz“), Fáze 2 (výpočetní služba `obsah kruhu` s předáním argumentu v proměnné `parametr` ➔ výsledek v `odpoved_serveru`), Fáze 3 (databázová služba `uloz` ➔ uložení proměnné `parametr` do lokálního seznamu `databaze` na serveru a návrat potvrzení do `odpoved_serveru`).
+      - *Úloha 7 (Grafická kalkulačka se seznamem / Tokenizace výrazu):* Komplexní syntetický projekt. Tlačítka číslic (buffer `aktualni_vstup`), operátory `+` a `-` (ukládání tokenů do seznamu `vyraz`), tlačítko `=` (vysílá `vyhodnot a čekej`), kocour analyzuje operátor na 2. pozici seznamu a vypočítá výsledek mezi položkami 1 a 3.
     - **Registrace a navigace:** Přidána karta Lekce 7 (`#scr7`) do `app/specializovana/programovani/scratch/page.tsx` a lekce zaregistrována do `registry/lessons/prg1ScratchLessons.ts` s plnou vzdělávací cestou pro SŠ.
 
 
