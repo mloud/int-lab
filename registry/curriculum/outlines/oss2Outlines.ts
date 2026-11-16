@@ -136,19 +136,20 @@ export const OSS2_BEZPECNOST: OutlineGroup = {
       tag: 'BZ9',
       order: 9,
       icon: 'Search',
-      title: 'Sociální inženýrství, phishing a ochrana identity',
+      title: 'Webový klient, ochrana identity a obrana proti phishingu',
       hours: '2 h',
-      subtitle: 'Phishing, silná hesla, vícefaktorové ověřování MFA a zásady bezpečného chování.',
-      intro: 'Nejslabším článkem bezpečnosti bývá lidský faktor. Naučíme se rozpoznat podvodný phishingový e-mail v hlavičkách zpráv, vytvářet odolná hesla a zabezpečit identitu vícefaktorovým ověřením.',
+      subtitle: 'Konfigurace a zabezpečení webového prohlížeče, hesla, vícefaktorové ověřování MFA a obrana proti phishingu.',
+      intro: 'Prohlížeč je hlavní branou do sítě a nejslabším článkem bývá lidský faktor. Naučíme se bezpečně nakonfigurovat webového klienta, rozpoznat podvodný phishingový útok v hlavičkách a zabezpečit identitu vícefaktorovým ověřením.',
       topics: [
-        'Metody sociálního inženýrství a analýza podvodných e-mailů (hlavičky, podvržené domény)',
+        'Konfigurace a bezpečnost webového klienta (výchozí aplikace, profily, správa certifikátů, blokování nebezpečných doplňků a stahování)',
+        'Metody sociálního inženýrství a analýza podvodných e-mailů a stránek (hlavičky, podvržené domény)',
         'Síla hesla, entropie a bezpečné ukládání v offline správcích hesel',
         'Vícefaktorové ověřování (MFA / 2FA): autentizační aplikace vs. hardwarové FIDO2 klíče',
-        'Zásady obrany identity, silná hesla a vícefaktorové ověřování'
+        'Zásady obrany identity, silná hesla a bezpečné procházení webu'
       ],
       practice: [
-        'Simulace: Detektor phishingu – rozbor podezřelého e-mailu a odhalení podvržené adresy',
-        'Praxe v OS: Kontrola kompromitovaných přihlašovacích údajů a konfigurace vícefaktorového ověření'
+        'Simulace: Bezpečný webový klient a detektor phishingu – konfigurace prohlížeče a rozbor podezřelého e-mailu',
+        'Praxe v OS: Zabezpečení webového prohlížeče, kontrola certifikátů a konfigurace vícefaktorového ověření'
       ],
       builds: 'BZ1 (spyware a keyloggery).'
     },

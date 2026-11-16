@@ -62,7 +62,11 @@ b1[5]['rvp'] = [
     'navrhne procesy zpracování dat a roli/role jednotlivých uživatelů'
 ]
 b1[6]['rvp'] = ['zaktualizuje OS']
-b1[7]['rvp'] = ['nakonfiguruje operační systém pro použití periferních zařízení']
+b1[7]['rvp'] = [
+    'nakonfiguruje operační systém pro použití periferních zařízení',
+    'orientuje se v možnostech výběru plánovacího software',
+    'používá pokročilé funkce plánovacího software'
+]
 b1[8]['rvp'] = [
     'připojí počítač k internetu',
     'porovná jednotlivé způsoby propojení digitálních zařízení, charakterizuje počítačové sítě a internet; vysvětlí, pomocí čeho a jak je komunikace mezi jednotlivými zařízeními v síti zajištěna',
@@ -75,7 +79,8 @@ b2[1]['rvp'] = [
     'zabezpečí počítače proti zneužití',
     'zajistí integritu, důvěrnost a bezpečnost dat v OS',
     'rozezná druhy škodlivého SW a aplikuje antivirus s pravidelnou aktualizací',
-    'popíše a využívá instalaci certifikátů'
+    'popíše a využívá instalaci certifikátů',
+    'nakonfiguruje webového klienta podle požadavků a potřeb'
 ]
 b2[2]['rvp'] = ['zaktivuje a nakonfiguruje síťové služby na osobním počítači']
 b2[3]['rvp'] = [
@@ -91,7 +96,9 @@ b3[0]['rvp'] = [
 b3[1]['rvp'] = [
     'definuje funkci a význam jednotlivých síťových služeb',
     'nastaví proxy server pro webový provoz',
-    'zaktivuje a nakonfiguruje síťové služby na osobním počítači'
+    'zaktivuje a nakonfiguruje síťové služby na osobním počítači',
+    'orientuje se v možnostech výběru plánovacího software',
+    'používá pokročilé funkce plánovacího software'
 ]
 b3[2]['rvp'] = [
     'vysvětlí principy činností SW prostředků pro nastavení kybernetické bezpečnosti',
@@ -107,12 +114,9 @@ b3[4]['rvp'] = ['popíše, jakým způsobem operační systém zajišťuje své 
 
 unassigned = [
     'nastaví parametry běhu prezentace (např. časování, ovládání)',
-    'orientuje se v možnostech výběru plánovacího software',
-    'používá pokročilé funkce plánovacího software',
     'odhaluje chyby v datech',
     'navrhne způsob využití informačního systému k řešení problému ve svém oboru, otestuje ho se skupinou uživatelů a vyhodnotí případné chyby, chybové stavy a jejich příčiny',
-    'v případě personalizovaného obsahu dokáže identifikovat obsah generovaný algoritmy doporučovacích systémů',
-    'nakonfiguruje webového klienta podle požadavků a potřeb'
+    'v případě personalizovaného obsahu dokáže identifikovat obsah generovaný algoritmy doporučovacích systémů'
 ]
 
 spec = {

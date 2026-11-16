@@ -335,7 +335,7 @@ export const SVP_OSS2_DATA: SvpGradeData = {
         'bezpečně testuje podezřelé soubory v izolovaném prostředí a konfiguruje aktivní systémovou ochranu proti škodlivému kódu',
         'konfiguruje pravidla paketového firewallu pro příchozí i odchozí komunikaci a monitoruje aktivní síťová spojení stanice',
         'aplikuje diskové šifrování s hardwarovou ochranou kryptografických klíčů a bezpečně spravuje obnovovací klíče',
-        'analyzuje techniky sociálního inženýrství a phishingu a aplikuje zásady bezpečné správy hesel a vícefaktorového ověřování',
+        'nakonfiguruje webového klienta podle požadavků a potřeb, analyzuje techniky phishingu a aplikuje zásady vícefaktorového ověřování a bezpečné správy hesel',
         'vyřeší simulovaný bezpečnostní incident na stanici, provede odstranění nežádoucího softwaru a vypracuje technickou zprávu o zásahu'
       ],
       content: [
@@ -347,7 +347,7 @@ export const SVP_OSS2_DATA: SvpGradeData = {
         'Paketový firewall na koncovém zařízení (filtrace příchozího a odchozího provozu, pravidla pro porty a aplikace, sledování aktivních síťových spojení)',
         'Šifrování disků a hardwarová ochrana klíčů (šifrování systémových i přenosných disků, bezpečnostní čip TPM, správa záchranných klíčů)',
         'Správa systémových aktualizací a zranitelnosti (instalace bezpečnostních záplat, servisní cykly aktualizací, hromadný upgrade aplikací)',
-        'Sociální inženýrství, phishing a ochrana identity (analýza podvodných e-mailů a hlaviček zpráv, vícefaktorové ověřování MFA, správci hesel)',
+        'Webový klient, ochrana identity a obrana proti phishingu (konfigurace a zabezpečení prohlížeče, certifikáty, analýza podvodných e-mailů a stránek, vícefaktorové ověřování MFA, správci hesel)',
         'Řešení bezpečnostního incidentu (detekce neoprávněné aktivity na stanici, izolace systému, odstranění hrozby a tvorba technického protokolu o zásahu)'
       ]
     },

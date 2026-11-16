@@ -46,7 +46,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 * [x] **BZ6 Paketový firewall na koncovém zařízení** (`/bezpecnost/firewall`, 2 h) – *Příchozí/odchozí pravidla, sledování spojení netstat*
 * [x] **BZ7 Diskové šifrování a TPM čip** (`/bezpecnost/sifrovani`, 2 h) – *BitLocker, ochrana klíčů čipem TPM 2.0, obnovovací klíče*
 * [x] **BZ8 Správa aktualizací a bezpečnostní záplaty** (`/bezpecnost/ucty`, 2 h) – *Záplaty, servisní cykly, balíčkovač winget*
-* [x] **BZ9 Sociální inženýrství, phishing a ochrana identity** (`/bezpecnost/sit-hesla`, 2 h) – *Hlavičky podvodných e-mailů, MFA, správci hesel*
+* [x] **BZ9 Webový klient, ochrana identity a obrana proti phishingu** (`/bezpecnost/sit-hesla`, 2 h) – *Konfigurace a zabezpečení prohlížeče, MFA, správci hesel*
 * [x] **BZ10 Řešení bezpečnostního incidentu a protokol o zásahu** (`/bezpecnost/ctf`, 2 h) – *Detekce hrozby, izolace stanice, odstranění škůdce, technická zpráva o incidentu*
 
 ### Blok 3: Systémové služby a skriptování v PowerShellu (16 h)

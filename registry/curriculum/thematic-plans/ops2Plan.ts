@@ -83,7 +83,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
         theoryHours: 6,
         practiceHours: 14,
         description: 'Typologie malwaru, bezpečnostní inspekce procesů v Process Exploreru, digitální podpisy, Defender, Firewall, BitLocker a řešení incidentu.',
-        rvpCompetence: 'Provádí bezpečnostní audit procesů, analyzuje podezřelé chování systému, konfiguruje Defender, Firewall a šifrování BitLocker.',
+        rvpCompetence: 'Provádí bezpečnostní audit procesů, konfiguruje a zabezpečuje webového klienta, spravuje Defender, Firewall a šifrování BitLocker.',
         subtopics: [
           {
             id: 'oss2-b2-1',
@@ -159,11 +159,11 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss2-b2-9',
-            title: 'Sociální inženýrství, phishing a ochrana identity',
+            title: 'Webový klient, ochrana identity a obrana proti phishingu',
             hours: 2,
             type: 'kombinovane',
-            description: 'Metody sociálního inženýrství, rozpoznávání podvodných e-mailů a URL, síla hesel, správce KeePass, vícefaktorové ověřování MFA (FIDO2).',
-            practice: 'Analýza podvodného e-mailu v hlavičkách zpráv, kontrola úniku hesel na HaveIBeenPwned a nastavení MFA.',
+            description: 'Konfigurace a zabezpečení webového prohlížeče, ochrana identity, síla hesel, správce KeePass, vícefaktorové ověřování MFA (FIDO2) a rozpoznávání podvodných URL.',
+            practice: 'Zabezpečení a konfigurace webového klienta, analýza podvodného e-mailu v hlavičkách zpráv a nastavení MFA.',
             route: '/specializovana/operacni-systemy-2/bezpecnost/sit-hesla'
           },
           {

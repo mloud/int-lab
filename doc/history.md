@@ -1106,4 +1106,15 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
         - *„nakonfiguruje sdílení dat, ověří funkčnost zálohování a předvede funkční řešení vyučujícímu“*.
       - Synchronizováno v [`doc/curriculum/OSS3.md`](curriculum/OSS3.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops3Plan.ts`](../registry/curriculum/thematic-plans/ops3Plan.ts) i v live dokumentu na Google Disku.
 
+49. **Integrace RVP výstupů pro Webového klienta (BZ9) a Plánovací software do OSS 1–3 a Google DOCX:**
+    - **Přiřazení výstupu pro webového klienta:**
+      - Výstup RVP *„nakonfiguruje webového klienta podle požadavků a potřeb“* byl začleněn do 2. ročníku (OSS 2 – Blok 2 Bezpečnost koncových zařízení).
+      - Téma **BZ9** bylo aktualizováno na **Webový klient, ochrana identity a obrana proti phishingu** (konfigurace a zabezpečení prohlížeče, certifikáty, správci hesel, vícefaktorové ověřování MFA a obrana proti phishingu). Hodinová dotace zůstala 100% zachována (2 h) bez nutnosti cokoliv škrtat.
+    - **Přiřazení výstupů pro plánovací software:**
+      - Výstupy RVP *„orientuje se v možnostech výběru plánovacího software“* a *„používá pokročilé funkce plánovacího software“* byly přiřazeny k systémovému plánování úloh:
+        - V OSS 1 k Bloku 8 (*Správa hardware, ovladače a plánování úloh – Task Scheduler*).
+        - V OSS 3 k Bloku 2 (*Linux sítě a automatizace – cron*) a Bloku 4 (*týmová organizace úkolů – Kanban*).
+    - **Vyčištění nepřiřazených RVP výstupů:** V tabulce nepřiřazených výstupů zbyly pouze 4 položky, které náleží jiným předmětům (prezentace, chyby v datech / databáze, návrh IS, doporučovací algoritmy).
+    - **Export a nasazení:** Všechny kurikulární databáze, klientské stránky i živý Google Dokument `Operační systémy a software V2.docx` (ID: `1H8iovN3GKG0SQGct3fgwuHGboMFQn9Hf`) byly plně synchronizovány.
+
 

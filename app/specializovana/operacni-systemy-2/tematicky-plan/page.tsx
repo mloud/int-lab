@@ -37,7 +37,7 @@ const PLAN_OSS2: PlanTopic[] = [
       { name: 'Paketový firewall na koncovém zařízení', hours: 2, note: 'Příchozí a odchozí pravidla, filtrace portů a sledování aktivních spojení (netstat)' },
       { name: 'Diskové šifrování a hardwarový bezpečnostní čip TPM', hours: 2, note: 'Šifrování systémového i výměnného disku (BitLocker) a záchranné obnovovací klíče' },
       { name: 'Správa systémových aktualizací a bezpečnostní záplaty', hours: 2, note: 'Servisní cykly záplat, instalace aktualizací a hromadný update aplikací (winget)' },
-      { name: 'Sociální inženýrství, phishing a ochrana identity', hours: 2, note: 'Analýza podvodných e-mailů a hlaviček, vícefaktorové ověřování MFA a správci hesel' },
+      { name: 'Webový klient, ochrana identity a obrana proti phishingu', hours: 2, note: 'Konfigurace a zabezpečení webového prohlížeče, správa hesel, vícefaktorové ověřování MFA a obrana proti phishingu' },
       { name: 'Řešení bezpečnostního incidentu a protokol o zásahu', hours: 2, note: 'Detekce neoprávněné aktivity, izolace stanice, odstranění škůdce a sepsání technického protokolu' },
     ]
   },
