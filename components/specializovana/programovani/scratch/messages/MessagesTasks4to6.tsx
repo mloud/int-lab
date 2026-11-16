@@ -17,21 +17,21 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
       {/* ÚKOL 4 */}
       <TaskCard
         number="4"
-        title="Synchronní volání – Odpočet (Rozešli a čekej)"
+        title="Synchronní volání – Odpočet (Vyšli a čekej)"
         taskId="msg-4"
         saveAs="Odpocet.sb3"
         showTeacher={teacherMode}
         teacherNote={
           <div className="space-y-3">
             <p className="text-xs text-slate-700">
-              <strong>Princip:</strong> Blok <code>rozešli zprávu [odpocet] a čekej</code> zastaví provádění skriptu v Tazateli až do okamžiku, kdy Počítadlo dokončí svůj cyklus 3, 2, 1.
+              <strong>Princip:</strong> Blok <code>vyšli zprávu [odpocet] a čekej</code> zastaví provádění skriptu v Tazateli až do okamžiku, kdy Počítadlo dokončí svůj cyklus 3, 2, 1.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Tazatele (Kocour):</div>
                 <div><ScratchBlock category="events">po kliknutí na mě</ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="sensing">otázka [Mám zahájit odpočet?] a čekej</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">odpocet</ScratchInput> a čekej</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">odpocet</ScratchInput> a čekej</ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="looks">bublina [Odpočet skončil, můžeme začít!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
               </div>
 
@@ -158,7 +158,7 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
                           <ScratchBlock category="variables">nastav <ScratchInput type="dropdown">parametr_vstup</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock>
                         </div>
                       </ScratchCBlock>
-                      <div><ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">zavolej_api</ScratchInput> a čekej</ScratchBlock></div>
+                      <div><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zavolej_api</ScratchInput> a čekej</ScratchBlock></div>
                       <div><ScratchBlock category="looks">bublina <ScratchReporter category="variables">odpoved_serveru</ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
                     </div>
                   </ScratchCBlock>
@@ -201,7 +201,7 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
             Vytvoř proměnné pro komunikaci: <span className="font-bold text-amber-600">prikaz</span>, <span className="font-bold text-amber-600">parametr_vstup</span> a <span className="font-bold text-emerald-600">odpoved_serveru</span>. Na serveru vytvoř seznam <span className="font-bold text-orange-600">databaze</span>.
           </li>
           <li>
-            <strong>Klient</strong> se v cyklu zeptá na příkaz (<em>cas</em>, <em>obsah_kruhu</em> nebo <em>uloz</em>), podle volby případně dovyžádá doplňující data do <span className="font-bold text-amber-600">parametr_vstup</span> a rozešle zprávu <span className="font-bold text-amber-600">zavolej_api a čekej</span>.
+            <strong>Klient</strong> se v cyklu zeptá na příkaz (<em>cas</em>, <em>obsah_kruhu</em> nebo <em>uloz</em>), podle volby případně dovyžádá doplňující data do <span className="font-bold text-amber-600">parametr_vstup</span> a vyšle zprávu <span className="font-bold text-amber-600">zavolej_api a čekej</span>.
           </li>
           <li>
             <strong>Server</strong> po obdržení zprávy provede požadovanou službu:

@@ -56,8 +56,8 @@ export const MessagesTheorySection = ({ teacherMode }: { teacherMode: boolean })
           Klíčové bloky (Kategorie Události – žlutá):
         </h4>
         <div className="flex flex-wrap gap-2 items-center text-xs">
-          <ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">zpráva1</ScratchInput></ScratchBlock>
-          <ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">zpráva1</ScratchInput> a čekej</ScratchBlock>
+          <ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zpráva1</ScratchInput></ScratchBlock>
+          <ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zpráva1</ScratchInput> a čekej</ScratchBlock>
           <ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">zpráva1</ScratchInput></ScratchBlock>
         </div>
       </div>

@@ -22,13 +22,13 @@ export const MessagesTasks1to3 = ({ teacherMode }: { teacherMode: boolean }) => 
         teacherNote={
           <div className="space-y-3">
             <p className="text-xs text-slate-700">
-              <strong>Princip:</strong> Tlačítko slouží jako vysílač signálu přes blok <code>rozešli zprávu [zazvon]</code>. Kocour má spouštěcí klobouček <code>po obdržení zprávy [zazvon]</code>.
+              <strong>Princip:</strong> Tlačítko slouží jako vysílač signálu přes blok <code>vyšli zprávu [zazvon]</code>. Kocour má spouštěcí klobouček <code>po obdržení zprávy [zazvon]</code>.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář postavy Tlačítko:</div>
                 <div><ScratchBlock category="events">po kliknutí na mě</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">zazvon</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zazvon</ScratchInput></ScratchBlock></div>
               </div>
 
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
@@ -106,7 +106,7 @@ export const MessagesTasks1to3 = ({ teacherMode }: { teacherMode: boolean }) => 
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář postavy Kocour:</div>
                 <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="looks">bublina [Ahoj, jak se jmenuješ?] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">odpovez</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">odpovez</ScratchInput></ScratchBlock></div>
                 <div className="pt-2"><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">dalsi_otazka</ScratchInput></ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="looks">bublina [Rád tě poznávám!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
               </div>
@@ -115,7 +115,7 @@ export const MessagesTasks1to3 = ({ teacherMode }: { teacherMode: boolean }) => 
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář druhé postavy (Abby):</div>
                 <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">odpovez</ScratchInput></ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="looks">bublina [Ahoj, já jsem Abby.] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">rozešli zprávu <ScratchInput type="dropdown">dalsi_otazka</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">dalsi_otazka</ScratchInput></ScratchBlock></div>
               </div>
             </div>
           </div>
