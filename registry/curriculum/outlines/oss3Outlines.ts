@@ -3,7 +3,7 @@ import type { OutlineGroup } from './outlineTypes';
 const SUBJECT = 'Operační systémy 3';
 const BASE = '/specializovana/operacni-systemy-3';
 
-/** Linux – Instalace a základní správa (16 h) */
+/** Linux – Instalace a základní správa (20 h) */
 export const OSS3_LINUX_SPRAVA: OutlineGroup = {
   chapterId: 'os3-linux',
   chapterTitle: 'Linux: Instalace a správa',
@@ -40,18 +40,20 @@ export const OSS3_LINUX_SPRAVA: OutlineGroup = {
       slug: 'terminal',
       tag: 'LX2',
       title: 'Hierarchie souborového systému FHS a orientace v terminálu',
-      hours: '2 h',
+      hours: '4 h',
       subtitle: 'Pohyb po jednotném stromu adresářů a práce se soubory v příkazové řádce.',
       intro: 'V Linuxu neexistují písmena disků C: nebo D: – celý systém tvoří jeden strom s kořenem „/“. Naučíme se v něm orientovat a spravovat soubory.',
       topics: [
         'Jeden společný kořen „/“ a hierarchie FHS (Filesystem Hierarchy Standard)',
         'Klíčové systémové adresáře: /etc (konfigurace), /var (logy a weby), /home (uživatelé), /dev (zařízení)',
         'Základní navigace a manipulace: pwd, ls -la, cd, mkdir, cp, mv, rm',
-        'Absolutní vs. relativní cesty a zástupné znaky * a ?'
+        'Absolutní vs. relativní cesty a zástupné znaky * a ?',
+        'Procvičování pro žáky, kteří terminál vidí poprvé: kopírování, přesouvání, mazání a hledání souborů (find) v samostatných úlohách'
       ],
       practice: [
         'Simulace: Terminálový trenažér – navigace ve virtuálním linuxovém stromu',
-        'Praxe v OS: Vytvoření adresářové struktury projektu a bezpečný úklid souborů'
+        'Praxe v OS: Vytvoření adresářové struktury projektu a bezpečný úklid souborů',
+        'Druhá dvouhodinovka: samostatné procvičovací úlohy v terminálu s postupným zvyšováním obtížnosti'
       ],
       builds: 'CMD orientace (OSS 1 – CLI1, CLI2).'
     },
@@ -59,18 +61,20 @@ export const OSS3_LINUX_SPRAVA: OutlineGroup = {
       slug: 'prava',
       tag: 'LX3',
       title: 'Uživatelé, skupiny a POSIX oprávnění (chmod, chown, sudo)',
-      hours: '2 h',
+      hours: '4 h',
       subtitle: 'Vlastník, skupina, ostatní (rwx), číselná notace chmod a příkaz sudo.',
       intro: 'Každý soubor a složka v Linuxu má přesně definovaného vlastníka a přístupová práva. Naučíme se je číst, počítat v osmičkové soustavě a bezpečně delegovat práva přes sudo.',
       topics: [
         'Správa účtů a skupin: soubory /etc/passwd, /etc/shadow a /etc/group, příkazy useradd a groupadd',
         'Klasický POSIX model: oprávnění číst (r=4), psát (w=2) a spouštět (x=1) pro User, Group a Others',
         'Změna oprávnění a vlastnictví: symbolický a číselný zápis chmod (např. 755, 644) a chown',
-        'Superuživatel root, rizika práce pod rootem a bezpečné použití sudo (/etc/sudoers)'
+        'Superuživatel root, rizika práce pod rootem a bezpečné použití sudo (/etc/sudoers)',
+        'Procvičování řešení typických situací: kdo smí číst, zapisovat a spouštět, oprava chybně nastavených práv'
       ],
       practice: [
         'Simulace: Kalkulačka rwx – interaktivní převodník mezi symbolickým zápisem rwxr-xr-- a číslem 754',
-        'Praxe v OS: Zřízení sdílené složky pro skupinu techniků se zakázaným přístupem pro ostatní'
+        'Praxe v OS: Zřízení sdílené složky pro skupinu techniků se zakázaným přístupem pro ostatní',
+        'Druhá dvouhodinovka: samostatné úlohy na práva a vlastnictví, oprava záměrně rozbitého nastavení'
       ],
       builds: 'Uživatelské účty a skupiny (OSS 1 – USR1, USR3).'
     },
@@ -172,7 +176,7 @@ export const OSS3_LINUX_SPRAVA: OutlineGroup = {
   ]
 };
 
-/** Linux – Sítě, serverové služby a Bash skripty (16 h) */
+/** Linux – Sítě, serverové služby a Bash skripty (18 h) */
 export const OSS3_LINUX_SLUZBY: OutlineGroup = {
   chapterId: 'os3-sluzby',
   chapterTitle: 'Linux: Sítě, služby a Bash',
@@ -304,7 +308,7 @@ export const OSS3_LINUX_SLUZBY: OutlineGroup = {
       slug: 'bash-skripty',
       tag: 'LX15',
       title: 'Administrační skriptování v shellu: Podmínky, cykly a zálohování (tar)',
-      hours: '2 h',
+      hours: '4 h',
       subtitle: 'Podmínky if, cykly for a napsání robustního automatizovaného zálohovacího skriptu.',
       intro: 'Rozšíříme skripty o podmíněné větvení a cykly. Vytvoříme plnohodnotný zálohovací skript, který zkontroluje existenci souborů a zabalí data do archivu tar.gz s časovým razítkem.',
       topics: [
@@ -315,7 +319,8 @@ export const OSS3_LINUX_SLUZBY: OutlineGroup = {
       ],
       practice: [
         'Simulace: Ladění chyb v syntaxi Bashe (správné mezery v hranatých závorkách)',
-        'Praxe v OS: Naprogramování automatizovaného zálohovacího skriptu pro složku webu s ošetřením chyb'
+        'Praxe v OS: Naprogramování automatizovaného zálohovacího skriptu pro složku webu s ošetřením chyb',
+        'Druhá dvouhodinovka: samostatné dokončení a odladění vlastního skriptu s kontrolou učitele'
       ],
       builds: 'Zálohování (OSS 2 – Blok 1).'
     },
@@ -434,11 +439,11 @@ export const OSS3_GIT: OutlineGroup = {
   ]
 };
 
-/** Kybernetická bezpečnost – Systém a Síť (12 h) */
+/** Kybernetická bezpečnost – Systém a Síť (6 h) */
 export const OSS3_CYBER: OutlineGroup = {
   chapterId: 'os3-cyber',
   chapterTitle: 'Kybernetická bezpečnost',
-  chapterDescription: 'Systémová a síťová bezpečnost: právo a etika v IT, skenování portů Nmapem, analýza provozu ve Wiresharku, ochrana hesel a řešení incidentů.',
+  chapterDescription: 'Základy systémové a síťové bezpečnosti: průzkum sítě a zranitelnosti, ochrana hesel a řešení incidentů.',
   chapterTag: 'cyb',
   chapterPath: `${BASE}/kyberbezpecnost`,
   subjectTitle: SUBJECT,
@@ -449,33 +454,15 @@ export const OSS3_CYBER: OutlineGroup = {
   gradient: 'from-slate-700 to-slate-900',
   items: [
     {
-      slug: 'pravo-a-utok',
-      tag: 'KB1',
-      title: 'Právní a etický rámec: Trestní zákoník, NIS 2 a fáze útoku',
-      hours: '2 h',
-      subtitle: 'Zákonné hranice správce, směrnice NIS 2 a anatomie útoku.',
-      intro: 'Správce systému musí vědět, co je legální obrana a co už trestný čin. Představíme si zákonné povinnosti, směrnici NIS 2 a fáze, kterými prochází kybernetický útok.',
-      topics: [
-        'Základní principy bezpečnosti: CIA triáda (Důvěrnost, Integrita, Dostupnost)',
-        'Trestní zákoník ČR: § 230–232 (Neoprávněný přístup k počítačovému systému a nosiči informací)',
-        'Zákon o kybernetické bezpečnosti a evropská směrnice NIS 2: povinnosti organizací',
-        'Fáze a principy kybernetického útoku: průzkum, zneužití zranitelnosti, průnik, eskalace práv, zahlazení stop'
-      ],
-      practice: [
-        'Simulace: Právní kvíz – posouzení reálných situací (port scan, test hesel, zodpovědné nahlášení)',
-        'Praxe: Rozbor reálného kybernetického incidentu a identifikace fází útoku'
-      ],
-      builds: 'Malware a bezpečnost (OSS 2 – Blok 2).'
-    },
-    {
       slug: 'osint-nmap',
-      tag: 'KB2',
-      title: 'Bezpečnostní průzkum sítě a mapování zranitelností (Nmap & CVE)',
+      tag: 'KB1',
+      title: 'Bezpečnostní průzkum sítě, zranitelnosti (Nmap & CVE) a zákonné meze',
       hours: '2 h',
-      subtitle: 'Skenování otevřených portů v laboratoři a vyhledání známých chyb v CVE.',
-      intro: 'Každý útok i bezpečnostní audit začíná průzkumem. V izolované síti si vyzkoušíme nástroj Nmap pro odhalení otevřených portů a dohledáme známé zranitelnosti v databázi CVE.',
+      subtitle: 'Skenování otevřených portů v laboratoři, vyhledání známých chyb v CVE a hranice toho, co je legální.',
+      intro: 'Každý útok i bezpečnostní audit začíná průzkumem. V izolované síti si vyzkoušíme nástroj Nmap pro odhalení otevřených portů, dohledáme známé zranitelnosti v databázi CVE a řekneme si, kdy je skenování cizí sítě trestné.',
       topics: [
-        'Pasivní průzkum (OSINT základy): co o síti prozradí veřejné zdroje',
+        'Základní principy bezpečnosti: CIA triáda (Důvěrnost, Integrita, Dostupnost) a stručně fáze kybernetického útoku',
+        'Zákonné meze: skenování a testování pouze s povolením, základní pojem neoprávněného přístupu k počítačovému systému (trestní zákoník)',
         'Aktivní skenování nástrojem Nmap: TCP SYN sken (-sS), detekce verzí (-sV), detekce OS (-O)',
         'Vyhodnocení otevřených portů a zbytečně běžících služeb (zmenšení útočné plochy)',
         'Databáze zranitelností CVE (Common Vulnerabilities and Exposures) a kalkulátor závažnosti CVSS'
@@ -487,65 +474,28 @@ export const OSS3_CYBER: OutlineGroup = {
       builds: 'Firewall (OSS 2 – BZ6), Sítě a porty (OSS 1).'
     },
     {
-      slug: 'wireshark',
-      tag: 'KB3',
-      title: 'Analýza síťového provozu paketovým analyzátorem (Wireshark)',
-      hours: '2 h',
-      subtitle: 'Zachytávání paketů v LAN, sestavení TCP spojení a rizika nešifrovaných protokolů.',
-      intro: 'Síťový kabel nepřenáší jen data, ale i tajemství, pokud nejsou šifrovaná. V nástroji Wireshark odchytíme pakety, zanalyzujeme TCP handshake a uvidíme, proč je nešifrované heslo v síti snadnou kořistí.',
-      topics: [
-        'Architektura síťového analyzátoru (Sniffer) a režim síťové karty (Promiscuous mode)',
-        'Sledování navázání spojení: 3fázový TCP handshake (SYN, SYN-ACK, ACK)',
-        'Důkaz zranitelnosti: odposlech nešifrovaného přihlašování v protokolech HTTP, FTP a Telnet',
-        'Obrana šifrováním: proč v zachyceném HTTPS a SSH provozu útočník vidí jen náhodný šum'
-      ],
-      practice: [
-        'Simulace: Rozebrání paketu – vyhledání uživatelského jména v těle HTTP POST požadavku',
-        'Praxe v OS: Spuštění Wiresharku v laboratorní síti, zachycení vlastního přihlášení a filtrace provozu'
-      ],
-      builds: 'Sítě a diagnostika (OSS 1 – NET1, NET2), Web a SSH (LX10, LX11).'
-    },
-    {
       slug: 'hashe-a-soleni',
-      tag: 'KB4',
-      title: 'Ochrana autentizace a princip ukládání hesel v operačních systémech',
+      tag: 'KB2',
+      title: 'Ochrana hesel: hashe, solení a odolnost vůči slovníkovým testům',
       hours: '2 h',
-      subtitle: 'Jednosměrné kryptografické hashe, solení hesel a formáty v /etc/shadow a SAM.',
-      intro: 'Hesla se v systémech nikdy neukládají v otevřeném textu. Prozkoumáme jednosměrné hashovací funkce (SHA-512, bcrypt), význam kryptografické soli proti duplicitám a formát hashů v Linuxu i Windows.',
+      subtitle: 'Jednosměrné hashe, sůl, formát /etc/shadow a kontrolovaný test síly hesel.',
+      intro: 'Hesla se v systémech nikdy neukládají v otevřeném textu. Prozkoumáme jednosměrné hashovací funkce, význam kryptografické soli a v kontrolovaném laboratorním prostředí ověříme, proč slabá hesla padnou během několika sekund.',
       topics: [
-        'Princip jednosměrné hashovací funkce (odolnost vůči inverzi a kolizím)',
-        'Proč prostý hash nestačí: duhové tabulky (Rainbow Tables) a význam kryptografické soli (Salt)',
-        'Ukládání hesel v Linuxu: soubor /etc/shadow a formáty hashů ($6$ pro SHA-512, $y$ pro yescrypt)',
-        'Ukládání hesel ve Windows: databáze SAM, doménové NTDS.dit a NTLM hash'
-      ],
-      practice: [
-        'Simulace: Hashovací laboratoř – vygenerování hashe ze zadaného hesla s různou solí',
-        'Praxe v OS: Analýza struktury záznamu v souboru /etc/shadow a ověření hashovacího algoritmu'
-      ],
-      builds: 'Uživatelé a POSIX (LX3), Správa uživatelů (OSS 1 – USR1).'
-    },
-    {
-      slug: 'slovnikove-utoky',
-      tag: 'KB5',
-      title: 'Audit odolnosti hesel: Slovníkové testy a kryptografické solení',
-      hours: '2 h',
-      subtitle: 'Testování síly hesel, slovník RockYou a význam kryptografické soli.',
-      intro: 'Proč slabá hesla padnou během několika sekund? V kontrolovaném laboratorním prostředí otestujeme odolnost hesel vůči slovníkovým testům a ověříme si, proč je délka hesla a sůl zásadní pro obranu.',
-      topics: [
-        'Způsoby testování hesel: test hrubou silou (Brute-Force) vs. slovníkový test (Dictionary attack)',
-        'Slovníky uniklých a častých hesel (wordlist RockYou.txt)',
+        'Princip jednosměrné hashovací funkce a proč prostý hash nestačí (duhové tabulky)',
         'Význam kryptografické soli (Salt) a odolnost moderních algoritmů',
+        'Ukládání hesel v Linuxu: soubor /etc/shadow a formáty hashů ($6$ pro SHA-512, $y$ pro yescrypt); ve Windows databáze SAM',
+        'Test síly hesel: slovníkový test vs. hrubá síla (Brute-Force), slovník RockYou.txt',
         'Defenzivní opatření: minimální délka hesla, politika hesel a vícefaktorové ověřování (MFA)'
       ],
       practice: [
-        'Simulace: Kalkulátor prolomení hesla – porovnání času prolomení 8místného vs. 15místného hesla',
-        'Praxe v OS: Bezpečnostní audit cvičného seznamu slabých hashů ve virtuální laboratoři'
+        'Simulace: Hashovací laboratoř a kalkulátor prolomení hesla – porovnání 8místného vs. 15místného hesla',
+        'Praxe v OS: Analýza záznamu v /etc/shadow a bezpečnostní audit cvičného seznamu slabých hashů'
       ],
-      builds: 'Hashe a solení (KB4), Phishing a hesla (OSS 2 – BZ9).'
+      builds: 'Uživatelé a POSIX (LX3), Správa uživatelů (OSS 1 – USR1), Webový klient a hesla (OSS 2 – BZ9).'
     },
     {
       slug: 'incident-ctf',
-      tag: 'KB6',
+      tag: 'KB3',
       title: 'Reakce na bezpečnostní incident a náprava kompromitovaného systému',
       hours: '2 h',
       subtitle: 'Vyšetření napadeného stroje, analýza stop, izolace útočníka a protokol o zásahu.',
@@ -560,7 +510,7 @@ export const OSS3_CYBER: OutlineGroup = {
         'Laboratorní cvičení: Záchranná mise na napadeném serveru ve dvojicích a nalezení bezpečnostních stop',
         'Zpracování závěrečného protokolu o zásahu s doporučeními pro zabezpečení'
       ],
-      builds: 'Syntéza celé kyberbezpečnosti (KB1–KB5) a systémových logů (LX8).'
+      builds: 'Syntéza kyberbezpečnosti (KB1–KB2) a systémových logů (LX8).'
     }
   ]
 };

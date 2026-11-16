@@ -26,7 +26,7 @@
 3. **Spravuje uživatele, POSIX oprávnění a systémové služby**: nastavuje přístupová práva UGO v osmičkové i symbolické notaci, deleguje administrátorská práva (sudo), řídí procesy, démony a analyzuje systémové logy.
 4. **Zprovozňuje a zabezpečuje síťové služby**: konfiguruje síťová rozhraní a paketový firewall, realizuje šifrovanou vzdálenou správu (SSH s asymetrickými klíči), provozuje webový server se zabezpečením HTTPS a zajišťuje sdílení souborů s klientskými stanicemi Windows.
 5. **Automatizuje správu pomocí skriptů v shellu**: vytváří skripty pro rutinní údržbu a zálohování s využitím proměnných, parametrů, podmínek a cyklů a plánuje jejich automatické spouštění v plánovači cron.
-6. **Aplikuje síťovou kybernetickou bezpečnost a etický audit**: orientuje se v právním rámci (trestní zákoník, směrnice NIS 2), provádí průzkum sítě a mapování zranitelností (CVE/CVSS), analyzuje síťový provoz paketovým analyzátorem a provádí audit odolnosti přístupových hesel.
+6. **Aplikuje základy síťové kybernetické bezpečnosti**: provede základní průzkum sítě a mapování zranitelností (CVE/CVSS) s ohledem na zákonné meze testování a ověří odolnost přístupových hesel.
 7. **Řeší bezpečnostní incidenty na síti a serverech**: analyzuje kompromitovaný systém, identifikuje neoprávněnou aktivitu a provádí bezpečnostní nápravu konfigurace a blokování útočníka.
 8. **Ovládá pracovní cyklus verzovacího systému (Git)**: rozumí architektuře zón, vytváří revize, větve, slučuje změny, manuálně řeší kolize v kódu a konfiguracích a spolupracuje na verzování prostřednictvím vzdálených repozitářů.
 9. **Využívá nástroje pro přehledné plánování úkolů a týmovou komunikaci**: organizuje a koordinuje práci v týmu s využitím týmových nástěnek úkolů a efektivního rozdělení rolí.
@@ -44,7 +44,7 @@ Absolvent OSS 3 dokáže samostatně:
 - Nainstalovat a bezpečně administrovat Linuxový server bez grafického rozhraní (headless) přes šifrovaný terminál SSH.
 - Provozovat zabezpečený webový server HTTPS a sdílet podniková data s klientskými Windows.
 - Automatizovat správu pomocí vlastních skriptů v shellu a plánovat periodickou údržbu v plánovači cron.
-- Provést bezpečnostní audit síťových portů, vyhledat zranitelnosti v databázích CVE a analyzovat síťový provoz.
+- Provést základní bezpečnostní audit síťových portů a vyhledat zranitelnosti v databázích CVE.
 - Samostatně verzovat konfigurace a skripty v Gitu a spolupracovat prostřednictvím vzdálených repozitářů.
 - Organizovat týmovou práci a komunikaci pomocí nástěnek úkolů a rozdělení rolí.
 - Propojit a zabezpečit klientskou stanici Windows se serverem Linux a předvést funkční řešení vyučujícímu.
@@ -55,21 +55,19 @@ Absolvent OSS 3 dokáže samostatně:
 
 | Blok | Tematický celek | Dotace (Teorie / Cvičení) | Konkrétní učivo a výstupy žáka | Vazba na IntLab |
 |:---:|---|:---:|---|---|
-| **1** | **Linux: Architektura, instalace a základní správa systému** | 16 h (4 h / 12 h) | Architektura Linuxu a instalace (distribuce, rozdělení disku na oddíly a swap, zavaděč systému, headless server), standardizovaná hierarchie souborového systému FHS, manipulační a navigační příkazy v terminálu, uživatelé a POSIX oprávnění (model UGO, osmičková notace, delegování práv sudo), přesměrování proudů, roury a terminálové editory, správa disků, oddílů a trvalé připojování svazků, sledování procesů a správa démonů přes systemd, balíčkovací systém a aktualizace. | `/linux/*` |
-| **2** | **Linux: Sítě, serverové služby a automatizace v shellu** | 16 h (4 h / 12 h) | Síťová konfigurace rozhraní a paketový firewall (UFW), zabezpečená vzdálená správa přes SSH (autentizace asymetrickými klíči, restrikce přihlášení), webový server (virtuální hostitelé, certifikáty pro HTTPS), sdílení souborů v heterogenní síti (Linux ↔ Windows, UNC cesty, oprávnění), programování skriptů v shellu (proměnné, parametry `$1`, podmínky `if`, cykly `for`), komprese a archivace dat (`tar`), periodické plánování úloh v plánovači cron. | `/sluzby/*` |
-| **3** | **Kybernetická bezpečnost, síťový audit a obrana** | 12 h (3 h / 9 h) | Právní a etický rámec (trestní zákoník § 230–232, evropská směrnice NIS 2, fáze a principy kybernetického útoku), síťový audit a mapování zranitelností (skenování portů, databáze zranitelností CVE a mezinárodní hodnocení CVSS), analýza síťového provozu paketovým analyzátorem (TCP handshake, nešifrovaný vs. šifrovaný provoz), ochrana autentizace a hashování hesel se solí, audit síly a odolnosti hesel (slovníkové testy), reakce na incident a náprava kompromitovaného systému. | `/kyberbezpecnost/*` |
+| **1** | **Linux: Architektura, instalace a základní správa systému** | 20 h (4 h / 16 h) | Architektura Linuxu a instalace (distribuce, rozdělení disku na oddíly a swap, zavaděč systému, headless server), standardizovaná hierarchie souborového systému FHS, manipulační a navigační příkazy v terminálu (včetně samostatného procvičování), uživatelé a POSIX oprávnění (model UGO, osmičková notace, delegování práv sudo, procvičování typických situací), přesměrování proudů, roury a terminálové editory, správa disků, oddílů a trvalé připojování svazků, sledování procesů a správa démonů přes systemd, balíčkovací systém a aktualizace. | `/linux/*` |
+| **2** | **Linux: Sítě, serverové služby a automatizace v shellu** | 18 h (4 h / 14 h) | Síťová konfigurace rozhraní a paketový firewall (UFW), zabezpečená vzdálená správa přes SSH (autentizace asymetrickými klíči, restrikce přihlášení), webový server (virtuální hostitelé, certifikáty pro HTTPS), sdílení souborů v heterogenní síti (Linux ↔ Windows, UNC cesty, oprávnění), programování skriptů v shellu (proměnné, parametry `$1`, podmínky `if`, cykly `for`, samostatné odladění vlastního skriptu), komprese a archivace dat (`tar`), periodické plánování úloh v plánovači cron. | `/sluzby/*` |
+| **3** | **Kybernetická bezpečnost, síťový audit a obrana** | 6 h (1 h / 5 h) | Síťový audit, zranitelnosti a zákonné meze (základní principy bezpečnosti, skenování portů, databáze zranitelností CVE a hodnocení CVSS, testování pouze s povolením), ochrana autentizace a hashování hesel se solí včetně testu síly hesel (slovníkové testy), reakce na incident a náprava kompromitovaného systému. | `/kyberbezpecnost/*` |
 | **4** | **Verzovací systémy, týmová kooperace a infrastrukturní projekt** | 18 h (4 h / 14 h) | Architektura verzovacích systémů (Git – zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů), práce s větvemi a řešení konfliktů (izolovaný vývoj, slučování změn merge, ruční řešení kolizí), vzdálené repozitáře a týmová spolupráce (vzdálená synchronizace, vzájemná revize změn kódu a konfigurací), nástroje pro plánování úkolů a týmovou komunikaci (týmová nástěnka, rozdělení rolí v týmu), realizace týmové infrastruktury (stavba hybridní firemní sítě Linux + Windows, sdílení dat, web, verzování konfigurací v repozitáři), křížový audit a bezpečnostní testování, technická dokumentace a ústní obhajoba projektu před vyučujícím a třídou. | `/git/*`, `/tymova-spoluprace/*` |
 | **5** | **Závěrečná reflexe tříletého kurikula a rezerva** | 4 h (1 h / 3 h) | Syntéza a komparace administrátorských přístupů (porovnání klientského Windows a serverového Linuxu, GUI vs. textová konfigurace a skripty, typové maturitní úlohy ze správy OS), časová rezerva na školní akce, maturity a uzavření klasifikace. | — |
-| **Σ** | **Celkem** | **66 h (16 h T / 50 h C)** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** | |
-| **5** | **Závěrečná reflexe tříletého kurikula a rezerva** | 4 h (1 h / 3 h) | Syntéza a komparace administrátorských přístupů (porovnání klientského Windows a serverového Linuxu, GUI vs. textová konfigurace a skripty, typové maturitní úlohy ze správy OS), časová rezerva na školní akce, maturity a uzavření klasifikace. | — |
-| **Σ** | **Celkem** | **66 h (16 h T / 50 h C)** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** | |
+| **Σ** | **Celkem** | **66 h (14 h T / 52 h C)** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** | |
 
 ---
 
 ## 5. Mezipředmětové vazby
 
 - **Vertikální vstup (z OSS 1 a OSS 2):** Student porovnává koncepty Windows (procesy, služby, práva NTFS, PowerShell) s jejich Linuxovými protějšky (procesy, systemd démony, POSIX práva, Bash). Znalosti z Windows domény a AD DS propojuje se síťovými službami Linuxu (Samba).
-- **Horizontální vazba na Počítačové sítě (3. ročník):** Sledování paketů ve Wiresharku, TCP handshake a konfigurace SSH a UFW přímo aplikuje teoretické modely ISO/OSI a TCP/IP.
+- **Horizontální vazba na Počítačové sítě (3. ročník):** Konfigurace SSH, UFW a skenování portů přímo aplikuje teoretické modely ISO/OSI a TCP/IP.
 
 ---
 

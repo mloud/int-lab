@@ -1117,4 +1117,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Vyčištění nepřiřazených RVP výstupů:** V tabulce nepřiřazených výstupů zbyly pouze 4 položky, které náleží jiným předmětům (prezentace, chyby v datech / databáze, návrh IS, doporučovací algoritmy).
     - **Export a nasazení:** Všechny kurikulární databáze, klientské stránky i živý Google Dokument `Operační systémy a software V2.docx` (ID: `1H8iovN3GKG0SQGct3fgwuHGboMFQn9Hf`) byly plně synchronizovány.
 
+50. **Přerozdělení hodin v OSS 3: zkrácení kyberbezpečnosti a posílení Linuxu (3 x 66 h beze změny):**
+    - **Důvod:** Linux od nuly je pro běžného žáka nejnáročnější část 3. ročníku; samostatný předmět kyberbezpečnosti ve 4. ročníku v podkladech neexistuje, proto nebyla odebrána celá, ale zkrácena.
+    - **Blok 3 Kyberbezpečnost: 12 h ➔ 6 h (3 témata):** (1) průzkum sítě Nmap + CVE + zákonné meze, (2) ochrana hesel: hashe, sůl a slovníkové testy (sloučení dvou témat), (3) reakce na incident. Vyřazeno: samostatné téma právní rámec / NIS 2, analýza provozu ve Wiresharku, samostatný audit hesel (routy pravo-a-utok, wireshark, slovnikove-utoky odstraněny).
+    - **Uvolněných 6 h pro Linux:** Blok 1 16 ➔ 20 h (FHS a terminál 2 ➔ 4 h, POSIX práva 2 ➔ 4 h), Blok 2 16 ➔ 18 h (Bash podmínky, cykly a zálohování 2 ➔ 4 h). Nové hodiny jsou procvičovací (samostatné úlohy), žádné nové téma.
+    - **Nové rozložení OSS 3:** 20 + 18 + 6 + 18 + 4 = 66 h; týdny 1–10, 11–19, 20–22, 23–31, 32–33.
+    - **Synchronizováno:** ops3Plan.ts, oss3Outlines.ts, svpOssData.ts, SVP_INSPIS.md, OSS3.md, PLAN_OSS3.md, tematický plán OSS 3 na webu a Google DOCX.
 

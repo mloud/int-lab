@@ -416,7 +416,7 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     {
       id: 'oss3-b1',
       topic: '1. Linux: Architektura, instalace a základní správa systému',
-      hours: 16,
+      hours: 20,
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'vybere vhodnou distribuci Linuxu a provede instalaci serverového operačního systému bez grafického rozhraní',
@@ -430,8 +430,8 @@ export const SVP_OSS3_DATA: SvpGradeData = {
       ],
       content: [
         'Architektura Linuxu a instalace (význam distribucí, rozdělení disku na oddíly a odkládací prostor swap, zavaděč systému, instalace serveru bez grafického rozhraní)',
-        'Souborový systém FHS a terminál (standardizovaná hierarchie složek, navigační a manipulační příkazy v textovém prostředí)',
-        'Uživatelé a POSIX oprávnění (model vlastník-skupina-ostatní, osmičková notace práv, změna vlastníka a skupiny, delegování administrátorských práv)',
+        'Souborový systém FHS a terminál (standardizovaná hierarchie složek, navigační a manipulační příkazy v textovém prostředí, samostatné procvičování práce se soubory)',
+        'Uživatelé a POSIX oprávnění (model vlastník-skupina-ostatní, osmičková notace práv, změna vlastníka a skupiny, delegování administrátorských práv, procvičování typických situací)',
         'Textové proudy a editory (přesměrování výstupu, proudové roury, regulární filtry a vyhledávání textu, práce v terminálových textových editorech)',
         'Správa disků a souborových systémů (tvorba oddílů, formátování svazků, přípojné body a trvalá konfigurace připojování svazků)',
         'Správa procesů (sledování běžících úloh, interaktivní systémové monitory, řízení priorit a ukončování procesů)',
@@ -442,7 +442,7 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     {
       id: 'oss3-b2',
       topic: '2. Linux: Sítě, serverové služby a automatizace v shellu',
-      hours: 16,
+      hours: 18,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
         'nakonfiguruje síťové rozhraní serveru a zabezpečí systém pomocí paketového firewallu',
@@ -464,20 +464,16 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     {
       id: 'oss3-b3',
       topic: '3. Kybernetická bezpečnost, síťový audit a obrana',
-      hours: 12,
+      hours: 6,
       crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
-        'orientuje se v právním rámci kybernetické bezpečnosti v ČR a zásadách mezinárodních směrnic (NIS 2)',
-        'provede bezpečnostní průzkum sítě a identifikuje otevřené síťové porty a verze běžících služeb',
+        'provede základní bezpečnostní průzkum sítě, identifikuje otevřené síťové porty a verze běžících služeb a zná zákonné meze takového testování',
         'vyhledá zjištěné zranitelnosti ve veřejných databázích (CVE) a vyhodnotí jejich závažnost (CVSS)',
-        'analyzuje nešifrovaný a šifrovaný síťový provoz pomocí analyzátoru paketů',
-        'vysvětlí princip ukládání přístupových hesel ve formě hashů se solí a provede audit odolnosti hesel vůči slovníkovým útokům',
+        'vysvětlí princip ukládání přístupových hesel ve formě hashů se solí a ověří odolnost hesel vůči slovníkovým útokům',
         'provede bezpečnostní nápravu a odstraní zranitelnost na kompromitovaném systému'
       ],
       content: [
-        'Právní a etický rámec (trestní zákoník – neoprávněný přístup k počítačovému systému, směrnice NIS 2, fáze a principy kybernetického útoku)',
-        'Síťový audit a mapování zranitelností (skenování síťových portů, detekce verzí služeb, práce s mezinárodními databázemi zranitelností CVE a hodnocení rizik CVSS)',
-        'Analýza síťového provozu (odposlech a filtrace síťových paketů, analýza spojení, srovnání nešifrovaných protokolů se šifrovanými tunely)',
+        'Síťový audit, zranitelnosti a zákonné meze (základní principy bezpečnosti, skenování síťových portů, detekce verzí služeb, databáze zranitelností CVE a hodnocení rizik CVSS, testování pouze s povolením)',
         'Ochrana hesel a autentizace (ukládání hesel ve formě kryptografických hashů se solí, audit síly hesel a odolnost vůči slovníkovým útokům)',
         'Reakce na incident a náprava (analýza kompromitovaného systému, identifikace neoprávněné aktivity, zablokování útočníka firewallem a oprava konfigurace)'
       ]
