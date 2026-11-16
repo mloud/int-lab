@@ -1080,4 +1080,15 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       5. Týden 5: *Automatizované zálohování jako systémová služba s šifrováním – Cobian Reflector* (`/zalohovani/cobian`)
     - Dosažena absolutní 100% shoda všech kapitol 1. bloku (Zálohování) i 2. bloku (Bezpečnost) mezi ŠVP, tematickým plánem a webem portálu IntLab (všech 15 témat sedí 1:1) bez zásahu do funkčního obsahu lekcí.
 
+47. **Harmonizace kurikula a tematického plánu OSS 1 (1. ročník SŠ) na 66 h bez zásahu do funkčního obsahu:**
+    - **Nedotknutelnost funkčního obsahu:** Žádná z hotových kapitol 1. semestru (Hardware, Von Neumann, RAM, Úvod, Evoluce, Architektura, Virtualizace, Souborové systémy 1–6, Boot proces, Procesy 1–5, Kvíz rozbor, Test01) nebyla měněna. Všechny existující simulátory a výkladové texty zůstaly 100% zachovány.
+    - **Sjednocení hodinové dotace a týdnů:**
+      - Datový registr [`registry/curriculum/thematic-plans/ops1Plan.ts`](../registry/curriculum/thematic-plans/ops1Plan.ts) byl přepracován z nekonzistentních 72 h (35 týdnů) na přesných **66 h (33 týdnů)** rozdělených do 10 tematických bloků, čímž vznikla 100% shoda s oficiálním ŠVP InspIS a klientskou tabulkou na [`app/specializovana/operacni-systemy-1/tematicky-plan/page.tsx`](../app/specializovana/operacni-systemy-1/tematicky-plan/page.tsx).
+    - **Didaktická kultivace osnov budoucích kapitol (`registry/curriculum/outlines/oss1Outlines.ts`):**
+      - `OSS1_DEVICES`: Nahrazen mikrodetail *Ring 0 vs. Ring 3* obecným a srozumitelným konceptem *režimu jádra procesoru (Kernel mode) vs. uživatelského prostoru*.
+      - `OSS1_SCHEDULER`: Odstraněno nadbytečné zdůrazňování spouštění pod účtem *SYSTEM*; nahrazeno obecným konceptem *automatického běhu na pozadí nezávisle na přihlášení uživatele*.
+      - `OSS1_CLI`: Vyřazen archaický špagetový příkaz `goto` a proměnná `%ERRORLEVEL%`; zaměřeno na *strukturované větvení skriptů, podmínky `if`, cykly `for` a ošetření chyb*.
+      - `OSS1_NETWORKS`: Odstraněna zmínka o hardwarovém resetu tlačítkem; podkapitola zaměřena na *uvedení routeru do výchozího stavu, webovou administraci a konfiguraci SOHO Wi-Fi*.
+    - **Aktivní správa plánů:** Aktivní plánovací tabule [`doc/plan.md`](plan.md) byla přepnuta na OSS 1 se stavem 100% harmonizace kurikula.
+
 

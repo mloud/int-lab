@@ -214,15 +214,15 @@ export const OSS1_CLI: OutlineGroup = {
     {
       slug: 'davky-logika',
       tag: 'BAT2',
-      title: 'Podmínky, skoky a cykly',
+      title: 'Podmínky, větvení a cykly v dávkách',
       hours: '2 h',
-      subtitle: 'Podmínka if a if exist, skoky goto, návěstí a cyklus for pro hromadné operace.',
-      intro: 'Skript, který se umí sám rozhodovat. Naučíme se otestovat existenci souboru, vytvořit interaktivní textové menu se skoky a pomocí cyklu for provést hromadnou operaci se stovkami položek.',
+      subtitle: 'Podmínka if a if exist, větvení skriptu, návěstí a cyklus for pro hromadné operace.',
+      intro: 'Skript, který se umí sám rozhodovat. Naučíme se otestovat existenci souboru či složky, vytvořit interaktivní textové menu a pomocí cyklu for provést hromadnou operaci se soubory.',
       topics: [
         'Podmíněné větvení: if, if not, if exist a větev else',
-        'Návěstí (:START, :KONEC) a nepodmíněný skok goto',
-        'Stavba interaktivního textového menu v CMD (volba akce 1, 2, 3)',
-        'Návratové kódy programů a proměnná %ERRORLEVEL% (detekce úspěchu/selhání příkazu)',
+        'Struktura dávkového skriptu a návěstí (:START, :KONEC)',
+        'Stavba jednoduchého textového menu v CMD (volba akce 1, 2, 3)',
+        'Ověření úspěšnosti provedení příkazu a ošetření chyb',
         'Cyklus for: procházení seznamu souborů a číselná řada for /L %%i in (1,1,10) do ...'
       ],
       practice: [
@@ -415,9 +415,9 @@ export const OSS1_DEVICES: OutlineGroup = {
       title: 'Správa zařízení a ovladače (Drivers)',
       hours: '2 h',
       subtitle: 'Architektura ovladačů, Plug and Play, Správce zařízení, tiskárny a záloha přes pnputil.',
-      intro: 'Jak operační systém komunikuje s fyzickým hardwarem? Ovladač funguje jako tlumočník běžící v jádře systému (Ring 0). Naučíme se diagnostikovat hardwarové konflikty ve Správci zařízení, spravovat tiskové fronty a zálohovat ovladače přes pnputil.',
+      intro: 'Jak operační systém komunikuje s fyzickým hardwarem? Ovladač funguje jako tlumočník běžící v privilegovaném režimu jádra (Kernel mode). Naučíme se diagnostikovat hardwarové konflikty ve Správci zařízení, spravovat tiskové fronty a zálohovat ovladače přes pnputil.',
       topics: [
-        'Architektura ovladačů (Drivers): proč ovladač běží v Ring 0 a proč 64-bit Windows vyžaduje digitální podpis (WHQL)',
+        'Architektura ovladačů (Drivers): role ovladače v režimu jádra a proč 64-bit Windows vyžaduje digitální podpis (WHQL)',
         'Mechanismus Plug and Play (PnP) a identifikace hardwaru (Hardware ID: Vendor ID VID a Product ID PID)',
         'Diagnostika ve Správci zařízení (devmgmt.msc): funkční stav, žlutý vykřičník (Kód 28), zakázané zařízení',
         'Správa tiskáren a tisková fronta: tiskový spooler (spoolsv.exe) a řešení zaseknutých tiskových úloh',
@@ -427,18 +427,18 @@ export const OSS1_DEVICES: OutlineGroup = {
         'Simulace: Diagnostická ambulance – odhalení chybějícího ovladače podle VID/PID a uvolnění zaseknuté tiskárny',
         'Praxe v OS: Inspekce zařízení ve Správci zařízení a export ovladačů do záložní složky pomocí pnputil'
       ],
-      builds: 'Architektura OS (kruhy Ring 0 vs. Ring 3) a Základy hardwaru (Von Neumann).'
+      builds: 'Architektura OS (User space vs. Kernel space) a Základy hardwaru (Von Neumann).'
     }
   ]
 };
 
 const SCH_BASE = '/specializovana/operacni-systemy-1/planovac';
 
-/** Plánovač úloh a automatický provoz (~2 h) – konzole taskschd.msc, spouštěče, akce, kontext SYSTEM a schtasks. */
+/** Plánovač úloh a automatický provoz (~2 h) – konzole taskschd.msc, spouštěče, akce, běh na pozadí a schtasks. */
 export const OSS1_SCHEDULER: OutlineGroup = {
   chapterId: 'os-scheduler',
   chapterTitle: 'Plánovač úloh a automatický provoz',
-  chapterDescription: 'Konzole taskschd.msc, spouštěče (triggery), akce, běh pod účtem SYSTEM a příkaz schtasks.',
+  chapterDescription: 'Konzole taskschd.msc, spouštěče (triggery), akce, automatický běh na pozadí a příkaz schtasks.',
   chapterTag: 'plan',
   chapterPath: SCH_BASE,
   subjectTitle: SUBJECT,
@@ -453,20 +453,20 @@ export const OSS1_SCHEDULER: OutlineGroup = {
       tag: 'SCH',
       title: 'Plánovač úloh a automatický provoz',
       hours: '2 h',
-      subtitle: 'Konzole taskschd.msc, spouštěče (triggery), akce, běh pod účtem SYSTEM a příkaz schtasks.',
-      intro: 'Systém administrátora musí fungovat autonomně 24/7. V Plánovači úloh propojíme všechny dosavadní znalosti: vytvoříme naplánovanou úlohu, která bude spouštět náš vlastní .bat skript pod účtem SYSTEM bez nutnosti přihlášení uživatele.',
+      subtitle: 'Konzole taskschd.msc, spouštěče (triggery), akce, automatický běh na pozadí a příkaz schtasks.',
+      intro: 'Systém administrátora musí fungovat autonomně 24/7. V Plánovači úloh propojíme všechny dosavadní znalosti: vytvoříme naplánovanou úlohu, která bude spouštět náš vlastní .bat skript automaticky na pozadí bez nutnosti manuálního spouštění.',
       topics: [
         'Role Plánovače úloh v OS: rozdíl mezi interaktivním spuštěním uživatelem a autonomním během na pozadí',
         'Struktura úlohy: Spouštěč / Trigger (čas, událost, přihlášení, start PC) a Akce / Action (program, .bat skript)',
         'Podmínky a nastavení: běh pouze při napájení ze sítě, probuzení PC ze spánku, restart při selhání',
-        'Bezpečnostní kontext: běh s právy přihlášeného uživatele vs. běh pod účtem SYSTEM bez nutnosti přihlášení',
+        'Bezpečnostní kontext: běh pod přihlášeným uživatelem vs. běh nezávisle na přihlášení s nejvyššími oprávněními',
         'Správa úloh v příkazovém řádku: nástroj schtasks (/create, /run, /query, /delete)'
       ],
       practice: [
         'Simulace: Architekt automatizace – nastavení správné kombinace triggeru, akce a bezpečnostního kontextu',
         'Praxe v OS: Vytvoření naplánované úlohy pro pravidelné spouštění zálohovacího skriptu každý pátek v konzoli taskschd.msc'
       ],
-      builds: 'Dávkové soubory (BAT1), Správa uživatelů (USR1 – účet SYSTEM) a Správa software (SW2 – winget upgrade).'
+      builds: 'Dávkové soubory (BAT1), Správa uživatelů (USR1 – oprávnění) a Správa software (SW2 – winget upgrade).'
     }
   ]
 };
@@ -552,11 +552,11 @@ export const OSS1_NETWORKS: OutlineGroup = {
       tag: 'NET4',
       title: 'Praktická laboratoř: Konfigurace Wi-Fi routeru',
       hours: '2 h',
-      subtitle: 'Hard reset, webová administrace, WAN vs. LAN, DHCP rozsah, WPA2/WPA3, MAC filtering a Guest síť.',
-      intro: 'Vyzkoušíme si kompletní roli síťového technika na skutečném SOHO Wi-Fi routeru. Od hardwarového resetu do továrního nastavení přes webovou administraci, zabezpečení Wi-Fi, izolovanou síť pro hosty až po konfiguraci DHCP a rodičovskou kontrolu.',
+      subtitle: 'Webová administrace, WAN vs. LAN, DHCP rozsah, WPA2/WPA3, zabezpečení a Guest síť.',
+      intro: 'Vyzkoušíme si kompletní roli síťového technika na SOHO Wi-Fi routeru. Od uvedení do výchozího stavu přes webovou administraci, zabezpečení Wi-Fi, izolovanou síť pro hosty až po konfiguraci DHCP rozsahu.',
       topics: [
-        'Architektura domácího Wi-Fi routeru (SOHO): propojení 4 zařízení v jednom (Router, Switch, Wi-Fi AP, Firewall/NAT)',
-        'Fyzické zapojení a tovární reset (Hard reset tlačítkem Reset) a výchozí IP adresa routeru (192.168.0.1 / 192.168.1.1)',
+        'Architektura domácího Wi-Fi routeru (SOHO): propojení 4 funkcí v jednom (Router, Switch, Wi-Fi AP, Firewall/NAT)',
+        'Fyzické zapojení kabeláže a výchozí IP adresa routeru (192.168.0.1 / 192.168.1.1)',
         'Přihlášení do webové administrace: změna výchozích přihlašovacích údajů správce (admin/admin) jako prevence útoku',
         'Konfigurace LAN a DHCP serveru: definice rozsahu přidělovaných IP adres a rezervace statické IP pro vybranou MAC adresu',
         'Zabezpečení bezdrátové sítě: nastavení SSID, silného hesla WPA2-PSK (AES) / WPA3, izolovaná síť pro hosty (Guest Network) a proč je filtrování MAC adres snadno obelstitelné'

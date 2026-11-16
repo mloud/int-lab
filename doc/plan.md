@@ -1,39 +1,49 @@
-# Aktivní plánovací tabule: Operační systémy 2 (OSS 2)
+# Aktivní plánovací tabule: Operační systémy 1 (OSS 1)
 
-**Aktivní předmět:** Operační systémy 2 (2. ročník SŠ, obor 18-20-M/01 Informační technologie)  
+**Aktivní předmět:** Operační systémy 1 (1. ročník SŠ, obor 18-20-M/01 Informační technologie)  
 **Celková hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
-**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`doc/curriculum/OSS2.md`](curriculum/OSS2.md)  
-**Dedikovaný podrobný plán:** [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md)  
-**Výchozí routa v IntLab:** `/specializovana/operacni-systemy-2`
+**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`doc/curriculum/OSS1.md`](curriculum/OSS1.md)  
+**Dedikovaný podrobný plán:** [`doc/plans/PLAN_OSS1.md`](plans/PLAN_OSS1.md)  
+**Výchozí routa v IntLab:** `/specializovana/operacni-systemy-1`
 
 ---
 
 ## 🎯 Hlavní pedagogický cíl předmětu
-Posunout žáka do role **pokročilého administrátora klientských systémů (Windows 11 Pro) a bezpečnostního technika**. Těžiště výuky leží v zabezpečení koncových zařízení (endpoint security), bezpečnostní inspekci procesů, registru a žurnálů událostí, automatizaci přes objektový shell (PowerShell), síťovém sdílení SMB, vzdálené správě RDP a OpenSSH a integraci klientské stanice do podnikové domény včetně uplatňování centrálních bezpečnostních politik (GPO).
+Převést žáka z role běžného uživatele PC do role **poučeného lokálního správce klientské stanice**. Žák proniká pod povrch grafického rozhraní, chápe spolupráci CPU a RAM, architekturu hardware, instaluje klientský OS, spravuje disky a oddíly, diagnostikuje procesy, automatizuje správu přes CLI/BAT a bezpečně konfiguruje lokální sítě.
 
 ---
 
 ## 📊 Přehled tematických celků (66 h) – Synchronizováno s ŠVP InspIS
 
-| Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav v kurikulu | Odkaz na webu |
+| Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|:---:|---|:---:|:---:|---|
-| **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Pravidlo 3-2-1, robocopy, VSS stínové kopie, cloud, Cobian) | `/specializovana/operacni-systemy-2/zalohovani` (B1–B5) |
-| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, inspekce a audit** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy vyčištěny od žargonu) | `/specializovana/operacni-systemy-2/bezpecnost` (BZ1–BZ10) |
-| **3** | **Únor – Březen** (16.–23. týden) | **Systémové služby a skriptování v PowerShellu** | 16 h | ✅ 5 kapitol s osnovami (služby, MMC 2h, cmdlety, skripty .ps1, reporty) | `/specializovana/operacni-systemy-2/pokrocila-konfigurace` (PK1–PK5) |
-| **4** | **Duben – Červen** (24.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 20 h | ✅ 7 kapitol s osnovami (SMB, RDP, OpenSSH ve Windows 11, doména, klient, GPO, projekt) | `/specializovana/operacni-systemy-2/active-directory` (AD1–AD7) |
-| **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad a harmonizace ŠVP** | |
+| **1** | **Září** (1.–4. týden) | **Úvod do OS a HW pro OS** | 8 h | ✅ Hotovo (teorie, kvízy, simulátor CPU) | `/hardware/*`, `/architektura`, `/uvod`, `/vyvoj`, `/virtualizace` |
+| **2** | **Říjen** (5.–9. týden) | **Souborový systém a disky** | 10 h | ✅ Hotovo (instalace, média, GPT, FAT trenažér, NTFS, boot, test02) | `/souborove-systemy/*`, `/boot`, `/test02` |
+| **3** | **Listopad – Prosinec** (10.–12. týden) | **Procesy a paměť** | 6 h | ✅ Hotovo (vznik procesu, multitasking, stavy, vlákna, virtuální paměť) | `/procesy/*` (PR1–PR5) |
+| **4** | **Leden** (13.–14. týden) | **Grafické rozhraní klientského OS (GUI)** | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/gui/*` (GUI1–GUI3) |
+| **5** | **Únor** (15.–17. týden) | **Příkazová řádka a dávkové soubory** | 6 h | ✅ Rozcestník & osnovy vytvořeny | `/prikazova-radka/*` (CLI1–CLI3, BAT1–BAT2) |
+| **6** | **Březen** (18.–21. týden) | **Správa uživatelů a oprávnění** | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/uzivatele/*` (USR1–USR4) |
+| **7** | **Duben** (22.–23. týden) | **Správa software** | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/software/*` (SW1–SW2) |
+| **8** | **Květen** (24.–25. týden) | **Správa zařízení a Plánovač úloh** | 4 h | ✅ Rozcestník & osnovy vytvořeny | `/zarizeni`, `/planovac` |
+| **9** | **Květen** (26.–29. týden) | **Síťová konfigurace a lokální sítě (LAN)** | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/site/*` (NET1–NET4) |
+| **10** | **Červen** (30.–33. týden) | **Závěrečný projekt a hodnocení** | 8 h | ✅ Rozcestník & osnovy vytvořeny | `/projekt/*` (PRJ1–PRJ4) |
+| **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
 
 ---
 
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj OSS 2)
+## 🔥 Aktuální úkoly a Backlog (Další rozvoj OSS 1)
 
-- [x] **Kurikulární harmonizace ŠVP OSS 2 a zařazení OpenSSH ve Windows 11 (Varianta B):**
-  - Odstraněn korporátní a akademický žargon (forenzní audit, 0-day, Mini-CTF, Incident Response Report, sc.exe, specifika Kerberos).
-  - Dotace MMC snížena ze 4 h na 2 h (PK2); uvolněné 2 hodiny alokovány do Bloku 4 pro novou podkapitolu **AD3: Konzolová vzdálená správa přes OpenSSH ve Windows 11**.
-  - Synchronizovány soubory `doc/curriculum/OSS2.md`, `doc/curriculum/SVP_INSPIS.md`, `registry/curriculum/svp/svpOssData.ts`, `registry/curriculum/thematic-plans/ops2Plan.ts`, `registry/curriculum/outlines/oss2Outlines.ts` a `app/specializovana/operacni-systemy-2/tematicky-plan/page.tsx`.
-  - Vytvořena webová routa `/specializovana/operacni-systemy-2/active-directory/ssh-windows`.
-- [ ] **Postupné povyšování outline kapitol na plné interaktivní trenažéry:**
-  - Priorita 1: **BZ4 Žurnál událostí** (simulátor Prohlížeče událostí s filtrací Event ID 4624/4625 pro odhalení neoprávněného přihlášení).
-  - Priorita 2: **PK3 & PK4 PowerShell trenažér** (cvičné roury `|`, cmdlety `Where-Object` a `Select-Object`, generátor HTML reportů).
-  - Priorita 3: **AD3 OpenSSH ve Windows 11** (simulátor instalace volitelné funkce OpenSSH Server, spuštění služby sshd a připojení z Windows Terminalu).
-  - Priorita 4: **AD6 Group Policy trenažér** (interaktivní přepínač restrikcí USB a vyhodnocení výsledku `gpresult`).
+- [x] **Kurikulární harmonizace a synchronizace časové dotace na 66 h:**
+  - Datový registr `ops1Plan.ts` narovnán ze 72 h (35 týdnů) na přesných 66 h (33 týdnů) v plné shodě s webovou stránkou tematického plánu a ŠVP InspIS.
+  - Vyčištěny archaismy a neadekvátní mikrodetaily v osnovách budoucích kapitol (`oss1Outlines.ts`):
+    - Režim jádra / Kernel mode namísto Ring 0 vs. Ring 3.
+    - Údržbové spouštění na pozadí namísto zdůrazňování účtu SYSTEM v 1. ročníku.
+    - Přehledné dávkové skripty s větvením a cykly namísto `goto` a `%ERRORLEVEL%`.
+    - Webová konfigurace SOHO routeru namísto hardwarového továrního resetu tlačítkem.
+- [ ] **Příprava interaktivních modulů pro 2. pololetí:**
+  - CMD emulátor a trenažér navigace v souborovém systému.
+  - Trenažér nastavení NTFS oprávnění a matice efektivních práv.
+  - Simulátor webového rozhraní domácího Wi-Fi routeru (DHCP, WPA2/WPA3, Guest zóna).
+- [ ] **Dekompozice velkých komponent (dle pravidla 13):**
+  - `OsArchitectureChapter.tsx` (1 454 řádků) ➔ modularizace do podsložky `architektura/`.
+  - `WindowsInstallGame.tsx` (1 352 řádků) ➔ modularizace do podsložky `instalace/`.
