@@ -47,7 +47,7 @@ Absolvent OSS 3 dokáže samostatně:
 - Provést bezpečnostní audit síťových portů, vyhledat zranitelnosti v databázích CVE a analyzovat síťový provoz.
 - Samostatně verzovat konfigurace a skripty v Gitu a spolupracovat prostřednictvím vzdálených repozitářů.
 - Organizovat týmovou práci a komunikaci pomocí nástěnek úkolů a rozdělení rolí.
-- Postavit, zabezpečit a obhájit komplexní smíšenou podnikovou infrastrukturu propojující Linux a Windows.
+- Propojit a zabezpečit klientskou stanici Windows se serverem Linux a předvést funkční řešení vyučujícímu.
 
 ---
 

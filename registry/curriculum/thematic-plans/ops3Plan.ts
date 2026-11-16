@@ -265,8 +265,8 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         hours: 18,
         theoryHours: 4,
         practiceHours: 14,
-        description: 'Tři zóny Gitu, větve a řešení konfliktů, týmová spolupráce, plánování úkolů na nástěnce a realizace hybridní infrastruktury.',
-        rvpCompetence: 'Verzuje zdrojový kód a konfigurace v Gitu, spolupracuje v týmu a zprovozní komplexní síťovou infrastrukturu.',
+        description: 'Tři zóny Gitu, větve a řešení konfliktů, týmová spolupráce, plánování úkolů na nástěnce a propojení stanic se serverem.',
+        rvpCompetence: 'Verzuje konfigurační skripty v Gitu, spolupracuje v týmu a propojí klientské stanice Windows se serverem Linux.',
         subtopics: [
           {
             id: 'oss3-b4-1',

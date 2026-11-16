@@ -492,8 +492,8 @@ export const SVP_OSS3_DATA: SvpGradeData = {
         'vytváří větve, slučuje změny a řeší kolize v kódu a konfiguračních souborech',
         'spolupracuje na verzování konfigurací prostřednictvím vzdálených repozitářů',
         'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů a týmové komunikace',
-        'navrhne a zprovozní komplexní smíšenou infrastrukturu propojující servery a klientské stanice',
-        'zabezpečí síťové služby, otestuje funkčnost záloh a obhájí technické řešení infrastruktury před vyučujícím a třídou'
+        'propojí klientskou stanici Windows se serverem Linux v lokální síti',
+        'nakonfiguruje sdílení dat, ověří funkčnost zálohování a předvede funkční řešení vyučujícímu'
       ],
       content: [
         'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů)',

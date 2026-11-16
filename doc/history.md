@@ -1100,5 +1100,10 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - **3. ročník (OSS 3 – 66 h):** Všech 5 tematických celků (19 řádků) od architektury Linuxu přes sítě/služby až po kybernetickou bezpečnost, Git a týmový projekt.
       - **Vyčištění nepřiřazených RVP:** Z 26 nepřiřazených výstupů byly všechny výstupy pro OS a sítě přiřazeny do odpovídajících ročníků; v tabulce zbylo pouze 7 výstupů, které věcně náleží jiným předmětům (kancelářské balíky, prezentační software apod.).
     - **Ověření a nasazení:** Dokument byl zvalidován a nahrán přímo do Google Dokumentu přes `gdrive mutate update`. Live kontrola struktury (`gdocs readonly structure`) potvrdila 100% shodu tabulek.
+    - **Okamžitá kultivace formulací projektu v OSS 3:**
+      - Původní strojená formulace *„navrhne a zprovozní komplexní smíšenou infrastrukturu propojující servery a klientské stanice... obhájí technické řešení infrastruktury před vyučujícím a třídou“* byla ve všech souborech i v DOCX na Google Disku zlidštěna a zpřesněna na:
+        - *„propojí klientskou stanici Windows se serverem Linux v lokální síti“*
+        - *„nakonfiguruje sdílení dat, ověří funkčnost zálohování a předvede funkční řešení vyučujícímu“*.
+      - Synchronizováno v [`doc/curriculum/OSS3.md`](curriculum/OSS3.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops3Plan.ts`](../registry/curriculum/thematic-plans/ops3Plan.ts) i v live dokumentu na Google Disku.
 
 
