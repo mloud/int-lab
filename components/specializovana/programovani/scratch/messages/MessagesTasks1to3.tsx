@@ -55,7 +55,7 @@ export const MessagesTasks1to3 = ({ teacherMode }: { teacherMode: boolean }) => 
         number="2"
         title="Rozhlas v domě (Rozeslání 1:N)"
         taskId="msg-2"
-        saveAs="Rozhlas.sb3"
+        saveAs="Zvonek.sb3"
         showTeacher={teacherMode}
         teacherNote={
           <div className="space-y-3">
@@ -99,36 +99,40 @@ export const MessagesTasks1to3 = ({ teacherMode }: { teacherMode: boolean }) => 
         teacherNote={
           <div className="space-y-3">
             <p className="text-xs text-slate-700">
-              <strong>Princip:</strong> Žádné odhadování časů pomocí <code>čekej X sekund</code>. Krok 1 vyšle zprávu pro Krok 2, Krok 2 po domluvení vyšle zprávu pro Krok 3.
+              <strong>Princip:</strong> Žádné nespolehlivé odhadování časů pomocí <code>čekej X sekund</code>. Každá postava po domluvení vyšle novou zprávu a předá slovo druhé postavě.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář postavy Kocour:</div>
                 <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
                 <div className="pl-4"><ScratchBlock category="looks">bublina [Ahoj, jak se jmenuješ?] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">odpovez</ScratchInput></ScratchBlock></div>
-                <div className="pt-2"><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">dalsi_otazka</ScratchInput></ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="looks">bublina [Rád tě poznávám!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">otazka1</ScratchInput></ScratchBlock></div>
+                <div className="pt-2"><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">otazka2</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Já jsem z Vimperka!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">rozlouceni</ScratchInput></ScratchBlock></div>
               </div>
 
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
                 <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář druhé postavy (Abby):</div>
-                <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">odpovez</ScratchInput></ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="looks">bublina [Ahoj, já jsem Abby.] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">dalsi_otazka</ScratchInput></ScratchBlock></div>
+                <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">otazka1</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Já jsem Abby. A odkud jsi?] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">otazka2</ScratchInput></ScratchBlock></div>
+                <div className="pt-2"><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">rozlouceni</ScratchInput></ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Tak se měj hezky, ahoj!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
               </div>
             </div>
           </div>
         }
       >
         <p className="leading-relaxed">
-          Vytvoř plynulý rozhovor mezi dvěma postavami řízený výhradně zprávami (bez použití bloků <em>čekej</em>).
+          Vytvoř plynulý 4krokový rozhovor mezi dvěma postavami řízený výhradně zprávami (bez použití bloků <em>čekej</em>).
         </p>
 
         <ol className="list-decimal pl-5 space-y-2 my-4 text-sm text-slate-800">
-          <li>Po kliknutí na zelenou vlajku kocour řekne: <em>„Ahoj, jak se jmenuješ?“</em> (na 2 s) a pošle zprávu <span className="font-bold text-amber-600">odpovez</span>.</li>
-          <li>Druhá postava po obdržení zprávy odpoví: <em>„Ahoj, já jsem Abby.“</em> (na 2 s) a pošle zprávu <span className="font-bold text-amber-600">dalsi_otazka</span>.</li>
-          <li>Kocour po obdržení zprávy dialog uzavře větou: <em>„Rád tě poznávám!“</em> (na 2 s).</li>
+          <li>Po kliknutí na zelenou vlajku kocour řekne: <em>„Ahoj, jak se jmenuješ?“</em> (na 2 s) a pošle zprávu <span className="font-bold text-amber-600">otazka1</span>.</li>
+          <li>Druhá postava (např. Abby) po obdržení zprávy odpoví: <em>„Já jsem Abby. A odkud jsi?“</em> (na 2 s) a pošle zprávu <span className="font-bold text-amber-600">otazka2</span>.</li>
+          <li>Kocour po obdržení zprávy odpoví: <em>„Já jsem z Vimperka!“</em> (na 2 s) a pošle zprávu <span className="font-bold text-amber-600">rozlouceni</span>.</li>
+          <li>Druhá postava po obdržení zprávy rozhovor uzavře: <em>„Tak se měj hezky, ahoj!“</em> (na 2 s).</li>
         </ol>
       </TaskCard>
     </div>
