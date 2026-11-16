@@ -68,11 +68,11 @@ const PLAN_OSS3: PlanTopic[] = [
   },
   {
     month: 'Květen – Červen',
-    topic: '5. Závěrečná reflexe tříletého kurikula, příprava k maturitě a rezerva',
+    topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
     topicHours: 8,
     subtopics: [
-      { name: 'Syntéza tříleté výuky: Komparace Windows a Linuxové administrace', hours: 2, note: 'Srovnání administrátorských přístupů a typové maturitní úlohy ze správy OS a sítí' },
-      { name: 'Praktická maturitní zkouška nanečisto: Komplexní scénář správy OS', hours: 4, note: 'Samostatná komplexní laboratorní úloha na čas pokrývající Windows i Linux' },
+      { name: 'Syntéza tříleté výuky: Komparace Windows a Linuxové administrace', hours: 2, note: 'Srovnání administrátorských přístupů a typové souhrnné úlohy ze správy OS a sítí' },
+      { name: 'Závěrečný komplexní projekt: Samostatný scénář správy OS a sítí', hours: 4, note: 'Samostatná komplexní laboratorní úloha integrující klientské a serverové služby, zabezpečení a diagnostiku' },
       { name: 'Rezerva pro školní akce a uzavření klasifikace 3. ročníku', hours: 2, note: 'Zpětná vazba, konzultace a uzavření klasifikace' },
     ]
   }

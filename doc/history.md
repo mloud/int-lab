@@ -1145,3 +1145,8 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - Google Drive: Vygenerován a aktualizován oficiální dokument Operační systémy a software V2.docx (ID: 1H8iovN3GKG0SQGct3fgwuHGboMFQn9Hf).
       - Kód ověřen přes 
 px tsc --noEmit.
+
+52. **Úprava názvu Bloku 5 v OSS 3 (obecný komplexní projekt bez zmínky o maturitě):**
+    - Název Bloku 5 sjednocen na: **Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva** (8 h).
+    - Z názvů a výstupů byla odstraněna přímá zmínka o maturitě, avšak **plně zachován formát komplexního praktického scénáře** (4 h, samostatné řešení integrovaného klientsko-serverového prostředí, správa služeb a diagnostika).
+    - Synchronizováno: ops3Plan.ts, svpOssData.ts, pp/.../tematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json a nahrán aktualizovaný DOCX na Google Drive.

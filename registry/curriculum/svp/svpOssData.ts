@@ -501,15 +501,16 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     },
     {
       id: 'oss3-b5',
-      topic: '5. Závěrečná reflexe tříletého kurikula, příprava k maturitě a rezerva',
+      topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
       hours: 8,
       crossThemes: ['PT - ČSP'],
       outcomes: [
         'syntetizuje poznatky tříleté výuky operačních systémů a porovná administraci platforem Windows a Linux',
-        'samostatně vyřeší typové komplexní maturitní úlohy ze správy operačních systémů a sítí'
+        'samostatně vyřeší komplexní praktický scénář správy operačních systémů a síťových služeb'
       ],
       content: [
-        'Komparace administrátorských přístupů (srovnání platforem Windows a Linux, správa přes grafické rozhraní vs. konfigurační soubory a skripty, praktická laboratorní zkouška nanečisto)',
+        'Komparace administrátorských přístupů (srovnání platforem Windows a Linux, správa přes grafické rozhraní vs. konfigurační soubory a skripty)',
+        'Závěrečný komplexní projekt (samostatné řešení praktického scénáře správy systémů, diagnostika a integrace služeb)',
         'Časová rezerva (prostor pro řešení individuálních dotazů, školní akce, uzavření klasifikace)'
       ]
     }

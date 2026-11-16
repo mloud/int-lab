@@ -312,11 +312,11 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         month: 'Květen – Červen',
         monthKey: 'kveten',
         weeks: '30.–33. týden',
-        title: 'Závěrečná reflexe tříletého kurikula, příprava k maturitě a rezerva',
+        title: 'Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
         hours: 8,
         theoryHours: 2,
         practiceHours: 6,
-        description: 'Rekapitulace celé osy OSS 1 ➔ OSS 2 ➔ OSS 3, komplexní praktická maturitní zkouška nanečisto a časová rezerva pro školní akce.',
+        description: 'Rekapitulace celé osy OSS 1 ➔ OSS 2 ➔ OSS 3, samostatný komplexní praktický projekt správy systémů a časová rezerva pro školní akce.',
         rvpCompetence: 'Syntetizuje znalosti Windows a Linuxu do uceleného přehledu správy operačních systémů.',
         subtopics: [
           {
@@ -330,11 +330,11 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss3-b5-2',
-            title: 'Praktická maturitní zkouška nanečisto: Komplexní scénář správy OS',
+            title: 'Závěrečný komplexní projekt: Samostatný scénář správy systémů a sítí',
             hours: 4,
             type: 'laborator',
-            description: 'Samostatné komplexní cvičení simulující maturitní zadání: instalace, zabezpečení stanice Windows a konfigurace serverových služeb Linuxu.',
-            practice: 'Vypracování komplexního praktického zadání na čas, diagnostika chybového stavu a sepsání protokolu.',
+            description: 'Samostatná komplexní laboratorní úloha: instalace, konfigurace klientských a serverových služeb, nastavení zabezpečení a diagnostika.',
+            practice: 'Vypracování komplexního praktického zadání, diagnostika chybového stavu a sepsání technického protokolu.',
             route: '/specializovana/operacni-systemy-3'
           },
           {
@@ -342,7 +342,7 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
             title: 'Rezerva pro školní akce a uzavření klasifikace 3. ročníku',
             hours: 2,
             type: 'kombinovane',
-            description: 'Časová rezerva na maturity, sportovní a exkurzní dny školy a celkové uzavření klasifikace.',
+            description: 'Časová rezerva na sportovní a exkurzní dny školy, konzultace a celkové uzavření klasifikace.',
             practice: 'Zpětná vazba k výuce a představení návazností ve 4. ročníku.',
             route: '/specializovana/operacni-systemy-3'
           }
