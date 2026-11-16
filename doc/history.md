@@ -1124,3 +1124,24 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Nové rozložení OSS 3:** 20 + 18 + 6 + 18 + 4 = 66 h; týdny 1–10, 11–19, 20–22, 23–31, 32–33.
     - **Synchronizováno:** ops3Plan.ts, oss3Outlines.ts, svpOssData.ts, SVP_INSPIS.md, OSS3.md, PLAN_OSS3.md, tematický plán OSS 3 na webu a Google DOCX.
 
+
+51. **Didaktická optimalizace Gitu a týmového projektu v OSS 3 (66 h zachováno):**
+    - **Didaktický kontext:** Studenti již znají Python z programování (PRG 1–3). Git a projekt se v OSS 3 nebudou učit na abstraktní stavbě obří infrastruktury, ale přímo na praktickém správcovském Python nástroji (např. automatický monitoring serveru / zálohovací skript) s nasazením na Linux server přes cron.
+    - **Zkrácení Bloku 4 (Git a správa kódu) z 18 h na 12 h:**
+      - GT1: Principy verzování, tři zóny Gitu a commit na Python projektu (2 h) s konfigurací .gitignore pro Python.
+      - GT2: Běžný pracovní cyklus, historie a bezpečný návrat git restore (2 h).
+      - GT3: Větvení, slučování merge a řešení kolizí v Python kódu (2 h).
+      - GT4: Vzdálené repozitáře (GitHub přes SSH), feature větve a revize přes Pull Request (2 h).
+      - TM1: Plánování úkolů na Kanban nástěnce (GitHub Projects / Issues), vývoj a nasazení správcovského nástroje na Linux server (2 h).
+      - TM2: Revize historie commitů, technická dokumentace README.md a ústní obhajoba projektu (2 h).
+    - **Alokace uvolněných 6 hodin:**
+      - **+2 hodiny do Bloku 2 (Linux sítě a služby, nyní 20 h):** přidána komplexní integrující praktická úloha správy služeb (Apache, Samba, automatizované zálohování s ověřením obnovy dat).
+      - **+4 hodiny do Bloku 5 (Rezerva a syntéza, nyní 8 h):** zařazena komplexní praktická maturitní zkouška nanečisto (4 h) simulující reálné maturitní zadání správy OS a sítí na čas, plus komparace Windows vs. Linux (2 h) a rezerva (2 h).
+    - **Výsledná struktura OSS 3:** 20 + 20 + 6 + 12 + 8 = **66 h** (týdny 1–10, 11–20, 21–23, 24–29, 30–33).
+    - **Synchronizováno napříč celým projektem:**
+      - Datové modely a osnovy: ops3Plan.ts, oss3Outlines.ts, svpOssData.ts.
+      - Klientské stránky: pp/specializovana/operacni-systemy-3/tematicky-plan/page.tsx.
+      - Kurikulární databáze: doc/curriculum/OSS3.md, doc/curriculum/SVP_INSPIS.md.
+      - Google Drive: Vygenerován a aktualizován oficiální dokument Operační systémy a software V2.docx (ID: 1H8iovN3GKG0SQGct3fgwuHGboMFQn9Hf).
+      - Kód ověřen přes 
+px tsc --noEmit.

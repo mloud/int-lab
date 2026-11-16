@@ -30,7 +30,7 @@ const PLAN_OSS3: PlanTopic[] = [
   {
     month: 'Listopad – Leden',
     topic: '2. Linux: Sítě, serverové služby a automatizace v shellu',
-    topicHours: 18,
+    topicHours: 20,
     subtopics: [
       { name: 'Síťová konfigurace v Linuxu a paketový firewall', hours: 2, note: 'Konfigurace síťových rozhraní, diagnostika konektivity a firewallová pravidla UFW' },
       { name: 'Zabezpečená vzdálená správa přes SSH a asymetrické klíče', hours: 2, note: 'Generování páru klíčů, autorizované klíče a zákaz přihlášení heslem správce' },
@@ -40,6 +40,7 @@ const PLAN_OSS3: PlanTopic[] = [
       { name: 'Administrační skriptování v shellu: Proměnné a parametry', hours: 2, note: 'Shebang #!/bin/bash, práva spuštění +x, proměnné a zpracování argumentů $1' },
       { name: 'Administrační skriptování v shellu: Podmínky, cykly a zálohování', hours: 4, note: 'Podmínky if, cykly for, archivace a komprese dat (tar) pro automatické zálohy a samostatné odladění vlastního skriptu' },
       { name: 'Automatické periodické plánování úloh v systému (cron)', hours: 2, note: 'Syntaxe crontab, plánování nočních údržbových a zálohovacích skriptů' },
+      { name: 'Komplexní praktická úloha: Správa linuxových služeb a zálohování', hours: 2, note: 'Samostatné nasazení a integrace služeb, testování obnovy dat ze záložního archivu' },
     ]
   },
   {
@@ -53,25 +54,25 @@ const PLAN_OSS3: PlanTopic[] = [
     ]
   },
   {
-    month: 'Březen – Květen',
-    topic: '4. Verzovací systémy, týmová kooperace a infrastrukturní projekt',
-    topicHours: 18,
+    month: 'Březen – Duben',
+    topic: '4. Verzovací systémy, týmová kooperace a správa kódu',
+    topicHours: 12,
     subtopics: [
-      { name: 'Principy verzování: Tři zóny Gitu a tvorba commitů', hours: 2, note: 'Architektura verzovacího systému, pracovní adresář, stage, commit a .gitignore' },
-      { name: 'Větvení (Branches), slučování (Merge) a řešení kolizí', hours: 2, note: 'Izolovaný vývoj ve větvích, slučování změn a manuální řešení konfliktů v konfiguracích' },
-      { name: 'Vzdálené repozitáře a týmová spolupráce (Push, Pull, revize)', hours: 2, note: 'Spolupráce přes vzdálený repozitář, vzájemná revize změn konfigurací a kódu' },
-      { name: 'Plánování úkolů na týmové nástěnce a komunikace', hours: 2, note: 'Nástěnka úkolů, rozdělení rolí v týmu a efektivní týmová komunikace' },
-      { name: 'Realizace projektu: Návrh infrastruktury a serverové služby', hours: 4, note: 'Týmové zprovoznění linuxových serverů, webu a sdílení dat, verzování konfigurací v Gitu' },
-      { name: 'Realizace projektu: Klientská integrace a zabezpečení sítě', hours: 4, note: 'Propojení se stanicemi Windows, nastavení přístupových práv, zálohování a firewall' },
-      { name: 'Křížový bezpečnostní audit, test záloh a ústní obhajoba projektu', hours: 2, note: 'Předvedení živé infrastruktury před vyučujícím a třídou, kontrola funkčnosti záloh' },
+      { name: 'Principy verzování: Tři zóny Gitu a první commit na Python projektu', hours: 2, note: 'Architektura verzovacího systému, pracovní adresář, stage, commit a .gitignore pro Python' },
+      { name: 'Běžný pracovní cyklus, historie změn a bezpečný návrat (restore)', hours: 2, note: 'Příkazy status, log, diff a vrácení chybné úpravy do stabilního stavu' },
+      { name: 'Větvení (Branches), slučování (Merge) a řešení kolizí v kódu', hours: 2, note: 'Izolovaný vývoj ve větvích, slučování změn a manuální řešení merge konfliktů v Python skriptu' },
+      { name: 'Vzdálené repozitáře a týmová spolupráce (GitHub, Pull Request)', hours: 2, note: 'SSH klíče, synchronizace push/pull, větve a vzájemná revize kódu přes Pull Request' },
+      { name: 'Plánování úkolů na týmové nástěnce Kanban a realizace miniprojektu', hours: 2, note: 'Řízení práce na nástěnce (GitHub Projects / Issues), vývoj a nasazení správcovského nástroje na Linux server' },
+      { name: 'Revize historie commitů, technická dokumentace a ústní obhajoba', hours: 2, note: 'Audit kvality repozitáře (git log --graph), README.md a předvedení funkčního nasazeného nástroje' },
     ]
   },
   {
-    month: 'Červen',
-    topic: '5. Závěrečná reflexe tříletého kurikula a rezerva',
-    topicHours: 4,
+    month: 'Květen – Červen',
+    topic: '5. Závěrečná reflexe tříletého kurikula, příprava k maturitě a rezerva',
+    topicHours: 8,
     subtopics: [
       { name: 'Syntéza tříleté výuky: Komparace Windows a Linuxové administrace', hours: 2, note: 'Srovnání administrátorských přístupů a typové maturitní úlohy ze správy OS a sítí' },
+      { name: 'Praktická maturitní zkouška nanečisto: Komplexní scénář správy OS', hours: 4, note: 'Samostatná komplexní laboratorní úloha na čas pokrývající Windows i Linux' },
       { name: 'Rezerva pro školní akce a uzavření klasifikace 3. ročníku', hours: 2, note: 'Zpětná vazba, konzultace a uzavření klasifikace' },
     ]
   }

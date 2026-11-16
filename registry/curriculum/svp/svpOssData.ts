@@ -442,7 +442,7 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     {
       id: 'oss3-b2',
       topic: '2. Linux: Sítě, serverové služby a automatizace v shellu',
-      hours: 18,
+      hours: 20,
       crossThemes: ['PT - ČDS', 'PT - ČSP'],
       outcomes: [
         'nakonfiguruje síťové rozhraní serveru a zabezpečí systém pomocí paketového firewallu',
@@ -480,38 +480,36 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     },
     {
       id: 'oss3-b4',
-      topic: '4. Verzovací systémy, týmová kooperace a infrastrukturní projekt',
-      hours: 18,
+      topic: '4. Verzovací systémy, týmová kooperace a správa kódu',
+      hours: 12,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
         'vysvětlí význam verzování a samostatně ovládá pracovní cyklus verzovacího systému (Git)',
         'vytváří větve, slučuje změny a řeší kolize v kódu a konfiguračních souborech',
-        'spolupracuje na verzování konfigurací prostřednictvím vzdálených repozitářů',
-        'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů a týmové komunikace',
-        'propojí klientskou stanici Windows se serverem Linux v lokální síti',
-        'nakonfiguruje sdílení dat, ověří funkčnost zálohování a předvede funkční řešení vyučujícímu'
+        'spolupracuje na vývoji a verzování správcovských nástrojů prostřednictvím vzdálených repozitářů',
+        'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů (Kanban, GitHub Projects)',
+        'společně v týmu vyvine, otestuje a nasadí správcovský nástroj na linuxový server a obhájí jeho kód a historii commitů'
       ],
       content: [
-        'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů)',
+        'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů .gitignore)',
         'Práce s větvemi a řešení konfliktů (izolovaný vývoj ve větvích, slučování změn, detekce a manuální řešení kolizí)',
-        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, vzájemná revize změn kódu a konfigurací)',
-        'Nástroje pro přehledné plánování úkolů a týmovou komunikaci (týmová nástěnka, rozdělení rolí v týmu)',
-        'Realizace podnikové infrastruktury (propojení linuxových serverů a stanic Windows, sdílení dat, webové služby, centrální správa a verzování konfigurací v repozitáři)',
-        'Křížové testování a bezpečnostní audit (ověření odolnosti sítě, kontrola funkčnosti záloh a systémových logů)',
-        'Zpracování technické dokumentace a ústní obhajoba projektu'
+        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, vzájemná revize změn kódu přes pull requesty)',
+        'Nástroje pro plánování úkolů a týmovou komunikaci (týmová nástěnka Kanban, GitHub Projects / Issues, rozdělení rolí v týmu)',
+        'Týmový miniprojekt správcovského nástroje (vývoj administračního Python skriptu, propojení s issue trackingem, nasazení na server a plánování běhu)',
+        'Revize historie commitů, dokumentace a ústní obhajoba projektu'
       ]
     },
     {
       id: 'oss3-b5',
-      topic: '5. Závěrečná reflexe tříletého kurikula a rezerva',
-      hours: 4,
+      topic: '5. Závěrečná reflexe tříletého kurikula, příprava k maturitě a rezerva',
+      hours: 8,
       crossThemes: ['PT - ČSP'],
       outcomes: [
         'syntetizuje poznatky tříleté výuky operačních systémů a porovná administraci platforem Windows a Linux',
         'samostatně vyřeší typové komplexní maturitní úlohy ze správy operačních systémů a sítí'
       ],
       content: [
-        'Komparace administrátorských přístupů (srovnání platforem Windows a Linux, správa přes grafické rozhraní vs. konfigurační soubory a skripty)',
+        'Komparace administrátorských přístupů (srovnání platforem Windows a Linux, správa přes grafické rozhraní vs. konfigurační soubory a skripty, praktická laboratorní zkouška nanečisto)',
         'Časová rezerva (prostor pro řešení individuálních dotazů, školní akce, uzavření klasifikace)'
       ]
     }
