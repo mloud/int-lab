@@ -1157,3 +1157,8 @@ px tsc --noEmit.
     - **Blok 5 (10 h):** Uvolněné 2 hodiny posílily závěrečný blok (Syntéza Windows vs. Linux 2 h, Závěrečný komplexní projekt správy systémů a sítí 6 h, Rezerva 2 h).
     - **Výsledná struktura OSS 3:** 20 + 20 + 6 + 10 + 10 = **66 h** (týdny 1–10, 11–20, 21–23, 24–28, 29–33).
     - Synchronizováno napříč všemi soubory (svpOssData.ts, ops3Plan.ts, oss3Outlines.ts, 	ematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json) i v oficiálním DOCX na Google Disku.
+
+54. **Přejmenování závěrečného bloku v OSS 3 na Komplexní projekt (bez slova rezerva v názvu):**
+    - Název bloku upraven na: **5. Závěrečný komplexní projekt a reflexe tříletého kurikula** (10 h).
+    - Z názvu bloku bylo zcela odstraněno slovo  rezerva.
+    - Synchronizováno: ops3Plan.ts, svpOssData.ts, 	ematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json a nahráno do Google DOCX.

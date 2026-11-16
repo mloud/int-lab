@@ -498,7 +498,7 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     },
     {
       id: 'oss3-b5',
-      topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
+      topic: '5. Závěrečný komplexní projekt a reflexe tříletého kurikula',
       hours: 10,
       crossThemes: ['PT - ČSP'],
       outcomes: [

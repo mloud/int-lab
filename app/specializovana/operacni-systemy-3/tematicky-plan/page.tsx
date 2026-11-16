@@ -67,7 +67,7 @@ const PLAN_OSS3: PlanTopic[] = [
   },
   {
     month: 'Květen – Červen',
-    topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
+    topic: '5. Závěrečný komplexní projekt a reflexe tříletého kurikula',
     topicHours: 10,
     subtopics: [
       { name: 'Syntéza tříleté výuky: Komparace Windows a Linuxové administrace', hours: 2, note: 'Srovnání administrátorských přístupů a typové souhrnné úlohy ze správy OS a sítí' },

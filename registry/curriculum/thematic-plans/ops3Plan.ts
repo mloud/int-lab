@@ -303,11 +303,11 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         month: 'Květen – Červen',
         monthKey: 'kveten',
         weeks: '29.–33. týden',
-        title: 'Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
+        title: 'Závěrečný komplexní projekt a reflexe tříletého kurikula',
         hours: 10,
         theoryHours: 2,
         practiceHours: 8,
-        description: 'Rekapitulace celé osy OSS 1 ➔ OSS 2 ➔ OSS 3, samostatný komplexní praktický projekt správy systémů a časová rezerva pro školní akce.',
+        description: 'Rekapitulace celé osy OSS 1 ➔ OSS 2 ➔ OSS 3, samostatný komplexní praktický projekt správy systémů a závěrečná reflexe.',
         rvpCompetence: 'Syntetizuje znalosti Windows a Linuxu do uceleného přehledu správy operačních systémů.',
         subtopics: [
           {
