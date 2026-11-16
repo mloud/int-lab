@@ -470,14 +470,14 @@ export const SVP_OSS3_DATA: SvpGradeData = {
         'provede bezpečnostní průzkum sítě a identifikuje otevřené síťové porty a verze běžících služeb',
         'vyhledá zjištěné zranitelnosti ve veřejných databázích (CVE) a vyhodnotí jejich závažnost (CVSS)',
         'analyzuje nešifrovaný a šifrovaný síťový provoz pomocí analyzátoru paketů',
-        'vysvětlí princip ukládání přístupových hesel ve formě hashů a otestuje jejich odolnost vůči slovníkovým útokům',
+        'vysvětlí princip ukládání přístupových hesel ve formě hashů se solí a provede audit odolnosti hesel vůči slovníkovým útokům',
         'provede bezpečnostní nápravu a odstraní zranitelnost na kompromitovaném systému'
       ],
       content: [
-        'Právní a etický rámec (trestní zákoník – neoprávněný přístup k počítačovému systému, směrnice NIS 2, fáze kybernetického útoku Cyber Kill Chain)',
+        'Právní a etický rámec (trestní zákoník – neoprávněný přístup k počítačovému systému, směrnice NIS 2, fáze a principy kybernetického útoku)',
         'Síťový audit a mapování zranitelností (skenování síťových portů, detekce verzí služeb, práce s mezinárodními databázemi zranitelností CVE a hodnocení rizik CVSS)',
         'Analýza síťového provozu (odposlech a filtrace síťových paketů, analýza spojení, srovnání nešifrovaných protokolů se šifrovanými tunely)',
-        'Ochrana hesel a autentizace (ukládání hesel ve formě kryptografických hashů se solí, slovníkové útoky a testování síly hesel)',
+        'Ochrana hesel a autentizace (ukládání hesel ve formě kryptografických hashů se solí, audit síly hesel a odolnost vůči slovníkovým útokům)',
         'Reakce na incident a náprava (analýza kompromitovaného systému, identifikace neoprávněné aktivity, zablokování útočníka firewallem a oprava konfigurace)'
       ]
     },
@@ -489,16 +489,16 @@ export const SVP_OSS3_DATA: SvpGradeData = {
       outcomes: [
         'vysvětlí význam verzování a samostatně ovládá pracovní cyklus verzovacího systému (Git)',
         'vytváří větve, slučuje změny a řeší kolize v kódu a konfiguračních souborech',
-        'spolupracuje na projektu prostřednictvím vzdálených repozitářů s využitím týmových procesů',
-        'organizuje a řídí práci v týmu s využitím agilních nástrojů pro plánování úkolů (Kanban) a týmovou komunikaci',
+        'spolupracuje na verzování konfigurací prostřednictvím vzdálených repozitářů',
+        'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů a týmové komunikace',
         'navrhne a zprovozní komplexní smíšenou infrastrukturu propojující servery a klientské stanice',
-        'zabezpečí síťové služby, otestuje funkčnost záloh a obhájí technické řešení infrastruktury před odbornou komisí'
+        'zabezpečí síťové služby, otestuje funkčnost záloh a obhájí technické řešení infrastruktury před vyučujícím a třídou'
       ],
       content: [
         'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů)',
         'Práce s větvemi a řešení konfliktů (izolovaný vývoj ve větvích, slučování změn, detekce a manuální řešení kolizí)',
-        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, proces Pull Requestů, revize změn kódu a konfigurací)',
-        'Nástroje pro agilní plánování úkolů (Kanban), týmovou komunikaci a koordinaci projektu (nástěnka úkolů, backlog, rozdělení rolí v týmu)',
+        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, vzájemná revize změn kódu a konfigurací)',
+        'Nástroje pro přehledné plánování úkolů a týmovou komunikaci (týmová nástěnka, rozdělení rolí v týmu)',
         'Realizace podnikové infrastruktury (propojení linuxových serverů a stanic Windows, sdílení dat, webové služby, centrální správa a verzování konfigurací v repozitáři)',
         'Křížové testování a bezpečnostní audit (ověření odolnosti sítě, kontrola funkčnosti záloh a systémových logů)',
         'Zpracování technické dokumentace a ústní obhajoba projektu'

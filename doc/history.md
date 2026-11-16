@@ -1033,6 +1033,17 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       7. *Vyčištění protokolových a síťových detailů (Blok 4):* Odstraněna čísla portů (445 pro SMB, 3389 pro RDP) a hluboké rozbory protokolu Kerberos. Ponechány čisté klientské kompetence: **sdílení složek v LAN (SMB), kombinovaná efektivní práva, vzdálená plocha (RDP), připojení klientské stanice do podnikové domény a centrální uplatňování skupinových politik (GPO – restrikce USB, zásady hesel)**.
     - **Synchronizované soubory:** [`doc/curriculum/OSS2.md`](curriculum/OSS2.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops2Plan.ts`](../registry/curriculum/thematic-plans/ops2Plan.ts) a [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md).
 
+43. **Didaktická revize a zjednodušení ŠVP pro Operační systémy 3 (OSS 3 pro ČŠI a InspIS):**
+    - Proveden detailní audit kurikula 3. ročníku SŠ (OSS 3 – 66 h, kód oboru 18-20-M/01 Informační technologie), který završuje tříletou osu výuky operačních systémů přechodem na headless Linux, Bash, Git a týmový infrastrukturní projekt.
+    - **5 klíčových kurikulárních úprav v OSS 3:**
+      1. *Odstranění vojensko-korporátního žargonu (Blok 3):* Ochranná známka a termín *„Cyber Kill Chain“* nahrazeny srozumitelnou fázovou anatomií **„fáze a principy kybernetického útoku (průzkum, zneužití zranitelnosti, průnik, eskalace oprávnění a zahlazení stop)“**.
+      2. *Etický a defenzivní rámec auditu hesel (Blok 3):* Odstraněny formulace evokující ofenzivní útoky a lámání hesel nástroji třetích stran. Nahrazeno **„auditem síly a odolnosti hesel (význam kryptografických solí, odolnost vůči slovníkovým útokům a zásady bezpečné autentizace)“**.
+      3. *Harmonizace týmových procesů v Gitu s předmětem Programování (Blok 4):* V souladu s úpravami v PVH 4 byl vyčištěn specifický agilní žargon (*Pull Requesty, Code Review, metodika Kanban*). Nahrazeno **„týmovou spoluprací prostřednictvím vzdálených repozitářů, vzájemnou revizí konfiguračních změn a přehledným plánováním úkolů na týmové nástěnce (sledování stavu, rozdělení rolí v týmu)“**.
+      4. *Závěrečný projekt – odstranění zavádějícího pojmu „před odbornou komisí“ (Blok 4):* Změněno z maturitně znějícího *„před odbornou komisí“* na realistické **„představení funkčního řešení a ústní technická obhajoba projektu před vyučujícím a třídou“**.
+      5. *Technologická neutralita serverových služeb v ŠVP (Blok 2):* V oficiálním ŠVP pro ČŠI nahrazeny konkrétní produktové názvy nadčasovými formulacemi: **„webový server se šifrovaným protokolem HTTPS“** a **„sdílení souborů v heterogenní síti mezi Linuxem a stanicemi Windows“**.
+    - **Synchronizované soubory:** [`doc/curriculum/OSS3.md`](curriculum/OSS3.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops3Plan.ts`](../registry/curriculum/thematic-plans/ops3Plan.ts) a [`doc/plans/PLAN_OSS3.md`](plans/PLAN_OSS3.md).
+
+
 
 
 

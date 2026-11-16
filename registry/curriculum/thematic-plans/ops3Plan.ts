@@ -201,10 +201,10 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         subtopics: [
           {
             id: 'oss3-b3-1',
-            title: 'Právní a etický rámec: Trestní zákoník, NIS 2 a Cyber Kill Chain',
+            title: 'Právní a etický rámec: Trestní zákoník, NIS 2 a fáze útoku',
             hours: 2,
             type: 'teorie',
-            description: 'Paragrafy § 230–232 TrZ (neoprávněný přístup k počítačovému systému), směrnice NIS 2, fáze útoku podle Cyber Kill Chain.',
+            description: 'Paragrafy § 230–232 TrZ (neoprávněný přístup k počítačovému systému), směrnice NIS 2, fáze a principy kybernetického útoku.',
             practice: 'Rozbor reálných soudních kauz a případových studií kybernetických útoků v ČR.',
             route: '/specializovana/operacni-systemy-3/kyberbezpecnost/pravo-a-utok'
           },
@@ -237,10 +237,10 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss3-b3-5',
-            title: 'Audit odolnosti hesel: Slovníkové útoky a testování síly hesel',
+            title: 'Audit odolnosti hesel: Slovníkové testy a kryptografické solení',
             hours: 2,
             type: 'laborator',
-            description: 'Metody prolamování hashů: Brute-Force vs. slovníkový útok, slovník RockYou, nástroje John the Ripper a Hashcat.',
+            description: 'Ochrana před prolamováním hashů: Brute-Force vs. slovníkový test, význam soli a testování odolnosti hesel ve virtuální laboratoři.',
             practice: 'Audit slabých hesel ve cvičném seznamu hashů pomocí slovníku RockYou ve virtuální laboratoři.',
             route: '/specializovana/operacni-systemy-3/kyberbezpecnost/slovnikove-utoky'
           },
@@ -265,8 +265,8 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         hours: 18,
         theoryHours: 4,
         practiceHours: 14,
-        description: 'Tři zóny Gitu, větve a řešení konfliktů, GitHub workflow, agilní řízení v Kanbanu a realizace hybridní infrastruktury.',
-        rvpCompetence: 'Verzuje zdrojový kód a konfigurace v Gitu, spolupracuje v týmu podle metodiky Kanban a zprovozní komplexní síťovou infrastrukturu.',
+        description: 'Tři zóny Gitu, větve a řešení konfliktů, týmová spolupráce, plánování úkolů na nástěnce a realizace hybridní infrastruktury.',
+        rvpCompetence: 'Verzuje zdrojový kód a konfigurace v Gitu, spolupracuje v týmu a zprovozní komplexní síťovou infrastrukturu.',
         subtopics: [
           {
             id: 'oss3-b4-1',
@@ -297,20 +297,20 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss3-b4-4',
-            title: 'Vzdálené repozitáře a týmový workflow na GitHubu (Push, Pull, PR)',
+            title: 'Vzdálené repozitáře a týmová spolupráce (Push, Pull, revize)',
             hours: 2,
             type: 'laborator',
-            description: 'Propojení lokálního repozitáře s GitHubem přes SSH klíč, příkazy git push a git pull, tvorba Pull Requestu a Code Review.',
-            practice: 'Týmová spolupráce ve dvojicích: naklonování cizího repozitáře, vytvoření větve, odeslání Pull Requestu a jeho schválení.',
+            description: 'Propojení lokálního repozitáře se vzdáleným repozitářem přes SSH klíč, příkazy git push a git pull, revize změn konfigurací.',
+            practice: 'Týmová spolupráce ve dvojicích: naklonování cizího repozitáře, vytvoření větve, odeslání změn a jejich vzájemná revize.',
             route: '/specializovana/operacni-systemy-3/git/github'
           },
           {
             id: 'oss3-b4-5',
-            title: 'Agilní organizace úkolů (Kanban) a týmová komunikace',
+            title: 'Plánování úkolů na týmové nástěnce a komunikace',
             hours: 2,
             type: 'kombinovane',
-            description: 'Principy agilního řízení, backlog, sloupce To Do / In Progress / Done, rozdělení rolí v týmu (správce Linuxu, správce AD, tester).',
-            practice: 'Založení týmové nástěnky na GitHub Projects / Trellu a rozpad komplexního zadání na konkrétní tikety.',
+            description: 'Principy přehledného řízení, sloupce K řešení / V řešení / Hotovo, rozdělení rolí v týmu (správce Linuxu, správce AD, tester).',
+            practice: 'Založení týmové nástěnky úkolů (GitHub Projects / Trello) a rozpad zadání na konkrétní tikety.',
             route: '/specializovana/operacni-systemy-3/tymova-spoluprace/kanban'
           },
           {
@@ -324,10 +324,10 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss3-b4-7',
-            title: 'Křížový bezpečnostní audit, test záloh a ústní obhajoba projektů',
+            title: 'Křížový bezpečnostní audit, test záloh a obhajoba projektů',
             hours: 2,
             type: 'projekt',
-            description: 'Křížový audit: tým A otestuje bezpečnost a zálohy týmu B. Předvedení živého funkčního prostředí a ústní obhajoba.',
+            description: 'Křížový audit: tým A otestuje bezpečnost a zálohy týmu B. Předvedení živého funkčního prostředí a ústní obhajoba před vyučujícím a třídou.',
             practice: 'Prezentace týmů, hodnocení funkčnosti infrastruktury a technické dokumentace.',
             route: '/specializovana/operacni-systemy-3/tymova-spoluprace/obhajoba'
           }

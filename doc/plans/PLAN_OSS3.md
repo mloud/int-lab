@@ -8,7 +8,7 @@
 ---
 
 ## 🎯 Hlavní pedagogický cíl
-Převést studenta z prostředí správy grafického Windows do role **správce serverového Linuxu bez GUI (headless), bezpečnostního technika a týmového vývojáře**. Student spravuje operační systém čistě přes terminál (SSH), konfiguruje síťové a aplikační služby (Apache, HTTPS, Samba), automatizuje rutiny v Bashi a plánovači cron, ovládá verzovací systém Git (GitHub) a řeší síťové bezpečnostní audity i incidenty (Nmap, Wireshark, prolamování hashů hesel, CTF výzva).
+Převést studenta z prostředí správy grafického Windows do role **správce serverového Linuxu bez GUI (headless), bezpečnostního technika a týmového správce IT**. Student spravuje operační systém čistě přes terminál (SSH), konfiguruje síťové a aplikační služby (webový server, HTTPS, sdílení pro Windows), automatizuje rutiny v Bashi a plánovači cron, ovládá verzovací systém Git a řeší síťové bezpečnostní audity i incidenty (Nmap, Wireshark, audit síly a solení hesel, cvičný bezpečnostní scénář).
 
 ---
 
@@ -52,20 +52,20 @@ Převést studenta z prostředí správy grafického Windows do role **správce 
 * [x] **GT1 Principy verzování a instalace Gitu** (`/git/principy`, 2 h) – 3 zóny, git init
 * [x] **GT2 Základní cyklus (add, commit, status)** (`/git/zakladni-cyklus`, 2 h) – snapshoty, log
 * [x] **GT3 Větvení a slučování** (`/git/vetve`, 2 h) – git branch, merge, řešení konfliktů
-* [x] **GT4 Vzdálené repozitáře a GitHub** (`/git/github`, 2 h) – push, pull, Pull Requesty
+* [x] **GT4 Vzdálené repozitáře a týmová spolupráce** (`/git/github`, 2 h) – push, pull, revize změn
 
 ### Kapitola 4: Základy kybernetické bezpečnosti (`/kyberbezpecnost`, 12 h)
-* [x] **KB1 Úvod do bezpečnosti a legislativa** (`/kyberbezpecnost/pravo-a-utok`, 2 h) – TrZ § 230, NIS 2, Kill Chain
+* [x] **KB1 Úvod do bezpečnosti a legislativa** (`/kyberbezpecnost/pravo-a-utok`, 2 h) – TrZ § 230, NIS 2, fáze útoku
 * [x] **KB2 OSINT a síťový skener Nmap** (`/kyberbezpecnost/osint-nmap`, 2 h) – scan portů, detekce verzí, CVE/CVSS
 * [x] **KB3 Analýza provozu ve Wiresharku** (`/kyberbezpecnost/wireshark`, 2 h) – filtrace paketů, TCP handshake, nešifrovaná hesla
 * [x] **KB4 Hashe a solení hesel** (`/kyberbezpecnost/hashe-a-soleni`, 2 h) – /etc/shadow, kryptografická sůl
-* [x] **KB5 Slovníkové útoky na hesla** (`/kyberbezpecnost/slovnikove-utoky`, 2 h) – RockYou, John the Ripper, Hashcat
-* [x] **KB6 Reakce na incident a CTF výzva** (`/kyberbezpecnost/incident-ctf`, 2 h) – vyšetřování, záchyt flagů, náprava
+* [x] **KB5 Audit odolnosti hesel** (`/kyberbezpecnost/slovnikove-utoky`, 2 h) – RockYou, slovníkové testy síly hesel
+* [x] **KB6 Reakce na incident a náprava** (`/kyberbezpecnost/incident-ctf`, 2 h) – vyšetřování, odstranění hrozby, náprava
 
 ### Kapitola 5: Týmová spolupráce a projekt (`/tymova-spoluprace`, 10 h)
-* [x] **TM1 Metodiky agilního vývoje (Kanban)** (`/tymova-spoluprace/kanban`, 2 h) – backlog, sprinty, GitHub Projects
+* [x] **TM1 Plánování úkolů na týmové nástěnce** (`/tymova-spoluprace/kanban`, 2 h) – rozdělení rolí, sledování stavu prací
 * [x] **TM2 Týmový projekt – implementace a integrace** (`/tymova-spoluprace/projekt`, 6 h) – propojení Linux + Win + Git + sítě
-* [x] **TM3 Prezentace projektu a obhajoba** (`/tymova-spoluprace/obhajoba`, 2 h) – technická prezentace a zhodnocení
+* [x] **TM3 Prezentace projektu a obhajoba** (`/tymova-spoluprace/obhajoba`, 2 h) – technická prezentace a obhajoba před třídou
 
 ---
 
