@@ -17,14 +17,14 @@ export const MessagesTask7 = ({ teacherMode }: { teacherMode: boolean }) => {
       {/* ÚKOL 7 */}
       <TaskCard
         number="7"
-        title="Grafická kalkulačka se seznamem (Tokenizace výrazu)"
+        title="Grafická kalkulačka se seznamem"
         taskId="msg-7"
         saveAs="Kalkulacka.sb3"
         showTeacher={teacherMode}
         teacherNote={
           <div className="space-y-4">
             <p className="text-xs text-slate-700">
-              <strong>Princip (Tokenizace a vyhodnocení výrazu):</strong> Tlačítka číslic postupně skládají znaky do bufferu <code>aktualni_vstup</code>. Tlačítka operátorů vloží číslo i operátor do seznamu <code>vyraz</code>. Tlačítko <code>=</code> pošle zprávu <code>vyhodnot</code> kocourovi, který se podívá na operátor na 2. pozici a provede výpočet mezi 1. a 3. položkou.
+              <strong>Princip:</strong> Tlačítka číslic postupně skládají číslo do proměnné <code>aktualni_vstup</code>. Tlačítka <code>+</code> a <code>-</code> vloží zadané číslo i znaménko do seznamu <code>vyraz</code>. Tlačítko <code>=</code> pošle zprávu kocourovi, který spočítá výsledek a řekne ho v bublině.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
@@ -58,7 +58,7 @@ export const MessagesTask7 = ({ teacherMode }: { teacherMode: boolean }) => {
 
               {/* Scénář Kocoura (Mozek kalkulačky) */}
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
-                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Kocoura (Vyhodnocení výrazu):</div>
+                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Kocoura (Vyhodnocení příkladu):</div>
                 <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">vyhodnot</ScratchInput></ScratchBlock></div>
                 <div className="pl-4">
                   <ScratchCElseBlock
@@ -96,9 +96,7 @@ export const MessagesTask7 = ({ teacherMode }: { teacherMode: boolean }) => {
         }
       >
         <p className="leading-relaxed">
-          Při tvorbě reálných aplikací a kalkulaček se jednotlivé stisknuté klávesy skládají do textové vyrovnávací paměti (bufferu).
-          Teprve po stisku operátoru se hodnota „uzavře“ a uloží do seznamu jako samostatný prvek (tzv. <em>token</em>).
-          Vytvoř grafickou kalkulačku řízenou zprávami a seznamem:
+          Vytvoř jednoduchou kalkulačku s klikacími tlačítky na obrazovce. Zadaná čísla a znaménko se budou postupně ukládat do seznamu a po stisku tlačítka rovná se kocour příklad spočítá:
         </p>
 
         <div className="space-y-4 my-4 text-sm text-slate-800">
