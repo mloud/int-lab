@@ -242,21 +242,21 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         order: 4,
         month: 'Březen – Duben',
         monthKey: 'brezen',
-        weeks: '24.–29. týden',
+        weeks: '24.–28. týden',
         title: 'Verzovací systémy, týmová kooperace a správa kódu',
-        hours: 12,
-        theoryHours: 3,
-        practiceHours: 9,
-        description: 'Tři zóny Gitu, větve a řešení konfliktů na Python projektu, týmová spolupráce na GitHubu s issues a týmovou nástěnkou Kanban.',
-        rvpCompetence: 'Verzuje správcovské skripty v Gitu, spolupracuje v týmu přes vzdálené repozitáře a týmovou nástěnku Kanban.',
+        hours: 10,
+        theoryHours: 2,
+        practiceHours: 8,
+        description: 'Tři zóny Gitu, větve a řešení konfliktů, vzdálené repozitáře na GitHubu a plánování úkolů na týmové nástěnce Kanban.',
+        rvpCompetence: 'Verzuje konfigurační a skriptovací soubory v Gitu, spolupracuje v týmu přes vzdálené repozitáře a týmovou nástěnku Kanban.',
         subtopics: [
           {
             id: 'oss3-b4-1',
-            title: 'Principy verzování: Tři zóny Gitu a první commit na Python projektu',
+            title: 'Principy verzování: Tři zóny Gitu a první commit',
             hours: 2,
             type: 'kombinovane',
-            description: 'Proč nepoužívat soubory verze_final. Zóny: Working Directory ➔ Staging Area (git add) ➔ Repository (git commit). Konfigurace .gitignore pro Python.',
-            practice: 'Inicializace lokálního repozitáře git init na správcovském Python skriptu, vyloučení __pycache__ v .gitignore a první commit.',
+            description: 'Proč nepoužívat soubory verze_final. Zóny: Working Directory ➔ Staging Area (git add) ➔ Repository (git commit). Ignorování souborů v .gitignore.',
+            practice: 'Inicializace lokálního repozitáře git init na cvičném projektu, konfigurace identity a uložení prvního commitu.',
             route: '/specializovana/operacni-systemy-3/git/principy'
           },
           {
@@ -264,17 +264,17 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
             title: 'Běžný pracovní cyklus, historie změn a bezpečný návrat (restore)',
             hours: 2,
             type: 'laborator',
-            description: 'Příkazy git status, git log --oneline, git diff, porovnání změn v kódu a bezpečné vrácení úprav.',
-            practice: 'Praktické sledování vývoje skriptu, zkoumání rozdílů a vrácení chybné úpravy do funkčního stavu.',
+            description: 'Příkazy git status, git log --oneline, git diff, porovnání změn v souborech a bezpečné vrácení úprav.',
+            practice: 'Praktické sledování historie revizí, zkoumání rozdílů mezi verzemi a vrácení chybné úpravy do funkčního stavu.',
             route: '/specializovana/operacni-systemy-3/git/zakladni-cyklus'
           },
           {
             id: 'oss3-b4-3',
-            title: 'Větvení (Branches), slučování (Merge) a řešení kolizí v kódu',
+            title: 'Větvení (Branches), slučování (Merge) a řešení kolizí',
             hours: 2,
             type: 'laborator',
-            description: 'Paralelní vývoj nových funkcí ve větvích (feature branch), sloučení větví a ruční řešení merge konfliktů v Python skriptu.',
-            practice: 'Simulace kolize: dva žáci upraví stejnou část skriptu, manuálně vyřeší konflikt a úspěšně provedou merge.',
+            description: 'Paralelní vývoj ve větvích (feature branches), sloučení větví a ruční řešení merge konfliktů v konfiguračních souborech.',
+            practice: 'Simulace kolize: dva žáci upraví stejný řádek souboru, manuálně vyřeší konflikt a úspěšně provedou merge.',
             route: '/specializovana/operacni-systemy-3/git/vetve'
           },
           {
@@ -288,21 +288,12 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss3-b4-5',
-            title: 'Plánování úkolů na týmové nástěnce Kanban a realizace miniprojektu',
+            title: 'Plánování úkolů na týmové nástěnce Kanban a organizace práce',
             hours: 2,
-            type: 'projekt',
-            description: 'Nástěnka Kanban (GitHub Projects / Issues), sloupce Backlog ➔ In Progress ➔ Done. Vývoj týmového administračního nástroje (např. Server Health Monitor).',
-            practice: 'Rozpad zadání na tikety v GitHub Projects, implementace skriptu a jeho nasazení na cvičný Linuxový server.',
+            type: 'kombinovane',
+            description: 'Nástěnka Kanban (GitHub Projects / Issues), sloupce Backlog ➔ In Progress ➔ Done, rozpad úkolů a týmové role.',
+            practice: 'Založení týmové nástěnky v GitHub Projects, rozpad úkolů do tiketů a propojení tiketů s commity.',
             route: '/specializovana/operacni-systemy-3/tymova-spoluprace/kanban'
-          },
-          {
-            id: 'oss3-b4-6',
-            title: 'Revize historie commitů, technická dokumentace (README) a obhajoba',
-            hours: 2,
-            type: 'projekt',
-            description: 'Závěrečná kontrola kvality repozitáře: formát commit zpráv, přehlednost větvení (git log --graph), technický návod README.md a ústní obhajoba řešení.',
-            practice: 'Předvedení funkčního nasazeného skriptu na serveru a obhajoba historie commitů před vyučujícím.',
-            route: '/specializovana/operacni-systemy-3/tymova-spoluprace/obhajoba'
           }
         ]
       },
@@ -311,11 +302,11 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
         order: 5,
         month: 'Květen – Červen',
         monthKey: 'kveten',
-        weeks: '30.–33. týden',
+        weeks: '29.–33. týden',
         title: 'Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
-        hours: 8,
+        hours: 10,
         theoryHours: 2,
-        practiceHours: 6,
+        practiceHours: 8,
         description: 'Rekapitulace celé osy OSS 1 ➔ OSS 2 ➔ OSS 3, samostatný komplexní praktický projekt správy systémů a časová rezerva pro školní akce.',
         rvpCompetence: 'Syntetizuje znalosti Windows a Linuxu do uceleného přehledu správy operačních systémů.',
         subtopics: [
@@ -331,7 +322,7 @@ export const OPS3_THEMATIC_PLAN: ThematicPlan = {
           {
             id: 'oss3-b5-2',
             title: 'Závěrečný komplexní projekt: Samostatný scénář správy systémů a sítí',
-            hours: 4,
+            hours: 6,
             type: 'laborator',
             description: 'Samostatná komplexní laboratorní úloha: instalace, konfigurace klientských a serverových služeb, nastavení zabezpečení a diagnostika.',
             practice: 'Vypracování komplexního praktického zadání, diagnostika chybového stavu a sepsání technického protokolu.',

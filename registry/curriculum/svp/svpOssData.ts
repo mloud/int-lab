@@ -481,28 +481,25 @@ export const SVP_OSS3_DATA: SvpGradeData = {
     {
       id: 'oss3-b4',
       topic: '4. Verzovací systémy, týmová kooperace a správa kódu',
-      hours: 12,
+      hours: 10,
       crossThemes: ['PT - ČSP', 'PT - ČDS'],
       outcomes: [
         'vysvětlí význam verzování a samostatně ovládá pracovní cyklus verzovacího systému (Git)',
         'vytváří větve, slučuje změny a řeší kolize v kódu a konfiguračních souborech',
-        'spolupracuje na vývoji a verzování správcovských nástrojů prostřednictvím vzdálených repozitářů',
-        'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů (Kanban, GitHub Projects)',
-        'společně v týmu vyvine, otestuje a nasadí správcovský nástroj na linuxový server a obhájí jeho kód a historii commitů'
+        'spolupracuje na verzování konfiguračních a skriptovacích souborů prostřednictvím vzdálených repozitářů',
+        'organizuje a řídí práci v týmu s využitím přehledných nástěnek úkolů (Kanban, GitHub Projects)'
       ],
       content: [
         'Architektura verzovacích systémů (tři zóny pracovního prostoru, tvorba revizí a commitů, historie a ignorování souborů .gitignore)',
         'Práce s větvemi a řešení konfliktů (izolovaný vývoj ve větvích, slučování změn, detekce a manuální řešení kolizí)',
-        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem, vzájemná revize změn kódu přes pull requesty)',
-        'Nástroje pro plánování úkolů a týmovou komunikaci (týmová nástěnka Kanban, GitHub Projects / Issues, rozdělení rolí v týmu)',
-        'Týmový miniprojekt správcovského nástroje (vývoj administračního Python skriptu, propojení s issue trackingem, nasazení na server a plánování běhu)',
-        'Revize historie commitů, dokumentace a ústní obhajoba projektu'
+        'Vzdálené repozitáře a týmová spolupráce (synchronizace se vzdáleným repozitářem přes SSH, vzájemná revize změn kódu přes pull requesty)',
+        'Nástroje pro plánování úkolů a týmovou komunikaci (týmová nástěnka Kanban, GitHub Projects / Issues, rozdělení rolí v týmu)'
       ]
     },
     {
       id: 'oss3-b5',
       topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
-      hours: 8,
+      hours: 10,
       crossThemes: ['PT - ČSP'],
       outcomes: [
         'syntetizuje poznatky tříleté výuky operačních systémů a porovná administraci platforem Windows a Linux',

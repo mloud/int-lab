@@ -346,11 +346,11 @@ export const OSS3_LINUX_SLUZBY: OutlineGroup = {
   ]
 };
 
-/** Verzovací systémy, týmová kooperace a správa kódu (8 h v Gitu + 4 h v týmové spolupráci) */
+/** Verzovací systémy, týmová kooperace a správa kódu (8 h v Gitu + 2 h v týmové spolupráci) */
 export const OSS3_GIT: OutlineGroup = {
   chapterId: 'os3-git',
   chapterTitle: 'Git a verzování kódu',
-  chapterDescription: 'Správa verzí v praxi na správcovském Python projektu: repozitář, commity, větve, GitHub a týmová spolupráce.',
+  chapterDescription: 'Správa verzí v praxi: repozitář, commity, větve, GitHub a týmová spolupráce.',
   chapterTag: 'git',
   chapterPath: `${BASE}/git`,
   subjectTitle: SUBJECT,
@@ -363,22 +363,22 @@ export const OSS3_GIT: OutlineGroup = {
     {
       slug: 'principy',
       tag: 'GT1',
-      title: 'Principy verzování: Tři zóny Gitu a první commit na Python projektu',
+      title: 'Principy verzování: Tři zóny Gitu a první commit',
       hours: '2 h',
       subtitle: 'Repozitář, commit a historie změn bez chaosu v kopiích souborů.',
-      intro: 'Názvy jako „skript_final_v2_OPRAVENO.py“ jsou noční můra. Git zaznamenává celou historii změn jako snímky v čase a umožňuje se kdykoliv vrátit.',
+      intro: 'Názvy jako „soubor_final_v2_OPRAVENO.txt“ jsou noční můra. Git zaznamenává celou historii změn jako snímky v čase a umožňuje se kdykoliv vrátit.',
       topics: [
         'Problém ručního verzování kopií souborů a princip verzovacího systému (VCS)',
         'Architektura tří zón v Gitu: Pracovní adresář (Working Tree), Připravená oblast (Staging Area), Místní repozitář (.git)',
         'Pojem commit jako neměnný snímek projektu s autorem a zprávou',
-        'Ignorování souborů pro Python v souboru .gitignore (__pycache__, virtuální prostředí .venv, dočasná data)',
+        'Ignorování souborů v souboru .gitignore (dočasné soubory, privátní klíče)',
         'Základní konfigurace identity uživatele: git config --global user.name a user.email'
       ],
       practice: [
         'Simulace: Pohyb souboru mezi třemi oblastmi Gitu (Working -> Staging -> Commit)',
-        'Praxe v OS: Inicializace prvního repozitáře git init na správcovském Python skriptu a uložení commitu'
+        'Praxe v OS: Inicializace prvního repozitáře git init na cvičném projektu a uložení commitu'
       ],
-      builds: 'Zálohování (OSS 2) – verze vs. záloha, Python základy z programování.'
+      builds: 'Zálohování (OSS 2) – verze vs. záloha.'
     },
     {
       slug: 'zakladni-cyklus',
@@ -386,7 +386,7 @@ export const OSS3_GIT: OutlineGroup = {
       title: 'Běžný pracovní cyklus, historie změn a bezpečný návrat (restore)',
       hours: '2 h',
       subtitle: 'Příkazy status, add, commit, log, porovnání diff a vrácení chybné úpravy.',
-      intro: 'Běžná práce s Gitem je stále stejný spolehlivý cyklus: upravit kód skriptu, zkontrolovat stav, připravit k uložení a potvrdit commit.',
+      intro: 'Běžná práce s Gitem je stále stejný spolehlivý cyklus: upravit soubor, zkontrolovat stav, připravit k uložení a potvrdit commit.',
       topics: [
         'Příkazy git status, git add (příprava souborů) a git commit -m "popis"',
         'Prohlížení historie a změn: git log (--oneline, --graph) a git diff',
@@ -395,26 +395,26 @@ export const OSS3_GIT: OutlineGroup = {
       ],
       practice: [
         'Simulace: Odhalení, které soubory patří a nepatří do commitu',
-        'Praxe v OS: Správa historie správcovského skriptu, sledování diffu a vrácení chybného řádku'
+        'Praxe v OS: Správa historie revizí, sledování diffu a vrácení chybného řádku'
       ],
       builds: 'GT1 (principy Gitu).'
     },
     {
       slug: 'vetve',
       tag: 'GT3',
-      title: 'Větvení (Branches), slučování (Merge) a řešení kolizí v kódu',
+      title: 'Větvení (Branches), slučování (Merge) a řešení kolizí',
       hours: '2 h',
       subtitle: 'Paralelní vývoj nových funkcí ve větvích a ruční řešení merge konfliktů.',
-      intro: 'Větve umožňují vyvíjet novou funkci bezpečně stranou bez ohrožení funkčního kódu. Po dokončení větev sloučíme zpět a případný konflikt v kódu vyřešíme.',
+      intro: 'Větve umožňují vyvíjet novou konfiguraci bezpečně stranou bez ohrožení funkčního stavu. Po dokončení větev sloučíme zpět a případný konflikt vyřešíme.',
       topics: [
         'Význam větví (branches) v týmu a hlavní větev (main)',
         'Tvorba a přepínání větví: git branch, git checkout / git switch, princip feature branches',
         'Slučování větví: git merge a situace Fast-Forward',
-        'Vznik a řešení konfliktu při slučování (Merge Conflict): značky v kódu (<<<<<<<, =======, >>>>>>>) a potvrzení vyřešení'
+        'Vznik a řešení konfliktu při slučování (Merge Conflict): značky v souboru a potvrzení vyřešení'
       ],
       practice: [
         'Simulace: Vizuální strom větví a simulace kolize dvou úprav na stejném řádku',
-        'Praxe v OS: Vytvoření větve pro novou funkci skriptu, simulace kolize a její ruční oprava v editoru'
+        'Praxe v OS: Vytvoření větve, záměrná kolize v souboru a její ruční oprava v editoru'
       ],
       builds: 'GT2 (pracovní cyklus).'
     },
@@ -423,8 +423,8 @@ export const OSS3_GIT: OutlineGroup = {
       tag: 'GT4',
       title: 'Vzdálené repozitáře a týmová spolupráce (GitHub, SSH klíče, Pull Request)',
       hours: '2 h',
-      subtitle: 'Vzdálená synchronizace (push, pull), spolupráce a revize kódu přes Pull Request.',
-      intro: 'Vzdálený repozitář propojuje členy týmu. Naučíme se odesílat změny do repozitáře, stahovat práci kolegů a bezpečně revidovat a schvalovat kód.',
+      subtitle: 'Vzdálená synchronizace (push, pull), spolupráce a revize přes Pull Request.',
+      intro: 'Vzdálený repozitář propojuje členy týmu. Naučíme se odesílat změny do repozitáře, stahovat práci kolegů a bezpečně revidovat změny.',
       topics: [
         'Vzdálený repozitář (remote origin): git clone, git push, git pull',
         'Služba GitHub: propojení přes SSH klíče (navázání na SSH z Bloku 2)',
@@ -516,11 +516,11 @@ export const OSS3_CYBER: OutlineGroup = {
   ]
 };
 
-/** Týmový miniprojekt a nástěnka Kanban (4 h) */
+/** Týmová organizace práce a Kanban (2 h) */
 export const OSS3_TEAM: OutlineGroup = {
   chapterId: 'os3-tym',
-  chapterTitle: 'Týmový miniprojekt a správa úkolů',
-  chapterDescription: 'Agilní řízení úkolů v Kanbanu (GitHub Projects / Issues), vývoj správcovského nástroje a obhajoba.',
+  chapterTitle: 'Týmová organizace práce a Kanban',
+  chapterDescription: 'Agilní řízení úkolů na Kanban nástěnce (GitHub Projects / Issues), rozpad práce a týmové role.',
   chapterTag: 'tym',
   chapterPath: `${BASE}/tymova-spoluprace`,
   subjectTitle: SUBJECT,
@@ -533,40 +533,21 @@ export const OSS3_TEAM: OutlineGroup = {
     {
       slug: 'kanban',
       tag: 'TM1',
-      title: 'Plánování úkolů na týmové nástěnce Kanban a realizace miniprojektu',
+      title: 'Plánování úkolů na týmové nástěnce Kanban a organizace práce',
       hours: '2 h',
-      subtitle: 'Řízení práce na nástěnce (GitHub Projects / Issues), vývoj a nasazení správcovského nástroje na Linux server.',
-      intro: 'Úspěch v IT závisí na schopnosti zorganizovat práci. Propojíme issues na GitHubu s Kanban nástěnkou a společně vytvoříme správcovský nástroj.',
+      subtitle: 'Řízení práce na nástěnce (GitHub Projects / Issues), rozpad úkolů a týmová komunikace.',
+      intro: 'Úspěch v IT závisí na schopnosti zorganizovat práci. Naučíme se používat týmovou nástěnku Kanban pro rozdělení úkolů v týmu a sledování postupu.',
       topics: [
         'Principy přehledného řízení úkolů v týmu: sloupce Backlog ➔ To Do ➔ In Progress ➔ Done',
         'GitHub Issues a propojení tiketů s commity a pull requesty (např. "Fix #1")',
-        'Zadání miniprojektu: vývoj správcovského Python skriptu (např. Server Health Monitor nebo zálohovací automat)',
-        'Rozdělení rolí ve dvojici/trojici, práce na vlastních tiketech a nasazení hotového nástroje na Linux server přes cron'
+        'Rozpad cvičného zadání na dílčí tikety v digitálních nástrojích (GitHub Projects, Trello)',
+        'Rozdělení rolí a odpovědností ve dvojici či trojici'
       ],
       practice: [
         'Simulace: Týmová tabule – přesun úkolu fázemi a vazba commitu na issue tiket',
-        'Praxe v OS: Založení GitHub Projects tabule, rozpad úkolů na issues, implementace a spuštění na serveru'
+        'Praxe v OS: Založení GitHub Projects tabule, rozpad úkolů na issues a týmová koordinace'
       ],
-      builds: 'GitHub a revize (GT4), Bash a cron (LX15–LX16).'
-    },
-    {
-      slug: 'obhajoba',
-      tag: 'TM2',
-      title: 'Revize historie commitů, technická dokumentace a ústní obhajoba',
-      hours: '2 h',
-      subtitle: 'Audit kvality repozitáře (git log --graph), technický manuál README a obhajoba řešení.',
-      intro: 'Být skvělý technik znamená umět udržovat čistou historii kódu a předvést své řešení. Projdeme audit repozitáře a obhájíme funkčnost správcovského nástroje.',
-      topics: [
-        'Audit historie repozitáře: formát commit zpráv, čistota větví (git log --graph --oneline)',
-        'Technická dokumentace v repozitáři: tvorba strukturovaného README.md (instalace, požadavky, spuštění)',
-        'Předvedení živého nasazeného nástroje na cvičném linuxovém serveru',
-        'Reflexe týmové spolupráce a technická zpětná vazba od vyučujícího a spolužáků'
-      ],
-      practice: [
-        'Audit repozitáře vyučujícím: kontrola historie commitů a vyřešených issues',
-        'Ústní obhajoba miniprojektu a demonstrace běhu skriptu v terminálu serveru'
-      ],
-      builds: 'TM1 (týmový projekt), GT1–GT4 (verzování v Gitu).'
+      builds: 'GitHub a revize (GT4).'
     }
   ]
 };

@@ -56,23 +56,22 @@ const PLAN_OSS3: PlanTopic[] = [
   {
     month: 'Březen – Duben',
     topic: '4. Verzovací systémy, týmová kooperace a správa kódu',
-    topicHours: 12,
+    topicHours: 10,
     subtopics: [
-      { name: 'Principy verzování: Tři zóny Gitu a první commit na Python projektu', hours: 2, note: 'Architektura verzovacího systému, pracovní adresář, stage, commit a .gitignore pro Python' },
+      { name: 'Principy verzování: Tři zóny Gitu a první commit', hours: 2, note: 'Architektura verzovacího systému, pracovní adresář, stage, commit a .gitignore' },
       { name: 'Běžný pracovní cyklus, historie změn a bezpečný návrat (restore)', hours: 2, note: 'Příkazy status, log, diff a vrácení chybné úpravy do stabilního stavu' },
-      { name: 'Větvení (Branches), slučování (Merge) a řešení kolizí v kódu', hours: 2, note: 'Izolovaný vývoj ve větvích, slučování změn a manuální řešení merge konfliktů v Python skriptu' },
+      { name: 'Větvení (Branches), slučování (Merge) a řešení kolizí', hours: 2, note: 'Izolovaný vývoj ve větvích, slučování změn a manuální řešení merge konfliktů v souborech' },
       { name: 'Vzdálené repozitáře a týmová spolupráce (GitHub, Pull Request)', hours: 2, note: 'SSH klíče, synchronizace push/pull, větve a vzájemná revize kódu přes Pull Request' },
-      { name: 'Plánování úkolů na týmové nástěnce Kanban a realizace miniprojektu', hours: 2, note: 'Řízení práce na nástěnce (GitHub Projects / Issues), vývoj a nasazení správcovského nástroje na Linux server' },
-      { name: 'Revize historie commitů, technická dokumentace a ústní obhajoba', hours: 2, note: 'Audit kvality repozitáře (git log --graph), README.md a předvedení funkčního nasazeného nástroje' },
+      { name: 'Plánování úkolů na týmové nástěnce Kanban a organizace práce', hours: 2, note: 'Řízení práce na nástěnce (GitHub Projects / Issues), rozpad úkolů a týmová komunikace' },
     ]
   },
   {
     month: 'Květen – Červen',
     topic: '5. Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva',
-    topicHours: 8,
+    topicHours: 10,
     subtopics: [
       { name: 'Syntéza tříleté výuky: Komparace Windows a Linuxové administrace', hours: 2, note: 'Srovnání administrátorských přístupů a typové souhrnné úlohy ze správy OS a sítí' },
-      { name: 'Závěrečný komplexní projekt: Samostatný scénář správy OS a sítí', hours: 4, note: 'Samostatná komplexní laboratorní úloha integrující klientské a serverové služby, zabezpečení a diagnostiku' },
+      { name: 'Závěrečný komplexní projekt: Samostatný scénář správy OS a sítí', hours: 6, note: 'Samostatná komplexní laboratorní úloha integrující klientské a serverové služby, zabezpečení a diagnostiku' },
       { name: 'Rezerva pro školní akce a uzavření klasifikace 3. ročníku', hours: 2, note: 'Zpětná vazba, konzultace a uzavření klasifikace' },
     ]
   }

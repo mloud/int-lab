@@ -1150,3 +1150,10 @@ px tsc --noEmit.
     - Název Bloku 5 sjednocen na: **Závěrečná reflexe tříletého kurikula, komplexní projekt a rezerva** (8 h).
     - Z názvů a výstupů byla odstraněna přímá zmínka o maturitě, avšak **plně zachován formát komplexního praktického scénáře** (4 h, samostatné řešení integrovaného klientsko-serverového prostředí, správa služeb a diagnostika).
     - Synchronizováno: ops3Plan.ts, svpOssData.ts, pp/.../tematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json a nahrán aktualizovaný DOCX na Google Drive.
+
+53. **Odstranění vývoje správcovského nástroje z Bloku 4 v OSS 3 (66 h zachováno):**
+    - V souladu s požadavkem byl z Bloku 4 kompletně vyřazen výstup * společně v týmu vyvine otestuje a nasadí správcovský nástroj...* i učivo o vývoji správcovského nástroje.
+    - **Blok 4 (10 h):** Zaměřen čistě na verzovací dovednosti a týmovou organizaci práce (GT1: Tři zóny a commit, GT2: Pracovní cyklus a git restore, GT3: Větve a řešení konfliktů, GT4: Vzdálené repozitáře a Pull Requesty na GitHubu, TM1: Kanban nástěnka v GitHub Projects / Issues).
+    - **Blok 5 (10 h):** Uvolněné 2 hodiny posílily závěrečný blok (Syntéza Windows vs. Linux 2 h, Závěrečný komplexní projekt správy systémů a sítí 6 h, Rezerva 2 h).
+    - **Výsledná struktura OSS 3:** 20 + 20 + 6 + 10 + 10 = **66 h** (týdny 1–10, 11–20, 21–23, 24–28, 29–33).
+    - Synchronizováno napříč všemi soubory (svpOssData.ts, ops3Plan.ts, oss3Outlines.ts, 	ematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json) i v oficiálním DOCX na Google Disku.
