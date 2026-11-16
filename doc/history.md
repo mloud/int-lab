@@ -1005,7 +1005,7 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - *Úloha 3 (Řízený dialog na střídačku):* Předávání štafety zprávami (`otazka1`, `otazka2`, `rozlouceni`) v symetrickém 4krokovém rozhovoru bez odhadování časů v bloku `čekej`.
       - *Úloha 4 (Bezpečné vypnutí OS / Graceful Shutdown):* Využití synchronního volání `vyšli zprávu [...] a čekej` pro řízení 3fázového vypnutí systému (ukončení aplikací ➔ zápis cache z RAM na disk ➔ ACPI signál odpojení napájení).
       - *Úloha 5 (Digitální stopky s řízením stavů):* Reakce na zprávy `start`, `stop`, `reset`. Část A: měření celých sekund. Část B: rozšíření na formát minut a sekund.
-      - *Úloha 6 (Architektura Klient–Server, API a Databáze):* Praktická ukázka softwarové architektury. Klient se dotazuje na příkazy (`cas`, `obsah_kruhu`, `uloz`), předává argument v `parametr_vstup`. Server vykoná obsluhu, uloží data do lokálního seznamu `databaze` (zárodek databáze) a vrátí odpověď v `odpoved_serveru`.
+      - *Úloha 6 (Architektura Klient–Server, API a Databáze):* Rozfázovaný projekt: Fáze 1 (příkaz `vrat cas` ➔ zpráva `vrat cas a čekej` ➔ server nastaví proměnnou `cas`), Fáze 2 (výpočetní služba `obsah kruhu` s předáním argumentu v proměnné `parametr` ➔ výsledek v proměnné `vysledek`), Fáze 3 (databázová služba `uloz` ➔ uložení proměnné `parametr` do lokálního seznamu `databaze` na serveru a návrat potvrzení).
     - **Registrace a navigace:** Přidána karta Lekce 7 (`#scr7`) do `app/specializovana/programovani/scratch/page.tsx` a lekce zaregistrována do `registry/lessons/prg1ScratchLessons.ts` s plnou vzdělávací cestou pro SŠ.
 
 

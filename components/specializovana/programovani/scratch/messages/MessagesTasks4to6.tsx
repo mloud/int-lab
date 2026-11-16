@@ -158,52 +158,67 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
         teacherNote={
           <div className="space-y-3">
             <p className="text-xs text-slate-700">
-              <strong>Princip:</strong> Klient pouze sbírá vstupy a posílá je přes sdílené proměnné. Server je samostatná postava, která vykoná výpočet nebo zápis do seznamu a výsledek vrátí v proměnné <code>odpoved_serveru</code>.
+              <strong>Princip:</strong> Klient pouze sbírá vstupy od uživatele, ukládá argumenty do sdílené proměnné <code>parametr</code> a volá příslušné zprávy. Server je samostatná postava, která má pro každou službu vlastní obslužný klobouček <code>po obdržení zprávy [...]</code> a výsledek vrací v proměnné.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
-                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Klienta (Terminál):</div>
+                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Klienta (Terminál / Uživatelské rozhraní):</div>
                 <div><ScratchBlock category="events">po kliknutí na zelenou vlajku</ScratchBlock></div>
                 <div className="pl-4">
                   <ScratchCBlock category="control" topLabel={<span>opakuj stále</span>}>
                     <div className="pl-2 space-y-1">
-                      <div><ScratchBlock category="sensing">otázka [Zadej příkaz: cas / obsah_kruhu / uloz / konec] a čekej</ScratchBlock></div>
-                      <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">prikaz</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
-                      <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="variables">prikaz</ScratchReporter> = [obsah_kruhu]</ScratchHexagon> tak</span>}>
-                        <div className="pl-2">
-                          <ScratchBlock category="sensing">otázka [Zadej poloměr r:] a čekej</ScratchBlock>
-                          <ScratchBlock category="variables">nastav <ScratchInput type="dropdown">parametr_vstup</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock>
+                      <div><ScratchBlock category="sensing">otázka [Zadej příkaz: vrat cas / obsah kruhu / uloz] a čekej</ScratchBlock></div>
+                      
+                      {/* 1. vrat cas */}
+                      <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="sensing">odpověď</ScratchReporter> = [vrat cas]</ScratchHexagon> tak</span>}>
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">vrat cas</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="looks">bublina (spoj [Aktuální čas: ] <ScratchReporter category="variables">cas</ScratchReporter>) na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
                         </div>
                       </ScratchCBlock>
-                      <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="variables">prikaz</ScratchReporter> = [uloz]</ScratchHexagon> tak</span>}>
-                        <div className="pl-2">
-                          <ScratchBlock category="sensing">otázka [Zadej data pro uložení:] a čekej</ScratchBlock>
-                          <ScratchBlock category="variables">nastav <ScratchInput type="dropdown">parametr_vstup</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock>
+
+                      {/* 2. obsah kruhu */}
+                      <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="sensing">odpověď</ScratchReporter> = [obsah kruhu]</ScratchHexagon> tak</span>}>
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="sensing">otázka [Zadej poloměr r:] a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">parametr</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                          <div><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">obsah kruhu</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="looks">bublina (spoj [Obsah kruhu je: ] <ScratchReporter category="variables">vysledek</ScratchReporter>) na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
                         </div>
                       </ScratchCBlock>
-                      <div><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zavolej_api</ScratchInput> a čekej</ScratchBlock></div>
-                      <div><ScratchBlock category="looks">bublina <ScratchReporter category="variables">odpoved_serveru</ScratchReporter> na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
+
+                      {/* 3. uloz */}
+                      <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="sensing">odpověď</ScratchReporter> = [uloz]</ScratchHexagon> tak</span>}>
+                        <div className="pl-2 space-y-1">
+                          <div><ScratchBlock category="sensing">otázka [Zadej data pro uložení:] a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">parametr</ScratchInput> na <ScratchReporter category="sensing">odpověď</ScratchReporter></ScratchBlock></div>
+                          <div><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">uloz</ScratchInput> a čekej</ScratchBlock></div>
+                          <div><ScratchBlock category="looks">bublina <ScratchReporter category="variables">vysledek</ScratchReporter> na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                        </div>
+                      </ScratchCBlock>
                     </div>
                   </ScratchCBlock>
                 </div>
               </div>
 
-              <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
-                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Serveru (Backend postava):</div>
-                <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">zavolej_api</ScratchInput></ScratchBlock></div>
-                <div className="pl-4 space-y-1">
-                  <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="variables">prikaz</ScratchReporter> = [cas]</ScratchHexagon> tak</span>}>
-                    <div className="pl-2"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">odpoved_serveru</ScratchInput> na <ScratchReporter category="sensing">aktuální sekunda</ScratchReporter></ScratchBlock></div>
-                  </ScratchCBlock>
-                  <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="variables">prikaz</ScratchReporter> = [obsah_kruhu]</ScratchHexagon> tak</span>}>
-                    <div className="pl-2"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">odpoved_serveru</ScratchInput> na <ScratchReporter category="operators">3.14 * <ScratchReporter category="variables">parametr_vstup</ScratchReporter> * <ScratchReporter category="variables">parametr_vstup</ScratchReporter></ScratchReporter></ScratchBlock></div>
-                  </ScratchCBlock>
-                  <ScratchCBlock category="control" topLabel={<span>když <ScratchHexagon category="operators"><ScratchReporter category="variables">prikaz</ScratchReporter> = [uloz]</ScratchHexagon> tak</span>}>
-                    <div className="pl-2">
-                      <div><ScratchBlock category="lists">přidej <ScratchReporter category="variables">parametr_vstup</ScratchReporter> k <ScratchInput type="dropdown">databaze</ScratchInput></ScratchBlock></div>
-                      <div><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">odpoved_serveru</ScratchInput> na [OK - záznam byl uložen do databáze]</ScratchBlock></div>
-                    </div>
-                  </ScratchCBlock>
+              <div className="space-y-2">
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Server: Služba 1 (Vrať čas)</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">vrat cas</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">cas</ScratchInput> na <ScratchReporter category="sensing">aktuální sekunda</ScratchReporter></ScratchBlock></div>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Server: Služba 2 (Výpočet obsahu kruhu)</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">obsah kruhu</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">vysledek</ScratchInput> na <ScratchReporter category="operators">3.14 * <ScratchReporter category="variables">parametr</ScratchReporter> * <ScratchReporter category="variables">parametr</ScratchReporter></ScratchReporter></ScratchBlock></div>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-amber-200 font-mono text-xs text-slate-800 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Server: Služba 3 (Zápis do databáze)</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">uloz</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="lists">přidej <ScratchReporter category="variables">parametr</ScratchReporter> k <ScratchInput type="dropdown">databaze</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">vysledek</ScratchInput> na [OK - uloženo do databáze]</ScratchBlock></div>
                 </div>
               </div>
             </div>
@@ -216,28 +231,49 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
         </div>
 
         <p className="leading-relaxed">
-          Vytvoř dvě postavy: <strong>Klienta</strong> (uživatelské rozhraní) a <strong>Server</strong> (výpočetní backend na pozadí).
+          Vytvoř dvě postavy: <strong>Klienta</strong> (uživatelské rozhraní) a <strong>Server</strong> (výpočetní backend na pozadí). Úlohu řeš postupně ve třech fázích:
         </p>
 
-        <ol className="list-decimal pl-5 space-y-2.5 my-4 text-sm text-slate-800">
-          <li>
-            Vytvoř proměnné pro komunikaci: <span className="font-bold text-amber-600">prikaz</span>, <span className="font-bold text-amber-600">parametr_vstup</span> a <span className="font-bold text-emerald-600">odpoved_serveru</span>. Na serveru vytvoř seznam <span className="font-bold text-orange-600">databaze</span>.
-          </li>
-          <li>
-            <strong>Klient</strong> se v cyklu zeptá na příkaz (<em>cas</em>, <em>obsah_kruhu</em> nebo <em>uloz</em>), podle volby případně dovyžádá doplňující data do <span className="font-bold text-amber-600">parametr_vstup</span> a vyšle zprávu <span className="font-bold text-amber-600">zavolej_api a čekej</span>.
-          </li>
-          <li>
-            <strong>Server</strong> po obdržení zprávy provede požadovanou službu:
-            <ul className="list-disc pl-5 mt-1 space-y-1 text-xs text-slate-700">
-              <li>Příkaz <code>cas</code> ➔ do <span className="font-bold text-emerald-600">odpoved_serveru</span> vloží aktuální čas.</li>
-              <li>Příkaz <code>obsah_kruhu</code> ➔ spočítá obsah ($3.14 \times r \times r$) a výsledek uloží do <span className="font-bold text-emerald-600">odpoved_serveru</span>.</li>
-              <li>Příkaz <code>uloz</code> ➔ přidá hodnotu z <span className="font-bold text-amber-600">parametr_vstup</span> do seznamu <span className="font-bold text-orange-600">databaze</span> a do odpovědi zapíše potvrzení.</li>
-            </ul>
-          </li>
-          <li>
-            Klient po dokončení požadavku zobrazí obsah proměnné <span className="font-bold text-emerald-600">odpoved_serveru</span> v bublině.
-          </li>
-        </ol>
+        <div className="space-y-4 my-4 text-sm text-slate-800">
+          {/* FÁZE 1 */}
+          <div className="bg-slate-50/70 p-3.5 rounded-2xl border border-slate-200">
+            <span className="font-bold text-amber-800 block mb-1.5 text-xs uppercase tracking-wide">
+              Fáze 1 (Základ – dotaz na čas):
+            </span>
+            <ol className="list-decimal pl-5 space-y-1 text-xs sm:text-sm text-slate-700">
+              <li>Klient se zeptá na příkaz: <em>„Zadej příkaz: vrat cas / obsah kruhu / uloz“</em>.</li>
+              <li>Pokud uživatel zadá <span className="font-bold text-amber-600">vrat cas</span>, Klient vyšle zprávu <span className="font-bold text-amber-600">vrat cas a čekej</span>.</li>
+              <li>Server po obdržení této zprávy nastaví proměnnou <span className="font-bold text-emerald-600">cas</span> (např. na blok <em>aktuální sekunda</em>).</li>
+              <li>Klient po návratu řízení vypíše obsah proměnné <span className="font-bold text-emerald-600">cas</span> v bublině.</li>
+            </ol>
+          </div>
+
+          {/* FÁZE 2 */}
+          <div className="bg-slate-50/70 p-3.5 rounded-2xl border border-slate-200">
+            <span className="font-bold text-amber-800 block mb-1.5 text-xs uppercase tracking-wide">
+              Fáze 2 (Výpočetní úloha s parametrem – obsah kruhu):
+            </span>
+            <ol className="list-decimal pl-5 space-y-1 text-xs sm:text-sm text-slate-700">
+              <li>Vytvoř novou proměnnou <span className="font-bold text-amber-600">parametr</span> a proměnnou <span className="font-bold text-emerald-600">vysledek</span>.</li>
+              <li>Pokud je zadán příkaz <span className="font-bold text-amber-600">obsah kruhu</span>, Klient se zeptá na poloměr: <em>„Zadej poloměr r:“</em> a odpověď uloží do proměnné <span className="font-bold text-amber-600">parametr</span>.</li>
+              <li>Klient vyšle zprávu <span className="font-bold text-amber-600">obsah kruhu a čekej</span>.</li>
+              <li>Server provede výpočet (3.14 * parametr * parametr), výsledek uloží do proměnné <span className="font-bold text-emerald-600">vysledek</span> a Klient jej po dokončení vypíše.</li>
+            </ol>
+          </div>
+
+          {/* FÁZE 3 */}
+          <div className="bg-slate-50/70 p-3.5 rounded-2xl border border-slate-200">
+            <span className="font-bold text-amber-800 block mb-1.5 text-xs uppercase tracking-wide">
+              Fáze 3 (Rozšíření serveru o databázi a zápis dat):
+            </span>
+            <ol className="list-decimal pl-5 space-y-1 text-xs sm:text-sm text-slate-700">
+              <li>Na straně Serveru vytvoř lokální seznam <span className="font-bold text-orange-600">databaze</span>.</li>
+              <li>Pokud je zadán příkaz <span className="font-bold text-amber-600">uloz</span>, Klient se zeptá na data k uložení, vstup uloží do proměnné <span className="font-bold text-amber-600">parametr</span> a vyšle zprávu <span className="font-bold text-amber-600">uloz a čekej</span>.</li>
+              <li>Server po obdržení zprávy přidá hodnotu proměnné <span className="font-bold text-amber-600">parametr</span> do seznamu <span className="font-bold text-orange-600">databaze</span> a do proměnné <span className="font-bold text-emerald-600">vysledek</span> nastaví potvrzení <em>„OK - uloženo do databáze“</em>.</li>
+              <li>Klient po dokončení volání vypíše odpověď z proměnné <span className="font-bold text-emerald-600">vysledek</span> v bublině.</li>
+            </ol>
+          </div>
+        </div>
       </TaskCard>
     </div>
   );
