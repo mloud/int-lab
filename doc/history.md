@@ -1091,4 +1091,14 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - `OSS1_NETWORKS`: Odstraněna zmínka o hardwarovém resetu tlačítkem; podkapitola zaměřena na *uvedení routeru do výchozího stavu, webovou administraci a konfiguraci SOHO Wi-Fi*.
     - **Aktivní správa plánů:** Aktivní plánovací tabule [`doc/plan.md`](plan.md) byla přepnuta na OSS 1 se stavem 100% harmonizace kurikula.
 
+48. **Kompletní nahrání harmonizovaného ŠVP InspIS pro Operační systémy (OSS 1–3) do oficiálního DOCX dokumentu na Google Disku:**
+    - Zpracován originální dokument školy `Operační systémy a software V2.docx` (ID: `1H8iovN3GKG0SQGct3fgwuHGboMFQn9Hf`).
+    - **Zachování 100% formátování InspIS:** Využit osvědčený OpenXML pipeline zachovávající původní styly, šířky sloupců, barvy ohraničení, odsazení buněk i typografii.
+    - **Plné zavedení všech 3 ročníků (3 × 66 h = 198 hodin):**
+      - **1. ročník (OSS 1 – 66 h):** Všech 10 tematických bloků rozepsaných do 28 řádků (od Von Neumanna a disků po skriptování a LAN), opravena chybná původní dotace (z 64 na 66 h).
+      - **2. ročník (OSS 2 – 66 h):** Všech 4 tematických celků (15 řádků) včetně zařazení nové podkapitoly *OpenSSH ve Windows 11* v Bloku 4 a redukce MMC na 2 h.
+      - **3. ročník (OSS 3 – 66 h):** Všech 5 tematických celků (19 řádků) od architektury Linuxu přes sítě/služby až po kybernetickou bezpečnost, Git a týmový projekt.
+      - **Vyčištění nepřiřazených RVP:** Z 26 nepřiřazených výstupů byly všechny výstupy pro OS a sítě přiřazeny do odpovídajících ročníků; v tabulce zbylo pouze 7 výstupů, které věcně náleží jiným předmětům (kancelářské balíky, prezentační software apod.).
+    - **Ověření a nasazení:** Dokument byl zvalidován a nahrán přímo do Google Dokumentu přes `gdrive mutate update`. Live kontrola struktury (`gdocs readonly structure`) potvrdila 100% shodu tabulek.
+
 
