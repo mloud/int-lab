@@ -1,45 +1,45 @@
-# Aktivní plánovací tabule: Programování a vývoj aplikací 1 (PRG 1 / PVH 1)
+# Aktivní plánovací tabule: Operační systémy 1 (OSS 1)
 
-**Aktivní předmět:** Programování a hry 1 / Programování a vývoj aplikací 1 (1. ročník SŠ, obor 18-20-M/01 Informační technologie)  
-**Celková hodinová dotace:** 99 vyučovacích hodin (3 hodiny týdně, 33 týdnů)  
-**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/PRG_SVP_INSPIS.md`](curriculum/PRG_SVP_INSPIS.md) a [`doc/plans/PLAN_PRG1.md`](plans/PLAN_PRG1.md)  
-**Dedikovaný podrobný plán:** [`doc/plans/PLAN_PRG1.md`](plans/PLAN_PRG1.md)  
-**Výchozí routa v IntLab:** `/specializovana/programovani` (Scratch rozcestník: `/specializovana/programovani/scratch`)
+**Aktivní předmět:** Operační systémy 1 (1. ročník SŠ, obor 18-20-M/01 Informační technologie)  
+**Celková hodinová dotace:** 66 vyučovacích hodin (2 hodiny týdně, 33 týdnů)  
+**Oficiální profil kurikula (ŠVP InspIS):** [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`doc/curriculum/OSS1.md`](curriculum/OSS1.md)  
+**Dedikovaný podrobný plán:** [`doc/plans/PLAN_OSS1.md`](plans/PLAN_OSS1.md)  
+**Výchozí routa v IntLab:** `/specializovana/operacni-systemy-1`
 
 ---
 
 ## 🎯 Hlavní pedagogický cíl předmětu
-Srovnat výchozí úroveň studentů z různých ZŠ pomocí **vizuálního blokového programování (Scratch)**, formálně ukotvit teorii **algoritmizace a vývojových diagramů**, ověřit chování algoritmů na reálném **hardware (mikrokontroléry)** a plynule přejít k textovému programovacímu jazyku **Python** s okamžitou vizuální odezvou na grafickém plátně (Canvas).
+Převést žáka z role běžného uživatele PC do role **poučeného lokálního správce klientské stanice**. Žák proniká pod povrch grafického rozhraní, chápe spolupráci CPU a RAM, architekturu hardware, instaluje klientský OS, spravuje disky a oddíly, diagnostikuje procesy, automatizuje správu přes CLI/BAT a bezpečně konfiguruje lokální sítě.
 
 ---
 
-## 📊 Přehled tematických celků (99 h)
+## 📊 Přehled tematických celků (66 h) – Synchronizováno s ŠVP InspIS
 
-| Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
-|:---:|:---:|---|:---:|:---:|---|
-| **1** | **Září – Listopad** (1.–12. týden) | **Vizuální blokové programování (Scratch)** | **36 h** | ✅ Hotovo (Lekce 1–6 ve Scratchi)<br>• Lekce 1: Sekvence (6 h)<br>• Lekce 2: Proměnné (6 h)<br>• Lekce 3: Cykly (6 h)<br>• Lekce 4: Podprogramy (6 h)<br>• Lekce 5: Podmínky (6 h)<br>• Lekce 6: Seznamy, zprávy a klonování (6 h) | `/specializovana/programovani/scratch` |
-| **2** | **Prosinec** (13.–15. týden) | **Základy algoritmizace a vývojové diagramy** | **9 h** | 🟡 K vytvoření (vlastnosti algoritmu, normalizované značky, čtení a tvorba vývojových diagramů, větvení a cykly) | `/specializovana/programovani/algoritmy` |
-| **3** | **Leden** (16.–19. týden) | **Programování hardwarových zařízení** | **12 h** | 🟡 K vytvoření (programování mikrokontroléru, vstupy a čidla, výstupy a matice LED, rádiový přenos proměnných) | `/specializovana/programovani/hardware` |
-| **4** | **Únor – Červen** (20.–33. týden) | **Základy jazyka Python** | **42 h** | ✅ Hotovo (přesun stávající řady 20 lekcí grafického Pythonu z 2. ročníku)<br>• Syntaxe, I/O, proměnné (8 h)<br>• Kreslení na Canvas, barvy, geometrie (10 h)<br>• Cykly `for` a `while`, proměnná cyklu (10 h)<br>• Větvení `if/else`, náhoda, funkce s parametry (8 h)<br>• Interaktivita myší a závěrečná minihra (6 h) | `/specializovana/programovani-2/` ➔ přesun do `/programovani/python/` |
-| **Σ** | **Celkem** | | **99 h** | **Plně navrženo a harmonizováno** | |
-
----
-
-## 🐱 Přehled stávajících lekcí ve Scratchi (Blok 1 – 36 h)
-
-1. **Lekce 1: Sekvence a krokování** (`ScratchSequenceChapter.tsx`)
-2. **Lekce 2: Proměnné a práce s daty** (`ScratchVariablesChapter.tsx`)
-3. **Lekce 3: Cykly a opakování** (`ScratchVariablesLoopsChapter.tsx`)
-4. **Lekce 4: Vlastní bloky a podprogramy** (`ScratchSubprogramsChapter.tsx`)
-5. **Lekce 5: Podmínky a větvení** (`ScratchConditionsChapter.tsx`, dekomponováno v `scratch/conditions/`)
-6. **Lekce 6: Seznamy a práce s daty** (`ScratchListsChapter.tsx`, dekomponováno v `scratch/lists/`)
-7. **Lekce 7: Události a zprávy** (`ScratchMessagesChapter.tsx`, dekomponováno v `scratch/messages/`)
-*Volitelný rozšiřující modul:* 3D Raycaster Engine (`ScratchRaycasterProject.tsx` v `raycaster/`)
+| Blok | Tematický celek | Dotace | Stav v kurikulu | Odkaz na webu |
+|:---:|---|:---:|:---:|---|
+| **1** | Architektura počítače a základy OS | 8 h | ✅ Vyčištěno od mikro-detailů (Ring 0/3 ➔ privilegovaný/neprivilegovaný režim, moderní licence) | `/specializovana/operacni-systemy-1/architektura` |
+| **2** | Souborové systémy, disky a start systému | 10 h | ✅ Harmonizováno (bezpečné mazání HDD vs. SSD, moderní tabulky oddílů UEFI) | `/specializovana/operacni-systemy-1/souborove-systemy` |
+| **3** | Procesy a správa operační paměti | 6 h | ✅ Didakticky vyváženo (zobecnění PCB/vláken na význam pro vícejádrová CPU) | `/specializovana/operacni-systemy-1/procesy` |
+| **4** | Grafické uživatelské rozhraní (GUI) | 4 h | ✅ Hotovo | `/specializovana/operacni-systemy-1/gui` |
+| **5** | Příkazový řádek (CLI) a dávkové soubory | 6 h | ✅ Hotovo | `/specializovana/operacni-systemy-1/prikazova-radka` |
+| **6** | Správa uživatelů a přístupových práv | 8 h | ✅ Vyváženo pro 1. ročník (základy autentizace a PoLP) | `/specializovana/operacni-systemy-1/uzivatele` |
+| **7** | Správa aplikačního software a balíčkovače | 4 h | ✅ Zjednodušeno (vyřazen manifest export/import ➔ správa z CLI) | `/specializovana/operacni-systemy-1/software` |
+| **8** | Správa hardware, ovladače a plánovač | 4 h | ✅ Zjednodušeno (vyřazen servisní účet ➔ naplánované akce) | `/specializovana/operacni-systemy-1/zarizeni` |
+| **9** | Síťová konfigurace a lokální sítě (LAN) | 8 h | ✅ Harmonizováno (vyřazen tovární reset routeru ➔ Wi-Fi a Guest síť) | `/specializovana/operacni-systemy-1/site` |
+| **10** | Závěrečný integrující projekt stanice | 8 h | ✅ Hotovo | `/specializovana/operacni-systemy-1` |
+| **Σ** | **Celkem** | **66 h** | **100% soulad a harmonizace ŠVP** | |
 
 ---
 
-## 🔥 Aktuální úkoly a Backlog (Další rozvoj PVH 1 – Scratch)
+## 🔥 Aktuální úkoly a Backlog (Další rozvoj OSS 1)
 
-- [x] Vytvoření kapitoly **Lekce 7: Události a zprávy** (zvonek 1:1, rozhlas 1:N, dialog, odpočet a synchronizace, stavové stopky, architektura Klient–Server).
-- [ ] Kontrola a harmonizace lekcí Scratche s metodickými materiály a PDF podklady.
-- [ ] Příprava návazného Bloku 2: Teorie algoritmizace a vývojové diagramy.
+- [x] **Kurikulární harmonizace a zjednodušení ŠVP OSS 1:**
+  - Odstraněny příliš akademické a mikro-specifické požadavky (Ring 0/Ring 3, přepis nulami u SSD, vysokoškolský PCB a sdílení adresního prostoru vláken, archaické cykly v BAT, exporty manifestů balíčkovače, spouštění úloh pod SYSTEM, fyzický reset routeru).
+  - Synchronizovány soubory `doc/curriculum/OSS1.md`, `doc/curriculum/SVP_INSPIS.md`, `registry/curriculum/svp/svpOssData.ts` a `registry/curriculum/thematic-plans/ops1Plan.ts`.
+- [ ] **Příkazový řádek (CLI) a BAT skriptování:**
+  - Vytvořit interaktivní emulátor konzole CMD v prohlížeči pro bezpečný nácvik příkazů (`cd`, `dir`, `mkdir`, `tree`).
+  - Vytvořit krokovač dávkového souboru `.bat` s vizualizací proměnných a podmínek `if`.
+- [ ] **Správa uživatelů a NTFS práv:**
+  - Doplnit interaktivní matici efektivních práv (vlastník, zděděná práva vs. explicitní Deny).
+- [ ] **Síťová konfigurace a Wi-Fi router:**
+  - Vytvořit interaktivní simulátor webové administrace SOHO routeru (nastavení DHCP rozsahu, WPA2/WPA3 a Guest Wi-Fi).

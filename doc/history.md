@@ -1009,5 +1009,18 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       - *Úloha 7 (Grafická kalkulačka se seznamem):* Komplexní syntetický projekt. Tlačítka číslic (skládání čísla do proměnné `aktualni_vstup`), operátory `+` a `-` (ukládání čísel a znamének do seznamu `vyraz`), tlačítko `=` (vysílá `vyhodnot a čekej`), kocour analyzuje operátor na 2. pozici seznamu a vypočítá výsledek mezi položkami 1 a 3.
     - **Registrace a navigace:** Přidána karta Lekce 7 (`#scr7`) do `app/specializovana/programovani/scratch/page.tsx` a lekce zaregistrována do `registry/lessons/prg1ScratchLessons.ts` s plnou vzdělávací cestou pro SŠ.
 
+41. **Didaktická revize a zjednodušení ŠVP pro Operační systémy 1 (OSS 1 pro ČŠI a InspIS):**
+    - Proveden detailní audit kurikula 1. ročníku SŠ (OSS 1 – 66 h, kód oboru 18-20-M/01 Informační technologie) s cílem odstranit příliš akademické, mikro-specifické nebo technologicky zastaralé požadavky a nahradit je nadčasovými, didakticky vhodnými formulacemi.
+    - **7 klíčových kurikulárních úprav v OSS 1:**
+      1. *Ochranné kruhy a licence (Blok 1):* Odstraněno akademické dělení x86 kruhů `Ring 0` a `Ring 3` a historické licence `OEM / Retail`. Nahrazeno obecným principem *privilegovaného vs. neprivilegovaného režimu procesoru* a *moderními licenčními modely (vázané digitální licence, předplatné, multilicence, open-source)*.
+      2. *Správa disků a nevratné mazání (Blok 2):* Odstraněn zastaralý požadavek na přepis sektorů nulami (který je na moderních NVMe/SSD technologicky nevhodný kvůli Wear Leveling) a striktní vazba na GPT. Nahrazeno *bezpečným smazáním metadat vs. bezpečnou skartací dat podle typu média (HDD vs. SSD / ATA Secure Erase)* a *moderními tabulkami oddílů v součinnosti s UEFI*.
+      3. *Procesy a správa paměti (Blok 3):* Odstraněn vysokoškolský deskriptor `PCB`, rodičovský `PPID` a teoretické sdílení adresního prostoru vláken. Ponechán srozumitelný koncept *program na disku vs. běžící proces v RAM*, identifikátor *PID* a didaktický *význam vláken pro využití vícejádrových CPU a plynulost uživatelského rozhraní*.
+      4. *Příkazový řádek a skriptování (Blok 5):* Vyřazeny archaické a nepřehledné konstrukce dávkových souborů `.bat` (`for`, `goto`, `call`, `errorlevel`). Těžištěm zůstala *správa souborů, roury, filtry a jednoduché přehledné dávkové skripty pro údržbu a zálohování*.
+      5. *Správa software a balíčkovače (Blok 7):* Odstraněn zbytečně specifický požadavek na *export a import konfiguračních manifestů JSON*. Nahrazeno praktickou kompetencí *vyhledávání, instalace a hromadného upgradu softwaru z příkazové řádky*.
+      6. *Plánovač úloh a systémové účty (Blok 8):* Odstraněna konfigurace spouštění úloh pod speciálním účtem `SYSTEM` (která v 1. ročníku vede k bezpečnostním chybám). Nahrazeno *konfigurací plánovaných akcí a časových/událostních spouštěčů*.
+      7. *Lokální sítě a směrovače (Blok 9):* Odstraněn rizikový požadavek na *fyzický tovární reset routeru*. Nahrazeno *praktickou webovou administrací SOHO routeru, zabezpečením Wi-Fi (WPA2/WPA3) a principem oddělené sítě pro hosty (Guest network)*.
+    - **Synchronizované soubory:** [`doc/curriculum/OSS1.md`](curriculum/OSS1.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops1Plan.ts`](../registry/curriculum/thematic-plans/ops1Plan.ts), aktivní tabule [`doc/plan.md`](plan.md) i dedikovaný plán [`doc/plans/PLAN_OSS1.md`](plans/PLAN_OSS1.md).
+
+
 
 

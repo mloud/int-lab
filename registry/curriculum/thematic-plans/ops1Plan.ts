@@ -183,7 +183,7 @@ export const OPS1_THEMATIC_PLAN: ThematicPlan = {
             title: 'Úvod a vznik procesu: Program na disku vs. Proces v RAM',
             hours: 2,
             type: 'kombinovane',
-            description: 'Metafora receptu a kuchaře, přidělení PID a rodiče PPID, struktura PCB a paměťová izolace procesů.',
+            description: 'Metafora receptu a kuchaře, přidělení PID a rodiče PPID, struktura procesu a paměťová izolace.',
             practice: 'Badatelský list s Task Managerem a CLI utilitou tasklist (filtrace podle paměti).',
             route: '/specializovana/operacni-systemy-1/procesy/uvod'
           },
@@ -378,7 +378,7 @@ export const OPS1_THEMATIC_PLAN: ThematicPlan = {
             title: 'Správce zařízení (devmgmt.msc), ovladače a digitální podpis WHQL',
             hours: 2,
             type: 'laborator',
-            description: 'Role ovladačů v jádře (Ring 0), hardwarová ID zařízení (VEN, DEV), instalace přes .inf soubory a řešení konfliktů.',
+            description: 'Role ovladačů v jádře OS, hardwarová ID zařízení (VEN, DEV), instalace přes .inf soubory a řešení konfliktů.',
             practice: 'Diagnostika neznámého zařízení podle Vendor ID na internetu a manuální instalace čistého ovladače.',
             route: '/specializovana/operacni-systemy-1/zarizeni'
           },
@@ -388,16 +388,16 @@ export const OPS1_THEMATIC_PLAN: ThematicPlan = {
             hours: 2,
             type: 'laborator',
             description: 'Instalátory EXE vs. MSI, tiché instalace bez dialogů, balíčkovací správce Windows Package Manager (winget search/install).',
-            practice: 'Hromadná instalace vývojářského prostředí (VS Code, Git, Chrome) jedním příkazem a tvorba exportního JSON souboru.',
+            practice: 'Hromadná instalace vývojářského prostředí (VS Code, Git, Chrome) jedním příkazem a hromadný upgrade z CLI.',
             route: '/specializovana/operacni-systemy-1/software'
           },
           {
             id: 'oss1-b8-3',
-            title: 'Plánovač úloh (taskschd.msc) a automatický běh pod SYSTEM',
+            title: 'Plánovač úloh (taskschd.msc) a automatizace údržby',
             hours: 2,
             type: 'laborator',
-            description: 'Architektura plánovače: triggery (čas, spuštění, přihlášení), akce (spuštění skriptu) a běh bez přihlášeného uživatele.',
-            practice: 'Konfigurace automatické noční údržby a zálohy pomocí dříve napsaného .bat skriptu pod systémovým účtem.',
+            description: 'Architektura plánovače: triggery (čas, spuštění, přihlášení), akce (spuštění skriptu) a konfigurace naplánovaných úloh.',
+            practice: 'Konfigurace automatické noční údržby a zálohy pomocí dříve napsaného .bat skriptu v Plánovači úloh.',
             route: '/specializovana/operacni-systemy-1/planovac'
           }
         ]

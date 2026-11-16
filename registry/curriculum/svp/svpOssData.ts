@@ -102,16 +102,16 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       outcomes: [
         'vysvětlí funkci a význam operačního systému a jeho vrstvený model',
         'popíše základní princip Von Neumannovy architektury a tok instrukcí mezi procesorem a pamětí RAM',
-        'rozliší privilegovaný režim jádra (Ring 0) od uživatelského prostoru (Ring 3) a objasní roli systémových volání',
+        'rozliší privilegovaný režim jádra od uživatelského prostoru a objasní roli systémových volání',
         'orientuje se v typech jader operačních systémů a jejich praktickém nasazení',
         'rozliší softwarové licence a zvolí vhodnou licenci s ohledem na způsob využití'
       ],
       content: [
         'Význam a funkce operačního systému, vrstvený model (Hardware ➔ Kernel ➔ User Space)',
         'Architektura hardware z pohledu OS (Von Neumannovo schéma, procesor, operační paměť RAM – data vs. instrukce)',
-        'Ochranné kruhy procesoru (Protection Rings), systémová volání (Syscalls) a oddělení aplikací od jádra',
+        'Privilegovaný vs. neprivilegovaný režim procesoru, systémová volání (Syscalls) a oddělení aplikací od jádra',
         'Typologie jader (monolitické jádro, hybridní jádro, mikrojádro)',
-        'Licenční modely operačních systémů (OEM licence, krabicové Retail licence, multilicence, open-source)'
+        'Licenční modely operačních systémů (vázané digitální licence, předplatné, multilicence, open-source)'
       ]
     },
     {
@@ -122,17 +122,17 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       outcomes: [
         'nainstaluje klientský operační systém a provede jeho počáteční konfiguraci',
         'rozliší paměťová média a porovná jejich parametry z hlediska rychlosti a spolehlivosti',
-        'rozdělí pevný disk na oddíly s využitím standardu GPT',
+        'rozdělí pevný disk na oddíly s využitím moderních tabulek oddílů a standardu UEFI',
         'vysvětlí princip alokace dat v souborovém systému, vznik fragmentace a metody údržby disku',
-        'rozliší rychlé a úplné formátování disku a popíše proces nevratného mazání dat',
+        'vysvětlí rozdíl mezi logickým odstraněním metadat a bezpečnou skartací dat na různých typech médií (HDD vs. SSD)',
         'popíše jednotlivé fáze startu počítače od zapnutí napájení po předání řízení jádru operačního systému'
       ],
       content: [
         'Instalace klientského operačního systému (systémové a hardwarové požadavky, proces instalace a prvotní nastavení stanice)',
         'Paměťová média (mechanické disky vs. polovodičová média SSD, měření a porovnání propustnosti)',
-        'Dělení disku (fyzické disky, logické oddíly, tabulka oddílů GPT, systémový oddíl)',
+        'Dělení disku (fyzické disky, logické oddíly, tabulky oddílů, systémový oddíl)',
         'Architektura souborových systémů (alokační tabulky, clustery, řetězení clusterů, fragmentace dat a údržba disku)',
-        'Formátování disku (rozdíl mezi rychlým smazáním metadat a přepisem sektorů nulami)',
+        'Formátování disku (rozdíl mezi smazáním metadat a bezpečným přepisem sektorů dle typu média)',
         'Start systému a Boot proces (inicializace hardware, POST test, firmware UEFI, zavaděč OS, předání řízení jádru)'
       ]
     },
@@ -143,17 +143,17 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       crossThemes: ['PT - ČDS'],
       outcomes: [
         'rozliší pasivní program na disku od aktivního procesu v operační paměti RAM',
-        'identifikuje procesy v systému pomocí PID a analyzuje jejich hierarchii a spotřebu prostředků',
+        'identifikuje procesy v systému pomocí PID a analyzuje jejich spotřebu prostředků',
         'vysvětlí princip multitaskingu a mechanismus střídání procesů na procesoru',
         'popíše životní cyklus procesu a charakterizuje jeho základní stavy',
-        'porovná proces a odlehčené vlákno z hlediska sdílení paměťového prostoru',
+        'vysvětlí význam procesních vláken pro efektivní využití vícejádrových procesorů',
         'objasní princip virtuální paměti a stránkování pro ochranu integrity systému'
       ],
       content: [
-        'Pojem proces (program vs. proces, zavedení do RAM, deskriptor procesu PCB, identifikátory PID a PPID)',
+        'Pojem proces (program vs. proces, zavedení do RAM, identifikátor PID, Správce úloh)',
         'Multitasking a střídání procesů (časová kvanta, stav procesoru, přepnutí kontextu a plánování)',
         'Stavy procesu (Nový, Běžící / Running, Připravený / Ready, Čekající / Blocked na I/O, Ukončený)',
-        'Vlákna (proces vs. vlákno, sdílení adresního prostoru, vícevláknové aplikace)',
+        'Vlákna (proces vs. vlákno, význam pro vícejádrová CPU a plynulost uživatelského rozhraní)',
         'Virtuální paměť a stránkování (princip virtuální paměti, izolace paměti aplikací, odkládací prostor / swap)'
       ]
     },
@@ -163,7 +163,7 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       hours: 4,
       crossThemes: ['PT - ČSP'],
       outcomes: [
-        'popíše kompozici grafického rozhraní a restartuje klíčové procesy grafického prostředí',
+        'popíše kompozici grafického rozhraní a řeší nestandardní stavy prostředí',
         'orientuje se v adresářovém stromu systémového disku a struktuře uživatelských profilů',
         'nastavuje základní atributy souborů a asociace aplikací k příponám',
         'konfiguruje operační systém prostřednictvím standardních konfiguračních rozhraní a ovládacích nástrojů',
@@ -210,7 +210,7 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       ],
       content: [
         'Uživatelské účty a autentizace (lokální účet vs. centrální/online identita, role standardního uživatele a správce, nástroje pro správu účtů)',
-        'Zabezpečení účtů a pracovní stanice (politika hesel, hardwarově vázané ověřování, uzamčení relace, řízení přístupových práv a elevace oprávnění)',
+        'Zabezpečení účtů a pracovní stanice (politika hesel, uzamčení relace, řízení přístupových práv a elevace oprávnění)',
         'Uživatelské skupiny (princip hromadné správy, základní vestavěné skupiny, správa členství ve skupinách)',
         'Souborová přístupová práva (oprávnění souborového systému, řízení přístupu ACL, čtení, zápis, dědičnost a pravidlo explicitního zákazu)'
       ]
@@ -229,7 +229,7 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       content: [
         'Životní cyklus software (instalace, registrace v systému, spouštění, aktualizace a čistá odinstalace)',
         'Instalátory a balíčky (spustitelné instalátory vs. instalační balíčky, princip a parametry bezobslužné tiché instalace)',
-        'Správa software prostřednictvím správce balíčků (vyhledávání aplikací, instalace, hromadný upgrade softwaru, export a import konfigurace)'
+        'Správa software prostřednictvím správce balíčků (vyhledávání aplikací, instalace, hromadný upgrade softwaru z příkazové řádky)'
       ]
     },
     {
@@ -245,7 +245,7 @@ export const SVP_OSS1_DATA: SvpGradeData = {
       ],
       content: [
         'Správa hardware a ovladače (komunikace OS s perifériemi, role ovladačů v režimu jádra, diagnostika stavů zařízení, instalace, aktualizace a digitální podpis ovladačů)',
-        'Plánovač úloh (automatizace systémové údržby, časové a událostní spouštěče, konfigurace akcí, běh pod servisním účtem)'
+        'Plánovač úloh (automatizace systémové údržby, časové a událostní spouštěče, konfigurace naplánovaných akcí)'
       ]
     },
     {
@@ -258,13 +258,13 @@ export const SVP_OSS1_DATA: SvpGradeData = {
         'ověří a diagnostikuje síťové spojení pomocí diagnostických nástrojů a příkazů',
         'nastaví síťové profily a provede sdílení prostředků v lokální síti',
         'nakonfiguruje a zabezpečí bezdrátovou síť Wi-Fi v prostředí klientského operačního systému',
-        'provede základní nastavení parametrů a zabezpečení síťového směrovače / přístupového bodu'
+        'popíše základní parametry a zabezpečení síťového směrovače / přístupového bodu'
       ],
       content: [
         'Síťové adaptéry a adresace (fyzické adaptéry Ethernet a Wi-Fi, MAC adresa vs. IPv4 adresa, maska podsítě, dynamické přidělování DHCP vs. statická IP konfigurace, nástroje pro zjištění konfigurace)',
         'Diagnostika síťového spojení (ověření lokálního rozhraní, dostupnost výchozí brány a DNS serverů, sledování trasy paketu)',
         'Síťové profily a sdílení (veřejný vs. privátní síťový profil, sdílení složek v LAN, bezdrátové sítě Wi-Fi, SSID, standardy šifrování WPA2 a WPA3)',
-        'Praktická konfigurace směrovače (tovární reset, webová administrace SOHO routeru, zabezpečení Wi-Fi, izolovaná síť pro hosty)'
+        'Praktická konfigurace směrovače (webová administrace SOHO routeru, zabezpečení Wi-Fi, princip oddělení sítě pro hosty)'
       ]
     },
     {
