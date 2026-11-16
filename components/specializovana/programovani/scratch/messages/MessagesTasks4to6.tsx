@@ -17,35 +17,43 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
       {/* ÚKOL 4 */}
       <TaskCard
         number="4"
-        title="Synchronní volání – Odpočet (Vyšli a čekej)"
+        title="Synchronní volání – Bezpečné vypnutí OS (Graceful Shutdown)"
         taskId="msg-4"
-        saveAs="Odpocet.sb3"
+        saveAs="VypnutiOS.sb3"
         showTeacher={teacherMode}
         teacherNote={
           <div className="space-y-3">
             <p className="text-xs text-slate-700">
-              <strong>Princip:</strong> Blok <code>vyšli zprávu [odpocet] a čekej</code> zastaví provádění skriptu v Tazateli až do okamžiku, kdy Počítadlo dokončí svůj cyklus 3, 2, 1.
+              <strong>Princip:</strong> Řídicí modul postupně volá blokem <code>vyšli zprávu [...] a čekej</code> jednotlivé subsystémy. Každý další krok může nastat až ve chvíli, kdy předchozí modul potvrdí dokončení své činnosti.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs text-slate-800">
               <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
-                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Tazatele (Kocour):</div>
+                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">1. Správce napájení (Power Manager):</div>
                 <div><ScratchBlock category="events">po kliknutí na mě</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="sensing">otázka [Mám zahájit odpočet?] a čekej</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">odpocet</ScratchInput> a čekej</ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="looks">bublina [Odpočet skončil, můžeme začít!] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Zahajuji bezpečné vypínání OS...] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">ukonci_aplikace</ScratchInput> a čekej</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">zapis_cache</ScratchInput> a čekej</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="events">vyšli zprávu <ScratchInput type="dropdown">odpoj_napajeni</ScratchInput> a čekej</ScratchBlock></div>
+                <div className="pl-4"><ScratchBlock category="looks">bublina [Systém je bezpečně vypnut.] na <ScratchInput>3</ScratchInput> sekund</ScratchBlock></div>
               </div>
 
-              <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
-                <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">Scénář Počítadla (druhá postava):</div>
-                <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">odpocet</ScratchInput></ScratchBlock></div>
-                <div className="pl-4"><ScratchBlock category="variables">nastav <ScratchInput type="dropdown">i</ScratchInput> na <ScratchInput>3</ScratchInput></ScratchBlock></div>
-                <div className="pl-4">
-                  <ScratchCBlock category="control" topLabel={<span>opakuj <ScratchInput>3</ScratchInput> krát</span>}>
-                    <div className="pl-2 space-y-1">
-                      <div><ScratchBlock category="looks">bublina <ScratchReporter category="variables">i</ScratchReporter> na <ScratchInput>1</ScratchInput> sekund</ScratchBlock></div>
-                      <div><ScratchBlock category="variables">změň <ScratchInput type="dropdown">i</ScratchInput> o <ScratchInput>-1</ScratchInput></ScratchBlock></div>
-                    </div>
-                  </ScratchCBlock>
+              <div className="space-y-2">
+                <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">2. Modul Aplikace:</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">ukonci_aplikace</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="looks">bublina [Ukládám data a ukončuji procesy...] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">3. Modul Disk:</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">zapis_cache</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="looks">bublina [Zapisuji cache z RAM na disk a odpojuji svazek...] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-amber-200 space-y-1">
+                  <div className="text-amber-800 font-bold font-sans uppercase text-[11px] mb-1">4. Modul Napájení (ACPI):</div>
+                  <div><ScratchBlock category="events">po obdržení zprávy <ScratchInput type="dropdown">odpoj_napajeni</ScratchInput></ScratchBlock></div>
+                  <div className="pl-4"><ScratchBlock category="looks">bublina [ACPI: Odpojuji napájení základní desky...] na <ScratchInput>2</ScratchInput> sekund</ScratchBlock></div>
                 </div>
               </div>
             </div>
@@ -53,13 +61,28 @@ export const MessagesTasks4to6 = ({ teacherMode }: { teacherMode: boolean }) => 
         }
       >
         <p className="leading-relaxed">
-          Vytvoř program se dvěma postavami, který demonstruje synchronní čekání na dokončení jiné úlohy.
+          Při vypínání operačního systému nelze počítač okamžitě odpojit od elektřiny, aby nedošlo ke ztrátě dat nebo poškození disku.
+          Vytvoř program simulující <strong>třífázové bezpečné vypnutí OS</strong> pomocí synchronních zpráv:
         </p>
 
-        <ol className="list-decimal pl-5 space-y-2 my-4 text-sm text-slate-800">
-          <li>Po kliknutí na hlavní postavu se postava zeptá: <em>„Mám zahájit odpočet?“</em> a odešle zprávu <span className="font-bold text-amber-600">odpocet a čekej</span>.</li>
-          <li>Druhá postava po obdržení zprávy provede odpočet a postupně řekne: <em>3</em>, <em>2</em>, <em>1</em> (každé číslo na 1 s).</li>
-          <li>Teprve až druhá postava celý odpočet dokončí, hlavní postava naváže a oznámí: <em>„Odpočet skončil, můžeme začít!“</em>.</li>
+        <ol className="list-decimal pl-5 space-y-2.5 my-4 text-sm text-slate-800">
+          <li>
+            Vytvoř hlavní řídicí postavu (např. <strong>Správce napájení</strong>) a tři subsystémy: <strong>Modul aplikací</strong>, <strong>Modul disku</strong> a <strong>Modul ACPI</strong>.
+          </li>
+          <li>
+            Po kliknutí na Správce napájení postava oznámí: <em>„Zahajuji bezpečné vypínání OS...“</em> (na 2 s).
+          </li>
+          <li>
+            Následně postupně pomocí zpráv s čekáním (<strong>vyšli zprávu ... a čekej</strong>) vyvolá tyto 3 kroky v přesném pořadí:
+            <ul className="list-disc pl-5 mt-1 space-y-1 text-xs text-slate-700">
+              <li>1. Zpráva <span className="font-bold text-amber-600">ukonci_aplikace</span> ➔ Modul aplikací ohlásí uložení dat a ukončení běžících procesů (na 2 s).</li>
+              <li>2. Zpráva <span className="font-bold text-amber-600">zapis_cache</span> ➔ Modul disku zapíše data z vyrovnávací paměti RAM na disk a odpojí svazek (na 2 s).</li>
+              <li>3. Zpráva <span className="font-bold text-amber-600">odpoj_napajeni</span> ➔ Modul ACPI pošle signál k vypnutí napájení desky (na 2 s).</li>
+            </ul>
+          </li>
+          <li>
+            Teprve po řádném dokončení všech tří fází Správce napájení proces uzavře větou: <em>„Systém je bezpečně vypnut.“</em> (na 3 s).
+          </li>
         </ol>
       </TaskCard>
 
