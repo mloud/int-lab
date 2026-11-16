@@ -32,13 +32,14 @@ Srovnat výchozí úroveň studentů z různých ZŠ pomocí **vizuálního blok
 3. **Lekce 3: Cykly a opakování** (`ScratchVariablesLoopsChapter.tsx`)
 4. **Lekce 4: Vlastní bloky a podprogramy** (`ScratchSubprogramsChapter.tsx`)
 5. **Lekce 5: Podmínky a větvení** (`ScratchConditionsChapter.tsx`, dekomponováno v `scratch/conditions/`)
-6. **Lekce 6: Seznamy, zprávy a události** (`ScratchListsChapter.tsx`, dekomponováno v `scratch/lists/`)
+6. **Lekce 6: Seznamy a práce s daty** (`ScratchListsChapter.tsx`, dekomponováno v `scratch/lists/`)
+7. **Lekce 7: Události a zprávy** (`ScratchMessagesChapter.tsx`, dekomponováno v `scratch/messages/`)
 *Volitelný rozšiřující modul:* 3D Raycaster Engine (`ScratchRaycasterProject.tsx` v `raycaster/`)
 
 ---
 
 ## 🔥 Aktuální úkoly a Backlog (Další rozvoj PVH 1 – Scratch)
 
+- [x] Vytvoření kapitoly **Lekce 7: Události a zprávy** (zvonek 1:1, rozhlas 1:N, dialog, odpočet a synchronizace, stavové stopky, architektura Klient–Server).
 - [ ] Kontrola a harmonizace lekcí Scratche s metodickými materiály a PDF podklady.
-- [ ] Doplnění / rozšíření úloh na **zprávy (`broadcast`)** a **klonování postav** v Lekci 6 (nebo nová herní lekce).
 - [ ] Příprava návazného Bloku 2: Teorie algoritmizace a vývojové diagramy.

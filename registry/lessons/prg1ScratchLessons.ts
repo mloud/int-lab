@@ -246,4 +246,38 @@ export const PRG1_SCRATCH_LESSONS: LessonUnit[] = [
     },
     componentLoader: () => import('@/components/specializovana/programovani/scratch/ScratchListsChapter')
   },
+  {
+    id: 'scratch-messages',
+    title: 'Události a zprávy ve Scratchi (Lekce 7)',
+    shortCode: '#scr7',
+    description: 'Komunikace mezi postavami přes zprávy, synchronizace a základy architektury Klient – Server.',
+    domain: 'informatika-specializovana',
+    category: 'programovani-scratch',
+    contentType: 'game',
+    defaultPath: '/specializovana/programovani/scratch?lekce=7',
+    iconName: 'Radio',
+    keywords: ['scratch', 'zprávy', 'broadcast', 'události', 'klient-server', 'synchronizace', 'api'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [1],
+    estimatedMinutes: 45,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 1,
+      gradeLabel: '1. Ročník',
+      subject: 'Programování a hry 1',
+      thematicBlock: 'Vizuální blokové programování (Scratch)',
+      chapter: 'Scratch projekty',
+      subchapter: 'Lekce 7: Události a zprávy',
+      lesson: 'Události a zprávy'
+    },
+    tabs: {
+      hasTheory: true,
+      hasSimulation: true,
+      hasWorksheet: false
+    },
+    componentLoader: () => import('@/components/specializovana/programovani/scratch/ScratchMessagesChapter')
+  },
 ];

@@ -8,8 +8,9 @@ import ScratchVariablesLoopsChapter from '@/components/specializovana/programova
 import ScratchSubprogramsChapter from '@/components/specializovana/programovani/scratch/ScratchSubprogramsChapter';
 import ScratchConditionsChapter from '@/components/specializovana/programovani/scratch/ScratchConditionsChapter';
 import ScratchListsChapter from '@/components/specializovana/programovani/scratch/ScratchListsChapter';
+import ScratchMessagesChapter from '@/components/specializovana/programovani/scratch/ScratchMessagesChapter';
 import { useRouter } from 'next/navigation';
-import { BookOpen, ListOrdered } from 'lucide-react';
+import { BookOpen, ListOrdered, Radio } from 'lucide-react';
 import TechnicalCard from '@/components/ui/TechnicalCard';
 
 const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => void }) => {
@@ -91,6 +92,17 @@ const ScratchMenu = ({ onSelectChapter }: { onSelectChapter: (ch: number) => voi
             onClick={() => onSelectChapter(6)}
             accentCorner={false}
           />
+
+          <TechnicalCard
+            tag="scr7"
+            title="Lekce 7: Události a zprávy"
+            description="Komunikace mezi postavami přes zprávy, synchronizace a architektura Klient – Server."
+            icon={Radio}
+            gradient="from-amber-500 to-orange-500"
+            actionLabel="Otevřít lekci"
+            onClick={() => onSelectChapter(7)}
+            accentCorner={false}
+          />
         </div>
 
         <button 
@@ -114,7 +126,7 @@ export default function ScratchPage() {
       const ch = params.get('lekce');
       if (ch) {
         const num = parseInt(ch, 10);
-        if (num >= 1 && num <= 6) {
+        if (num >= 1 && num <= 7) {
           setActiveChapter(num);
         }
       }
@@ -138,6 +150,9 @@ export default function ScratchPage() {
   }
   if (activeChapter === 6) {
     return <ScratchListsChapter onBack={() => setActiveChapter(null)} />;
+  }
+  if (activeChapter === 7) {
+    return <ScratchMessagesChapter onBack={() => setActiveChapter(null)} />;
   }
 
   return (

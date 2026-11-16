@@ -996,4 +996,17 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
     - **Úloha 9 (Analýza seznamu bloky):** V bodu 2 doplněna nápověda pro vyhledání maxima porovnáváním s proměnnou `max`.
     - **Nová syntetická úloha 12 (Anglický slovník):** Zařazen projekt překladače se dvěma paralelními seznamy `cesky` a `anglicky`, vlastními bloky `Naplň český slovník` a `Naplň anglický slovník`, vyhledáním slova přes index a ošetřením neznámého slova. Úloha byla umístěna na samý konec lekce jako úloha 12.
 
+40. **Vytvoření kapitoly Lekce 7: Události a zprávy (PVH 1 – Scratch) s architekturou Klient–Server:**
+    - Kapitola byla implementována v plném souladu s Pravidlem 13 (modulární architektura bez monolitů) v podsložce `components/specializovana/programovani/scratch/messages/` (`ScratchMessagesChapter.tsx`, `MessagesTheorySection.tsx`, `MessagesTasks1to3.tsx`, `MessagesTasks4to6.tsx`).
+    - **Obsah a gradace úloh:**
+      - *Teorie:* Zprávy jako signál 1:1, rozhlas 1:N, synchronizace procesů (`rozešli zprávu` vs. `rozešli a čekej`).
+      - *Úloha 1 (Zvonek u dveří):* Přenos signálu 1:1 z tlačítka (zvonku) do postavy v domě.
+      - *Úloha 2 (Hlášení rozhlasu / signál 1:N):* Rozšíření úlohy 1 o druhou postavu (příjem stejné zprávy s reakcí textovou bublinou s čekáním).
+      - *Úloha 3 (Řízený dialog na střídačku):* Předávání štafety zprávami bez odhadování časů v bloku `čekej`.
+      - *Úloha 4 (Odpočet se synchronizací):* Využití synchronního volání `rozešli [odpocet] a čekej` pro odpočet 3, 2, 1 s návratem řízení hlavní postavě.
+      - *Úloha 5 (Digitální stopky s řízením stavů):* Reakce na zprávy `start`, `stop`, `reset`. Část A: měření celých sekund. Část B: rozšíření na formát minut a sekund.
+      - *Úloha 6 (Architektura Klient–Server, API a Databáze):* Praktická ukázka softwarové architektury. Klient se dotazuje na příkazy (`cas`, `obsah_kruhu`, `uloz`), předává argument v `parametr_vstup`. Server vykoná obsluhu, uloží data do lokálního seznamu `databaze` (zárodek databáze) a vrátí odpověď v `odpoved_serveru`.
+    - **Registrace a navigace:** Přidána karta Lekce 7 (`#scr7`) do `app/specializovana/programovani/scratch/page.tsx` a lekce zaregistrována do `registry/lessons/prg1ScratchLessons.ts` s plnou vzdělávací cestou pro SŠ.
+
+
 
