@@ -415,19 +415,19 @@ export const OSS3_GIT: OutlineGroup = {
     {
       slug: 'github',
       tag: 'GT4',
-      title: 'Vzdálené repozitáře a týmový workflow na GitHubu (Push, Pull, PR)',
+      title: 'Vzdálené repozitáře a týmová spolupráce (Push, Pull, revize)',
       hours: '2 h',
-      subtitle: 'Vzdálená synchronizace (push, pull), spolupráce a Pull Requesty.',
-      intro: 'Vzdálený repozitář propojuje členy týmu. Naučíme se odesílat změny na GitHub, stahovat práci kolegů a navrhovat úpravy přes Pull Request.',
+      subtitle: 'Vzdálená synchronizace (push, pull), spolupráce a vzájemná revize změn.',
+      intro: 'Vzdálený repozitář propojuje členy týmu. Naučíme se odesílat změny do repozitáře, stahovat práci kolegů a bezpečně revidovat a schvalovat změny konfigurací.',
       topics: [
         'Vzdálený repozitář (remote origin): git clone, git push, git pull',
-        'Služba GitHub: správa projektů, webové rozhraní, README.md a Issues',
+        'Služba GitHub / GitLab: správa projektů, webové rozhraní, README.md a Issues',
         'Bezpečné ověřování: SSH klíče nebo Personal Access Tokeny (PAT)',
-        'Pracovní postup týmu: Fork, větev, Pull Request (PR) a code review'
+        'Pracovní postup týmu: klonování, větve, odeslání změn a jejich vzájemná revize před sloučením'
       ],
       practice: [
         'Simulace: Synchronizace mezi dvěma vývojáři – řešení odmítnutého push příkazu',
-        'Praxe v OS: Naklonování repozitáře, odeslání větve na GitHub a vytvoření Pull Requestu'
+        'Praxe v OS: Naklonování repozitáře, odeslání větve a vzájemná revize se spolužákem'
       ],
       builds: 'GT3 (větve), SSH klíče (LX10).'
     }
@@ -451,15 +451,15 @@ export const OSS3_CYBER: OutlineGroup = {
     {
       slug: 'pravo-a-utok',
       tag: 'KB1',
-      title: 'Právní a etický rámec: Trestní zákoník, NIS 2 a Cyber Kill Chain',
+      title: 'Právní a etický rámec: Trestní zákoník, NIS 2 a fáze útoku',
       hours: '2 h',
-      subtitle: 'Zákonné hranice správce, směrnice NIS 2 a model Kill Chain.',
-      intro: 'Správce systému musí vědět, co je legální obrana a co už trestný čin. Představíme si zákonné povinnosti, směrnici NIS 2 a fáze, kterými prochází každý kybernetický útok.',
+      subtitle: 'Zákonné hranice správce, směrnice NIS 2 a anatomie útoku.',
+      intro: 'Správce systému musí vědět, co je legální obrana a co už trestný čin. Představíme si zákonné povinnosti, směrnici NIS 2 a fáze, kterými prochází kybernetický útok.',
       topics: [
         'Základní principy bezpečnosti: CIA triáda (Důvěrnost, Integrita, Dostupnost)',
         'Trestní zákoník ČR: § 230–232 (Neoprávněný přístup k počítačovému systému a nosiči informací)',
         'Zákon o kybernetické bezpečnosti a evropská směrnice NIS 2: povinnosti organizací',
-        'Životní cyklus útoku: model Cyber Kill Chain (Průzkum, Zbraně, Doručení, Průnik, Řízení)'
+        'Fáze a principy kybernetického útoku: průzkum, zneužití zranitelnosti, průnik, eskalace práv, zahlazení stop'
       ],
       practice: [
         'Simulace: Právní kvíz – posouzení reálných situací (port scan, test hesel, zodpovědné nahlášení)',
@@ -527,38 +527,38 @@ export const OSS3_CYBER: OutlineGroup = {
     {
       slug: 'slovnikove-utoky',
       tag: 'KB5',
-      title: 'Audit odolnosti hesel: Slovníkové útoky a testování síly hesel',
+      title: 'Audit odolnosti hesel: Slovníkové testy a kryptografické solení',
       hours: '2 h',
-      subtitle: 'Útoky hrubou silou, slovníky RockYou, nástroje John the Ripper a Hashcat.',
-      intro: 'Jak útočník prolamuje uniklé databáze hashů? Pomocí slovníkových útoků a hrubé síly. V kontrolovaném laboratorním prostředí otestujeme odolnost hesel a pochopíme, proč je délka hesla důležitější než speciální znaky.',
+      subtitle: 'Testování síly hesel, slovník RockYou a význam kryptografické soli.',
+      intro: 'Proč slabá hesla padnou během několika sekund? V kontrolovaném laboratorním prostředí otestujeme odolnost hesel vůči slovníkovým testům a ověříme si, proč je délka hesla a sůl zásadní pro obranu.',
       topics: [
-        'Metody prolamování hashů: útok hrubou silou (Brute-Force) vs. slovníkový útok (Dictionary attack)',
-        'Slovníky uniklých hesel (např. wordlist RockYou.txt) a mutační pravidla',
-        'Nástroje pro bezpečnostní audit hesel: John the Ripper a Hashcat',
-        'Defenzivní opatření: minimální délka hesla, zákaz známých hesel a vícefaktorové ověřování (MFA)'
+        'Způsoby testování hesel: test hrubou silou (Brute-Force) vs. slovníkový test (Dictionary attack)',
+        'Slovníky uniklých a častých hesel (wordlist RockYou.txt)',
+        'Význam kryptografické soli (Salt) a odolnost moderních algoritmů',
+        'Defenzivní opatření: minimální délka hesla, politika hesel a vícefaktorové ověřování (MFA)'
       ],
       practice: [
         'Simulace: Kalkulátor prolomení hesla – porovnání času prolomení 8místného vs. 15místného hesla',
-        'Praxe v OS: Audit cvičného seznamu slabých hashů nástrojem John the Ripper ve virtuální laboratoři'
+        'Praxe v OS: Bezpečnostní audit cvičného seznamu slabých hashů ve virtuální laboratoři'
       ],
       builds: 'Hashe a solení (KB4), Phishing a hesla (OSS 2 – BZ9).'
     },
     {
       slug: 'incident-ctf',
       tag: 'KB6',
-      title: 'Reakce na bezpečnostní incident a náprava kompromitovaného systému (CTF)',
+      title: 'Reakce na bezpečnostní incident a náprava kompromitovaného systému',
       hours: '2 h',
-      subtitle: 'Vyšetření napadeného stroje, analýza stop, izolace útočníka a Incident Report.',
-      intro: 'Vrchol bezpečnostního bloku. V simulovaném napadeném prostředí studenti v roli obránců odhalí aktivitu útočníka, najdou kompromitované účty, zablokují IP na firewallu a sepíší hlášení.',
+      subtitle: 'Vyšetření napadeného stroje, analýza stop, izolace útočníka a protokol o zásahu.',
+      intro: 'Vrchol bezpečnostního bloku. V simulovaném napadeném prostředí studenti v roli obránců odhalí aktivitu útočníka, najdou kompromitované účty, zablokují IP na firewallu a sepíší technický protokol o nápravě.',
       topics: [
-        'Metodika reakce na incident (Incident Response): Detekce, Izolace, Odstranění, Obnova, Závěry',
+        'Metodika reakce na incident: Detekce, Izolace, Odstranění škůdce, Obnova provozu a Závěry',
         'Hledání anomálií v logu serveru (neobvyklé časy, opakované neúspěšné pokusy)',
         'Aktivní obrana: okamžité zablokování útočící IP adresy v UFW firewallu',
-        'Sepsání formálního protokolu o bezpečnostním zásahu (Incident Response Report)'
+        'Sepsání technického protokolu o bezpečnostním zásahu a nápravná opatření'
       ],
       practice: [
-        'Laboratorní cvičení: Záchranná mise na napadeném serveru ve dvojicích a získání bezpečnostních FLAGů',
-        'Zpracování závěrečného incident reportu s doporučeními pro zabezpečení'
+        'Laboratorní cvičení: Záchranná mise na napadeném serveru ve dvojicích a nalezení bezpečnostních stop',
+        'Zpracování závěrečného protokolu o zásahu s doporučeními pro zabezpečení'
       ],
       builds: 'Syntéza celé kyberbezpečnosti (KB1–KB5) a systémových logů (LX8).'
     }
@@ -582,13 +582,13 @@ export const OSS3_TEAM: OutlineGroup = {
     {
       slug: 'kanban',
       tag: 'TM1',
-      title: 'Agilní organizace úkolů (Kanban) a týmová komunikace',
+      title: 'Plánování úkolů na týmové nástěnce a komunikace',
       hours: '2 h',
-      subtitle: 'Přehledné řízení práce v týmu: tabule Kanban, backlog a stavy úkolů.',
-      intro: 'Úspěch v IT závisí na schopnosti domluvit se a zorganizovat práci. Naučíme se používat nástroj Kanban pro rozdělení úkolů v týmu a sledování postupu.',
+      subtitle: 'Přehledné řízení práce v týmu: nástěnka úkolů, zásobník a stavy úkolů.',
+      intro: 'Úspěch v IT závisí na schopnosti domluvit se a zorganizovat práci. Naučíme se používat týmovou nástěnku pro rozdělení úkolů v týmu a sledování postupu.',
       topics: [
-        'Principy agilního řízení: proč se vyhnout chaotické práci a jak rozdělit projekt na etapy',
-        'Nástroj Kanban: sloupce Backlog (zásobník), To Do, In Progress, Review a Done',
+        'Principy přehledného řízení: proč se vyhnout chaotické práci a jak rozdělit projekt na etapy',
+        'Týmová nástěnka: sloupce Zásobník (backlog), K řešení, V řešení a Hotovo',
         'Práce s úkoly v digitálních nástrojích (GitHub Projects, Trello)',
         'Rozdělení rolí a odpovědností v 2–3členném týmu (správce Linuxu, správce Windows/AD, tester/dokumentarista)'
       ],
@@ -596,7 +596,7 @@ export const OSS3_TEAM: OutlineGroup = {
         'Simulace: Týmová tabule – přesun úkolu fázemi a řešení přetížení člena týmu',
         'Praxe v OS: Vytvoření společné projektové tabule na GitHub Projects a založení úkolů'
       ],
-      builds: 'GitHub Issues a PR (GT4).'
+      builds: 'GitHub Issues a revize (GT4).'
     },
     {
       slug: 'projekt',
@@ -622,11 +622,11 @@ export const OSS3_TEAM: OutlineGroup = {
       title: 'Křížový bezpečnostní audit, test záloh a ústní obhajoba projektů',
       hours: '2 h',
       subtitle: 'Demonstrace funkčního řešení, technická argumentace a zpětná vazba.',
-      intro: 'Být skvělý technik nestačí – musíte umět své řešení předvést a obhájit. Každý tým představí funkční infrastrukturu a odpoví na otázky.',
+      intro: 'Být skvělý technik nestačí – musíte umět své řešení předvést a obhájit. Každý tým představí funkční infrastrukturu a odpoví na otázky vyučujícího i spolužáků.',
       topics: [
-        'Příprava technické prezentace a demonstrace funkčního systému před komisí',
+        'Příprava technické prezentace a demonstrace funkčního systému před třídou',
         'Křížové testování záloh a odolnosti: tým A prověří bezpečnost infrastruktury týmu B',
-        'Obhajoba architektonických rozhodnutí (proč Samba, jak je nastaven firewall, jak funguje záloha)',
+        'Obhajoba architektonických rozhodnutí (proč sdílení, jak je nastaven firewall, jak funguje záloha)',
         'Reflexe týmové spolupráce a technická zpětná vazba od učitele a spolužáků'
       ],
       practice: [

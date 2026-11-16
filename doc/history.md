@@ -1043,8 +1043,16 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       5. *Technologická neutralita serverových služeb v ŠVP (Blok 2):* V oficiálním ŠVP pro ČŠI nahrazeny konkrétní produktové názvy nadčasovými formulacemi: **„webový server se šifrovaným protokolem HTTPS“** a **„sdílení souborů v heterogenní síti mezi Linuxem a stanicemi Windows“**.
     - **Synchronizované soubory:** [`doc/curriculum/OSS3.md`](curriculum/OSS3.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops3Plan.ts`](../registry/curriculum/thematic-plans/ops3Plan.ts) a [`doc/plans/PLAN_OSS3.md`](plans/PLAN_OSS3.md).
 
-
-
-
+44. **Synchronizace webových osnov podkapitol a tematického plánu pro OSS 3 na webu IntLab:**
+    - Všechny webové stránky podkapitol OSS 3 (`/specializovana/operacni-systemy-3/*`) a studentská stránka tematického plánu byly plně synchronizovány s novým schváleným zněním ŠVP.
+    - **Úpravy v centrálním registru osnov (`registry/curriculum/outlines/oss3Outlines.ts`):**
+      - `GT4` (*Týmová práce a vzdálené repozitáře*): Přepracováno z firemního žargonu na *práci se vzdálenými repozitáři, sdílení větví (`push / fetch / merge`), vzájemnou revizi skriptů a koordinaci v týmu*.
+      - `KB1` (*Anatomie kybernetického útoku*): Nahrazen proprietární *Cyber Kill Chain* obecnou didaktickou strukturou 5 fází útoku (*průzkum, zneužití zranitelnosti, průnik, eskalace oprávnění a zahlazení stop*).
+      - `KB5` (*Audit síly hesel a hashování v Linuxu*): Vyřazeny formulace o lámání hesel cizími utilitami; zaměřeno na *kryptografické haše, význam soli (`salt`), odolnost vůči slovníkovým útokům a bezpečné zásady autentizace*.
+      - `KB6` (*Praktické zabezpečení a hardening serveru*): Strukturováno jako komplexní studentský hardening (*firewall UFW / nftables, prevence brute-force přes Fail2ban, SSH klíče, zákaz přímého přihlášení roota a minimální útočná plocha*).
+      - `TM1` (*Plánování infrastrukturního projektu*): Vyčištěn specifický Kanban; zaměřeno na *přehlednou týmovou nástěnku, rozdělení rolí v týmu a strukturovaný rozpad systémových požadavků*.
+      - `TM3` (*Technická prezentace a obhajoba projektu*): Odstraněna maturitní formulace „před odbornou komisí“; nahrazeno *představením funkční infrastruktury a ústní technickou obhajobou před vyučujícím a spolužáky*.
+    - **Synchronizace studentského tematického plánu (`app/specializovana/operacni-systemy-3/tematicky-plan/page.tsx`):**
+      - Upraveny odpovídající řádky 33týdenního plánu (týdny 22, 23, 26, 31, 33) tak, aby tabulka na frontendu 1:1 odpovídala kurikulu v `ops3Plan.ts`.
 
 

@@ -47,12 +47,12 @@ const PLAN_OSS3: PlanTopic[] = [
     topic: '3. Kybernetická bezpečnost, síťový audit a obrana',
     topicHours: 12,
     subtopics: [
-      { name: 'Právní a etický rámec: Trestní zákoník, NIS 2 a Cyber Kill Chain', hours: 2, note: 'Paragrafy § 230–232 TrZ, mezinárodní směrnice NIS 2 a fáze kybernetického útoku' },
+      { name: 'Právní a etický rámec: Trestní zákoník, NIS 2 a fáze útoku', hours: 2, note: 'Paragrafy § 230–232 TrZ, směrnice NIS 2 a fáze a principy kybernetického útoku' },
       { name: 'Bezpečnostní průzkum sítě a mapování zranitelností (CVE)', hours: 2, note: 'Skenování síťových portů Nmapem, verze služeb a vyhledání závažnosti v CVSS' },
       { name: 'Analýza síťového provozu paketovým analyzátorem (Wireshark)', hours: 2, note: 'Odposlech síťových paketů, TCP spojení, srovnání HTTP a šifrovaného HTTPS/SSH' },
       { name: 'Ochrana autentizace a princip ukládání hesel v operačních systémech', hours: 2, note: 'Kryptografické hashovací funkce, solení hesel a formáty ukládání hashů' },
-      { name: 'Audit odolnosti hesel: Slovníkové útoky a testování síly hesel', hours: 2, note: 'Ověření odolnosti hesel vůči útokům hrubou silou a oborové standardy bezpečnosti' },
-      { name: 'Reakce na bezpečnostní incident a náprava kompromitovaného systému (CTF)', hours: 2, note: 'Detekce neoprávněné aktivity v logu, zablokování útočníka firewallem a nápravná opatření' },
+      { name: 'Audit odolnosti hesel: Slovníkové testy a kryptografické solení', hours: 2, note: 'Ochrana před prolamováním hashů: Brute-Force vs. slovníkový test a význam soli' },
+      { name: 'Reakce na bezpečnostní incident a náprava kompromitovaného systému', hours: 2, note: 'Detekce neoprávněné aktivity v logu, zablokování útočníka firewallem a protokol o nápravě' },
     ]
   },
   {
@@ -62,11 +62,11 @@ const PLAN_OSS3: PlanTopic[] = [
     subtopics: [
       { name: 'Principy verzování: Tři zóny Gitu a tvorba commitů', hours: 2, note: 'Architektura verzovacího systému, pracovní adresář, stage, commit a .gitignore' },
       { name: 'Větvení (Branches), slučování (Merge) a řešení kolizí', hours: 2, note: 'Izolovaný vývoj ve větvích, slučování změn a manuální řešení konfliktů v konfiguracích' },
-      { name: 'Vzdálené repozitáře a týmový workflow (Push, Pull, Pull Request)', hours: 2, note: 'Spolupráce přes vzdálený repozitář, proces Pull Requestů a revize kódu' },
-      { name: 'Agilní organizace práce, Kanban a týmová komunikace', hours: 2, note: 'Nástěnka úkolů, správa backlogu, rozdělení rolí v týmu a komunikační nástroje' },
+      { name: 'Vzdálené repozitáře a týmová spolupráce (Push, Pull, revize)', hours: 2, note: 'Spolupráce přes vzdálený repozitář, vzájemná revize změn konfigurací a kódu' },
+      { name: 'Plánování úkolů na týmové nástěnce a komunikace', hours: 2, note: 'Nástěnka úkolů, rozdělení rolí v týmu a efektivní týmová komunikace' },
       { name: 'Realizace projektu: Návrh infrastruktury a serverové služby', hours: 4, note: 'Týmové zprovoznění linuxových serverů, webu a sdílení dat, verzování konfigurací v Gitu' },
       { name: 'Realizace projektu: Klientská integrace a zabezpečení sítě', hours: 4, note: 'Propojení se stanicemi Windows, nastavení přístupových práv, zálohování a firewall' },
-      { name: 'Křížový bezpečnostní audit, test záloh a ústní obhajoba projektu', hours: 2, note: 'Předvedení živé infrastruktury před komisí, kontrola funkčnosti záloh a hodnocení' },
+      { name: 'Křížový bezpečnostní audit, test záloh a ústní obhajoba projektu', hours: 2, note: 'Předvedení živé infrastruktury před vyučujícím a třídou, kontrola funkčnosti záloh' },
     ]
   },
   {
