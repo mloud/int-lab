@@ -20,7 +20,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 | Blok | Měsíce & Týdny | Tematický celek | Dotace | Stav na portálu | Odkaz na webu |
 |:---:|:---:|---|:---:|:---:|---|
 | **1** | **Září – Říjen** (1.–5. týden) | **Správa podnikových dat a zálohování** | 10 h | ✅ Hotovo (Wargame, pravidlo 3-2-1, robocopy, cloud, Cobian) | `/zalohovani/*` (B1–B5) |
-| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, audit a forenzní analýza** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
+| **2** | **Říjen – Leden** (6.–15. týden) | **Bezpečnost koncových zařízení, inspekce a audit** | 20 h | ✅ 10 podtémat (BZ1–BZ3 plné moduly, BZ4–BZ10 osnovy) | `/bezpecnost/*` (BZ1–BZ10) |
 | **3** | **Únor – Duben** (16.–24. týden) | **Systémové služby a administrační skriptování v PowerShellu** | 18 h | ✅ 5 kapitol s osnovami (služby, MMC, cmdlety, skripty .ps1, reporty) | `/pokrocila-konfigurace/*` (PK1–PK5) |
 | **4** | **Duben – Červen** (25.–33. týden) | **Síťové sdílení prostředků, vzdálená správa a doména** | 18 h | ✅ 6 kapitol s osnovami (SMB, RDP, doména, klient, GPO, projekt) | `/active-directory/*` (AD1–AD6) |
 | **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **100% soulad s ŠVP InspIS** | |
@@ -37,29 +37,29 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 * [x] **B5 Automatizované zálohování službou (Cobian Reflector)** (`/zalohovani/cobian`, 2 h)
 * [x] **Hodnocená práce: Výpočet kapacity záloh** (`/zalohovani/test`, PINy: `ZAK2026` / `OS2026`)
 
-### Blok 2: Bezpečnost koncových zařízení, audit a forenzní analýza (20 h)
+### Blok 2: Bezpečnost koncových zařízení, inspekce a audit (20 h)
 * [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `malware/`)*
-* [x] **BZ2 Forenzní analýza procesů a certifikáty Authenticode** (`/bezpecnost/procesy-a-certifikaty`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `procesy/`)*
-* [x] **BZ3 Persistence škodlivého kódu a systémový registr** (`/bezpecnost/registr`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `registr/`)*
+* [x] **BZ2 Bezpečnostní audit procesů a digitální podpisy** (`/bezpecnost/procesy-a-certifikaty`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `procesy/`)*
+* [x] **BZ3 Systémový registr a automatické spouštění po startu** (`/bezpecnost/registr`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `registr/`)*
 * [x] **BZ4 Systémový žurnál událostí a bezpečnostní audit** (`/bezpecnost/udalosti`, 2 h) – *Event Viewer, logy přihlášení Event ID 4624/4625, filtrace*
 * [x] **BZ5 Izolované prostředí (Sandbox) a antivirus** (`/bezpecnost/izolace`, 2 h) – *Signatury, heuristika, chování v RAM, test EICAR*
 * [x] **BZ6 Paketový firewall na koncovém zařízení** (`/bezpecnost/firewall`, 2 h) – *Příchozí/odchozí pravidla, sledování spojení netstat*
 * [x] **BZ7 Diskové šifrování a TPM čip** (`/bezpecnost/sifrovani`, 2 h) – *BitLocker, ochrana klíčů čipem TPM 2.0, obnovovací klíče*
-* [x] **BZ8 Správa aktualizací a zranitelnosti (0-day)** (`/bezpecnost/ucty`, 2 h) – *Záplaty, servisní cykly, balíčkovač winget*
+* [x] **BZ8 Správa aktualizací a bezpečnostní záplaty** (`/bezpecnost/ucty`, 2 h) – *Záplaty, servisní cykly, balíčkovač winget*
 * [x] **BZ9 Sociální inženýrství, phishing a ochrana identity** (`/bezpecnost/sit-hesla`, 2 h) – *Hlavičky podvodných e-mailů, MFA, správci hesel*
-* [x] **BZ10 Vyšetřování bezpečnostního incidentu (Mini-CTF)** (`/bezpecnost/ctf`, 2 h) – *Detekce hrozby, izolace stanice, odstranění perzistence, zpráva o incidentu*
+* [x] **BZ10 Řešení bezpečnostního incidentu a protokol o zásahu** (`/bezpecnost/ctf`, 2 h) – *Detekce hrozby, izolace stanice, odstranění škůdce, technická zpráva o incidentu*
 
 ### Blok 3: Systémové služby a skriptování v PowerShellu (18 h)
 * [x] **PK1 Systémové služby Windows na pozadí** (`/pokrocila-konfigurace/sluzby`, 4 h) – *Účet SYSTEM, typy spouštění, závislosti a obnova*
-* [x] **PK2 Konzole správce (MMC) a centrální diagnostika** (`/pokrocila-konfigurace/mmc`, 4 h) – *Vlastní snap-iny, řešení pádů a zamrznutí*
+* [x] **PK2 Konzole správce (MMC) a centrální diagnostika** (`/pokrocila-konfigurace/mmc`, 4 h) – *Doplňkové snap-iny, řešení pádů a zamrznutí*
 * [x] **PK3 PowerShell: Objektový shell, syntaxe cmdletů a roury** (`/pokrocila-konfigurace/powershell`, 4 h) – *Sloveso-PodstatnéJméno, roura `\|`, Where-Object, Select-Object*
 * [x] **PK4 Administrační skriptování v PowerShellu (.ps1)** (`/pokrocila-konfigurace/powershell-sprava`, 4 h) – *Proměnné, cykly foreach, politika ExecutionPolicy, skripty*
 * [x] **PK5 Automatizovaný sběr dat a generování reportů** (`/pokrocila-konfigurace/reporty`, 2 h) – *Diagnostika hardware/software a export do formátů CSV a HTML*
 
 ### Blok 4: Síťové sdílení prostředků, vzdálená správa a doména (18 h)
 * [x] **AD1 Síťové sdílení složek a efektivní práva (SMB)** (`/active-directory/smb`, 4 h) – *UNC cesty, kombinovaná práva sdílení a NTFS, mapování jednotky*
-* [x] **AD2 Zabezpečená vzdálená správa plochy (RDP)** (`/active-directory/vzdalena-sprava`, 2 h) – *mstsc.exe, port 3389, autorizace Remote Desktop Users, NLA*
-* [x] **AD3 Koncept podnikové infrastruktury a domény** (`/active-directory/server-a-domena`, 2 h) – *Pracovní skupina vs. doména, role DC a DNS, Kerberos*
+* [x] **AD2 Zabezpečená vzdálená správa plochy (RDP)** (`/active-directory/vzdalena-sprava`, 2 h) – *Povolení RDP, autorizace uživatelů, pravidla firewallu*
+* [x] **AD3 Koncept podnikové infrastruktury a domény** (`/active-directory/server-a-domena`, 2 h) – *Pracovní skupina vs. doména, role DC a DNS*
 * [x] **AD4 Klientská stanice v podnikové doméně a profily** (`/active-directory/klient-v-domene`, 4 h) – *Konfigurace DNS, připojení stanice k doméně, profil DOMENA\\uzivatel*
 * [x] **AD5 Skupinové politiky (GPO – uplatnění na stanici)** (`/active-directory/gpo`, 4 h) – *Centrální distribuce nastavení, zákaz USB, gpupdate /force, gpresult /r*
 * [x] **AD6 Závěrečný integrující projekt administrace stanice** (`/active-directory/zaloha-a-projekt`, 2 h) – *Komplexní konfigurace stanice a obhajoba*

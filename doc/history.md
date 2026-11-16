@@ -1021,6 +1021,19 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
       7. *Lokální sítě a směrovače (Blok 9):* Odstraněn rizikový požadavek na *fyzický tovární reset routeru*. Nahrazeno *praktickou webovou administrací SOHO routeru, zabezpečením Wi-Fi (WPA2/WPA3) a principem oddělené sítě pro hosty (Guest network)*.
     - **Synchronizované soubory:** [`doc/curriculum/OSS1.md`](curriculum/OSS1.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops1Plan.ts`](../registry/curriculum/thematic-plans/ops1Plan.ts), aktivní tabule [`doc/plan.md`](plan.md) i dedikovaný plán [`doc/plans/PLAN_OSS1.md`](plans/PLAN_OSS1.md).
 
+42. **Didaktická revize a zjednodušení ŠVP pro Operační systémy 2 (OSS 2 pro ČŠI a InspIS):**
+    - Proveden detailní audit kurikula 2. ročníku SŠ (OSS 2 – 66 h, kód oboru 18-20-M/01 Informační technologie) se zaměřením na odstranění akademického žargonu, nerealistických forenzních konceptů a zastaralých administrativních nástrojů.
+    - **7 klíčových kurikulárních úprav v OSS 2:**
+      1. *Terminologie bezpečnosti a auditu (Blok 2):* Akademické výrazy *„forenzní audit procesů“* a *„forenzní vyšetřování / vyčištění“* nahrazeny didakticky přiměřeným **„bezpečnostním auditem a inspekcí procesů“** a **„detekcí a odstraněním nežádoucího softwaru“**.
+      2. *Systémový registr a spouštění po startu (Blok 2):* Odstraněny interní akademické pojmy *„persistence útoků“* a *„soubory úlů (Hives), Winlogon klíče“*. Zobecněno na **„mechanismy automatického spouštění aplikací po startu systému a kontrolu klíčů registru“**.
+      3. *Správa aktualizací a zranitelnosti (Blok 2):* Vyřazena příliš pokročilá teorie *„0-day zranitelností“* (přesunuta do kybernetické bezpečnosti ve 3. ročníku). Zaměřeno na praktickou **„správu systémových aktualizací, instalaci bezpečnostních záplat a hromadný upgrade aplikací (CLI / správce balíčků)“**.
+      4. *Zpráva o incidentu bez korporátního žargonu (Blok 2):* Nahrazen korporátní pojem *„Incident Response Report“* a neformální označení *„Mini-CTF“* oficiální didaktickou formulací **„řešení simulovaného bezpečnostního incidentu na stanici (izolace, odstranění škůdce a sepsání technického protokolu o zásahu)“**.
+      5. *Posílení PowerShellu na úkor grafické konzole MMC (Blok 3):* Zredukována detailní teorie zastarávající konzole `mmc.exe` (autorský režim a sestavování snap-inů do `.msc`) a uvolněný časový prostor alokován pro **praktické skriptování v PowerShellu (objektové roury, cmdlety a stavové reporty)**.
+      6. *Odstranění archaického `sc.exe` a zápisu do registru (Blok 3):* Vyřazen zastaralý příkaz `sc.exe` ve prospěch moderních nativních cmdletů (`Get-Service`, `Set-Service`, `Restart-Service`). Skriptování zaměřeno na **správu procesů, služeb, souborového systému a generování HTML/CSV reportů**.
+      7. *Vyčištění protokolových a síťových detailů (Blok 4):* Odstraněna čísla portů (445 pro SMB, 3389 pro RDP) a hluboké rozbory protokolu Kerberos. Ponechány čisté klientské kompetence: **sdílení složek v LAN (SMB), kombinovaná efektivní práva, vzdálená plocha (RDP), připojení klientské stanice do podnikové domény a centrální uplatňování skupinových politik (GPO – restrikce USB, zásady hesel)**.
+    - **Synchronizované soubory:** [`doc/curriculum/OSS2.md`](curriculum/OSS2.md), [`doc/curriculum/SVP_INSPIS.md`](curriculum/SVP_INSPIS.md), [`registry/curriculum/svp/svpOssData.ts`](../registry/curriculum/svp/svpOssData.ts), [`registry/curriculum/thematic-plans/ops2Plan.ts`](../registry/curriculum/thematic-plans/ops2Plan.ts) a [`doc/plans/PLAN_OSS2.md`](plans/PLAN_OSS2.md).
+
+
 
 
 

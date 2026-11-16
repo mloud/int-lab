@@ -323,32 +323,32 @@ export const SVP_OSS2_DATA: SvpGradeData = {
     },
     {
       id: 'oss2-b2',
-      topic: '2. Bezpečnost koncových zařízení, audit a forenzní analýza',
+      topic: '2. Bezpečnost koncových zařízení, inspekce a audit',
       hours: 20,
       crossThemes: ['PT - ČDS', 'PT - ODS'],
       outcomes: [
         'charakterizuje hlavní kategorie škodlivého kódu a objasní princip vykonávání instrukcí procesorem bez rozlišení úmyslu',
-        'provádí forenzní audit běžících procesů, analyzuje jejich hierarchii a spotřebu systémových prostředků',
-        'ověřuje digitální certifikáty spustitelných souborů a integritu dat pomocí kryptografických kontrolních součtů',
+        'provádí bezpečnostní audit běžících procesů, analyzuje jejich hierarchii a spotřebu systémových prostředků',
+        'ověřuje digitální podpisy spustitelných souborů a integritu dat pomocí kryptografických kontrolních součtů',
         'vyhledává a analyzuje mechanismy automatického spouštění aplikací a záznamy v systémovém registru',
         'vyhledává, filtruje a interpretuje systémové a bezpečnostní záznamy v žurnálu událostí',
         'bezpečně testuje podezřelé soubory v izolovaném prostředí a konfiguruje aktivní systémovou ochranu proti škodlivému kódu',
         'konfiguruje pravidla paketového firewallu pro příchozí i odchozí komunikaci a monitoruje aktivní síťová spojení stanice',
         'aplikuje diskové šifrování s hardwarovou ochranou kryptografických klíčů a bezpečně spravuje obnovovací klíče',
         'analyzuje techniky sociálního inženýrství a phishingu a aplikuje zásady bezpečné správy hesel a vícefaktorového ověřování',
-        'vyřeší simulovaný bezpečnostní incident na stanici, provede forenzní analýzu a vypracuje závěrečný incident report'
+        'vyřeší simulovaný bezpečnostní incident na stanici, provede odstranění nežádoucího softwaru a vypracuje technickou zprávu o zásahu'
       ],
       content: [
         'Typologie malwaru a principy nákazy (viry, červi, trojské koně, ransomware, spyware; zneužití uživatelských tokenů, hashovací funkce a online analýza)',
-        'Forenzní analýza běžících procesů (nástroje pro inspekci procesů, procesní stromy, skryté procesy, ověřování digitálních certifikátů a integrity)',
-        'Systémový registr a persistence útoků (hierarchie klíčů pro počítač a uživatele, klíče pro automatické spouštění po startu, export a import konfigurace)',
+        'Bezpečnostní audit běžících procesů (nástroje pro inspekci procesů, procesní stromy, skryté procesy, ověřování digitálních podpisů a integrity souborů)',
+        'Systémový registr a automatické spouštění (hierarchie klíčů pro počítač a uživatele, klíče pro spouštění aplikací po startu systému, export a import konfigurace)',
         'Systémový žurnál událostí a bezpečnostní audit (architektura systémových protokolů, záznamy o úspěšných a neúspěšných pokusech o přihlášení, filtrace chybových stavů)',
         'Izolované prostředí a systémový antivirus (prostředí sandboxu, signatury, heuristika, standardizované testovací vzorky)',
         'Paketový firewall na koncovém zařízení (filtrace příchozího a odchozího provozu, pravidla pro porty a aplikace, sledování aktivních síťových spojení)',
         'Šifrování disků a hardwarová ochrana klíčů (šifrování systémových i přenosných disků, bezpečnostní čip TPM, správa záchranných klíčů)',
-        'Správa systémových aktualizací a zranitelnosti (servisní cykly záplat, princip zranitelností nultého dne 0-day, hromadné aktualizace aplikací)',
+        'Správa systémových aktualizací a zranitelnosti (instalace bezpečnostních záplat, servisní cykly aktualizací, hromadný upgrade aplikací)',
         'Sociální inženýrství, phishing a ochrana identity (analýza podvodných e-mailů a hlaviček zpráv, vícefaktorové ověřování MFA, správci hesel)',
-        'Vyšetřování bezpečnostního incidentu (detekce neoprávněné aktivity na stanici, izolace systému, odstranění perzistentní hrozby a tvorba protokolu Incident Response)'
+        'Řešení bezpečnostního incidentu (detekce neoprávněné aktivity na stanici, izolace systému, odstranění hrozby a tvorba technického protokolu o zásahu)'
       ]
     },
     {
@@ -362,16 +362,16 @@ export const SVP_OSS2_DATA: SvpGradeData = {
         'ovládá syntaxi a objektový model moderního příkazového shellu',
         'efektivně filtruje, třídí a transformuje systémové objekty v rourách',
         'vytváří přehledné administrační skripty s ošetřením bezpečnostní politiky spouštění',
-        'využívá pokročilé skriptovací techniky pro automatizaci správy souborů, registru a komponent stanice',
+        'využívá skriptovací techniky pro automatizaci správy procesů, služeb a komponent stanice',
         'generuje automatizované reporty o stavu hardware, software a konfigurace stanice'
       ],
       content: [
         'Systémové služby na pozadí (koncepce služeb bez interaktivního přihlášení uživatele, systémové běhové účty, typy spouštění služeb, závislosti)',
-        'Diagnostika a obnova služeb (řešení chyb a pádů kritických služeb, konfigurace automatického restartu po selhání, nástroje pro správu služeb)',
+        'Diagnostika a obnova služeb (řešení chyb a pádů kritických služeb, konfigurace automatického restartu po selhání, doplňkové nástroje grafické správy MMC)',
         'Objektový shell a syntaxe cmdletů (rozdíl mezi textovým a objektovým rozhraním, syntaxe příkazů, nápověda a zjišťování vlastností a metod objektů)',
         'Práce s objektovou rourou (předávání celých datových struktur rourou, výběr vlastností, filtrování podle podmínek a řazení dat)',
         'Administrační skriptování (tvorba skriptů, práce s proměnnými, cykly pro hromadné operace, bezpečnostní zásady a politiky spouštění skriptů)',
-        'Automatizovaná správa systému (manipulace s klíči registru, správa oprávnění a systémových komponent skriptem)',
+        'Automatizovaná správa systému (správa procesů a systémových komponent skriptem)',
         'Inspekční reporty a stav stanice (automatizovaný sběr diagnostických dat, export stavových reportů do formátů CSV a HTML)'
       ]
     },
@@ -393,7 +393,7 @@ export const SVP_OSS2_DATA: SvpGradeData = {
         'Sdílení souborů v lokální síti (protokol SMB, síťové cesty UNC, konfigurace oprávnění sdílené složky)',
         'Efektivní přístupová práva (kombinace oprávnění sdílení a souborového systému, pravidlo restriktivnějšího přístupu)',
         'Mapování síťových disků (připojení síťové jednotky v grafickém i textovém rozhraní, trvalé připojení po přihlášení)',
-        'Vzdálená správa pracovní plochy (protokol RDP, autorizace vzdálených uživatelů, zabezpečení na úrovni sítě)',
+        'Vzdálená správa pracovní plochy (protokol RDP, autorizace vzdálených uživatelů, pravidla firewallu)',
         'Koncept podnikové infrastruktury (pracovní skupina vs. doménové prostředí, centralizovaná autentizace, role doménového řadiče)',
         'Klientská stanice v podnikové doméně (připojení stanice do domény, profil doménového uživatele, oddělení lokálních a doménových práv)',
         'Skupinové politiky na stanici (princip centrální distribuce nastavení a bezpečnostních restrikcí na klientské počítače, zákaz výměnných médií, jednotná konfigurace)',

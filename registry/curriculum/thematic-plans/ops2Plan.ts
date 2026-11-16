@@ -78,12 +78,12 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
         month: 'Říjen – Leden',
         monthKey: 'rijen',
         weeks: '6.–15. týden',
-        title: 'Bezpečnost koncových zařízení, audit a forenzní analýza',
+        title: 'Bezpečnost koncových zařízení, inspekce a audit',
         hours: 20,
         theoryHours: 6,
         practiceHours: 14,
-        description: 'Typologie malwaru, forenzní audit procesů v Process Exploreru, digitální podpisy, Defender, Firewall, BitLocker a Mini-CTF.',
-        rvpCompetence: 'Provádí forenzní audit procesů, analyzuje podezřelé chování systému, konfiguruje Defender, Firewall a šifrování BitLocker.',
+        description: 'Typologie malwaru, bezpečnostní inspekce procesů v Process Exploreru, digitální podpisy, Defender, Firewall, BitLocker a řešení incidentu.',
+        rvpCompetence: 'Provádí bezpečnostní audit procesů, analyzuje podezřelé chování systému, konfiguruje Defender, Firewall a šifrování BitLocker.',
         subtopics: [
           {
             id: 'oss2-b2-1',
@@ -96,20 +96,20 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss2-b2-2',
-            title: 'Forenzní analýza procesů a ověřování podpisů Authenticode',
+            title: 'Bezpečnostní audit procesů a ověřování digitálních podpisů',
             hours: 2,
             type: 'laborator',
             description: 'Co dělá OS při spuštění .exe: lokální podpis, reputační cloud SmartScreen, antivirový sken. Nástroj Sysinternals Process Explorer.',
-            practice: 'Forenzní laboratoř v IntLabu: výpočet hashe certutil, lustrace na VirusTotal.com, analýza stromu procesů a svchost.exe.',
+            practice: 'Laboratorní inspekce procesů v IntLabu: výpočet hashe certutil, kontrola integrity, analýza stromu procesů a svchost.exe.',
             route: '/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty'
           },
           {
             id: 'oss2-b2-3',
-            title: 'Systémový registr a persistence škodlivého kódu',
+            title: 'Systémový registr a automatické spouštění po startu',
             hours: 2,
             type: 'laborator',
-            description: 'Hierarchie klíčů HKLM vs. HKCU, soubory úlů (Hives), klíče Run, RunOnce, Winlogon a persistence po startu, export/import dávek .reg.',
-            practice: 'Rentgen registru v IntLabu: odhalení podezřelé persistence zapsané škodlivým skriptem a bezpečné odstranění.',
+            description: 'Hierarchie klíčů HKLM vs. HKCU, spouštěcí klíče Run a RunOnce, mechanismy automatického spouštění, export a import dávek .reg.',
+            practice: 'Rentgen registru v IntLabu: odhalení nežádoucího programu po startu a bezpečné odstranění záznamu.',
             route: '/specializovana/operacni-systemy-2/bezpecnost/registr'
           },
           {
@@ -150,11 +150,11 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss2-b2-8',
-            title: 'Správa systémových aktualizací a zranitelnosti (0-day)',
+            title: 'Správa systémových aktualizací a bezpečnostní záplaty',
             hours: 2,
             type: 'laborator',
-            description: 'Princip nejmenších oprávnění, chování tokenů UAC, servisní cykly záplat, 0-day zranitelnosti a hromadný update přes winget.',
-            practice: 'Hromadný audit zranitelných verzí softwaru a update systému přes skript winget upgrade --all.',
+            description: 'Princip nejmenších oprávnění, chování tokenů UAC, servisní cykly záplat, instalace aktualizací a hromadný update přes winget.',
+            practice: 'Hromadný audit verzí softwaru a update systému přes skript winget upgrade --all.',
             route: '/specializovana/operacni-systemy-2/bezpecnost/ucty'
           },
           {
@@ -168,11 +168,11 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
           },
           {
             id: 'oss2-b2-10',
-            title: 'Vyšetřování bezpečnostního incidentu (Mini-CTF)',
+            title: 'Řešení bezpečnostního incidentu a protokol o zásahu',
             hours: 2,
             type: 'projekt',
-            description: 'Komplexní scénář napadeného počítače: identifikace anomálie, izolace na firewallu, dohledání škůdce, vyčištění a zpráva.',
-            practice: 'Vyšetření fiktivního incidentu a sepsání protokolu o zásahu (Incident Response Report).',
+            description: 'Komplexní scénář napadeného počítače: identifikace anomálie, izolace na firewallu, dohledání škůdce, vyčištění a sepsání zprávy.',
+            practice: 'Vyšetření simulovaného incidentu a sepsání technického protokolu o zásahu.',
             route: '/specializovana/operacni-systemy-2/bezpecnost/ctf'
           }
         ]
@@ -195,7 +195,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             title: 'Systémové služby Windows na pozadí a jejich životní cyklus',
             hours: 4,
             type: 'laborator',
-            description: 'Procesy běžící bez interaktivního přihlášení pod účtem SYSTEM, typy spouštění, systémové závislosti, sc.exe a automatický restart po selhání.',
+            description: 'Procesy běžící bez interaktivního přihlášení pod účtem SYSTEM, typy spouštění, systémové závislosti a automatický restart po selhání.',
             practice: 'Konfigurace zotavení po selhání služby a správa závislostí v konzoli services.msc.',
             route: '/specializovana/operacni-systemy-2/pokrocila-konfigurace/sluzby'
           },
@@ -255,7 +255,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             title: 'Síťové sdílení složek a efektivní přístupová práva (SMB)',
             hours: 4,
             type: 'laborator',
-            description: 'Protokol SMB (port 445), UNC cesty \\\\server\\share, kombinovaná práva sdílení vs. NTFS, trvalé mapování síťové jednotky.',
+            description: 'Protokol SMB, síťové cesty UNC \\\\server\\share, kombinovaná práva sdílení vs. NTFS, trvalé mapování síťové jednotky.',
             practice: 'Zřízení sdílené složky s oddělenými právy pro oddělení firmy a její namapování klientům jako síťového disku.',
             route: '/specializovana/operacni-systemy-2/active-directory/smb'
           },
@@ -264,7 +264,7 @@ export const OPS2_THEMATIC_PLAN: ThematicPlan = {
             title: 'Zabezpečená vzdálená správa pracovní plochy (RDP)',
             hours: 2,
             type: 'laborator',
-            description: 'Protokol RDP (port 3389), autorizace vzdálených uživatelů, zabezpečení na úrovni sítě NLA a konfigurace firewallu.',
+            description: 'Protokol RDP, autorizace vzdálených uživatelů, zabezpečení na úrovni sítě a konfigurace firewallu.',
             practice: 'Povolení RDP na klientské stanici, připojení přes mstsc a ověření aktivních terminálových relací.',
             route: '/specializovana/operacni-systemy-2/active-directory/vzdalena-sprava'
           },
