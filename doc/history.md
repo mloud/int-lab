@@ -161,6 +161,16 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
        - `ProcessSimulatorsTab.tsx`: Interaktivní Sysinternals Process Explorer strom procesů a živý inspektor integrity digitálního podpisu Authenticode s reálným SHA-256.
        - `ProcessLabTab.tsx`: Praktický forenzní protokol ve `WorksheetLayout` s 8 reálnými úlohami (`tasklist`, `resmon.exe`, Excel analýza, Sysinternals, `certutil`, Smart App Control) a exportem do Wordu.
        - `ProcessQuizTab.tsx`: 5 ověřovacích otázek na procesy a certifikáty.
+    - **Hodnocená práce: Malware a správa procesů (Písemný test)** (/bezpecnost/test):
+      - **Komponenta & Architektura:** MalwareProcessTestWorksheet.tsx na bázi TestWorksheetShell.
+      - **Zabezpečení:** Odemčení zadání PINem studenta (ZAK2026), odemčení vzorového řešení a didaktického hodnocení PINem učitele (OS2026).
+      - **Struktura (6 úloh, celkem 22 bodů):**
+        1. *Typologie a chování malwaru (5 b)* – Virus vs. Síťový červ vs. Trojský kůň (hostitel, šíření, sociální inženýrství).
+        2. *Třífázový filtr spuštění ve Windows (4 b)* – Kontrola integrity/podpisu (offline) ➔ Cloudová reputace (SmartScreen) ➔ Antivirový štít a zavedení do RAM (PID).
+        3. *Forenzní znaky malwaru v OS (4 b)* – Typosquatting, podezřelá složka (%TEMP%, AppData), vysoká zátěž CPU/RAM, chybějící Verified Signer.
+        4. *Certifikát spustitelného souboru (3 b)* – Co je certifikát, co obsahuje (autor, autorita, platnost, klíč/podpis) a význam jeho neexistence.
+        5. *Kryptografický hash (otisk) souboru (3 b)* – Definice jednosměrného matematického otisku pevné délky, lavinový efekt a příklady praktického využití (integrita, VirusTotal, digitální podpisy).
+        6. *Ověření změny obsahu při přenosu souboru po síti (3 b)* – Reálná situace bez nápovědy/spoileru v zadání; student samostatně popisuje ověření pomocí referenčního a lokálně spočteného hashe (SHA-256, CertUtil) a lavinový efekt.
 
 ### Blok 3: Pokročilá konfigurace Windows a PowerShell
 3. **Pokročilá konfigurace Windows a PowerShell** (`/specializovana/operacni-systemy-2/pokrocila-konfigurace`) – *Podkapitoly:*

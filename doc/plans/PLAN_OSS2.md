@@ -40,7 +40,7 @@ Posunout žáka do role **pokročilého administrátora klientských systémů (
 ### Blok 2: Bezpečnost koncových zařízení, inspekce a audit (20 h)
 * [x] **BZ1 Úvod do malwaru a principy nákazy** (`/bezpecnost/malware`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `malware/`)*
 * [x] **BZ2 Bezpečnostní audit procesů a digitální podpisy** (`/bezpecnost/procesy-a-certifikaty`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `procesy/`)*
-* [x] **Hodnocená práce: Malware a správa procesů** (`/bezpecnost/test`, PINy: `ZAK2026` / `OS2026`, 5 úloh, 20 b)
+* [x] **Hodnocená práce: Malware a správa procesů** (`/bezpecnost/test`, PINy: `ZAK2026` / `OS2026`, 6 úloh, 22 b)
 * [x] **BZ3 Systémový registr a automatické spouštění po startu** (`/bezpecnost/registr`, 2 h) – *Plně interaktivní modul (dekomponováno v podsložce `registr/`)*
 * [x] **BZ4 Systémový žurnál událostí a bezpečnostní audit** (`/bezpecnost/udalosti`, 2 h) – *Event Viewer, logy přihlášení Event ID 4624/4625, filtrace*
 * [x] **BZ5 Izolované prostředí (Sandbox) a antivirus** (`/bezpecnost/izolace`, 2 h) – *Signatury, heuristika, chování v RAM, test EICAR*
