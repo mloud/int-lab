@@ -1160,5 +1160,16 @@ px tsc --noEmit.
 
 54. **Přejmenování závěrečného bloku v OSS 3 na Komplexní projekt (bez slova rezerva v názvu):**
     - Název bloku upraven na: **5. Závěrečný komplexní projekt a reflexe tříletého kurikula** (10 h).
-    - Z názvu bloku bylo zcela odstraněno slovo  rezerva.
-    - Synchronizováno: ops3Plan.ts, svpOssData.ts, 	ematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json a nahráno do Google DOCX.
+    - Z názvu bloku bylo zcela odstraněno slovo rezerva.
+    - Synchronizováno: ops3Plan.ts, svpOssData.ts, tematicky-plan/page.tsx, OSS3.md, SVP_INSPIS.md, oss_curriculum_spec.json a nahráno do Google DOCX.
+
+55. **Integrace ŠVP, RVP a tematických plánů pro Robotiku 1 (ROB 3) a Robotiku 2 (ROB 4):**
+    - **Předměty:** Robotika 1 (3. ročník SŠ) a Robotika 2 (4. ročník SŠ), dotace 2 × 66 hodin ročně (2 hodiny týdně, 33 týdnů) pro obor 18-20-M/01 Informační technologie.
+    - **Kurikulární profily (RVP/ŠVP):** Vytvořeny podrobné znalostní databáze [`doc/curriculum/ROB3.md`](curriculum/ROB3.md) a [`doc/curriculum/ROB4.md`](curriculum/ROB4.md) s napojením na RVP, očekávanými výstupy, klíčovými kompetencemi, mezipředmětovými vazbami a mapováním na IntLab.
+    - **InspIS ŠVP datový model:** Vytvořen [`registry/curriculum/svp/svpRobData.ts`](../registry/curriculum/svp/svpRobData.ts) exportující `SVP_ROB_SHARED_INFO`, `SVP_ROB3_DATA` a `SVP_ROB4_DATA` (re-exportováno v `registry/curriculum/svpData.ts`).
+    - **Tematické plány:** Vytvořen [`registry/curriculum/thematic-plans/robPlan.ts`](../registry/curriculum/thematic-plans/robPlan.ts) exportující `ROB3_THEMATIC_PLAN` a `ROB4_THEMATIC_PLAN`, registrováno v `registry/curriculum/thematicPlans.ts`.
+    - **Webové stránky na portálu IntLab:**
+      - Robotika 1 (3. ročník): [`/specializovana/robotika-3/tematicky-plan`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/robotika-3/tematicky-plan/page.tsx) s interaktivním přepínáním mezi tematickým plánem a InspIS ŠVP.
+      - Robotika 2 (4. ročník): [`/specializovana/robotika-4/tematicky-plan`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/robotika-4/tematicky-plan/page.tsx) s interaktivním přepínáním mezi tematickým plánem a InspIS ŠVP.
+    - **Aktivní plánovací tabule:** `doc/plan.md` přepnut na aktivní vývoj *Robotika a vestavěné systémy (ROB 3 & ROB 4)* v souladu s Pravidlem 12.
+    - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.

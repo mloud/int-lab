@@ -24,7 +24,7 @@ export interface ThematicBlock {
 }
 
 export interface ThematicPlan {
-  subjectId: 'ops1' | 'ops2' | 'ops3';
+  subjectId: 'ops1' | 'ops2' | 'ops3' | 'rob3' | 'rob4' | string;
   subjectTitle: string;
   gradeLabel: string;
   grade: number;
