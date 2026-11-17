@@ -846,6 +846,18 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       actionLabel: 'Otevřít kapitolu'
                     },
                     {
+                      id: 'bezp-test-malware-procesy',
+                      title: 'Test: Malware a správa procesů',
+                      description: 'Hodnocená písemná práce: typologie malwaru, třífázový filtr spuštění ve Windows, forenzní znaky v OS a digitální certifikáty.',
+                      tag: 'TEST',
+                      icon: 'FileCheck',
+                      gradient: 'from-rose-500 to-pink-600',
+                      route: '/specializovana/operacni-systemy-2/bezpecnost/test',
+                      orderNumber: 3,
+                      actionLabel: 'Spustit test',
+                      isTest: true
+                    },
+                    {
                       id: 'bezp-registr',
                       title: 'Persistence škodlivého kódu a registr',
                       description: '5 úrovní automatického spouštění (Startup, zástupci, Plánovač, Služby, Registr) a audit v Autoruns.',
@@ -853,7 +865,7 @@ export const DEFAULT_SCHOOL: SchoolConfig = {
                       icon: 'FileCode',
                       gradient: 'from-blue-600 to-cyan-600',
                       route: '/specializovana/operacni-systemy-2/bezpecnost/registr',
-                      orderNumber: 3,
+                      orderNumber: 4,
                       actionLabel: 'Otevřít kapitolu'
                     },
                     // BZ4–BZ9: zatím přehledové stránky (viz registry/curriculum/outlines)

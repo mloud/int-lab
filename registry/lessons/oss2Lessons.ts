@@ -283,6 +283,41 @@ export const OSS2_LESSONS: LessonUnit[] = [
     componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/ProcessCertificatesChapter')
   },
   {
+    id: 'os2-bezpecnost-test',
+    title: 'Hodnocená práce: Malware a správa procesů',
+    shortCode: '#bz-test',
+    description: 'Písemná práce – typologie malwaru, třífázový filtr spuštění ve Windows, forenzní znaky v OS a digitální certifikáty.',
+    domain: 'informatika-specializovana',
+    category: 'operacni-systemy',
+    contentType: 'worksheet',
+    defaultPath: '/specializovana/operacni-systemy-2/bezpecnost/test',
+    iconName: 'FileCheck',
+    keywords: ['test', 'písemka', 'malware', 'procesy', 'certifikáty', 'authenticode', 'smartscreen', 'sha-256'],
+    difficulty: 'medium',
+    targetAudience: ['ss-odborna'],
+    recommendedGrades: [2],
+    estimatedMinutes: 30,
+    educationalPath: {
+      schoolType: 'ss',
+      schoolName: 'Střední škola',
+      trackName: 'Informační technologie',
+      grade: 2,
+      gradeLabel: '2. Ročník',
+      subject: 'Operační systémy 2',
+      thematicBlock: 'Bezpečnost operačních systémů',
+      chapter: 'Bezpečnost 1',
+      subchapter: '3. Hodnocená práce: Malware a správa procesů',
+      lesson: 'Hodnocená práce: Malware a správa procesů'
+    },
+    tabs: {
+      hasTheory: false,
+      hasSimulation: false,
+      hasWorksheet: true,
+      worksheetType: 'test'
+    },
+    componentLoader: () => import('@/components/specializovana/operacni-systemy-2/bezpecnost/MalwareProcessTestWorksheet')
+  },
+  {
     id: 'os2-bezpecnost-registr',
     title: 'Persistence škodlivého kódu a systémový registr',
     shortCode: '#bz3',

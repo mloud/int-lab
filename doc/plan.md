@@ -1,33 +1,34 @@
-# Aktivní plánovací tabule: Robotika a vestavěné systémy (ROB 3 & ROB 4)
+# Aktivní plánovací tabule: Operační systémy 2 (OSS 2)
 
-**Aktivní předmět:** Robotika 1 & Robotika 2 (3. a 4. ročník SŠ)  
+**Aktivní předmět:** Operační systémy 2 (2. ročník SŠ)  
 **Obor:** 18-20-M/01 Informační technologie  
-**Dotace:** 66 h ročně (ROB 3: 33 týdnů × 2 h, ROB 4: 33 týdnů × 2 h)  
-**Hardware ve škole:** 20× BBC micro:bit v2, 10× Cutebot, 10× IoT sada s OLED a relé, 6× VEX AIM s arénou a pukem, 5× VEX IQ 2nd Gen, 1× průmyslové rameno KUKA se smartPADem.  
+**Dotace:** 66 h ročně (33 výukových týdnů × 2 h)  
+**Cílová stanice:** Windows 11 Pro v podnikovém prostředí  
+**Aktuální blok:** Blok 2: Bezpečnost koncových zařízení, inspekce a audit (6.–15. týden, 20 h)  
 
 ---
 
-## 📅 Harmonogram a struktura kapitol
+## 🎯 Aktuální úkol: Tvorba hodnoceného testu v sekci Bezpečnost
+- **Umístění:** Za kapitolu *Správa procesů a digitální certifikáty* (`/specializovana/operacni-systemy-2/bezpecnost/procesy-a-certifikaty`)
+- **Nová podkapitola:** `/specializovana/operacni-systemy-2/bezpecnost/test`
+- **Typ:** Písemná práce (`TestWorksheetShell`)
+- **PIN studenta:** `ZAK2026` (odemčení zadání)
+- **PIN učitele:** `OS2026` (odemčení vzorového řešení)
 
-### 3. Ročník (ROB 3 – Celkem 66 hodin)
-- [x] **Kapitola 1: Mikrokontroléry a internet věcí (12 h, 1.–6. týden):** micro:bit v2, GPIO piny, senzory prostředí, OLED displej a přenos dat na web (`/specializovana/robotika-3/iot`).
-- [x] **Kapitola 2: Autonomní mobilní podvozek Cutebot (12 h, 7.–12. týden):** DC motory a zatáčení v Pythonu, bezpečné zastavení sonarem, sledování čáry a bludiště (`/specializovana/robotika-3/cutebot`).
-- [x] **Kapitola 3: Autonomní aréna VEX AIM (42 h, 13.–33. týden):** Všesměrová Omni kola, AI Vision kamera a AprilTags, detekce herních sudů, permanentní magnet, kicker a autonomní strategie v aréně na čas (`/specializovana/robotika-3/vex-aim`).
+### Otázky testu:
+1. **Typologie a chování malwaru:** Virus vs. Síťový červ vs. Trojský kůň (hostitel, šíření, sociální inženýrství).
+2. **Třífázový filtr spuštění ve Windows:** Lokální integrita/podpis (offline/CPU) ➔ Cloudová reputace (SmartScreen) ➔ Antivirový štít a zavedení do RAM (PID).
+3. **Forenzní znaky malwaru v OS:** Typosquatting ve jménu, podezřelá cesta (`%TEMP%`, `AppData`), 100% zátěž CPU/RAM, chybějící podpis Verified Signer.
+4. **Digitální certifikát (Authenticode):** Analogie voskové pečeti, identita autora + integrita kódu, údaje certifikátu.
+5. **Ověření změny obsahu při přenosu:** Kryptografický kontrolní součet SHA-256, porovnání hashe a lavinový efekt.
 
 ---
 
-### 4. Ročník (ROB 4 – Celkem 66 hodin)
-- [x] **Kapitola 1: Robotické mechanismy VEX IQ (28 h, 1.–14. týden):** Brain 2nd Gen, Smart Motory s enkodéry, laserový ToF senzor, barevný senzor, chapadlo Clawbot a autonomní manipulace (`/specializovana/robotika-4/vex-iq`).
-- [x] **Kapitola 2: Průmyslová robotika KUKA (12 h / 6 dvouhodinovek, 15.–20. týden):** Bezpečnost a E-STOP, smartPAD Jogging v osách A1–A6, souřadnice WORLD/TOOL, Teach-In body a Pick & Place cyklus (`/specializovana/robotika-4/kuka`).
-- [x] **Kapitola 3: Projekt (26 h, 21.–33. týden):** Samostatná nebo týmová práce na komplexním robotickém zařízení, vývoj v Pythonu, demonstrace a závěrečná obhajoba (`/specializovana/robotika-4/projekt`).
-
----
-
-## 📋 Aktuální stav synchronizace
-- [x] Znalostní kurikulární databáze aktualizována (`doc/curriculum/ROB3.md`, `doc/curriculum/ROB4.md`).
-- [x] InspIS ŠVP data sjednocena do 3 technologicky neutrálních bloků (`registry/curriculum/svp/svpRobData.ts`).
-- [x] Tematické plány rozepsány po měsících a týdnech (`registry/curriculum/thematic-plans/robPlan.ts`, `app/.../tematicky-plan/page.tsx`).
-- [x] Rozcestníky a placeholder stránky podkapitol sjednoceny (`LessonPlaceholderShell`).
-- [x] Horní i spodní tlačítka pro ŠVP a tematické plány aktivována napříč OSS, PVH i Robotikou.
-- [x] Didaktický rozbor předmětu odebrán z konfigurace Robotiky pro dosažení čistého, sjednoceného vzhledu.
-- [x] ŠVP DOCX export pro Robotiku (`tools/curriculum-docx/build_updated_rob_docx.py`) úspěšně vygenerován a aktualizován přímo v Google Drive dokumentu `Robotika V2.docx` (`1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`).
+## 📋 Stav realizace
+- [x] Didaktický rozbor a formulace otázek schváleny v chatu.
+- [x] PINy ověřeny (`ZAK2026` pro studenty, `OS2026` pro učitele).
+- [ ] Vytvoření testové komponenty `MalwareProcessTestWorksheet.tsx` s `TestWorksheetShell`.
+- [ ] Vytvoření stránky `app/specializovana/operacni-systemy-2/bezpecnost/test/page.tsx`.
+- [ ] Registrace kapitoly s `isTest: true` v `registry/curriculum/schools/defaultSchool.ts`.
+- [ ] Registrace v `registry/lessons/oss2Lessons.ts`.
+- [ ] Zápis do `doc/history.md` a `doc/plans/PLAN_OSS2.md`.

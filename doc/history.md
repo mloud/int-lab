@@ -1232,3 +1232,16 @@ px tsc --noEmit.
       - Učební osnova 4. ročníku (Blok 3 Projekt): výstup ŠVP upraven na *„zdůvodní zvolená technická řešení a postup realizace“*, učivo na *„Příprava praktické demonstrace a ověření funkčnosti celku“*.
       - Tematický plán (`robPlan.ts`): podtéma upraveno na *„Dokončení, optimalizace a příprava demonstrace“*.
     - **DOCX & Google Drive:** Regenerována specifikace `rob_curriculum_spec.json`, sestaven DOCX `Robotika_V2_updated.docx` a proveden in-place update na Google Drive (`1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`).
+
+60. **Implementace hodnoceného testu pro OSS 2 (Malware a správa procesů):**
+    - **Zařazení v kurikulu:** Nová testová podkapitola v bloku Bezpečnost 1 zařazená bezprostředně za kapitolu *Správa procesů a digitální certifikáty* (`/specializovana/operacni-systemy-2/bezpecnost/test`).
+    - **Komponenta a zabezpečení PINy:** Vytvořena komponenta `MalwareProcessTestWorksheet.tsx` postavená na šabloně `TestWorksheetShell`:
+      - **Student PIN:** `ZAK2026` (odemčení zadání, hash `c65f8eccc82462d02bdcaa9dc5bba508baee2951c2a858fd4737b232ed45a04a`).
+      - **Učitel PIN:** `OS2026` (odemčení vzorového řešení, hash `1315e5df74ae234ea7d73028d852847e6ef87634f0189016e86e1f23deb5034f`).
+    - **Obsah 5 úloh (celkem 20 bodů, 25–30 minut):**
+      - **Úloha 1 (5 b):** Typologie a chování malwaru (virus – hostitel, spuštění; červ – autonomní, skenování sítě a zranitelností; trojan – sociální inženýrství, dropper + payload).
+      - **Úloha 2 (4 b):** Třífázový filtr spuštění ve Windows (Fáze 1: Lokální kontrola integrity a podpisu Authenticode; Fáze 2: Cloudová prověrka reputace SmartScreen; Fáze 3: Antivirový štít Defender a zavedení do RAM s přidělením PID).
+      - **Úloha 3 (4 b):** Forenzní znaky malwaru v OS (typosquatting ve jménu, podezřelá cesta mimo System32, 100% zátěž CPU/RAM, chybějící podpis Verified Signer).
+      - **Úloha 4 (4 b):** Digitální certifikát Authenticode (analogie voskové pečeti, identita autora + integrita kódu; údaje certifikátu: Subject, Issuer, Timestamp/platnost, podpis hashe a veřejný klíč).
+      - **Úloha 5 (3 b):** Ověření změny obsahu při přenosu (princip kontrolního součtu SHA-256, porovnání hashe a lavinový efekt).
+    - **Registrace:** Zařazeno do `defaultSchool.ts` (`isTest: true`, růžová karta `#TEST`), do `oss2Lessons.ts` a vytvořena routa v `app/specializovana/operacni-systemy-2/bezpecnost/test/page.tsx`.
