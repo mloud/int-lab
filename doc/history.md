@@ -1218,3 +1218,15 @@ px tsc --noEmit.
       - **Tabulka 4 (Nepřiřazené RVP výstupy):** Všech 43 zbývajících nepřiřazených RVP výstupů z oboru 18-20-M/01 vygenerováno do závěrečné tabulky.
     - **Aktualizace na Google Disku:** Vygenerovaný soubor `tools/curriculum-docx/Robotika_V2_updated.docx` byl nahrán in-place přímo do souboru na Google Disku pomocí `gdrive mutate update 1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`.
     - **Ověření integrity:** Soubor byl validován pomocí python-docx knihovny (5 tabulek, 6 odstavců, správné počty řádků a sloupců bez narušení XML).
+
+59. **Úprava formulací ŠVP Robotiky (odstranění procent teorie, dokumentace a semestrálního projektu):**
+    - **Požadavek uživatele:**
+      1. Odstranit explicitní poměr `20 % teorie a rozbor technických principů, 80 % ...` z vymezení předmětu.
+      2. Odstranit všechny zmínky o technické dokumentaci z předmětu – ponechat čistě obecné projekty (dokumentace může být jejich součástí, ale není uváděna v kurikulu).
+      3. Odstranit formulaci „semestrální projekt“ – nahradit čistě „závěrečný projekt“.
+    - **Provedené změny:**
+      - Vymezení předmětu (`scope`): zjednodušeno na praktický laboratorní charakter (programování, konstrukce, zapojování a testování) se závěrečným projektem ve 4. ročníku.
+      - Hodnocení (`evaluation`) a klíčové kompetence: odebrány zmínky o technické dokumentaci.
+      - Učební osnova 4. ročníku (Blok 3 Projekt): výstup ŠVP upraven na *„zdůvodní zvolená technická řešení a postup realizace“*, učivo na *„Příprava praktické demonstrace a ověření funkčnosti celku“*.
+      - Tematický plán (`robPlan.ts`): podtéma upraveno na *„Dokončení, optimalizace a příprava demonstrace“*.
+    - **DOCX & Google Drive:** Regenerována specifikace `rob_curriculum_spec.json`, sestaven DOCX `Robotika_V2_updated.docx` a proveden in-place update na Google Drive (`1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`).

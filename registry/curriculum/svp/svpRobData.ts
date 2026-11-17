@@ -10,14 +10,14 @@ export const SVP_ROB_SHARED_INFO: SvpSharedInfo = {
   evaluation:
     'Hodnocení žáka vychází zejména z praktických úloh, funkčnosti vytvořených programů, ' +
     'schopnosti samostatně řešit technický problém, průběžné práce na projektech, kvality technického řešení, ' +
-    'schopnosti pracovat v týmu, technické dokumentace projektu a závěrečné prezentace a obhajoby vlastního řešení. ' +
+    'schopnosti pracovat v týmu a závěrečné prezentace a obhajoby vlastního řešení. ' +
     'Při hodnocení se nezohledňuje pouze konečná funkčnost zařízení, ale také postup řešení, samostatnost, ' +
     'schopnost odhalovat a odstraňovat chyby a schopnost vysvětlit princip vytvořeného řešení.',
   keyCompetencies: [
     {
       title: 'Kompetence k učení',
       description:
-        'Žák vyhledává a využívá informace z odborných zdrojů a technické dokumentace; ' +
+        'Žák vyhledává a využívá informace z odborných zdrojů; ' +
         'propojuje poznatky z programování, elektrotechniky, matematiky a fyziky; ' +
         'experimentuje a vyhodnocuje výsledky své práce; samostatně získává nové znalosti potřebné k řešení úkolu.'
     },
@@ -30,7 +30,7 @@ export const SVP_ROB_SHARED_INFO: SvpSharedInfo = {
     {
       title: 'Komunikativní kompetence',
       description:
-        'Žák používá odbornou terminologii; pracuje s technickou dokumentací; dokumentuje průběh a výsledky projektu; ' +
+        'Žák používá odbornou terminologii; ' +
         'prezentuje a obhajuje vlastní řešení; reaguje na dotazy a konstruktivně diskutuje o navržených řešeních.'
     },
     {
@@ -43,7 +43,7 @@ export const SVP_ROB_SHARED_INFO: SvpSharedInfo = {
       title: 'Digitální kompetence',
       description:
         'Žák využívá vývojová prostředí a specializovaný software; pracuje s digitálními daty získanými ze senzorů; ' +
-        'využívá síťovou komunikaci a IoT technologie; využívá digitální nástroje pro návrh, programování, testování a dokumentaci; ' +
+        'využívá síťovou komunikaci a IoT technologie; využívá digitální nástroje pro návrh, programování a testování; ' +
         'respektuje zásady bezpečného používání propojených zařízení.'
     }
   ],
@@ -52,7 +52,7 @@ export const SVP_ROB_SHARED_INFO: SvpSharedInfo = {
       code: 'PT - ČSP',
       name: 'Člověk a svět práce',
       description:
-        'Žáci řeší praktické technické problémy, pracují s technickou dokumentací, plánují pracovní postup a získávají zkušenosti s týmovou spoluprací a projektovým řízením.'
+        'Žáci řeší praktické technické problémy, plánují pracovní postup a získávají zkušenosti s týmovou spoluprací a projektovým řízením.'
     },
     {
       code: 'PT - ČŽP',
@@ -206,7 +206,7 @@ export const SVP_ROB4_DATA: SvpGradeData = {
       outcomes: [
         'samostatně nebo v týmu zrealizuje ucelené robotické nebo automatizační zařízení',
         'aplikuje osvojené programátorské dovednosti při řešení reálného technického problému',
-        'vede přehlednou technickou dokumentaci a zdůvodní zvolená řešení',
+        'zdůvodní zvolená technická řešení a postup realizace',
         'srozumitelně prezentuje a prakticky obhájí své dílo před publikem'
       ],
       content: [
@@ -215,7 +215,7 @@ export const SVP_ROB4_DATA: SvpGradeData = {
         'Vývoj a ladění řídicího softwaru v textovém programovacím jazyce Python',
         'Systémová integrace mechanických, elektronických a softwarových prvků',
         'Testování za mezních podmínek, optimalizace a odstraňování chyb',
-        'Zpracování technické zprávy a uživatelské dokumentace',
+        'Příprava praktické demonstrace a ověření funkčnosti celku',
         'Veřejná prezentace, praktická funkční demonstrace a obhajoba výsledku'
       ]
     }

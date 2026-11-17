@@ -19,7 +19,7 @@
 ### 4. Ročník (ROB 4 – Celkem 66 hodin)
 - [x] **Kapitola 1: Robotické mechanismy VEX IQ (28 h, 1.–14. týden):** Brain 2nd Gen, Smart Motory s enkodéry, laserový ToF senzor, barevný senzor, chapadlo Clawbot a autonomní manipulace (`/specializovana/robotika-4/vex-iq`).
 - [x] **Kapitola 2: Průmyslová robotika KUKA (12 h / 6 dvouhodinovek, 15.–20. týden):** Bezpečnost a E-STOP, smartPAD Jogging v osách A1–A6, souřadnice WORLD/TOOL, Teach-In body a Pick & Place cyklus (`/specializovana/robotika-4/kuka`).
-- [x] **Kapitola 3: Projekt (26 h, 21.–33. týden):** Samostatná nebo týmová práce na komplexním robotickém zařízení, Python kód, dokumentace a obhajoba (`/specializovana/robotika-4/projekt`).
+- [x] **Kapitola 3: Projekt (26 h, 21.–33. týden):** Samostatná nebo týmová práce na komplexním robotickém zařízení, vývoj v Pythonu, demonstrace a závěrečná obhajoba (`/specializovana/robotika-4/projekt`).
 
 ---
 

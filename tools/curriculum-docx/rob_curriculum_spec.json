@@ -3,9 +3,9 @@
     "subjectName": "Robotika",
     "fieldArea": "Odborné vzdělávání",
     "description": "Cílem vyučovacího předmětu Robotika je rozvíjet teoretické znalosti i praktické inženýrské dovednosti žáků v oblasti programování vestavných systémů, mikrokontrolérů, senzoriky, internetu věcí (IoT), mobilních autonomních podvozků, počítačového vidění, mechanických manipulátorů a průmyslové robotiky. Předmět navazuje na algoritmizaci v jazyce Python a hardware, přičemž propojuje informatiku, elektrotechniku a mechaniku. Důraz je kladen na samostatné technické myšlení, diagnostiku chyb v reálném fyzickém prostředí a týmovou realizaci projektů.",
-    "scope": "Výuka probíhá ve 3. a 4. ročníku s dotací 2 hodiny týdně (celkem 66 hodin ve 3. ročníku a 66 hodin ve 4. ročníku, celková dotace 132 hodin). Výuka má převážně praktický laboratorní charakter (20 % teorie a rozbor technických principů, 80 % praktické programování, konstrukce, zapojování a testování v robotické laboratoři). Žáci pracují samostatně nebo v malých týmech u laboratorních stolů s přístupem k vývojovým sadám, senzorům a robotickým platformám. Součástí výuky ve 4. ročníku je průmyslová bezpečnost a samostatný semestrální projekt.",
+    "scope": "Výuka probíhá ve 3. a 4. ročníku s dotací 2 hodiny týdně (celkem 66 hodin ve 3. ročníku a 66 hodin ve 4. ročníku, celková dotace 132 hodin). Výuka má převážně praktický laboratorní charakter (programování, konstrukce, zapojování a testování v robotické laboratoři). Žáci pracují samostatně nebo v malých týmech u laboratorních stolů s přístupem k vývojovým sadám, senzorům a robotickým platformám. Součástí výuky ve 4. ročníku je průmyslová bezpečnost a závěrečný projekt.",
     "integration": "Předmět integruje a rozvíjí učivo předmětů Programování (jazyk Python, funkce, algoritmizace), Hardware a Základy elektrotechniky (mikrokontroléry, senzory, akční členy, bezpečné zapojování obvodů), Počítačové sítě (síťová komunikace, Wi-Fi, MQTT, IoT protokoly) a Matematika a fyzika (vektory, prostorová orientace, kinematika, mechanika převodů).",
-    "evaluation": "Hodnocení žáka vychází zejména z praktických úloh, funkčnosti vytvořených programů, schopnosti samostatně řešit technický problém, průběžné práce na projektech, kvality technického řešení, schopnosti pracovat v týmu, technické dokumentace projektu a závěrečné prezentace a obhajoby vlastního řešení. Při hodnocení se nezohledňuje pouze konečná funkčnost zařízení, ale také postup řešení, samostatnost, schopnost odhalovat a odstraňovat chyby a schopnost vysvětlit princip vytvořeného řešení."
+    "evaluation": "Hodnocení žáka vychází zejména z praktických úloh, funkčnosti vytvořených programů, schopnosti samostatně řešit technický problém, průběžné práce na projektech, kvality technického řešení, schopnosti pracovat v týmu a závěrečné prezentace a obhajoby vlastního řešení. Při hodnocení se nezohledňuje pouze konečná funkčnost zařízení, ale také postup řešení, samostatnost, schopnost odhalovat a odstraňovat chyby a schopnost vysvětlit princip vytvořeného řešení."
   },
   "grades": [
     {
@@ -147,7 +147,7 @@
           "svp": [
             "samostatně nebo v týmu zrealizuje ucelené robotické nebo automatizační zařízení",
             "aplikuje osvojené programátorské dovednosti při řešení reálného technického problému",
-            "vede přehlednou technickou dokumentaci a zdůvodní zvolená řešení",
+            "zdůvodní zvolená technická řešení a postup realizace",
             "srozumitelně prezentuje a prakticky obhájí své dílo před publikem"
           ],
           "ucivo": [
@@ -156,7 +156,7 @@
             "Vývoj a ladění řídicího softwaru v textovém programovacím jazyce Python",
             "Systémová integrace mechanických, elektronických a softwarových prvků",
             "Testování za mezních podmínek, optimalizace a odstraňování chyb",
-            "Zpracování technické zprávy a uživatelské dokumentace",
+            "Příprava praktické demonstrace a ověření funkčnosti celku",
             "Veřejná prezentace, praktická funkční demonstrace a obhajoba výsledku"
           ]
         }

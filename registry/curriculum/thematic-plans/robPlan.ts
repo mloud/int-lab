@@ -534,7 +534,7 @@ export const ROB4_THEMATIC_PLAN: ThematicPlan = {
       hours: 26,
       theoryHours: 2,
       practiceHours: 24,
-      description: 'Samostatná nebo týmová realizace komplexního robotického nebo automatizačního zařízení na zvolené platformě, technická dokumentace a závěrečná obhajoba.',
+      description: 'Samostatná nebo týmová realizace komplexního robotického nebo automatizačního zařízení na zvolené platformě a závěrečná obhajoba.',
       rvpCompetence: 'Samostatně nebo v týmu zrealizuje a odborně obhájí ucelený inženýrský projekt.',
       subtopics: [
         {
@@ -566,11 +566,11 @@ export const ROB4_THEMATIC_PLAN: ThematicPlan = {
         },
         {
           id: 'rob4-b3-4',
-          title: 'Zpracování technické zprávy a dokumentace',
+          title: 'Dokončení, optimalizace a příprava demonstrace',
           hours: 4,
           type: 'projekt',
-          description: 'Tvorba technické dokumentace, schéma zapojení a uživatelský manuál.',
-          practice: 'Sepsání technické zprávy, popis kódu a návod k obsluze.',
+          description: 'Optimalizace funkčnosti celého zařízení, finální ladění algoritmů a příprava na předvedení.',
+          practice: 'Komplexní zkouška chování zařízení a příprava praktického předvedení.',
           route: '/specializovana/robotika-4/projekt/obhajoba'
         },
         {
