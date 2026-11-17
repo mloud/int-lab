@@ -248,9 +248,9 @@ export const Question: React.FC<{ id: string; title: string; compact?: boolean; 
 
 export const Sub: React.FC<{ label: string; compact?: boolean; children: React.ReactNode }> = ({ label, compact, children }) => (
   <div className={compact ? "mt-1.5" : "mt-3"}>
-    <p>
+    <div>
       <strong>{label}</strong> {children}
-    </p>
+    </div>
   </div>
 );
 
