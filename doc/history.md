@@ -19,6 +19,8 @@ Tento dokument slouží jako **trvalá paměť a přehled probraného učiva**, 
 | **OSS 2** | Operační systémy 2 | 2. Ročník SŠ | `/specializovana/operacni-systemy-1-2` | `id: 'ops2'` |
 | **PRG 1** | Programování a hry 1 | 1. Ročník SŠ | `/specializovana/programovani` | `id: 'prg1'` |
 | **PRG 2** | Programování a hry 2 | 2. Ročník SŠ | `/specializovana/programovani-2` | `id: 'prg2'` |
+| **ROB 3** | Robotika 1 | 3. Ročník SŠ | `/specializovana/robotika-3` | `id: 'rob3'` |
+| **ROB 4** | Robotika 2 | 4. Ročník SŠ | `/specializovana/robotika-4` | `id: 'rob4'` |
 
 ---
 
