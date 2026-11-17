@@ -5,7 +5,7 @@ import CategoryLayout from '@/components/layout/CategoryLayout';
 export default function Page() {
   return (
     <CategoryLayout 
-      title="VEX IQ: Inženýrské systémy" 
+      title="Robotické mechanismy VEX IQ" 
       category="specializovana"
       parent={{ title: 'Robotika 2', path: '/specializovana/robotika-4' }}
     >

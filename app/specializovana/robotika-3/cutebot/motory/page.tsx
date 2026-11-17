@@ -4,12 +4,12 @@ import LessonPlaceholderShell from '@/components/curriculum/LessonPlaceholderShe
 export default function Page() {
   return (
     <LessonPlaceholderShell
-      title="DC motory a PWM řízení"
-      subtitle="H-můstek a střída PWM pro regulaci rychlosti"
+      title="Řízení motorů a pohyb"
+      subtitle="Plynulá regulace rychlosti, zatáčení a manévry v Pythonu"
       hardware="Elecfreaks Cutebot"
       subjectTitle="Robotika 1"
       subjectPath="/specializovana/robotika-3"
-      chapterTitle="Pohony a Cutebot"
+      chapterTitle="Autonomní podvozek Cutebot"
       chapterPath="/specializovana/robotika-3/cutebot"
     />
   );

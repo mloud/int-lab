@@ -4,12 +4,12 @@ import LessonPlaceholderShell from '@/components/curriculum/LessonPlaceholderShe
 export default function Page() {
   return (
     <LessonPlaceholderShell
-      title="Obhajoba & Troubleshooting"
-      subtitle="Prezentace výsledků a řešení simulovaných poruch"
-      hardware="Celá výuková laboratoř"
+      title="Technická dokumentace a veřejná obhajoba"
+      subtitle="Zpracování uživatelské příručky, živá demonstrace funkce a ústní obhajoba"
+      hardware="Demonstrační pracoviště"
       subjectTitle="Robotika 2"
       subjectPath="/specializovana/robotika-4"
-      chapterTitle="Kooperativní projekt"
+      chapterTitle="Projekt"
       chapterPath="/specializovana/robotika-4/projekt"
     />
   );

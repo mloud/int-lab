@@ -5,7 +5,7 @@ import CategoryLayout from '@/components/layout/CategoryLayout';
 export default function Page() {
   return (
     <CategoryLayout 
-      title="KUKA EDU: Průmyslová robotika" 
+      title="Průmyslová robotika KUKA" 
       category="specializovana"
       parent={{ title: 'Robotika 2', path: '/specializovana/robotika-4' }}
     >

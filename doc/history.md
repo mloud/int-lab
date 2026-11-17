@@ -1193,3 +1193,16 @@ px tsc --noEmit.
       - Blok 3: Závěrečný inženýrský projekt a obhajoba (26 h – volitelná specializace na libovolné školní platformě: Cutebot + IoT + AI, VEX AIM nebo KUKA).
     - **Synchronizace kódu:** Aktualizovány soubory `ROB3.md`, `ROB4.md`, `svpRobData.ts` (bloky `rob3-b1`..`rob3-b10` a `rob4-b1`..`rob4-b3`), `robPlan.ts`, obě stránky `tematicky-plan/page.tsx`, `PLAN_ROB.md` a `doc/plan.md`.
     - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.
+
+57. **Dokončení sjednoceného ŠVP, tematických plánů a kapitol Robotiky (ROB 3 & ROB 4):**
+    - **Pedagogická koncepce a neutralita ŠVP:**
+      - ŠVP byl v souladu s akreditačními standardy formulován technologicky neutrálně bez názvů konkrétních stavebnic, bez specifických termínů („vícesměrový“, „elektromagnetický záchyt“), rozdělen do 3 ucelených tematických celků na ročník (ROB 3: Mikrokontroléry a IoT 12 h, Autonomní mobilní podvozky 12 h, Pokročilá mobilní robotika a počítačové vidění 42 h = 66 h; ROB 4: Robotické mechanismy a manipulační technika 28 h, Průmyslová robotika a víceosé manipulátory 12 h, Projekt 26 h = 66 h).
+      - Do 3. ročníku zařazen VEX AIM bezprostředně po Cutebotovi (oba jsou hotoví roboti bez nutnosti zdržování mechanickou montáží), VEX IQ přesunut do 4. ročníku k motorizovaným chapadlům v přímé návaznosti na průmyslové 6-osé rameno KUKA.
+      - V IoT doplněn přenos telemetrických dat do webového rozhraní.
+    - **Sjednocení UI a odebrání didaktického rozboru:**
+      - V `registry/curriculum/schools/defaultSchool.ts` byl z konfigurace `rob3` i `rob4` kompletně odebrán didaktický rozbor (`analysis`), čímž stránky Robotiky získaly identický čistý vzhled jako OSS a PVH.
+      - V `components/curriculum/DynamicSubjectHub.tsx` povolena podpora pro `rob3` a `rob4` v horní liště i přidána sjednocená spodní akční lišta pro přístup k Tematickému plánu a ŠVP.
+    - **Implementace kapitol a placeholderů:**
+      - Vytvořeny rozcestníky kapitol `DynamicSubchapterHub` a zavedeny placeholder stránky všech podkapitol s komponentou `LessonPlaceholderShell` pro 3. i 4. ročník.
+    - **Synchronizováno:** `defaultSchool.ts`, `svpRobData.ts`, `robPlan.ts`, `tematicky-plan/page.tsx` (ROB 3 i ROB 4), `ROB3.md`, `ROB4.md`, `PLAN_ROB.md`, `plan.md`.
+    - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.

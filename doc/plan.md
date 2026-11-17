@@ -3,36 +3,30 @@
 **Aktivní předmět:** Robotika 1 & Robotika 2 (3. a 4. ročník SŠ)  
 **Obor:** 18-20-M/01 Informační technologie  
 **Dotace:** 66 h ročně (ROB 3: 33 týdnů × 2 h, ROB 4: 33 týdnů × 2 h)  
-**Hardware ve škole:** 20× BBC micro:bit v2, 10× Cutebot, 10× IoT sada, SmartLens AI kamera, Prusa MINI, 6× VEX AIM s hřištěm, 5× VEX IQ, 1× průmyslové rameno KUKA se smartPADem.  
+**Hardware ve škole:** 20× BBC micro:bit v2, 10× Cutebot, 10× IoT sada s OLED a relé, 6× VEX AIM s arénou a pukem, 5× VEX IQ 2nd Gen, 1× průmyslové rameno KUKA se smartPADem.  
 
 ---
 
-## 📅 Harmonogram a struktura bloků
+## 📅 Harmonogram a struktura kapitol
 
-### 3. Ročník (ROB 3 – Celkem 66 hodin, 10 tematických celků dle ŠVP)
-- [x] **Blok 1 (2 h, 1. týden):** Úvod do robotiky, architektura robotického systému a bezpečnost práce.
-- [x] **Blok 2 (12 h, 2.–7. týden):** Mikrokontroléry a programování v MicroPythonu (micro:bit v2, GPIO, neblokující `ticks_ms()`, stavový automat FSM).
-- [x] **Blok 3 (10 h, 8.–12. týden):** Senzory a zpracování dat (I2C sběrnice, OLED displej, senzory prostředí, plovoucí průměr).
-- [x] **Blok 4 (8 h, 13.–16. týden):** Řízení motorů a pohyb robotu (Cutebot, PWM, sonar a zastavení před překážkou, sledování čáry).
-- [x] **Blok 5 (6 h, 17.–19. týden):** Autonomní robotika (rozhodovací logika, vyhýbání se překážkám, řešení bludiště).
-- [x] **Blok 6 (6 h, 20.–22. týden):** 3D modelování a konstrukce pro robotiku (Tinkercad, PrusaSlicer, tisk držáků na Prusa MINI).
-- [x] **Blok 7 (6 h, 23.–25. týden):** Internet věcí (IoT) a komunikace (micro:bit Radio 2.4 GHz, M2M telemetrie do PC/cloudu).
-- [x] **Blok 8 (4 h, 26.–27. týden):** Robotika a umělá inteligence (SmartLens AI kamera, detekce barev, sledování míčku).
-- [x] **Blok 9 (10 h, 28.–32. týden):** Závěrečný robotický projekt (týmový návrh, kód v Pythonu, integrace a testování).
-- [x] **Blok 10 (2 h, 33. týden):** Prezentace a obhajoba projektu (živá demonstrace v aréně před třídou).
+### 3. Ročník (ROB 3 – Celkem 66 hodin)
+- [x] **Kapitola 1: Mikrokontroléry a internet věcí (12 h, 1.–6. týden):** micro:bit v2, GPIO piny, senzory prostředí, OLED displej a přenos dat na web (`/specializovana/robotika-3/iot`).
+- [x] **Kapitola 2: Autonomní mobilní podvozek Cutebot (12 h, 7.–12. týden):** DC motory a zatáčení v Pythonu, bezpečné zastavení sonarem, sledování čáry a bludiště (`/specializovana/robotika-3/cutebot`).
+- [x] **Kapitola 3: Autonomní aréna VEX AIM (42 h, 13.–33. týden):** Všesměrová Omni kola, AI Vision kamera a AprilTags, detekce herních sudů, permanentní magnet, kicker a autonomní strategie v aréně na čas (`/specializovana/robotika-3/vex-aim`).
 
 ---
 
 ### 4. Ročník (ROB 4 – Celkem 66 hodin)
-- [x] **Blok 1 (28 h, 1.–14. týden):** Všesměrová mobilní robotika a herní aréna VEX AIM (3 Omni kola, pohyb všemi směry v Pythonu, elektromagnet na puky a třídní turnaj).
-- [x] **Blok 2 (12 h, 15.–20. týden):** Průmyslová robotika s ramenem KUKA (6 dvouhodinovek: bezpečnost, smartPAD, souřadnice WORLD/BASE, Teach-In a Pick & Place).
-- [x] **Blok 3 (26 h, 21.–33. týden):** Závěrečný komplexní inženýrský projekt a maturitní obhajoba (samostatný vývoj na zvolené platformě a ústní obhajoba).
+- [x] **Kapitola 1: Robotické mechanismy VEX IQ (28 h, 1.–14. týden):** Brain 2nd Gen, Smart Motory s enkodéry, laserový ToF senzor, barevný senzor, chapadlo Clawbot a autonomní manipulace (`/specializovana/robotika-4/vex-iq`).
+- [x] **Kapitola 2: Průmyslová robotika KUKA (12 h / 6 dvouhodinovek, 15.–20. týden):** Bezpečnost a E-STOP, smartPAD Jogging v osách A1–A6, souřadnice WORLD/TOOL, Teach-In body a Pick & Place cyklus (`/specializovana/robotika-4/kuka`).
+- [x] **Kapitola 3: Projekt (26 h, 21.–33. týden):** Samostatná nebo týmová práce na komplexním robotickém zařízení, Python kód, dokumentace a obhajoba (`/specializovana/robotika-4/projekt`).
 
 ---
 
 ## 📋 Aktuální stav synchronizace
-- [x] Znalostní kurikulární databáze vytvořena a sladěna (`doc/curriculum/ROB3.md`, `doc/curriculum/ROB4.md`).
-- [x] InspIS ŠVP data implementována (`registry/curriculum/svp/svpRobData.ts`).
-- [x] Tematické plány týden po týdnu registrovány (`registry/curriculum/thematic-plans/robPlan.ts`).
-- [x] Webové stránky portálu IntLab zprovozněny (`app/specializovana/robotika-3/tematicky-plan/page.tsx` a `robotika-4`).
-- [x] Historie projektu zaznamenána v `doc/history.md`.
+- [x] Znalostní kurikulární databáze aktualizována (`doc/curriculum/ROB3.md`, `doc/curriculum/ROB4.md`).
+- [x] InspIS ŠVP data sjednocena do 3 technologicky neutrálních bloků (`registry/curriculum/svp/svpRobData.ts`).
+- [x] Tematické plány rozepsány po měsících a týdnech (`registry/curriculum/thematic-plans/robPlan.ts`, `app/.../tematicky-plan/page.tsx`).
+- [x] Rozcestníky a placeholder stránky podkapitol sjednoceny (`LessonPlaceholderShell`).
+- [x] Horní i spodní tlačítka pro ŠVP a tematické plány aktivována napříč OSS, PVH i Robotikou.
+- [x] Didaktický rozbor předmětu odebrán z konfigurace Robotiky pro dosažení čistého, sjednoceného vzhledu.

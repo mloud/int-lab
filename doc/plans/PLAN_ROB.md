@@ -9,34 +9,29 @@
 ---
 
 ## 🎯 Hlavní pedagogický cíl
-Propojit programování v Pythonu s reálným fyzickým hardwarem:
-- Ve 3. ročníku zvládnout vestavné systémy (BBC micro:bit v2 v MicroPythonu), čtení senzorů a IoT, mobilního robota Cutebot, základy 3D modelování pro robotiku a AI kameru SmartLens (10 tematických celků podle oficiálního ŠVP).
-- Ve 4. ročníku ovládnout všesměrovou arénu VEX AIM, reálné průmyslové rameno KUKA (12 h bezpečné praxe s panelem smartPAD) a obhájit samostatný inženýrský maturitní projekt.
+Propojit programování v Pythonu s reálným fyzickým hardwarem bez zbytečné abstraktní teorie:
+- **3. ročník (ROB 3 – 66 h):** Mikrokontroléry a IoT s přenosem na web (12 h), mobilní podvozek Cutebot (12 h) a autonomní aréna VEX AIM s AI kamerou, AprilTags a magnetem (42 h).
+- **4. ročník (ROB 4 – 66 h):** Inženýrské mechanismy VEX IQ s laserovým ToF senzorem a chapadlem (28 h), průmyslové 6-osé rameno KUKA na 6 dvouhodinovek (12 h) a ročníkový Projekt s obhajobou (26 h).
 
 ---
 
 ## 📊 Stav realizace na portálu IntLab
 
-### 3. Ročník (ROB 3 – Micro:bit, IoT, Cutebot, 3D tisk, AI kamera – 66 h)
-* [x] **1. Úvod do robotiky (2 h):** Architektura robotického systému, bezpečnost práce v laboratoři.
-* [x] **2. Mikrokontroléry a programování (12 h):** BBC micro:bit v2, MicroPython, REPL konzole, GPIO, neblokující časování `ticks_ms()`, stavový automat FSM (`/robotika-3/mcu/*`).
-* [x] **3. Senzory a zpracování dat (10 h):** Sběrnice I2C, OLED displej, IoT senzory prostředí, plovoucí průměr a filtrace šumu (`/robotika-3/senzory/*`).
-* [x] **4. Řízení motorů a pohyb robotu (8 h):** Cutebot, H-můstek, PWM regulace, parkovací asistent se sonarem, sledování čáry (`/robotika-3/cutebot/*`).
-* [x] **5. Autonomní robotika (6 h):** Rozhodovací logika, řešení bludiště a vyhýbání se překážkám (`/robotika-3/navigace/*`).
-* [x] **6. 3D modelování a konstrukce (6 h):** Tinkercad / Onshape, tisk držáků senzorů na Prusa MINI.
-* [x] **7. Internet věcí a komunikace (6 h):** Micro:bit Radio 2.4 GHz, M2M telemetrie a odesílání dat do cloudu ThingSpeak (`/robotika-3/iot/*`).
-* [x] **8. Robotika a umělá inteligence (4 h):** SmartLens AI kamera, reakce na barvy a sledování míčku.
-* [x] **9. Závěrečný robotický projekt (10 h):** Týmový vývoj a integrace zařízení v Pythonu.
-* [x] **10. Prezentace a obhajoba projektu (2 h):** Živá demonstrace v aréně a obhajoba před třídou.
+### 3. Ročník (ROB 3 – 66 h)
+* [x] **Kapitola 1: Mikrokontroléry a internet věcí (IoT) (12 h):** micro:bit v2, GPIO piny, senzory prostředí, OLED displej SSD1306 a odesílání dat na web (`/specializovana/robotika-3/iot/*`).
+* [x] **Kapitola 2: Autonomní podvozek Cutebot (12 h):** DC motory, bezpečné zastavení ultrazvukem, sledování vodicí linie IR senzory a průjezd bludištěm (`/specializovana/robotika-3/cutebot/*`).
+* [x] **Kapitola 3: Autonomní aréna VEX AIM (42 h):** 3 všesměrová Omni kola, AI Vision kamera a AprilTags, detekce herních sudů, permanentní magnet, mechanický kicker a autonomní strategie v aréně na čas (`/specializovana/robotika-3/vex-aim/*`).
+* [x] **Tematický plán a ŠVP:** Interaktivní tabulka `SimplePlanTable` po měsících a oficiální InspIS ŠVP (`/specializovana/robotika-3/tematicky-plan`).
 
-### 4. Ročník (ROB 4 – VEX AIM aréna, KUKA rameno, Inženýrský projekt – 66 h)
-* [x] **1. Všesměrová mobilní robotika VEX AIM (28 h):** 6 robotů v aréně, 3 Omni kola, pohyb do všech směrů v Pythonu, elektromagnet na puky a třídní turnaj (`/robotika-4/aim-kinematika/*`).
-* [x] **2. Průmyslová robotika s ramenem KUKA (12 h):** 6 dvouhodinovek: bezpečnost a E-Stop, ruční pojezd přes smartPAD v souřadnicích WORLD/BASE, Teach-In a Pick & Place manipulace s kostkou (`/robotika-4/kuka/*`).
-* [x] **3. Závěrečný komplexní inženýrský projekt a obhajoba (26 h):** Samostatný vývoj na zvolené platformě, technická dokumentace a ústní maturitní obhajoba před komisí (`/robotika-4/projekt/*`).
+### 4. Ročník (ROB 4 – 66 h)
+* [x] **Kapitola 1: Robotické mechanismy VEX IQ (28 h):** Brain 2nd Gen, Smart Motory s enkodéry, laserový dálkoměr ToF, barevný senzor, motorizované chapadlo Clawbot a třídění předmětů (`/specializovana/robotika-4/vex-iq/*`).
+* [x] **Kapitola 2: Průmyslová robotika KUKA (12 h / 6 dvouhodinovek):** Bezpečnost a E-STOP, smartPAD Jogging v osách A1–A6, souřadné systémy WORLD/TOOL, Teach-In body a Pick & Place cyklus (`/specializovana/robotika-4/kuka/*`).
+* [x] **Kapitola 3: Projekt (26 h):** Samostatná nebo týmová práce na zvolené platformě, vývoj řídicího softwaru v Pythonu, integrace a veřejná obhajoba (`/specializovana/robotika-4/projekt/*`).
+* [x] **Tematický plán a ŠVP:** Interaktivní tabulka `SimplePlanTable` po měsících a oficiální InspIS ŠVP (`/specializovana/robotika-4/tematicky-plan`).
 
 ---
 
 ## 🔥 Aktuální úkoly a Backlog (Další rozvoj)
 
-- [ ] Doplnění interaktivních návodů a kódových snippetů v MicroPythonu do podkapitol na webu IntLab.
+- [ ] Příprava konkrétních kódových snippetů v Pythonu do podkapitol na webu IntLab.
 - [ ] Vytvoření interaktivního kontrolního kvízu bezpečnosti práce u ramene KUKA.
