@@ -128,23 +128,6 @@ export const DynamicSubjectHub: React.FC<DynamicSubjectHubProps> = ({ subjectId,
           })}
         </div>
 
-        {/* Spodní lišta / odkaz na Tematický plán a ŠVP */}
-        {hasThematicPlan && (
-          <div className="w-full mt-10 pt-8 border-t border-slate-100 flex justify-center">
-            <button
-              onClick={() => router.push(`${subject.route}/tematicky-plan`)}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
-            >
-              <Calendar className="w-4 h-4 text-indigo-400" />
-              <span>Zobrazit kompletní Tematický plán a ŠVP předmětu</span>
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-indigo-300 border border-slate-700">
-                {planHours}
-              </span>
-              <ArrowRight className="w-4 h-4 text-slate-400" />
-            </button>
-          </div>
-        )}
-
         {/* Volitelný didaktický rozbor učiva (pokud je v datech definován) */}
         {subject.analysis && (
           <div className="w-full mt-12 text-left border-t border-slate-200/80 pt-10">
