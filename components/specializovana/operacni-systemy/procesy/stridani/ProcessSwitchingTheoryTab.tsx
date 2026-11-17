@@ -133,45 +133,45 @@ export default function ProcessSwitchingTheoryTab() {
                   Osa X: čas na procesoru (CPU)
                 </text>
 
-                {/* ŘÁDEK 1: Úloha A (Word) - začíná PŘESNĚ na x = 90, nepřesahuje doleva! */}
+                {/* ŘÁDEK 1: Úloha A (Word) */}
                 <g>
-                  {/* Blok 1 */}
+                  {/* Blok 1: [91, 166] */}
                   <rect x="91" y="14" width="75" height="28" fill="#141c6d" rx="1" />
                   <text x="128.5" y="32" textAnchor="middle" className="text-[11px] font-bold fill-white">Word</text>
 
-                  {/* Blok 2 */}
-                  <rect x="295" y="14" width="75" height="28" fill="#141c6d" rx="1" />
-                  <text x="332.5" y="32" textAnchor="middle" className="text-[11px] font-bold fill-white">Word</text>
+                  {/* Blok 2: [316, 391] */}
+                  <rect x="316" y="14" width="75" height="28" fill="#141c6d" rx="1" />
+                  <text x="353.5" y="32" textAnchor="middle" className="text-[11px] font-bold fill-white">Word</text>
 
-                  {/* Blok 3 - delší běh jako v předloze */}
-                  <rect x="500" y="14" width="130" height="28" fill="#141c6d" rx="1" />
-                  <text x="565" y="32" textAnchor="middle" className="text-[11px] font-bold fill-white">Word</text>
+                  {/* Blok 3: [521, 651] - delší běh */}
+                  <rect x="521" y="14" width="130" height="28" fill="#141c6d" rx="1" />
+                  <text x="586" y="32" textAnchor="middle" className="text-[11px] font-bold fill-white">Word</text>
                 </g>
 
                 {/* ŘÁDEK 2: Úloha B (Spotify) */}
                 <g>
-                  {/* Blok 1 */}
+                  {/* Blok 1: [166, 241] */}
                   <rect x="166" y="59" width="75" height="28" fill="#141c6d" rx="1" />
                   <text x="203.5" y="77" textAnchor="middle" className="text-[11px] font-bold fill-white">Spotify</text>
 
-                  {/* Blok 2 */}
-                  <rect x="370" y="59" width="75" height="28" fill="#141c6d" rx="1" />
-                  <text x="407.5" y="77" textAnchor="middle" className="text-[11px] font-bold fill-white">Spotify</text>
+                  {/* Blok 2: [391, 466] */}
+                  <rect x="391" y="59" width="75" height="28" fill="#141c6d" rx="1" />
+                  <text x="428.5" y="77" textAnchor="middle" className="text-[11px] font-bold fill-white">Spotify</text>
                 </g>
 
-                {/* ŘÁDEK 3: Úloha C (Prohlížeč) - text se 100% vejde do obdélníku */}
+                {/* ŘÁDEK 3: Úloha C (Prohlížeč) */}
                 <g>
-                  {/* Blok 1 */}
+                  {/* Blok 1: [241, 316] */}
                   <rect x="241" y="104" width="75" height="28" fill="#141c6d" rx="1" />
                   <text x="278.5" y="122" textAnchor="middle" className="text-[10px] font-bold fill-white">Chrome</text>
 
-                  {/* Blok 2 */}
-                  <rect x="445" y="104" width="55" height="28" fill="#141c6d" rx="1" />
-                  <text x="472.5" y="122" textAnchor="middle" className="text-[10px] font-bold fill-white">Chrome</text>
+                  {/* Blok 2: [466, 521] - kratší běh (I/O) */}
+                  <rect x="466" y="104" width="55" height="28" fill="#141c6d" rx="1" />
+                  <text x="493.5" y="122" textAnchor="middle" className="text-[10px] font-bold fill-white">Chrome</text>
 
-                  {/* Blok 3 na konci */}
-                  <rect x="630" y="104" width="80" height="28" fill="#141c6d" rx="1" />
-                  <text x="670" y="122" textAnchor="middle" className="text-[10px] font-bold fill-white">Chrome</text>
+                  {/* Blok 3: [651, 731] */}
+                  <rect x="651" y="104" width="80" height="28" fill="#141c6d" rx="1" />
+                  <text x="691" y="122" textAnchor="middle" className="text-[10px] font-bold fill-white">Chrome</text>
                 </g>
               </svg>
             </div>
