@@ -1,62 +1,80 @@
-# Profil kurikula: Robotika 1 (ROB 3) – 3. ročník SŠ
+# Kurikulární profil předmětu: Robotika 1 (ROB 3)
 
-**Kód předmětu:** ROB 3  
+**Obor vzdělání:** 18-20-M/01 Informační technologie  
+**Předmět:** Robotika  
 **Ročník:** 3. ročník SŠ  
-**Obor:** 18-20-M/01 Informační technologie  
-**Hodinová dotace:** 2 hodiny týdně / 66 hodin ročně (33 týdnů)  
-**Forma výuky:** Teorie a praktická laboratorní cvičení (1:1 / 1:2 na fyzickém hardware)  
-**Hardware stack:** BBC micro:bit v2, Elecfreaks IOKit (senzory), Elecfreaks Cutebot (diferenciální podvozek)  
-**Software stack:** MicroPython, VS Code / Python Editor for micro:bit  
+**Hodinová dotace:** 2 hodiny týdně, celkem 66 hodin (33 výukových týdnů)  
+**Charakteristika:** Odborný, prakticky orientovaný předmět  
+**Výchozí routa v IntLab:** `/specializovana/robotika-3`  
 
 ---
 
-## 1. Napojení na Rámcový vzdělávací program (RVP)
+## 1. Charakteristika vyučovacího předmětu
 
-### Kód a název oboru:
-18-20-M/01 Informační technologie
+Předmět Robotika rozvíjí znalosti a dovednosti žáků v oblasti programování, řízení robotických systémů, práce se senzory, automatizace, internetu věcí a využití umělé inteligence v robotice.
 
-### Klíčové kompetence RVP:
-- **Kompetence k řešení problémů:** Žák analyzuje fyzikální a senzorický problém reálného světa, navrhuje algoritmy pro kompenzaci nepřesností měření a mechanických tolerancí robotu.
-- **Kompetence pracovní a digitální:** Ovládá nástroje pro programování mikrokontrolérů, bezpečně manipuluje s elektronickými stavebnicemi, akumulátory a mechatronickými pohony.
+Navazuje na znalosti získané zejména v předmětech Programování (jazyk Python ve 2. ročníku), Hardware a Základy elektrotechniky. Elektrotechnické principy a elektronické obvody proto nejsou v předmětu Robotika znovu systematicky probírány, ale žáci je využívají při praktické práci s robotickými systémy.
 
-### Odborné kompetence a očekávané výstupy RVP:
-- Volí a konfiguruje vhodné technické prostředky vestavných systémů.
-- Navrhuje a programuje algoritmy řízení reálných mechatronických soustav.
-- Aplikuje zásady neblokujícího programování a obsluhy periferií vestavného mikropočítače.
-- Využívá bezdrátovou komunikaci pro telemetrii a dálkové ovládání mobilního systému.
+Výuka je založena především na praktických cvičeních, experimentování, problémových úlohách a projektové práci. Žáci programují mikrokontroléry, pracují se senzory a pohony, sestavují a programují robotická zařízení, vytvářejí algoritmy pro autonomní řízení a zpracování dat. Seznamují se také s využitím 3D modelování při konstrukci robotických zařízení, s principy IoT a s možnostmi využití umělé inteligence a počítačového vidění.
+
+Důraz je kladen na samostatné řešení problémů, algoritmické a logické myšlení, týmovou spolupráci, experimentování a schopnost navrhnout, realizovat, otestovat a prezentovat vlastní technické řešení. Doporučený poměr výuky je přibližně 70 % praktických činností a 30 % výkladu, návrhu, analýzy a dokumentace.
 
 ---
 
-## 2. Školní vzdělávací program (ŠVP InspIS)
+## 2. Hardwarová platforma a vybavení školy
 
-### Cíle předmětu:
-Cílem předmětu je převést studenta ze světa čistě virtuálního software na monitoru počítače do **světa fyzických mechatronických a vestavných systémů**. Student se učí porozumět architektuře mikrokontrolérů (MCU), práci s fyzickými GPIO piny, zpracování analogových signálů ze senzorů a řízení reálných motorů mobilního robota.
-
-### Profil absolventa:
-Absolvent předmětu rozumí rozdílu mezi operačním systémem PC a jednočipovým mikrokontrolérem. Dokáže navrhnout neblokující stavový automat (FSM), implementovat softwarovou filtraci šumu senzorů, zkalibrovat diferenciální podvozek mobilního robota a realizovat autonomní sledování trasy pomocí proporcionální regulace.
-
----
-
-## 3. Výsledky vzdělávání a rozpis učiva (ŠVP InspIS)
-
-| Výsledky vzdělávání (Žák:) | Rozpis učiva | Hodiny |
-| :--- | :--- | :---: |
-| • popíše architekturu jednočipového mikrokontroléru a porovná jej s univerzálním počítačem<br>• bezpečně zapojuje periferie na GPIO piny mikrokontroléru<br>• vytváří neblokující řídicí kód v MicroPythonu s využitím časových čítačů namísto blokujících prodlev<br>• navrhuje a implementuje stavové automaty (FSM) pro deterministické řízení logiky vestavného systému | **1. Architektura MCU a digitální GPIO**<br>• Architektura mikrokontroléru (jádro ARM Cortex-M4, paměť Flash a RAM, taktovací frekvence, spotřeba)<br>• Digitální vstupy a výstupy GPIO (logické úrovně, pull-up / pull-down rezistory, ochrana pinů)<br>• Časování a neblokující architektura (funkce `ticks_ms()`, periodické obslužné smyčky namísto `sleep()`)<br>• Deterministické řízení (koncept konečného stavového automatu FSM, stavy, přechody a události)<br>*PT - ČSP* | **10** |
-| • vysvětlí princip převodu spojitého analogového signálu do digitální podoby (ADC převodník)<br>• připojuje a programově obsluhuje senzory fyzikálních veličin na sběrnici I2C<br>• navrhuje algoritmy pro softwarové filtrování šumu a kompenzaci kolísání měřených hodnot<br>• aplikuje hysterezi pro stabilní rozhodování v hraničních stavech | **2. Senzorika, ADC a sběrnice I2C**<br>• Analogový signál a ADC (vzorkování napětí, rozlišení převodníku, kvantování)<br>• Sériová sběrnice I2C (adresace periferií na sběrnici, vodiče SDA/SCL, čtení registrů senzorů)<br>• Zpracování signálu (šum reálného světa, plovoucí průměr, dolní propust)<br>• Prahování a hystereze (eliminace kmitání stavu na rozhraní prahových hodnot světla a vzdálenosti)<br>*PT - ČDS* | **14** |
-| • popíše funkci H-můstku a princip pulzně-šířkové modulace (PWM) pro řízení stejnosměrných motorů<br>• ovládá kinematiku dvoukolového diferenciálního podvozku<br>• provádí kalibraci mechanických nesouměrností pohonu pro dosažení přímého směru jízdy<br>• implementuje plynulý rozjezd, brzdění a přesné otáčení na místě | **3. Pohony a diferenciální kinematika (Cutebot)**<br>• Řízení DC motorů (H-můstek, reverzace chodu, PWM střída a regulace rychlosti otáčení)<br>• Kinematika diferenciálního podvozku (rychlost levého a pravého kola, poloměr zatáčení, otáčení kolem středu)<br>• Hardwarová kalibrace (odchylky převodovek a motorů, trimování rychlostí pro přímou jízdu)<br>• Pohybové profily (proporcionální brzdění před překážkou, bezpečnostní zastavení)<br>*PT - ČSP* | **12** |
-| • navrhne algoritmus sledování vodicí linie pomocí pole infračervených odrazových senzorů<br>• porovná a vyhodnotí diskrétní skokové řízení (Bang-Bang) oproti spojité proporcionální regulaci (P/PD)<br>• řeší krizové situace na trase (ztráta linie, pravoúhlé odbočky, křižovatky)<br>• naprogramuje autonomní chování mobilního robota v aréně | **4. Autonomní navigace a regulační smyčky**<br>• Detekce vodicí čáry (reflexní optické senzory, kontrast povrchu, kalibrace černé a bílé)<br>• Regulační algoritmy (diskrétní Bang-Bang regulace vs. spojitý proporcionální P/PD regulátor)<br>• Zpracování regulační odchylky (výpočet chyby vystředění na čáře, dynamická korekce rychlostí motorů)<br>• Řešení křižovatek a rozhodovací logika autonomního robota v aréně (Sumo výzva)<br>*PT - ČSP* | **18** |
-| • nakonfiguruje bezdrátovou síťovou komunikaci na frekvenci 2.4 GHz mezi mikrokontroléry<br>• sestavuje a parsuje síťové telemetrické pakety pro přenos dat v reálném čase<br>• vytvoří bezdrátový ovladač mobilního robota s využitím vestavěného akcelerometru<br>• zprovozní monitorovací dispečink zobrazující stav autonomních robotů v síti | **5. IoT a bezdrátová telemetrie (micro:bit Radio)**<br>• Bezdrátový přenos dat (protokol micro:bit Radio, 2.4 GHz kanály, síťové skupiny)<br>• Struktura paketů (hlavička, identifikace odesílatele, datový náklad, parsování příkazů)<br>• Dálkové ovládání a interakce (využití vnitřního akcelerometru a gest pro řízení pohybu)<br>• Telemetrie a dispečink (sběr dat ze senzorů v reálném čase, diagnostika baterie a stavu robotů)<br>*PT - ČDS* | **12** |
-| **Celková hodinová dotace ročníku:** | | **66 h** |
+- **Mikrokontroléry:** BBC micro:bit v2 (20 ks – každý žák má k dispozici vlastní desku).
+- **Vývojové prostředí a jazyk:** MicroPython / Python 3 (textové kódování, návaznost na PRG 2).
+- **Senzorika a IoT:** 10 rozšiřujících sad IoT Kit (čidla teploty, vlhkosti, osvětlení, půdní vlhkosti, OLED displej SSD1306, relé, Wi-Fi modul).
+- **Mobilní robotické platformy:** 10 robotických podvozků Cutebot (diferenciální pohon, ultrazvukový dálkoměr, sledovač čáry, RGB LED).
+- **Počítačové vidění:** SmartLens AI kamera (barevné sledování, detekce objektů a značek).
+- **3D modelování a prototypování:** 3D tiskárna Prusa MINI pro tisk funkčních úchytů a nárazníků.
 
 ---
 
-## 4. Tematický plán předmětu (Rozpis 66 hodin)
+## 3. Učební osnova (10 tematických celků – celkem 66 hodin)
 
-| Blok | Měsíce & Týdny | Tematický celek | Dotace | Cílové výstupy a praxe |
-|:---:|:---:|---|:---:|---|
-| **1** | **Září – Říjen** (1.–5. týden) | **Architektura MCU & GPIO** | 10 h | Architektura mikrokontroléru, MicroPython REPL, GPIO piny, časování bez sleep(), stavový automat FSM. |
-| **2** | **Říjen – Listopad** (6.–12. týden) | **Senzorika, ADC & Sběrnice** | 14 h | Analogové senzory (IOKit), ADC převodník, I2C sběrnice (OLED displej, ultrazvuk), filtrace šumu, hystereze. |
-| **3** | **Prosinec – Leden** (13.–18. týden) | **Pohony & Diferenciální kinematika** | 12 h | Cutebot podvozek, H-můstek, PWM regulace DC motorů, kalibrace přímého směru jízdy, pohybové profily. |
-| **4** | **Únor – Duben** (19.–27. týden) | **Autonomní navigace & Řízení** | 18 h | IR sledovače čáry, Bang-Bang vs. proporcionální P/PD regulátor, křižovatky, autonomní Sumo aréna. |
-| **5** | **Květen – Červen** (28.–33. týden) | **IoT & Bezdrátová telemetrie** | 12 h | micro:bit Radio 2.4 GHz, parsování paketů, dálkové ovládání akcelerometrem, telemetrický dispečink. |
-| **Σ** | **Celý školní rok (33 týdnů)** | **Celkem** | **66 h** | **Pravidelná 2hodinová týdenní dotace (33 týdnů × 2 h)** |
+| # | Tematický celek | Učivo | Výsledky vzdělávání – žák | Dotace |
+|---|---|---|---|:---:|
+| **1.** | **Úvod do robotiky** | Robotika a její využití. Robotické systémy. Typy robotů. Autonomní a dálkově řízené systémy. Základní části robotického systému – řídicí jednotka, senzory, akční členy. Robotika v průmyslu, službách, dopravě a domácnosti. Bezpečnost práce. | vysvětlí pojem robotika a uvede oblasti jejího využití; rozliší základní typy robotů; popíše funkci základních částí robotického systému; rozliší autonomní a dálkově řízený systém; dodržuje zásady bezpečné práce | **2 h** |
+| **2.** | **Mikrokontroléry a programování robotických systémů** | Mikrokontroléry BBC micro:bit v2 / ARM jádro. Vývojové prostředí a REPL v MicroPythonu. Struktura programu. Proměnné a datové typy. Podmínky, cykly, funkce. Digitální a analogové vstupy a výstupy GPIO. Knihovny. Časování bez zpoždění (`ticks_ms()`). Ladění programu. Jednoduchý stavový automat. | pracuje s vývojovým prostředím mikrokontroléru; vytvoří, upraví a nahraje program; využívá proměnné, podmínky, cykly a funkce; pracuje s knihovnami; využívá digitální a analogové vstupy a výstupy; vyhledává a odstraňuje chyby programu; vytvoří jednoduchý stavový automat | **12 h** |
+| **3.** | **Senzory a zpracování dat** | Princip činnosti senzorů. Digitální a analogové senzory. Světelné, teplotní a vlhkostní senzory. Ultrazvukový a infračervený senzor. Akcelerometr a sběrnice I2C. Získávání, převod a zpracování dat. Filtrování hodnot (plovoucí průměr). Kombinace senzorů. | vysvětlí princip funkce vybraných senzorů; připojí a naprogramuje senzor; načte a zpracuje naměřené hodnoty; vyhodnotí získaná data; využije více senzorů současně; vytvoří program reagující na hodnoty ze senzorů; odhalí chyby měření a navrhne jejich odstranění | **10 h** |
+| **4.** | **Řízení motorů a pohyb robotu** | Řízení pohybu. Stejnosměrné motory a servomotory. Řízení rychlosti a směru. Pulzně-šířková modulace (PWM). Robotické vozítko Cutebot. Základní algoritmy pohybu. Přesnost pohybu a zatáčení. Detekce překážek sonarem. Sledování čáry optickými senzory. | vysvětlí princip řízení pohonu; naprogramuje směr a rychlost pohybu; vytvoří algoritmus pro řízení robotického vozítka; využije senzory pro řízení pohybu; naprogramuje detekci překážky; vytvoří program pro sledování vyznačené trasy; optimalizuje algoritmus pohybu | **8 h** |
+| **5.** | **Autonomní robotika** | Autonomní systém. Vstup – zpracování – rozhodnutí – výstup. Rozhodovací algoritmy. Kombinace více senzorů. Stavový automat v Pythonu. Reakce na prostředí. Navigace v prostoru. Vyhýbání překážkám. Řešení bludiště. Optimalizace autonomního chování. | vysvětlí princip autonomního řízení; navrhne algoritmus autonomního chování; kombinuje údaje z více senzorů; vytvoří program, který umožní robotu samostatně reagovat na okolí; testuje a optimalizuje chování robotu; analyzuje chyby autonomního systému | **6 h** |
+| **6.** | **3D modelování a konstrukce pro robotiku** | Základy 3D modelování (Tinkercad / Onshape). Návrh konstrukčních prvků pro robota. Rozměry a tolerance. Držák senzoru, kryt, nárazník apod. Příprava modelu pro 3D tisk (slicing v PrusaSliceru). Využití vytištěného dílu v robotickém projektu na Cutebotu. | vytvoří jednoduchý 3D model funkčního dílu; přizpůsobí návrh konkrétnímu robotickému zařízení; připraví model pro 3D tisk; ověří funkčnost vytištěného dílu; upraví návrh podle výsledků testování | **6 h** |
+| **7.** | **Internet věcí a komunikace robotických zařízení** | Princip IoT. Propojená zařízení. Micro:bit Radio (2.4 GHz) a bezdrátová Wi-Fi komunikace. Přenos telemetrických dat. Vzdálené monitorování a ovládání. Zpracování a zobrazování dat na OLED displeji a v PC/cloudu (ThingSpeak / web dashboard). Základy bezpečnosti IoT zařízení. | vysvětlí princip internetu věcí; propojí zařízení podle zadání; odešle a přijme data; vytvoří jednoduchý systém vzdáleného monitorování nebo ovládání; zobrazí data ze senzoru; uvede základní bezpečnostní rizika IoT zařízení | **6 h** |
+| **8.** | **Robotika a umělá inteligence** | Umělá inteligence v robotice. Autonomní systémy. Počítačové vidění. Kamera SmartLens jako senzor. Rozpoznávání objektů, barev a obrazových značek (AprilTags). Možnosti a limity AI. Bezpečnostní a etické otázky. | uvede příklady využití AI v robotice; vysvětlí základní princip počítačového vidění; využije kameru jako zdroj dat; pracuje s jednoduchou ukázkou rozpoznávání objektů nebo obrazu; diskutuje možnosti a omezení AI v robotických systémech | **4 h** |
+| **9.** | **Závěrečný robotický projekt** | Návrh vlastního robotického řešení. Analýza problému. Stanovení požadavků. Návrh algoritmu. Konstrukce. Programování v MicroPythonu. Využití senzorů. Případné využití 3D tisku, IoT nebo AI kamery. Testování. Ladění. Dokumentace. | analyzuje zadaný problém; navrhne vhodné technické řešení; vytvoří algoritmus; samostatně nebo v týmu sestaví a naprogramuje robotické zařízení; využije senzory a další prvky; testuje a optimalizuje vytvořené řešení; vede dokumentaci projektu | **10 h** |
+| **10.** | **Prezentace a obhajoba projektu** | Prezentace výsledku. Demonstrace funkce zařízení v aréně. Vysvětlení principu fungování kódu. Obhajoba zvoleného technického řešení. Reflexe práce. Možnosti dalšího rozvoje projektu. | prezentuje vytvořené řešení; vysvětlí princip jeho fungování; obhájí zvolený postup; reaguje na otázky; zhodnotí vlastní práci a navrhne možnosti dalšího rozvoje | **2 h** |
+| | **CELKEM** | | | **66 h** |
+
+---
+
+## 4. Rozvoj klíčových kompetencí
+
+- **Kompetence k učení:** Žák vyhledává a využívá informace z odborných zdrojů a technické dokumentace; propojuje poznatky z programování, elektrotechniky, matematiky a fyziky; experimentuje a vyhodnocuje výsledky své práce; samostatně získává nové znalosti potřebné k řešení úkolu.
+- **Kompetence k řešení problémů:** Žák analyzuje zadaný problém a stanovuje požadavky na řešení; navrhuje algoritmus a vhodné technické řešení; testuje funkčnost řešení; systematicky vyhledává a odstraňuje chyby; upravuje a optimalizuje vytvořený program nebo konstrukci.
+- **Komunikativní kompetence:** Žák používá odbornou terminologii; pracuje s technickou dokumentací; dokumentuje průběh a výsledky projektu; prezentuje a obhajuje vlastní řešení; reaguje na dotazy a konstruktivně diskutuje o navržených řešeních.
+- **Personální a sociální kompetence:** Žák spolupracuje při řešení týmových projektů; rozděluje si úkoly a přijímá odpovědnost za jejich splnění; respektuje názory ostatních; poskytuje a přijímá zpětnou vazbu; vyhodnocuje vlastní práci a podíl na společném výsledku.
+- **Digitální kompetence:** Žák využívá vývojová prostředí a specializovaný software; pracuje s digitálními daty získanými ze senzorů; využívá síťovou komunikaci a IoT technologie; využívá digitální nástroje pro návrh, programování, testování a dokumentaci; respektuje zásady bezpečného používání propojených zařízení.
+- **Odborné kompetence:** Žák se orientuje v principech robotických systémů; programuje mikrokontroléry; pracuje se senzory a akčními členy; vytváří algoritmy pro řízení robotických zařízení; navrhuje a realizuje jednoduché autonomní systémy; využívá 3D modelování při návrhu robotických konstrukcí; využívá principy IoT; orientuje se v možnostech využití AI v robotice; dokumentuje, testuje a prezentuje vlastní technické řešení.
+
+---
+
+## 5. Průřezová témata
+
+- **Člověk a svět práce (PT - ČSP):** Žáci řeší praktické technické problémy, pracují s technickou dokumentací, plánují pracovní postup a získávají zkušenosti s týmovou spoluprací a projektovým řízením.
+- **Člověk a životní prostředí (PT - ČŽP):** Žáci se seznamují s možnostmi využití robotiky při monitorování životního prostředí, automatizaci a efektivním využívání zdrojů. Součástí je také odpovědný přístup k elektronickým zařízením a jejich životnímu cyklu.
+- **Občan v demokratické společnosti (PT - ODS):** Žáci diskutují o dopadech automatizace, robotizace a umělé inteligence na společnost, zaměstnanost a každodenní život.
+- **Informační a komunikační technologie (PT - IKT):** Průřezové téma je přirozeně integrováno do celého předmětu – žáci programují, zpracovávají data, využívají počítačové sítě, IoT, digitální nástroje a technologie umělé inteligence.
+
+---
+
+## 6. Mezipředmětové vztahy
+
+- **Programování (PRG 1 & PRG 2):** Algoritmizace, proměnné, podmínky, cykly, funkce, ladění programů a práce s daty v jazyce Python.
+- **Hardware (HW):** Mikrokontroléry, digitální a analogové senzory, akční členy, napájení a periferní zařízení.
+- **Základy elektrotechniky:** Aplikace již získaných znalostí při zapojování a bezpečném používání robotických zařízení.
+- **Počítačové sítě:** Komunikace zařízení, bezdrátové připojení, síťové pakety a IoT.
+- **Matematika a fyzika:** Práce s veličinami, převody, vyhodnocování naměřených dat, mechanický pohyb, rychlost, čas, principy fungování senzorů a pohonů.
+- **Multimediální tvorba:** Technická dokumentace, prezentace projektu a zpracování obrazových dat.

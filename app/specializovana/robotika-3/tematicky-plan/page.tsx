@@ -7,60 +7,96 @@ import { SVP_ROB_SHARED_INFO, SVP_ROB3_DATA } from '@/registry/curriculum/svpDat
 
 const PLAN_ROB3: PlanTopic[] = [
   {
-    month: 'Září – Říjen',
-    topic: '1. Architektura MCU a digitální GPIO',
-    topicHours: 10,
+    month: 'Září',
+    topic: '1. Úvod do robotiky',
+    topicHours: 2,
     subtopics: [
-      { name: 'Úvod do architektury MCU: Od PC k mikrokontroléru (micro:bit v2)', hours: 2, note: 'Srovnání PC vs. MCU, Flash vs. RAM, REPL v MicroPythonu' },
-      { name: 'Digitální vstupy a výstupy GPIO: Logické úrovně a tlačítka', hours: 2, note: 'Logické úrovně 3.3V, pull-up/pull-down, ošetření zákmitů (debouncing)' },
-      { name: 'Časování bez zpoždění: Funkce ticks_ms() vs. blokující sleep()', hours: 2, note: 'Neblokující periodické smyčky namísto zpožďovacího sleep()' },
-      { name: 'Konečný stavový automat (FSM) v řízení hardware', hours: 4, note: 'Stavový automat, stavy, přechody a deterministické řízení semaforu' },
+      { name: 'Robotika a její využití, architektura robotu a bezpečnost práce', hours: 2, note: 'Typy robotů, MCU, senzory, akční členy a bezpečnost v laboratoři' }
+    ]
+  },
+  {
+    month: 'Září – Říjen',
+    topic: '2. Mikrokontroléry a programování robotických systémů',
+    topicHours: 12,
+    subtopics: [
+      { name: 'Úvod do MicroPythonu na micro:bit v2 a REPL konzole', hours: 2, note: 'Sériová konzole REPL, 5x5 LED matice, tlačítka A a B v kódu' },
+      { name: 'Digitální vstupy a výstupy GPIO', hours: 2, note: 'Logické úrovně 3.3V, pull-up/down, zapojení tlačítek a LED' },
+      { name: 'Časování programu bez zpoždění: ticks_ms() vs. sleep()', hours: 4, note: 'Neblokující periodické smyčky namísto zpožďovacího sleep()' },
+      { name: 'Konečný stavový automat (FSM) v Pythonu', hours: 4, note: 'Stavový automat, stavy, přechody a deterministické řízení semaforu' }
     ]
   },
   {
     month: 'Říjen – Listopad',
-    topic: '2. Senzorika, ADC a sběrnice I2C',
-    topicHours: 14,
+    topic: '3. Senzory a zpracování dat',
+    topicHours: 10,
     subtopics: [
-      { name: 'Analogový svět a ADC převodník: Vzorkování napětí a potenciometr', hours: 2, note: 'Princip A/D převodníku, 10bit/12bit rozlišení, vzorkování napětí' },
-      { name: 'Sériová sběrnice I2C a OLED displej SSD1306', hours: 4, note: 'Protokol I2C, adresace periferií SDA/SCL, telemetrický grafický dashboard' },
-      { name: 'Ultrazvukový dálkoměr a měření vzdálenosti (Sonar)', hours: 2, note: 'Rychlost zvuku, Trigger a Echo impulzy, parkovací asistent' },
-      { name: 'Zpracování signálu: Filtrace šumu a klouzavý průměr', hours: 4, note: 'Eliminace šumu reálného světa, kruhový buffer a klouzavý průměr' },
-      { name: 'Prahování a hystereze v rozhodovací logice', hours: 2, note: 'Odstranění kmitání stavů v hraničních podmínkách osvětlení a vzdálenosti' },
+      { name: 'Sériová sběrnice I2C a OLED displej SSD1306', hours: 2, note: 'Protokol I2C, adresace periferií SDA/SCL, telemetrický grafický dashboard' },
+      { name: 'Environmentální senzory z IoT sady (teplota, vlhkost, světlo)', hours: 4, note: 'Analogový převodník ADC, snímání fyzikálních veličin prostředí' },
+      { name: 'Fyzikální šum ze senzorů a plovoucí průměr', hours: 4, note: 'Eliminace šumu reálného světa, kruhový buffer a hystereze v Pythonu' }
+    ]
+  },
+  {
+    month: 'Listopad – Prosinec',
+    topic: '4. Řízení motorů a pohyb robotu',
+    topicHours: 8,
+    subtopics: [
+      { name: 'Řízení DC motorů přes PWM a kalibrace přímé jízdy Cutebota', hours: 2, note: 'H-můstek, reverzace chodu, PWM střída, trim motorů pro rovnou jízdu' },
+      { name: 'Ultrazvukový dálkoměr Sonar a bezpečnostní zónové brzdění', hours: 2, note: 'Měření vzdálenosti v cm, parkovací asistent a zastavení před zdí' },
+      { name: 'Sledování vodicí linie pomocí infračervených senzorů', hours: 4, note: 'Reflexní IR senzory, kontrast povrchu a sledování černé čáry' }
     ]
   },
   {
     month: 'Prosinec – Leden',
-    topic: '3. Pohony a diferenciální kinematika (Cutebot)',
-    topicHours: 12,
+    topic: '5. Autonomní robotika',
+    topicHours: 6,
     subtopics: [
-      { name: 'DC motory, H-můstek a regulace otáček pomocí PWM', hours: 2, note: 'H-můstek, reverzace chodu, PWM střída pro regulaci rychlosti' },
-      { name: 'Kinematika diferenciálního podvozku: Jízda v oblouku a rotace', hours: 4, note: 'Rozdíl rychlostí levého a pravého kola, poloměr zatáčení, otáčení na místě' },
-      { name: 'Kalibrace mechanických nesouměrností a trimování motorů', hours: 2, note: 'Kompenzace tolerancí převodovek a motorů pro přímý směr jízdy' },
-      { name: 'Pohybové profily a bezpečné zastavení před překážkou', hours: 4, note: 'Proporcionální zpomalování podle sonaru a nouzové zastavení' },
+      { name: 'Rozhodovací logika autonomního robota (FSM v aréně)', hours: 2, note: 'Kombinace čidla čáry a sonaru pro reakci na překážku' },
+      { name: 'Mise v bludišti a optimalizace autonomního průjezdu', hours: 4, note: 'Algoritmus sledování stěny, řešení slepých uliček a autonomní průjezd' }
     ]
   },
   {
-    month: 'Únor – Duben',
-    topic: '4. Autonomní navigace a regulační smyčky',
-    topicHours: 18,
+    month: 'Leden – Únor',
+    topic: '6. 3D modelování a konstrukce pro robotiku',
+    topicHours: 6,
     subtopics: [
-      { name: 'Optické sledování linie: Pole infračervených senzorů a kalibrace', hours: 2, note: 'Reflexní IR senzory, kontrast povrchu, kalibrace černé a bílé' },
-      { name: 'Diskrétní řízení Bang-Bang a jeho limity (kmitání)', hours: 4, note: 'Dvoustavové skokové řízení a analýza stability na cvičné dráze' },
-      { name: 'Proporcionální regulátor (P-regulátor): Výpočet odchylky', hours: 4, note: 'Regulační odchylka Error, konstanta Kp, plynulá korekce motorů' },
-      { name: 'Derivační složka (PD regulátor) a zvládání ostrých zatáček', hours: 4, note: 'Rychlost změny chyby (derivace), tlumení překmitů ve vlásenkách' },
-      { name: 'Autonomní Sumo aréna: Vyhledání soupeře a udržení na bojišti', hours: 4, note: 'Detekce hrany bojiště, vyhledání protivníka sonarem a Sumo výzva' },
+      { name: 'Návrh konstrukčních prvků v CAD (Tinkercad / Onshape)', hours: 2, note: 'Objemové 3D modelování držáku senzoru a nárazníku s tolerancemi' },
+      { name: 'Příprava pro 3D tisk a výroba na Prusa MINI', hours: 4, note: 'Slicing v PrusaSliceru, volba parametrů a tisk na tiskárně Prusa MINI' }
+    ]
+  },
+  {
+    month: 'Únor – Březen',
+    topic: '7. Internet věcí a komunikace robotických zařízení',
+    topicHours: 6,
+    subtopics: [
+      { name: 'Bezdrátová síťová komunikace micro:bit Radio (2.4 GHz)', hours: 2, note: 'Rádiové pakety, skupiny kanálů a dálkový ovladač s akcelerometrem' },
+      { name: 'M2M telemetrie a odesílání dat do cloudového dashboardu', hours: 4, note: 'Přenos dat z jedoucího Cutebota na PC stanici a do cloudu ThingSpeak' }
+    ]
+  },
+  {
+    month: 'Březen',
+    topic: '8. Robotika a umělá inteligence',
+    topicHours: 4,
+    subtopics: [
+      { name: 'SmartLens AI kamera: Detekce barev a obrazových značek', hours: 2, note: 'Kamera jako senzor v Pythonu, reakce na barevné karty a AprilTags' },
+      { name: 'Vizuální sledování pohybujícího se cíle (Ball Tracking)', hours: 2, note: 'Vyhodnocení souřadnic středu objektu a autonomní dojíždění k míčku' }
+    ]
+  },
+  {
+    month: 'Duben – Květen',
+    topic: '9. Závěrečný robotický projekt',
+    topicHours: 10,
+    subtopics: [
+      { name: 'Specifikace zadání projektu a návrh architektury', hours: 2, note: 'Výběr tématu ve dvojici, definice vstupů/výstupů a časového plánu' },
+      { name: 'Vývoj a integrace hardwaru a softwaru v Pythonu', hours: 4, note: 'Programování řídicího programu a integrace senzorů a 3D dílů' },
+      { name: 'Testování v aréně, ladění chyb a dokumentace', hours: 4, note: 'Zátěžové testy na modelové trati a tvorba technické dokumentace' }
     ]
   },
   {
     month: 'Květen – Červen',
-    topic: '5. IoT a bezdrátová telemetrie (micro:bit Radio)',
-    topicHours: 12,
+    topic: '10. Prezentace a obhajoba projektu',
+    topicHours: 2,
     subtopics: [
-      { name: 'Bezdrátová komunikace na 2.4 GHz: micro:bit Radio a kanály', hours: 2, note: 'Rádiové skupiny Radio Group, kanály a měření signálu RSSI' },
-      { name: 'Struktura paketů a telemetrický protokol', hours: 4, note: 'Definice a parsování vlastních datových paketů v reálném čase' },
-      { name: 'Dálkový ovladač s využitím vestavěného akcelerometru', hours: 4, note: 'Ovládání robota gesty a náklonem v osách Pitch a Roll' },
-      { name: 'Závěrečný dispečink a rekapitulace ročníku', hours: 2, note: 'Centrální dispečink sledující flotilu robotů a uzavření klasifikace' },
+      { name: 'Živá demonstrace funkčnosti robota a ústní obhajoba', hours: 2, note: 'Předvedení chování v aréně, vysvětlení kódu v Pythonu a hodnocení' }
     ]
   }
 ];

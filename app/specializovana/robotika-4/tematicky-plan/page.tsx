@@ -7,57 +7,37 @@ import { SVP_ROB_SHARED_INFO, SVP_ROB4_DATA } from '@/registry/curriculum/svpDat
 
 const PLAN_ROB4: PlanTopic[] = [
   {
-    month: 'Září – Říjen',
-    topic: '1. Všesměrová holonomní kinematika (VEX AIM)',
-    topicHours: 14,
+    month: 'Září – Prosinec',
+    topic: '1. Všesměrová mobilní robotika a herní aréna (VEX AIM)',
+    topicHours: 28,
     subtopics: [
-      { name: 'Holonomní vs. neholonomní podvozky: Princip všesměrových kol Omni', hours: 2, note: 'Stupně volnosti 3-DoF, konstrukce všesměrových válečků a srovnání s diferenčním řízením' },
-      { name: 'Vektorová matematika: Goniometrický rozklad sil na 3 motory (120°)', hours: 4, note: 'Vektorový rozklad Vx, Vy a rotační složky w na 3 omni kola' },
-      { name: 'Translace s rotací: Složené trajektorie a plynulé oblouky', hours: 4, note: 'Kombinace translačního pohybu a nezávislé rotace, obíhání cíle' },
-      { name: 'Akční členy VEX AIM: Elektromagnet a mechanický kicker', hours: 4, note: 'Ovládání elektromagnetu pro manipulaci s puky a pružinový odpalovací mechanismus' },
+      { name: 'Seznámení s robotem VEX AIM a vývojovým prostředím VEXcode', hours: 4, note: 'Tříkolový podvozek s Omni koly a konfigurace Python API' },
+      { name: 'Programování holonomního všesměrového pohybu v Pythonu', hours: 8, note: 'Pohyb do stran bez natáčení robota a trajektorie po hřišti' },
+      { name: 'Ovládání akčních členů: Elektromagnet na puky a vyhazovač', hours: 6, note: 'Sepnutí magnetu, sběr puků, manipulace a odpalování do branky' },
+      { name: 'Autonomní herní strategie a třídní turnaj v aréně', hours: 10, note: 'Soutěžní zápasy dvojic robotů na hřišti VEX AIM a vyhodnocení kódu' }
     ]
   },
   {
-    month: 'Listopad – Leden',
-    topic: '2. Počítačové vidění a AI navigace',
-    topicHours: 14,
+    month: 'Leden – Únor',
+    topic: '2. Průmyslová robotika a manipulátory (KUKA)',
+    topicHours: 12,
     subtopics: [
-      { name: 'Kamera jako senzor: Zpracování obrazu a barevný prostor HSV', hours: 2, note: 'Barevné modely RGB vs. HSV, odolnost vůči světlu a maskování' },
-      { name: 'Visual Servoing: Zpětnovazební dojíždění k pohybujícímu se cíli', hours: 4, note: 'Vizuální zpětná vazba a plynulé navádění k nalezenému objektu' },
-      { name: 'Prostorové značky AprilTags: 2D poziční kódy a výpočet polohy', hours: 4, note: 'Detekce AprilTags, výpočet vzdálenosti a úhlu v prostoru' },
-      { name: 'Integrovaná herní mise: Vizuální vyhledání, nájezd a skórování', hours: 4, note: 'Komplexní autonomní mise propojující omni pohyb, AI kameru a AprilTags' },
+      { name: 'Průmyslová bezpečnost a seznámení s ramenem KUKA', hours: 2, note: 'Bezpečnostní normy, E-Stop tlačítko, souhlasný spínač a prohlídka stroje' },
+      { name: 'Ruční pojezd (Jogging) přes KUKA smartPAD v souřadnicích', hours: 2, note: 'Ovládací panel smartPAD a samostatný nácvik pojezdu v prostoru' },
+      { name: 'Metoda Teach-In: Ukládání bodů a trajektorie PTP vs. LIN', hours: 2, note: 'Uložení prostorových referenčních bodů a přejíždění po trajektorii' },
+      { name: 'Manipulační úloha Pick & Place (přemístění objektu)', hours: 4, note: 'Uchopení kostky chapadlem, zvednutí, přemístění a položení na cíl' },
+      { name: 'Samostatná jízda a ověření bezpečné obsluhy stroje', hours: 2, note: 'Praktické ověření samostatného bezpečného spuštění programu žákem' }
     ]
   },
   {
-    month: 'Leden – Březen',
-    topic: '3. Inženýrská mechanika a Smart motory (VEX IQ)',
-    topicHours: 14,
+    month: 'Březen – Červen',
+    topic: '3. Závěrečný komplexní inženýrský projekt a obhajoba',
+    topicHours: 26,
     subtopics: [
-      { name: 'Mechanické převody v robotice: Rychlost vs. točivý moment', hours: 2, note: 'Čelní ozubená kola, převodový poměr a točivý moment při zátěži' },
-      { name: 'Smart motory VEX IQ: Optické enkodéry a PID řízení polohy', hours: 4, note: 'Měření úhlu s přesností na desetiny stupně, vnitřní PID smyčka polohy' },
-      { name: 'Odometrie a IMU gyroskop: Přesná navigace v souřadnicích', hours: 4, note: 'Odometrie z otáček kol, kompenzace prokluzu pomocí gyroskopu' },
-      { name: 'Zdvihací mechanismy a robotická chapadla', hours: 4, note: 'Mechanika čtyřkloubových mechanismů, paralelogram a chapadla' },
-    ]
-  },
-  {
-    month: 'Březen – Květen',
-    topic: '4. Průmyslová robotika a manipulátory (KUKA EDU)',
-    topicHours: 14,
-    subtopics: [
-      { name: 'Kinematika 6-osého průmyslového ramene: Stupně volnosti A1–A6', hours: 2, note: 'Struktura 6-DoF, kloubové souřadnice, dopředná a inverzní kinematika' },
-      { name: 'Kartézské souřadnicové systémy: WORLD, BASE a kalibrace TOOL (TCP)', hours: 4, note: 'Pohyb v prostoru X, Y, Z a kalibrace středu nástroje TCP metodou 4 bodů' },
-      { name: 'Interpolace pohybů: Bod z bodu do bodu (PTP) vs. Lineární pohyb (LIN)', hours: 4, note: 'Rozdíl mezi rychlým přesunem PTP a přesnou přímkou LIN, aproximační zóny' },
-      { name: 'Průmyslová úloha Pick & Place a digitální vstupy/výstupy buňky', hours: 4, note: 'Logika cyklu Pick & Place, synchronizace buňky přes digitální signály' },
-    ]
-  },
-  {
-    month: 'Květen – Červen',
-    topic: '5. Závěrečný komplexní kooperativní projekt',
-    topicHours: 10,
-    subtopics: [
-      { name: 'Architektura kooperativní linky: Rozhraní a komunikační protokol', hours: 2, note: 'Definice komunikačního rozhraní mezi mobilním robotem a KUKA ramenem' },
-      { name: 'Týmová integrace a ladění kooperace v reálném čase', hours: 6, note: 'Společné ladění v dílně: předávání materiálu a odvoz výrobku' },
-      { name: 'Odborná veřejná obhajoba projektu a reflexe', hours: 2, note: 'Živá demonstrace funkční linky před komisí a obhajoba dokumentace' },
+      { name: 'Volba tématu a zadání inženýrského projektu', hours: 2, note: 'Výběr platformy (VEX AIM / KUKA / VEX IQ / IoT), zadání a harmonogram' },
+      { name: 'Vývoj řídicího softwaru a integrace hardwaru', hours: 12, note: 'Programování algoritmů v Pythonu, integrace senzoriky a testování' },
+      { name: 'Optimalizace spolehlivosti a technická dokumentace', hours: 8, note: 'Zátěžové testy, ošetření nestandardních stavů a sepsání dokumentace' },
+      { name: 'Maturitní obhajoba a živá demonstrace projektu', hours: 4, note: 'Veřejné předvedení projektu před komisí, diskuse a závěrečné hodnocení' }
     ]
   }
 ];

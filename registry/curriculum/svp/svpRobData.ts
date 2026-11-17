@@ -4,54 +4,84 @@ import { SvpGradeData, SvpSharedInfo } from './svpTypes';
 // SPOLEČNÁ ČÁST PŘEDMĚTU PRO INSPIS – ROBOTIKA (3. A 4. ROČNÍK)
 // -------------------------------------------------------------------------
 export const SVP_ROB_SHARED_INFO: SvpSharedInfo = {
-  subjectName: 'Robotika a vestavěné systémy',
+  subjectName: 'Robotika',
   fieldCode: '18-20-M/01',
   fieldName: 'Informační technologie',
   evaluation:
-    'Hodnocení je praktické a formativní. Hodnotí se funkčnost naprogramovaného embedded kódu, ' +
-    'schopnost odladit hardwarové chyby a šum senzorů, robustnost řídicích algoritmů a samostatnost v laboratorních úlohách. ' +
-    'Ve vyšším ročníku je hodnocení doplněno o obhajoby inženýrských výzev a týmového maturitního projektu.',
+    'Hodnocení žáka vychází zejména z praktických úloh, funkčnosti vytvořených programů, ' +
+    'schopnosti samostatně řešit technický problém, průběžné práce na projektech, kvality technického řešení, ' +
+    'schopnosti pracovat v týmu, technické dokumentace projektu a závěrečné prezentace a obhajoby vlastního řešení. ' +
+    'Při hodnocení se nezohledňuje pouze konečná funkčnost zařízení, ale také postup řešení, samostatnost, ' +
+    'schopnost odhalovat a odstraňovat chyby a schopnost vysvětlit princip vytvořeného řešení.',
   keyCompetencies: [
+    {
+      title: 'Kompetence k učení',
+      description:
+        'Žák vyhledává a využívá informace z odborných zdrojů a technické dokumentace; ' +
+        'propojuje poznatky z programování, elektrotechniky, matematiky a fyziky; ' +
+        'experimentuje a vyhodnocuje výsledky své práce; samostatně získává nové znalosti potřebné k řešení úkolu.'
+    },
     {
       title: 'Kompetence k řešení problémů',
       description:
-        'Žák identifikuje fyzikální příčiny chyb (šum senzoru, prokluz kol, kolísání napětí baterie) a navrhuje softwarová kompenzační opatření. ' +
-        'Aplikuje deterministické řízení pomocí stavových automatů a spojitou regulaci pro plynulý pohyb po trase. ' +
-        'Ve 4. ročníku aplikuje vektorovou matematiku, inverzní kinematiku a počítačové vidění pro koordinovaný pohyb systémů.'
+        'Žák analyzuje zadaný problém a stanovuje požadavky na řešení; navrhuje algoritmus a vhodné technické řešení; ' +
+        'testuje funkčnost řešení; systematicky vyhledává a odstraňuje chyby; upravuje a optimalizuje vytvořený program nebo konstrukci.'
     },
     {
-      title: 'Digitální a pracovní kompetence',
+      title: 'Komunikativní kompetence',
       description:
-        'Bezpečně pracuje s mechatronickými stavebnicemi, senzory, motory a napájecími akumulátory. ' +
-        'Efektivně využívá vývojová prostředí pro vestavné systémy (MicroPython, Python 3, sériová konzole REPL, robotické simulátory).'
+        'Žák používá odbornou terminologii; pracuje s technickou dokumentací; dokumentuje průběh a výsledky projektu; ' +
+        'prezentuje a obhajuje vlastní řešení; reaguje na dotazy a konstruktivně diskutuje o navržených řešeních.'
     },
     {
-      title: 'Komunikativní a kooperativní kompetence',
+      title: 'Personální a sociální kompetence',
       description:
-        'Efektivně pracuje v interdisciplinárním projektovém týmu, definuje komunikační protokoly a rozhraní modulů. ' +
-        'Odborně prezentuje a argumentačně obhajuje své technické řešení před publikem a dodržuje pravidla bezpečnosti práce.'
+        'Žák spolupracuje při řešení týmových projektů; rozděluje si úkoly a přijímá odpovědnost za jejich splnění; ' +
+        'respektuje názory ostatních; poskytuje a přijímá zpětnou vazbu; vyhodnocuje vlastní práci a podíl na společném výsledku.'
+    },
+    {
+      title: 'Digitální kompetence',
+      description:
+        'Žák využívá vývojová prostředí a specializovaný software; pracuje s digitálními daty získanými ze senzorů; ' +
+        'využívá síťovou komunikaci a IoT technologie; využívá digitální nástroje pro návrh, programování, testování a dokumentaci; ' +
+        'respektuje zásady bezpečného používání propojených zařízení.'
     }
   ],
   crossCuttingThemes: [
     {
       code: 'PT - ČSP',
       name: 'Člověk a svět práce',
-      description: 'Profesní návyky vývojáře vestavných systémů, preciznost zapojení, bezpečnostní normy Průmyslu 4.0 a týmová práce.'
+      description:
+        'Žáci řeší praktické technické problémy, pracují s technickou dokumentací, plánují pracovní postup a získávají zkušenosti s týmovou spoluprací a projektovým řízením.'
     },
     {
-      code: 'PT - ČDS',
-      name: 'Člověk a digitální svět',
-      description: 'Internet věcí (IoT), telemetrie, bezdrátové přenosy dat, umělá inteligence, počítačové vidění a autonomní logistika.'
+      code: 'PT - ČŽP',
+      name: 'Člověk a životní prostředí',
+      description:
+        'Žáci se seznamují s možnostmi využití robotiky při monitorování životního prostředí, automatizaci a efektivním využívání zdrojů. Součástí je odpovědný přístup k elektronickým zařízením.'
+    },
+    {
+      code: 'PT - ODS',
+      name: 'Občan v demokratické společnosti',
+      description:
+        'Žáci diskutují o dopadech automatizace, robotizace a umělé inteligence na společnost, zaměstnanost a každodenní život.'
+    },
+    {
+      code: 'PT - IKT',
+      name: 'Informační a komunikační technologie',
+      description:
+        'Průřezové téma je integrováno v celém předmětu – žáci programují v Pythonu, zpracovávají data, využívají sítě, IoT, digitální nástroje a technologie AI.'
     }
   ],
   interdisciplinaryRelations:
-    'Předmět úzce propojuje znalosti z Programování (jazyk Python, OOP, algoritmizace), ' +
-    'Hardwaru (elektrické obvody, GPIO, logické úrovně, sběrnice I2C), ' +
-    'Matematiky a fyziky (goniometrie, vektorová algebra, mechanika, kinematika, elektromagnetismus).'
+    'Předmět úzce propojuje znalosti z Programování (jazyk Python, algoritmizace, funkce, datové struktury), ' +
+    'Hardwaru (mikrokontroléry, senzory, akční členy), Základů elektrotechniky (bezpečné zapojování a napájení), ' +
+    'Počítačových sítí (komunikace zařízení, bezdrátový přenos, IoT), Matematiky a fyziky (mechanický pohyb, senzory, měření veličin).'
 };
 
 // -------------------------------------------------------------------------
 // 3. ROČNÍK: ROBOTIKA 1 (ROB 3 – 66 HODIN)
+// Přesně 10 tematických celků podle oficiálního ŠVP
 // -------------------------------------------------------------------------
 export const SVP_ROB3_DATA: SvpGradeData = {
   gradeLabel: '3. Ročník',
@@ -60,92 +90,200 @@ export const SVP_ROB3_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'rob3-b1',
-      topic: '1. Architektura MCU a digitální GPIO',
-      hours: 10,
-      crossThemes: ['PT - ČSP'],
+      topic: '1. Úvod do robotiky',
+      hours: 2,
+      crossThemes: ['PT - ČSP', 'PT - ODS'],
       outcomes: [
-        'popíše architekturu jednočipového mikrokontroléru a porovná jej s univerzálním počítačem',
-        'bezpečně zapojuje periferie na GPIO piny mikrokontroléru',
-        'vytváří neblokující řídicí kód v MicroPythonu s využitím časových čítačů namísto blokujících prodlev',
-        'navrhuje a implementuje stavové automaty (FSM) pro deterministické řízení logiky vestavného systému'
+        'vysvětlí pojem robotika a uvede oblasti jejího využití v praxi',
+        'rozliší základní typy robotů a jejich architekturu',
+        'popíše funkci základních částí robotického systému (řídicí jednotka, senzory, akční členy)',
+        'rozliší autonomní a dálkově řízený systém',
+        'dodržuje zásady bezpečné práce v robotické laboratoři'
       ],
       content: [
-        'Architektura mikrokontroléru (jádro ARM Cortex-M4, paměť Flash a RAM, taktovací frekvence, spotřeba)',
-        'Digitální vstupy a výstupy GPIO (logické úrovně, pull-up / pull-down rezistory, ochrana pinů)',
-        'Časování a neblokující architektura (funkce ticks_ms(), periodické obslužné smyčky namísto sleep())',
-        'Deterministické řízení (koncept konečného stavového automatu FSM, stavy, přechody a události)'
+        'Robotika a její využití v průmyslu, službách, dopravě a domácnosti',
+        'Typy robotických systémů (mobilní, manipulátory, servisní)',
+        'Základní komponenty robotu (mikrokontrolér, napájení, snímače, pohony)',
+        'Bezpečnostní pravidla a prevence rizik při práci s roboty'
       ]
     },
     {
       id: 'rob3-b2',
-      topic: '2. Senzorika, ADC a sběrnice I2C',
-      hours: 14,
-      crossThemes: ['PT - ČDS'],
+      topic: '2. Mikrokontroléry a programování robotických systémů',
+      hours: 12,
+      crossThemes: ['PT - IKT', 'PT - ČSP'],
       outcomes: [
-        'vysvětlí princip převodu spojitého analogového signálu do digitální podoby (ADC převodník)',
-        'připojuje a programově obsluhuje senzory fyzikálních veličin na sběrnici I2C',
-        'navrhuje algoritmy pro softwarové filtrování šumu a kompenzaci kolísání měřených hodnot',
-        'aplikuje hysterezi pro stabilní rozhodování v hraničních stavech'
+        'pracuje s vývojovým prostředím mikrokontroléru v jazyce MicroPython',
+        'vytvoří, upraví a nahraje program do jednočipového mikrokontroléru BBC micro:bit v2',
+        'využívá proměnné, podmínky, cykly a funkce pro řízení hardware',
+        'pracuje s knihovnami pro obsluhu periferií a neblokující časování',
+        'využívá digitální a analogové vstupy a výstupy (GPIO)',
+        'vyhledává a odstraňuje chyby programu pomocí sériové konzole REPL',
+        'vytvoří jednoduchý konečný stavový automat v Pythonu'
       ],
       content: [
-        'Analogový signál a ADC (vzorkování napětí, rozlišení převodníku, kvantování)',
-        'Sériová sběrnice I2C (adresace periferií na sběrnici, vodiče SDA/SCL, čtení registrů senzorů)',
-        'Zpracování signálu (šum reálného světa, plovoucí průměr, dolní propust)',
-        'Prahování a hystereze (eliminace kmitání stavu na rozhraní prahových hodnot světla a vzdálenosti)'
+        'Architektura mikrokontroléru BBC micro:bit v2 (ARM procesor, paměť, GPIO)',
+        'Vývojové prostředí pro MicroPython a práce se sériovou REPL konzolí',
+        'Algoritmické struktury v hardware (podmínky, smyčky, funkce, ošetření vstupů)',
+        'Časování bez blokování programu (funkce ticks_ms vs. sleep)',
+        'Koncept a praktická implementace stavového automatu'
       ]
     },
     {
       id: 'rob3-b3',
-      topic: '3. Pohony a diferenciální kinematika (Cutebot)',
-      hours: 12,
-      crossThemes: ['PT - ČSP'],
+      topic: '3. Senzory a zpracování dat',
+      hours: 10,
+      crossThemes: ['PT - IKT', 'PT - ČŽP'],
       outcomes: [
-        'popíše funkci H-můstku a princip pulzně-šířkové modulace (PWM) pro řízení stejnosměrných motorů',
-        'ovládá kinematiku dvoukolového diferenciálního podvozku',
-        'provádí kalibraci mechanických nesouměrností pohonu pro dosažení přímého směru jízdy',
-        'implementuje plynulý rozjezd, brzdění a přesné otáčení na místě'
+        'vysvětlí princip funkce vybraných digitálních a analogových senzorů',
+        'připojí a programově obslouží senzor přes sběrnici I2C a GPIO piny',
+        'načte a zpracuje naměřené fyzikální hodnoty v reálném čase',
+        'vyhodnotí získaná data a zobrazí je na grafickém OLED displeji',
+        'využije více senzorů současně a vytvoří program reagující na naměřené hodnoty',
+        'odhalí fyzikální chyby a šum měření a aplikuje softwarovou filtraci (plovoucí průměr)'
       ],
       content: [
-        'Řízení DC motorů (H-můstek, reverzace chodu, PWM střída a regulace rychlosti otáčení)',
-        'Kinematika diferenciálního podvozku (rychlost levého a pravého kola, poloměr zatáčení, otáčení kolem středu)',
-        'Hardwarová kalibrace (odchylky převodovek a motorů, trimování rychlostí pro přímou jízdu)',
-        'Pohybové profily (proporcionální brzdění před překážkou, bezpečnostní zastavení)'
+        'Senzory v robotice (analogové vs. digitální rozhraní, A/D převodník)',
+        'Senzorika prostředí z IoT sady (teplota, vlhkost, osvětlení, půdní vlhkost)',
+        'Sériová sběrnice I2C a grafický OLED displej SSD1306',
+        'Ultrazvukový dálkoměr (Sonar) a optické infračervené senzory',
+        'Zpracování signálu (filtrace šumu, klouzavý průměr, hystereze)'
       ]
     },
     {
       id: 'rob3-b4',
-      topic: '4. Autonomní navigace a regulační smyčky',
-      hours: 18,
-      crossThemes: ['PT - ČSP'],
+      topic: '4. Řízení motorů a pohyb robotu',
+      hours: 8,
+      crossThemes: ['PT - IKT', 'PT - ČSP'],
       outcomes: [
-        'navrhne algoritmus sledování vodicí linie pomocí pole infračervených odrazových senzorů',
-        'porovná a vyhodnotí diskrétní skokové řízení (Bang-Bang) oproti spojité proporcionální regulaci (P/PD)',
-        'řeší krizové situace na trase (ztráta linie, pravoúhlé odbočky, křižovatky)',
-        'naprogramuje autonomní chování mobilního robota v aréně'
+        'vysvětlí princip řízení stejnosměrných motorů a funkci H-můstku',
+        'naprogramuje směr a rychlost otáčení motorů pomocí pulzně-šířkové modulace (PWM)',
+        'vytvoří řídicí algoritmus pro dvoukolové robotické vozítko Cutebot',
+        'využije ultrazvukový senzor pro včasnou detekci překážky a bezpečné zastavení',
+        'vytvoří program pro plynulé sledování vyznačené trasy podle infračervených senzorů',
+        'optimalizuje algoritmus pohybu a provede kalibraci trimu motorů pro přímou jízdu'
       ],
       content: [
-        'Detekce vodicí čáry (reflexní optické senzory, kontrast povrchu, kalibrace černé a bílé)',
-        'Regulační algoritmy (diskrétní Bang-Bang regulace vs. spojitý proporcionální P/PD regulátor)',
-        'Zpracování regulační odchylky (výpočet chyby vystředění na čáře, dynamická korekce rychlostí motorů)',
-        'Řešení křižovatek a rozhodovací logika autonomního robota v aréně (Sumo výzva)'
+        'Pohony v robotice (DC motory, H-můstek, PWM regulace výkonu)',
+        'Diferenciální kinematika robotického vozítka Cutebot',
+        'Měření vzdálenosti sonarem a zónové bezpečnostní brzdění',
+        'Sledování černé vodicí linie na bílém podkladu (dvoustavové řízení a plynulá korekce)'
       ]
     },
     {
       id: 'rob3-b5',
-      topic: '5. IoT a bezdrátová telemetrie (micro:bit Radio)',
-      hours: 12,
-      crossThemes: ['PT - ČDS'],
+      topic: '5. Autonomní robotika',
+      hours: 6,
+      crossThemes: ['PT - IKT', 'PT - ČSP'],
       outcomes: [
-        'nakonfiguruje bezdrátovou síťovou komunikaci na frekvenci 2.4 GHz mezi mikrokontroléry',
-        'sestavuje a parsuje síťové telemetrické pakety pro přenos dat v reálném čase',
-        'vytvoří bezdrátový ovladač mobilního robota s využitím vestavěného akcelerometru',
-        'zprovozní monitorovací dispečink zobrazující stav autonomních robotů v síti'
+        'vysvětlí princip autonomního řízení v cyklu vstup – zpracování – rozhodnutí – výstup',
+        'navrhne a v Pythonu implementuje rozhodovací algoritmus autonomního chování',
+        'kombinuje údaje z více senzorů (čára, ultrazvuk, nárazník)',
+        'vytvoří program, který umožní robotu samostatně reagovat na překážky a řešit bludiště',
+        'testuje a optimalizuje chování robotu v testovací aréně',
+        'analyzuje chyby autonomního systému při ztrátě vodicí linie nebo kontaktu s mantinelem'
       ],
       content: [
-        'Bezdrátový přenos dat (protokol micro:bit Radio, 2.4 GHz kanály, síťové skupiny)',
-        'Struktura paketů (hlavička, identifikace odesílatele, datový náklad, parsování příkazů)',
-        'Dálkové ovládání a interakce (využití vnitřního akcelerometru a gest pro řízení pohybu)',
-        'Telemetrie a dispečink (sběr dat ze senzorů v reálném čase, diagnostika baterie a stavu robotů)'
+        'Koncepce autonomního agenta (reaktivní chování vs. plánování trasy)',
+        'Rozhodovací logika a stavový automat v autonomním pohybu',
+        'Navigační strategie: sledování stěny, vyhýbání se překážce, řešení bludiště',
+        'Testování a ladění spolehlivosti kódu v modelové aréně'
+      ]
+    },
+    {
+      id: 'rob3-b6',
+      topic: '6. 3D modelování a konstrukce pro robotiku',
+      hours: 6,
+      crossThemes: ['PT - ČSP', 'PT - IKT'],
+      outcomes: [
+        'vytvoří jednoduchý 3D model funkčního konstrukčního dílu v CAD nástroji',
+        'přizpůsobí rozměry a tolerance součástky konkrétnímu robotickému zařízení',
+        'připraví model pro 3D tisk (slicing, nastavení vrstev a výplně v PrusaSliceru)',
+        'vytiskne součástku na 3D tiskárně Prusa MINI a ověří její mechanickou funkčnost',
+        'upraví návrh podle výsledků praktického testování na robotu'
+      ],
+      content: [
+        'Základy 3D modelování pro technickou praxi (Tinkercad / Onshape)',
+        'Konstrukční díly v robotice (držáky senzorů, nárazníky, kryty baterií, adaptéry)',
+        'Technologie 3D tisku FDM/FFF, volba materiálu (PLA/PETG), orientace modelu na podložce',
+        'Příprava tiskových dat (G-code) a obsluha 3D tiskárny Prusa MINI'
+      ]
+    },
+    {
+      id: 'rob3-b7',
+      topic: '7. Internet věcí a komunikace robotických zařízení',
+      hours: 6,
+      crossThemes: ['PT - IKT', 'PT - ČDS'],
+      outcomes: [
+        'vysvětlí princip internetu věcí (IoT) a strojové komunikace (M2M)',
+        'propojí mikrokontroléry v bezdrátové síti na frekvenci 2.4 GHz (micro:bit Radio)',
+        'sestaví, odešle a na přijímací straně zpracuje strukturovaný datový paket (telemetrie)',
+        'vytvoří jednoduchý systém vzdáleného monitorování stavu robota nebo prostředí',
+        'odešle naměřená data přes Wi-Fi do cloudového rozhraní (ThingSpeak / dashboard)',
+        'uvede základní bezpečnostní rizika IoT zařízení a zásady jejich zabezpečení'
+      ],
+      content: [
+        'Architektura IoT systémů (senzory, brána, cloud, klientská aplikace)',
+        'Bezdrátový rádiový přenos (micro:bit Radio kanály, skupiny, struktura paketu)',
+        'Vzdálená telemetrie: přenos údajů z jedoucího Cutebota do stacionární základny',
+        'Cloudové vizualizační nástroje a kybernetická bezpečnost propojených zařízení'
+      ]
+    },
+    {
+      id: 'rob3-b8',
+      topic: '8. Robotika a umělá inteligence',
+      hours: 4,
+      crossThemes: ['PT - IKT', 'PT - ODS'],
+      outcomes: [
+        'uvede reálné příklady využití umělé inteligence v moderní robotice',
+        'vysvětlí základní princip počítačového vidění a fungování inteligentní kamery jako senzoru',
+        'využije kameru SmartLens jako zdroj dat pro řízení robota v MicroPythonu',
+        'pracuje s praktickou ukázkou rozpoznávání barevných objektů a obrazových značek',
+        'diskutuje technické možnosti, limity a etické otázky nasazení AI v autonomních systémech'
+      ],
+      content: [
+        'Umělá inteligence a strojové vidění v robotických systémech',
+        'Chytrá kamera SmartLens (zorné pole, snímková frekvence, detekční algoritmy)',
+        'Praktické úlohy: Color Tracking (reakce na barevné karty) a sledování objektu',
+        'Možnosti a limity AI, spolehlivost rozpoznávání při měnících se světelných podmínkách'
+      ]
+    },
+    {
+      id: 'rob3-b9',
+      topic: '9. Závěrečný robotický projekt',
+      hours: 10,
+      crossThemes: ['PT - ČSP', 'PT - IKT'],
+      outcomes: [
+        'analyzuje zadaný technický problém a stanoví požadavky na robotické řešení',
+        'navrhne algoritmus a architekturu řídicího programu v Pythonu',
+        'samostatně nebo v týmu sestaví, propojí a naprogramuje funkční robotické zařízení',
+        'integruje senzory, pohony a případně 3D tištěný konstrukční díl, IoT či AI kameru',
+        'systematicky testuje, odlaďuje a optimalizuje vytvořené řešení v modelové situaci',
+        'vede přehlednou technickou dokumentaci projektu'
+      ],
+      content: [
+        'Projektové řízení v technické praxi: od specifikace požadavků k realizaci',
+        'Samostatná týmová práce na komplexní robotické úloze',
+        'Integrace hardwarových a softwarových komponent do jednoho celku',
+        'Testování mezních stavů, ladění chyb a tvorba technické zprávy'
+      ]
+    },
+    {
+      id: 'rob3-b10',
+      topic: '10. Prezentace a obhajoba projektu',
+      hours: 2,
+      crossThemes: ['PT - ČSP', 'PT - IKT'],
+      outcomes: [
+        'veřejně prezentuje a prakticky předvede vytvořené robotické řešení před třídou',
+        'srozumitelně vysvětlí princip fungování řídicího programu v Pythonu',
+        'odborně a věcně obhájí zvolený technický postup',
+        'konstruktivně reaguje na dotazy vyučujícího a spolužáků',
+        'zhodnotí vlastní práci, týmovou spolupráci a navrhne možnosti dalšího rozvoje projektu'
+      ],
+      content: [
+        'Techniky prezentace technických projektů a živá demonstrace zařízení',
+        'Strukturovaná odborná obhajoba technického řešení',
+        'Zpětná vazba, reflexe inženýrské práce a vyhodnocení výsledků'
       ]
     }
   ]
@@ -153,6 +291,7 @@ export const SVP_ROB3_DATA: SvpGradeData = {
 
 // -------------------------------------------------------------------------
 // 4. ROČNÍK: ROBOTIKA 2 (ROB 4 – 66 HODIN)
+// Všesměrová aréna VEX AIM, průmyslové rameno KUKA a maturitní projekt
 // -------------------------------------------------------------------------
 export const SVP_ROB4_DATA: SvpGradeData = {
   gradeLabel: '4. Ročník',
@@ -161,92 +300,67 @@ export const SVP_ROB4_DATA: SvpGradeData = {
   blocks: [
     {
       id: 'rob4-b1',
-      topic: '1. Všesměrová holonomní kinematika (VEX AIM)',
-      hours: 14,
-      crossThemes: ['PT - ČSP'],
+      topic: '1. Všesměrová mobilní robotika a herní aréna (VEX AIM)',
+      hours: 28,
+      crossThemes: ['PT - IKT', 'PT - ČSP'],
       outcomes: [
-        'vysvětlí princip a výhody holonomního (všesměrového) pohybu oproti podvozkům neholonomním',
-        'provádí goniometrický rozklad sil a rychlostí pro řízení 3-kolového všesměrového podvozku (Omni wheels)',
-        'programuje autonomní pohybové trajektorie v rovině s nezávislou orientací podvozku',
-        'ovládá elektromagnetické a mechanické akční členy mobilního robota'
+        'popíše mechanický princip všesměrových kol (Omni wheels) a výhody holonomního podvozku',
+        'programuje pohyb robotu VEX AIM v libovolném směru roviny v prostředí VEXcode Python',
+        'ovládá elektromagnetický akční člen pro manipulaci s herními puky a mechanický vyhazovač',
+        'využívá senzory pro orientaci na soutěžním hřišti a vyhledání herních prvků',
+        'navrhne a odladí autonomní herní a taktickou strategii v reálném čase',
+        'efektivně spolupracuje v týmu během třídního turnaje v robotické aréně'
       ],
       content: [
-        'Holonomní kinematika (omni-directional kola, srovnání s diferenciálním podvozkem)',
-        'Vektorová matematika podvozku (goniometrický rozklad rychlostí na 3 motory pod úhlem 120°, nezávislá translace a rotace)',
-        'Autonomní trajektorie (plynulé najíždění na souřadnice, vyhýbání se překážkám bez nutnosti otáčení)',
-        'Akční členy v aréně (ovládání elektromagnetu pro manipulaci s objekty, mechanický vyhazovač/kicker)'
+        'Konstrukce tříkolového všesměrového podvozku VEX AIM a vlastnosti Omni kol',
+        'Programování holonomního pohybu v Pythonu (nezávislá translace a rotace)',
+        'Ovládání akčních členů v aréně (elektromagnet, mechanický vyhazovač / kicker)',
+        'Senzorická orientace na hřišti, vyhledávání puků a navigace k brance',
+        'Autonomní herní strategie a týmový turnaj dvojic na soutěžním hřišti'
       ]
     },
     {
       id: 'rob4-b2',
-      topic: '2. Počítačové vidění a AI navigace',
-      hours: 14,
-      crossThemes: ['PT - ČDS'],
+      topic: '2. Průmyslová robotika a manipulátory (KUKA)',
+      hours: 12,
+      crossThemes: ['PT - ČSP', 'PT - IKT'],
       outcomes: [
-        'integruje AI kameru jako senzor pro lokalizaci objektů v zorném poli',
-        'aplikuje techniky počítačového vidění pro barevnou segmentaci a detekci tvarů',
-        'využívá 2D poziční značky (AprilTags) pro přesné prostorové určení polohy robota v aréně',
-        'implementuje algoritmy vizuálního navádění (Visual Servoing) pro sledování a dojíždění k pohybujícím se cílům'
+        'striktně dodržuje bezpečnostní předpisy pro práci s průmyslovými roboty a zná funkci E-Stop tlačítka',
+        'bezpečně obsluhuje ruční ovládací panel průmyslového ramene (Teach Pendant / smartPAD)',
+        'manuálně navádí 6-osé rameno KUKA v kloubových i kartézských souřadnicích (WORLD, BASE, TOOL)',
+        'ukládá referenční prostorové body metodou Teach-In a definuje trajektorie PTP a LIN',
+        'vytvoří a odladí manipulační cyklus Pick & Place pro přemístění a paletizaci objektů',
+        'samostatně spustí, zkontroluje a bezpečně zastaví naprogramovaný cyklus ramene'
       ],
       content: [
-        'Architektura vizuálního senzoru (kamera jako inteligentní senzor, zorné pole, snímková frekvence)',
-        'Barevná segmentace a klasifikace (barevné prostory HSV, prahování, nalezení těžiště objektu)',
-        'Poziční značky AprilTags (princip 2D kódů, dekódování ID značky, výpočet vzdálenosti a úhlu natočení)',
-        'Visual Servoing a herní strategie (algoritmy zpětnovazebního dojíždění k objektu, rozhodovací logika v reálném čase)'
+        'Bezpečnostní normy v průmyslové automatizaci (ochranný prostor, souhlasný spínač, E-Stop)',
+        'Kinematika 6-osého ramene KUKA (stupně volnosti A1–A6, pracovní dosah)',
+        'Ovládání přes KUKA smartPAD: ruční pojezd (Jogging) v souřadnicích WORLD a BASE',
+        'Metoda Teach-In: záznam bodů, trajektorie z bodu do bodu (PTP) a po přímce (LIN)',
+        'Úloha Pick & Place: kalibrace chapadla, uchopení kostky, přemístění a přesné uložení',
+        'Praktické ověření samostatné bezpečné obsluhy každým žákem'
       ]
     },
     {
       id: 'rob4-b3',
-      topic: '3. Inženýrská mechanika a Smart motory (VEX IQ)',
-      hours: 14,
-      crossThemes: ['PT - ČSP'],
+      topic: '3. Závěrečný komplexní inženýrský projekt a obhajoba',
+      hours: 26,
+      crossThemes: ['PT - ČSP', 'PT - IKT'],
       outcomes: [
-        'navrhuje mechanické ozubené převody pro optimalizaci rychlosti a točivého momentu',
-        'využívá optické enkodéry Smart motorů pro odometrii a přesné odměřování ujeté vzdálenosti',
-        'integruje vestavěný IMU gyroskop pro kompenzaci prokluzu kol a stabilizaci orientace',
-        'konstruuje a programuje víceosé zdvihací a manipulační mechanismy'
+        'samostatně nebo v týmu analyzuje technický problém a navrhne komplexní inženýrské řešení',
+        'vybere a efektivně využije vhodný hardware z výuky (VEX AIM, KUKA, VEX IQ, IoT/Cutebot)',
+        'vyvine, otestuje a odladí řídicí software v Pythonu s důrazem na spolehlivost a ošetření chyb',
+        'zpracuje kompletní technickou dokumentaci včetně schématu zapojení a popisu kódu',
+        'veřejně prezentuje a obhájí realizované dílo před maturitní komisí a třídou',
+        'věcně argumentuje a prokáže hluboké porozumění zvolenému technickému postupu'
       ],
       content: [
-        'Mechanické převody v robotice (převodový poměr, točivý moment vs. úhlová rychlost, tření)',
-        'Smart motory a enkodéry (měření úhlu natočení, odometrie, PID regulace polohy motoru)',
-        'IMU jednotka a gyroskop (fúze dat, měření úhlové rychlosti, eliminace driftu podvozku)',
-        'Zdvihací mechanismy (paralelogram, nůžkový mechanismus, lineární vedení a chapadla)'
-      ]
-    },
-    {
-      id: 'rob4-b4',
-      topic: '4. Průmyslová robotika a manipulátory (KUKA EDU)',
-      hours: 14,
-      crossThemes: ['PT - ČSP', 'PT - ČDS'],
-      outcomes: [
-        'popíše kinematickou strukturu 6-osého průmyslového robotického ramene (6-DoF)',
-        'orientuje se v souřadnicových systémech průmyslových manipulátorů (WORLD, BASE, TOOL / TCP)',
-        'definuje a porovnává trajektorie pohybu z bodu do bodu (PTP) a lineární pohyby (LIN)',
-        'vytváří, simuluje a ladí manipulační úlohy (Pick & Place) v robotickém simulátoru s následným přenosem na fyzický stroj'
-      ],
-      content: [
-        'Kinematika 6-DoF ramen (stupně volnosti, dopředná a inverzní kinematika, singulární polohy)',
-        'Kartézské souřadnicové systémy (bázový systém BASE, nástrojový systém TOOL/TCP, kalibrace hrotu nástroje)',
-        'Řízení pohybu (interpolace PTP vs. lineární LIN, aproximace bodů, rychlostní a zrychlovací rampy)',
-        'Offline programování a simulace (virtuální buňka v simulátoru, detekce kolizí, nahrání kódu do reálného KUKA kontroléru)'
-      ]
-    },
-    {
-      id: 'rob4-b5',
-      topic: '5. Závěrečný komplexní kooperativní projekt',
-      hours: 10,
-      crossThemes: ['PT - ČSP'],
-      outcomes: [
-        'navrhne systémovou architekturu komplexní kooperativní výrobní linky',
-        'integruje různorodý hardware (mobilní podvozky, senzorické stanice, průmyslové rameno) přes společné komunikační rozhraní',
-        'provádí systematickou diagnostiku chybových stavů a ladění celku v reálném čase',
-        'prezentuje a odborně obhájí realizované technické řešení'
-      ],
-      content: [
-        'Návrh systémové architektury (specifikace rozhraní mezi mobilním robotem, KUKA ramenem a dispečinkem)',
-        'Týmová integrace a ladění (koordinace předávání materiálu mezi mobilním robotem a manipulátorem)',
-        'Zabezpečení buňky a ošetření chyb (nouzové zastavení, obnovení po výpadku, diagnostika)',
-        'Technická dokumentace a odborná ústní obhajoba projektu'
+        'Formulace inženýrského zadání projektu a stanovení milníků realizace',
+        'Samostatný vývoj softwaru v Pythonu a integrace hardwarových komponent',
+        'Testování spolehlivosti systému, ladění hraničních stavů a ošetření výpadků',
+        'Zpracování technické zprávy a uživatelské dokumentace',
+        'Příprava prezentačních podkladů a demonstrace funkčního zařízení',
+        'Ústní obhajoba projektu a odborná diskuse před zkušební komisí'
       ]
     }
   ]

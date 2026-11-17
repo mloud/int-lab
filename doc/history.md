@@ -1173,3 +1173,23 @@ px tsc --noEmit.
       - Robotika 2 (4. ročník): [`/specializovana/robotika-4/tematicky-plan`](file:///d:/Skola/Vimperk/Aplikace%20Informatika/IntLab/app/specializovana/robotika-4/tematicky-plan/page.tsx) s interaktivním přepínáním mezi tematickým plánem a InspIS ŠVP.
     - **Aktivní plánovací tabule:** `doc/plan.md` přepnut na aktivní vývoj *Robotika a vestavěné systémy (ROB 3 & ROB 4)* v souladu s Pravidlem 12.
     - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.
+
+56. **Rekalibrace ŠVP a tematických plánů Robotiky podle oficiálního vzorového ŠVP:**
+    - **Příčina a podklad:** Uživatel dodal oficiální schválené znění ŠVP pro Robotiku (10 tematických celků, 66 h) a exportovali jsme z Google Disku dokument *„Robotika, AI a IoT v Pythonu“*. Zohledněno softwarové zaměření školy (žáci programují výhradně v textovém Pythonu/MicroPythonu, žádné bloky, žádná abstraktní těžká matematika jako PID, IMU fúze či dead reckoning).
+    - **Struktura ROB 3 (3. ročník, 66 h):**
+      - 1. Úvod do robotiky (2 h – architektura, senzory, aktuátory, bezpečnost).
+      - 2. Mikrokontroléry a programování robotických systémů (12 h – micro:bit v2, GPIO, stavový automat v Pythonu).
+      - 3. Senzory a zpracování dat (10 h – digitální/analogové čtení, ultrazvuk, IR linka, filtrace šumu).
+      - 4. Řízení motorů a pohyb robotu (8 h – Cutebot, DC motory, PWM, jízda po čáře, manévry).
+      - 5. Autonomní robotika (6 h – stavové řízení Cutebota, vyhýbání se překážkám, řešení bludiště).
+      - 6. 3D modelování a konstrukce pro robotiku (6 h – návrh v Tinkercadu/Onshape, slicování pro Prusa MINI, tisk držáku či nárazníku).
+      - 7. Internet věcí a komunikace robotických zařízení (6 h – IoT sada, senzory prostředí, OLED displej, odesílání telemetrie).
+      - 8. Robotika a umělá inteligence (4 h – SmartLens AI kamera, rozpoznávání barev a AprilTags v Pythonu).
+      - 9. Závěrečný robotický projekt (10 h – týmový vývoj a integrace podvozku Cutebot s IoT/kamerou/3D dílem).
+      - 10. Prezentace a obhajoba projektu (2 h – živá demonstrace jízdy a obhajoba kódu).
+    - **Struktura ROB 4 (4. ročník, 66 h):**
+      - Blok 1: Pokročilá autonomní mobilní robotika – VEX AIM všesměrová aréna (28 h – 3kolový všesměrový podvozek, Omni kola, VEXcode Python API, senzory vzdálenosti a nárazu, elektromagnet pro sběr puků, herní strategie).
+      - Blok 2: Průmyslová robotika a manipulace – 6-osé rameno KUKA (12 h – přesně 6 dvouhodinovek: bezpečnost, nouzové zastavení, pojezd ručně přes smartPAD Jogging, souřadné systémy WORLD a TOOL, Teach-In záznam bodů trajektorie, manipulační cyklus Pick & Place).
+      - Blok 3: Závěrečný inženýrský projekt a obhajoba (26 h – volitelná specializace na libovolné školní platformě: Cutebot + IoT + AI, VEX AIM nebo KUKA).
+    - **Synchronizace kódu:** Aktualizovány soubory `ROB3.md`, `ROB4.md`, `svpRobData.ts` (bloky `rob3-b1`..`rob3-b10` a `rob4-b1`..`rob4-b3`), `robPlan.ts`, obě stránky `tematicky-plan/page.tsx`, `PLAN_ROB.md` a `doc/plan.md`.
+    - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.

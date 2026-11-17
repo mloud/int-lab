@@ -1,5 +1,9 @@
 import { ThematicPlan } from './thematicPlanTypes';
 
+// =========================================================================
+// 3. ROČNÍK: ROBOTIKA 1 (ROB 3 – 66 HODIN, 33 TÝDNŮ × 2 H TÝDNĚ)
+// 10 tematických celků podle oficiálního ŠVP
+// =========================================================================
 export const ROB3_THEMATIC_PLAN: ThematicPlan = {
   subjectId: 'rob3',
   subjectTitle: 'Robotika 1',
@@ -15,279 +19,367 @@ export const ROB3_THEMATIC_PLAN: ThematicPlan = {
     {
       id: 'rob3-b1',
       order: 1,
-      month: 'Září – Říjen',
+      month: 'Září',
       monthKey: 'zari',
-      weeks: '1.–5. týden',
-      title: 'Architektura MCU & GPIO',
-      hours: 10,
-      theoryHours: 3,
-      practiceHours: 7,
-      description: 'Základy architektury jednočipu ARM Cortex-M4 na BBC micro:bit v2, REPL konzole, GPIO piny, časování ticks_ms() a stavové automaty.',
-      rvpCompetence: 'Ovládá práci s mikrokontrolérem v MicroPythonu, zapojuje GPIO periferie a vytváří neblokující řídicí kód.',
+      weeks: '1. týden',
+      title: '1. Úvod do robotiky',
+      hours: 2,
+      theoryHours: 1,
+      practiceHours: 1,
+      description: 'Definice robotiky, architektura robotických systémů (řídicí jednotka, senzory, pohony) a bezpečnost práce v laboratoři.',
+      rvpCompetence: 'Rozliší typy robotů, popíše základní části systému a dodržuje pravidla bezpečnosti práce.',
       subtopics: [
         {
           id: 'rob3-b1-1',
-          title: 'Úvod do architektury MCU: Od PC k mikrokontroléru (micro:bit v2)',
+          title: 'Robotické systémy a bezpečnost práce v laboratoři',
           hours: 2,
-          type: 'laborator',
-          description: 'Srovnání PC a MCU, paměti Flash vs. RAM, nahrávání firmware, sériová konzole REPL v MicroPythonu.',
-          practice: 'Zprovoznění vývojového prostředí, první neblokující program s LED maticí.',
-          route: '/specializovana/robotika-3/mcu/uvod'
-        },
-        {
-          id: 'rob3-b1-2',
-          title: 'Digitální vstupy a výstupy GPIO: Logické úrovně a tlačítka',
-          hours: 2,
-          type: 'laborator',
-          description: 'Logická 0 a 1 (3.3V), pull-up a pull-down rezistory, ošetření zákmitů kontaktů (debouncing).',
-          practice: 'Zapojení externích tlačítek a LED na edge connector micro:bitu.',
-          route: '/specializovana/robotika-3/mcu/gpio'
-        },
-        {
-          id: 'rob3-b1-3',
-          title: 'Časování bez zpoždění: Funkce ticks_ms() vs. blokující sleep()',
-          hours: 2,
-          type: 'laborator',
-          description: 'Proč je sleep() v robotice nepřípustný, měření uplynulého času přes ticks_ms() a ticks_diff().',
-          practice: 'Tvorba neblokujícího programu: současné blikání diodou s různou frekvencí a čtení tlačítek.',
-          route: '/specializovana/robotika-3/mcu/casovani'
-        },
-        {
-          id: 'rob3-b1-4',
-          title: 'Konečný stavový automat (FSM) v řízení hardware',
-          hours: 4,
-          type: 'laborator',
-          description: 'Koncepce stavového automatu, stavy, přechody a události, implementace přes proměnnou stavu a podmínky v Pythonu.',
-          practice: 'Implementace inteligentního semaforu pro chodce s časováním a přechody stavů.',
-          route: '/specializovana/robotika-3/mcu/fsm'
+          type: 'kombinovane',
+          description: 'Úvod do robotiky, typy robotů, základní komponenty (MCU, senzory, akční členy), bezpečnostní pravidla.',
+          practice: 'Bezpečnostní instruktáž, prohlídka robotického vybavení laboratoře (micro:bit, Cutebot, KUKA, VEX).',
+          route: '/specializovana/robotika-3'
         }
       ]
     },
     {
       id: 'rob3-b2',
       order: 2,
-      month: 'Říjen – Listopad',
-      monthKey: 'rijen',
-      weeks: '6.–12. týden',
-      title: 'Senzorika, ADC & Sběrnice',
-      hours: 14,
+      month: 'Září – Říjen',
+      monthKey: 'zari',
+      weeks: '2.–7. týden',
+      title: '2. Mikrokontroléry a programování robotických systémů',
+      hours: 12,
       theoryHours: 3,
-      practiceHours: 11,
-      description: 'Analogové vzorkování ADC, práce se senzorickou sadou IOKit, sběrnice I2C, OLED displej, filtrace šumu a hystereze.',
-      rvpCompetence: 'Zpracovává analogové i digitální senzorické signály, filtruje šum a zobrazuje telemetrii.',
+      practiceHours: 9,
+      description: 'Základy programování mikrokontroléru BBC micro:bit v2 v MicroPythonu, GPIO piny, časování a stavový automat.',
+      rvpCompetence: 'Ovládá práci s vývojovým prostředím mikrokontroléru v MicroPythonu a vytváří neblokující řídicí kód.',
       subtopics: [
         {
           id: 'rob3-b2-1',
-          title: 'Analogový svět a ADC převodník: Vzorkování napětí a potenciometr',
+          title: 'Úvod do MicroPythonu na micro:bit v2 a REPL konzole',
           hours: 2,
           type: 'laborator',
-          description: 'Princip A/D převodníku, 10bitové a 12bitové rozlišení (0–1023), vzorkování napětí z fotorezistoru a potenciometru.',
-          practice: 'Kalibrace analogového senzoru osvětlení a přepočet surové hodnoty na luxy.',
-          route: '/specializovana/robotika-3/senzory/adc'
+          description: 'Zprovoznění desky micro:bit v2, sériová konzole REPL v Pythonu, první programy s 5x5 LED maticí.',
+          practice: 'Nahrání firmware, interaktivní práce v REPL konzoli, ošetření tlačítek A a B v kódu.',
+          route: '/specializovana/robotika-3/mcu/uvod'
         },
         {
           id: 'rob3-b2-2',
-          title: 'Sériová sběrnice I2C a OLED displej SSD1306',
-          hours: 4,
+          title: 'Digitální vstupy a výstupy GPIO',
+          hours: 2,
           type: 'laborator',
-          description: 'Protokol I2C (vodiče SDA a SCL, adresa zařízení 0x3C), inicializace a vykreslování textu i grafiky na OLED displej.',
-          practice: 'Skenování sběrnice I2C a naprogramování grafického dashboardu se senzory.',
-          route: '/specializovana/robotika-3/senzory/i2c-oled'
+          description: 'Logické úrovně (0 a 3.3V), pull-up/pull-down rezistory, zapojení externích tlačítek a LED.',
+          practice: 'Čtení digitálních pinů, ovládání externích signálních LED a eliminace zákmitů kontaktů (debouncing).',
+          route: '/specializovana/robotika-3/mcu/gpio'
         },
         {
           id: 'rob3-b2-3',
-          title: 'Ultrazvukový dálkoměr a měření vzdálenosti (Sonar)',
-          hours: 2,
+          title: 'Časování programu bez zpoždění: ticks_ms() vs. sleep()',
+          hours: 4,
           type: 'laborator',
-          description: 'Šíření zvuku vzduchem, vyslání impulzu Trigger a měření délky odrazu Echo v mikrosekundách.',
-          practice: 'Zprovoznění parkovacího asistentu s akustickou a vizuální signalizací.',
-          route: '/specializovana/robotika-3/senzory/ultrazvuk'
+          description: 'Proč je sleep() v robotice nevhodný, neblokující měření uplynulého času přes ticks_ms a ticks_diff.',
+          practice: 'Periodická obslužná smyčka – současné blikání LED s různou periodou a nepřetržité čtení tlačítek.',
+          route: '/specializovana/robotika-3/mcu/casovani'
         },
         {
           id: 'rob3-b2-4',
-          title: 'Zpracování signálu: Filtrace šumu a klouzavý průměr',
+          title: 'Konečný stavový automat (FSM) v Pythonu',
           hours: 4,
           type: 'laborator',
-          description: 'Proč senzory šumí, náhodné špičky, implementace kruhového bufferu a klouzavého průměru (Moving Average).',
-          practice: 'Srovnání surového a filtrovaného signálu vzdálenosti na grafickém displeji.',
-          route: '/specializovana/robotika-3/senzory/filtrace'
-        },
-        {
-          id: 'rob3-b2-5',
-          title: 'Prahování a hystereze v rozhodovací logice',
-          hours: 2,
-          type: 'laborator',
-          description: 'Problém kmitání kolem jedné prahové hodnoty, horní a dolní práh hystereze (Schmittův obvod v kódu).',
-          practice: 'Implementace stabilního nočního světla odolného vůči krátkodobému zastínění.',
-          route: '/specializovana/robotika-3/senzory/hystereze'
+          description: 'Koncepce stavového automatu, stavy, přechody a události, deterministické řízení bez zablokování.',
+          practice: 'Implementace inteligentního semaforu pro chodce s časováním a přepínáním stavů.',
+          route: '/specializovana/robotika-3/mcu/fsm'
         }
       ]
     },
     {
       id: 'rob3-b3',
       order: 3,
-      month: 'Prosinec – Leden',
-      monthKey: 'prosinec',
-      weeks: '13.–18. týden',
-      title: 'Pohony & Diferenciální kinematika (Cutebot)',
-      hours: 12,
+      month: 'Říjen – Listopad',
+      monthKey: 'rijen',
+      weeks: '8.–12. týden',
+      title: '3. Senzory a zpracování dat',
+      hours: 10,
       theoryHours: 2,
-      practiceHours: 10,
-      description: 'Řízení stejnosměrných motorů přes H-můstek a PWM, diferenciální kinematika mobilního podvozku Cutebot a kalibrace přímého směru.',
-      rvpCompetence: 'Ovládá motory pomocí PWM střídy a řídí pohyb diferenciálního podvozku.',
+      practiceHours: 8,
+      description: 'Práce s analogovými a digitálními senzory, I2C sběrnice, OLED displej a softwarová filtrace šumu.',
+      rvpCompetence: 'Připojí a programově obslouží senzory, načte naměřená data a aplikuje softwarovou filtraci šumu.',
       subtopics: [
         {
           id: 'rob3-b3-1',
-          title: 'DC motory, H-můstek a regulace otáček pomocí PWM',
+          title: 'Sériová sběrnice I2C a grafický OLED displej SSD1306',
           hours: 2,
           type: 'laborator',
-          description: 'Princip stejnosměrného motoru, H-můstek pro obousměrný chod, PWM střída (0–100 %) pro regulaci rychlosti.',
-          practice: 'Ovládání motorů Cutebota přes I2C příkazy s plynulým rozjezdem.',
-          route: '/specializovana/robotika-3/cutebot/motory'
+          description: 'Komunikační protokol I2C (vodiče SDA a SCL), adresace periferií, inicializace OLED displeje.',
+          practice: 'Zapojení OLED displeje a výpis telemetrických údajů a grafických ikon v Pythonu.',
+          route: '/specializovana/robotika-3/senzory/i2c'
         },
         {
           id: 'rob3-b3-2',
-          title: 'Kinematika diferenciálního podvozku: Jízda v oblouku a rotace na místě',
+          title: 'Environmentální senzory z IoT sady (teplota, vlhkost, světlo)',
           hours: 4,
           type: 'laborator',
-          description: 'Vztah mezi rychlostí levého a pravého kola, poloměr zatáčení, otáčení kolem středu robota (protiběžná kola).',
-          practice: 'Naprogramování přesného projetí čtverce a osmičky v prostoru učebny.',
-          route: '/specializovana/robotika-3/cutebot/kinematika'
+          description: 'Analogové a digitální snímání fyzikálních veličin, A/D převodník a kalibrace jednotek.',
+          practice: 'Snímání teploty a intenzity světla, zobrazování naměřených hodnot v reálném čase na displeji.',
+          route: '/specializovana/robotika-3/senzory/adc'
         },
         {
           id: 'rob3-b3-3',
-          title: 'Kalibrace mechanických nesouměrností a trimování motorů',
-          hours: 2,
-          type: 'laborator',
-          description: 'Proč robot nejezdí rovně (tolerance převodů a motorů), softwarové trimování a kalibrační konstanty.',
-          practice: 'Zkalibrování přímého směru Cutebota na dráze 3 metrů.',
-          route: '/specializovana/robotika-3/cutebot/kalibrace'
-        },
-        {
-          id: 'rob3-b3-4',
-          title: 'Pohybové profily a bezpečné zastavení před překážkou',
+          title: 'Fyzikální šum ze senzorů a plovoucí průměr',
           hours: 4,
           type: 'laborator',
-          description: 'Integrace ultrazvuku s motory, proporcionální zpomalování podle vzdálenosti překážky.',
-          practice: 'Implementace autonomního nouzového brzdění bez nárazu.',
-          route: '/specializovana/robotika-3/cutebot/bezpecnost'
+          description: 'Proč senzory v reálném světě kmitají, plovoucí průměr (kruhový buffer) a hystereze při spínání.',
+          practice: 'Naprogramování digitálního filtru v Pythonu – porovnání surových a vyhlazených dat na grafu.',
+          route: '/specializovana/robotika-3/senzory/filtrace'
         }
       ]
     },
     {
       id: 'rob3-b4',
       order: 4,
-      month: 'Únor – Duben',
-      monthKey: 'unor',
-      weeks: '19.–27. týden',
-      title: 'Autonomní navigace & Řízení',
-      hours: 18,
-      theoryHours: 4,
-      practiceHours: 14,
-      description: 'Sledování vodicí linie, infračervené odrazové senzory, diskrétní Bang-Bang regulace vs. proporcionální P/PD regulátor a Sumo aréna.',
-      rvpCompetence: 'Navrhuje regulační algoritmy pro autonomní navigaci a rozhodovací logiku v aréně.',
+      month: 'Listopad – Prosinec',
+      monthKey: 'listopad',
+      weeks: '13.–16. týden',
+      title: '4. Řízení motorů a pohyb robotu',
+      hours: 8,
+      theoryHours: 2,
+      practiceHours: 6,
+      description: 'Pohony stejnosměrných motorů, PWM regulace, podvozek Cutebot, detekce překážek sonarem a sledování čáry.',
+      rvpCompetence: 'Naprogramuje směr a rychlost robotického vozítka, využívá senzory pro detekci překážek a sledování trasy.',
       subtopics: [
         {
           id: 'rob3-b4-1',
-          title: 'Optické sledování linie: Pole infračervených senzorů a kalibrace prahů',
+          title: 'Řízení DC motorů přes PWM a kalibrace přímé jízdy Cutebota',
           hours: 2,
           type: 'laborator',
-          description: 'Odrazivost infračerveného světla od černé čáry a bílého podkladu, kalibrace čtecích prahů.',
-          practice: 'Otestování čtení senzorů čáry na Cutebotu a zobrazení stavu na LED diodách.',
-          route: '/specializovana/robotika-3/navigace/senzory-cary'
+          description: 'H-můstek, reverzace otáček, PWM střída, rozdíly mezi motory a trimování přímé jízdy.',
+          practice: 'Příkazy CuteBot Python API: rozjezd, plynulé brzdění, otočení na místě a seřízení rovné dráhy.',
+          route: '/specializovana/robotika-3/cutebot/motory'
         },
         {
           id: 'rob3-b4-2',
-          title: 'Diskrétní řízení Bang-Bang a jeho limity (kmitání podvozku)',
-          hours: 4,
+          title: 'Ultrazvukový dálkoměr Sonar a bezpečnostní zónové brzdění',
+          hours: 2,
           type: 'laborator',
-          description: 'Dvoustavové skokové řízení (vidím vlevo -> toč vpravo), příčiny kmitání a energetické neefektivity.',
-          practice: 'Zprovoznění základního line followera a měření času na cvičné trati.',
-          route: '/specializovana/robotika-3/navigace/bang-bang'
+          description: 'Princip sonaru (Trigger/Echo), měření vzdálenosti v cm, bezpečnostní zóny před překážkou.',
+          practice: 'Parkovací asistent: plynulé zpomalování Cutebota před zdí a nouzové zastavení na 10 cm.',
+          route: '/specializovana/robotika-3/cutebot/prekazky'
         },
         {
           id: 'rob3-b4-3',
-          title: 'Proporcionální regulátor (P-regulátor): Výpočet regulační odchylky',
+          title: 'Sledování vodicí linie pomocí infračervených senzorů',
           hours: 4,
           type: 'laborator',
-          description: 'Pojem regulační odchylky (Error), konstanta Kp, plynulá úprava rozdílu rychlostí motorů.',
-          practice: 'Naladění proporcionálního sledovače linie a eliminace trhavého pohybu.',
-          route: '/specializovana/robotika-3/navigace/p-regulator'
-        },
-        {
-          id: 'rob3-b4-4',
-          title: 'Derivační složka (PD regulátor) a zvládání ostrých zatáček',
-          hours: 4,
-          type: 'laborator',
-          description: 'Sledování rychlosti změny chyby (derivace), tlumení překmitů a reakce na prudké změny směru.',
-          practice: 'Optimalizace projetí náročné tratě s ostrými vlásenkami a pravoúhlými rohy.',
-          route: '/specializovana/robotika-3/navigace/pd-regulator'
-        },
-        {
-          id: 'rob3-b4-5',
-          title: 'Autonomní Sumo aréna: Vyhledání soupeře a udržení na bojišti',
-          hours: 4,
-          type: 'projekt',
-          description: 'Kombinace detekce bílé hrany dohyo arény a aktivního vyhledávání protivníka sonarem.',
-          practice: 'Mini-turnaj v robotickém Sumu: autonomní strategie a spolehlivost algoritmu.',
-          route: '/specializovana/robotika-3/navigace/sumo'
+          description: 'Odrazové IR senzory, kontrast povrchu, dvoustavové řízení (Bang-Bang) a plynulá korekce.',
+          practice: 'Programování autonomního sledování černé čáry na bílém podkladu v aréně.',
+          route: '/specializovana/robotika-3/navigace/ir-senzory'
         }
       ]
     },
     {
       id: 'rob3-b5',
       order: 5,
-      month: 'Květen – Červen',
-      monthKey: 'kveten',
-      weeks: '28.–33. týden',
-      title: 'IoT & Bezdrátová telemetrie',
-      hours: 12,
-      theoryHours: 2,
-      practiceHours: 10,
-      description: 'micro:bit Radio 2.4 GHz, parsování paketů, dálkové ovládání akcelerometrem a telemetrický dispečink.',
-      rvpCompetence: 'Konfiguruje rádiovou komunikaci, navrhuje komunikační protokoly a realizuje telemetrii.',
+      month: 'Prosinec – Leden',
+      monthKey: 'prosinec',
+      weeks: '17.–19. týden',
+      title: '5. Autonomní robotika',
+      hours: 6,
+      theoryHours: 1,
+      practiceHours: 5,
+      description: 'Rozhodovací algoritmy autonomního chování, kombinace senzorů a řešení průjezdu bludištěm.',
+      rvpCompetence: 'Navrhne algoritmus autonomního chování a optimalizuje reakci robota na překážky.',
       subtopics: [
         {
           id: 'rob3-b5-1',
-          title: 'Bezdrátová komunikace na 2.4 GHz: micro:bit Radio a kanály',
+          title: 'Rozhodovací logika autonomního robota (FSM v aréně)',
           hours: 2,
           type: 'laborator',
-          description: 'Rádiové vysílání bez párování, rádiové skupiny (Radio Group), kanály a síla signálu (RSSI).',
-          practice: 'Zprovoznění jednoduchého bezdrátového chatu a test dosahu signálu.',
-          route: '/specializovana/robotika-3/iot/radio-zaklad'
+          description: 'Kombinace čidla čáry a sonaru do stavového automatu (hledání trasy vs. reakce na překážku).',
+          practice: 'Implementace chování: jeď po čáře, při překážce zastav, objeď ji a vrať se zpět na čáru.',
+          route: '/specializovana/robotika-3/navigace/krizovatky'
         },
         {
           id: 'rob3-b5-2',
-          title: 'Struktura paketů a telemetrický protokol',
+          title: 'Mise v bludišti a optimalizace autonomního průjezdu',
           hours: 4,
           type: 'laborator',
-          description: 'Definice vlastního datového paketu (ID odesílatele, typ zprávy, číselná hodnota), parsování řetězců.',
-          practice: 'Bezdrátové odesílání telemetrických dat z robota (rychlost, vzdálenost, napětí baterie).',
-          route: '/specializovana/robotika-3/iot/pakety'
-        },
+          description: 'Algoritmy sledování stěny (Right-hand rule), řešení slepých uliček a analýza chyb navigace.',
+          practice: 'Soutěžní průjezd neznámým bludištěm z krabic na čas a přesnost bez zásahu obsluhy.',
+          route: '/specializovana/robotika-3/cutebot/kinematika'
+        }
+      ]
+    },
+    {
+      id: 'rob3-b6',
+      order: 6,
+      month: 'Leden – Únor',
+      monthKey: 'leden',
+      weeks: '20.–22. týden',
+      title: '6. 3D modelování a konstrukce pro robotiku',
+      hours: 6,
+      theoryHours: 1,
+      practiceHours: 5,
+      description: 'Základy 3D CAD modelování, příprava tiskových dat v PrusaSliceru a tisk dílů na Prusa MINI.',
+      rvpCompetence: 'Vytvoří funkční 3D model dílu, připraví tisková data a ověří montáž dílu na robotu.',
+      subtopics: [
         {
-          id: 'rob3-b5-3',
-          title: 'Dálkový ovladač s využitím vestavěného akcelerometru',
-          hours: 4,
-          type: 'laborator',
-          description: 'Čtení náklonu v osách X a Y (Pitch a Roll), mapování sklonu ovladače na rychlost levého a pravého kola.',
-          practice: 'Ovládání Cutebota pouhým nakláněním druhého micro:bitu v ruce.',
-          route: '/specializovana/robotika-3/iot/ovladac'
-        },
-        {
-          id: 'rob3-b5-4',
-          title: 'Závěrečný dispečink a rekapitulace ročníku',
+          id: 'rob3-b6-1',
+          title: 'Návrh konstrukčních prvků v CAD (Tinkercad / Onshape)',
           hours: 2,
-          type: 'kombinovane',
-          description: 'Centrální dispečerská stanice sledující pohyb více robotů v učebně, hodnocení a uzavření klasifikace.',
-          practice: 'Společná jízda flotily robotů řízená z jednoho dispečerského uzlu.',
-          route: '/specializovana/robotika-3/iot/dispecink'
+          type: 'laborator',
+          description: 'Základy parametrického a objemového modelování, technické tolerance pro montáž dílů.',
+          practice: 'Návrh vlastního držáku senzoru nebo ochranného nárazníku pro Cutebota.',
+          route: '/specializovana/robotika-3/mcu/periferie'
+        },
+        {
+          id: 'rob3-b6-2',
+          title: 'Příprava pro 3D tisk a výroba na Prusa MINI',
+          hours: 4,
+          type: 'laborator',
+          description: 'Slicing v PrusaSliceru, volba parametrů tisku (výplň, perimetry, orientace), obsluha tiskárny.',
+          practice: 'Vytištění navrženého dílu na Prusa MINI a jeho mechanická montáž na podvozek robota.',
+          route: '/specializovana/robotika-3/cutebot/telemetrie'
+        }
+      ]
+    },
+    {
+      id: 'rob3-b7',
+      order: 7,
+      month: 'Únor – Březen',
+      monthKey: 'unor',
+      weeks: '23.–25. týden',
+      title: '7. Internet věcí a komunikace robotických zařízení',
+      hours: 6,
+      theoryHours: 1,
+      practiceHours: 5,
+      description: 'Bezdrátová rádiová komunikace (micro:bit Radio 2.4 GHz), paketová telemetrie a odesílání do cloudu.',
+      rvpCompetence: 'Propojí zařízení bezdrátově, odešle a přijme telemetrická data a vytvoří monitorovací dashboard.',
+      subtopics: [
+        {
+          id: 'rob3-b7-1',
+          title: 'Bezdrátová síťová komunikace micro:bit Radio (2.4 GHz)',
+          hours: 2,
+          type: 'laborator',
+          description: 'Paketový rádiový přenos, čísla skupin (group id), formátování dat do řetězců a JSONu.',
+          practice: 'Dálkový ovladač – jeden micro:bit v ruce s akcelerometrem řídí pohyb Cutebota na podlaze.',
+          route: '/specializovana/robotika-3/iot/radio'
+        },
+        {
+          id: 'rob3-b7-2',
+          title: 'M2M telemetrie a odesílání dat do cloudového dashboardu',
+          hours: 4,
+          type: 'laborator',
+          description: 'Strojová komunikace M2M, přenos dat z jedoucího robota na PC základnu a do cloudu (ThingSpeak).',
+          practice: 'Vytvoření živého monitorovacího panelu: zobrazení stavu baterie, teploty a ujeté dráhy v PC.',
+          route: '/specializovana/robotika-3/iot/ovladani'
+        }
+      ]
+    },
+    {
+      id: 'rob3-b8',
+      order: 8,
+      month: 'Březen',
+      monthKey: 'brezen',
+      weeks: '26.–27. týden',
+      title: '8. Robotika a umělá inteligence',
+      hours: 4,
+      theoryHours: 1,
+      practiceHours: 3,
+      description: 'Počítačové vidění, kamera SmartLens jako inteligentní senzor a sledování objektů v Pythonu.',
+      rvpCompetence: 'Vysvětlí princip počítačového vidění, využije kameru jako senzor a programuje reakci na obraz.',
+      subtopics: [
+        {
+          id: 'rob3-b8-1',
+          title: 'SmartLens AI kamera: Detekce barev a obrazových značek',
+          hours: 2,
+          type: 'laborator',
+          description: 'Kamera jako senzor v Pythonu, rozpoznávání barevných karet a čtení 2D značek (AprilTags).',
+          practice: 'Robot reaguje na značky: zelená karta = jeď vpřed, červená karta = nouzový stop.',
+          route: '/specializovana/robotika-4/aim-vision/barvy'
+        },
+        {
+          id: 'rob3-b8-2',
+          title: 'Vizuální sledování pohybujícího se cíle (Ball Tracking)',
+          hours: 2,
+          type: 'laborator',
+          description: 'Vyhodnocení souřadnic středu objektu v zorném poli kamery a dynamické zatáčení robota.',
+          practice: 'Autonomní pronásledování: Cutebot sleduje barevný míček kutálející se po podlaze.',
+          route: '/specializovana/robotika-4/aim-vision/tracking'
+        }
+      ]
+    },
+    {
+      id: 'rob3-b9',
+      order: 9,
+      month: 'Duben – Květen',
+      monthKey: 'duben',
+      weeks: '28.–32. týden',
+      title: '9. Závěrečný robotický projekt',
+      hours: 10,
+      theoryHours: 1,
+      practiceHours: 9,
+      description: 'Samostatná týmová realizace uceleného robotického projektu integrujícího hardware, senzory a kód.',
+      rvpCompetence: 'Samostatně v týmu navrhne, sestaví a naprogramuje robotické zařízení a vede dokumentaci.',
+      subtopics: [
+        {
+          id: 'rob3-b9-1',
+          title: 'Specifikace zadání projektu a návrh architektury',
+          hours: 2,
+          type: 'projekt',
+          description: 'Výběr projektového tématu ve dvojici, definice vstupů/výstupů, návrh stavového automatu.',
+          practice: 'Sestavení projektového plánu a příprava vývojového repozitáře kódu.',
+          route: '/specializovana/robotika-4/projekt/architektura'
+        },
+        {
+          id: 'rob3-b9-2',
+          title: 'Vývoj a integrace hardwaru a softwaru v Pythonu',
+          hours: 4,
+          type: 'projekt',
+          description: 'Programování řídicí logiky, integrace senzorů, zapojení 3D tištěného dílu nebo kamery.',
+          practice: 'Vývoj kódu v MicroPythonu a postupné ověřování funkčnosti dílčích částí.',
+          route: '/specializovana/robotika-4/projekt/realizace'
+        },
+        {
+          id: 'rob3-b9-3',
+          title: 'Testování v aréně, ladění chyb a dokumentace',
+          hours: 4,
+          type: 'projekt',
+          description: 'Zátěžové testy na modelové trati, ošetření nestandardních stavů a tvorba technické zprávy.',
+          practice: 'Ladění stability programu a finalizace technické dokumentace projektu.',
+          route: '/specializovana/robotika-4/projekt/realizace'
+        }
+      ]
+    },
+    {
+      id: 'rob3-b10',
+      order: 10,
+      month: 'Květen – Červen',
+      monthKey: 'kveten',
+      weeks: '33. týden',
+      title: '10. Prezentace a obhajoba projektu',
+      hours: 2,
+      theoryHours: 0,
+      practiceHours: 2,
+      description: 'Veřejná prezentace, živá demonstrace funkce robota v aréně a obhajoba před třídou.',
+      rvpCompetence: 'Prezentuje vytvořené řešení, obhájí zvolený technický postup a zhodnotí výsledky práce.',
+      subtopics: [
+        {
+          id: 'rob3-b10-1',
+          title: 'Živá demonstrace funkčnosti robota a ústní obhajoba',
+          hours: 2,
+          type: 'projekt',
+          description: 'Předvedení autonomního chování v aréně, vysvětlení kódu v Pythonu, diskuse a hodnocení.',
+          practice: 'Obhajoba technického řešení před třídou, reflexe silných a slabých stránek projektu.',
+          route: '/specializovana/robotika-4/projekt/obhajoba'
         }
       ]
     }
   ]
 };
 
+// =========================================================================
+// 4. ROČNÍK: ROBOTIKA 2 (ROB 4 – 66 HODIN, 33 TÝDNŮ × 2 H TÝDNĚ)
+// VEX AIM všesměrová aréna, průmyslové rameno KUKA a maturitní projekt
+// =========================================================================
 export const ROB4_THEMATIC_PLAN: ThematicPlan = {
   subjectId: 'rob4',
   subjectTitle: 'Robotika 2',
@@ -303,245 +395,161 @@ export const ROB4_THEMATIC_PLAN: ThematicPlan = {
     {
       id: 'rob4-b1',
       order: 1,
-      month: 'Září – Říjen',
+      month: 'Září – Prosinec',
       monthKey: 'zari',
-      weeks: '1.–7. týden',
-      title: 'Všesměrová holonomní kinematika (VEX AIM)',
-      hours: 14,
-      theoryHours: 4,
-      practiceHours: 10,
-      description: 'Tříkolová všesměrová kinematika (Omni wheels), vektorový rozklad sil a rychlostí, elektromagnet a mechanický kicker.',
-      rvpCompetence: 'Aplikuje vektorovou matematiku na všesměrový pohyb a ovládá akční členy v aréně.',
+      weeks: '1.–14. týden',
+      title: '1. Všesměrová mobilní robotika a herní aréna (VEX AIM)',
+      hours: 28,
+      theoryHours: 6,
+      practiceHours: 22,
+      description: 'Všesměrový podvozek s 3 Omni koly, VEXcode Python, elektromagnetický manipulátor a týmový turnaj v aréně.',
+      rvpCompetence: 'Programuje pohyb všesměrového robotu v Pythonu, ovládá akční členy a tvoří herní strategii.',
       subtopics: [
         {
           id: 'rob4-b1-1',
-          title: 'Holonomní vs. neholonomní podvozky: Princip všesměrových kol Omni',
-          hours: 2,
+          title: 'Seznámení s robotem VEX AIM a vývojovým prostředím VEXcode',
+          hours: 4,
           type: 'laborator',
-          description: 'Stupně volnosti v rovině (3-DoF), konstrukce všesměrového kola s příčnými válečky, srovnání s autem a diferenciálním robotem.',
-          practice: 'Seznámení s hardwarem VEX AIM, zprovoznění Python API a první pohybové testy.',
-          route: '/specializovana/robotika-4/aim-kinematika/uvod'
+          description: 'Architektura VEX AIM, tříkolový všesměrový podvozek, konfigurace Python API.',
+          practice: 'Zprovoznění komunikace, základní příkazy pro jízdu vpřed, vzad a rotaci na místě.',
+          route: '/specializovana/robotika-4/aim-kinematika/omni'
         },
         {
           id: 'rob4-b1-2',
-          title: 'Vektorová matematika: Goniometrický rozklad sil na 3 motory (120°)',
-          hours: 4,
+          title: 'Programování holonomního všesměrového pohybu v Pythonu',
+          hours: 8,
           type: 'laborator',
-          description: 'Rozklad vektoru rychlosti [Vx, Vy] na jednotlivá kola, úhel kol 120°, matice transformace a nezávislá úhlová rotace w.',
-          practice: 'Implementace funkce drive_vector(vx, vy, omega) v Pythonu a jízda v libovolném směru bez natáčení robota.',
+          description: 'Pohyb do stran (strafe) bez natáčení robota, složený pohyb a plynulé trajektorie po hřišti.',
+          practice: 'Tvorba funkcí v Pythonu pro jízdu v libovolném směru a vyhýbání se překážkám.',
           route: '/specializovana/robotika-4/aim-kinematika/vektory'
         },
         {
           id: 'rob4-b1-3',
-          title: 'Translace s rotací: Složené trajektorie a plynulé oblouky',
-          hours: 4,
+          title: 'Ovládání akčních členů: Elektromagnet na puky a vyhazovač',
+          hours: 6,
           type: 'laborator',
-          description: 'Kombinace translačního pohybu a nezávislé rotace, jízda po kružnici s natočením stále k jednomu bodu.',
-          practice: 'Naprogramování trajektorie "obíhání cíle" (Orbiting) s neustálým mířením na střed.',
-          route: '/specializovana/robotika-4/aim-kinematika/slozeny-pohyb'
+          description: 'Zapínání a vypínání elektromagnetu pro sběr puků, mechanický vyhazovač / kicker.',
+          practice: 'Úloha: Najet na puk, sepnout magnet, přemístit puk přes hřiště a vystřelit do branky.',
+          route: '/specializovana/robotika-4/aim-kinematika/manipulace'
         },
         {
           id: 'rob4-b1-4',
-          title: 'Akční členy VEX AIM: Elektromagnet a mechanický kicker',
-          hours: 4,
-          type: 'laborator',
-          description: 'Ovládání elektromagnetického držáku herních puků a pružinového odpalovacího mechanismu (kicker).',
-          practice: 'Zadání výzvy: autonomní nájezd k puku, uchopení magnetem, odvoz na pozici a přesný odpal do branky.',
-          route: '/specializovana/robotika-4/aim-kinematika/akcni-cleny'
+          title: 'Autonomní herní strategie a třídní turnaj v aréně',
+          hours: 10,
+          type: 'projekt',
+          description: 'Taktika sběru puků, obranné a útočné algoritmy, vyhodnocování skóre a času.',
+          practice: 'Zápasy dvojic robotů proti sobě na oficiálním hřišti VEX AIM – vyhodnocení vítězného kódu.',
+          route: '/specializovana/robotika-4/aim-kinematika/arena'
         }
       ]
     },
     {
       id: 'rob4-b2',
       order: 2,
-      month: 'Listopad – Leden',
-      monthKey: 'listopad',
-      weeks: '8.–14. týden',
-      title: 'Počítačové vidění & AI navigace',
-      hours: 14,
+      month: 'Leden – Únor',
+      monthKey: 'leden',
+      weeks: '15.–20. týden',
+      title: '2. Průmyslová robotika a manipulátory (KUKA)',
+      hours: 12,
       theoryHours: 3,
-      practiceHours: 11,
-      description: 'Kamera jako inteligentní senzor, barevná segmentace HSV, Visual Servoing a prostorová lokalizace přes AprilTags.',
-      rvpCompetence: 'Využívá počítačové vidění pro lokalizaci cílů a realizuje zpětnovazební vizuální navádění.',
+      practiceHours: 9,
+      description: 'Bezpečnost u průmyslových strojů, ruční řízení smartPADem, metoda Teach-In a manipulační cyklus Pick & Place.',
+      rvpCompetence: 'Bezpečně obsluhuje řídicí panel průmyslového ramene, ukládá body Teach-In a programuje Pick & Place.',
       subtopics: [
         {
           id: 'rob4-b2-1',
-          title: 'Kamera jako senzor: Zpracování obrazu a barevný prostor HSV',
+          title: 'Průmyslová bezpečnost a seznámení s ramenem KUKA',
           hours: 2,
-          type: 'laborator',
-          description: 'Barevný prostor RGB vs. HSV, odolnost vůči změnám osvětlení, barevné masky a prahování.',
-          practice: 'Nastavení AI kamery na detekci barvy herního míčku a výpočet souřadnic jeho středu.',
-          route: '/specializovana/robotika-4/aim-vision/hsv'
+          type: 'kombinovane',
+          description: 'Bezpečnostní normy, funkce E-Stop, souhlasný spínač, struktura 6-osého ramene (klouby A1–A6).',
+          practice: 'Bezpečnostní prohlídka robotické buňky a nácvik nouzového zastavení.',
+          route: '/specializovana/robotika-4/kuka/realny-robot'
         },
         {
           id: 'rob4-b2-2',
-          title: 'Visual Servoing: Zpětnovazební dojíždění k pohybujícímu se cíli',
-          hours: 4,
+          title: 'Ruční pojezd (Jogging) přes KUKA smartPAD v souřadnicích',
+          hours: 2,
           type: 'laborator',
-          description: 'Princip vizuální zpětné vazby: horizontální odchylka v obraze řídí otáčení, zdánlivá velikost objektu řídí vzdálenost.',
-          practice: 'Implementace autonomního sledování míčku: robot neustále udržuje míček ve středu zorného pole a dojíždí k němu.',
-          route: '/specializovana/robotika-4/aim-vision/visual-servoing'
+          description: 'Ovládací panel smartPAD, pojezd v kloubových souřadnicích a kartézském systému (WORLD/BASE).',
+          practice: 'Každý žák si samostatně vyzkouší ruční navedení ramene do zadaného prostoru.',
+          route: '/specializovana/robotika-4/kuka/tcp'
         },
         {
           id: 'rob4-b2-3',
-          title: 'Prostorové značky AprilTags: 2D poziční kódy a výpočet polohy',
-          hours: 4,
+          title: 'Metoda Teach-In: Ukládání bodů a trajektorie PTP vs. LIN',
+          hours: 2,
           type: 'laborator',
-          description: 'Princip pozičních značek AprilTags, detekce rohů, výpočet vzdálenosti v centimetrech a orientace v prostoru.',
-          practice: 'Navigace po aréně podle AprilTags umístěných na stěnách: robot přesně ví, kde se nachází.',
-          route: '/specializovana/robotika-4/aim-vision/apriltags'
+          description: 'Uložení prostorových bodů, rozdíl mezi pohybem bod-bod (PTP) a přesnou přímkou (LIN).',
+          practice: 'Vytvoření jednoduchého programu přejíždějícího mezi 3 referenčními body.',
+          route: '/specializovana/robotika-4/kuka/kinematika'
         },
         {
           id: 'rob4-b2-4',
-          title: 'Integrovaná herní mise: Vizuální vyhledání, nájezd a skórování',
+          title: 'Manipulační úloha Pick & Place (přemístění objektu)',
           hours: 4,
-          type: 'projekt',
-          description: 'Spojení všesměrového podvozku, AI kamery a AprilTags do jedné komplexní autonomní mise v aréně.',
-          practice: 'Závěrečný autonomní turnaj VEX AIM: robot samostatně najde cíl, sebere jej a dopraví do správné zóny.',
-          route: '/specializovana/robotika-4/aim-vision/mise'
+          type: 'laborator',
+          description: 'Ovládání chapadla ramene, kalibrace výšky úchopu, bezpečné najetí a odjezd z bodu.',
+          practice: 'Kompletní cyklus: uchopení kostky ze stojánku, zvednutí, přemístění a položení na cíl.',
+          route: '/specializovana/robotika-4/kuka/pick-and-place'
+        },
+        {
+          id: 'rob4-b2-5',
+          title: 'Samostatná jízda a ověření bezpečné obsluhy stroje',
+          hours: 2,
+          type: 'laborator',
+          description: 'Ověření samostatnosti při spuštění, kontrole a ukončení programu na fyzickém rameni KUKA.',
+          practice: 'Praktická zkouška obsluhy: každý žák předvede bezchybný manipulační cyklus.',
+          route: '/specializovana/robotika-4/kuka/realny-robot'
         }
       ]
     },
     {
       id: 'rob4-b3',
       order: 3,
-      month: 'Leden – Březen',
-      monthKey: 'leden',
-      weeks: '15.–21. týden',
-      title: 'Inženýrská mechanika & Smart motory (VEX IQ)',
-      hours: 14,
-      theoryHours: 4,
-      practiceHours: 10,
-      description: 'Smart motory s optickými enkodéry, mechanické ozubené převody, točivý moment, odometrie a zdvihací mechanismy.',
-      rvpCompetence: 'Navrhuje převodové poměry, využívá enkodéry pro odometrii a konstruuje manipulační mechanismy.',
+      month: 'Březen – Červen',
+      monthKey: 'brezen',
+      weeks: '21.–33. týden',
+      title: '3. Závěrečný komplexní inženýrský projekt a obhajoba',
+      hours: 26,
+      theoryHours: 2,
+      practiceHours: 24,
+      description: 'Samostatná týmová realizace maturitního projektu na libovolné platformě (VEX AIM, KUKA, VEX IQ, Cutebot).',
+      rvpCompetence: 'Navrhne a realizuje komplexní inženýrské řešení, zpracuje dokumentaci a ústně obhájí projekt.',
       subtopics: [
         {
           id: 'rob4-b3-1',
-          title: 'Mechanické převody v robotice: Rychlost vs. točivý moment',
-          hours: 2,
-          type: 'laborator',
-          description: 'Čelní ozubená kola, převodový poměr (Gear Ratio), přenos síly, moment zvratu motoru a tření.',
-          practice: 'Konstrukce zátěžové převodovky a měření schopnosti utáhnout břemeno při různých převodech.',
-          route: '/specializovana/robotika-4/vex-iq/prevody'
-        },
-        {
-          id: 'rob4-b3-2',
-          title: 'Smart motory VEX IQ: Optické enkodéry a PID řízení polohy',
-          hours: 4,
-          type: 'laborator',
-          description: 'Zpětná vazba z optického enkodéru, měření úhlu s přesností na desetiny stupně, vnitřní PID smyčka motoru.',
-          practice: 'Přesné polohování motoru: otočení ramene o přesně zadaný úhel a udržení polohy pod zátěží.',
-          route: '/specializovana/robotika-4/vex-iq/smart-motory'
-        },
-        {
-          id: 'rob4-b3-3',
-          title: 'Odometrie a IMU gyroskop: Přesná navigace v souřadnicích',
-          hours: 4,
-          type: 'laborator',
-          description: 'Výpočet ujeté vzdálenosti z počtu otáček kol, kumulativní chyba odometrie (prokluz) a její kompenzace gyroskopem.',
-          practice: 'Autonomní projetí zadané polygonální trasy bez vnějších senzorů výhradně pomocí odometrie a IMU.',
-          route: '/specializovana/robotika-4/vex-iq/odometrie'
-        },
-        {
-          id: 'rob4-b3-4',
-          title: 'Zdvihací mechanismy a robotická chapadla',
-          hours: 4,
-          type: 'laborator',
-          description: 'Mechanika čtyřkloubových mechanismů (paralelogram), nůžkové zdviže a konstrukce uchopovacích kleští.',
-          practice: 'Stavba a odladění zvedací věže schopné nabrat a zvednout náklad do výšky 30 cm.',
-          route: '/specializovana/robotika-4/vex-iq/mechanismy'
-        }
-      ]
-    },
-    {
-      id: 'rob4-b4',
-      order: 4,
-      month: 'Březen – Květen',
-      monthKey: 'brezen',
-      weeks: '22.–28. týden',
-      title: 'Průmyslová robotika & Manipulátory (KUKA EDU)',
-      hours: 14,
-      theoryHours: 4,
-      practiceHours: 10,
-      description: '6-DoF kinematika průmyslových ramen, souřadnicové systémy (BASE, TOOL), trajektorie PTP a LIN v simulátoru i na reálném stroji.',
-      rvpCompetence: 'Programuje průmyslové robotické rameno v kartézských souřadnicích a ladí manipulační úlohy.',
-      subtopics: [
-        {
-          id: 'rob4-b4-1',
-          title: 'Kinematika 6-osého průmyslového ramene: Stupně volnosti a klouby A1–A6',
-          hours: 2,
-          type: 'kombinovane',
-          description: 'Struktura průmyslového robotu, kloubové souřadnice A1 až A6, dopředná a inverzní kinematika, singularita.',
-          practice: 'Pohyb ramene v kloubových souřadnicích v simulátoru i ručním ovládáním přes smartPAD.',
-          route: '/specializovana/robotika-4/kuka/kinematika'
-        },
-        {
-          id: 'rob4-b4-2',
-          title: 'Kartézské souřadnicové systémy: WORLD, BASE a kalibrace TOOL (TCP)',
-          hours: 4,
-          type: 'laborator',
-          description: 'Pohyb v prostoru X, Y, Z a úhlech natočení A, B, C. Kalibrace středu nástroje (Tool Center Point) metodou 4 bodů.',
-          practice: 'Kalibrace hrotu chapadla a pohyb v nástrojovém souřadnicovém systému podél nakloněné roviny.',
-          route: '/specializovana/robotika-4/kuka/souradnice'
-        },
-        {
-          id: 'rob4-b4-3',
-          title: 'Interpolace pohybů: Bod z bodu do bodu (PTP) vs. Lineární pohyb (LIN)',
-          hours: 4,
-          type: 'laborator',
-          description: 'Rozdíl mezi rychlým přesunem PTP a přesnou přímkou LIN, aproximační zóny (vyhlazení přechodu bodů), rychlostní limity.',
-          practice: 'Vytvoření trajektorie pro obkreslení složitého tvaru a manipulaci s díly bez kolizí.',
-          route: '/specializovana/robotika-4/kuka/trajektorie'
-        },
-        {
-          id: 'rob4-b4-4',
-          title: 'Průmyslová úloha Pick & Place a digitální vstupy/výstupy buňky',
-          hours: 4,
-          type: 'laborator',
-          description: 'Logika uchopení a odložení obrobku, synchronizace s dopravníkem přes digitální I/O signály.',
-          practice: 'Kompletní odladění cyklu Pick & Place: odebrání dílu ze zásobníku, kontrola a uložení do palety.',
-          route: '/specializovana/robotika-4/kuka/realny-robot'
-        }
-      ]
-    },
-    {
-      id: 'rob4-b5',
-      order: 5,
-      month: 'Květen – Červen',
-      monthKey: 'kveten',
-      weeks: '29.–33. týden',
-      title: 'Závěrečný komplexní kooperativní projekt',
-      hours: 10,
-      theoryHours: 1,
-      practiceHours: 9,
-      description: 'Týmová integrace heterogenního hardwaru: mobilní robot přiváží materiál k průmyslové buňce KUKA, dispečerská koordinace a veřejná obhajoba.',
-      rvpCompetence: 'Integruje mobilní a stacionární robotiku do funkční linky a odborně obhájí technické řešení.',
-      subtopics: [
-        {
-          id: 'rob4-b5-1',
-          title: 'Architektura kooperativní linky: Rozhraní a komunikační protokol',
+          title: 'Volba tématu a zadání inženýrského projektu',
           hours: 2,
           type: 'projekt',
-          description: 'Definice komunikačního protokolu (MQTT / TCP socket / signály) mezi mobilním robotem a KUKA ramenem.',
-          practice: 'Týmové rozdělení rolí a zprovoznění komunikačního handshake.',
+          description: 'Výběr platformy (VEX AIM / KUKA / VEX IQ), analýza požadavků a schválení technického zadání.',
+          practice: 'Formulace technické specifikace a harmonogramu prací.',
           route: '/specializovana/robotika-4/projekt/architektura'
         },
         {
-          id: 'rob4-b5-2',
-          title: 'Týmová integrace a ladění kooperace v reálném čase',
-          hours: 6,
+          id: 'rob4-b3-2',
+          title: 'Vývoj řídicího softwaru a integrace hardwaru',
+          hours: 12,
           type: 'projekt',
-          description: 'Společné ladění v dílně: autonomní nájezd mobilního robota VEX k buňce, předání obrobku chapadlu KUKA a odvoz hotového výrobku.',
-          practice: 'Testování stability cyklu, ošetření chybových stavů a ladění časování.',
+          description: 'Programování algoritmů v Pythonu, integrace akčních členů a senzoriky, komunikace.',
+          practice: 'Praktický vývoj řešení v laboratoři s průběžnými testy funkčnosti.',
           route: '/specializovana/robotika-4/projekt/realizace'
         },
         {
-          id: 'rob4-b5-3',
-          title: 'Odborná veřejná obhajoba projektu a reflexe',
-          hours: 2,
+          id: 'rob4-b3-3',
+          title: 'Optimalizace spolehlivosti a technická dokumentace',
+          hours: 8,
           type: 'projekt',
-          description: 'Předvedení živé funkční kooperativní buňky před hodnoticí komisí a třídou, obhajoba technické dokumentace.',
-          practice: 'Živá demonstrace funkčního cyklu a ústní zkouška z robotických principů.',
+          description: 'Zátěžové testování, ošetření výpadků a sepsání podrobné technické zprávy.',
+          practice: 'Finální ladění v aréně/buňce a kompletace dokumentace projektu.',
+          route: '/specializovana/robotika-4/projekt/realizace'
+        },
+        {
+          id: 'rob4-b3-4',
+          title: 'Maturitní obhajoba a živá demonstrace projektu',
+          hours: 4,
+          type: 'projekt',
+          description: 'Veřejná prezentace výsledků, živá ukázka funkce zařízení a odborná rozprava.',
+          practice: 'Předvedení projektu před zkušební komisí, obhajoba technických rozhodnutí a hodnocení.',
           route: '/specializovana/robotika-4/projekt/obhajoba'
         }
       ]
