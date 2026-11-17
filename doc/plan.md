@@ -30,3 +30,4 @@
 - [x] Rozcestníky a placeholder stránky podkapitol sjednoceny (`LessonPlaceholderShell`).
 - [x] Horní i spodní tlačítka pro ŠVP a tematické plány aktivována napříč OSS, PVH i Robotikou.
 - [x] Didaktický rozbor předmětu odebrán z konfigurace Robotiky pro dosažení čistého, sjednoceného vzhledu.
+- [x] ŠVP DOCX export pro Robotiku (`tools/curriculum-docx/build_updated_rob_docx.py`) úspěšně vygenerován a aktualizován přímo v Google Drive dokumentu `Robotika V2.docx` (`1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`).

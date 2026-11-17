@@ -22,6 +22,7 @@ Propojit programování v Pythonu s reálným fyzickým hardwarem bez zbytečné
 * [x] **Kapitola 2: Autonomní podvozek Cutebot (12 h):** DC motory, bezpečné zastavení ultrazvukem, sledování vodicí linie IR senzory a průjezd bludištěm (`/specializovana/robotika-3/cutebot/*`).
 * [x] **Kapitola 3: Autonomní aréna VEX AIM (42 h):** 3 všesměrová Omni kola, AI Vision kamera a AprilTags, detekce herních sudů, permanentní magnet, mechanický kicker a autonomní strategie v aréně na čas (`/specializovana/robotika-3/vex-aim/*`).
 * [x] **Tematický plán a ŠVP:** Interaktivní tabulka `SimplePlanTable` po měsících a oficiální InspIS ŠVP (`/specializovana/robotika-3/tematicky-plan`).
+* [x] **Oficiální DOCX export do InspIS šablony:** Vygenerován a nahrán na Google Drive do sdíleného souboru `Robotika V2.docx` (`1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`) včetně identifikačních tabulek, dotací 2 h (3. roč) + 2 h (4. roč), učebních osnov obou ročníků a nepřiřazených RVP výstupů.
 
 ### 4. Ročník (ROB 4 – 66 h)
 * [x] **Kapitola 1: Robotické mechanismy VEX IQ (28 h):** Brain 2nd Gen, Smart Motory s enkodéry, laserový dálkoměr ToF, barevný senzor, motorizované chapadlo Clawbot a třídění předmětů (`/specializovana/robotika-4/vex-iq/*`).

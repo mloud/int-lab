@@ -1206,3 +1206,15 @@ px tsc --noEmit.
       - Vytvořeny rozcestníky kapitol `DynamicSubchapterHub` a zavedeny placeholder stránky všech podkapitol s komponentou `LessonPlaceholderShell` pro 3. i 4. ročník.
     - **Synchronizováno:** `defaultSchool.ts`, `svpRobData.ts`, `robPlan.ts`, `tematicky-plan/page.tsx` (ROB 3 i ROB 4), `ROB3.md`, `ROB4.md`, `PLAN_ROB.md`, `plan.md`.
     - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.
+
+58. **Export oficiálního InspIS ŠVP dokumentu Robotiky do DOCX a synchronizace na Google Drive:**
+    - **Cíl a zdrojová šablona:** Uživatel dodal odkaz na Google Drive soubor `Robotika V2.docx` (ID: `1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`). Původní soubor obsahoval pouze prázdný formulář s titulkem `Robotika (začátečník)` a nevyplněnou tabulku hodinové dotace a profilu předmětu bez učebních osnov.
+    - **Automatizovaný generátor:** Vytvořen generátor specifikace `tools/curriculum-docx/generate_rob_spec.py` a sestavovač OpenXML `tools/curriculum-docx/build_updated_rob_docx.py`.
+    - **Vyplněné součásti:**
+      - **Titulek dokumentu:** Opraven z `Robotika (začátečník)` na `Robotika`.
+      - **Tabulka 0 (Hodinová dotace):** Nastaveny hodiny 3. ročník: 2 h (volitelný), 4. ročník: 2 h (volitelný), celkem 4 h týdně (2× 66 hodin).
+      - **Tabulka 1 (Profil předmětu):** Vyplněny buňky Název předmětu (`Robotika`), Oblast (`Odborné vzdělávání`), Charakteristika předmětu, Obsahové, časové a organizační vymezení, Integrace předmětů a Způsob hodnocení žáků přesně dle `SVP_ROB_SHARED_INFO`.
+      - **Tabulka 2 & 3 (Učební osnovy 3. a 4. ročníku):** Přenese 3 schválené technologicky neutrální bloky pro každý ročník (ROB 3: Mikrokontroléry a IoT 12 h, Autonomní mobilní podvozky 12 h, Pokročilá mobilní robotika a počítačové vidění 42 h; ROB 4: Robotické mechanismy a manipulační technika 28 h, Průmyslová robotika a víceosé manipulátory 12 h, Projekt 26 h) se sloupci RVP výstupy, ŠVP výstupy a Učivo se zachováním vertikálního slučování buněk dle InspIS specifikace.
+      - **Tabulka 4 (Nepřiřazené RVP výstupy):** Všech 43 zbývajících nepřiřazených RVP výstupů z oboru 18-20-M/01 vygenerováno do závěrečné tabulky.
+    - **Aktualizace na Google Disku:** Vygenerovaný soubor `tools/curriculum-docx/Robotika_V2_updated.docx` byl nahrán in-place přímo do souboru na Google Disku pomocí `gdrive mutate update 1-aAQ_PEVN_nGyEuXgg2Q4KTE410yttVS`.
+    - **Ověření integrity:** Soubor byl validován pomocí python-docx knihovny (5 tabulek, 6 odstavců, správné počty řádků a sloupců bez narušení XML).

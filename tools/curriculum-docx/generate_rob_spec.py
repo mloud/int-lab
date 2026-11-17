@@ -1,0 +1,254 @@
+import json
+import os
+
+all_rvp = [
+    "aplikaci základních vlastností OOP (zapouzdření, dědičnost a polymorfismus)",
+    "definuje funkci a význam jednotlivých síťových služeb",
+    "definuje pojmy třída, objekt a popíše jejich základní vlastnosti",
+    "na základě analýzy problému specifikuje zadání pro tvorbu programu, skriptu nebo webové aplikace",
+    "nadefinuje pravidla pro bezpečnou práci na internetu",
+    "nainstaluje operační systém",
+    "nakonfiguruje komunikační software podle požadavků a potřeb",
+    "nakonfiguruje operační systém pro použití periferních zařízení",
+    "nakonfiguruje webového klienta podle požadavků a potřeb",
+    "nastaví komunikační software",
+    "nastaví parametry běhu prezentace (např. časování, ovládání)",
+    "nastaví proxy server pro webový provoz",
+    "nastaví účty pro komunikaci",
+    "nastaví účty uživatelů a skupin a jejich oprávnění",
+    "navrhne algoritmy a datové struktury podle specifikace zadání a zapíše je vhodnou formou",
+    "navrhne procesy zpracování dat a roli/role jednotlivých uživatelů",
+    "navrhne způsob využití informačního systému k řešení problému ve svém oboru, otestuje ho se skupinou uživatelů a vyhodnotí případné chyby, chybové stavy a jejich příčiny",
+    "odhaduje asymptotickou paměťovou a časovou složitost algoritmů",
+    "odhaluje chyby v datech",
+    "orientuje se v možnostech výběru plánovacího software",
+    "ověřuje návrh algoritmu nebo uživatelského rozhraní",
+    "popisuje a zaznamenává chyby v softwaru",
+    "popíše a využívá instalaci certifikátů",
+    "popíše vlastnosti algoritmu",
+    "popíše, jakým způsobem operační systém zajišťuje své hlavní úkoly",
+    "porovná jednotlivé způsoby propojení digitálních zařízení, charakterizuje počítačové sítě a internet; vysvětlí, pomocí čeho a jak je komunikace mezi jednotlivými zařízeními v síti zajištěna",
+    "poskytuje odbornou pomoc ostatním uživatelům aplikačního softwaru",
+    "použije jednoduché objekty",
+    "použije multimediální objekty",
+    "použije základní datové typy",
+    "použije řídící struktury programu",
+    "používá pokročilé funkce plánovacího software",
+    "používá verzovací systém a pracuje s ním",
+    "připojí a nakonfiguruje počítač v rámci počítačové sítě",
+    "připojí počítač k internetu",
+    "rozdělí zadání nebo problém na menší části, rozhodne, které je vhodné řešit algoritmicky, své rozhodnutí zdůvodní",
+    "rozezná druhy škodlivého SW a aplikuje antivirus s pravidelnou aktualizací",
+    "rozlišuje mezi formáty a vhodností použití audio a video souborů",
+    "rozlišuje mezi používanými OS a zvolí vhodný OS s ohledem na jeho nasazení",
+    "spolupracuje při tvorbě programu s další osobou, popisuje strukturu programu další osobě",
+    "spravuje hlášení závady a používá bug tracking a issue management software",
+    "testuje integritu softwaru pro různé vstupy",
+    "testuje spustitelný program, skript nebo webovou aplikaci; najde, specifikuje a opraví případnou chybu",
+    "uvede příklady použití",
+    "v případě personalizovaného obsahu dokáže identifikovat obsah generovaný algoritmy doporučovacích systémů",
+    "ve vztahu k charakteru a velikosti vstupu hodnotí algoritmy a datové struktury podle různých hledisek, porovná a vybere pro řešený problém ty nejvhodnější; vylepší algoritmus podle daného hlediska",
+    "volí operační systém a vhodnou licenci",
+    "vysvětlí principy činností SW prostředků pro nastavení kybernetické bezpečnosti",
+    "vytvoří jednoduché strukturované programy",
+    "vytvoří jednoduché uživatelské rozhraní s grafickými prvky s intuitivním ovládáním (formuláře, tlačítka, výstup na tiskárnu, atd.)",
+    "vytvoří jednoduchý spustitelný program, skript, nebo webovou aplikaci",
+    "využívá komponenty pro práci s textem, časem atd.",
+    "využívá možnosti ukládání dat mimo operační paměť",
+    "využívá nástroje pro kooperaci v týmu a verzování",
+    "zabezpečí počítače proti zneužití",
+    "zabezpečí webový prohlížeč",
+    "zajistí integritu, důvěrnost a bezpečnost dat v OS",
+    "zaktivuje a nakonfiguruje síťové služby na osobním počítači",
+    "zaktualizuje OS",
+    "zanalyzuje úlohu a algoritmizuje ji",
+    "zapíše algoritmus vhodným způsobem",
+    "zvažuje přínosy a limity statistického zpracování dat a strojového učení v oblasti umělé inteligence",
+    "zálohuje OS a data"
+]
+
+grades = [
+    {
+        "grade": "3. ročník",
+        "hours_label": "Počet vyučovacích hodin: 66",
+        "blocks": [
+            {
+                "name": "Mikrokontroléry a internet věcí",
+                "hours": "12",
+                "rvp": [
+                    "nakonfiguruje operační systém pro použití periferních zařízení",
+                    "vytvoří jednoduchý spustitelný program, skript, nebo webovou aplikaci",
+                    "porovná jednotlivé způsoby propojení digitálních zařízení, charakterizuje počítačové sítě a internet; vysvětlí, pomocí čeho a jak je komunikace mezi jednotlivými zařízeními v síti zajištěna",
+                    "připojí a nakonfiguruje počítač v rámci počítačové sítě"
+                ],
+                "svp": [
+                    "vytvoří a odladí program pro čtení digitálních i analogových senzorů v textovém programovacím jazyce",
+                    "zobrazí naměřené údaje a stavové ikony na lokálním displeji",
+                    "ovládá spínací a akční prvky v závislosti na hodnotách ze senzorů",
+                    "zajistí přenos telemetrických dat a jejich zobrazení ve webovém rozhraní"
+                ],
+                "ucivo": [
+                    "Architektura výukového mikrokontroléru, vývojové prostředí, textový programovací jazyk (Python)",
+                    "Vstupně-výstupní piny (GPIO), digitální a analogové signály, PWM regulace",
+                    "Snímání fyzikálních veličin prostředí (teplota, osvětlení, vlhkost, stavová tlačítka)",
+                    "Zobrazovací a akční členy (displej, relé, akustická signalizace)",
+                    "Síťová komunikace, základy IoT, přenos naměřených dat do webového prostředí a jejich vizualizace"
+                ]
+            },
+            {
+                "name": "Autonomní mobilní podvozky",
+                "hours": "12",
+                "rvp": [
+                    "zanalyzuje úlohu a algoritmizuje ji",
+                    "použije řídící struktury programu",
+                    "vytvoří jednoduché strukturované programy",
+                    "testuje spustitelný program, skript nebo webovou aplikaci; najde, specifikuje a opraví případnou chybu"
+                ],
+                "svp": [
+                    "programově řídí rychlost a směr pohybu kolového podvozku",
+                    "naprogramuje bezpečné zastavení před překážkou ve stanovené vzdálenosti",
+                    "vytvoří stabilní program pro sledování vodicí linie na podkladu",
+                    "navrhne a otestuje autonomní průjezd podvozku vymezenou trasou"
+                ],
+                "ucivo": [
+                    "Mobilní podvozek s diferenciálním řízením, princip regulace rychlosti a směru",
+                    "Bezkontaktní měření vzdálenosti a detekce překážek",
+                    "Optické senzory pro detekci podkladu a sledování vyznačené trasy",
+                    "Algoritmy autonomního pohybu: reaktivní chování, stavové řízení, řešení jednoduchých překážkových situací"
+                ]
+            },
+            {
+                "name": "Pokročilá mobilní robotika a počítačové vidění",
+                "hours": "42",
+                "rvp": [
+                    "zvažuje přínosy a limity statistického zpracování dat a strojového učení v oblasti umělé inteligence",
+                    "navrhne algoritmy a datové struktury podle specifikace zadání a zapíše je vhodnou formou",
+                    "ve vztahu k charakteru a velikosti vstupu hodnotí algoritmy a datové struktury podle různých hledisek, porovná a vybere pro řešený problém ty nejvhodnější; vylepší algoritmus podle daného hlediska",
+                    "ověřuje návrh algoritmu nebo uživatelského rozhraní"
+                ],
+                "svp": [
+                    "programově řídí pohyb robotické platformy a provádí přesné prostorové manévry",
+                    "využije kameru a algoritmy počítačového vidění pro detekci orientačních značek v prostoru",
+                    "naprogramuje vyhledání barevného objektu a samostatné navedení robota k němu",
+                    "implementuje algoritmus pro záchyt objektu a jeho přemístění do cílové oblasti",
+                    "navrhne, odladí a otestuje autonomní strategii pro řešení komplexní arénové výzvy"
+                ],
+                "ucivo": [
+                    "Řízení a kinematika pohybu mobilní platformy, udržení kurzu a manévrování v ploše",
+                    "Počítačové vidění v mobilní robotice: kamera jako senzor, snímání a analýza scény v reálném čase",
+                    "Detekce optických pozičních značek pro prostorovou lokalizaci a orientaci",
+                    "Rozpoznávání herních a pracovních objektů podle barevných a tvarových příznaků",
+                    "Inerciální senzory (gyroskop, akcelerometr) pro sledování pohybu a prostorovou stabilitu",
+                    "Interakce s objekty na ploše: vyhledání cíle, záchyt a transport do určené zóny",
+                    "Autonomní strategie a řešení komplexních úloh v aréně na čas"
+                ]
+            }
+        ]
+    },
+    {
+        "grade": "4. ročník",
+        "hours_label": "Počet vyučovacích hodin: 66",
+        "blocks": [
+            {
+                "name": "Robotické mechanismy a manipulační technika",
+                "hours": "28",
+                "rvp": [
+                    "zanalyzuje úlohu a algoritmizuje ji",
+                    "použije jednoduché objekty",
+                    "vytvoří jednoduchý spustitelný program, skript, nebo webovou aplikaci",
+                    "testuje integritu softwaru pro různé vstupy"
+                ],
+                "svp": [
+                    "navrhne funkční mechanické uspořádání robotického ramene nebo manipulátoru",
+                    "naprogramuje přesné polohování motorů s využitím zpětné vazby",
+                    "implementuje sekvenci pro bezpečné uchopení, přemístění a odložení břemene",
+                    "zkombinuje senzory pro autonomní manipulaci a třídění objektů v prostoru"
+                ],
+                "ucivo": [
+                    "Mechanické konstrukce v robotice: převody, pákové mechanismy, stabilita konstrukce",
+                    "Inteligentní servopohony s polohovou zpětnou vazbou a čtením provozních veličin (úhel, moment)",
+                    "Návrh a programování víceosých ramen a úchopových hlavic (chapadla, kleště)",
+                    "Prostorová senzorika: přesné měření vzdáleností laserovými senzory, optická detekce přítomnosti a barvy břemene",
+                    "Algoritmy manipulace: uchopení, zvednutí, přemístění na cílové souřadnice a uvolnění břemene"
+                ]
+            },
+            {
+                "name": "Průmyslová robotika a víceosé manipulátory",
+                "hours": "12",
+                "rvp": [
+                    "na základě analýzy problému specifikuje zadání pro tvorbu programu, skriptu nebo webové aplikace",
+                    "rozdělí zadání nebo problém na menší části, rozhodne, které je vhodné řešit algoritmicky, své rozhodnutí zdůvodní",
+                    "testuje spustitelný program, skript nebo webovou aplikaci; najde, specifikuje a opraví případnou chybu"
+                ],
+                "svp": [
+                    "vysvětlí a striktně dodržuje zásady bezpečného provozu průmyslového robotického pracoviště",
+                    "manuálně navádí rameno manipulátoru pomocí ovládacího panelu v osách i kartézském prostoru",
+                    "definuje a uloží prostorové body manipulační trajektorie metodou Teach-In",
+                    "sestaví a otestuje automatizovaný cyklus přemístění součástky mezi pracovními pozicemi"
+                ],
+                "ucivo": [
+                    "Průmyslové robotické systémy: bezpečnost provozu, ochranné zóny a obvody nouzového zastavení (E-STOP)",
+                    "Kinematika 6-osého kloubového manipulátoru, stupně volnosti, pracovní obálka",
+                    "Obslužný terminál (panel ručního navádění), ruční pojezd v kloubových osách",
+                    "Kartézské souřadnicové systémy (bázový a nástrojový systém WORLD a TOOL)",
+                    "Programování trajektorií metodou Teach-In: bod-bod (PTP) a lineární pohyb (LIN)",
+                    "Realizace průmyslového cyklu manipulace s materiálem (Pick & Place)"
+                ]
+            },
+            {
+                "name": "Projekt",
+                "hours": "26",
+                "rvp": [
+                    "spolupracuje při tvorbě programu s další osobou, popisuje strukturu programu další osobě",
+                    "využívá nástroje pro kooperaci v týmu a verzování",
+                    "spravuje hlášení závady a používá bug tracking a issue management software",
+                    "popisuje a zaznamenává chyby v softwaru"
+                ],
+                "svp": [
+                    "samostatně nebo v týmu zrealizuje ucelené robotické nebo automatizační zařízení",
+                    "aplikuje osvojené programátorské dovednosti při řešení reálného technického problému",
+                    "vede přehlednou technickou dokumentaci a zdůvodní zvolená řešení",
+                    "srozumitelně prezentuje a prakticky obhájí své dílo před publikem"
+                ],
+                "ucivo": [
+                    "Stanovení technických požadavků, dekompozice zadání a harmonogram realizace",
+                    "Samostatná nebo týmová práce: volba technologické platformy a hardwaru",
+                    "Vývoj a ladění řídicího softwaru v textovém programovacím jazyce Python",
+                    "Systémová integrace mechanických, elektronických a softwarových prvků",
+                    "Testování za mezních podmínek, optimalizace a odstraňování chyb",
+                    "Zpracování technické zprávy a uživatelské dokumentace",
+                    "Veřejná prezentace, praktická funkční demonstrace a obhajoba výsledku"
+                ]
+            }
+        ]
+    }
+]
+
+# Compute unassigned
+assigned_rvp = set()
+for g in grades:
+    for b in g["blocks"]:
+        for r in b["rvp"]:
+            assigned_rvp.add(r)
+
+unassigned = [r for r in all_rvp if r not in assigned_rvp]
+
+spec = {
+    "metadata": {
+        "subjectName": "Robotika",
+        "fieldArea": "Odborné vzdělávání",
+        "description": "Cílem vyučovacího předmětu Robotika je rozvíjet teoretické znalosti i praktické inženýrské dovednosti žáků v oblasti programování vestavných systémů, mikrokontrolérů, senzoriky, internetu věcí (IoT), mobilních autonomních podvozků, počítačového vidění, mechanických manipulátorů a průmyslové robotiky. Předmět navazuje na algoritmizaci v jazyce Python a hardware, přičemž propojuje informatiku, elektrotechniku a mechaniku. Důraz je kladen na samostatné technické myšlení, diagnostiku chyb v reálném fyzickém prostředí a týmovou realizaci projektů.",
+        "scope": "Výuka probíhá ve 3. a 4. ročníku s dotací 2 hodiny týdně (celkem 66 hodin ve 3. ročníku a 66 hodin ve 4. ročníku, celková dotace 132 hodin). Výuka má převážně praktický laboratorní charakter (20 % teorie a rozbor technických principů, 80 % praktické programování, konstrukce, zapojování a testování v robotické laboratoři). Žáci pracují samostatně nebo v malých týmech u laboratorních stolů s přístupem k vývojovým sadám, senzorům a robotickým platformám. Součástí výuky ve 4. ročníku je průmyslová bezpečnost a samostatný semestrální projekt.",
+        "integration": "Předmět integruje a rozvíjí učivo předmětů Programování (jazyk Python, funkce, algoritmizace), Hardware a Základy elektrotechniky (mikrokontroléry, senzory, akční členy, bezpečné zapojování obvodů), Počítačové sítě (síťová komunikace, Wi-Fi, MQTT, IoT protokoly) a Matematika a fyzika (vektory, prostorová orientace, kinematika, mechanika převodů).",
+        "evaluation": "Hodnocení žáka vychází zejména z praktických úloh, funkčnosti vytvořených programů, schopnosti samostatně řešit technický problém, průběžné práce na projektech, kvality technického řešení, schopnosti pracovat v týmu, technické dokumentace projektu a závěrečné prezentace a obhajoby vlastního řešení. Při hodnocení se nezohledňuje pouze konečná funkčnost zařízení, ale také postup řešení, samostatnost, schopnost odhalovat a odstraňovat chyby a schopnost vysvětlit princip vytvořeného řešení."
+    },
+    "grades": grades,
+    "unassigned": unassigned
+}
+
+out_path = os.path.join(os.path.dirname(__file__), 'rob_curriculum_spec.json')
+with open(out_path, 'w', encoding='utf-8') as f:
+    json.dump(spec, f, ensure_ascii=False, indent=2)
+
+print(f"Spec saved to {out_path}")
+print(f"Assigned RVP: {len(assigned_rvp)}, Unassigned RVP: {len(unassigned)}")
