@@ -17,3 +17,7 @@ export interface ProcessSwitchStep {
     savedPc: string;
   };
 }
+
+export type ProcessSwitchingWorksheetAnswers = Record<string, string>;
+export type ProcessSwitchingCheckedItems = Record<string, boolean>;
+

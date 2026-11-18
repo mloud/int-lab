@@ -135,32 +135,32 @@ export const CURRICULUM: Chapter[] = [
   {
     id: 'os-uvod',
     title: 'Úvod do OS',
-    path: '/specializovana/operacni-systemy/uvod',
+    path: '/specializovana/operacni-systemy-1/uvod',
     icon: Server,
         description: 'Základní principy a rozdělení operačních systémů.',
     keywords: ['kernel', 'jádro', 'funkce os'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'os-arch',
     title: 'Architektura OS',
-    path: '/specializovana/operacni-systemy/architektura',
+    path: '/specializovana/operacni-systemy-1/architektura',
     icon: Server,
         description: 'Monolitické vs mikro-jádro.',
     keywords: ['architektura', 'monolit', 'mikrojádro', 'ovladače'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'os-vyvoj',
     title: 'Vývoj OS',
-    path: '/specializovana/operacni-systemy/vyvoj',
+    path: '/specializovana/operacni-systemy-1/vyvoj',
     icon: Server,
         description: 'Historie od sálových počítačů po mobily.',
     keywords: ['historie', 'vývoj', 'unix', 'dos'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'os-boot',
@@ -175,92 +175,92 @@ export const CURRICULUM: Chapter[] = [
   {
     id: 'os-fs',
     title: 'Souborový systém a disky',
-    path: '/specializovana/operacni-systemy/souborove-systemy',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy',
     icon: Server,
         description: 'Modul správy souborů: disky, oddíly, FAT, NTFS, ext4 a fragmentace.',
     keywords: ['soubory', 'disk', 'fat32', 'ntfs', 'ext4', 'formátování'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'fs-media',
     title: '1. Paměťová média',
-    path: '/specializovana/operacni-systemy/souborove-systemy/media',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy/media',
     icon: Server,
         description: 'HDD a SSD z pohledu OS: plotny, stopy, sektory, NAND stránky a bloky.',
     keywords: ['hdd', 'ssd', 'sektor', 'stopa', 'plotna', 'nand', 'trim', 'lba'],
     category: 'specializovana',
-    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy-1/souborove-systemy' }
   },
   {
     id: 'fs-deleni',
     title: '2. Dělení disku',
-    path: '/specializovana/operacni-systemy/souborove-systemy/deleni-disku',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy/deleni-disku',
     icon: Server,
         description: 'Oddíly, MBR vs. GPT, formátování a boot sektor.',
     keywords: ['oddíl', 'partition', 'mbr', 'gpt', 'formátování', 'svazek', 'boot sektor', 'efi'],
     category: 'specializovana',
-    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy-1/souborove-systemy' }
   },
   {
     id: 'fs-fat',
     title: '3. Alokační jednotka a FAT',
-    path: '/specializovana/operacni-systemy/souborove-systemy/alokace-fat',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy/alokace-fat',
     icon: Server,
         description: 'Cluster, FAT tabulka, mazání a obnova souborů, NTFS a ext4.',
     keywords: ['cluster', 'alokační jednotka', 'fat', 'fat32', 'exfat', 'ntfs', 'ext4', 'mazání', 'obnova'],
     category: 'specializovana',
-    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy-1/souborove-systemy' }
   },
   {
     id: 'fs-frag',
     title: '4. Fragmentace a údržba',
-    path: '/specializovana/operacni-systemy/souborove-systemy/fragmentace',
+    path: '/specializovana/operacni-systemy-1/souborove-systemy/fragmentace',
     icon: Server,
         description: 'Vznik fragmentace, defragmentace, TRIM, chkdsk a vadné sektory.',
     keywords: ['fragmentace', 'defragmentace', 'trim', 'chkdsk', 'fsck', 'vadný sektor'],
     category: 'specializovana',
-    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy/souborove-systemy' }
+    parent: { title: 'Souborový systém a disky', path: '/specializovana/operacni-systemy-1/souborove-systemy' }
   },
   {
     id: 'os-install',
     title: 'Instalace',
-    path: '/specializovana/operacni-systemy/instalace',
+    path: '/specializovana/operacni-systemy-1/instalace',
     icon: Server,
         description: 'Instalátor OS.',
     keywords: ['instalace', 'setup', 'windows instalace'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'os-proc',
     title: 'Procesy',
-    path: '/specializovana/operacni-systemy/procesy',
+    path: '/specializovana/operacni-systemy-1/procesy',
     icon: Server,
         description: 'Jak systém spravuje běžící programy.',
     keywords: ['procesy', 'vlákna', 'task manager', 'správce úloh'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'proc-mem',
     title: 'Procesy a paměť',
-    path: '/specializovana/operacni-systemy/procesy',
+    path: '/specializovana/operacni-systemy-1/procesy',
     icon: Server,
     description: 'Vznik procesu, identifikace PID a střídání procesů na CPU.',
     keywords: ['procesy', 'vlákna', 'task manager', 'správce úloh', 'pid'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   {
     id: 'os-hw',
     title: 'Hardware a OS',
-    path: '/specializovana/operacni-systemy/hardware',
+    path: '/specializovana/operacni-systemy-1/hardware',
     icon: Server,
         description: 'Přerušení a komunikace s HW.',
     keywords: ['přerušení', 'irq', 'ovladače', 'hardware'],
     category: 'specializovana',
-    parent: { title: 'Operační systémy', path: '/specializovana/operacni-systemy' }
+    parent: { title: 'Operační systémy 1', path: '/specializovana/operacni-systemy-1' }
   },
   
   // Specializovaná IT - Programování
