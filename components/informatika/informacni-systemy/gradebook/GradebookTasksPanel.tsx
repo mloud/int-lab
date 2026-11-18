@@ -137,9 +137,9 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
 
       {/* OBSAH REŽIMU ÚKOLŮ */}
       {isTaskMode ? (
-        <div className="p-5 sm:p-6 space-y-5">
+        <div className="p-4 sm:p-5 space-y-3">
           {/* Krokovací tlačítka 1..5 */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
             {tasks.map((t) => {
               const isActive = t.id === activeTaskId;
               const isDone = completedTaskIds.includes(t.id);
@@ -151,16 +151,16 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
                     onSelectTask(t.id);
                     setFeedback(null);
                   }}
-                  className={`py-2.5 px-3 rounded-2xl border-2 text-left transition-all flex flex-col sm:flex-row sm:items-center gap-2 cursor-pointer ${
+                  className={`py-1.5 px-2.5 rounded-xl border text-left transition-all flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'bg-indigo-600 border-indigo-600 text-white shadow-md ring-2 ring-indigo-200'
+                      ? 'bg-indigo-600 border-indigo-600 text-white shadow-xs ring-1 ring-indigo-200'
                       : isDone
                       ? 'bg-emerald-50 border-emerald-300 text-emerald-900 hover:border-emerald-400'
                       : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                   }`}
                 >
                   <span
-                    className={`w-7 h-7 rounded-xl text-sm font-black flex items-center justify-center shrink-0 ${
+                    className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center shrink-0 ${
                       isActive
                         ? 'bg-white text-indigo-700'
                         : isDone
@@ -170,7 +170,7 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
                   >
                     {isDone && !isActive ? '✓' : t.id}
                   </span>
-                  <span className="text-sm font-black truncate hidden sm:inline">
+                  <span className="text-xs font-bold truncate">
                     {t.roleRequired}
                   </span>
                 </button>
@@ -179,44 +179,20 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
           </div>
 
           {/* KARTA AKTUÁLNÍHO ÚKOLU */}
-          <div className="bg-gradient-to-r from-indigo-50/70 via-white to-blue-50/70 p-6 rounded-3xl border-2 border-indigo-200 shadow-sm space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-indigo-100">
-              <span className="text-sm font-black uppercase tracking-wider text-indigo-700 bg-indigo-100 px-3.5 py-1.5 rounded-xl">
-                Cíl: {currentTask.title}
-              </span>
-
-              {isCurrentCompleted ? (
-                <span className="text-sm font-black bg-emerald-100 text-emerald-800 border border-emerald-300 px-4 py-1.5 rounded-full flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                  <span>Splněno!</span>
-                </span>
-              ) : (
-                <span className="text-sm font-bold text-slate-600 flex items-center gap-1.5">
-                  <Target className="w-4 h-4 text-indigo-600" />
-                  <span>
-                    {currentTask.isActionTask
-                      ? 'Čeká na provedení v systému'
-                      : 'Čeká na splnění a vyplnění odpovědi'}
-                  </span>
-                </span>
-              )}
-            </div>
-
+          <div className="bg-gradient-to-r from-indigo-50/70 via-white to-blue-50/70 p-4 sm:p-5 rounded-2xl border border-indigo-200 shadow-xs space-y-3">
             {/* Zadání cíle mise */}
-            <div className="space-y-1">
-              <div className="text-base sm:text-lg font-black text-slate-900 leading-relaxed">
-                👉 {currentTask.goal}
-              </div>
+            <div className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+              👉 {currentTask.goal}
             </div>
 
             {/* AKČNÍ ÚKOL V SYSTÉMU (BEZ TEXTOVÉ ODPOVĚDI) NEBO INTERAKTIVNÍ FORMULÁŘ */}
             {currentTask.isActionTask ? (
-              <div className="bg-emerald-50/80 border-2 border-emerald-200 p-5 rounded-2xl space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="text-sm sm:text-base font-bold text-slate-800">
+              <div className="bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-xl space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                  <div className="text-xs sm:text-sm font-bold text-slate-800">
                     {isCurrentCompleted ? (
                       <span className="text-emerald-800 font-black flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                         Nový rodič s přiřazenými dětmi byl úspěšně vytvořen v databázi!
                       </span>
                     ) : (
@@ -234,10 +210,10 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
                         onSelectTask(activeTaskId + 1);
                         setFeedback(null);
                       }}
-                      className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                      className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
                     >
                       <span>Přejít na další úkol</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>
@@ -245,29 +221,30 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
             ) : (
               <form
                 onSubmit={handleCheckAnswer}
-                className="bg-indigo-50/80 border-2 border-indigo-200 p-5 rounded-2xl space-y-4"
+                className="bg-indigo-50/70 border border-indigo-200 p-3 sm:p-3.5 rounded-xl space-y-2.5"
               >
-                <div className="flex items-start gap-2.5 text-base sm:text-lg font-black text-indigo-950">
-                  <HelpCircle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-indigo-950">
+                  <HelpCircle className="w-4 h-4 text-indigo-600 shrink-0" />
                   <span>Otázka k vyřešení: {currentTask.question}</span>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                   <input
                     type="text"
                     value={currentInput}
                     onChange={(e) => handleInputChange(e.target.value)}
                     disabled={isCurrentCompleted}
-                    className="flex-1 px-5 py-3 text-base sm:text-lg bg-white border-2 border-indigo-300 rounded-2xl focus:border-indigo-600 focus:outline-hidden font-bold text-slate-900 disabled:bg-slate-100 disabled:text-slate-600"
+                    placeholder="Sem napište svou odpověď..."
+                    className="flex-1 px-3.5 py-2 text-xs sm:text-sm bg-white border border-indigo-300 rounded-xl focus:border-indigo-600 focus:outline-hidden font-semibold text-slate-900 disabled:bg-slate-100 disabled:text-slate-600"
                   />
 
                   {!isCurrentCompleted ? (
                     <button
                       type="submit"
                       disabled={!currentInput.trim()}
-                      className="px-7 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black text-base rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3.5 h-3.5" />
                       <span>Ověřit odpověď</span>
                     </button>
                   ) : (
@@ -278,10 +255,10 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
                           onSelectTask(activeTaskId + 1);
                           setFeedback(null);
                         }}
-                        className="px-7 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                        className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
                       >
                         <span>Přejít na další úkol</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     )
                   )}
@@ -290,16 +267,16 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
                 {/* Zpětná vazba po ověření */}
                 {feedback && feedback.taskId === currentTask.id && (
                   <div
-                    className={`p-4 rounded-2xl text-base font-bold flex items-center gap-2.5 ${
+                    className={`p-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 ${
                       feedback.isError
-                        ? 'bg-rose-100 text-rose-900 border-2 border-rose-300'
-                        : 'bg-emerald-100 text-emerald-900 border-2 border-emerald-300'
+                        ? 'bg-rose-100 text-rose-900 border border-rose-300'
+                        : 'bg-emerald-100 text-emerald-900 border border-emerald-300'
                     }`}
                   >
                     {feedback.isError ? (
-                      <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
+                      <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
                     ) : (
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     )}
                     <span>{feedback.text}</span>
                   </div>
@@ -309,8 +286,8 @@ export const GradebookTasksPanel: React.FC<GradebookTasksPanelProps> = ({
 
             {/* Didaktická pointa po splnění */}
             {isCurrentCompleted && (
-              <div className="bg-emerald-50 border border-emerald-300 p-3.5 rounded-xl text-xs sm:text-sm text-emerald-950 font-medium flex items-start gap-2.5 animate-in fade-in duration-200">
-                <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+              <div className="bg-emerald-50 border border-emerald-300 p-2.5 sm:p-3 rounded-xl text-xs text-emerald-950 font-medium flex items-start gap-2 animate-in fade-in duration-200">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <strong className="block font-black text-emerald-900 mb-0.5">
                     Co jsme si tímto úkolem ověřili:

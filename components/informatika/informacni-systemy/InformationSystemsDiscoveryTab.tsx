@@ -5,7 +5,6 @@ import {
   Eye,
   CheckCircle2,
   ChevronRight,
-  ChevronLeft,
   Users,
   ShieldCheck,
   KeyRound,
@@ -397,12 +396,6 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
     }
   };
 
-  const handlePrev = () => {
-    if (currentStepIndex > 0) {
-      setCurrentStepIndex(prev => prev - 1);
-    }
-  };
-
   const handleReset = () => {
     setRevealedSteps({});
     setCurrentStepIndex(0);
@@ -510,16 +503,6 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
 
       {/* HLAVNÍ PREZENTAČNÍ KARTA (STAGE) */}
       <div className="bg-white p-6 sm:p-9 rounded-[2.5rem] border-2 border-slate-200 shadow-xl space-y-6">
-        {/* Odznak a název fáze */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="text-xs font-black uppercase tracking-widest text-indigo-600 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-full">
-            {currentStep.badge}
-          </span>
-          <span className="text-xs text-slate-400 font-semibold">
-            Tip pro učitele: Klávesa Mezerník = odkrýt | Šipky = další otázka
-          </span>
-        </div>
-
         {/* Velká čistá otázka do třídy bez spoilerů a nadpisů */}
         <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300/80 p-5 sm:p-7 rounded-2xl shadow-xs">
           <div className="flex items-start gap-4">
@@ -595,19 +578,6 @@ export const InformationSystemsDiscoveryTab: React.FC<InformationSystemsDiscover
 
         {/* DOLNÍ NAVIGACE MEZI KROKY */}
         <div className="flex items-center justify-between pt-5 border-t-2 border-slate-100">
-          <button
-            onClick={handlePrev}
-            disabled={currentStepIndex === 0}
-            className={`px-5 py-3 rounded-2xl border-2 font-bold text-sm sm:text-base flex items-center gap-2 transition-all cursor-pointer ${
-              currentStepIndex === 0
-                ? 'opacity-40 cursor-not-allowed border-slate-200 text-slate-400'
-                : 'border-slate-300 text-slate-700 hover:bg-slate-100'
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-            <span>Předchozí otázka</span>
-          </button>
-
           <div className="text-sm font-black text-slate-500">
             Otázka {currentStepIndex + 1} z {steps.length}
           </div>

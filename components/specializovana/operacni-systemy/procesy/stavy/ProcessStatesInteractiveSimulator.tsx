@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Play, 
-  Pause, 
-  RotateCcw, 
-  ArrowRight, 
-  ArrowLeft, 
-  Clock, 
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  ArrowRight,
+  ArrowLeft,
+  Clock,
   Info
 } from 'lucide-react';
 
@@ -225,35 +225,32 @@ export default function ProcessStatesInteractiveSimulator() {
 
   return (
     <div className="w-full space-y-4 animate-in fade-in duration-300">
-      
+
       {/* 1. ŘÍDICÍ A POPISOVÁ LIŠTA */}
-      <div className={`p-4 rounded-2xl border-2 transition-all shadow-xs flex flex-col md:flex-row items-center justify-between gap-3 ${
-        current.processState === 'RUNNING'
-          ? 'bg-emerald-50/90 border-emerald-300'
-          : current.processState === 'READY'
+      <div className={`p-4 rounded-2xl border-2 transition-all shadow-xs flex flex-col md:flex-row items-center justify-between gap-3 ${current.processState === 'RUNNING'
+        ? 'bg-emerald-50/90 border-emerald-300'
+        : current.processState === 'READY'
           ? 'bg-blue-50/90 border-blue-300'
           : current.processState === 'BLOCKED'
-          ? 'bg-amber-50/95 border-amber-300'
-          : 'bg-purple-50/90 border-purple-300'
-      }`}>
-        
+            ? 'bg-amber-50/95 border-amber-300'
+            : 'bg-purple-50/90 border-purple-300'
+        }`}>
+
         <div className="flex items-center gap-3 min-w-0 flex-1">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-white text-sm shadow-sm shrink-0 ${
-            current.processState === 'RUNNING' ? 'bg-emerald-600' :
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-white text-sm shadow-sm shrink-0 ${current.processState === 'RUNNING' ? 'bg-emerald-600' :
             current.processState === 'READY' ? 'bg-blue-600' :
-            current.processState === 'BLOCKED' ? 'bg-amber-600' : 'bg-purple-600'
-          }`}>
+              current.processState === 'BLOCKED' ? 'bg-amber-600' : 'bg-purple-600'
+            }`}>
             {step}/{totalSteps}
           </div>
 
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className={`text-[11px] font-black uppercase px-2.5 py-0.5 rounded-full border ${
-                current.processState === 'RUNNING' ? 'bg-emerald-200 text-emerald-950 border-emerald-400' :
+              <span className={`text-[11px] font-black uppercase px-2.5 py-0.5 rounded-full border ${current.processState === 'RUNNING' ? 'bg-emerald-200 text-emerald-950 border-emerald-400' :
                 current.processState === 'READY' ? 'bg-blue-200 text-blue-950 border-blue-400' :
-                current.processState === 'BLOCKED' ? 'bg-amber-200 text-amber-950 border-amber-400' :
-                'bg-purple-200 text-purple-950 border-purple-400'
-              }`}>
+                  current.processState === 'BLOCKED' ? 'bg-amber-200 text-amber-950 border-amber-400' :
+                    'bg-purple-200 text-purple-950 border-purple-400'
+                }`}>
                 {current.badge}
               </span>
               <span className="text-[11px] font-mono text-slate-600">
@@ -277,9 +274,8 @@ export default function ProcessStatesInteractiveSimulator() {
 
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`px-3 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 transition shadow-xs text-white ${
-              isPlaying ? 'bg-amber-600 hover:bg-amber-700' : 'bg-indigo-600 hover:bg-indigo-700'
-            }`}
+            className={`px-3 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 transition shadow-xs text-white ${isPlaying ? 'bg-amber-600 hover:bg-amber-700' : 'bg-indigo-600 hover:bg-indigo-700'
+              }`}
           >
             {isPlaying ? (
               <>
@@ -329,7 +325,7 @@ export default function ProcessStatesInteractiveSimulator() {
 
       {/* 3. HLAVNÍ GRAFICKÝ PANEL */}
       <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-5 shadow-sm space-y-6">
-        
+
         {/* HORNÍ ČÁST: ČASOVÝ PRŮBĚH NA CPU */}
         <div>
           <div className="flex items-center justify-between mb-2 px-1">
@@ -355,7 +351,7 @@ export default function ProcessStatesInteractiveSimulator() {
 
           <div className="w-full flex justify-center overflow-x-auto bg-slate-50/70 p-3 rounded-2xl border border-slate-200">
             <svg viewBox="0 0 760 120" className="w-full max-w-[760px] h-auto select-none font-sans overflow-visible">
-              
+
               <defs>
                 <marker id="timeline-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
                   <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0f172a" />
@@ -374,114 +370,114 @@ export default function ProcessStatesInteractiveSimulator() {
               </text>
 
               {/* 1. slot Wordu */}
-              <rect 
-                x="100" 
-                y="12" 
-                width="180" 
-                height="22" 
-                rx="4" 
-                fill="#059669" 
-                opacity={step >= 3 && step <= 5 ? 1 : 0.4} 
+              <rect
+                x="100"
+                y="12"
+                width="180"
+                height="22"
+                rx="4"
+                fill="#059669"
+                opacity={step >= 3 && step <= 5 ? 1 : 0.4}
               />
               <text x="190" y="27" textAnchor="middle" className="text-[11px] font-black fill-white">
                 Word
               </text>
 
               {/* 2. slot Wordu */}
-              <rect 
-                x="480" 
-                y="12" 
-                width="85" 
-                height="22" 
-                rx="4" 
-                fill="#e11d48" 
-                opacity={step >= 9 ? 1 : 0.35} 
+              <rect
+                x="480"
+                y="12"
+                width="85"
+                height="22"
+                rx="4"
+                fill="#e11d48"
+                opacity={step >= 9 ? 1 : 0.35}
               />
               <text x="522" y="27" textAnchor="middle" className="text-[11px] font-black fill-white">
                 Word
               </text>
 
               {/* Vyšrafovaný zbytek 2. kvanta */}
-              <rect 
-                x="565" 
-                y="12" 
-                width="80" 
-                height="22" 
-                rx="4" 
-                fill="#cbd5e1" 
+              <rect
+                x="565"
+                y="12"
+                width="80"
+                height="22"
+                rx="4"
+                fill="#cbd5e1"
                 stroke="#94a3b8"
                 strokeDasharray="3 2"
-                opacity={0.6} 
+                opacity={0.6}
               />
               <text x="605" y="26" textAnchor="middle" className="text-[8.5px] font-bold fill-slate-500">
                 Nevyužito (I/O)
               </text>
 
               {/* Přepnutí OS 1 */}
-              <rect 
-                x="280" 
-                y="40" 
-                width="25" 
-                height="20" 
-                rx="3" 
-                fill="#d97706" 
-                opacity={step === 5 ? 1 : 0.35} 
+              <rect
+                x="280"
+                y="40"
+                width="25"
+                height="20"
+                rx="3"
+                fill="#d97706"
+                opacity={step === 5 ? 1 : 0.35}
               />
               <text x="292" y="54" textAnchor="middle" className="text-[8px] font-black fill-white">
                 OS
               </text>
 
               {/* Přepnutí OS 2 */}
-              <rect 
-                x="455" 
-                y="40" 
-                width="25" 
-                height="20" 
-                rx="3" 
-                fill="#d97706" 
-                opacity={step === 8 || step === 9 ? 1 : 0.35} 
+              <rect
+                x="455"
+                y="40"
+                width="25"
+                height="20"
+                rx="3"
+                fill="#d97706"
+                opacity={step === 8 || step === 9 ? 1 : 0.35}
               />
               <text x="467" y="54" textAnchor="middle" className="text-[8px] font-black fill-white">
                 OS
               </text>
 
               {/* Přepnutí OS 3 */}
-              <rect 
-                x="565" 
-                y="40" 
-                width="25" 
-                height="20" 
-                rx="3" 
-                fill="#d97706" 
-                opacity={step >= 11 ? 1 : 0.35} 
+              <rect
+                x="565"
+                y="40"
+                width="25"
+                height="20"
+                rx="3"
+                fill="#d97706"
+                opacity={step >= 11 ? 1 : 0.35}
               />
               <text x="577" y="54" textAnchor="middle" className="text-[8px] font-black fill-white">
                 OS
               </text>
 
               {/* 1. slot Kalkulačky */}
-              <rect 
-                x="305" 
-                y="68" 
-                width="150" 
-                height="20" 
-                rx="3" 
-                fill="#475569" 
-                opacity={step >= 6 && step <= 8 ? 1 : 0.35} 
+              <rect
+                x="305"
+                y="68"
+                width="150"
+                height="20"
+                rx="3"
+                fill="#475569"
+                opacity={step >= 6 && step <= 8 ? 1 : 0.35}
               />
               <text x="380" y="82" textAnchor="middle" className="text-[10.5px] font-bold fill-white">
                 Kalkulačka
               </text>
 
               {/* 2. slot Kalkulačky */}
-              <rect 
-                x="590" 
-                y="68" 
-                width="140" 
-                height="20" 
-                rx="3" 
-                fill="#475569" 
-                opacity={step >= 12 ? 1 : 0.35} 
+              <rect
+                x="590"
+                y="68"
+                width="140"
+                height="20"
+                rx="3"
+                fill="#475569"
+                opacity={step >= 12 ? 1 : 0.35}
               />
               <text x="660" y="82" textAnchor="middle" className="text-[10.5px] font-bold fill-white">
                 Kalkulačka
@@ -489,34 +485,34 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* Červená ryska */}
               <g className="transition-all duration-300">
-                <line 
-                  x1={current.timelineX} 
-                  y1="6" 
-                  x2={current.timelineX} 
-                  y2="100" 
-                  stroke="#dc2626" 
-                  strokeWidth="2.5" 
+                <line
+                  x1={current.timelineX}
+                  y1="6"
+                  x2={current.timelineX}
+                  y2="100"
+                  stroke="#dc2626"
+                  strokeWidth="2.5"
                   strokeDasharray="3 2"
                 />
-                <polygon 
-                  points={`${current.timelineX - 5},4 ${current.timelineX + 5},4 ${current.timelineX},10`} 
-                  fill="#dc2626" 
+                <polygon
+                  points={`${current.timelineX - 5},4 ${current.timelineX + 5},4 ${current.timelineX},10`}
+                  fill="#dc2626"
                 />
-                <rect 
-                  x={current.timelineX - 26} 
-                  y="0" 
-                  width="52" 
-                  height="14" 
-                  rx="3" 
-                  fill="#dc2626" 
+                <rect
+                  x={current.timelineX - 26}
+                  y="0"
+                  width="52"
+                  height="14"
+                  rx="3"
+                  fill="#dc2626"
                 />
-                <text 
-                  x={current.timelineX} 
-                  y="10" 
-                  textAnchor="middle" 
-                  fill="#ffffff" 
-                  fontSize="8.5" 
-                  fontFamily="monospace" 
+                <text
+                  x={current.timelineX}
+                  y="10"
+                  textAnchor="middle"
+                  fill="#ffffff"
+                  fontSize="8.5"
+                  fontFamily="monospace"
                   fontWeight="900"
                 >
                   t = {current.timeMs}ms
@@ -538,11 +534,10 @@ export default function ProcessStatesInteractiveSimulator() {
             </span>
             <div className="flex items-center gap-2 text-xs font-bold">
               <span className="text-slate-500">Stav:</span>
-              <span className={`px-2.5 py-0.5 rounded-md text-white font-mono uppercase ${
-                current.processState === 'RUNNING' ? 'bg-emerald-600' :
+              <span className={`px-2.5 py-0.5 rounded-md text-white font-mono uppercase ${current.processState === 'RUNNING' ? 'bg-emerald-600' :
                 current.processState === 'READY' ? 'bg-blue-600' :
-                current.processState === 'BLOCKED' ? 'bg-amber-600' : 'bg-purple-600'
-              }`}>
+                  current.processState === 'BLOCKED' ? 'bg-amber-600' : 'bg-purple-600'
+                }`}>
                 {current.processState}
               </span>
             </div>
@@ -550,7 +545,7 @@ export default function ProcessStatesInteractiveSimulator() {
 
           <div className="w-full flex justify-center overflow-x-auto bg-white p-2 rounded-2xl border border-slate-200">
             <svg viewBox="0 0 760 170" className="w-full max-w-[760px] h-auto select-none font-sans">
-              
+
               <defs>
                 <marker id="clean-arr-slate" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94a3b8" />
@@ -571,15 +566,15 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* ---------------- 1. Uzel: NEW ---------------- */}
               <g className="transition-all duration-300">
-                <rect 
-                  x="20" 
-                  y="20" 
-                  width="100" 
-                  height="60" 
-                  rx="14" 
-                  fill={current.processState === 'NEW' ? '#f3e8ff' : '#f8fafc'} 
-                  stroke={current.processState === 'NEW' ? '#9333ea' : '#cbd5e1'} 
-                  strokeWidth={current.processState === 'NEW' ? '3' : '1.5'} 
+                <rect
+                  x="20"
+                  y="20"
+                  width="100"
+                  height="60"
+                  rx="14"
+                  fill={current.processState === 'NEW' ? '#f3e8ff' : '#f8fafc'}
+                  stroke={current.processState === 'NEW' ? '#9333ea' : '#cbd5e1'}
+                  strokeWidth={current.processState === 'NEW' ? '3' : '1.5'}
                 />
                 <text x="70" y="46" textAnchor="middle" fill={current.processState === 'NEW' ? '#6b21a8' : '#334155'} fontSize="13" fontWeight="900">
                   NEW
@@ -590,12 +585,12 @@ export default function ProcessStatesInteractiveSimulator() {
               </g>
 
               {/* Šipka NEW -> READY */}
-              <path 
-                d="M 120 50 L 175 50" 
-                fill="none" 
-                stroke={current.activeTransition === 'NEW_READY' ? '#9333ea' : '#cbd5e1'} 
-                strokeWidth={current.activeTransition === 'NEW_READY' ? '3' : '1.5'} 
-                markerEnd={current.activeTransition === 'NEW_READY' ? 'url(#clean-arr-purple)' : 'url(#clean-arr-slate)'} 
+              <path
+                d="M 120 50 L 175 50"
+                fill="none"
+                stroke={current.activeTransition === 'NEW_READY' ? '#9333ea' : '#cbd5e1'}
+                strokeWidth={current.activeTransition === 'NEW_READY' ? '3' : '1.5'}
+                markerEnd={current.activeTransition === 'NEW_READY' ? 'url(#clean-arr-purple)' : 'url(#clean-arr-slate)'}
               />
               <text x="148" y="42" textAnchor="middle" fill={current.activeTransition === 'NEW_READY' ? '#9333ea' : '#64748b'} fontSize="8" fontWeight="bold">
                 Zavedení
@@ -603,15 +598,15 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* ---------------- 2. Uzel: READY ---------------- */}
               <g className="transition-all duration-300">
-                <rect 
-                  x="180" 
-                  y="15" 
-                  width="145" 
-                  height="70" 
-                  rx="14" 
-                  fill={current.processState === 'READY' ? '#eff6ff' : '#f8fafc'} 
-                  stroke={current.processState === 'READY' ? '#2563eb' : '#cbd5e1'} 
-                  strokeWidth={current.processState === 'READY' ? '3.5' : '1.5'} 
+                <rect
+                  x="180"
+                  y="15"
+                  width="145"
+                  height="70"
+                  rx="14"
+                  fill={current.processState === 'READY' ? '#eff6ff' : '#f8fafc'}
+                  stroke={current.processState === 'READY' ? '#2563eb' : '#cbd5e1'}
+                  strokeWidth={current.processState === 'READY' ? '3.5' : '1.5'}
                 />
                 <text x="252" y="43" textAnchor="middle" fill={current.processState === 'READY' ? '#1e40af' : '#334155'} fontSize="13" fontWeight="900">
                   READY
@@ -622,25 +617,25 @@ export default function ProcessStatesInteractiveSimulator() {
               </g>
 
               {/* Šipka READY -> RUNNING (Horní šipka doprava) */}
-              <path 
-                d="M 325 38 L 415 38" 
-                fill="none" 
-                stroke={current.activeTransition === 'READY_RUN' ? '#10b981' : '#cbd5e1'} 
-                strokeWidth={current.activeTransition === 'READY_RUN' ? '3' : '1.5'} 
-                markerEnd={current.activeTransition === 'READY_RUN' ? 'url(#clean-arr-green)' : 'url(#clean-arr-slate)'} 
+              <path
+                d="M 325 38 L 415 38"
+                fill="none"
+                stroke={current.activeTransition === 'READY_RUN' ? '#10b981' : '#cbd5e1'}
+                strokeWidth={current.activeTransition === 'READY_RUN' ? '3' : '1.5'}
+                markerEnd={current.activeTransition === 'READY_RUN' ? 'url(#clean-arr-green)' : 'url(#clean-arr-slate)'}
               />
               <text x="370" y="30" textAnchor="middle" fill={current.activeTransition === 'READY_RUN' ? '#059669' : '#64748b'} fontSize="8" fontWeight="bold">
                 Přidělení CPU ➔
               </text>
 
               {/* Šipka RUNNING -> READY (Dolní šipka doleva - vypršel časovač) */}
-              <path 
-                d="M 415 62 L 325 62" 
-                fill="none" 
-                stroke={current.activeTransition === 'RUN_READY' ? '#2563eb' : '#cbd5e1'} 
-                strokeWidth={current.activeTransition === 'RUN_READY' ? '3' : '1.5'} 
+              <path
+                d="M 415 62 L 325 62"
+                fill="none"
+                stroke={current.activeTransition === 'RUN_READY' ? '#2563eb' : '#cbd5e1'}
+                strokeWidth={current.activeTransition === 'RUN_READY' ? '3' : '1.5'}
                 strokeDasharray={current.activeTransition === 'RUN_READY' ? 'none' : '4 2'}
-                markerEnd={current.activeTransition === 'RUN_READY' ? 'url(#clean-arr-blue)' : 'url(#clean-arr-slate)'} 
+                markerEnd={current.activeTransition === 'RUN_READY' ? 'url(#clean-arr-blue)' : 'url(#clean-arr-slate)'}
               />
               <text x="370" y="74" textAnchor="middle" fill={current.activeTransition === 'RUN_READY' ? '#1e40af' : '#94a3b8'} fontSize="8" fontWeight="bold">
                 ◂ Vypršel čas (Timer)
@@ -648,15 +643,15 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* ---------------- 3. Uzel: RUNNING ---------------- */}
               <g className="transition-all duration-300">
-                <rect 
-                  x="420" 
-                  y="15" 
-                  width="145" 
-                  height="70" 
-                  rx="14" 
-                  fill={current.processState === 'RUNNING' ? '#ecfdf5' : '#f8fafc'} 
-                  stroke={current.processState === 'RUNNING' ? '#10b981' : '#cbd5e1'} 
-                  strokeWidth={current.processState === 'RUNNING' ? '3.5' : '1.5'} 
+                <rect
+                  x="420"
+                  y="15"
+                  width="145"
+                  height="70"
+                  rx="14"
+                  fill={current.processState === 'RUNNING' ? '#ecfdf5' : '#f8fafc'}
+                  stroke={current.processState === 'RUNNING' ? '#10b981' : '#cbd5e1'}
+                  strokeWidth={current.processState === 'RUNNING' ? '3.5' : '1.5'}
                 />
                 <text x="492" y="43" textAnchor="middle" fill={current.processState === 'RUNNING' ? '#065f46' : '#334155'} fontSize="13" fontWeight="900">
                   RUNNING
@@ -667,12 +662,12 @@ export default function ProcessStatesInteractiveSimulator() {
               </g>
 
               {/* Šipka RUNNING -> BLOCKED */}
-              <path 
-                d="M 492 85 L 492 115 L 435 115" 
-                fill="none" 
-                stroke={current.activeTransition === 'RUN_BLOCKED' ? '#d97706' : '#cbd5e1'} 
-                strokeWidth={current.activeTransition === 'RUN_BLOCKED' ? '3' : '1.5'} 
-                markerEnd={current.activeTransition === 'RUN_BLOCKED' ? 'url(#clean-arr-amber)' : 'url(#clean-arr-slate)'} 
+              <path
+                d="M 492 85 L 492 115 L 435 115"
+                fill="none"
+                stroke={current.activeTransition === 'RUN_BLOCKED' ? '#d97706' : '#cbd5e1'}
+                strokeWidth={current.activeTransition === 'RUN_BLOCKED' ? '3' : '1.5'}
+                markerEnd={current.activeTransition === 'RUN_BLOCKED' ? 'url(#clean-arr-amber)' : 'url(#clean-arr-slate)'}
               />
               <text x="502" y="104" textAnchor="start" fill={current.activeTransition === 'RUN_BLOCKED' ? '#d97706' : '#64748b'} fontSize="8" fontWeight="bold">
                 Žádost o disk ▾
@@ -680,15 +675,15 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* ---------------- 4. Uzel: BLOCKED (Dole uprostřed) ---------------- */}
               <g className="transition-all duration-300">
-                <rect 
-                  x="285" 
-                  y="105" 
-                  width="145" 
-                  height="55" 
-                  rx="14" 
-                  fill={current.processState === 'BLOCKED' ? '#fffbeb' : '#f8fafc'} 
-                  stroke={current.processState === 'BLOCKED' ? '#f59e0b' : '#cbd5e1'} 
-                  strokeWidth={current.processState === 'BLOCKED' ? '3.5' : '1.5'} 
+                <rect
+                  x="285"
+                  y="105"
+                  width="145"
+                  height="55"
+                  rx="14"
+                  fill={current.processState === 'BLOCKED' ? '#fffbeb' : '#f8fafc'}
+                  stroke={current.processState === 'BLOCKED' ? '#f59e0b' : '#cbd5e1'}
+                  strokeWidth={current.processState === 'BLOCKED' ? '3.5' : '1.5'}
                 />
                 <text x="357" y="130" textAnchor="middle" fill={current.processState === 'BLOCKED' ? '#92400e' : '#334155'} fontSize="12.5" fontWeight="900">
                   BLOCKED
@@ -699,24 +694,24 @@ export default function ProcessStatesInteractiveSimulator() {
               </g>
 
               {/* Šipka BLOCKED -> READY */}
-              <path 
-                d="M 285 125 L 245 125 L 245 85" 
-                fill="none" 
-                stroke={current.activeTransition === 'BLOCKED_READY' ? '#2563eb' : '#cbd5e1'} 
-                strokeWidth={current.activeTransition === 'BLOCKED_READY' ? '3' : '1.5'} 
-                markerEnd={current.activeTransition === 'BLOCKED_READY' ? 'url(#clean-arr-blue)' : 'url(#clean-arr-slate)'} 
+              <path
+                d="M 285 125 L 245 125 L 245 85"
+                fill="none"
+                stroke={current.activeTransition === 'BLOCKED_READY' ? '#2563eb' : '#cbd5e1'}
+                strokeWidth={current.activeTransition === 'BLOCKED_READY' ? '3' : '1.5'}
+                markerEnd={current.activeTransition === 'BLOCKED_READY' ? 'url(#clean-arr-blue)' : 'url(#clean-arr-slate)'}
               />
               <text x="235" y="112" textAnchor="end" fill={current.activeTransition === 'BLOCKED_READY' ? '#2563eb' : '#64748b'} fontSize="8" fontWeight="bold">
                 ▴ Disk dočetl
               </text>
 
               {/* Šipka RUNNING -> TERMINATED */}
-              <path 
-                d="M 565 50 L 625 50" 
-                fill="none" 
-                stroke="#cbd5e1" 
-                strokeWidth="1.5" 
-                markerEnd="url(#clean-arr-slate)" 
+              <path
+                d="M 565 50 L 625 50"
+                fill="none"
+                stroke="#cbd5e1"
+                strokeWidth="1.5"
+                markerEnd="url(#clean-arr-slate)"
               />
               <text x="595" y="42" textAnchor="middle" fill="#64748b" fontSize="8" fontWeight="bold">
                 Konec
@@ -724,15 +719,15 @@ export default function ProcessStatesInteractiveSimulator() {
 
               {/* ---------------- 5. Uzel: TERMINATED ---------------- */}
               <g className="transition-all duration-300">
-                <rect 
-                  x="630" 
-                  y="20" 
-                  width="100" 
-                  height="60" 
-                  rx="14" 
-                  fill="#f8fafc" 
-                  stroke="#cbd5e1" 
-                  strokeWidth="1.5" 
+                <rect
+                  x="630"
+                  y="20"
+                  width="100"
+                  height="60"
+                  rx="14"
+                  fill="#f8fafc"
+                  stroke="#cbd5e1"
+                  strokeWidth="1.5"
                 />
                 <text x="680" y="46" textAnchor="middle" fill="#334155" fontSize="13" fontWeight="900">
                   EXIT

@@ -58,7 +58,7 @@ export const SmartLightingProjectTab: React.FC = () => {
               </h3>
             </div>
             <p className="text-base text-slate-700 font-medium leading-relaxed">
-              Zapište na papír všechna fyzická zařízení, ze kterých se systém skládá (čidla pohybu, světla, kabely, centrála).
+              Zapište na papír všechna fyzická zařízení, ze kterých se systém skládá.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export const SmartLightingProjectTab: React.FC = () => {
               </h3>
             </div>
             <p className="text-base text-slate-700 font-medium leading-relaxed">
-              Zapište na papír pravidla a podmínky: Kdy se má světlo rozsvítit? Na jak dlouho? Co když je ještě den?
+              Zapište na papír pravidla, která by měl systém obsahovat?
             </p>
           </div>
         </div>
