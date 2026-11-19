@@ -1,38 +1,37 @@
-# Aktivní plánovací tabule: Operační systémy 1 (OSS 1)
+# Aktivní plánovací tabule: Programování a vývoj aplikací 1 (PRG 1)
 
-**Aktivní předmět:** Operační systémy 1 (1. ročník SŠ)  
+**Aktivní předmět:** Programování a vývoj aplikací 1 (1. ročník SŠ)  
 **Obor:** 18-20-M/01 Informační technologie  
-**Dotace:** 66 h ročně (33 výukových týdnů × 2 h)  
-**Cílová stanice:** Klientská stanice Windows 11 (od uživatele ke správci)  
-**Aktuální blok:** Blok 3: Procesy a správa operační paměti (multitasking, stavy procesů, vlákna, virtuální paměť)  
-**Odpovídající profil kurikula:** `doc/curriculum/OSS1.md` | **Dedikovaný plán:** `doc/plans/PLAN_OSS1.md`
+**Dotace:** 99 h ročně (33 výukových týdnů × 3 h)  
+**Cílové prostředí:** Scratch 3.0 (Blok 1), Vývojové diagramy (Blok 2), Hardware v blocích (Blok 3), Python s grafikou Tkinter (Blok 4)  
+**Aktuální blok:** Blok 1: Vizuální blokové programování ve Scratchi (Lekce 7: Události a zprávy)  
+**Odpovídající profil kurikula:** `doc/curriculum/PRG_SVP_INSPIS.md` | **Dedikovaný plán:** `doc/plans/PLAN_PRG1.md`
 
 ---
 
-## 🎯 Kontext a témata Bloku 3 (Procesy a paměť):
-1. **PR1 Úvod a vznik procesu:** Program na disku (.exe) vs. živý proces v RAM, identifikátor PID, kód vs. data, praktický list Task Manager & CLI.
-2. **PR2 Střídání procesů (Multitasking):** Jak jedno jádro CPU zvládá desítky aplikací naráz, časová kvanta (10–30 ms), kontext procesu (čítač PC, registry), režie přepnutí kontextu, interaktivní simulátor na CPU, opakovací otázky.
-3. **PR3 Životní cyklus a stavy:** Stavový diagram (New ➔ Ready ➔ Running ➔ Blocked ➔ Terminated), čekání na I/O (disk, klávesnice), interaktivní simulátor stavů.
-4. **PR4 Vlákna (Threads):** Rozdíl mezi procesem a vláknem, sdílený paměťový prostor, využití vícejádrových CPU, plynulost UI.
-5. **PR5 Virtuální paměť a stránkování:** Izolace adresního prostoru, hardwarová jednotka MMU, stránky a rámce (4 kB), Page Fault a odkládací soubor `pagefile.sys`.
+## 🎯 Kontext a témata Bloku 1 (Scratch 3.0):
+1. **Lekce 1: Sekvence a krokování:** Základní pohyb, souřadnice X/Y, směry, kreslení perem.
+2. **Lekce 2: Proměnné a vstup/výstup:** Číselné a textové proměnné, blok `zeptej se a čekej`, operace s čísly.
+3. **Lekce 3: Cykly a opakování:** Počítané cykly `opakuj N-krát`, nekonečné smyčky `opakuj stále`, podmíněné cykly `opakuj dokud nenastane`.
+4. **Lekce 4: Vlastní bloky a podprogramy:** Procedury bez parametrů i s parametry, modularizace kódu.
+5. **Lekce 5: Podmínky a logické výrazy:** Jednoduché a úplné větvení `když - tak - jinak`, relační operátory `<`, `=`, `>`, logické spojky `a zároveň`, `nebo`, `není pravda že`.
+6. **Lekce 6: Seznamy (Listy) a datové struktury:** Dynamické seznamy, indexace prvků, vyhledávání, řazení, inventář.
+7. **Lekce 7: Události a zprávy (Klient–Server):** Komunikace mezi postavami, signály 1:1, rozhlas 1:N, synchronní volání `vyšli zprávu a čekej`, základy distribuované architektury.
 
 ---
 
-## 📋 Stav a připravenost
-- [x] Podklady a komponenty pro procesy, multitasking a paměť jsou načteny v paměti asistenta.
-- [x] Tabule přepnuta na OSS 1.
-- [x] **PR2 Střídání procesů (Multitasking):**
-  - [x] Dokončen kompaktní All-in-One simulátor střídání procesů na CPU (`CpuSwitchingSimulator.tsx`).
-  - [x] Dokončen zjednodušený praktický laboratorní list: Parametry CPU a reálné měření přepnutí kontextu v `perfmon.exe` s automatickým ukládáním do `localStorage` a exportem do `.doc`.
-- [x] **PR3 Životní cyklus a stavy procesů (HOTOVO):**
-  - [x] Modularizace kapitoly `ProcessStatesChapter.tsx` (oddělení záložek do podsložky `stavy/` dle Pravidla 13).
-  - [x] Interaktivní simulátor životního cyklu a I/O (`ProcessStatesInteractiveSimulator.tsx` s časovou osou 0–75 ms, detailním 2D stavovým diagramem a plynulým krokováním).
-  - [x] Standardizovaný opakovací kvíz dle šablony `TopicReviewQuiz` (Pravidlo 15, 9 otázek s Fisher-Yates mícháním, dvoutaktním hodnocením a detailním vysvětlením).
-  - [x] Teoretický výklad rychlostní propasti, 5 stavů procesů, vzniku stavu NEW a priorit ve Windows.
-  - [x] Praktický laboratorní list & protokol (`ProcessStatesLabTab.tsx`, `worksheet/ProcessStatesTasks.tsx`, `worksheet/ProcessStatesWordExport.ts`, `ProcessStatesTypes.ts`):
-    - Úloha 1: Regulérní vypnutí procesu (korektní EXIT, záchyt zprávy, dialog uložení).
-    - Úloha 2: Násilné ukončení procesu (tvrdý EXIT, `taskkill /F /IM notepad.exe` vs. Správce úloh, okamžitá ztráta dat v RAM).
-    - Úloha 3: Umělé zmrazení procesu do stavu BLOCKED (Process Explorer ➔ Suspend & Resume, 0.0 % CPU, zamrznutí UI).
-    - Úloha 4: Důkaz I/O-bound chování (Notepad v klidu 0.0 % CPU – spí v BLOCKED vs. probuzení stiskem klávesy).
-    - Úloha 5: Souboj o jádro CPU – vysvětlení pojmu afinita (spřažení na CPU 0), strop 1 plného jádra (~8 % na 12vláknovém CPU) a rozdělení času plánovačem při prioritě Vysoká vs. Nízká.
-    - Export do Wordu (`.doc`) a automatické ukládání do `localStorage`.
+## 📋 Stav kapitoly: Lekce 7 – Události a zprávy
+- [x] Vytvořena modulární struktura kapitoly: `ScratchMessagesChapter.tsx` obalená v `FsChapterShell` s akcentem `border-amber-500` a učitelským PINem.
+- [x] `MessagesTheorySection.tsx`: Teoretický úvod – rozdíl mezi signálem 1:1, rozhlasem 1:N a synchronizací `vyšli zprávu a čekej`.
+- [x] `MessagesTasks1to3.tsx`:
+  - Úkol 1: Zvonek u dveří (Signál 1:1 mezi tlačítkem a kocourem).
+  - Úkol 2: Rozhlas v domě (Rozeslání 1:N – kocour i pes reagují na stejný zvonek).
+  - Úkol 3: Řízený dialog postav (Předávání štafety mezi postavami přes zprávy).
+- [x] `MessagesTasks4to6.tsx`:
+  - Úkol 4: Synchronní volání – Bezpečné vypnutí OS (Graceful Shutdown přes `vyšli zprávu a čekej`).
+  - Úkol 5: Stopky s řízením stavů (Start, Stop, Reset).
+  - Úkol 6: Grafická kalkulačka se seznamem (Tlačítka číslic a operací posílají zprávy mozku kalkulačky, vyhodnocení výrazu).
+- [x] `MessagesTask7.tsx`:
+  - Úkol 7: Analogové hodiny (Taktování zprávami: vteřinová ➔ minutová ➔ hodinová ručička s vylepšením pro plynulý posun).
+- [x] `MessagesTask8.tsx`:
+  - Úkol 8: Architektura Klient – Server (API a databáze na pozadí: Klient jako UI terminál, Server jako výpočetní backend a mikrodatabáze přes synchronní zprávy s parametry).

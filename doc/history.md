@@ -1255,3 +1255,20 @@ px tsc --noEmit.
       - **Úloha 4 (4 b):** Digitální certifikát Authenticode (analogie voskové pečeti, identita autora + integrita kódu; údaje certifikátu: Subject, Issuer, Timestamp/platnost, podpis hashe a veřejný klíč).
       - **Úloha 5 (3 b):** Ověření změny obsahu při přenosu (princip kontrolního součtu SHA-256, porovnání hashe a lavinový efekt).
     - **Registrace:** Zařazeno do `defaultSchool.ts` (`isTest: true`, růžová karta `#TEST`), do `oss2Lessons.ts` a vytvořena routa v `app/specializovana/operacni-systemy-2/bezpecnost/test/page.tsx`.
+
+61. **PVH 1 – Prohození a rozšíření úloh v kapitole Události a zprávy (`ScratchMessagesChapter`):**
+    - **Didaktická gradace:** V kapitole *Události a zprávy* byla Grafická kalkulačka se seznamem přesunuta na pozici Úkolu 6.
+      - **Úkol 6 (`msg-6`, `Kalkulacka.sb3`):** *Grafická kalkulačka se seznamem* v `MessagesTasks4to6.tsx` – přirozeně navazuje na předchozí práci se seznamy (Lekce 6) a ukazuje obousměrnou komunikaci: tlačítka plní seznam a posílají zprávu `vyhodnot a čekej` kocourovi.
+    - **UI zmenšení v simulátoru žákovské knížky:** V `GradebookTasksPanel.tsx` byl kompaktně upraven panel misí (zmenšeno vertikální odsazení, písmo i input formuláře otázky).
+
+62. **PVH 1 – Vytvoření úlohy Analogové hodiny (Úkol 7) a posun Klient – Serveru (Úkol 8):**
+    - **Komponenta:** Vytvořen dedikovaný modul `MessagesTask7.tsx` pro *Analogové hodiny* a `MessagesTask8.tsx` pro *Architekturu Klient – Server*.
+    - **Úkol 7 (`msg-7`, `AnalogoveHodiny.sb3`):** *Analogové hodiny (Taktování zprávami)*
+      - Tři postavy: Vteřinová ručička (červená, tenká), Minutová ručička (modrá), Hodinová ručička (černá, silnější) se středem rotace v `x: 0, y: 0`.
+      - **Důležité pravidlo kostýmů:** Kreslení ručičky od středového zaměřovacího křížku směrem doprava (výchozí rotace `90°` ve Scratchi; nastavením směru na `0` míří na 12 hodin).
+      - **Zadání pro žáka (stručný a nenávodný základ):**
+        - Pouze 3 body: Start (mezerník -> ručičky nahoru), Chod hodin (vteřinová obíhá a po 60 s posílá zprávu minutové; minutová po hodině posílá zprávu hodinové) a Vylepšení (plynulý posun hodinové ručičky po každé minutě).
+        - Příprava kostýmů: kreslení od středu doprava, umístění na x: 0, y: 0.
+        - Žádné nápovědy kódů, úhlů ani vzorců v zadání; veškeré blokové řešení je výhradně v učitelském režimu.
+    - **Úkol 8 (`msg-8`, `KlientServer.sb3`):** *Architektura Klient – Server (API a databáze na pozadí)* v `MessagesTask8.tsx`.
+    - **Ověření:** TypeScript kompilace `npx tsc --noEmit` úspěšná bez chyb.

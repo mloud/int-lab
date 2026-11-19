@@ -8,6 +8,7 @@ import { MessagesTheorySection } from './messages/MessagesTheorySection';
 import { MessagesTasks1to3 } from './messages/MessagesTasks1to3';
 import { MessagesTasks4to6 } from './messages/MessagesTasks4to6';
 import { MessagesTask7 } from './messages/MessagesTask7';
+import { MessagesTask8 } from './messages/MessagesTask8';
 
 export const ScratchMessagesChapter = ({ onBack }: { onBack?: () => void }) => {
   const [teacherMode, setTeacherMode] = useState(false);
@@ -26,6 +27,7 @@ export const ScratchMessagesChapter = ({ onBack }: { onBack?: () => void }) => {
         <MessagesTasks1to3 teacherMode={teacherMode} />
         <MessagesTasks4to6 teacherMode={teacherMode} />
         <MessagesTask7 teacherMode={teacherMode} />
+        <MessagesTask8 teacherMode={teacherMode} />
       </div>
     </FsChapterShell>
   );
