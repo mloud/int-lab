@@ -239,105 +239,18 @@ export const LibraryDiagramBuilder: React.FC = () => {
               Schéma databáze knihovny
             </span>
             <span className="text-[11px] font-bold text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">
-              Aktivní šipky: {activeLinks.length} / 4
+              Aktivní spojnice: {activeLinks.length} / 4
             </span>
           </div>
 
           <div className="w-full relative h-[250px] sm:h-[280px] bg-slate-50 rounded-2xl border border-slate-200 select-none overflow-hidden">
-            {/* SVG šipky na pevných souřadnicích viewBoxu 0 0 700 280 */}
+            {/* SVG spojnice na pevných souřadnicích viewBoxu 0 0 700 280 */}
             <svg
               viewBox="0 0 700 280"
               className="absolute inset-0 w-full h-full"
               preserveAspectRatio="xMidYMid meet"
             >
-              <defs>
-                {/* Oboustranná modrá šipka (Autoři <-> Knihy) */}
-                <marker
-                  id="arrow-blue-end"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb" />
-                </marker>
-                <marker
-                  id="arrow-blue-start"
-                  viewBox="0 0 10 10"
-                  refX="2"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb" />
-                </marker>
-
-                {/* Oboustranná oranžová šipka (Knihy <-> Obory) */}
-                <marker
-                  id="arrow-amber-end"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#d97706" />
-                </marker>
-                <marker
-                  id="arrow-amber-start"
-                  viewBox="0 0 10 10"
-                  refX="2"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#d97706" />
-                </marker>
-
-                {/* Jednosměrná fialová šipka (Knihy -> Výtisky) */}
-                <marker
-                  id="arrow-purple-end"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#7c3aed" />
-                </marker>
-
-                {/* Oboustranná zelená šipka (Čtenáři <-> Výtisky) */}
-                <marker
-                  id="arrow-emerald-end"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669" />
-                </marker>
-                <marker
-                  id="arrow-emerald-start"
-                  viewBox="0 0 10 10"
-                  refX="2"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669" />
-                </marker>
-              </defs>
-
-              {/* 1. Spojnice: Autoři (185, 60) <-> Knihy (285, 60) */}
+              {/* 1. Spojnice: Autoři (185, 60) --- Knihy (285, 60) */}
               {hasLink('autori-knihy') && (
                 <g className="animate-in fade-in duration-300">
                   <line
@@ -347,13 +260,12 @@ export const LibraryDiagramBuilder: React.FC = () => {
                     y2="60"
                     stroke="#2563eb"
                     strokeWidth="4"
-                    markerStart="url(#arrow-blue-start)"
-                    markerEnd="url(#arrow-blue-end)"
+                    strokeLinecap="round"
                   />
                 </g>
               )}
 
-              {/* 2. Spojnice: Knihy (320, 95) <-> Obory (255, 185) */}
+              {/* 2. Spojnice: Knihy (320, 95) --- Obory (255, 185) */}
               {hasLink('knihy-obory') && (
                 <g className="animate-in fade-in duration-300">
                   <line
@@ -363,13 +275,12 @@ export const LibraryDiagramBuilder: React.FC = () => {
                     y2="185"
                     stroke="#d97706"
                     strokeWidth="4"
-                    markerStart="url(#arrow-amber-start)"
-                    markerEnd="url(#arrow-amber-end)"
+                    strokeLinecap="round"
                   />
                 </g>
               )}
 
-              {/* 3. Spojnice: Knihy (375, 95) -> Výtisky (415, 185) */}
+              {/* 3. Spojnice: Knihy (375, 95) --- Výtisky (415, 185) */}
               {hasLink('knihy-vytisky') && (
                 <g className="animate-in fade-in duration-300">
                   <line
@@ -379,12 +290,12 @@ export const LibraryDiagramBuilder: React.FC = () => {
                     y2="185"
                     stroke="#7c3aed"
                     strokeWidth="4"
-                    markerEnd="url(#arrow-purple-end)"
+                    strokeLinecap="round"
                   />
                 </g>
               )}
 
-              {/* 4. Spojnice: Čtenáři (540, 95) <-> Výtisky (500, 185) */}
+              {/* 4. Spojnice: Čtenáři (540, 95) --- Výtisky (500, 185) */}
               {hasLink('ctenari-vytisky') && (
                 <g className="animate-in fade-in duration-300">
                   <line
@@ -394,8 +305,7 @@ export const LibraryDiagramBuilder: React.FC = () => {
                     y2="185"
                     stroke="#059669"
                     strokeWidth="4"
-                    markerStart="url(#arrow-emerald-start)"
-                    markerEnd="url(#arrow-emerald-end)"
+                    strokeLinecap="round"
                   />
                 </g>
               )}
@@ -539,7 +449,7 @@ export const LibraryDiagramBuilder: React.FC = () => {
                 </div>
               )}
 
-              {/* Tlačítko pro zakreslení šipky */}
+              {/* Tlačítko pro zakreslení spojnice */}
               <div className="flex justify-end pt-2">
                 <button
                   onClick={handleConfirm}
@@ -549,7 +459,7 @@ export const LibraryDiagramBuilder: React.FC = () => {
                   <span>
                     {currentStepIndex + 1 === STEPS.length
                       ? 'Dokončit diagram'
-                      : 'Zakreslit šipku do diagramu'}
+                      : 'Propojit v diagramu'}
                   </span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -565,8 +475,8 @@ export const LibraryDiagramBuilder: React.FC = () => {
                 Diagram je kompletní!
               </h3>
               <p className="text-xs sm:text-sm text-emerald-100 max-w-sm mx-auto leading-relaxed font-medium">
-                Výborně! Všechny šipky jsou na svém místě: oddělili jsme{' '}
-                <strong>knihu</strong> od <strong>fyzických výtisků</strong>, spojili{' '}
+                Výborně! Všechny vazby jsou na svém místě: oddělili jsme{' '}
+                <strong>knihu</strong> od <strong>fyzických výtisků</strong>, propojili{' '}
                 <strong>čtenáře s výtisky</strong> a umožnili vazby na{' '}
                 <strong>více oborů</strong> i <strong>více autorů</strong>.
               </p>
